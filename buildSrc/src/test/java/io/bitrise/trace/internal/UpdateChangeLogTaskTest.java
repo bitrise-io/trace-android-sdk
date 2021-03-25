@@ -41,7 +41,7 @@ import static org.mockito.Mockito.when;
  * Note: you might have issues with running a single test case or this test via the gutter buttons/Android JUnit Test
  * configurations in Android Studio. The issue is "Gradle-Aware Make", for some reason it hangs Android Studio from
  * running test cases this way. To overcome this, you have to remove "Gradle-Aware Make" from the given configuration.
- * Also, if you previously run it without this fix, you have to restart Android Studio.
+ * Also, if you previously run it without this fix, you may have to restart Android Studio.
  * <p>
  * Further note: you might have to redo this after every restart, as "Gradle-Aware Make" is re-added each time to your
  * configurations by Android Studio. See linked Google issue.
@@ -125,6 +125,11 @@ public class UpdateChangeLogTaskTest {
     private final List<String> changeLogLines = new ArrayList<String>() {{
         add("CHANGES");
         add("=======");
+        add("");
+        add("trace-android-sdk public beta versions");
+        add("--------------------------------------");
+        add("**Note:** these versions of the *trace-android-sdk* are stored in a public repo, but should be");
+        add("considered still as beta.");
         add("");
     }};
     // region common
@@ -359,7 +364,7 @@ public class UpdateChangeLogTaskTest {
                 changeLogHelper.getChangeLogEntries(newCommits);
 
         final String actual = changeLogHelper.getReleaseName(lastTag, changeLogEntries);
-        assertTrue(actual.startsWith("# 1.0.0 - "));
+        assertTrue(actual.startsWith("### 1.0.0 - "));
     }
 
     @Test
@@ -368,7 +373,7 @@ public class UpdateChangeLogTaskTest {
         final List<UpdateChangeLogTask.ChangeLogEntry> changeLogEntries = Collections.emptyList();
 
         final String actual = changeLogHelper.getReleaseName(lastTag, changeLogEntries);
-        assertTrue(actual.startsWith("# 0.1.1 -"));
+        assertTrue(actual.startsWith("### 0.1.1 -"));
     }
 
     @Test
@@ -415,8 +420,8 @@ public class UpdateChangeLogTaskTest {
         assertThat(actual.get(0), is(changeLogLines.get(0)));
         assertThat(actual.get(1), is(changeLogLines.get(1)));
         assertThat(actual.get(2), is(changeLogLines.get(2)));
-        assertThat(actual.get(3), is(dummyReleaseName));
-        assertThat(actual.get(4), is(UpdateChangeLogTask.maintenanceReleaseEntry));
+        assertThat(actual.get(changeLogLines.size() - 3), is(dummyReleaseName));
+        assertThat(actual.get(changeLogLines.size() - 1), is(UpdateChangeLogTask.maintenanceReleaseEntry));
     }
 
     @Test
@@ -427,13 +432,16 @@ public class UpdateChangeLogTaskTest {
         final List<String> actual = changeLogHelper.getUpdatedChangeLogContent(changeLogLines, dummyReleaseName,
                 changeLogEntries);
 
+
         assertThat(actual.get(0), is(changeLogLines.get(0)));
         assertThat(actual.get(1), is(changeLogLines.get(1)));
         assertThat(actual.get(2), is(changeLogLines.get(2)));
-        assertThat(actual.get(3), is(dummyReleaseName));
+        assertThat(actual.get(changeLogLines.size() - 4), is(dummyReleaseName));
 
-        assertThat(actual.get(4), is(changeLogHelper.formatCommitToChangeLogEntry(dummyCommitMessage4).toString()));
-        assertThat(actual.get(5), is(changeLogHelper.formatCommitToChangeLogEntry(dummyCommitMessage3).toString()));
+        assertThat(actual.get(changeLogLines.size() - 3),
+                is(changeLogHelper.formatCommitToChangeLogEntry(dummyCommitMessage4).toString()));
+        assertThat(actual.get(changeLogLines.size() - 2),
+                is(changeLogHelper.formatCommitToChangeLogEntry(dummyCommitMessage3).toString()));
     }
 
     @Test

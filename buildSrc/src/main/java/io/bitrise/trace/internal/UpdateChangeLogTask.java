@@ -62,6 +62,7 @@ public class UpdateChangeLogTask extends DefaultTask {
      */
     @Input
     public Set<String> moduleDirNames;
+    private static final int changeLogInsertLinePos = 8;
 
     @Inject
     public UpdateChangeLogTask() {
@@ -123,29 +124,12 @@ public class UpdateChangeLogTask extends DefaultTask {
     @TaskAction
     public void taskAction() throws IOException {
         logger.lifecycle("Starting the update of CHANGELOG.md");
-
         final Set<String> moduleDirsToUpdate = processInputs();
-        // TODO - Update generation logic based on this
 
-        final Git git = gitHelper.getGit();
-        final Ref lastTag = gitHelper.getLastTag(git);
-        final List<RevCommit> newCommits = gitHelper.getNewCommits(git, lastTag);
-        logger.lifecycle("Found {} commits since last release", newCommits.size());
-        if (newCommits.size() == 0) {
-            logger.warn("No new commits found, nothing to update, cancelling task");
-            return;
+        for (final String moduleDirName : moduleDirsToUpdate) {
+            logger.lifecycle("Updating module \"{}\"", moduleDirName);
+            updateChangeLogWithModule(moduleDirName);
         }
-
-        final ChangeLogHelper changeLogHelper = new ChangeLogHelper(logger);
-        final List<ChangeLogEntry> changeLogEntries = changeLogHelper.getChangeLogEntries(newCommits);
-        logger.lifecycle("Formatted commit messages to CHANGELOG entries");
-
-        final String releaseName = changeLogHelper.getReleaseName(lastTag, changeLogEntries);
-        logger.lifecycle("The name of the release in the CHANGELOG.md will be: {}", releaseName);
-
-        final File changeLogFile = changeLogHelper.getChangeLogFile();
-        changeLogHelper.updateChangeLog(changeLogFile, releaseName, changeLogEntries);
-        logger.lifecycle("CHANGELOG entries added, finishing task");
     }
 
     /**
@@ -163,6 +147,36 @@ public class UpdateChangeLogTask extends DefaultTask {
         moduleDirsToUpdate.forEach(logger::lifecycle);
 
         return moduleDirsToUpdate;
+    }
+
+    /**
+     * Updates the CHANGELOG.md with the module with the given name.
+     *
+     * @param moduleDirName the name of the module's directory.
+     * @throws IOException if any I/O error occurs.
+     */
+    private void updateChangeLogWithModule(final String moduleDirName) throws IOException {
+        final Git git = gitHelper.getGit();
+        final Ref lastTag = gitHelper.getLastTag(git, moduleDirName);
+        final List<RevCommit> newCommits = gitHelper.getNewCommits(git, lastTag);
+        logger.lifecycle("Found {} commits since last release", newCommits.size());
+        if (newCommits.size() == 0) {
+            logger.warn("No new commits found, nothing to update, cancelling task");
+            return;
+        }
+
+        final List<RevCommit> filteredCommits = gitHelper.filterRelevantCommits(moduleDirName);
+
+        final ChangeLogHelper changeLogHelper = new ChangeLogHelper(logger);
+        final List<ChangeLogEntry> changeLogEntries = changeLogHelper.getChangeLogEntries(filteredCommits);
+        logger.lifecycle("Formatted commit messages to CHANGELOG entries");
+
+        final String releaseName = changeLogHelper.getReleaseName(lastTag, changeLogEntries);
+        logger.lifecycle("The name of the release in the CHANGELOG.md will be: {}", releaseName);
+
+        final File changeLogFile = changeLogHelper.getChangeLogFile();
+        changeLogHelper.updateChangeLog(changeLogFile, releaseName, changeLogEntries);
+        logger.lifecycle("CHANGELOG entries added, finishing task");
     }
 
     /**
@@ -356,12 +370,35 @@ public class UpdateChangeLogTask extends DefaultTask {
          * Gets the last tag (which was created the latest).
          *
          * @param git the given {@link Git}.
-         * @return the {@link Ref} of the tag.
+         * @return the {@link Ref} of the tag, or {@code null} when there are no tags.
          * @throws IOException if any I/O error occurs.
          */
+        // TODO remove
         Ref getLastTag(final Git git) throws IOException {
             final List<Ref> allTags = getAllTags(git);
+            if (allTags.size() == 0) {
+                return null;
+            }
             return allTags.get(allTags.size() - 1);
+        }
+
+        /**
+         * Gets the last tag (which was created the latest).
+         *
+         * @param git  the given {@link Git}.
+         * @param name the name that the tag should contain.
+         * @return the {@link Ref} of the tag, or {@code null} when there are no tags with the given name.
+         * @throws IOException if any I/O error occurs.
+         */
+        Ref getLastTag(final Git git, final String name) throws IOException {
+            final List<Ref> allTags = getAllTags(git);
+            for (int i = 1; i <= allTags.size(); i++) {
+                final Ref tag = allTags.get(allTags.size() - i);
+                if (tag.getName().contains(name)) {
+                    return tag;
+                }
+            }
+            return null;
         }
 
         /**
@@ -373,6 +410,10 @@ public class UpdateChangeLogTask extends DefaultTask {
          */
         List<Ref> getAllTags(final Git git) throws IOException {
             return git.getRepository().getRefDatabase().getRefsByPrefix(Constants.R_TAGS);
+        }
+
+        private List<RevCommit> filterRelevantCommits(final String moduleDirName) {
+            return null;
         }
     }
 
@@ -411,7 +452,7 @@ public class UpdateChangeLogTask extends DefaultTask {
                     changeLogEntries.stream().map(ChangeLogEntry::getType).collect(Collectors.toSet());
             entryTypeSet.forEach(type -> logger.debug("Found in new commits type \"{}\"", type));
 
-            return String.format("# %s - %s", getNewVersion(previousTagShortName, entryTypeSet), getCurrentDate());
+            return String.format("### %s - %s", getNewVersion(previousTagShortName, entryTypeSet), getCurrentDate());
         }
 
         /**
@@ -501,21 +542,19 @@ public class UpdateChangeLogTask extends DefaultTask {
          */
         List<String> getUpdatedChangeLogContent(final List<String> originalLines, final String releaseName,
                                                 final List<ChangeLogEntry> newEntries) {
-            int initialPos = 3;
-            originalLines.add(initialPos, releaseName);
+            originalLines.add(changeLogInsertLinePos, releaseName);
 
             if (newEntries.size() == 0) {
                 logger.warn(
                         "No commits found, with the allowed types, only adding the release name to the CHANGELOG.md");
-                initialPos++;
-                originalLines.add(initialPos, maintenanceReleaseEntry);
+                originalLines.add(changeLogInsertLinePos + 1, maintenanceReleaseEntry);
             } else {
                 for (int i = 0; i < newEntries.size(); i++) {
-                    originalLines.add(initialPos + 1 + i, newEntries.get(i).toString());
+                    originalLines.add(changeLogInsertLinePos + 1 + i, newEntries.get(i).toString());
                 }
             }
 
-            originalLines.add(initialPos + 1 + newEntries.size(), "");
+            originalLines.add(changeLogInsertLinePos + 1 + newEntries.size(), "");
             return originalLines;
         }
 
