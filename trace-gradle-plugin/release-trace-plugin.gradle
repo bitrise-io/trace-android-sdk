@@ -1,0 +1,74 @@
+apply plugin: 'maven-publish'
+
+/**
+ * Internal task that builds and prepares the 'trace-gradle-plugin' for release. This task ensures,
+ * that the plugin compiles and tests run.
+ */
+task prepareForReleaseTraceGradlePlugin(dependsOn: [clean, build]) {
+    group = "trace"
+    description = "Internal task that builds and prepares the trace-gradle-plugin for release."
+    doLast {
+        // Nothing to do.
+    }
+}
+
+// Requires Gradle 6.0
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+def signingKey = findProperty("signingKey")
+def signingPassword = findProperty("signingPassword")
+if (signingKey != null) {
+    apply plugin: 'signing'
+    signing {
+        useInMemoryPgpKeys(signingKey, signingPassword)
+        sign publishing.publications
+    }
+}
+
+project.afterEvaluate {
+    publishing {
+        publications {
+            pluginMaven(MavenPublication) {
+                
+                pom {
+                    name = 'Trace Android Gradle Plugin'
+                    packaging 'jar'
+                    description = 'Catch bugs before they reach production.'
+                    url = 'https://github.com/bitrise-io/trace-android-sdk'
+                    licenses {
+                        license {
+                            name = 'MIT'
+                            url = 'https://github.com/bitrise-io/trace-android-sdk/license.md'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'trace'
+                            name = 'Trace Team'
+                            email = 'trace-bot@bitrise.io'
+                        }
+                    }
+                    scm {
+                        connection = 'https://github.com/bitrise-io/trace-android-sdk.git'
+                        developerConnection = 'git@github.com:bitrise-io/trace-android-sdk.git'
+                        url = 'https://github.com/bitrise-io/trace-android-sdk'
+                    }
+                }
+            }
+        }
+        repositories {
+            maven {
+                credentials {
+                    url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+                    def ossrhUsername = findProperty("sonatypeUsername")
+                    def ossrhPassword = findProperty("sonatypePassword")
+                    username ossrhUsername
+                    password ossrhPassword
+                }
+            }
+        }
+    }
+}

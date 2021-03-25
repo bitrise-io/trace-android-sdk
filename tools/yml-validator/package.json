@@ -1,0 +1,14 @@
+{
+  "name": "yml-validator",
+  "version": "1.0.0",
+  "description": "validator for yml files",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "yaml-validator": "^3.0.1"
+  },
+  "scripts": {
+    "validate": "node index.js"
+  }
+}

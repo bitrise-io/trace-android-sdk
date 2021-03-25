@@ -1,0 +1,6 @@
+rootProject.name = 'Bitrise Trace SDK'
+
+includeBuild 'opencensus'
+includeBuild 'trace-gradle-plugin'
+
+include ':trace-test-application', ':trace-sdk'

@@ -1,0 +1,97 @@
+apply plugin: 'maven-publish'
+
+def publishToMavenLocal = tasks.findByName("publishToMavenLocal")
+publishToMavenLocal.dependsOn(assemble)
+
+/**
+ * Internal task that builds and prepares the 'trace-sdk' for release by updating the version code
+ * and building the project.
+ */
+task prepareForReleaseTraceSdk(dependsOn: [clean, build]) {
+    group = "trace"
+    description = "Internal task that builds and prepares the 'trace-sdk' for release."
+    doLast {
+        updateVersionCode("${project.getProjectDir()}/gradle.properties")
+    }
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    destinationDir = file("../javadoc/")
+    exclude {
+        '**/R.html'
+        '**/R.*.html'
+        '**/index.html'
+        '**/BuildConfig.java'
+    }
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    archiveClassifier.set('javadoc')
+    from tasks.javadoc.destinationDir
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    archiveClassifier.set('sources')
+}
+
+def signingKey = findProperty("signingKey")
+def signingPassword = findProperty("signingPassword")
+if (signingKey != null) {
+    apply plugin: 'signing'
+    signing {
+        useInMemoryPgpKeys(signingKey, signingPassword)
+        sign publishing.publications
+    }
+}
+project.afterEvaluate {
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+
+                artifact javadocJar
+                artifact sourcesJar
+
+                from components.release
+
+                pom {
+                    name = 'Trace Android SDK'
+                    packaging 'aar'
+                    description = 'Catch bugs before they reach production.'
+                    url = 'https://github.com/bitrise-io/trace-android-sdk'
+                    licenses {
+                        license {
+                            name = 'MIT'
+                            url = 'https://github.com/bitrise-io/trace-android-sdk/license.md'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'trace'
+                            name = 'Trace Team'
+                            email = 'trace-bot@bitrise.io'
+                        }
+                    }
+                    scm {
+                        connection = 'https://github.com/bitrise-io/trace-android-sdk.git'
+                        developerConnection = 'git@github.com:bitrise-io/trace-android-sdk.git'
+                        url = 'https://github.com/bitrise-io/trace-android-sdk'
+                    }
+                }
+            }
+        }
+        repositories {
+            maven {
+                credentials {
+                    url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+                    def ossrhUsername = findProperty("sonatypeUsername")
+                    def ossrhPassword = findProperty("sonatypePassword")
+                    username ossrhUsername
+                    password ossrhPassword
+                }
+            }
+        }
+    }
+}

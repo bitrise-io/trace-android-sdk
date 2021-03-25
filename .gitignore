@@ -1,0 +1,32 @@
+# Inspired by https://github.com/github/gitignore/blob/master/Android.gitignore
+
+# Build folders (Generated files)
+build/
+/captures
+bin/
+gen/
+out/
+
+# Build folders for Native C/C++ code (Generated files)
+.externalNativeBuild/
+.cxx/
+
+# Local configuration files
+local.properties
+.idea/
+.gradle/
+*.iml
+
+# Mac OS X meta data
+.DS_Store
+
+# Built application files
+*.apk
+*.ap_
+*.aab
+
+# Android Studio captures folder (from debugging app performance)
+captures/
+
+# Output folder of infer static analysis tool: http://fbinfer.com/
+infer-out/

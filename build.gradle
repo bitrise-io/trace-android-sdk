@@ -1,0 +1,73 @@
+buildscript {
+    final Properties traceGradlePluginProperties = new Properties()
+    final File traceGradlePluginPropertiesFile = new File(getProject().getRootDir().getAbsolutePath() + ("/trace-gradle-plugin/gradle.properties"))
+    traceGradlePluginPropertiesFile.withInputStream {
+        traceGradlePluginProperties.load(it)
+    }
+
+    ext.traceVersions = [
+            'traceGradlePlugin': traceGradlePluginProperties.get("version"),
+            'traceSdk'         : project(':trace-sdk').property('version')
+    ]
+
+    repositories {
+        mavenLocal() // To check for locally published trace-gradle-plugin artifact
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.2'
+    }
+}
+
+plugins {
+    id "org.sonarqube" version "3.0"
+}
+
+apply from: "release.gradle"
+apply from: "versions.gradle"
+
+allprojects {
+    repositories {
+        mavenLocal() // For allowing the usage of local publishing and downloading them from there
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+/**
+ * Internal task that builds and prepares the 'trace-gradle-plugin' and 'trace-sdk' for release.
+ * Updates the CHANGELOG.md with the changes, automatically determines the new version and updates
+ * the version name. To run it is required to pre define 'TRACE_COMMIT_CHANGES' environment variable
+ * with the commit log since the last tag. Commits should follow the conventional commits. The new
+ * version name will be exported as an environment variable named 'TRACE_VERSION_NAME'.
+ *
+ * Script to get it:
+ *   git rev-list master |
+ *       while read sha1; do
+ *           git show -s --format='%B' $sha1 | tr -d '\n'; echo
+ *       done
+ *
+ *  https://www.conventionalcommits.org/en/v1.0.0/>
+ */
+task prepareForRelease(dependsOn: [':trace-gradle-plugin:prepareForReleaseTraceGradlePlugin', ':trace-sdk:prepareForReleaseTraceSdk']) {
+    group = "trace"
+    description = "Internal task that builds and prepares the 'trace-gradle-plugin' and 'trace-sdk' for release"
+    doLast {
+        updateChangeLog("System.env.TRACE_COMMIT_CHANGES", "gradle.properties")
+        updateVersionName("gradle.properties")
+        environment "TRACE_VERSION_NAME", getCurrentVersion("gradle.properties")[1]
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "bitrise-io_trace-android-sdk"
+        property "sonar.organization", "bitrise-io"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
+}

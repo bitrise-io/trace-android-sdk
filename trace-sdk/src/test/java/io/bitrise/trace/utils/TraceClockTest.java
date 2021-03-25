@@ -1,0 +1,85 @@
+package io.bitrise.trace.utils;
+
+import com.google.protobuf.Timestamp;
+
+import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+
+/**
+ * Test cases for {@link TraceClock}.
+ */
+public class TraceClockTest {
+
+    final long dummyMilliseconds1 = 1000;
+    final long dummyMilliseconds2 = 1999;
+    final long dummyMilliseconds3 = 1603374824000L;
+
+
+    /**
+     * Check if the result of a milliseconds value is divided by 1000.
+     */
+    @Test
+    public void getTimestampSeconds_ShouldDivide() {
+        assertThat(TraceClock.getSeconds(dummyMilliseconds1), is(1L));
+    }
+
+    /**
+     * Check if the result of a milliseconds is rounded down.
+     */
+    @Test
+    public void getTimestampSeconds_ShouldRoundDown() {
+        assertThat(TraceClock.getSeconds(dummyMilliseconds2), is(1L));
+    }
+
+    /**
+     * Check if a millisecond value that is a round value (for seconds), the nanos should be 0.
+     */
+    @Test
+    public void getTimestampNanos_ShouldBeZero() {
+        assertThat(TraceClock.getNanos(dummyMilliseconds1), is(0));
+    }
+
+    /**
+     * Checks if the result of a milliseconds value is multiplied by 1000.
+     */
+    @Test
+    public void getTimestampNanos_ShouldMultiply() {
+        assertThat(TraceClock.getNanos(dummyMilliseconds2), is(999000000));
+    }
+
+    /**
+     * Checks that the method {@link TraceClock#createTimestamp(long)} with {@link #dummyMilliseconds1} will return a
+     * correctly formatted {@link Timestamp}.
+     */
+    @Test
+    public void getTimestamp_SecondsAndNanosShouldBeCorrect1() {
+        final Timestamp expectedValue = Timestamp.newBuilder().setSeconds(1L).setNanos(0).build();
+        final Timestamp actualValue = TraceClock.createTimestamp(dummyMilliseconds1);
+        assertThat(actualValue, is(equalTo(expectedValue)));
+    }
+
+    /**
+     * Checks that the method {@link TraceClock#createTimestamp(long)} with {@link #dummyMilliseconds2} will return a
+     * correctly formatted {@link Timestamp}.
+     */
+    @Test
+    public void getTimestamp_SecondsAndNanosShouldBeCorrect2() {
+        final Timestamp expectedValue = Timestamp.newBuilder().setSeconds(1L).setNanos(999000000).build();
+        final Timestamp actualValue = TraceClock.createTimestamp(dummyMilliseconds2);
+        assertThat(actualValue, is(equalTo(expectedValue)));
+    }
+
+    /**
+     * Checks that the method {@link TraceClock#createTimestamp(long)} with {@link #dummyMilliseconds3} will return a
+     * correctly formatted {@link Timestamp}.
+     */
+    @Test
+    public void getTimestamp_SecondsAndNanosShouldBeCorrect3() {
+        final Timestamp expectedValue = Timestamp.newBuilder().setSeconds(1603374824L).setNanos(0).build();
+        final Timestamp actualValue = TraceClock.createTimestamp(dummyMilliseconds3);
+        assertThat(actualValue, is(equalTo(expectedValue)));
+    }
+}

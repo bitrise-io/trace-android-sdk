@@ -1,0 +1,1287 @@
+---
+format_version: '8'
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: android
+trigger_map:
+- push_branch: main
+  workflow: primary_v2
+- pull_request_source_branch: "*"
+  workflow: primary_v2
+workflows:
+  testkit-init:
+    steps:
+    - script@1:
+        run_if: '{{enveq "RUN_TESTKIT" "true"}}'
+        inputs:
+          - content: |-
+              #!/usr/bin/env bash
+              set -e
+              # debug log
+              set -x
+
+              export EMULATED_VALID_TOKEN=$TRACE_ANDROID_SDK_CONFIG_TOKEN
+
+              {
+              docker login -u _json_key -p \"$(echo $GCP_SERVICE_ACCOUNT | base64 -d)\" https://gcr.io
+              } &> /dev/null
+              curl -H \"Authorization: token $GITHUB_TOKEN\" -H 'Accept: application/vnd.github.v3.raw' -o run-ci.sh -L \"https://api.github.com/repos/bitrise-io/apm-collector/contents/testkit/run-ci.sh?ref=$TEST_KIT_GIT_REF\"
+              curl -H \"Authorization: token $GITHUB_TOKEN\" -H 'Accept: application/vnd.github.v3.raw' -o sdk-simulation.sh -L \"https://api.github.com/repos/bitrise-io/apm-collector/contents/testkit/sdk-simulation.sh?ref=$TEST_KIT_GIT_REF\"
+              curl -H \"Authorization: token $GITHUB_TOKEN\" -H 'Accept: application/vnd.github.v3.raw' -o applecrash.example.txt -L \"https://api.github.com/repos/bitrise-io/apm-collector/contents/testkit/applecrash.example.txt?ref=$TEST_KIT_GIT_REF\"
+
+              bash ./run-ci.sh
+              bash ./sdk-simulation.sh
+              docker ps
+              docker logs $(docker ps | grep collector: | cut -d' ' -f1)
+              curl 127.0.0.1:8082/report/applecrash/myapp1234;
+              curl 127.0.0.1:8082/report/metric/missing; curl 127.0.0.1:8082/report/span/missing;
+              wait
+        title: init_testkit
+    description: Initialise the testkit docker container, required for many of the
+      functional tests to run.
+  release:
+    steps:
+    - activate-ssh-key:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone: {}
+    - script@1:
+        title: Add credentials for private central repo
+        inputs:
+        - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# debug
+            log\nset -x\n\n{\necho $GOOGLE_APPLICATION_CREDENTIALS_CONTENT > $HOME/trace-android-sa.json\n}
+            &> /dev/null "
+    - install-missing-android-tools:
+        inputs:
+        - gradlew_path: "$PROJECT_LOCATION/gradlew"
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            def commitHistory = {git rev-list main |
+                while read sha1; do
+                    git show -s --format='%B' $sha1 | tr -d '\n'; echo
+                done}
+
+            envman add --key TRACE_COMMIT_CHANGES --value "$commitHistory"
+        title: Export commit history
+    - script@1:
+        title: Prepare release
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            $BITRISE_SOURCE_DIR/gradlew prepareForRelease --stacktrace
+            envman add --key TRACE_VERSION_NAME --value "$TRACE_VERSION_NAME"
+    - script@1:
+        title: Push changes
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            git add $BITRISE_SOURCE_DIR/CHANGELOG.md
+            git add $BITRISE_SOURCE_DIR/gradle.properties
+            git add $BITRISE_SOURCE_DIR/trace-sdk/gradle.properties
+
+            git commit -m "chore: Release $TRACE_VERSION_NAME"
+
+            git push
+    - git-tag@1:
+        inputs:
+          - tag_message: "$BITRISE_BUILD_NUMBER"
+          - tag: "$TRACE_VERSION_NAME"
+  analyse_code:
+    steps:
+      - activate-ssh-key:
+          run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+      - git-clone:
+          inputs:
+            - manual_merge: 'no'
+      - cache-pull@2: {}
+      - script@1:
+          inputs:
+            - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# debug
+            log\nset -x\n\n{\necho $GOOGLE_APPLICATION_CREDENTIALS_CONTENT > $HOME/trace-android-sa.json\n}
+            &> /dev/null "
+          title: Add google credentials
+      - gradle-runner@1:
+          inputs:
+            - gradlew_path: "$BITRISE_SOURCE_DIR/gradlew"
+            - gradle_task: sonarqube
+          is_always_run: true
+      - script@1:
+          title: Download and Run Infer Code Analysis
+          inputs:
+            - content: "#!/usr/bin/env bash\n# debug log\nset -x\n\n# Disable temporarily\n#exit
+            0\n\n# TODO: Check if running on MacOS or Linux, and adjust the command\nuname
+            -s\n\n# Note: Avoid using version 0.17.0. It will fail with this SQLite
+            error:\n# https://github.com/facebook/infer/issues/1221\n# https://github.com/facebook/infer/issues/1147\n\n\n#
+            Download Facebook Infer, if it's not restored from the build cache. https://fbinfer.com/docs/getting-started\n#
+            See the \"Bitrise.io Cache Pull\" step for the custom path to Infer\nif
+            [ ! -f \"$ANDROID_HOME/infer-download/infer-linux64-v0.16.0.tar.xz\" ];
+            then\n    curl -O -L \"https://github.com/facebook/infer/releases/download/v0.16.0/infer-linux64-v0.16.0.tar.xz\"\n
+            \   shasum -a 256 infer-linux64-v0.16.0.tar.xz\n    mkdir -p $ANDROID_HOME/infer-download\n
+            \   mv infer-linux64-v0.16.0.tar.xz $ANDROID_HOME/infer-download/\nfi\n\n#
+            Check all environment variables, to check somewhere to store the cache\n#printenv\n\necho
+            \"pwd is `pwd`\"\n\n# Unzip/decompress the Infer tar.xz archive to the
+            current working directory\n# https://askubuntu.com/questions/92328/how-do-i-uncompress-a-tarball-that-uses-xz\ntar
+            -xJf $ANDROID_HOME/infer-download/infer-linux64-v0.16.0.tar.xz\n\n# Check
+            the archive is expanded\nls -la\n\n# Run infer now from the current working
+            directory, to scan for Java bugs.\n# It will generate a report file at
+            infer-out/bugs.txt\n# Do not do a clean build first, because it will delete
+            all the reports in the build folder.\n# Instead do a forced rebuild, to
+            avoid the error: \"Nothing to compile. Try cleaning the build first.\"\n#
+            See https://stackoverflow.com/questions/7289874/resetting-the-up-to-date-property-of-gradle-tasks\n\n./infer-linux64-v0.16.0/bin/infer
+            run -- ./gradlew trace-sdk:assembleDebug --rerun-tasks\n\n# Move/rename
+            the report file to a suitable place, so that the deploy step\n# can include
+            it in the zip file artifacts \nmkdir $BITRISE_SOURCE_DIR/reports\nmv $BITRISE_SOURCE_DIR/infer-out/bugs.txt
+            $BITRISE_SOURCE_DIR/reports/infer_report_trace-sdk_$BITRISE_BUILD_NUMBER.txt\n\n\n#
+            Run Infer again on the trace-gradle-plugin project\n# It will delete the
+            previous files in \"infer-out/\"\n\n./infer-linux64-v0.16.0/bin/infer
+            run -- ./gradlew -p \"./trace-gradle-plugin/\" assemble  --rerun-tasks\n\n# Move
+            the 2nd report file to a suitable place, so that the deploy step\n# can
+            include it in the zip file artifacts \nmv $BITRISE_SOURCE_DIR/infer-out/bugs.txt
+            $BITRISE_SOURCE_DIR/reports/infer_report_trace-gradle-plugin_$BITRISE_BUILD_NUMBER.txt"
+          is_always_run: true
+      - cache-push@2:
+          inputs:
+            - cache_paths: |-
+                $BITRISE_CACHE_DIR
+                $ANDROID_HOME/infer-download
+          is_always_run: true
+      - deploy-to-bitrise-io@1:
+          inputs:
+            - deploy_path: "$BITRISE_SOURCE_DIR/reports"
+    description: Run the static code analyser (FB Infer) and save the reports.
+  primary_v2:
+    before_run: []
+    steps:
+      - script@1:
+          title: prepare_envs
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key PRIMARY_BUILD_NUMBER --value $BITRISE_BUILD_NUMBER
+      - build-router-start@0:
+          inputs:
+            - workflows: |-
+                build_trace-gradle-plugin
+                build_trace-sdk
+            - environment_key_list: PRIMARY_BUILD_NUMBER
+            - abort_on_fail: 'yes'
+            - wait_for_builds: 'true'
+            - access_token: "$TRACE_ANDROID_SDK_ACCESS_TOKEN"
+          title: trace-gradle-plugin_&_trace-sdk_build_start
+      - script@1:
+          title: store_build_slug_numbers
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key TRACE_SDK_BUILD_SLUG --value `echo "${ROUTER_STARTED_BUILD_SLUGS}" | sed '2!d'`
+                envman add --key TRACE_GRADLE_PLUGIN_BUILD_SLUG --value `echo "${ROUTER_STARTED_BUILD_SLUGS}" | sed '1!d'`
+      - build-router-start@0:
+          title: trace-test-application_build
+          inputs:
+            - workflows: build_trace-test-application
+            - environment_key_list: |-
+                PRIMARY_BUILD_NUMBER
+                TRACE_SDK_BUILD_SLUG
+                TRACE_GRADLE_PLUGIN_BUILD_SLUG
+            - abort_on_fail: 'yes'
+            - wait_for_builds: 'true'
+            - access_token: "$TRACE_ANDROID_SDK_ACCESS_TOKEN"
+      - script@1:
+          title: store_build_slug_numbers
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key TRACE_TEST_APP_BUILD_SLUG --value `echo "${ROUTER_STARTED_BUILD_SLUGS}" | sed '1!d'`
+      - build-router-start@0:
+          inputs:
+            - workflows: |-
+                test_trace-android-sdk_api_22
+                test_trace-android-sdk_api_24
+                test_trace-android-sdk_api_29
+                test_trace-android-sdk_api_30
+            - environment_key_list: |-
+                PRIMARY_BUILD_NUMBER
+                TRACE_SDK_BUILD_SLUG
+                TRACE_GRADLE_PLUGIN_BUILD_SLUG
+                TRACE_TEST_APP_BUILD_SLUG
+            - wait_for_builds: 'true'
+            - access_token: "$TRACE_ANDROID_SDK_ACCESS_TOKEN"
+          title: trace-android-sdk_test
+    description: |-
+      Starts all the builds that required for the trace-android-sdk:
+      1. Builds trace-gradle-plugin and trace-sdk
+      2. Builds trace-test-application
+      3. Runs the instrumented tests for trace-sdk and trace-test-application
+  clone_repo:
+    steps:
+      - activate-ssh-key:
+          run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+          title: activate_ssh_key
+      - git-clone:
+          inputs:
+            - manual_merge: 'no'
+          title: git_clone_repository
+      - script@1:
+          title: updating token in the config file for trace-test-application
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                sed -i '3s/.*/''  \"token\": \"'$TRACE_ANDROID_SDK_CONFIG_TOKEN'\"''/' bitrise-addons-configuration.json
+                echo "Updated bitrise-addons-configuration.json"
+                cat bitrise-addons-configuration.json
+      - script@1:
+          title: add_credentials_for_private_central_repo
+          inputs:
+            - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# debug
+            log\nset -x\n\n{\necho $GOOGLE_APPLICATION_CREDENTIALS_CONTENT > $HOME/trace-android-sa.json\n}
+            &> /dev/null "
+    description: |-
+      1. Clones the repo
+      2. Configures the GOOGLE_APPLICATION_CREDENTIALS to access the private central repo
+  build_trace-sdk:
+    steps:
+      - cache-pull@2:
+          title: cache_pull
+      - script:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+                $BITRISE_SOURCE_DIR/gradlew -p ./opencensus/ publishToMavenLocal
+          title: publish opencensus to maven local
+          is_always_run: true
+      - android-build:
+          inputs:
+            - module: trace-sdk
+            - arguments: "--stacktrace"
+          title: android_build
+      - android-unit-test:
+          inputs:
+            - project_location: "$PROJECT_LOCATION"
+            - module: trace-sdk
+            - arguments: "--stacktrace"
+            - variant: "$VARIANT"
+          title: android_unit_test
+      - cache-push@2:
+          title: cache_push
+      - script:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:publishToMavenLocal" --stacktrace
+
+                # Set appropriate zip file names, and export these as environment variables
+                envman add --key TRACE_SDK_MAVEN_LOCAL_ZIP_NAME --value "trace-sdk_maven_local_$PRIMARY_BUILD_NUMBER"
+                envman add --key TRACE_SDK_BUILD_DIR_ZIP_NAME --value "trace-sdk_build_dir_$PRIMARY_BUILD_NUMBER"
+          title: prepare_outputs
+          is_always_run: true
+      - deploy-to-bitrise-io@1:
+          title: deploy_mavenLocal
+          inputs:
+            - is_enable_public_page: 'false'
+            - is_compress: 'true'
+            - zip_name: "$TRACE_SDK_MAVEN_LOCAL_ZIP_NAME"
+            - deploy_path: "$HOME/.m2/repository/io/bitrise/trace/"
+          is_always_run: false
+      - deploy-to-bitrise-io@1:
+          title: deploy_build_dir
+          inputs:
+            - is_compress: 'true'
+            - zip_name: "$TRACE_SDK_BUILD_DIR_ZIP_NAME"
+            - deploy_path: "$BITRISE_SOURCE_DIR/trace-sdk/build/"
+    description: |-
+      1. Builds the trace-sdk
+      2. Deploys the results
+    before_run:
+      - clone_repo
+  build_trace-gradle-plugin:
+    before_run:
+      - clone_repo
+    steps:
+      - script:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+                $BITRISE_SOURCE_DIR/gradlew -p ./opencensus/ publishToMavenLocal
+          title: publish opencensus to maven local
+          is_always_run: true
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:publishToMavenLocal"
+                $BITRISE_SOURCE_DIR/gradlew -p "./trace-gradle-plugin/" publishToMavenLocal --stacktrace
+                $BITRISE_SOURCE_DIR/gradlew -p "./trace-gradle-plugin/" build --stacktrace
+          title: build_trace-gradle-plugin
+      - script@1:
+          title: prepare_outputs
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                # Set appropriate zip file names, and export these as environment variables
+                envman add --key TRACE_GRADLE_PLUGIN_MAVEN_LOCAL_ZIP_NAME --value "trace-gradle-plugin_maven_local_$PRIMARY_BUILD_NUMBER"
+                envman add --key TRACE_GRADLE_PLUGIN_REPORTS_ZIP_NAME --value "trace_gradle_plugin_reports_$PRIMARY_BUILD_NUMBER"
+                envman add --key TRACE_GRADLE_PLUGIN_FUNCTIONAL_TESTS_ZIP_NAME --value "trace_gradle_plugin_functional_tests_$PRIMARY_BUILD_NUMBER"
+          is_always_run: true
+      - deploy-to-bitrise-io@1:
+          title: deploy_mavenLocal
+          inputs:
+            - is_enable_public_page: 'false'
+            - is_compress: 'true'
+            - zip_name: "$TRACE_GRADLE_PLUGIN_MAVEN_LOCAL_ZIP_NAME"
+            - deploy_path: "$HOME/.m2/repository/io/bitrise/trace/"
+      - deploy-to-bitrise-io@1:
+          inputs:
+            - is_compress: 'true'
+            - is_enable_public_page: 'false'
+            - zip_name: "$TRACE_GRADLE_PLUGIN_REPORTS_ZIP_NAME"
+            - deploy_path: "$BITRISE_S$BITRISE_SOURCE_DIR/trace-gradle-plugin/build/reports/"
+          title: deploy_reports
+      - deploy-to-bitrise-io@1:
+          title: deploy_functional_tests
+          inputs:
+            - is_enable_public_page: 'false'
+            - is_compress: 'true'
+            - zip_name: "$TRACE_GRADLE_PLUGIN_FUNCTIONAL_TESTS_ZIP_NAME"
+            - deploy_path: "$HOME/BitriseTrace-TestGradleProject/"
+  download_trace-sdk_maven_local:
+    steps:
+      - script@1:
+          inputs:
+            - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# debug
+            log\nset -x\n\nTEMP_PATH=$HOME/.m2/repository/io/bitrise/trace\nif [ -d
+            \"$TEMP_PATH\" ] \nthen\n    echo \"Directory $TEMP_PATH exists.\" \nelse\n
+            \   mkdir -p $TEMP_PATH\nfi\n\nTEMP_PATH=$HOME/temp/\nif [ -d \"$TEMP_PATH\"
+            ] \nthen\n    echo \"Directory $TEMP_PATH exists.\" \nelse\n    mkdir
+            $TEMP_PATH\nfi\n\nenvman add --key AF_APP_SLUG --value $BITRISE_APP_SLUG\nenvman
+            add --key AF_BUILD_SLUG --value $TRACE_SDK_BUILD_SLUG\nenvman add --key
+            AF_ARTIFACT_NAME --value \"trace-sdk_maven_local_$PRIMARY_BUILD_NUMBER.zip\"\nenvman
+            add --key AF_DOWNLOAD_DIR --value \"$TEMP_PATH\""
+          title: setup_for_trace-sdk_maven_local
+      - script@1:
+          inputs:
+            - runner_bin: go run
+            - script_file_path: "$HOME/main.go"
+            - content: "package main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"io\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"path/filepath\"\n\t\"time\"\n)\n\nconst
+            domain = \"https://api.bitrise.io\"\nconst apiVersion = \"v0.1\"\n\n//
+            Client Bitrise API client\ntype Client struct {\n\tauthToken  string\n\thttpClient
+            http.Client\n}\n\n// Artifacts ...\ntype Artifacts struct {\n\tData []struct
+            {\n\t\tArtifactType        string `json:\"artifact_type\"`\n\t\tIsPublicPageEnabled
+            bool   `json:\"is_public_page_enabled\"`\n\t\tSlug                string
+            `json:\"slug\"`\n\t\tTitle               string `json:\"title\"`\n\t}
+            `json:\"data\"`\n\tPaging struct {\n\t\tPageItemLimit  int `json:\"page_item_limit\"`\n\t\tTotalItemCount
+            int `json:\"total_item_count\"`\n\t} `json:\"paging\"`\n}\n\n// Artifact
+            ...\ntype Artifact struct {\n\tData struct {\n\t\tArtifactType         string
+            `json:\"artifact_type\"`\n\t\tExpiringDownloadURL  string `json:\"expiring_download_url\"`\n\t\tIsPublicPageEnabled
+            \ bool   `json:\"is_public_page_enabled\"`\n\t\tPublicInstallPageURL string
+            `json:\"public_install_page_url\"`\n\t\tSlug                 string `json:\"slug\"`\n\t\tTitle
+            \               string `json:\"title\"`\n\t} `json:\"data\"`\n}\n\n//
+            New Create new Bitrise API client\nfunc New(authToken string) Client {\n\treturn
+            Client{\n\t\tauthToken:  authToken,\n\t\thttpClient: http.Client{Timeout:
+            20 * time.Second},\n\t}\n}\n\nfunc (c Client) get(endpoint string) (*http.Response,
+            error) {\n\turl := fmt.Sprintf(\"%s/%s/%s\", domain, apiVersion, endpoint)\n\treq,
+            err := http.NewRequest(\"GET\", url, nil)\n\tif err != nil {\n\t\treturn
+            &http.Response{}, err\n\t}\n\treq.Header.Add(\"Authorization\", fmt.Sprintf(\"token
+            %s\", c.authToken))\n\n\tresp, err := c.httpClient.Do(req)\n\treturn resp,
+            err\n}\n\n// GetArtifactsForBuild ...\nfunc (c Client) GetArtifactsForBuild(appSlug,
+            buildSlug string) (art Artifacts, err error) {\n\trequestPath := fmt.Sprintf(\"apps/%s/builds/%s/artifacts\",
+            appSlug, buildSlug)\n\n\tresp, err := c.get(requestPath)\n\tif err !=
+            nil {\n\t\treturn\n\t}\n\tdefer responseBodyCloser(resp)\n\n\tif resp.StatusCode
+            >= 300 || resp.StatusCode < 200 {\n\t\terr = fmt.Errorf(\"failed to get
+            artifacts with status code (%d) for [build_slug: %s, app_slug: %s]\",
+            resp.StatusCode, appSlug, buildSlug)\n\t\treturn\n\t}\n\n\terr = json.NewDecoder(resp.Body).Decode(&art)\n\treturn\n}\n\n//
+            GetArtifactDetails ...\nfunc (c Client) GetArtifactDetails(appSlug, buildSlug,
+            artifactSlug string) (art Artifact, err error) {\n\trequestPath := fmt.Sprintf(\"apps/%s/builds/%s/artifacts/%s\",
+            appSlug, buildSlug, artifactSlug)\n\n\tresp, err := c.get(requestPath)\n\tif
+            err != nil {\n\t\treturn\n\t}\n\tdefer responseBodyCloser(resp)\n\n\tif
+            resp.StatusCode >= 300 || resp.StatusCode < 200 {\n\t\terr = fmt.Errorf(\"failed
+            to get artifact details with status code (%d) for [build_slug: %s, app_slug:
+            %s]\", resp.StatusCode, buildSlug, appSlug)\n\t\treturn\n\t}\n\n\terr
+            = json.NewDecoder(resp.Body).Decode(&art)\n\treturn\n}\n\n// DownloadArtifact
+            ...\nfunc (c Client) DownloadArtifact(appSlug, buildSlug, artifactSlug
+            string) (io.ReadCloser, error) {\n\tartifact, err := c.GetArtifactDetails(appSlug,
+            buildSlug, artifactSlug)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\tresp,
+            err := http.Get(artifact.Data.ExpiringDownloadURL)\n\tif err != nil {\n\t\treturn
+            nil, err\n\t}\n\n\treturn resp.Body, nil\n}\n\nfunc responseBodyCloser(resp
+            *http.Response) {\n\tif err := resp.Body.Close(); err != nil {\n\t\tlog.Printf(\"
+            [!] Failed to close response body: %+v\", err)\n\t}\n}\n\nfunc errNoEnv(env
+            string) error {\n\treturn fmt.Errorf(\"environment variable (%s) is not
+            set\", env)\n}\n\nfunc mainE() error {\n\taccessTokenKey := \"TRACE_ANDROID_SDK_ACCESS_TOKEN\"\n\taccessToken
+            := os.Getenv(accessTokenKey)\n\tif accessToken == \"\" {\n\t\treturn errNoEnv(accessTokenKey)\n\t}\n\n\tappSlugKey
+            := \"AF_APP_SLUG\"\n\tappSlug := os.Getenv(appSlugKey)\n\tif appSlug ==
+            \"\" {\n\t\treturn errNoEnv(appSlugKey)\n\t}\n\n\tbuildSlugKey := \"AF_BUILD_SLUG\"\n\tbuildSlug
+            := os.Getenv(buildSlugKey)\n\tif buildSlug == \"\" {\n\t\treturn errNoEnv(buildSlugKey)\n\t}\n\n\tartifactNameKey
+            := \"AF_ARTIFACT_NAME\"\n\tartifactName := os.Getenv(artifactNameKey)\n\tif
+            artifactName == \"\" {\n\t\treturn errNoEnv(artifactNameKey)\n\t}\n\n\tdownloadDirKey
+            := \"AF_DOWNLOAD_DIR\"\n\tdownloadDir := os.Getenv(downloadDirKey)\n\tif
+            downloadDir == \"\" {\n\t\tdownloadDir = \".\"\n\t}\n\n\tif err := os.MkdirAll(downloadDir,
+            os.ModePerm); err != nil {\n\t\treturn err\n\t}\n\n\tc := New(accessToken)\n\tartifacts,
+            err := c.GetArtifactsForBuild(appSlug, buildSlug)\n\tif err != nil {\n\t\treturn
+            err\n\t}\n\n\tartifactSlugMap := map[string]string{}\n\tfor _, artifact
+            := range artifacts.Data {\n\t\tartifactSlugMap[artifact.Title] = artifact.Slug\n\t}\n\n\tartifactSlug,
+            exists := artifactSlugMap[artifactName]\n\tif !exists {\n\t\tkeys, err
+            := json.MarshalIndent(artifactSlugMap, \"\", \"  \")\n\t\tif err != nil
+            {\n\t\t\treturn err\n\t\t}\n\t\treturn fmt.Errorf(\"unable to find artifact
+            with name (%s), available artifacts:\\n%s\", artifactName, string(keys))\n\t}\n\n\treader,
+            err := c.DownloadArtifact(appSlug, buildSlug, artifactSlug)\n\tif err
+            != nil {\n\t\treturn err\n\t}\n\n\tfile, err := os.Create(filepath.Join(downloadDir,
+            artifactName))\n\tif err != nil {\n\t\treturn err\n\t}\n\tn, err := io.Copy(file,
+            reader)\n\tif err != nil {\n\t\treturn err\n\t}\n\n\tfmt.Printf(\"done,
+            [%d byte] downloaded\\n\", n)\n\n\treturn nil\n}\n\nfunc main() {\n\tif
+            err := mainE(); err != nil {\n\t\tfmt.Printf(\"Error: %+v\\n\", err)\n\t\tos.Exit(1)\n\t}\n}\n"
+          title: download_trace-sdk_maven_local
+      - unzip@0:
+          inputs:
+            - output_path: "$HOME/.m2/repository/io/bitrise/trace/"
+            - archive_path: "$HOME/temp/$AF_ARTIFACT_NAME"
+          title: unzip_trace-sdk-maven_local
+    description: |-
+      1. Downloads the artefacts for trace-sdk from the current build flow
+      2. Extracts the content to the local maven repository
+    before_run: []
+  download_trace-gradle-plugin_maven_local:
+    steps:
+      - script@1:
+          inputs:
+            - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# debug
+            log\nset -x\n\nTEMP_PATH=$HOME/.m2/repository/io/bitrise/trace\nif [ -d
+            \"$TEMP_PATH\" ] \nthen\n    echo \"Directory $TEMP_PATH exists.\" \nelse\n
+            \   mkdir -p $TEMP_PATH\nfi\n\nTEMP_PATH=$HOME/temp/\nif [ -d \"$TEMP_PATH\"
+            ] \nthen\n    echo \"Directory $TEMP_PATH exists.\" \nelse\n    mkdir
+            $TEMP_PATH\nfi\n\nenvman add --key AF_APP_SLUG --value $BITRISE_APP_SLUG\nenvman
+            add --key AF_BUILD_SLUG --value $TRACE_GRADLE_PLUGIN_BUILD_SLUG\nenvman
+            add --key AF_ARTIFACT_NAME --value \"trace-gradle-plugin_maven_local_$PRIMARY_BUILD_NUMBER.zip\"\nenvman
+            add --key AF_DOWNLOAD_DIR --value \"$TEMP_PATH/\""
+          title: setup_for_trace-gradle-plugin_maven_local
+      - script@1:
+          inputs:
+            - runner_bin: go run
+            - script_file_path: "$HOME/main.go"
+            - content: |-
+                package main
+
+                import (
+                  "encoding/json"
+                  "fmt"
+                  "io"
+                  "log"
+                  "net/http"
+                  "os"
+                  "path/filepath"
+                  "time"
+                )
+
+                const domain = "https://api.bitrise.io"
+                const apiVersion = "v0.1"
+
+                // Client Bitrise API client
+                type Client struct {
+                  authToken  string
+                  httpClient http.Client
+                }
+
+                // Artifacts ...
+                type Artifacts struct {
+                  Data []struct {
+                    ArtifactType        string `json:"artifact_type"`
+                    IsPublicPageEnabled bool   `json:"is_public_page_enabled"`
+                    Slug                string `json:"slug"`
+                    Title               string `json:"title"`
+                  } `json:"data"`
+                  Paging struct {
+                    PageItemLimit  int `json:"page_item_limit"`
+                    TotalItemCount int `json:"total_item_count"`
+                  } `json:"paging"`
+                }
+
+                // Artifact ...
+                type Artifact struct {
+                  Data struct {
+                    ArtifactType         string `json:"artifact_type"`
+                    ExpiringDownloadURL  string `json:"expiring_download_url"`
+                    IsPublicPageEnabled  bool   `json:"is_public_page_enabled"`
+                    PublicInstallPageURL string `json:"public_install_page_url"`
+                    Slug                 string `json:"slug"`
+                    Title                string `json:"title"`
+                  } `json:"data"`
+                }
+
+                // New Create new Bitrise API client
+                func New(authToken string) Client {
+                return Client{
+                    authToken:  authToken,
+                    httpClient: http.Client{Timeout:20 * time.Second},
+                  }
+                }
+
+                func (c Client) get(endpoint string) (*http.Response, error) {
+                  url := fmt.Sprintf("%s/%s/%s", domain, apiVersion, endpoint)
+                  req, err := http.NewRequest("GET", url, nil)
+                  if err != nil {
+                    return &http.Response{}, err
+                  }
+                  req.Header.Add("Authorization", fmt.Sprintf("token %s", c.authToken))
+
+                  resp, err := c.httpClient.Do(req)
+                  return resp, err
+                }
+
+                // GetArtifactsForBuild ...
+                func (c Client) GetArtifactsForBuild(appSlug, buildSlug string) (art Artifacts, err error) {
+                  requestPath := fmt.Sprintf("apps/%s/builds/%s/artifacts", appSlug, buildSlug)
+
+                  resp, err := c.get(requestPath)
+                  if err != nil {
+                    return
+                  }
+                  defer responseBodyCloser(resp)
+
+                  if resp.StatusCode >= 300 || resp.StatusCode < 200 {
+                    err = fmt.Errorf("failed to get artifacts with status code (%d) for [build_slug: %s, app_slug: %s]", resp.StatusCode, appSlug, buildSlug)
+                    return
+                  }
+
+                  err = json.NewDecoder(resp.Body).Decode(&art)
+                  return
+                }
+
+                // GetArtifactDetails ...
+                func (c Client) GetArtifactDetails(appSlug, buildSlug, artifactSlug string) (art Artifact, err error) {
+                  requestPath := fmt.Sprintf("apps/%s/builds/%s/artifacts/%s", appSlug, buildSlug, artifactSlug)
+
+                  resp, err := c.get(requestPath)
+                  if err != nil {
+                    return
+                  }
+                  defer responseBodyCloser(resp)
+
+                  if resp.StatusCode >= 300 || resp.StatusCode < 200 {
+                    err = fmt.Errorf("failed to get artifact details with status code (%d) for [build_slug: %s, app_slug: %s]", resp.StatusCode, buildSlug, appSlug)
+                    return
+                  }
+
+                  err = json.NewDecoder(resp.Body).Decode(&art)
+                  return
+                }
+
+                // DownloadArtifact ...
+                func (c Client) DownloadArtifact(appSlug, buildSlug, artifactSlug string) (io.ReadCloser, error) {
+                  artifact, err := c.GetArtifactDetails(appSlug, buildSlug, artifactSlug)
+                  if err != nil {
+                    return nil, err
+                  }
+
+                  resp, err := http.Get(artifact.Data.ExpiringDownloadURL)
+                  if err != nil {
+                    return nil, err
+                  }
+
+                  return resp.Body, nil
+                }
+
+                func responseBodyCloser(resp *http.Response) {
+                  if err := resp.Body.Close(); err != nil {
+                    log.Printf("[!] Failed to close response body: %+v", err)
+                  }
+                }
+
+                func errNoEnv(env string) error {
+                  return fmt.Errorf("environment variable (%s) is not set", env)
+                }
+
+                func mainE() error {
+                  accessTokenKey := "TRACE_ANDROID_SDK_ACCESS_TOKEN"
+                  accessToken := os.Getenv(accessTokenKey)
+                  if accessToken == "" {
+                    return errNoEnv(accessTokenKey)
+                  }
+
+                  appSlugKey := "AF_APP_SLUG"
+                  appSlug := os.Getenv(appSlugKey)
+                  if appSlug =="" {
+                    return errNoEnv(appSlugKey)
+                  }
+
+                  buildSlugKey := "AF_BUILD_SLUG"
+                  buildSlug := os.Getenv(buildSlugKey)
+                  if buildSlug == "" {
+                    return errNoEnv(buildSlugKey)
+                  }
+
+                  artifactNameKey := "AF_ARTIFACT_NAME"
+                  artifactName := os.Getenv(artifactNameKey)
+                  if artifactName == "" {
+                    return errNoEnv(artifactNameKey)
+                  }
+
+                  downloadDirKey := "AF_DOWNLOAD_DIR"
+                  downloadDir := os.Getenv(downloadDirKey)
+                  if downloadDir == "" {
+                    downloadDir = "."
+                  }
+
+                  if err := os.MkdirAll(downloadDir, os.ModePerm); err != nil {
+                    return err
+                  }
+
+                  c := New(accessToken)
+                  artifacts, err := c.GetArtifactsForBuild(appSlug, buildSlug)
+                  if err != nil {
+                    return err
+                  }
+                  artifactSlugMap := map[string]string{}
+                  for _, artifact := range artifacts.Data {
+                    artifactSlugMap[artifact.Title] = artifact.Slug
+                  }
+
+                  artifactSlug, exists := artifactSlugMap[artifactName]
+                  if !exists {
+                    keys, err := json.MarshalIndent(artifactSlugMap, "", "  ")
+                    if err != nil {
+                      return err
+                    }
+                    return fmt.Errorf("unable to find artifact with name (%s), available artifacts:\n%s", artifactName, string(keys))
+                  }
+
+                  reader, err := c.DownloadArtifact(appSlug, buildSlug, artifactSlug)
+                  if err != nil {
+                    return err
+                  }
+
+                  file, err := os.Create(filepath.Join(downloadDir, artifactName))
+                  if err != nil {
+                    return err
+                  }
+                  n, err := io.Copy(file, reader)
+                  if err != nil {
+                    return err
+                  }
+
+                  fmt.Printf("done, [%d byte] downloaded\n", n)
+
+                  return nil
+                }
+
+                func main() {
+                  if err := mainE(); err != nil {
+                    fmt.Printf("Error: %+v\n", err)
+                    os.Exit(1)
+                  }
+                }
+          title: download_trace-gradle-plugin_maven_local
+      - unzip@0:
+          inputs:
+            - output_path: "$HOME/.m2/repository/io/bitrise/trace/"
+            - archive_path: "$HOME/temp/$AF_ARTIFACT_NAME"
+          title: unzip_trace-gradle-plugin_maven_local
+    description: |-
+      1. Downloads the artefacts for trace-gradle-plugin from the current build flow
+      2. Extracts the content to the local maven repository
+    before_run: []
+  download_trace-sdk_build_dir:
+    steps:
+      - script@1:
+          inputs:
+            - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# debug
+            log\nset -x\n\nTEMP_PATH=$BITRISE_SOURCE_DIR/trace-sdk/build/\nif [ -d
+            \"$TEMP_PATH\" ] \nthen\n    echo \"Directory $TEMP_PATH exists.\" \nelse\n
+            \   mkdir $TEMP_PATH\nfi\n\nTEMP_PATH=$HOME/temp/\nif [ -d \"$TEMP_PATH\"
+            ] \nthen\n    echo \"Directory $TEMP_PATH exists.\" \nelse\n    mkdir
+            $TEMP_PATH\nfi\n\nenvman add --key AF_APP_SLUG --value $BITRISE_APP_SLUG\nenvman
+            add --key AF_BUILD_SLUG --value $TRACE_SDK_BUILD_SLUG\nenvman add --key
+            AF_ARTIFACT_NAME --value \"trace-sdk_build_dir_$PRIMARY_BUILD_NUMBER.zip\"\nenvman
+            add --key AF_DOWNLOAD_DIR --value \"$TEMP_PATH\""
+          title: setup_for_trace-sdk_build_dir
+      - script@1:
+          inputs:
+            - runner_bin: go run
+            - script_file_path: "$HOME/main.go"
+            - content: "package main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"io\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"path/filepath\"\n\t\"time\"\n)\n\nconst
+            domain = \"https://api.bitrise.io\"\nconst apiVersion = \"v0.1\"\n\n//
+            Client Bitrise API client\ntype Client struct {\n\tauthToken  string\n\thttpClient
+            http.Client\n}\n\n// Artifacts ...\ntype Artifacts struct {\n\tData []struct
+            {\n\t\tArtifactType        string `json:\"artifact_type\"`\n\t\tIsPublicPageEnabled
+            bool   `json:\"is_public_page_enabled\"`\n\t\tSlug                string
+            `json:\"slug\"`\n\t\tTitle               string `json:\"title\"`\n\t}
+            `json:\"data\"`\n\tPaging struct {\n\t\tPageItemLimit  int `json:\"page_item_limit\"`\n\t\tTotalItemCount
+            int `json:\"total_item_count\"`\n\t} `json:\"paging\"`\n}\n\n// Artifact
+            ...\ntype Artifact struct {\n\tData struct {\n\t\tArtifactType         string
+            `json:\"artifact_type\"`\n\t\tExpiringDownloadURL  string `json:\"expiring_download_url\"`\n\t\tIsPublicPageEnabled
+            \ bool   `json:\"is_public_page_enabled\"`\n\t\tPublicInstallPageURL string
+            `json:\"public_install_page_url\"`\n\t\tSlug                 string `json:\"slug\"`\n\t\tTitle
+            \               string `json:\"title\"`\n\t} `json:\"data\"`\n}\n\n//
+            New Create new Bitrise API client\nfunc New(authToken string) Client {\n\treturn
+            Client{\n\t\tauthToken:  authToken,\n\t\thttpClient: http.Client{Timeout:
+            20 * time.Second},\n\t}\n}\n\nfunc (c Client) get(endpoint string) (*http.Response,
+            error) {\n\turl := fmt.Sprintf(\"%s/%s/%s\", domain, apiVersion, endpoint)\n\treq,
+            err := http.NewRequest(\"GET\", url, nil)\n\tif err != nil {\n\t\treturn
+            &http.Response{}, err\n\t}\n\treq.Header.Add(\"Authorization\", fmt.Sprintf(\"token
+            %s\", c.authToken))\n\n\tresp, err := c.httpClient.Do(req)\n\treturn resp,
+            err\n}\n\n// GetArtifactsForBuild ...\nfunc (c Client) GetArtifactsForBuild(appSlug,
+            buildSlug string) (art Artifacts, err error) {\n\trequestPath := fmt.Sprintf(\"apps/%s/builds/%s/artifacts\",
+            appSlug, buildSlug)\n\n\tresp, err := c.get(requestPath)\n\tif err !=
+            nil {\n\t\treturn\n\t}\n\tdefer responseBodyCloser(resp)\n\n\tif resp.StatusCode
+            >= 300 || resp.StatusCode < 200 {\n\t\terr = fmt.Errorf(\"failed to get
+            artifacts with status code (%d) for [build_slug: %s, app_slug: %s]\",
+            resp.StatusCode, appSlug, buildSlug)\n\t\treturn\n\t}\n\n\terr = json.NewDecoder(resp.Body).Decode(&art)\n\treturn\n}\n\n//
+            GetArtifactDetails ...\nfunc (c Client) GetArtifactDetails(appSlug, buildSlug,
+            artifactSlug string) (art Artifact, err error) {\n\trequestPath := fmt.Sprintf(\"apps/%s/builds/%s/artifacts/%s\",
+            appSlug, buildSlug, artifactSlug)\n\n\tresp, err := c.get(requestPath)\n\tif
+            err != nil {\n\t\treturn\n\t}\n\tdefer responseBodyCloser(resp)\n\n\tif
+            resp.StatusCode >= 300 || resp.StatusCode < 200 {\n\t\terr = fmt.Errorf(\"failed
+            to get artifact details with status code (%d) for [build_slug: %s, app_slug:
+            %s]\", resp.StatusCode, buildSlug, appSlug)\n\t\treturn\n\t}\n\n\terr
+            = json.NewDecoder(resp.Body).Decode(&art)\n\treturn\n}\n\n// DownloadArtifact
+            ...\nfunc (c Client) DownloadArtifact(appSlug, buildSlug, artifactSlug
+            string) (io.ReadCloser, error) {\n\tartifact, err := c.GetArtifactDetails(appSlug,
+            buildSlug, artifactSlug)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\tresp,
+            err := http.Get(artifact.Data.ExpiringDownloadURL)\n\tif err != nil {\n\t\treturn
+            nil, err\n\t}\n\n\treturn resp.Body, nil\n}\n\nfunc responseBodyCloser(resp
+            *http.Response) {\n\tif err := resp.Body.Close(); err != nil {\n\t\tlog.Printf(\"
+            [!] Failed to close response body: %+v\", err)\n\t}\n}\n\nfunc errNoEnv(env
+            string) error {\n\treturn fmt.Errorf(\"environment variable (%s) is not
+            set\", env)\n}\n\nfunc mainE() error {\n\taccessTokenKey := \"TRACE_ANDROID_SDK_ACCESS_TOKEN\"\n\taccessToken
+            := os.Getenv(accessTokenKey)\n\tif accessToken == \"\" {\n\t\treturn errNoEnv(accessTokenKey)\n\t}\n\n\tappSlugKey
+            := \"AF_APP_SLUG\"\n\tappSlug := os.Getenv(appSlugKey)\n\tif appSlug ==
+            \"\" {\n\t\treturn errNoEnv(appSlugKey)\n\t}\n\n\tbuildSlugKey := \"AF_BUILD_SLUG\"\n\tbuildSlug
+            := os.Getenv(buildSlugKey)\n\tif buildSlug == \"\" {\n\t\treturn errNoEnv(buildSlugKey)\n\t}\n\n\tartifactNameKey
+            := \"AF_ARTIFACT_NAME\"\n\tartifactName := os.Getenv(artifactNameKey)\n\tif
+            artifactName == \"\" {\n\t\treturn errNoEnv(artifactNameKey)\n\t}\n\n\tdownloadDirKey
+            := \"AF_DOWNLOAD_DIR\"\n\tdownloadDir := os.Getenv(downloadDirKey)\n\tif
+            downloadDir == \"\" {\n\t\tdownloadDir = \".\"\n\t}\n\n\tif err := os.MkdirAll(downloadDir,
+            os.ModePerm); err != nil {\n\t\treturn err\n\t}\n\n\tc := New(accessToken)\n\tartifacts,
+            err := c.GetArtifactsForBuild(appSlug, buildSlug)\n\tif err != nil {\n\t\treturn
+            err\n\t}\n\n\tartifactSlugMap := map[string]string{}\n\tfor _, artifact
+            := range artifacts.Data {\n\t\tartifactSlugMap[artifact.Title] = artifact.Slug\n\t}\n\n\tartifactSlug,
+            exists := artifactSlugMap[artifactName]\n\tif !exists {\n\t\tkeys, err
+            := json.MarshalIndent(artifactSlugMap, \"\", \"  \")\n\t\tif err != nil
+            {\n\t\t\treturn err\n\t\t}\n\t\treturn fmt.Errorf(\"unable to find artifact
+            with name (%s), available artifacts:\\n%s\", artifactName, string(keys))\n\t}\n\n\treader,
+            err := c.DownloadArtifact(appSlug, buildSlug, artifactSlug)\n\tif err
+            != nil {\n\t\treturn err\n\t}\n\n\tfile, err := os.Create(filepath.Join(downloadDir,
+            artifactName))\n\tif err != nil {\n\t\treturn err\n\t}\n\tn, err := io.Copy(file,
+            reader)\n\tif err != nil {\n\t\treturn err\n\t}\n\n\tfmt.Printf(\"done,
+            [%d byte] downloaded\\n\", n)\n\n\treturn nil\n}\n\nfunc main() {\n\tif
+            err := mainE(); err != nil {\n\t\tfmt.Printf(\"Error: %+v\\n\", err)\n\t\tos.Exit(1)\n\t}\n}\n"
+          title: download_trace-sdk_build_dir
+      - unzip@0:
+          inputs:
+            - output_path: "$BITRISE_SOURCE_DIR/trace-sdk/build/"
+            - archive_path: "$HOME/temp/$AF_ARTIFACT_NAME"
+          title: unzip_trace-sdk-build_dir
+    description: |-
+      1. Downloads the artefacts for trace-sdk from the current build flow
+      2. Extracts the content to the module's build directory
+    before_run: []
+  build_trace-test-application:
+    steps:
+      - cache-pull@2: {}
+      - android-build:
+          inputs:
+            - module: trace-test-application
+            - arguments: "--stacktrace"
+      - android-unit-test:
+          inputs:
+            - project_location: "$PROJECT_LOCATION"
+            - module: trace-test-application
+            - arguments: "--stacktrace"
+            - variant: "$VARIANT"
+      - cache-push@2: {}
+      - script@1:
+          title: prepare_outputs
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key TRACE_TEST_APP_BUILD_DIR_ZIP_NAME --value "trace-test-app_build_dir_$PRIMARY_BUILD_NUMBER"
+          is_always_run: true
+      - deploy-to-bitrise-io@1:
+          title: trace-test-application_build_dir
+          inputs:
+            - deploy_path: "$BITRISE_SOURCE_DIR/trace-test-application/build/"
+            - is_enable_public_page: 'false'
+            - is_compress: 'true'
+            - zip_name: "$TRACE_TEST_APP_BUILD_DIR_ZIP_NAME"
+    description: 'Builds the test application runs the connected android tests on
+      the emulator. Important note: The android connected tests occasionally fail
+      if the emulator crashes - you will need to rebuild the project if this happens.'
+    before_run:
+      - clone_repo
+      - download_trace-gradle-plugin_maven_local
+      - download_trace-sdk_maven_local
+  test_trace-android-sdk_api_29:
+    description: |-
+      test_trace-android-sdk workflow usage for API level 29.
+      1. Runs the instrumented tests for trace-sdk
+      2. Runs the instrumented tests for trace-test-application
+      Important note: The android connected tests occasionally fail if the emulator crashes - you will need to rebuild the project if this happens.
+    before_run: []
+    after_run:
+      - test_trace-android-sdk
+    steps:
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key AVD_API_LEVEL --value 29
+          title: add_avd_api_level
+      - avd-manager@1:
+          inputs:
+            - api_level: "$AVD_API_LEVEL"
+          title: launch_avd_29
+  download_trace-test-application_build_dir:
+    steps:
+      - script@1:
+          inputs:
+            - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# debug
+            log\nset -x\n\nTEMP_PATH=$BITRISE_SOURCE_DIR/trace-test-application/build/\nif
+            [ -d \"$TEMP_PATH\" ] \nthen\n    echo \"Directory $TEMP_PATH exists.\"
+            \nelse\n    mkdir $TEMP_PATH\nfi\n\nTEMP_PATH=$HOME/temp/\nif [ -d \"$TEMP_PATH\"
+            ] \nthen\n    echo \"Directory $TEMP_PATH exists.\" \nelse\n    mkdir
+            $TEMP_PATH\nfi\n\nenvman add --key AF_APP_SLUG --value $BITRISE_APP_SLUG\nenvman
+            add --key AF_BUILD_SLUG --value $TRACE_TEST_APP_BUILD_SLUG\nenvman add
+            --key AF_ARTIFACT_NAME --value \"trace-test-app_build_dir_$PRIMARY_BUILD_NUMBER.zip\"\nenvman
+            add --key AF_DOWNLOAD_DIR --value \"$TEMP_PATH\""
+          title: setup_for_trace-test_application_build_dir
+      - script@1:
+          inputs:
+            - runner_bin: go run
+            - script_file_path: "$HOME/main.go"
+            - content: "package main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"io\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"path/filepath\"\n\t\"time\"\n)\n\nconst
+            domain = \"https://api.bitrise.io\"\nconst apiVersion = \"v0.1\"\n\n//
+            Client Bitrise API client\ntype Client struct {\n\tauthToken  string\n\thttpClient
+            http.Client\n}\n\n// Artifacts ...\ntype Artifacts struct {\n\tData []struct
+            {\n\t\tArtifactType        string `json:\"artifact_type\"`\n\t\tIsPublicPageEnabled
+            bool   `json:\"is_public_page_enabled\"`\n\t\tSlug                string
+            `json:\"slug\"`\n\t\tTitle               string `json:\"title\"`\n\t}
+            `json:\"data\"`\n\tPaging struct {\n\t\tPageItemLimit  int `json:\"page_item_limit\"`\n\t\tTotalItemCount
+            int `json:\"total_item_count\"`\n\t} `json:\"paging\"`\n}\n\n// Artifact
+            ...\ntype Artifact struct {\n\tData struct {\n\t\tArtifactType         string
+            `json:\"artifact_type\"`\n\t\tExpiringDownloadURL  string `json:\"expiring_download_url\"`\n\t\tIsPublicPageEnabled
+            \ bool   `json:\"is_public_page_enabled\"`\n\t\tPublicInstallPageURL string
+            `json:\"public_install_page_url\"`\n\t\tSlug                 string `json:\"slug\"`\n\t\tTitle
+            \               string `json:\"title\"`\n\t} `json:\"data\"`\n}\n\n//
+            New Create new Bitrise API client\nfunc New(authToken string) Client {\n\treturn
+            Client{\n\t\tauthToken:  authToken,\n\t\thttpClient: http.Client{Timeout:
+            20 * time.Second},\n\t}\n}\n\nfunc (c Client) get(endpoint string) (*http.Response,
+            error) {\n\turl := fmt.Sprintf(\"%s/%s/%s\", domain, apiVersion, endpoint)\n\treq,
+            err := http.NewRequest(\"GET\", url, nil)\n\tif err != nil {\n\t\treturn
+            &http.Response{}, err\n\t}\n\treq.Header.Add(\"Authorization\", fmt.Sprintf(\"token
+            %s\", c.authToken))\n\n\tresp, err := c.httpClient.Do(req)\n\treturn resp,
+            err\n}\n\n// GetArtifactsForBuild ...\nfunc (c Client) GetArtifactsForBuild(appSlug,
+            buildSlug string) (art Artifacts, err error) {\n\trequestPath := fmt.Sprintf(\"apps/%s/builds/%s/artifacts\",
+            appSlug, buildSlug)\n\n\tresp, err := c.get(requestPath)\n\tif err !=
+            nil {\n\t\treturn\n\t}\n\tdefer responseBodyCloser(resp)\n\n\tif resp.StatusCode
+            >= 300 || resp.StatusCode < 200 {\n\t\terr = fmt.Errorf(\"failed to get
+            artifacts with status code (%d) for [build_slug: %s, app_slug: %s]\",
+            resp.StatusCode, appSlug, buildSlug)\n\t\treturn\n\t}\n\n\terr = json.NewDecoder(resp.Body).Decode(&art)\n\treturn\n}\n\n//
+            GetArtifactDetails ...\nfunc (c Client) GetArtifactDetails(appSlug, buildSlug,
+            artifactSlug string) (art Artifact, err error) {\n\trequestPath := fmt.Sprintf(\"apps/%s/builds/%s/artifacts/%s\",
+            appSlug, buildSlug, artifactSlug)\n\n\tresp, err := c.get(requestPath)\n\tif
+            err != nil {\n\t\treturn\n\t}\n\tdefer responseBodyCloser(resp)\n\n\tif
+            resp.StatusCode >= 300 || resp.StatusCode < 200 {\n\t\terr = fmt.Errorf(\"failed
+            to get artifact details with status code (%d) for [build_slug: %s, app_slug:
+            %s]\", resp.StatusCode, buildSlug, appSlug)\n\t\treturn\n\t}\n\n\terr
+            = json.NewDecoder(resp.Body).Decode(&art)\n\treturn\n}\n\n// DownloadArtifact
+            ...\nfunc (c Client) DownloadArtifact(appSlug, buildSlug, artifactSlug
+            string) (io.ReadCloser, error) {\n\tartifact, err := c.GetArtifactDetails(appSlug,
+            buildSlug, artifactSlug)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\tresp,
+            err := http.Get(artifact.Data.ExpiringDownloadURL)\n\tif err != nil {\n\t\treturn
+            nil, err\n\t}\n\n\treturn resp.Body, nil\n}\n\nfunc responseBodyCloser(resp
+            *http.Response) {\n\tif err := resp.Body.Close(); err != nil {\n\t\tlog.Printf(\"
+            [!] Failed to close response body: %+v\", err)\n\t}\n}\n\nfunc errNoEnv(env
+            string) error {\n\treturn fmt.Errorf(\"environment variable (%s) is not
+            set\", env)\n}\n\nfunc mainE() error {\n\taccessTokenKey := \"TRACE_ANDROID_SDK_ACCESS_TOKEN\"\n\taccessToken
+            := os.Getenv(accessTokenKey)\n\tif accessToken == \"\" {\n\t\treturn errNoEnv(accessTokenKey)\n\t}\n\n\tappSlugKey
+            := \"AF_APP_SLUG\"\n\tappSlug := os.Getenv(appSlugKey)\n\tif appSlug ==
+            \"\" {\n\t\treturn errNoEnv(appSlugKey)\n\t}\n\n\tbuildSlugKey := \"AF_BUILD_SLUG\"\n\tbuildSlug
+            := os.Getenv(buildSlugKey)\n\tif buildSlug == \"\" {\n\t\treturn errNoEnv(buildSlugKey)\n\t}\n\n\tartifactNameKey
+            := \"AF_ARTIFACT_NAME\"\n\tartifactName := os.Getenv(artifactNameKey)\n\tif
+            artifactName == \"\" {\n\t\treturn errNoEnv(artifactNameKey)\n\t}\n\n\tdownloadDirKey
+            := \"AF_DOWNLOAD_DIR\"\n\tdownloadDir := os.Getenv(downloadDirKey)\n\tif
+            downloadDir == \"\" {\n\t\tdownloadDir = \".\"\n\t}\n\n\tif err := os.MkdirAll(downloadDir,
+            os.ModePerm); err != nil {\n\t\treturn err\n\t}\n\n\tc := New(accessToken)\n\tartifacts,
+            err := c.GetArtifactsForBuild(appSlug, buildSlug)\n\tif err != nil {\n\t\treturn
+            err\n\t}\n\n\tartifactSlugMap := map[string]string{}\n\tfor _, artifact
+            := range artifacts.Data {\n\t\tartifactSlugMap[artifact.Title] = artifact.Slug\n\t}\n\n\tartifactSlug,
+            exists := artifactSlugMap[artifactName]\n\tif !exists {\n\t\tkeys, err
+            := json.MarshalIndent(artifactSlugMap, \"\", \"  \")\n\t\tif err != nil
+            {\n\t\t\treturn err\n\t\t}\n\t\treturn fmt.Errorf(\"unable to find artifact
+            with name (%s), available artifacts:\\n%s\", artifactName, string(keys))\n\t}\n\n\treader,
+            err := c.DownloadArtifact(appSlug, buildSlug, artifactSlug)\n\tif err
+            != nil {\n\t\treturn err\n\t}\n\n\tfile, err := os.Create(filepath.Join(downloadDir,
+            artifactName))\n\tif err != nil {\n\t\treturn err\n\t}\n\tn, err := io.Copy(file,
+            reader)\n\tif err != nil {\n\t\treturn err\n\t}\n\n\tfmt.Printf(\"done,
+            [%d byte] downloaded\\n\", n)\n\n\treturn nil\n}\n\nfunc main() {\n\tif
+            err := mainE(); err != nil {\n\t\tfmt.Printf(\"Error: %+v\\n\", err)\n\t\tos.Exit(1)\n\t}\n}\n"
+          title: download_trace-test-application_build_dir
+      - unzip@0:
+          inputs:
+            - output_path: "$BITRISE_SOURCE_DIR/trace-test-application/build/"
+            - archive_path: "$HOME/temp/$AF_ARTIFACT_NAME"
+          title: unzip_trace-testapplication-build_dir
+    description: |-
+      1. Downloads the artefacts for trace-test-application from the current build flow
+      2. Extracts the content to the module's build directory
+    before_run: []
+  test_trace-android-sdk:
+    steps:
+      - cache-pull@2:
+          title: cache_pull
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                adb devices
+                sdkmanager --list
+          title: Log emulators and installed SDK packages
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+                adb -s emulator-5554 shell input keyevent 82
+
+                if [ $RUN_TESTKIT == 'true' ]
+                then
+                  $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:connectedAndroidTest" --stacktrace
+                else
+                  $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:connectedAndroidTest" "-Pandroid.testInstrumentationRunnerArguments.notAnnotation=io.bitrise.trace.TestKitTest" --stacktrace
+                fi
+          title: trace-sdk connectedAndroidTest
+      - script@1:
+          inputs:
+            - content: |
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                $BITRISE_SOURCE_DIR/gradlew ":trace-test-application:connectedAndroidTest" --stacktrace
+          title: trace-test-application connectedAndroidTest
+      - cache-push@2:
+          title: cache_push
+      - script@1:
+          title: save_logcat
+          is_always_run: true
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                mkdir -p /bitrise/src/trace-test-application/build/reports
+                adb logcat -d > $BITRISE_SOURCE_DIR/trace-test-application/build/reports/logcat.txt &
+      - script@1:
+          title: save_screenshots
+          is_always_run: true
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                mkdir -p /bitrise/src/trace-test-application/build/reports/screenshots/
+                adb pull /sdcard/Pictures/UiTestScreenShots/ /bitrise/src/trace-test-application/build/reports/screenshots/
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key TRACE_SDK_REPORTS_ZIP_NAME --value "trace_sdk_build_reports_""$PRIMARY_BUILD_NUMBER"_API_"$AVD_API_LEVEL"
+                envman add --key TRACE_TEST_APP_REPORTS_ZIP_NAME --value "trace_test_app_reports_""$PRIMARY_BUILD_NUMBER"_API_"$AVD_API_LEVEL"
+                envman add --key TRACE_TEST_APP_OUTPUTS_ZIP_NAME --value "trace_test_app_outputs_""$PRIMARY_BUILD_NUMBER"_API_"$AVD_API_LEVEL"
+          title: prepare_outputs
+          is_always_run: true
+      - deploy-to-bitrise-io@1:
+          title: deploy_trace-sdk_reports
+          inputs:
+            - is_compress: 'true'
+            - deploy_path: "$BITRISE_SOURCE_DIR/trace-sdk/build/reports/"
+            - zip_name: "$TRACE_SDK_REPORTS_ZIP_NAME"
+            - is_enable_public_page: 'false'
+      - deploy-to-bitrise-io@1:
+          title: deploy_trace-test-application_reports
+          inputs:
+            - is_compress: 'true'
+            - zip_name: "$TRACE_TEST_APP_REPORTS_ZIP_NAME"
+            - deploy_path: "$BITRISE_SOURCE_DIR/trace-test-application/build/reports/"
+            - is_enable_public_page: 'false'
+      - deploy-to-bitrise-io@1:
+          title: deploy_trace-test-application_outputs
+          inputs:
+            - is_enable_public_page: 'false'
+            - deploy_path: "$BITRISE_SOURCE_DIR/trace-test-application/build/outputs/apk/"
+            - zip_name: "$TRACE_TEST_APP_OUTPUTS_ZIP_NAME"
+            - is_compress: 'true'
+    description: |-
+      1. Runs the instrumented tests for trace-sdk
+      2. Runs the instrumented tests for trace-test-application
+      Important note: The android connected tests occasionally fail if the emulator crashes - you will need to rebuild the project if this happens.
+    before_run:
+      - testkit-init
+      - clone_repo
+      - download_trace-gradle-plugin_maven_local
+      - download_trace-sdk_maven_local
+      - download_trace-sdk_build_dir
+      - wait_for_trace-test-application
+      - download_trace-test-application_build_dir
+  test_trace-android-sdk_api_30:
+    description: |-
+      test_trace-android-sdk workflow usage for API level 30.
+      1. Runs the instrumented tests for trace-sdk
+      2. Runs the instrumented tests for trace-test-application
+      Important note: The android connected tests occasionally fail if the emulator crashes - you will need to rebuild the project if this happens.
+    before_run: []
+    after_run:
+      - test_trace-android-sdk
+    steps:
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key AVD_API_LEVEL --value 30
+          title: add_avd_api_level
+      - avd-manager@1:
+          inputs:
+            - api_level: "$AVD_API_LEVEL"
+          title: launch_avd_30
+  test_trace-android-sdk_api_24:
+    description: |-
+      test_trace-android-sdk workflow usage for API level 30.
+      1. Runs the instrumented tests for trace-sdk
+      2. Runs the instrumented tests for trace-test-application
+      Important note: The android connected tests occasionally fail if the emulator crashes - you will need to rebuild the project if this happens.
+    before_run: []
+    after_run:
+      - test_trace-android-sdk
+    steps:
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key AVD_API_LEVEL --value 24
+          title: add_avd_api_level
+      - avd-manager@1:
+          inputs:
+            - api_level: "$AVD_API_LEVEL"
+          title: launch_avd_24
+  test_trace-android-sdk_api_22:
+    description: |-
+      test_trace-android-sdk workflow usage for API level 30.
+      1. Runs the instrumented tests for trace-sdk
+      2. Runs the instrumented tests for trace-test-application
+      Important note: The android connected tests occasionally fail if the emulator crashes - you will need to rebuild the project if this happens.
+    before_run: []
+    after_run:
+      - test_trace-android-sdk
+    steps:
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key AVD_API_LEVEL --value 22
+          title: add_avd_api_level
+      - avd-manager@1:
+          inputs:
+            - api_level: "$AVD_API_LEVEL"
+          title: launch_avd_22
+  wait_for_trace-test-application:
+    steps:
+      - wait-for-android-emulator@1:
+          title: wait_for_android_emulator
+      - build-router-wait@0:
+          inputs:
+            - build_artifacts_save_path: "/temp/"
+            - abort_on_fail: 'yes'
+            - buildslugs: "$TRACE_TEST_APP_BUILD_SLUG"
+            - access_token: "$TRACE_ANDROID_SDK_ACCESS_TOKEN"
+          is_always_run: false
+    description: |-
+      1. Waits for the AVD to start
+      2. Waits for the build_trace-test-application workflow to finish
+    before_run: []
+    after_run: []
+  release_trace_sdk:
+    steps:
+    - cache-pull@2:
+        title: cache_pull
+    - android-build:
+        inputs:
+        - module: trace-sdk
+        - arguments: "--stacktrace"
+        title: android_build
+    - android-unit-test:
+        inputs:
+        - project_location: "$PROJECT_LOCATION"
+        - module: trace-sdk
+        - arguments: "--stacktrace"
+        - variant: "$VARIANT"
+        title: android_unit_test
+    - gradle-runner@1:
+        inputs:
+        - gradle_task: ":trace-sdk:assemble :trace-sdk:publish"
+        - gradlew_path: "$BITRISE_SOURCE_DIR/gradlew"
+    - cache-push@2:
+        title: cache_push
+    description: |-
+      builds the trace-sdk and deploys to maven central
+    before_run:
+    - clone_repo
+  release_trace_plugin:
+    before_run:
+    - clone_repo
+    steps:
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:publishToMavenLocal"
+            $BITRISE_SOURCE_DIR/gradlew -p "./trace-gradle-plugin/" publishToMavenLocal --stacktrace
+            $BITRISE_SOURCE_DIR/gradlew -p "./trace-gradle-plugin/" build --stacktrace
+            $BITRISE_SOURCE_DIR/gradlew -p "./trace-gradle-plugin/" publish --stacktrace
+        title: build_trace-gradle-plugin
+    description: |-
+      builds the trace-gradle-plugin and deploys to maven central
+  release_opencensus:
+    before_run:
+    - clone_repo
+    steps:
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            $BITRISE_SOURCE_DIR/gradlew -p "./opencensus/" build --stacktrace
+            $BITRISE_SOURCE_DIR/gradlew -p "./opencensus/" publish --stacktrace
+        title: build_publish_opencensus_module
+    description: |-
+      builds the opencensus module and deploys to maven central
+app:
+  envs:
+  - opts:
+      is_expand: false
+    PROJECT_LOCATION: "."
+  - opts:
+      is_expand: false
+    MODULE: trace-android-sdk
+  - opts:
+      is_expand: false
+    VARIANT: ''
+  - GOOGLE_APPLICATION_CREDENTIALS: "$HOME/trace-android-sa.json"
+  - opts:
+      is_expand: false
+    ANDROID_LOG_TAGS: "*:v"
+  - opts:
+      is_expand: false
+    TEST_KIT_GIT_REF: master
+  - RUN_TESTKIT: 'false'
+    opts:
+      is_expand: false

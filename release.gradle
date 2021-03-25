@@ -1,0 +1,324 @@
+import java.text.SimpleDateFormat
+
+/**
+ * Note: We are not currently using this gradle task to update versions. Currently the sdk and plugin
+ * have their own version numbers, which will make it easier to update during alpha and beta release.
+ * We will look at using this properly when we make more stable releases.
+ */
+
+ext.versionToIncrease = ""
+
+/**
+ * Method that updates the version name. Property 'versionToIncrease' can be set, it will determine
+ * what will be the new version. Available options are: patch, minor, major.
+ *
+ * @param filePath the path of the File where the version name should be updated.
+ */
+ext.updateVersionName = { filePath ->
+    def currentVersionName = getCurrentVersion(filePath)
+    def versionToIncrease = properties.get("versionToIncrease")
+    if (versionToIncrease == null) {
+        versionToIncrease = ext.versionToIncrease
+    }
+
+    def major = currentVersionName[2]
+    def minor = currentVersionName[3]
+    def patch = currentVersionName[4]
+    if (versionToIncrease.equalsIgnoreCase("major")) {
+        major = (major as Integer) + 1
+        minor = "0"
+        patch = "0"
+    } else if (versionToIncrease.equalsIgnoreCase("minor")) {
+        minor = (minor as Integer) + 1
+        patch = "0"
+    } else if (versionToIncrease.equalsIgnoreCase("patch")) {
+        patch = (patch as Integer) + 1
+    } else {
+        throw new IllegalArgumentException("Could not determine which part of the version to " +
+                "increase. Input for \"versionToIncrease\" property was ${versionToIncrease}.")
+    }
+    def newVersion = major + "." + minor + "." + patch
+    logger.debug("New version name ${newVersion}")
+
+    ant.replaceregexp(
+            file: filePath,
+            match: 'version=(.*)',
+            replace: "version=$newVersion")
+}
+
+/**
+ * Gets the current version from the given file.
+ *
+ * @param filePath the path of the file that contains the version name.
+ * @return the current version as an array
+ */
+ext.getCurrentVersion = { filePath ->
+    // 1 = current version full
+    // 2 = major version
+    // 3 = minor version
+    // 4 = patch version
+    def versionNameFile = new File(filePath)
+    def currentVersionName = versionNameFile.readLines() =~ "version\\s*=\\s*(([0-9]+)\\.([0-9]+)\\.([0-9]+))"
+    if (!currentVersionName.find()) {
+        throw new IllegalStateException("Could not find version name in ${versionNameFile.getAbsolutePath()}!")
+    }
+    logger.debug("Current version name ${currentVersionName[0][1]}")
+    return currentVersionName[0]
+}
+
+/**
+ * Method that updates the version code. This will increment the version code with one.
+ *
+ * @param filePath the path of the File where the version name should be updated.
+ */
+ext.updateVersionCode = { filePath ->
+    def propertyFile = new File(filePath)
+    def currentVersionCode = propertyFile.readLines() =~ "versionCode\\s*=\\s*([0-9]+)"
+    if (!currentVersionCode.find()) {
+        throw new IllegalStateException("Could not find 'versionCode' in ${propertyFile.getAbsolutePath()}!")
+    }
+    logger.debug("Current version code ${currentVersionCode[0][1]}")
+    def newVersionCode = (currentVersionCode[0][1] as Integer) + 1
+    logger.debug("New version code ${newVersionCode}")
+
+    ant.replaceregexp(
+            file: filePath,
+            match: 'versionCode=(.*)',
+            replace: "versionCode=$newVersionCode")
+}
+
+/**
+ * Method that updates the version of a dependency. The property with a key for the dependency to
+ * update and with the value of the desired new version must be defined. For the available keys
+ * please check project level build.gradle versions variable.
+ *
+ * @param dependencyVersionName the name of the variable that holds the version of the given
+ * dependency in the build.gradle.
+ */
+ext.updateDependencyVersion = { filePath, dependencyVersionName ->
+    def regex = "'$dependencyVersionName'\\s*:\\s*'([0-9]+\\.[0-9]+\\.[0-9]+)'"
+    def dependencyFile = new File(filePath)
+    def currentVersion = dependencyFile.readLines() =~ regex
+    if (!currentVersion.find()) {
+        throw new IllegalStateException("Could not find current version in ${dependencyFile.getAbsolutePath()}!")
+    }
+    logger.debug("Current version for ${dependencyVersionName} is ${currentVersion[0][1]}")
+    def newVersion = properties.get(dependencyVersionName)
+    if (newVersion == null) {
+        throw new IllegalArgumentException("Could not determine new version of dependency " +
+                "${dependencyVersionName}. Input for ${dependencyVersionName} property was null.")
+    }
+    logger.debug("New version for ${dependencyVersionName} will be ${newVersion}")
+
+    def newVersionLine = currentVersion[0][0].replaceAll("([0-9]+\\.[0-9]+\\.[0-9]+)", newVersion)
+    ant.replaceregexp(
+            file: filePath,
+            match: regex,
+            replace: "$newVersionLine")
+}
+
+/**
+ * Parses the commit history and returns the message from the commits as a list.
+ *
+ * @param changes the raw change String that contains the commits since the last tag.
+ * @return the commits parsed to a list.
+ */
+ext.parseChanges = { changes ->
+    if (changes == null || changes.trim() == "") {
+        throw new IllegalArgumentException("Changess should not be null/empty! Please configure " +
+                "TRACE_COMMIT_CHANGES environment variable!")
+    }
+    logger.debug("The changes to parse: {}", changes)
+    def singleEntryRegex = "commit (.[1234567890abcdef]+).*\\n(Merge: (.*)\\nAuthor: (.*)|Author: (.*))\\nDate: (.*)\\n((.|\\n)+?(?=commit .[1234567890abcdef]+.*\\n(Merge: .*\\nAuthor: .*|Author: .*)\\nDate: .*|\\Z))"
+    // 0 = all
+    // 1 = commit hash
+    // 2 = merge + author
+    // 3 = merge hashes
+    // 5 = author if no merge
+    // 6 = date
+    // 7 = untrimmed content
+    def entries = changes =~ singleEntryRegex
+    def contentList = []
+    for (int i in 0..entries.size() - 1) {
+        def contentListItem = entries[i][7]
+        logger.debug("Parsed entry: {}", contentListItem)
+        contentList.add(contentListItem)
+    }
+    return contentList
+}
+
+/**
+ * Inserts the given entry to the CHANGELOG.md file. An entry is all the changes for a given release
+ * with the version name title.
+ *
+ * @param entry the change log entry to insert.
+ */
+ext.insertChangeLogEntry = { entry ->
+    def changeLogFile = new File('CHANGELOG.md')
+    def lines = changeLogFile.readLines()
+    lines = lines.plus(4, entry)
+    changeLogFile.text = lines.join('\n')
+}
+
+/**
+ * Creates the entry for the CHANGELOG.md. Based on the changes determines which version to increase
+ * and puts it as a property.
+ *
+ * @param contentList the commit contents as a list.
+ * @param filePath the path of the file that contains the current version of the artifact.
+ *
+ * @return the change log entry that will be inserted to the CHANGELOG.md file.
+ */
+ext.processChanges = { contentList, filePath ->
+    def content = ""
+    // 0 = all
+    // 2 = type when scope is present
+    // 3 = scope
+    // 4 = type when no scope
+    // 5 = commit message subject
+    // 6 = commit message body
+    // 8 = footer
+    def elementRegex = "((.*)(\\(.*\\))|(.*)):(.*)\\n\\n((.*|.*\\n)+)\\n\\n((.*|.*\\n)+)\\Z"
+    Set<String> typeSet = []
+    for (i in 0..contentList.size() - 1) {
+        def currentElement = contentList[i] =~ elementRegex
+        if (!currentElement.find()) {
+            throw new IllegalStateException("Content is malfored!")
+        }
+        def type = getType(currentElement[0])
+        typeSet.add(type)
+        logger.debug("Type of this element is {}", type)
+        currentElement = formatElement(currentElement[0])
+        logger.debug("Formatting element. Result: {}", currentElement)
+        content = "$content$currentElement\n\n"
+    }
+    ext.versionToIncrease = getVersionToIncrease(typeSet)
+
+    def sdf = new SimpleDateFormat("yyyy-MM-dd")
+    def currentDate = sdf.format(new Date())
+    def versionName = getCurrentVersion(filePath)[1]
+    def title = "## Version $versionName\n\n_${currentDate}_\n\n"
+
+    return title + content
+}
+
+/**
+ * Formats a given element in the CHANGELOG entry. An element is a single item from a given release
+ * entry.
+ *
+ * @param contentElement a given element from the change log entry.
+ * @return the formatted element.
+ */
+ext.formatElement = { contentElement ->
+    def type = getType(contentElement).capitalize()
+    def scope = contentElement[3]
+    def subject = contentElement[5].trim()
+    def body = contentElement[6].trim()
+    def element
+    if (scope == null) {
+        element = "$type: $subject $body"
+    } else {
+        element = "$type$scope: $subject $body"
+    }
+    element = element.replaceAll("[\n\r]", "")
+    element = indentLines(splitIntoLines(element, 93)).join("\n")
+    return element
+}
+
+/**
+ * Gets the type from a content element.
+ *
+ * @param contentElement the content element.
+ * @return the type of the commit.
+ */
+static def getType(contentElement) {
+    def type
+    if (contentElement[2] == null) {
+        type = contentElement[4].trim()
+    } else {
+        type = contentElement[2].trim()
+    }
+    return type
+}
+
+/**
+ * Splits a given text String to multiple lines while avoids the cutting of the words.
+ *
+ * @param text the String to split.
+ * @param maxLineSize the maximum size of a line.
+ * @return the split lines
+ */
+static def splitIntoLines(text, maxLineSize) {
+    def words = text.split(/\s+/)
+    def lines = ['']
+    words.each { word ->
+        def lastLine = (lines[-1] + ' ' + word).trim()
+        if (lastLine.size() <= maxLineSize) {
+            lines[-1] = lastLine
+        } else {
+            lines << word
+        }
+    }
+    return lines
+}
+
+/**
+ * Adds indentation to the given lines.
+ *
+ * @param lines the lines that should be updated.
+ * @return the updated lines.
+ */
+static def indentLines(lines) {
+    for (int i in 0..lines.size() - 1) {
+        def indent
+        if (i == 0) {
+            indent = "   *   "
+        } else {
+            indent = "       "
+        }
+        lines.set(i, indent + lines[i])
+    }
+    return lines
+}
+
+/**
+ * Based on the types of the commits determines which version to increase (patch, minor, major).
+ *
+ * @param typeSet the Set of types.
+ * @return the version to increase.
+ */
+static def getVersionToIncrease(typeSet) {
+
+    def distinctTypeSet = typeSet.unique(false)
+
+    // types that we can expect but won't increase version:
+    // "ci", "chore",
+
+    def patchTypes = ["fix", "docs", "refactor", "test",  "perf"]
+    def minorTypes = ["feat"]
+
+    def versionToIncrease
+    if (distinctTypeSet.join("").contains("!")) {
+        versionToIncrease = "major"
+    } else if (distinctTypeSet.intersect(minorTypes)) {
+        versionToIncrease = "minor"
+    } else if (distinctTypeSet.intersect(patchTypes)) {
+        versionToIncrease = "patch"
+    } else {
+        throw new IllegalStateException("Could not determine which version to increase! Types: $typeSet")
+    }
+    return versionToIncrease
+}
+
+/**
+ * Parses the commit history, creates a change entry from it and inserts it to the CHANGELOG.md file.
+ *
+ * @param changes the changes that should be parsed and inserted to the CHANGELOG.md. This should be
+ * the commits since the last tag.
+ * @param filePath the path of the file that contains the current version.
+ */
+ext.updateChangeLog = { changes, filePath ->
+    def contentList = parseChanges(changes)
+    def changeEntry = processChanges(contentList, filePath)
+    insertChangeLogEntry(changeEntry)
+}

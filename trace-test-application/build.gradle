@@ -1,0 +1,91 @@
+buildscript {
+    repositories {
+        mavenLocal() // To check for locally published trace-gradle-plugin artifact
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "io.bitrise.trace.plugin:trace-gradle-plugin:${traceVersions.traceGradlePlugin}"
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'io.bitrise.trace.plugin'
+apply from: "../release.gradle"
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        applicationId "io.bitrise.trace.testapp"
+        minSdkVersion 22
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "io.bitrise.trace:trace-sdk:${traceVersions.traceSdk}"
+
+    implementation "androidx.appcompat:appcompat:${versions.appcompat}"
+    implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
+    implementation "androidx.navigation:navigation-fragment:${versions.navigation}"
+    implementation "androidx.navigation:navigation-ui:${versions.navigation}"
+    implementation "androidx.test.espresso:espresso-idling-resource:${versions.espresso}"
+
+    testImplementation "junit:junit:${versions.junit}"
+
+    androidTestImplementation ("androidx.test:rules:${versions.androidxTest}")  {
+        exclude group: "org.hamcrest", module: "hamcrest-core"
+    }
+    androidTestImplementation ("androidx.test.ext:junit:${versions.extJunit}")  {
+        exclude group: "org.hamcrest", module: "hamcrest-core"
+    }
+    androidTestImplementation "androidx.test.uiautomator:uiautomator:${versions.uiautomator}"
+    androidTestImplementation("androidx.test.espresso:espresso-core:${versions.espresso}"){
+        exclude group: "org.hamcrest", module: "hamcrest-core"
+        exclude group: "org.hamcrest", module: "hamcrest-library"
+    }
+    androidTestImplementation("androidx.test:runner:${versions.androidxTest}"){
+        exclude group: "org.hamcrest", module: "hamcrest-core"
+        exclude group: "org.hamcrest", module: "hamcrest-library"
+    }
+    androidTestImplementation("androidx.fragment:fragment-testing:${versions.fragmentTesting}"){
+        exclude group: "org.hamcrest", module: "hamcrest-core"
+        exclude group: "org.hamcrest", module: "hamcrest-library"
+    }
+    androidTestImplementation "org.hamcrest:hamcrest:${versions.hamcrest}"
+
+    implementation("com.squareup.okhttp3:okhttp"){
+        version { require versions.okhttp }
+        because constraintReasons.okhttp
+    }
+    implementation "javax.inject:javax.inject:${versions.javaxInject}"
+}
+
+/**
+ * Internal task that updates the version of the Trace dependencies. 'traceGradlePlugin' and
+ * 'traceSdk' properties must be defined with the value of the desired new versions.
+ */
+task updateTraceVersions() {
+    group = "trace"
+    description = "Internal task that updates the version of the Trace dependencies."
+    doLast {
+        updateDependencyVersion("../build.gradle","traceSdkDebug")
+        updateDependencyVersion("../build.gradle","traceGradlePlugin")
+    }
+}
+
+

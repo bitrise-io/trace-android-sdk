@@ -1,0 +1,72 @@
+buildscript {
+    repositories {
+        mavenLocal() // To check for locally published trace-gradle-plugin artifact
+        google()
+        jcenter()
+    }
+}
+allprojects {
+    repositories {
+        mavenLocal() // For allowing the usage of local publishing and downloading them from there
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'java-gradle-plugin'
+apply from: "../release.gradle"
+apply from: "../versions.gradle"
+apply from: "release-trace-plugin.gradle"
+
+sourceSets {
+    main {
+        main.java.srcDir file('src/main/java')
+        main.resources.srcDir file('src/main/resources')
+    }
+    functionalTest {
+        test.java.srcDirs += file('src/functionalTest/java')
+        test.resources.srcDirs += file('src/functionalTest/resources')
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+    test {
+        test.java.srcDir file('src/test/java')
+        test.resources.srcDir file('src/test/resources')
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
+test {
+    testLogging.showStandardStreams = true
+    testLogging.exceptionFormat = 'full'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation gradleApi()
+    implementation localGroovy()
+
+    compileOnly "androidx.annotation:annotation:${versions.androidxAnnotation}"
+
+    implementation "com.android.tools.build:gradle:${versions.androidGradle}"
+    implementation "com.google.code.gson:gson:${versions.gson}"
+    implementation "org.javassist:javassist:${versions.javassist}"
+    implementation("com.squareup.okhttp3:okhttp:${versions.okhttp}"){
+        because "${constraintReasons.okhttp}"
+    }
+    implementation "io.bitrise.trace.internal:opencensus:${versions.opencensus}"
+    testCompileOnly "androidx.annotation:annotation:${versions.androidxAnnotation}"
+    testImplementation "junit:junit:${versions.junit}"
+    testImplementation "org.mockito:mockito-core:${versions.mockitoCore}"
+    testImplementation "org.hamcrest:hamcrest:${versions.hamcrest}"
+
+    functionalTestCompileOnly "androidx.annotation:annotation:${versions.androidxAnnotation}"
+    functionalTestImplementation "junit:junit:${versions.junit}"
+    functionalTestImplementation "org.mockito:mockito-core:${versions.mockitoCore}"
+    functionalTestImplementation "org.hamcrest:hamcrest:${versions.hamcrest}"
+    functionalTestImplementation gradleTestKit()
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8

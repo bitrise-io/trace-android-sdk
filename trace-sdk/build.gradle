@@ -1,0 +1,75 @@
+apply plugin: 'com.android.library'
+apply from: "../release.gradle"
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        minSdkVersion 22
+        targetSdkVersion 30
+        versionCode = "$project.versionCode" as int
+        versionName "$project.version"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "androidx.concurrent:concurrent-futures:${versions.concurrentFutures}"
+    implementation "androidx.room:room-runtime:${versions.room}"
+    implementation "androidx.lifecycle:lifecycle-livedata:${versions.liveData}"
+    implementation "androidx.fragment:fragment:${versions.fragment}"
+    implementation "androidx.appcompat:appcompat:${versions.appcompat}"
+    annotationProcessor "androidx.room:room-compiler:${versions.room}"
+
+    implementation "javax.inject:javax.inject:${versions.javaxInject}"
+    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
+    implementation "com.squareup.retrofit2:converter-gson:${versions.converterGson}"
+    implementation("com.squareup.okhttp3:okhttp"){
+        version { require versions.okhttp }
+        because constraintReasons.okhttp
+    }
+    implementation "io.bitrise.trace.internal:opencensus:${versions.opencensus}"
+    implementation("com.google.guava:listenablefuture:${versions.listenableFuture}"){
+        because constraintReasons.guava
+    }
+    implementation "io.azam.ulidj:ulidj:${versions.ulidj}"
+    implementation("com.scottyab:rootbeer-lib:${versions.rootbeer}"){
+        because constraintReasons.rootBeer
+    }
+
+    testImplementation "junit:junit:${versions.junit}"
+    testImplementation "org.mockito:mockito-core:${versions.mockitoCore}"
+    testImplementation "org.hamcrest:hamcrest:${versions.hamcrest}"
+    testImplementation "androidx.room:room-testing:${versions.room}"
+
+    androidTestImplementation "androidx.test:core:${versions.androidxTest}"
+    androidTestImplementation("androidx.test:runner:${versions.androidxTest}") {
+        exclude group: "org.hamcrest", module: "hamcrest-core"
+    }
+    androidTestImplementation ("androidx.test:rules:${versions.androidxTest}")  {
+        exclude group: "org.hamcrest", module: "hamcrest-core"
+    }
+    androidTestImplementation ("androidx.test.ext:junit:${versions.extJunit}")  {
+        exclude group: "org.hamcrest", module: "hamcrest-core"
+    }
+    androidTestImplementation "org.hamcrest:hamcrest:${versions.hamcrest}"
+    androidTestImplementation "org.mockito:mockito-android:${versions.mockitoAndroid}"
+}
+apply from: "release-trace-sdk.gradle"

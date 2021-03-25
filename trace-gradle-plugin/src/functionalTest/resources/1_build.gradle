@@ -1,0 +1,64 @@
+// Constraints: This build file should
+// 1. contain dependency on trace-sdk
+// 2. use the latest version of com.android.tools:gradle
+buildscript {
+    // These property files are copied during the setup of TraceGradlePluginFunctionalTest
+    final Properties traceGradlePluginProperties = new Properties()
+    final File traceGradlePluginPropertiesFile = new File(getProject().getProjectDir().getAbsolutePath() + ("/traceGradlePlugin.properties"))
+    traceGradlePluginPropertiesFile.withInputStream {
+        traceGradlePluginProperties.load(it)
+    }
+    def tgpVersion = traceGradlePluginProperties.get("version")
+
+    repositories {
+        mavenLocal()
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath "io.bitrise.trace.plugin:trace-gradle-plugin:$tgpVersion"
+    }
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'io.bitrise.trace.plugin'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "io.bitrise.trace.functional.test"
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+// These property files are copied during the setup of TraceGradlePluginFunctionalTest
+final Properties traceSdkProperties = new Properties()
+final File traceSdkPropertiesFile = new File(getProject().getProjectDir().getAbsolutePath() + ("/traceSdk.properties"))
+traceSdkPropertiesFile.withInputStream {
+    traceSdkProperties.load(it)
+}
+def tsVersion = traceSdkProperties.get("version")
+
+dependencies {
+    implementation "io.bitrise.trace:trace-sdk:$tsVersion"
+}
