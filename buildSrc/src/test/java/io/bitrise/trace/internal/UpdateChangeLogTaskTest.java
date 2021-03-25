@@ -9,6 +9,8 @@ import org.eclipse.jgit.lib.RepositoryCache;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.util.FS;
+import org.gradle.api.Project;
+import org.gradle.api.logging.Logger;
 import org.gradle.api.logging.Logging;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
@@ -26,9 +28,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Unit tests for {@link UpdateChangeLogTask}.
@@ -85,6 +90,16 @@ public class UpdateChangeLogTaskTest {
             dummyCommitTitle5, dummyCommitDetails5, dummyCommitFooter5);
     private static final String dummyTagName1 = "0.0.1";
     private static final String dummyTagName2 = "0.1.0";
+    // region InputHelper
+    private static final String dummyModuleName1 = "module1";
+    private static final String dummyModuleName2 = "module2";
+    private static final Project mockRootProject = mock(Project.class);
+    // region getting commits
+    private static final Project mockProject1 = mock(Project.class);
+    private static final Project mockProject2 = mock(Project.class);
+    // endRegion
+    private static final Project mockEmptyProject = mock(Project.class);
+    //endRegion
     /**
      * A temporary folder to create a Git repo for the tests.
      */
@@ -102,11 +117,7 @@ public class UpdateChangeLogTaskTest {
      * The {@link Git} that will be used for testing
      */
     private static Git git;
-    // region common
-    private final UpdateChangeLogTask.GitHelper gitHelper = new UpdateChangeLogTask.GitHelper(
-            Logging.getLogger(UpdateChangeLogTaskTest.class.getName()));
-    //endRegion
-
+    // endRegion
     // region CommitTypes
     private final UpdateChangeLogTask.ChangeLogHelper changeLogHelper = new UpdateChangeLogTask.ChangeLogHelper(
             Logging.getLogger(UpdateChangeLogTaskTest.class.getName()));
@@ -116,41 +127,10 @@ public class UpdateChangeLogTaskTest {
         add("=======");
         add("");
     }};
-
-    @BeforeClass
-    public static void setupClass() throws GitAPIException, IOException {
-        setUpDummyRepo();
-    }
-    // endRegion
-
-    // region getting commits
-
-    /**
-     * Sets up a dummy repo in the {@link #tempFolder} with some commits and tags, for testing purposes.
-     *
-     * @throws GitAPIException if any Git call fails.
-     * @throws IOException     if any I/O error occurs.
-     */
-    private static void setUpDummyRepo() throws GitAPIException, IOException {
-        initDummyRepo();
-
-        addDummyFile("something1.txt");
-        commitAndPush(dummyCommitMessage1);
-        tag(dummyTagName1);
-
-        addDummyFile("something2.txt");
-        commitAndPush(dummyCommitMessage2);
-        tag(dummyTagName2);
-
-        addDummyFile("something3.txt");
-        commitAndPush(dummyCommitMessage3);
-        addDummyFile("something4.txt");
-        commitAndPush(dummyCommitMessage4);
-        addDummyFile("something5.txt");
-        commitAndPush(dummyCommitMessage5);
-
-        closeDummyRepo();
-    }
+    // region common
+    private final Logger dummyLogger = Logging.getLogger(UpdateChangeLogTaskTest.class.getName());
+    private final UpdateChangeLogTask.GitHelper gitHelper = new UpdateChangeLogTask.GitHelper(dummyLogger);
+    private final UpdateChangeLogTask.InputHelper inputHelper = new UpdateChangeLogTask.InputHelper(dummyLogger);
 
     /**
      * Initialises a a Git repo in the {@link #tempFolder}. Creates different folders for the local and the remote of
@@ -201,16 +181,60 @@ public class UpdateChangeLogTaskTest {
         git.push().call();
     }
 
+    @BeforeClass
+    public static void setupClass() throws GitAPIException, IOException {
+        setupDummyRepo();
+        setupMockProjects();
+    }
+
+    /**
+     * Sets up a dummy repo in the {@link #tempFolder} with some commits and tags, for testing purposes.
+     *
+     * @throws GitAPIException if any Git call fails.
+     * @throws IOException     if any I/O error occurs.
+     */
+    private static void setupDummyRepo() throws GitAPIException, IOException {
+        initDummyRepo();
+
+        addDummyFile("something1.txt");
+        commitAndPush(dummyCommitMessage1);
+        tag(dummyTagName1);
+
+        addDummyFile("something2.txt");
+        commitAndPush(dummyCommitMessage2);
+        tag(dummyTagName2);
+
+        addDummyFile("something3.txt");
+        commitAndPush(dummyCommitMessage3);
+        addDummyFile("something4.txt");
+        commitAndPush(dummyCommitMessage4);
+        addDummyFile("something5.txt");
+        commitAndPush(dummyCommitMessage5);
+
+        closeDummyRepo();
+    }
+
     /**
      * Creates a tag on the last commit and pushes it to the remote.
      *
      * @param tagName the name of the tag that will be created.
-     * @throws GitAPIException
+     * @throws GitAPIException if any Git call fails.
      */
     private static void tag(final String tagName) throws GitAPIException {
         git.tag().setName(tagName).setForceUpdate(true).call();
         git.push().setPushTags().call();
     }
+
+    private static void setupMockProjects() {
+        when(mockRootProject.getAllprojects()).thenReturn(new HashSet<>(Arrays.asList(mockProject1, mockProject2)));
+        when(mockEmptyProject.getAllprojects()).thenReturn(new HashSet<>());
+        when(mockProject1.getProjectDir()).thenReturn(new File(tempFolder.getRoot(), dummyModuleName1));
+        when(mockProject2.getProjectDir()).thenReturn(new File(tempFolder.getRoot(), dummyModuleName2));
+    }
+
+    // endRegion
+
+    // startRegion change log
 
     @Test
     public void getMajorCommitTypes_ShouldReturnExpectedValues() {
@@ -293,10 +317,6 @@ public class UpdateChangeLogTaskTest {
 
         assertThat(actual, is(expected));
     }
-
-    // endRegion
-
-    // startRegion change log
 
     @Test
     public void formatCommitToChangeLogEntry_ShouldHaveExpectedFormat() {
@@ -414,6 +434,71 @@ public class UpdateChangeLogTaskTest {
 
         assertThat(actual.get(4), is(changeLogHelper.formatCommitToChangeLogEntry(dummyCommitMessage4).toString()));
         assertThat(actual.get(5), is(changeLogHelper.formatCommitToChangeLogEntry(dummyCommitMessage3).toString()));
+    }
+
+    @Test
+    public void getAvailableModules_ShouldContainAll() {
+        final Set<String> actual = inputHelper.getAvailableModules(mockRootProject);
+        final Set<String> expected = new HashSet<>(Arrays.asList(dummyModuleName1, dummyModuleName2));
+        assertThat(actual, containsInAnyOrder(expected.toArray()));
+    }
+
+    @Test
+    public void getAvailableModules_ShouldBeEmpty() {
+        final Set<String> actual = inputHelper.getAvailableModules(mockEmptyProject);
+        assertThat(actual, containsInAnyOrder(new HashSet<>().toArray()));
+    }
+
+    @Test
+    public void validateModules_EmptyShouldNotThrowException() {
+        final Set<String> availableModules = inputHelper.getAvailableModules(mockRootProject);
+        inputHelper.validateModules(availableModules, new HashSet<>());
+    }
+
+    @Test
+    public void validateModules_PartialMatchShouldNotThrowException() {
+        final Set<String> availableModules = inputHelper.getAvailableModules(mockRootProject);
+        inputHelper.validateModules(availableModules, new HashSet<>(Collections.singletonList(dummyModuleName1)));
+    }
+
+    @Test
+    public void validateModules_AllMatchShouldNotThrowException() {
+        final Set<String> availableModules = inputHelper.getAvailableModules(mockRootProject);
+        inputHelper.validateModules(availableModules, new HashSet<>(Arrays.asList(dummyModuleName2, dummyModuleName1)));
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void validateModules_InvalidNameShouldThrowException() {
+        final Set<String> availableModules = inputHelper.getAvailableModules(mockRootProject);
+        inputHelper.validateModules(availableModules, new HashSet<>(Arrays.asList(dummyModuleName2,
+                "weDoNotHaveThis")));
+    }
+
+    @Test
+    public void getModuleDirNamesToUpdate_ShouldBeAvailableModules() {
+        final Set<String> expected = inputHelper.getAvailableModules(mockRootProject);
+        final Set<String> actual = inputHelper.getModuleDirNamesToUpdate(mockRootProject, new HashSet<>());
+        assertThat(actual, containsInAnyOrder(expected.toArray()));
+    }
+
+    @Test
+    public void getModuleDirNamesToUpdate_ShouldBeTheInput() {
+        final Set<String> actual = inputHelper.getModuleDirNamesToUpdate(mockRootProject,
+                new HashSet<>(Collections.singletonList(dummyModuleName1)));
+        assertThat(actual, containsInAnyOrder(dummyModuleName1));
+    }
+
+    @Test
+    public void getModuleDirNamesToUpdate_ShouldBeAllInput() {
+        final Set<String> actual = inputHelper.getModuleDirNamesToUpdate(mockRootProject,
+                new HashSet<>(Arrays.asList(dummyModuleName1, dummyModuleName2)));
+        assertThat(actual, containsInAnyOrder(dummyModuleName1, dummyModuleName2));
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void getModuleDirNamesToUpdate_InvalidInputShouldThrowException() {
+        inputHelper.getModuleDirNamesToUpdate(mockRootProject,
+                new HashSet<>(Arrays.asList("weDoNotHaveThis", dummyModuleName2)));
     }
     // endRegion
 }

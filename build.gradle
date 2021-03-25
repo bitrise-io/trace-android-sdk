@@ -67,7 +67,20 @@ task prepareForRelease(dependsOn: [':trace-gradle-plugin:prepareForReleaseTraceG
     }
 }
 
-task updateChangeLog(type: UpdateChangeLogTask)
+/**
+ * Internal task that updates the CHANGELOG.md with the commit messages since the last tag. Input
+ * should be the directory names of the modules that should be updated. Example usage:
+ * <code>./gradlew updateChangeLog -PmoduleDirNames='["trace-sdk", "trace-gradle-plugin"]'</code>
+ */
+task updateChangeLog(type: UpdateChangeLogTask) {
+    def input = project.properties.get(PROPERTY_NAME_MODULES_TO_UPDATE, null)
+    if (input != null) {
+        moduleDirNames = Eval.me(input)
+    }
+
+    group = "trace"
+    description = "Internal task that updates the CHANGELOG.md with the commit messages since the last tag"
+}
 
 sonarqube {
     properties {
