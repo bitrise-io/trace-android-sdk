@@ -7,7 +7,9 @@ import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.gradle.api.DefaultTask;
+import org.gradle.api.Project;
 import org.gradle.api.logging.Logger;
+import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.TaskAction;
 
 import java.io.File;
@@ -40,7 +42,6 @@ import javax.inject.Inject;
  * When the task is executed, the changes will be uncommitted, you have to commit and push it to the remote
  * repository. Before doing this it is recommended to manually check the changes for any unexpected result, for
  * example for typos, wrong commit types, malformed entries, etc.
- * For additional information please check the Android Team Release process in Confluence.
  */
 public class UpdateChangeLogTask extends DefaultTask {
 
@@ -54,11 +55,19 @@ public class UpdateChangeLogTask extends DefaultTask {
     private static final int VERSION_INDEX_MAJOR = 2;
     private final Logger logger;
     private final GitHelper gitHelper;
+    public static final String PROPERTY_NAME_MODULES_TO_UPDATE = "moduleDirNames";
+    private final InputHelper inputHelper;
+    /**
+     * An input for the directory name of the module for which this task should generate change logs.
+     */
+    @Input
+    public Set<String> moduleDirNames;
 
     @Inject
     public UpdateChangeLogTask() {
         this.logger = getProject().getLogger();
         this.gitHelper = new GitHelper(logger);
+        this.inputHelper = new InputHelper(logger);
     }
 
     /**
@@ -105,7 +114,6 @@ public class UpdateChangeLogTask extends DefaultTask {
         return patchCommitTypes;
     }
 
-
     /**
      * Does the update of the CHANGELOG.md. All commits since the previous tag will be collected, and the ones with
      * the allowed type ({@link #allowedCommitTypes}) will be added to the CHANGELOG.md.
@@ -115,6 +123,10 @@ public class UpdateChangeLogTask extends DefaultTask {
     @TaskAction
     public void taskAction() throws IOException {
         logger.lifecycle("Starting the update of CHANGELOG.md");
+
+        final Set<String> moduleDirsToUpdate = processInputs();
+        // TODO - Update generation logic based on this
+
         final Git git = gitHelper.getGit();
         final Ref lastTag = gitHelper.getLastTag(git);
         final List<RevCommit> newCommits = gitHelper.getNewCommits(git, lastTag);
@@ -123,14 +135,34 @@ public class UpdateChangeLogTask extends DefaultTask {
             logger.warn("No new commits found, nothing to update, cancelling task");
             return;
         }
+
         final ChangeLogHelper changeLogHelper = new ChangeLogHelper(logger);
         final List<ChangeLogEntry> changeLogEntries = changeLogHelper.getChangeLogEntries(newCommits);
         logger.lifecycle("Formatted commit messages to CHANGELOG entries");
+
         final String releaseName = changeLogHelper.getReleaseName(lastTag, changeLogEntries);
         logger.lifecycle("The name of the release in the CHANGELOG.md will be: {}", releaseName);
+
         final File changeLogFile = changeLogHelper.getChangeLogFile();
         changeLogHelper.updateChangeLog(changeLogFile, releaseName, changeLogEntries);
         logger.lifecycle("CHANGELOG entries added, finishing task");
+    }
+
+    /**
+     * Processes the inputs received in {@link #moduleDirNames}.
+     *
+     * @return the Set of modules that should be updated.
+     */
+    private Set<String> processInputs() {
+        logger.lifecycle("The following input was received:");
+        moduleDirNames.forEach(logger::lifecycle);
+
+        final Set<String> moduleDirsToUpdate = inputHelper.getModuleDirNamesToUpdate(getProject(), moduleDirNames);
+
+        logger.lifecycle("The following modules will be updated:");
+        moduleDirsToUpdate.forEach(logger::lifecycle);
+
+        return moduleDirsToUpdate;
     }
 
     /**
@@ -163,6 +195,72 @@ public class UpdateChangeLogTask extends DefaultTask {
         @Override
         public String toString() {
             return String.format("* %s: **%s:** %s", type, title, details);
+        }
+    }
+
+    /**
+     * Inner class for input processing and validation.
+     */
+    static class InputHelper {
+
+        private final Logger logger;
+
+        public InputHelper(final Logger logger) {
+            this.logger = logger;
+        }
+
+        /**
+         * Gets the directory names of the modules that should be updated during task run.
+         *
+         * @param project        the given {@link Project}.
+         * @param moduleDirNames the input of module directory names.
+         * @return the Set of directory names.
+         */
+        Set<String> getModuleDirNamesToUpdate(final Project project, final Set<String> moduleDirNames) {
+            final Set<String> availableModules = getAvailableModules(project);
+            final Set<String> moduleDirsToUpdate;
+            if (moduleDirNames == null || moduleDirNames.isEmpty()) {
+                logger.lifecycle("Module name was not specified with property \"{}\", task will generate change " +
+                        "log entries for all projects", PROPERTY_NAME_MODULES_TO_UPDATE);
+                moduleDirsToUpdate = availableModules;
+            } else {
+                validateModules(availableModules, moduleDirNames);
+                moduleDirsToUpdate = moduleDirNames;
+            }
+            return moduleDirsToUpdate;
+        }
+
+        /**
+         * Validate that the given input module names are in the available Set of names. If any of the input items are
+         * not in the available list, this throws IllegalStateException.
+         *
+         * @param availableModules the Set of available modules.
+         * @param moduleDirNames   the Set of modules to update.
+         */
+        void validateModules(final Set<String> availableModules, final Set<String> moduleDirNames) {
+            for (final String moduleDirName : moduleDirNames) {
+                if (!availableModules.contains(moduleDirName)) {
+                    logger.error("No module found with name \"{}\", aborting task. Please make sure input property " +
+                                    "\"{}\" is set the the name of the given project's directory, or leave it blank " +
+                                    "if you want to generate change log entries for all modules", moduleDirName,
+                            PROPERTY_NAME_MODULES_TO_UPDATE);
+                    throw new IllegalStateException(String.format("Aborting build, input property \"%s\" is wrong",
+                            PROPERTY_NAME_MODULES_TO_UPDATE));
+                }
+            }
+        }
+
+        /**
+         * Gets the available modules for a given {@link Project}.
+         *
+         * @param project the given Project.
+         * @return the Set of sub projects.
+         */
+        Set<String> getAvailableModules(final Project project) {
+            return project.getAllprojects()
+                          .stream()
+                          .map(subProject -> subProject.getProjectDir().getName())
+                          .collect(Collectors.toSet());
         }
     }
 
