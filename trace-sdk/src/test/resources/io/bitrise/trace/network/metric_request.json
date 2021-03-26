@@ -273,12 +273,17 @@
   ],
   "resource":{
     "labels":{
-      "app.build":"123",
+      "app.build":"21",
       "app.platform":"android",
       "app.session.id":"session-id",
-      "app.version":"1.0.0",
-      "br.app.id":"a91181a2-35b0-4b6f-8cf9-c4f606ed14e3",
-      "device.id":"01DJ5NXYX23M9SVKJ2WQM4PQ7X"
+      "app.version":"2.1.0",
+      "device.carrier":"Telenor Hu",
+      "device.id":"01DJ5NXYX23M9SVKJ2WQM4PQ7X",
+      "device.locale":"en_US",
+      "device.network":"WIFI",
+      "device.rooted":"false",
+      "device.type":"sdk_gphone_x86",
+      "os.version":"30"
     },
     "type":"mobile"
   }

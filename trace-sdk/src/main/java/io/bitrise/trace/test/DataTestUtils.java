@@ -52,12 +52,17 @@ public class DataTestUtils {
     public static Resource getSampleResource(@Nullable final String sessionId) {
         final Resource.Builder resource = Resource.newBuilder();
         resource.setType("mobile");
-        resource.putLabels(ResourceLabel.APPLICATION_ID.getName(), "a91181a2-35b0-4b6f-8cf9-c4f606ed14e3");
-        resource.putLabels(ResourceLabel.APPLICATION_VERSION_NAME.getName(), "1.0.0");
-        resource.putLabels(ResourceLabel.APPLICATION_VERSION_CODE.getName(), "123");
+        resource.putLabels(ResourceLabel.APPLICATION_VERSION_CODE.getName(), "21");
+        resource.putLabels(ResourceLabel.APPLICATION_VERSION_NAME.getName(), "2.1.0");
         resource.putLabels(ResourceLabel.APPLICATION_PLATFORM.getName(), "android");
-        resource.putLabels(ResourceLabel.SESSION_ID.getName(), sessionId);
+        resource.putLabels(ResourceLabel.DEVICE_CARRIER.getName(), "Telenor Hu");
+        resource.putLabels(ResourceLabel.DEVICE_LOCALE.getName(), "en_US");
         resource.putLabels(ResourceLabel.DEVICE_ID.getName(), "01DJ5NXYX23M9SVKJ2WQM4PQ7X");
+        resource.putLabels(ResourceLabel.DEVICE_NETWORK.getName(), "WIFI");
+        resource.putLabels(ResourceLabel.DEVICE_OS.getName(), "30");
+        resource.putLabels(ResourceLabel.DEVICE_ROOTED.getName(),  "false");
+        resource.putLabels(ResourceLabel.DEVICE_TYPE.getName(), "sdk_gphone_x86");
+        resource.putLabels(ResourceLabel.SESSION_ID.getName(), sessionId);
 
         return resource.build();
     }

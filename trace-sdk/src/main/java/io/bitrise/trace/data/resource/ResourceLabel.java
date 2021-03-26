@@ -24,7 +24,6 @@ import static io.bitrise.trace.data.dto.DataValues.version;
  */
 public enum ResourceLabel {
     APPLICATION_VERSION_CODE(DataValues.getName(app, build)),
-    APPLICATION_ID(DataValues.getName(br, app, id)),
     APPLICATION_VERSION_NAME(DataValues.getName(app, version)),
     APPLICATION_PLATFORM(DataValues.getName(app, platform)),
     DEVICE_CARRIER(DataValues.getName(device, carrier)),
