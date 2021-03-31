@@ -1,11 +1,16 @@
 package io.bitrise.trace.internal;
 
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.ObjectId;
+import org.eclipse.jgit.lib.ObjectReader;
 import org.eclipse.jgit.lib.Ref;
+import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
+import org.eclipse.jgit.treewalk.CanonicalTreeParser;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.Project;
 import org.gradle.api.logging.Logger;
@@ -24,11 +29,13 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.OptionalInt;
 import java.util.Set;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import javax.inject.Inject;
@@ -119,16 +126,17 @@ public class UpdateChangeLogTask extends DefaultTask {
      * Does the update of the CHANGELOG.md. All commits since the previous tag will be collected, and the ones with
      * the allowed type ({@link #allowedCommitTypes}) will be added to the CHANGELOG.md.
      *
-     * @throws IOException if any I/O error occurs.
+     * @throws IOException     if any I/O error occurs.
+     * @throws GitAPIException if any Git call fails.
      */
     @TaskAction
-    public void taskAction() throws IOException {
+    public void taskAction() throws IOException, GitAPIException {
         logger.lifecycle("Starting the update of CHANGELOG.md");
-        final Set<String> moduleDirsToUpdate = processInputs();
+        final Set<File> moduleDirsToUpdate = processInputs();
 
-        for (final String moduleDirName : moduleDirsToUpdate) {
-            logger.lifecycle("Updating module \"{}\"", moduleDirName);
-            updateChangeLogWithModule(moduleDirName);
+        for (final File moduleDir : moduleDirsToUpdate) {
+            logger.lifecycle("Updating module \"{}\"", moduleDir.getName());
+            updateChangeLogWithModule(moduleDir);
         }
     }
 
@@ -137,14 +145,11 @@ public class UpdateChangeLogTask extends DefaultTask {
      *
      * @return the Set of modules that should be updated.
      */
-    private Set<String> processInputs() {
-        logger.lifecycle("The following input was received:");
-        moduleDirNames.forEach(logger::lifecycle);
-
-        final Set<String> moduleDirsToUpdate = inputHelper.getModuleDirNamesToUpdate(getProject(), moduleDirNames);
+    private Set<File> processInputs() {
+        final Set<File> moduleDirsToUpdate = inputHelper.getModuleDirsToUpdate(getProject(), moduleDirNames);
 
         logger.lifecycle("The following modules will be updated:");
-        moduleDirsToUpdate.forEach(logger::lifecycle);
+        moduleDirsToUpdate.forEach(it -> logger.lifecycle(it.getName()));
 
         return moduleDirsToUpdate;
     }
@@ -152,12 +157,13 @@ public class UpdateChangeLogTask extends DefaultTask {
     /**
      * Updates the CHANGELOG.md with the module with the given name.
      *
-     * @param moduleDirName the name of the module's directory.
-     * @throws IOException if any I/O error occurs.
+     * @param moduleDir the module's directory.
+     * @throws IOException     if any I/O error occurs.
+     * @throws GitAPIException if any Git call fails.
      */
-    private void updateChangeLogWithModule(final String moduleDirName) throws IOException {
+    private void updateChangeLogWithModule(final File moduleDir) throws IOException, GitAPIException {
         final Git git = gitHelper.getGit();
-        final Ref lastTag = gitHelper.getLastTag(git, moduleDirName);
+        final Ref lastTag = gitHelper.getLastTag(git, moduleDir.getName());
         final List<RevCommit> newCommits = gitHelper.getNewCommits(git, lastTag);
         logger.lifecycle("Found {} commits since last release", newCommits.size());
         if (newCommits.size() == 0) {
@@ -165,7 +171,7 @@ public class UpdateChangeLogTask extends DefaultTask {
             return;
         }
 
-        final List<RevCommit> filteredCommits = gitHelper.filterRelevantCommits(moduleDirName);
+        final List<RevCommit> filteredCommits = gitHelper.filterRelevantCommits(git, newCommits, moduleDir);
 
         final ChangeLogHelper changeLogHelper = new ChangeLogHelper(logger);
         final List<ChangeLogEntry> changeLogEntries = changeLogHelper.getChangeLogEntries(filteredCommits);
@@ -224,22 +230,27 @@ public class UpdateChangeLogTask extends DefaultTask {
         }
 
         /**
-         * Gets the directory names of the modules that should be updated during task run.
+         * Gets the directories of the modules that should be updated during task run.
          *
          * @param project        the given {@link Project}.
          * @param moduleDirNames the input of module directory names.
-         * @return the Set of directory names.
+         * @return the Set of directories.
          */
-        Set<String> getModuleDirNamesToUpdate(final Project project, final Set<String> moduleDirNames) {
-            final Set<String> availableModules = getAvailableModules(project);
-            final Set<String> moduleDirsToUpdate;
+        Set<File> getModuleDirsToUpdate(final Project project, final Set<String> moduleDirNames) {
+            final Set<File> availableModules = getAvailableModules(project);
+            final Set<File> moduleDirsToUpdate;
             if (moduleDirNames == null || moduleDirNames.isEmpty()) {
                 logger.lifecycle("Module name was not specified with property \"{}\", task will generate change " +
                         "log entries for all projects", PROPERTY_NAME_MODULES_TO_UPDATE);
                 moduleDirsToUpdate = availableModules;
             } else {
+                logger.lifecycle("The following input was received:");
+                moduleDirNames.forEach(logger::lifecycle);
                 validateModules(availableModules, moduleDirNames);
-                moduleDirsToUpdate = moduleDirNames;
+                moduleDirsToUpdate =
+                        availableModules.stream()
+                                        .filter(it -> moduleDirNames.contains(it.getName()))
+                                        .collect(Collectors.toSet());
             }
             return moduleDirsToUpdate;
         }
@@ -251,12 +262,14 @@ public class UpdateChangeLogTask extends DefaultTask {
          * @param availableModules the Set of available modules.
          * @param moduleDirNames   the Set of modules to update.
          */
-        void validateModules(final Set<String> availableModules, final Set<String> moduleDirNames) {
-            for (final String moduleDirName : moduleDirNames) {
-                if (!availableModules.contains(moduleDirName)) {
+        void validateModules(final Set<File> availableModules, final Set<String> moduleDirNames) {
+            final Set<String> availableModuleNames =
+                    availableModules.stream().map(File::getName).collect(Collectors.toSet());
+            for (final String moduleDir : moduleDirNames) {
+                if (!availableModuleNames.contains(moduleDir)) {
                     logger.error("No module found with name \"{}\", aborting task. Please make sure input property " +
                                     "\"{}\" is set the the name of the given project's directory, or leave it blank " +
-                                    "if you want to generate change log entries for all modules", moduleDirName,
+                                    "if you want to generate change log entries for all modules", moduleDir,
                             PROPERTY_NAME_MODULES_TO_UPDATE);
                     throw new IllegalStateException(String.format("Aborting build, input property \"%s\" is wrong",
                             PROPERTY_NAME_MODULES_TO_UPDATE));
@@ -268,12 +281,12 @@ public class UpdateChangeLogTask extends DefaultTask {
          * Gets the available modules for a given {@link Project}.
          *
          * @param project the given Project.
-         * @return the Set of sub projects.
+         * @return the Set of sub project directories.
          */
-        Set<String> getAvailableModules(final Project project) {
+        Set<File> getAvailableModules(final Project project) {
             return project.getAllprojects()
                           .stream()
-                          .map(subProject -> subProject.getProjectDir().getName())
+                          .map(Project::getProjectDir)
                           .collect(Collectors.toSet());
         }
     }
@@ -303,14 +316,26 @@ public class UpdateChangeLogTask extends DefaultTask {
          * @throws IOException if any I/O error occurs.
          */
         List<RevCommit> getNewCommits(final Git git, final Ref fromTag) throws IOException {
-            final RevWalk revWalk = getAllCommits(git);
+            final RevWalk revWalk = getAllCommitsInIterator(git);
+            return getNewCommits(revWalk, getObjectIdForTag(git, fromTag));
+        }
+
+        /**
+         * Gets the {@link ObjectId} of the given tag.
+         *
+         * @param git     the {@link Git} repository.
+         * @param fromTag the given tag.
+         * @return the List of commits.
+         * @throws IOException if any I/O error occurs.
+         */
+        private ObjectId getObjectIdForTag(final Git git, final Ref fromTag) throws IOException {
             final Ref peeledRef = git.getRepository().getRefDatabase().peel(fromTag);
             if (peeledRef.getPeeledObjectId() != null) {
                 logger.debug("Using peeled reference ID {} as tag ID.", peeledRef.getPeeledObjectId());
-                return getNewCommits(revWalk, peeledRef.getPeeledObjectId());
+                return peeledRef.getPeeledObjectId();
             } else {
                 logger.debug("Using reference ID {} as tag ID.", peeledRef.getObjectId());
-                return getNewCommits(revWalk, peeledRef.getObjectId());
+                return peeledRef.getObjectId();
             }
         }
 
@@ -356,14 +381,27 @@ public class UpdateChangeLogTask extends DefaultTask {
          * Creates a {@link RevWalk} that contains all the commits on this branch (till the HEAD).
          *
          * @param git the given {@link Git}.
-         * @return the created REvWalk.
+         * @return the created RevWalk.
          * @throws IOException if any I/O error occurs.
          */
-        RevWalk getAllCommits(final Git git) throws IOException {
+        RevWalk getAllCommitsInIterator(final Git git) throws IOException {
             try (final RevWalk revWalk = new RevWalk(git.getRepository())) {
                 revWalk.markStart(revWalk.parseCommit(git.getRepository().resolve("HEAD")));
                 return revWalk;
             }
+        }
+
+        /**
+         * Gets the commits as a List of {@link RevCommit}s on this branch (till the HEAD).
+         *
+         * @param git the given {@link Git}.
+         * @return the List of commits.
+         * @throws IOException if any I/O error occurs.
+         */
+        List<RevCommit> getAllCommits(final Git git) throws IOException {
+            final List<RevCommit> allCommits = new ArrayList<>();
+            getAllCommitsInIterator(git).iterator().forEachRemaining(allCommits::add);
+            return allCommits;
         }
 
         /**
@@ -373,7 +411,6 @@ public class UpdateChangeLogTask extends DefaultTask {
          * @return the {@link Ref} of the tag, or {@code null} when there are no tags.
          * @throws IOException if any I/O error occurs.
          */
-        // TODO remove
         Ref getLastTag(final Git git) throws IOException {
             final List<Ref> allTags = getAllTags(git);
             if (allTags.size() == 0) {
@@ -412,8 +449,161 @@ public class UpdateChangeLogTask extends DefaultTask {
             return git.getRepository().getRefDatabase().getRefsByPrefix(Constants.R_TAGS);
         }
 
-        private List<RevCommit> filterRelevantCommits(final String moduleDirName) {
-            return null;
+        /**
+         * Filters the relevant commits that affected the given module.
+         *
+         * @param git        the {@link Git} of the commits.
+         * @param newCommits the {@link RevCommit}s that should be filtered.
+         * @param moduleDir  the directory  of the given module.
+         * @return a filtered List of the commits.
+         * @throws IOException     if any I/O error occurs.
+         * @throws GitAPIException if any Git call fails.
+         */
+        List<RevCommit> filterRelevantCommits(final Git git, final List<RevCommit> newCommits, final File moduleDir)
+                throws IOException, GitAPIException {
+            final Repository repository = git.getRepository();
+            final List<RevCommit> commitsForDiff = addPreviousCommit(git, newCommits);
+            final List<ObjectId> objectIdList = commitsForDiff.stream()
+                                                              .map(it -> it.getTree().getId())
+                                                              .collect(Collectors.toList());
+
+            final List<RevCommit> filteredCommits = new ArrayList<>();
+            for (int i = 0; i < objectIdList.size() - 1; i++) {
+                final List<DiffEntry> diffEntryList = getCommitDiffList(objectIdList.get(i), objectIdList.get(i + 1),
+                        repository);
+
+                if (isModuleAffected(moduleDir, git.getRepository().getWorkTree(), diffEntryList)) {
+                    filteredCommits.add(commitsForDiff.get(i));
+                }
+            }
+
+            return filteredCommits;
+        }
+
+        /**
+         * Adds the previous commit to the given List of commits
+         *
+         * @param git     the {@link Git}.
+         * @param commits the List of commits.
+         * @return the List containing the previous commit.
+         * @throws IOException if any I/O error occurs.
+         */
+        List<RevCommit> addPreviousCommit(final Git git, final List<RevCommit> commits) throws IOException {
+            final RevCommit oldestCommit = commits.get(commits.size() - 1);
+            final List<RevCommit> allCommits = getAllCommits(git);
+            final OptionalInt indexOpt =
+                    IntStream.range(0, allCommits.size())
+                             .filter(i -> oldestCommit.getId().equals(allCommits.get(i)))
+                             .findFirst();
+            if (indexOpt.isPresent()) {
+                commits.add(allCommits.get(indexOpt.getAsInt() - 1));
+            }
+            return commits;
+        }
+
+        /**
+         * Checks if the given module is affected by the given changes or not.
+         *
+         * @param moduleDir     the directory of the given module.
+         * @param rootDir       the root directory of this repo.
+         * @param diffEntryList the List of {@link DiffEntry}s (changes).
+         * @return {@code true} if yes, {@code false} otherwise.
+         * @throws IOException if any I/O error occurs.
+         */
+        boolean isModuleAffected(final File moduleDir, final File rootDir, final List<DiffEntry> diffEntryList)
+                throws IOException {
+            for (final DiffEntry diffEntry : diffEntryList) {
+                final String oldPath = diffEntry.getOldPath();
+                final String newPath = diffEntry.getNewPath();
+
+                if (isModuleParent(moduleDir, rootDir, oldPath) || isModuleParent(moduleDir, rootDir, newPath)) {
+                    return true;
+                }
+
+                if (isModuleChild(moduleDir, rootDir, oldPath) || isModuleChild(moduleDir, rootDir, newPath)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /**
+         * Checks if a given path is in a subdirectory of the given module.
+         *
+         * @param moduleDir the directory of the module.
+         * @param rootDir   the root directory of this repo.
+         * @param path      the given path.
+         * @return {@code true} if yes, {@code false} otherwise.
+         * @throws IOException if any I/O error occurs.
+         */
+        boolean isModuleParent(final File moduleDir, final File rootDir, final String path) throws IOException {
+            final File changedFile = new File(rootDir, path);
+            return changedFile.getCanonicalPath().contains(moduleDir.getCanonicalPath());
+        }
+
+        /**
+         * Checks if a given path is a in a parent directory of the given module.
+         *
+         * @param moduleDir the directory of the module.
+         * @param rootDir   the root directory of this repo.
+         * @param path      the given path.
+         * @return {@code true} if yes, {@code false} otherwise.
+         * @throws IOException if any I/O error occurs.
+         */
+        boolean isModuleChild(final File moduleDir, final File rootDir, final String path) throws IOException {
+            File givenFile = new File(rootDir, path);
+            if (!givenFile.isDirectory()) {
+                givenFile = givenFile.getParentFile();
+            }
+
+            return moduleDir.getCanonicalPath().contains(givenFile.getCanonicalPath());
+        }
+
+        /**
+         * Gets the changes between two {@link RevCommit}s.
+         *
+         * @param head         the {@link ObjectId} of the current HEAD commit.
+         * @param previousHead the ObjectId of the previous HEAD commit.
+         * @param repository   the affected {@link Repository}.
+         * @return the changes as a List of {@link DiffEntry}s.
+         * @throws IOException     if any I/O error occurs.
+         * @throws GitAPIException if any Git call fails.
+         */
+        List<DiffEntry> getCommitDiffList(final ObjectId head,
+                                          final ObjectId previousHead,
+                                          final Repository repository) throws IOException, GitAPIException {
+            final List<DiffEntry> diffList;
+
+            try (final ObjectReader reader = repository.newObjectReader()) {
+                try (final Git git = new Git(repository)) {
+                    diffList = new ArrayList<>(git.diff()
+                                                  .setNewTree(getTreeParser(head, reader))
+                                                  .setOldTree(getTreeParser(previousHead, reader))
+                                                  .call());
+                }
+            }
+            return diffList;
+        }
+
+        /**
+         * Gets the {@link CanonicalTreeParser} for the given {@link ObjectId}.
+         *
+         * @param objectId the ID of the HEAD commit.
+         * @param reader   the {@link ObjectReader} for the parser.
+         * @return the parser.
+         * @throws IOException if any I/O error occurs.
+         */
+        private CanonicalTreeParser getTreeParser(final ObjectId objectId, final ObjectReader reader)
+                throws IOException {
+            if (objectId == null) {
+                return null;
+            }
+
+            final CanonicalTreeParser treeParser = new CanonicalTreeParser();
+            treeParser.reset(reader, objectId);
+
+            return treeParser;
         }
     }
 
@@ -439,20 +629,31 @@ public class UpdateChangeLogTask extends DefaultTask {
 
         /**
          * Gets the name of the given release. Determines the new version from the change log entries. This is
-         * concatenated
-         * with the current date.
+         * concatenated with the current date.
          *
          * @param lastTag the previous tag.
          * @return the name of the release.
          */
         String getReleaseName(final Ref lastTag, final List<ChangeLogEntry> changeLogEntries) {
             final String previousTagShortName = lastTag.getName().substring(Constants.R_TAGS.length());
-            logger.debug("The name of the last tag was \"{}\"", previousTagShortName);
+            final String versionName = getVersionFromTag(previousTagShortName);
+            logger.debug("The name of the last tag was \"{}\", the version number is \"{}\"", previousTagShortName,
+                    versionName);
             final Set<String> entryTypeSet =
                     changeLogEntries.stream().map(ChangeLogEntry::getType).collect(Collectors.toSet());
             entryTypeSet.forEach(type -> logger.debug("Found in new commits type \"{}\"", type));
 
-            return String.format("### %s - %s", getNewVersion(previousTagShortName, entryTypeSet), getCurrentDate());
+            return String.format("### %s - %s", getNewVersion(versionName, entryTypeSet), getCurrentDate());
+        }
+
+        /**
+         * Gets the version name from a given tag's name. Tag names should follow the "tagName_x.x.x" format.
+         *
+         * @param tagName the name of the tag.
+         * @return the version name.
+         */
+        String getVersionFromTag(final String tagName) {
+            return tagName.split("_")[1];
         }
 
         /**
