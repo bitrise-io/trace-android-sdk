@@ -1,3 +1,5 @@
+import io.bitrise.trace.internal.UpdateChangeLogTask
+
 buildscript {
     final Properties traceGradlePluginProperties = new Properties()
     final File traceGradlePluginPropertiesFile = new File(getProject().getRootDir().getAbsolutePath() + ("/trace-gradle-plugin/gradle.properties"))
@@ -17,6 +19,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.0.2'
+        classpath files('./buildSrc/build/classes/java/main')
     }
 }
 
@@ -63,6 +66,8 @@ task prepareForRelease(dependsOn: [':trace-gradle-plugin:prepareForReleaseTraceG
         environment "TRACE_VERSION_NAME", getCurrentVersion("gradle.properties")[1]
     }
 }
+
+task updateChangeLog(type: UpdateChangeLogTask)
 
 sonarqube {
     properties {
