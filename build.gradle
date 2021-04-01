@@ -49,12 +49,43 @@ task clean(type: Delete) {
  */
 task updateChangeLog(type: UpdateChangeLogTask) {
     def input = project.properties.get(PROPERTY_NAME_MODULES_TO_UPDATE, null)
-    if (input != null) {
-        moduleDirNames = Eval.me(input)
+    if (input == null) {
+        return
+    }
+
+    moduleDirNames = Eval.me(input)
+    group = "trace"
+    description = "Internal task that updates the CHANGELOG.md with the commit messages since the last tag"
+}
+
+/**
+ * Internal task that creates a tag for the given module. Input should be the directory name of the
+ * module that should be tagged. Example usage:
+ * <code>./gradlew tagModule -PmoduleToTag=trace-sdk</code>
+ */
+task tagModule() {
+    def input = project.properties.get("moduleToTag", null)
+    if (input == null) {
+        return
+    }
+
+    logger.lifecycle("Creating tag for module \"{}\"", input.toString())
+    final Properties moduleProperties = new Properties()
+    final File modulePropertiesFile = new File(getProject().getRootDir().getAbsolutePath() + ("/" + input + "/gradle.properties"))
+    logger.debug("Path for properties file \"{}\"", modulePropertiesFile.getAbsolutePath())
+    modulePropertiesFile.withInputStream {
+        moduleProperties.load(it)
+    }
+    def tagName = input + "_" + moduleProperties.get("version")
+    logger.lifecycle("Name of the tag will be \"{}\"", tagName)
+
+    exec {
+        commandLine("git", "tag", tagName)
+        commandLine("git", "push", "origin", tagName)
     }
 
     group = "trace"
-    description = "Internal task that updates the CHANGELOG.md with the commit messages since the last tag"
+    description = "Internal task that creates a tag for the given module"
 }
 
 sonarqube {
