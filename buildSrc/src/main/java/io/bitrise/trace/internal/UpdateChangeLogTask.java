@@ -40,7 +40,6 @@ public class UpdateChangeLogTask extends DefaultTask {
     @Input
     public Set<String> moduleDirNames;
 
-
     @Inject
     public UpdateChangeLogTask() {
         this.logger = getProject().getLogger();
@@ -74,7 +73,7 @@ public class UpdateChangeLogTask extends DefaultTask {
     private Set<File> processInputs() {
         final Set<File> moduleDirsToUpdate = inputHelper.getModuleDirsToUpdate(getProject(), moduleDirNames);
 
-        logger.lifecycle("The following modules will be updated:");
+        logger.lifecycle("Task will generate change log entries for the following modules:");
         moduleDirsToUpdate.forEach(it -> logger.lifecycle(it.getName()));
 
         return moduleDirsToUpdate;

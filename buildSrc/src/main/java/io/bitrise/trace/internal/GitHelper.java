@@ -108,7 +108,7 @@ class GitHelper {
     }
 
     /**
-     * Creates a {@link RevWalk} that contains all the commits on this branch (till the HEAD).
+     * Creates a {@link RevWalk} that contains all the commits on this branch.
      *
      * @param git the given {@link Git}.
      * @return the created RevWalk.
@@ -150,7 +150,7 @@ class GitHelper {
     }
 
     /**
-     * Gets the last tag (which was created the latest).
+     * Gets the last tag (which was created the latest), which contains the given name.
      *
      * @param git  the given {@link Git}.
      * @param name the name that the tag should contain.
@@ -180,7 +180,7 @@ class GitHelper {
     }
 
     /**
-     * Filters the relevant commits that affected the given module.
+     * Filters a list of commits which affected the given module.
      *
      * @param git        the {@link Git} of the commits.
      * @param newCommits the {@link RevCommit}s that should be filtered.
