@@ -27,7 +27,6 @@ plugins {
     id "org.sonarqube" version "3.0"
 }
 
-apply from: "release.gradle"
 apply from: "versions.gradle"
 
 allprojects {
@@ -40,31 +39,6 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
-}
-
-/**
- * Internal task that builds and prepares the 'trace-gradle-plugin' and 'trace-sdk' for release.
- * Updates the CHANGELOG.md with the changes, automatically determines the new version and updates
- * the version name. To run it is required to pre define 'TRACE_COMMIT_CHANGES' environment variable
- * with the commit log since the last tag. Commits should follow the conventional commits. The new
- * version name will be exported as an environment variable named 'TRACE_VERSION_NAME'.
- *
- * Script to get it:
- *   git rev-list master |
- *       while read sha1; do
- *           git show -s --format='%B' $sha1 | tr -d '\n'; echo
- *       done
- *
- *  https://www.conventionalcommits.org/en/v1.0.0/>
- */
-task prepareForRelease(dependsOn: [':trace-gradle-plugin:prepareForReleaseTraceGradlePlugin', ':trace-sdk:prepareForReleaseTraceSdk']) {
-    group = "trace"
-    description = "Internal task that builds and prepares the 'trace-gradle-plugin' and 'trace-sdk' for release"
-    doLast {
-        updateChangeLog("System.env.TRACE_COMMIT_CHANGES", "gradle.properties")
-        updateVersionName("gradle.properties")
-        environment "TRACE_VERSION_NAME", getCurrentVersion("gradle.properties")[1]
-    }
 }
 
 /**
