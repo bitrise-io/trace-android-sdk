@@ -11,6 +11,7 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.treewalk.CanonicalTreeParser;
+import org.gradle.api.Project;
 import org.gradle.api.logging.Logger;
 
 import java.io.File;
@@ -98,11 +99,12 @@ class GitHelper {
     /**
      * Gets the {@link Git} to work with (this repo).
      *
+     * @param projectDir the directory of the {@link Project}.
      * @return this Git.
      * @throws IOException if any I/O error occurs.
      */
-    Git getGit() throws IOException {
-        final Git git = Git.open(new File("./.git"));
+    Git getGit(final File projectDir) throws IOException {
+        final Git git = Git.open(new File(projectDir, ".git"));
         git.checkout();
         return git;
     }

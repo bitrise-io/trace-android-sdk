@@ -87,7 +87,7 @@ public class UpdateChangeLogTask extends DefaultTask {
      * @throws GitAPIException if any Git call fails.
      */
     private void updateChangeLogWithModule(final File moduleDir) throws IOException, GitAPIException {
-        final Git git = gitHelper.getGit();
+        final Git git = gitHelper.getGit(getProject().getProjectDir());
         final Ref lastTag = gitHelper.getLastTag(git, moduleDir.getName());
         final List<RevCommit> newCommits = gitHelper.getNewCommits(git, lastTag);
         logger.lifecycle("Found {} commits since last release", newCommits.size());
