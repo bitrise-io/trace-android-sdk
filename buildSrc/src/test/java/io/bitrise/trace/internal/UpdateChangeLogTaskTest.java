@@ -12,6 +12,8 @@ import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.util.FS;
 import org.gradle.api.Project;
+import org.gradle.api.initialization.IncludedBuild;
+import org.gradle.api.invocation.Gradle;
 import org.gradle.api.logging.Logger;
 import org.gradle.api.logging.Logging;
 import org.junit.BeforeClass;
@@ -110,11 +112,13 @@ public class UpdateChangeLogTaskTest {
     private static final String dummyFileName2 = "something2.txt";
 
     private static final Project mockRootProject = mock(Project.class);
+    private static final Gradle mockGradle = mock(Gradle.class);
 
     private static final Project mockProject1 = mock(Project.class);
-    private static final Project mockProject2 = mock(Project.class);
+    private static final IncludedBuild mockProject2 = mock(IncludedBuild.class);
 
     private static final Project mockEmptyProject = mock(Project.class);
+    private static final Gradle mockEmptyGradle = mock(Gradle.class);
 
     /**
      * A temporary folder to create a Git repo for the tests.
@@ -295,10 +299,16 @@ public class UpdateChangeLogTaskTest {
     }
 
     private static void setupMockProjects() {
-        when(mockRootProject.getAllprojects()).thenReturn(new HashSet<>(Arrays.asList(mockProject1, mockProject2)));
+        when(mockRootProject.getAllprojects()).thenReturn(new HashSet<>(Collections.singletonList(mockProject1)));
         when(mockEmptyProject.getAllprojects()).thenReturn(new HashSet<>());
         when(mockProject1.getProjectDir()).thenReturn(new File(tempFolder.getRoot(), dummyModuleName1));
         when(mockProject2.getProjectDir()).thenReturn(new File(tempFolder.getRoot(), dummyModuleName2));
+
+        when(mockRootProject.getGradle()).thenReturn(mockGradle);
+        when(mockGradle.getIncludedBuilds()).thenReturn(new HashSet<>(Collections.singletonList(mockProject2)));
+
+        when(mockEmptyProject.getGradle()).thenReturn(mockEmptyGradle);
+        when(mockEmptyGradle.getIncludedBuilds()).thenReturn(new HashSet<>(Collections.emptyList()));
     }
 
     // endRegion
@@ -554,7 +564,7 @@ public class UpdateChangeLogTaskTest {
                 changeLogHelper.getChangeLogEntries(newCommits);
 
         final String actual = changeLogHelper.getReleaseName(lastTag, changeLogEntries);
-        assertTrue(actual.startsWith("### 1.0.0 - "));
+        assertTrue(actual.startsWith("### module2 - 1.0.0 - "));
     }
 
     @Test
@@ -563,7 +573,7 @@ public class UpdateChangeLogTaskTest {
         final List<UpdateChangeLogTask.ChangeLogEntry> changeLogEntries = Collections.emptyList();
 
         final String actual = changeLogHelper.getReleaseName(lastTag, changeLogEntries);
-        assertTrue(actual.startsWith("### 0.1.1 -"));
+        assertTrue(actual.startsWith("### module2 - 0.1.1 -"));
     }
 
     @Test
@@ -614,7 +624,7 @@ public class UpdateChangeLogTaskTest {
         assertThat(actual.get(1), is(changeLogLines.get(1)));
         assertThat(actual.get(2), is(changeLogLines.get(2)));
         assertThat(actual.get(changeLogLines.size() - 3), is(dummyReleaseName));
-        assertThat(actual.get(changeLogLines.size() - 1), is(UpdateChangeLogTask.maintenanceReleaseEntry));
+        assertThat(actual.get(changeLogLines.size() - 2), is(UpdateChangeLogTask.maintenanceReleaseEntry));
     }
 
     @Test
