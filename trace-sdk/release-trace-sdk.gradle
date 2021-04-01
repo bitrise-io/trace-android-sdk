@@ -3,18 +3,6 @@ apply plugin: 'maven-publish'
 def publishToMavenLocal = tasks.findByName("publishToMavenLocal")
 publishToMavenLocal.dependsOn(assemble)
 
-/**
- * Internal task that builds and prepares the 'trace-sdk' for release by updating the version code
- * and building the project.
- */
-task prepareForReleaseTraceSdk(dependsOn: [clean, build]) {
-    group = "trace"
-    description = "Internal task that builds and prepares the 'trace-sdk' for release."
-    doLast {
-        updateVersionCode("${project.getProjectDir()}/gradle.properties")
-    }
-}
-
 task javadoc(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
