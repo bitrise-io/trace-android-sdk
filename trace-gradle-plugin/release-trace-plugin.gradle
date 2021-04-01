@@ -1,17 +1,5 @@
 apply plugin: 'maven-publish'
 
-/**
- * Internal task that builds and prepares the 'trace-gradle-plugin' for release. This task ensures,
- * that the plugin compiles and tests run.
- */
-task prepareForReleaseTraceGradlePlugin(dependsOn: [clean, build]) {
-    group = "trace"
-    description = "Internal task that builds and prepares the trace-gradle-plugin for release."
-    doLast {
-        // Nothing to do.
-    }
-}
-
 // Requires Gradle 6.0
 java {
     withJavadocJar()
