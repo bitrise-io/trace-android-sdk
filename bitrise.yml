@@ -1214,20 +1214,31 @@ workflows:
         title: cache_pull
     - android-build:
         inputs:
-        - module: trace-sdk
-        - arguments: "--stacktrace"
+          - module: trace-sdk
+          - arguments: "--stacktrace"
         title: android_build
     - android-unit-test:
         inputs:
-        - project_location: "$PROJECT_LOCATION"
-        - module: trace-sdk
-        - arguments: "--stacktrace"
-        - variant: "$VARIANT"
+          - project_location: "$PROJECT_LOCATION"
+          - module: trace-sdk
+          - arguments: "--stacktrace"
+          - variant: "$VARIANT"
         title: android_unit_test
+    - script@1:
+        inputs:
+          - content: |-
+              #!/usr/bin/env bash
+              # fail if any commands fails
+              set -e
+              # debug log
+              set -x
+
+              $BITRISE_SOURCE_DIR/gradlew "tagModule -PmoduleToTag=trace-sdk"
+        title: Tag release
     - gradle-runner@1:
         inputs:
-        - gradle_task: ":trace-sdk:assemble :trace-sdk:publish"
-        - gradlew_path: "$BITRISE_SOURCE_DIR/gradlew"
+          - gradle_task: ":trace-sdk:assemble :trace-sdk:publish"
+          - gradlew_path: "$BITRISE_SOURCE_DIR/gradlew"
     - cache-push@2:
         title: cache_push
     description: |-
@@ -1250,8 +1261,9 @@ workflows:
             $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:publishToMavenLocal"
             $BITRISE_SOURCE_DIR/gradlew -p "./trace-gradle-plugin/" publishToMavenLocal --stacktrace
             $BITRISE_SOURCE_DIR/gradlew -p "./trace-gradle-plugin/" build --stacktrace
+            $BITRISE_SOURCE_DIR/gradlew "tagModule -PmoduleToTag=trace-gradle-plugin"
             $BITRISE_SOURCE_DIR/gradlew -p "./trace-gradle-plugin/" publish --stacktrace
-        title: build_trace-gradle-plugin
+        title: build_&_publish_trace-gradle-plugin
     description: |-
       builds the trace-gradle-plugin and deploys to maven central
   release_opencensus:
