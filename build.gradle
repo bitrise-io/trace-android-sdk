@@ -45,6 +45,7 @@ task clean(type: Delete) {
  * Internal task that updates the CHANGELOG.md with the commit messages since the last tag. Input
  * should be the directory names of the modules that should be updated. Example usage:
  * <code>./gradlew updateChangeLog -PmoduleDirNames='["trace-sdk", "trace-gradle-plugin"]'</code>
+ * If no input is specified, task will run on all submodules and included builds.
  */
 task updateChangeLog(type: UpdateChangeLogTask) {
     def input = project.properties.get(PROPERTY_NAME_MODULES_TO_UPDATE, null)
