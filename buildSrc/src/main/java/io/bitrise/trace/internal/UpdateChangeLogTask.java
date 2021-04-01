@@ -13,6 +13,7 @@ import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.treewalk.CanonicalTreeParser;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.Project;
+import org.gradle.api.initialization.IncludedBuild;
 import org.gradle.api.logging.Logger;
 import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.TaskAction;
@@ -281,12 +282,36 @@ public class UpdateChangeLogTask extends DefaultTask {
          * Gets the available modules for a given {@link Project}.
          *
          * @param project the given Project.
-         * @return the Set of sub project directories.
+         * @return the Set of sub project and included build directories.
          */
         Set<File> getAvailableModules(final Project project) {
+            return Stream.concat(getProjectModules(project).stream(), getProjectIncludedBuilds(project).stream())
+                         .collect(Collectors.toSet());
+        }
+
+        /**
+         * Gets the submodules of the given {@link Project}.
+         *
+         * @param project the given Project.
+         * @return the Set of sub project directories.
+         */
+        Set<File> getProjectModules(final Project project) {
             return project.getAllprojects()
                           .stream()
                           .map(Project::getProjectDir)
+                          .collect(Collectors.toSet());
+        }
+
+        /**
+         * Gets the included builds of the given {@link Project}.
+         *
+         * @param project the given Project.
+         * @return the Set of included build directories.
+         */
+        Set<File> getProjectIncludedBuilds(final Project project) {
+            return project.getGradle().getIncludedBuilds()
+                          .stream()
+                          .map(IncludedBuild::getProjectDir)
                           .collect(Collectors.toSet());
         }
     }
@@ -637,13 +662,15 @@ public class UpdateChangeLogTask extends DefaultTask {
         String getReleaseName(final Ref lastTag, final List<ChangeLogEntry> changeLogEntries) {
             final String previousTagShortName = lastTag.getName().substring(Constants.R_TAGS.length());
             final String versionName = getVersionFromTag(previousTagShortName);
+            final String moduleName = getModuleNameFromTag(previousTagShortName);
             logger.debug("The name of the last tag was \"{}\", the version number is \"{}\"", previousTagShortName,
                     versionName);
             final Set<String> entryTypeSet =
                     changeLogEntries.stream().map(ChangeLogEntry::getType).collect(Collectors.toSet());
             entryTypeSet.forEach(type -> logger.debug("Found in new commits type \"{}\"", type));
 
-            return String.format("### %s - %s", getNewVersion(versionName, entryTypeSet), getCurrentDate());
+            return String.format("### %s - %s - %s", moduleName, getNewVersion(versionName, entryTypeSet),
+                    getCurrentDate());
         }
 
         /**
@@ -654,6 +681,16 @@ public class UpdateChangeLogTask extends DefaultTask {
          */
         String getVersionFromTag(final String tagName) {
             return tagName.split("_")[1];
+        }
+
+        /**
+         * Gets the module name from a given tag's name. Tag names should follow the "tagName_x.x.x" format.
+         *
+         * @param tagName the name of the module.
+         * @return the module name.
+         */
+        String getModuleNameFromTag(final String tagName) {
+            return tagName.split("_")[0];
         }
 
         /**
@@ -745,17 +782,20 @@ public class UpdateChangeLogTask extends DefaultTask {
                                                 final List<ChangeLogEntry> newEntries) {
             originalLines.add(changeLogInsertLinePos, releaseName);
 
+            final int extraLines;
             if (newEntries.size() == 0) {
                 logger.warn(
                         "No commits found, with the allowed types, only adding the release name to the CHANGELOG.md");
                 originalLines.add(changeLogInsertLinePos + 1, maintenanceReleaseEntry);
+                extraLines = 2;
             } else {
                 for (int i = 0; i < newEntries.size(); i++) {
                     originalLines.add(changeLogInsertLinePos + 1 + i, newEntries.get(i).toString());
                 }
+                extraLines = 1;
             }
 
-            originalLines.add(changeLogInsertLinePos + 1 + newEntries.size(), "");
+            originalLines.add(changeLogInsertLinePos + extraLines + newEntries.size(), "");
             return originalLines;
         }
 
