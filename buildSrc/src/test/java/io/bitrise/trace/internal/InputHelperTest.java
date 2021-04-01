@@ -16,6 +16,7 @@ import static org.hamcrest.Matchers.containsInAnyOrder;
  * Unit tests for {@link InputHelper}.
  */
 public class InputHelperTest extends TestParent {
+
     @Test
     public void getAvailableModules_ShouldContainAll() {
         final Set<File> availableModules = inputHelper.getAvailableModules(mockRootProject);
@@ -51,8 +52,8 @@ public class InputHelperTest extends TestParent {
     @Test(expected = IllegalStateException.class)
     public void validateModules_InvalidNameShouldThrowException() {
         final Set<File> availableModules = inputHelper.getAvailableModules(mockRootProject);
-        inputHelper.validateModules(availableModules, new HashSet<>(Arrays.asList(dummyModuleName2,
-                "weDoNotHaveThis")));
+        inputHelper.validateModules(availableModules,
+                new HashSet<>(Arrays.asList(dummyModuleName2, dummyInvalidModuleName)));
     }
 
     @Test
@@ -81,7 +82,7 @@ public class InputHelperTest extends TestParent {
     @Test(expected = IllegalStateException.class)
     public void getModuleDirNamesToUpdate_InvalidInputShouldThrowException() {
         inputHelper.getModuleDirsToUpdate(mockRootProject,
-                new HashSet<>(Arrays.asList("weDoNotHaveThis", dummyModuleName2)));
+                new HashSet<>(Arrays.asList(dummyInvalidModuleName, dummyModuleName2)));
     }
 
 }

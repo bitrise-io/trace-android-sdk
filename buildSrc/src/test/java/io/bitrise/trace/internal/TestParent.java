@@ -98,6 +98,7 @@ public abstract class TestParent {
     protected static final String dummyTagName2 = dummyModuleName2 + "_" + dummyVersionName2;
     protected static final String dummyFileName1 = "something1.txt";
     protected static final String dummyFileName2 = "something2.txt";
+    protected static final String dummyInvalidModuleName = "weDoNotHaveThis";
 
     protected static final Project mockRootProject = mock(Project.class);
     protected static final Gradle mockGradle = mock(Gradle.class);

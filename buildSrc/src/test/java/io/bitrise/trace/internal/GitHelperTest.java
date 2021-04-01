@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -128,6 +129,12 @@ public class GitHelperTest extends TestParent {
         final String expected = Constants.R_TAGS + dummyTagName1;
 
         assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void getLastTag_ShouldReturnNull() throws IOException {
+        final Ref actual = gitHelper.getLastTag(git, dummyInvalidModuleName);
+        assertThat(actual, is(nullValue()));
     }
 
     @Test

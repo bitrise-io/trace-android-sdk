@@ -62,8 +62,8 @@ class InputHelper {
                                 "\"{}\" is set the the name of the given project's directory, or leave it blank " +
                                 "if you want to generate change log entries for all modules", moduleDir,
                         UpdateChangeLogTask.PROPERTY_NAME_MODULES_TO_UPDATE);
-                throw new IllegalStateException(String.format("Aborting build, input property \"%s\" is wrong",
-                        UpdateChangeLogTask.PROPERTY_NAME_MODULES_TO_UPDATE));
+                throw new IllegalStateException(String.format("Exception when running task, input property " +
+                        "\"%s\" is incorrect", UpdateChangeLogTask.PROPERTY_NAME_MODULES_TO_UPDATE));
             }
         }
     }
