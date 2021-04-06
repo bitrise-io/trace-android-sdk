@@ -97,6 +97,7 @@ public class UpdateChangeLogTask extends DefaultTask {
         }
 
         final List<RevCommit> filteredCommits = gitHelper.filterRelevantCommits(git, newCommits, moduleDir);
+        logger.lifecycle("Found {} commits affecting \"{}\"", filteredCommits.size(), moduleDir.getName());
 
         final ChangeLogHelper changeLogHelper = new ChangeLogHelper(logger);
         final List<ChangeLogEntry> changeLogEntries = changeLogHelper.getChangeLogEntries(filteredCommits);
