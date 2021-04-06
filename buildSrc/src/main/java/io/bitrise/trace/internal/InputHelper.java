@@ -58,9 +58,9 @@ class InputHelper {
                 availableModules.stream().map(File::getName).collect(Collectors.toSet());
         for (final String moduleDir : moduleDirNames) {
             if (!availableModuleNames.contains(moduleDir)) {
-                logger.error("No module found with name \"{}\", aborting task. Please make sure input property " +
-                                "\"{}\" is set the the name of the given project's directory, or leave it blank " +
-                                "if you want to generate change log entries for all modules", moduleDir,
+                logger.error("No module found with name \"{}\", task execution is stopping. Please make sure input " +
+                                "property \"{}\" is set the the name of the given project's directory, or leave it " +
+                                "blank if you want to generate change log entries for all modules", moduleDir,
                         UpdateChangeLogTask.PROPERTY_NAME_MODULES_TO_UPDATE);
                 throw new IllegalStateException(String.format("Exception when running task, input property " +
                         "\"%s\" is incorrect", UpdateChangeLogTask.PROPERTY_NAME_MODULES_TO_UPDATE));
