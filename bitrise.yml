@@ -293,13 +293,9 @@ workflows:
             - module: trace-sdk
             - arguments: "--stacktrace"
           title: android_build
-      - android-unit-test:
+      - gradle-runner@1:
           inputs:
-            - project_location: "$PROJECT_LOCATION"
-            - module: trace-sdk
-            - arguments: "--stacktrace"
-            - variant: "$VARIANT"
-          title: android_unit_test
+            - gradle_task: :trace-sdk:jacocoTestReportDebug
       - codecov@2:
           inputs:
             - CODECOV_TOKEN: "$CODECOV_TOKEN"
