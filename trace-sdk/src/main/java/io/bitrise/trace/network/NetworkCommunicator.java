@@ -23,7 +23,10 @@ public interface NetworkCommunicator {
      * @param metricRequest the {@link MetricRequest} to send that contains the Metrics.
      * @return the result of the Call.
      */
-    @Headers("Accept: application/vnd.bitrise.trace-v1+json")
+    @Headers({
+            "Accept: application/vnd.bitrise.trace-v1+json",
+            "Content-Type: application/vnd.bitrise.trace-v1+json"
+    })
     @POST("/api/metrics")
     Call<Void> sendMetrics(@Body @NonNull final MetricRequest metricRequest);
 
