@@ -8,8 +8,7 @@
         "type":1,
         "label_keys":[
           {
-            "key":"app.start.state",
-            "description":"key"
+            "key":"app.start.state"
           }
         ]
       },
