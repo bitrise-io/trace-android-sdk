@@ -10,6 +10,7 @@ android {
         targetSdkVersion 30
         versionCode = "$project.versionCode" as int
         versionName "$project.version"
+        buildConfigField('String', 'VERSION_NAME', "\"${project.version}\"")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
