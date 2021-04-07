@@ -8,7 +8,6 @@ import io.bitrise.trace.data.trace.Trace;
 import io.opencensus.proto.metrics.v1.Metric;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 /**
@@ -23,8 +22,7 @@ public interface NetworkCommunicator {
      * @param metricRequest the {@link MetricRequest} to send that contains the Metrics.
      * @return the result of the Call.
      */
-    @Headers("Accept: application/vnd.bitrise.trace-v1+json")
-    @POST("/api/metrics")
+    @POST("/api/v1/metrics")
     Call<Void> sendMetrics(@Body @NonNull final MetricRequest metricRequest);
 
     /**
