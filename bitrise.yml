@@ -300,6 +300,9 @@ workflows:
             - arguments: "--stacktrace"
             - variant: "$VARIANT"
           title: android_unit_test
+      - codecov@2:
+          inputs:
+            - CODECOV_TOKEN: "$CODECOV_TOKEN"
       - cache-push@2:
           title: cache_push
       - script:
