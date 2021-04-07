@@ -216,14 +216,12 @@ public final class NetworkClient {
         return chain -> {
             final Request request =
                     chain.request().newBuilder()
-                         .addHeader("Content-Type", "application/json")
-                         .addHeader("Accept-Language", getAcceptedLanguage())
-                         .addHeader("Connection", "keep-alive")
-                         .addHeader("Accept", "application/json")
-                         .addHeader("User-Agent", getUserAgent())
-                         .addHeader("Content-Length", getContentLength(chain))
                          .addHeader("Authorization", getAuthorizationBearer())
                          .addHeader("Accept-Encoding", "gzip;q=1.0, compress;q=0.5)")
+                         .addHeader("Accept-Language", getAcceptedLanguage())
+                         .addHeader("Connection", "keep-alive")
+                         .addHeader("Content-Length", getContentLength(chain))
+                         .addHeader("User-Agent", getUserAgent())
                          .build();
             return chain.proceed(request);
         };
