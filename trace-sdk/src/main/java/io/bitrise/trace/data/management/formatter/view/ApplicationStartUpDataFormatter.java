@@ -63,7 +63,6 @@ public class ApplicationStartUpDataFormatter extends DataFormatter {
     private static LabelKey getLabelKey() {
         return LabelKey.newBuilder()
                        .setKey(getName(app, start, state))
-                       .setDescription(key)
                        .build();
     }
 
