@@ -8,6 +8,7 @@ import io.bitrise.trace.data.trace.Trace;
 import io.opencensus.proto.metrics.v1.Metric;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 /**
@@ -18,19 +19,30 @@ public interface NetworkCommunicator {
 
     /**
      * Sends the given List of {@link Metric}s to the server.
+     * Note: These headers are required for the updated endpoint.
      *
      * @param metricRequest the {@link MetricRequest} to send that contains the Metrics.
      * @return the result of the Call.
      */
-    @POST("/api/v1/metrics")
+    @Headers({
+            "Accept: application/vnd.bitrise.trace-v1+json",
+            "Content-Type: application/vnd.bitrise.trace-v1+json"
+    })
+    @POST("/api/metrics")
     Call<Void> sendMetrics(@Body @NonNull final MetricRequest metricRequest);
 
     /**
      * Sends the given List of {@link Trace} to the server.
+     * Note: These headers are different to the metrics endpoint. When we have an updated endpoint
+     * for traces these should be removed and added to the NetworkClient.
      *
      * @param traceRequest the {@link TraceRequest} to send that contains the Spans.
      * @return the result of the Call.
      */
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json"
+    })
     @POST("/api/v1/trace")
     Call<Void> sendTraces(@Body @NonNull final TraceRequest traceRequest);
 
