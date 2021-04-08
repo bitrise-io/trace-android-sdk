@@ -1042,10 +1042,6 @@ workflows:
 
                 $BITRISE_SOURCE_DIR/gradlew ":trace-test-application:connectedAndroidTest" --stacktrace
           title: trace-test-application connectedAndroidTest
-      - gradle-runner@1:
-          inputs:
-            - gradle_task: :trace-sdk:createDebugCoverageReport
-            - gradlew_path: "$BITRISE_SOURCE_DIR/gradlew"
       - codecov@2:
           inputs:
             - CODECOV_TOKEN: "$CODECOV_TOKEN"
