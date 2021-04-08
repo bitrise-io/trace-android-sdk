@@ -14,7 +14,6 @@ allprojects {
 }
 
 apply plugin: 'java-gradle-plugin'
-apply from: "../release.gradle"
 apply from: "../versions.gradle"
 apply from: "release-trace-plugin.gradle"
 

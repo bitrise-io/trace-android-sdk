@@ -855,6 +855,7 @@ workflows:
                 set -x
 
                 envman add --key TRACE_TEST_APP_BUILD_DIR_ZIP_NAME --value "trace-test-app_build_dir_$PRIMARY_BUILD_NUMBER"
+                envman add --key BUILD_SRC_REPORTS_DIR_ZIP_NAME --value "build_src_reports_dir_$PRIMARY_BUILD_NUMBER"
           is_always_run: true
       - deploy-to-bitrise-io@1:
           title: trace-test-application_build_dir
@@ -863,6 +864,13 @@ workflows:
             - is_enable_public_page: 'false'
             - is_compress: 'true'
             - zip_name: "$TRACE_TEST_APP_BUILD_DIR_ZIP_NAME"
+      - deploy-to-bitrise-io@1:
+          title: buildSrc_reports_dir
+          inputs:
+            - deploy_path: "$BITRISE_SOURCE_DIR/buildSrc/build/reports"
+            - is_enable_public_page: 'false'
+            - is_compress: 'true'
+            - zip_name: "$BUILD_SRC_REPORTS_DIR_ZIP_NAME"
     description: 'Builds the test application runs the connected android tests on
       the emulator. Important note: The android connected tests occasionally fail
       if the emulator crashes - you will need to rebuild the project if this happens.'
@@ -1213,20 +1221,31 @@ workflows:
         title: cache_pull
     - android-build:
         inputs:
-        - module: trace-sdk
-        - arguments: "--stacktrace"
+          - module: trace-sdk
+          - arguments: "--stacktrace"
         title: android_build
     - android-unit-test:
         inputs:
-        - project_location: "$PROJECT_LOCATION"
-        - module: trace-sdk
-        - arguments: "--stacktrace"
-        - variant: "$VARIANT"
+          - project_location: "$PROJECT_LOCATION"
+          - module: trace-sdk
+          - arguments: "--stacktrace"
+          - variant: "$VARIANT"
         title: android_unit_test
+    - script@1:
+        inputs:
+          - content: |-
+              #!/usr/bin/env bash
+              # fail if any commands fails
+              set -e
+              # debug log
+              set -x
+
+              $BITRISE_SOURCE_DIR/gradlew "tagModule -PmoduleToTag=trace-sdk"
+        title: Tag release
     - gradle-runner@1:
         inputs:
-        - gradle_task: ":trace-sdk:assemble :trace-sdk:publish"
-        - gradlew_path: "$BITRISE_SOURCE_DIR/gradlew"
+          - gradle_task: ":trace-sdk:assemble :trace-sdk:publish"
+          - gradlew_path: "$BITRISE_SOURCE_DIR/gradlew"
     - cache-push@2:
         title: cache_push
     description: |-
@@ -1249,8 +1268,9 @@ workflows:
             $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:publishToMavenLocal"
             $BITRISE_SOURCE_DIR/gradlew -p "./trace-gradle-plugin/" publishToMavenLocal --stacktrace
             $BITRISE_SOURCE_DIR/gradlew -p "./trace-gradle-plugin/" build --stacktrace
+            $BITRISE_SOURCE_DIR/gradlew "tagModule -PmoduleToTag=trace-gradle-plugin"
             $BITRISE_SOURCE_DIR/gradlew -p "./trace-gradle-plugin/" publish --stacktrace
-        title: build_trace-gradle-plugin
+        title: build_&_publish_trace-gradle-plugin
     description: |-
       builds the trace-gradle-plugin and deploys to maven central
   release_opencensus:

@@ -1,3 +1,5 @@
+import io.bitrise.trace.internal.UpdateChangeLogTask
+
 buildscript {
     final Properties traceGradlePluginProperties = new Properties()
     final File traceGradlePluginPropertiesFile = new File(getProject().getRootDir().getAbsolutePath() + ("/trace-gradle-plugin/gradle.properties"))
@@ -18,6 +20,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.3'
         classpath "com.vanniktech:gradle-android-junit-jacoco-plugin:0.16.0"
+        classpath files('./buildSrc/build/classes/java/main')
     }
 }
 
@@ -25,7 +28,6 @@ plugins {
     id "org.sonarqube" version "3.0"
 }
 
-apply from: "release.gradle"
 apply from: "versions.gradle"
 
 allprojects {
@@ -41,28 +43,50 @@ task clean(type: Delete) {
 }
 
 /**
- * Internal task that builds and prepares the 'trace-gradle-plugin' and 'trace-sdk' for release.
- * Updates the CHANGELOG.md with the changes, automatically determines the new version and updates
- * the version name. To run it is required to pre define 'TRACE_COMMIT_CHANGES' environment variable
- * with the commit log since the last tag. Commits should follow the conventional commits. The new
- * version name will be exported as an environment variable named 'TRACE_VERSION_NAME'.
- *
- * Script to get it:
- *   git rev-list master |
- *       while read sha1; do
- *           git show -s --format='%B' $sha1 | tr -d '\n'; echo
- *       done
- *
- *  https://www.conventionalcommits.org/en/v1.0.0/>
+ * Internal task that updates the CHANGELOG.md with the commit messages since the last tag. Input
+ * should be the directory names of the modules that should be updated. Example usage:
+ * <code>./gradlew updateChangeLog -PmoduleDirNames='["trace-sdk", "trace-gradle-plugin"]'</code>
+ * If no input is specified, task will run on all submodules and included builds.
  */
-task prepareForRelease(dependsOn: [':trace-gradle-plugin:prepareForReleaseTraceGradlePlugin', ':trace-sdk:prepareForReleaseTraceSdk']) {
-    group = "trace"
-    description = "Internal task that builds and prepares the 'trace-gradle-plugin' and 'trace-sdk' for release"
-    doLast {
-        updateChangeLog("System.env.TRACE_COMMIT_CHANGES", "gradle.properties")
-        updateVersionName("gradle.properties")
-        environment "TRACE_VERSION_NAME", getCurrentVersion("gradle.properties")[1]
+task updateChangeLog(type: UpdateChangeLogTask) {
+    def input = project.properties.get(PROPERTY_NAME_MODULES_TO_UPDATE, null)
+    if (input == null) {
+        return
     }
+
+    moduleDirNames = Eval.me(input)
+    group = "trace"
+    description = "Internal task that updates the CHANGELOG.md with the commit messages since the last tag"
+}
+
+/**
+ * Internal task that creates a tag for the given module. Input should be the directory name of the
+ * module that should be tagged. Example usage:
+ * <code>./gradlew tagModule -PmoduleToTag=trace-sdk</code>
+ */
+task tagModule() {
+    def input = project.properties.get("moduleToTag", null)
+    if (input == null) {
+        return
+    }
+
+    logger.lifecycle("Creating tag for module \"{}\"", input.toString())
+    final Properties moduleProperties = new Properties()
+    final File modulePropertiesFile = new File(getProject().getRootDir().getAbsolutePath() + ("/" + input + "/gradle.properties"))
+    logger.debug("Path for properties file \"{}\"", modulePropertiesFile.getAbsolutePath())
+    modulePropertiesFile.withInputStream {
+        moduleProperties.load(it)
+    }
+    def tagName = input + "_" + moduleProperties.get("version")
+    logger.lifecycle("Name of the tag will be \"{}\"", tagName)
+
+    exec {
+        commandLine("git", "tag", tagName)
+        commandLine("git", "push", "origin", tagName)
+    }
+
+    group = "trace"
+    description = "Internal task that creates a tag for the given module"
 }
 
 sonarqube {
