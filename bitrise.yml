@@ -297,9 +297,6 @@ workflows:
           inputs:
             - gradle_task: :trace-sdk:jacocoTestReportDebug
             - gradlew_path: "$BITRISE_SOURCE_DIR/gradlew"
-      - codecov@2:
-          inputs:
-            - CODECOV_TOKEN: "$CODECOV_TOKEN"
       - cache-push@2:
           title: cache_push
       - script:
