@@ -293,10 +293,6 @@ workflows:
             - module: trace-sdk
             - arguments: "--stacktrace"
           title: android_build
-      - gradle-runner@1:
-          inputs:
-            - gradle_task: :trace-sdk:testDebugUnitTestCoverage
-            - gradlew_path: "$BITRISE_SOURCE_DIR/gradlew"
       - cache-push@2:
           title: cache_push
       - script:
@@ -1023,11 +1019,11 @@ workflows:
 
                 if [ $RUN_TESTKIT == 'true' ]
                 then
-                  $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:connectedAndroidTest" --stacktrace
+                  $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:testDebugUnitTestCoverage" --stacktrace
                 else
-                  $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:connectedAndroidTest" "-Pandroid.testInstrumentationRunnerArguments.notAnnotation=io.bitrise.trace.TestKitTest" --stacktrace
+                  $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:testDebugUnitTestCoverage" "-Pandroid.testInstrumentationRunnerArguments.notAnnotation=io.bitrise.trace.TestKitTest" --stacktrace
                 fi
-          title: trace-sdk connectedAndroidTest
+          title: trace-sdk connectedAndroidTest with coverage
       - script@1:
           inputs:
             - content: |
