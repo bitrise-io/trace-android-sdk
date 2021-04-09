@@ -3,6 +3,7 @@
 [![Join Slack group](https://img.shields.io/badge/Chat-Slack-blue?link=https://chat.bitrise.io/)](https://chat.bitrise.io/)
 [![trace-gradle-plugin](https://img.shields.io/maven-central/v/io.bitrise.trace.plugin/trace-gradle-plugin?label=trace-gradle-plugin)](https://search.maven.org/artifact/io.bitrise.trace.plugin/trace-gradle-plugin/)
 [![trace-sdk](https://img.shields.io/maven-central/v/io.bitrise.trace/trace-sdk?label=trace-sdk)](https://search.maven.org/artifact/io.bitrise.trace/trace-sdk/)
+[![codecov](https://codecov.io/gh/bitrise-io/trace-android-sdk/branch/main/graph/badge.svg?token=9zDLykViPd)](https://codecov.io/gh/bitrise-io/trace-android-sdk)
 
 Catch bugs before they reach production — get detailed crash reports and monitor how your app is 
 performing across the entire install base. When issues are detected we show you exactly what 

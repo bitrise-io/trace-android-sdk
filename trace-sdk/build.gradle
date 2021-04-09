@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: "com.vanniktech.android.junit.jacoco"
 
 android {
     compileSdkVersion 30
@@ -8,6 +9,7 @@ android {
         targetSdkVersion 30
         versionCode = "$project.versionCode" as int
         versionName "$project.version"
+        buildConfigField('String', 'VERSION_NAME', "\"${project.version}\"")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
@@ -16,6 +18,9 @@ android {
         }
     }
     buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -71,4 +76,9 @@ dependencies {
     androidTestImplementation "org.hamcrest:hamcrest:${versions.hamcrest}"
     androidTestImplementation "org.mockito:mockito-android:${versions.mockitoAndroid}"
 }
+
+junitJacoco {
+    jacocoVersion = '0.8.6'
+}
+
 apply from: "release-trace-sdk.gradle"

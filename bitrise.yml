@@ -293,13 +293,10 @@ workflows:
             - module: trace-sdk
             - arguments: "--stacktrace"
           title: android_build
-      - android-unit-test:
+      - gradle-runner@1:
           inputs:
-            - project_location: "$PROJECT_LOCATION"
-            - module: trace-sdk
-            - arguments: "--stacktrace"
-            - variant: "$VARIANT"
-          title: android_unit_test
+            - gradle_task: :trace-sdk:jacocoTestReportDebug
+            - gradlew_path: "$BITRISE_SOURCE_DIR/gradlew"
       - cache-push@2:
           title: cache_push
       - script:
@@ -1042,6 +1039,9 @@ workflows:
 
                 $BITRISE_SOURCE_DIR/gradlew ":trace-test-application:connectedAndroidTest" --stacktrace
           title: trace-test-application connectedAndroidTest
+      - codecov@2:
+          inputs:
+            - CODECOV_TOKEN: "$CODECOV_TOKEN"
       - cache-push@2:
           title: cache_push
       - script@1:
