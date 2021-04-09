@@ -15,7 +15,6 @@ buildscript {
     repositories {
         mavenLocal() // To check for locally published trace-gradle-plugin artifact
         google()
-        jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.0.2'
@@ -33,7 +32,6 @@ allprojects {
     repositories {
         mavenLocal() // For allowing the usage of local publishing and downloading them from there
         google()
-        jcenter()
     }
 }
 

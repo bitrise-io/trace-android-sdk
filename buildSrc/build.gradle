@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath('org.eclipse.jgit:org.eclipse.jgit:5.10.0.202012080955-r')
@@ -16,7 +16,7 @@ java {
 
 allprojects {
     repositories {
-        jcenter()
+        mavenCentral()
     }
 }
 
