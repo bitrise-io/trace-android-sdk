@@ -6,6 +6,10 @@ trace-android-sdk public beta versions
 **Note:** these versions of the *trace-android-sdk* are stored in a public repo, but should be 
 considered still as beta.
 
+### trace-sdk - 0.1.1 - 2021-04-09
+* fix: **Update metric endpoint:** Update metric endpoint to the updated endpoint.
+* fix: **remove key description from startup latency metric:** Remove description from the label key in startup latency metric.
+
 ### trace-gradle-plugin - 0.1.0 - 2021-03-24
 * feat: **Initial public release**
 

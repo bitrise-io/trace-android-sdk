@@ -1233,7 +1233,7 @@ workflows:
               # debug log
               set -x
 
-              $BITRISE_SOURCE_DIR/gradlew "tagModule -PmoduleToTag=trace-sdk"
+              $BITRISE_SOURCE_DIR/gradlew "tagModule" "-PmoduleToTag=trace-sdk"
         title: Tag release
     - gradle-runner@1:
         inputs:
@@ -1261,7 +1261,7 @@ workflows:
             $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:publishToMavenLocal"
             $BITRISE_SOURCE_DIR/gradlew -p "./trace-gradle-plugin/" publishToMavenLocal --stacktrace
             $BITRISE_SOURCE_DIR/gradlew -p "./trace-gradle-plugin/" build --stacktrace
-            $BITRISE_SOURCE_DIR/gradlew "tagModule -PmoduleToTag=trace-gradle-plugin"
+            $BITRISE_SOURCE_DIR/gradlew "tagModule" "-PmoduleToTag=trace-gradle-plugin"
             $BITRISE_SOURCE_DIR/gradlew -p "./trace-gradle-plugin/" publish --stacktrace
         title: build_&_publish_trace-gradle-plugin
     description: |-
