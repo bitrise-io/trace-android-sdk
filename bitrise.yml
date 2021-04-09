@@ -295,7 +295,7 @@ workflows:
           title: android_build
       - gradle-runner@1:
           inputs:
-            - gradle_task: :trace-sdk:jacocoTestReportDebug
+            - gradle_task: :trace-sdk:testDebugUnitTestCoverage
             - gradlew_path: "$BITRISE_SOURCE_DIR/gradlew"
       - cache-push@2:
           title: cache_push
