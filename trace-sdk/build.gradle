@@ -1,5 +1,5 @@
+apply plugin: 'jacoco'
 apply plugin: 'com.android.library'
-apply plugin: "com.vanniktech.android.junit.jacoco"
 
 android {
     compileSdkVersion 30
@@ -19,7 +19,8 @@ android {
     }
     buildTypes {
         debug {
-            testCoverageEnabled = true
+            minifyEnabled false
+            testCoverageEnabled true
         }
         release {
             minifyEnabled false
@@ -30,6 +31,92 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
+    // see related issue https://github.com/gradle/gradle/issues/5184#issuecomment-457865951
+}
+
+project.afterEvaluate {
+    // A Set that will contain all the report task names for each variant
+    Set<String> reportTaskNames = new HashSet<>()
+    android.'libraryVariants'
+            .all { variant ->
+                def variantName = variant.name
+                def unitTestTask = "test${variantName.capitalize()}UnitTest"
+                def androidTestCoverageTask = "create${variantName.capitalize()}CoverageReport"
+
+                // Add the report task name for the given variant to the Set above
+                reportTaskNames.add("create${variantName.capitalize()}AndroidTestCoverageReport")
+
+                tasks.create(name: "${unitTestTask}Coverage", type: JacocoReport, dependsOn: [
+                        "$unitTestTask",
+                        "$androidTestCoverageTask"
+                ]) {
+                    group = "Reporting"
+                    description = "Generate Jacoco coverage reports for the ${variantName.capitalize()} build"
+
+                    reports {
+                        html.enabled = true
+                        xml.enabled = true
+                        csv.enabled = true
+                    }
+
+                    def excludes = [
+                            '**/R.class',
+                            '**/R$*.class',
+                            '**/BuildConfig.*',
+                            '**/Manifest*.*',
+                            '**/*Test*.*',
+                            'android/**/*.*',
+                    ]
+
+                    def javaClasses = fileTree(dir: variant.javaCompileProvider.get().destinationDir,
+                            excludes: excludes)
+
+                    classDirectories.setFrom(files([
+                            javaClasses
+                    ]))
+
+                    def variantSourceSets = variant.sourceSets.java.srcDirs.collect { it.path }.flatten()
+                    sourceDirectories.setFrom(project.files(variantSourceSets))
+
+                    def androidTestsData = fileTree(dir: "${buildDir}/outputs/code_coverage/${variantName}AndroidTest/connected/", includes: ["**/*.ec"])
+
+                    executionData(files([
+                            "$project.buildDir/jacoco/${unitTestTask}.exec",
+                            androidTestsData
+                    ]))
+                }
+            }
+    // Get the task of running the connected tests
+    Task connectedAndroidTestTask = tasks.findByName("connectedAndroidTest")
+    // Create a set that will contain the required dependsOn elements
+    Set<?> deps = new HashSet<>();
+    connectedAndroidTestTask.dependsOn.each {
+        // Filter out Jacoco report tasks. this is an issue, connected tests should not depend on them
+        String providerName = ((TaskProvider) it).getName()
+        if (!reportTaskNames.grep{it == providerName}) {
+            deps.add(it)
+        }
+    }
+    // Replace the original dependsOn with the filtered
+    connectedAndroidTestTask.setDependsOn(deps)
+
+    // Finally make sure that each report task depends on the connected tests.
+    reportTaskNames.forEach({
+        // Will be null, if testCoverageEnabled is false for the given variant
+        def reportTask = tasks.findByName(it)
+        if (reportTask != null) {
+            reportTask.dependsOn(connectedAndroidTestTask)
+        }
+    })
 }
 
 dependencies {
@@ -45,16 +132,16 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
     implementation "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
     implementation "com.squareup.retrofit2:converter-gson:${versions.converterGson}"
-    implementation("com.squareup.okhttp3:okhttp"){
+    implementation("com.squareup.okhttp3:okhttp") {
         version { require versions.okhttp }
         because constraintReasons.okhttp
     }
     implementation "io.bitrise.trace.internal:opencensus:${versions.opencensus}"
-    implementation("com.google.guava:listenablefuture:${versions.listenableFuture}"){
+    implementation("com.google.guava:listenablefuture:${versions.listenableFuture}") {
         because constraintReasons.guava
     }
     implementation "io.azam.ulidj:ulidj:${versions.ulidj}"
-    implementation("com.scottyab:rootbeer-lib:${versions.rootbeer}"){
+    implementation("com.scottyab:rootbeer-lib:${versions.rootbeer}") {
         because constraintReasons.rootBeer
     }
 
@@ -67,18 +154,13 @@ dependencies {
     androidTestImplementation("androidx.test:runner:${versions.androidxTest}") {
         exclude group: "org.hamcrest", module: "hamcrest-core"
     }
-    androidTestImplementation ("androidx.test:rules:${versions.androidxTest}")  {
+    androidTestImplementation("androidx.test:rules:${versions.androidxTest}") {
         exclude group: "org.hamcrest", module: "hamcrest-core"
     }
-    androidTestImplementation ("androidx.test.ext:junit:${versions.extJunit}")  {
+    androidTestImplementation("androidx.test.ext:junit:${versions.extJunit}") {
         exclude group: "org.hamcrest", module: "hamcrest-core"
     }
     androidTestImplementation "org.hamcrest:hamcrest:${versions.hamcrest}"
     androidTestImplementation "org.mockito:mockito-android:${versions.mockitoAndroid}"
 }
-
-junitJacoco {
-    jacocoVersion = '0.8.6'
-}
-
 apply from: "release-trace-sdk.gradle"
