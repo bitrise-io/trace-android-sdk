@@ -14,8 +14,8 @@ import io.bitrise.trace.testapp.network.OkHttpActivity;
  */
 public class NetworkActivityScreen extends BaseScreen {
 
-    private static final BySelector okHttpButton = By.res(id + "btn_network_okhttp");
-    private static final BySelector urlConnectionButton = By.res(id + "btn_network_urlconnection");
+    private static final BySelector okHttpButton = By.res(PACKAGE_NAME, "btn_network_okhttp");
+    private static final BySelector urlConnectionButton = By.res(PACKAGE_NAME, "btn_network_urlconnection");
 
     /**
      * Constructor for class.

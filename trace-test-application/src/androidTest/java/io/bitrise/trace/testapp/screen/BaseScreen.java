@@ -31,17 +31,15 @@ public abstract class BaseScreen {
     protected final UiDevice uiDevice;
 
     /**
-     * The id prefix for the resources.
+     * The package prefix for the finding elements by resource id.
      */
     @NonNull
-    protected final static String id = InstrumentationRegistry.getInstrumentation()
-                                                              .getTargetContext()
-                                                              .getPackageName() + ":id/";
+    protected final static String PACKAGE_NAME = "io.bitrise.trace.testapp";
 
     /**
      * The default value for timeouts.
      */
-    protected long DEFAULT_TIMEOUT = 10000;
+    protected long DEFAULT_TIMEOUT = 1000;
 
     /**
      * Constructor for class.

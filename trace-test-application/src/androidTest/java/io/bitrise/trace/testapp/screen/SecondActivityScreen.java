@@ -15,8 +15,8 @@ import io.bitrise.trace.testapp.ui.ThirdActivity;
  */
 public class SecondActivityScreen extends BaseScreen {
 
-    private static final BySelector parentFragmentButton = By.res(id + "fragment_parent_button");
-    private static final BySelector thirdActivityButton = By.res(id + "third_activity_button");
+    private static final BySelector parentFragmentButton = By.res(PACKAGE_NAME, "fragment_parent_button");
+    private static final BySelector thirdActivityButton = By.res(PACKAGE_NAME, "third_activity_button");
 
     /**
      * Constructor for class. Waits till the view is displayed.

@@ -14,7 +14,7 @@ import io.bitrise.trace.testapp.ui.ChildFragment;
  */
 public class ChildFragmentScreen extends BaseScreen {
 
-    private static final BySelector childFragmentText = By.res(id + "child_fragment_text");
+    private static final BySelector childFragmentText = By.res(PACKAGE_NAME, "child_fragment_text");
 
     /**
      * Constructor for class. Waits till the view is displayed.
