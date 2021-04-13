@@ -830,6 +830,17 @@ workflows:
   build_trace-test-application:
     steps:
       - cache-pull@2: {}
+      - script:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+                $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:publishToMavenLocal"
+          title: publish tracesdk to maven local
+          is_always_run: true
       - android-build:
           inputs:
             - module: trace-test-application
