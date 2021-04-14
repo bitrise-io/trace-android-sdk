@@ -31,11 +31,11 @@ public abstract class BaseScreen {
     protected final UiDevice uiDevice;
 
     /**
-     * The package prefix for the finding elements by resource id.
+     * The id prefix to find resource by id.
      */
-    @NonNull
-    protected final static String PACKAGE_NAME = InstrumentationRegistry.getInstrumentation()
-            .getTargetContext().getPackageName();
+    protected final static String id = InstrumentationRegistry.getInstrumentation()
+                                                              .getTargetContext()
+                                                              .getPackageName() + ":id/";
 
     /**
      * The default value for timeouts.

@@ -14,10 +14,10 @@ import io.bitrise.trace.testapp.network.BaseNetworkActivity;
  */
 public class BaseNetworkActivityScreen extends BaseScreen {
 
-    protected static final BySelector httpConnectButton = By.res(PACKAGE_NAME, "btn_connect_http");
-    protected static final BySelector httpsConnectButton = By.res(PACKAGE_NAME, "btn_connect_https");
-    protected static final BySelector responseBodyTextView = By.res(PACKAGE_NAME, "lbl_response_body");
-    protected static final BySelector responseCodeTextView = By.res(PACKAGE_NAME, "lbl_response_status_code");
+    protected static final BySelector httpConnectButton = By.res(id + "btn_connect_http");
+    protected static final BySelector httpsConnectButton = By.res(id + "btn_connect_https");
+    protected static final BySelector responseBodyTextView = By.res(id + "lbl_response_body");
+    protected static final BySelector responseCodeTextView = By.res(id + "lbl_response_status_code");
 
     /**
      * Constructor for class.

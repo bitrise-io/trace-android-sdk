@@ -15,8 +15,8 @@ import io.bitrise.trace.testapp.ui.MainActivity;
  */
 public class IndexActivityScreen extends BaseScreen {
 
-    private static final BySelector uiTestsButton = By.res(PACKAGE_NAME , "btn_ui_tests");
-    private static final BySelector networkTestsButton = By.res(PACKAGE_NAME, "btn_network_tests");
+    private static final BySelector uiTestsButton = By.res(id + "btn_ui_tests");
+    private static final BySelector networkTestsButton = By.res(id + "btn_network_tests");
 
     /**
      * Constructor for class.

@@ -15,7 +15,7 @@ import io.bitrise.trace.testapp.ui.ParentFragment;
  */
 public class ParentFragmentScreen extends BaseScreen {
 
-    private static final BySelector childFragmentButton = By.res(PACKAGE_NAME, "show_child_button");
+    private static final BySelector childFragmentButton = By.res(id + "show_child_button");
 
     /**
      * Constructor for class. Waits till the view is displayed.
