@@ -9,10 +9,7 @@ import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
 import androidx.test.runner.lifecycle.Stage;
 import androidx.test.uiautomator.BySelector;
 import androidx.test.uiautomator.UiDevice;
-import androidx.test.uiautomator.UiObject;
 import androidx.test.uiautomator.UiObject2;
-import androidx.test.uiautomator.UiObjectNotFoundException;
-import androidx.test.uiautomator.UiSelector;
 import androidx.test.uiautomator.Until;
 
 import java.util.ArrayList;
@@ -68,20 +65,12 @@ public abstract class BaseScreen {
     }
 
     /**
-     * Performs a click action on the given {@link UiSelector}.
+     * Performs a click action on the given {@link BySelector}.
      *
-     * @param uiSelector the given UiSelector.
+     * @param by the given BySelector.
      */
-    public void click(@NonNull final UiSelector uiSelector) {
-
-        UiObject object = uiDevice.findObject(uiSelector);
-        try {
-            if (object.exists() && object.isClickable()) {
-                object.click();
-            }
-        } catch (UiObjectNotFoundException e) {
-            e.printStackTrace();
-        }
+    public void click(@NonNull final BySelector by) {
+        find(by).click();
     }
 
     /**

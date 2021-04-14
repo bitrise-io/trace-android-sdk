@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.BySelector;
 import androidx.test.uiautomator.UiDevice;
-import androidx.test.uiautomator.UiSelector;
 import androidx.test.uiautomator.Until;
 
 import io.bitrise.trace.testapp.ui.ChildFragment;
@@ -16,8 +15,7 @@ import io.bitrise.trace.testapp.ui.ParentFragment;
  */
 public class ParentFragmentScreen extends BaseScreen {
 
-    private static final UiSelector childFragmentButton = new UiSelector()
-            .text("Show child fragment").className("android.widget.Button");
+    private static final BySelector childFragmentButton = By.res(id + "show_child_button");
 
     /**
      * Constructor for class. Waits till the view is displayed.
@@ -30,7 +28,7 @@ public class ParentFragmentScreen extends BaseScreen {
 
     @Override
     public void waitTillLoad() {
-
+        uiDevice.wait(Until.findObject(childFragmentButton), DEFAULT_TIMEOUT);
     }
 
     /**
