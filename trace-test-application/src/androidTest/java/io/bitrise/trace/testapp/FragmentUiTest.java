@@ -1,7 +1,5 @@
 package io.bitrise.trace.testapp;
 
-import androidx.test.filters.SdkSuppress;
-
 import org.junit.Test;
 
 import io.bitrise.trace.testapp.screen.IndexActivityScreen;
@@ -12,8 +10,6 @@ import io.bitrise.trace.testapp.screen.ThirdActivityScreen;
 /**
  * UiTest for Fragment related behaviour.
  */
-// This test currently fails on sdk21 devices
-@SdkSuppress(minSdkVersion = 22)
 public class FragmentUiTest extends BaseUiTest {
 
     /**

@@ -1,10 +1,10 @@
 package io.bitrise.trace.testapp.screen;
 
 import androidx.annotation.NonNull;
-import androidx.test.uiautomator.By;
-import androidx.test.uiautomator.BySelector;
 import androidx.test.uiautomator.UiDevice;
-import androidx.test.uiautomator.Until;
+import androidx.test.uiautomator.UiObject;
+import androidx.test.uiautomator.UiObjectNotFoundException;
+import androidx.test.uiautomator.UiSelector;
 
 import io.bitrise.trace.testapp.IndexActivity;
 import io.bitrise.trace.testapp.network.NetworkActivity;
@@ -14,9 +14,6 @@ import io.bitrise.trace.testapp.ui.MainActivity;
  * Screen class for {@link IndexActivity}.
  */
 public class IndexActivityScreen extends BaseScreen {
-
-    private static final BySelector uiTestsButton = By.res(id + "btn_ui_tests");
-    private static final BySelector networkTestsButton = By.res(id + "btn_network_tests");
 
     /**
      * Constructor for class.
@@ -34,7 +31,16 @@ public class IndexActivityScreen extends BaseScreen {
      */
     @NonNull
     public MainActivityScreen launchUiTests() {
-        click(uiTestsButton);
+        UiObject button = uiDevice.findObject(new UiSelector()
+                .text("ui tests")
+                .className("android.widget.Button"));
+        try {
+            if (button.exists() && button.isClickable()) {
+                button.click();
+            }
+        } catch (UiObjectNotFoundException e) {
+            e.printStackTrace();
+        }
         return new MainActivityScreen(uiDevice);
     }
 
@@ -45,13 +51,21 @@ public class IndexActivityScreen extends BaseScreen {
      */
     @NonNull
     public NetworkActivityScreen launchNetworkTests() {
-        click(networkTestsButton);
+        UiObject button = uiDevice.findObject(new UiSelector()
+                .text("network tests")
+                .className("android.widget.Button"));
+        try {
+            if (button.exists() && button.isClickable()) {
+                button.click();
+            }
+        } catch (UiObjectNotFoundException e) {
+            e.printStackTrace();
+        }
         return new NetworkActivityScreen(uiDevice);
     }
 
     @Override
     public void waitTillLoad() {
-        uiDevice.wait(Until.findObject(uiTestsButton), DEFAULT_TIMEOUT);
-        uiDevice.wait(Until.findObject(networkTestsButton), DEFAULT_TIMEOUT);
+
     }
 }
