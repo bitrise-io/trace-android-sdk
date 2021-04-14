@@ -40,7 +40,7 @@ public abstract class BaseScreen {
     /**
      * The default value for timeouts.
      */
-    protected long DEFAULT_TIMEOUT = 1000;
+    protected long DEFAULT_TIMEOUT = 10000;
 
     /**
      * Constructor for class.
