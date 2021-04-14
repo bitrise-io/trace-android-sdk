@@ -33,6 +33,7 @@ public abstract class BaseScreen {
     /**
      * The id prefix to find resource by id.
      */
+    @NonNull
     protected final static String id = InstrumentationRegistry.getInstrumentation()
                                                               .getTargetContext()
                                                               .getPackageName() + ":id/";
