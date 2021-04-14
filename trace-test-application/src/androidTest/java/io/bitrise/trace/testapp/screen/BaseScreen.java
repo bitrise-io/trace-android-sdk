@@ -34,7 +34,8 @@ public abstract class BaseScreen {
      * The package prefix for the finding elements by resource id.
      */
     @NonNull
-    protected final static String PACKAGE_NAME = "io.bitrise.trace.testapp";
+    protected final static String PACKAGE_NAME = InstrumentationRegistry.getInstrumentation()
+            .getTargetContext().getPackageName();
 
     /**
      * The default value for timeouts.
