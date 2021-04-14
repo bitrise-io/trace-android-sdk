@@ -5,6 +5,7 @@ import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.BySelector;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject2;
+import androidx.test.uiautomator.UiSelector;
 import androidx.test.uiautomator.Until;
 
 import io.bitrise.trace.testapp.network.BaseNetworkActivity;
@@ -14,8 +15,10 @@ import io.bitrise.trace.testapp.network.BaseNetworkActivity;
  */
 public class BaseNetworkActivityScreen extends BaseScreen {
 
-    protected static final BySelector httpConnectButton = By.res(id + "btn_connect_http");
-    protected static final BySelector httpsConnectButton = By.res(id + "btn_connect_https");
+    protected static final UiSelector httpConnectButton = new UiSelector()
+            .text("http connect").className("android.widget.Button");
+    protected static final UiSelector httpsConnectButton = new UiSelector()
+            .text("https connect").className("android.widget.Button");
     protected static final BySelector responseBodyTextView = By.res(id + "lbl_response_body");
     protected static final BySelector responseCodeTextView = By.res(id + "lbl_response_status_code");
 
@@ -46,10 +49,10 @@ public class BaseNetworkActivityScreen extends BaseScreen {
      * Waits for the call to be finished.
      */
     public void waitForCallFinish() {
-        final UiObject2 httpsUiObject2 = uiDevice.wait(Until.findObject(httpConnectButton), DEFAULT_TIMEOUT);
-        httpsUiObject2.wait(Until.enabled(true), DEFAULT_TIMEOUT);
-        final UiObject2 httpUiObject2 = uiDevice.wait(Until.findObject(httpConnectButton), DEFAULT_TIMEOUT);
-        httpUiObject2.wait(Until.enabled(true), DEFAULT_TIMEOUT);
+//        final UiObject2 httpsUiObject2 = uiDevice.wait(Until.findObject(httpConnectButton), DEFAULT_TIMEOUT);
+//        httpsUiObject2.wait(Until.enabled(true), DEFAULT_TIMEOUT);
+//        final UiObject2 httpUiObject2 = uiDevice.wait(Until.findObject(httpConnectButton), DEFAULT_TIMEOUT);
+//        httpUiObject2.wait(Until.enabled(true), DEFAULT_TIMEOUT);
     }
 
     /**
@@ -64,9 +67,6 @@ public class BaseNetworkActivityScreen extends BaseScreen {
 
     @Override
     public void waitTillLoad() {
-        uiDevice.wait(Until.findObject(httpConnectButton), DEFAULT_TIMEOUT);
-        uiDevice.wait(Until.findObject(httpsConnectButton), DEFAULT_TIMEOUT);
-        uiDevice.wait(Until.findObject(responseBodyTextView), DEFAULT_TIMEOUT);
-        uiDevice.wait(Until.findObject(responseCodeTextView), DEFAULT_TIMEOUT);
+
     }
 }

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.BySelector;
 import androidx.test.uiautomator.UiDevice;
+import androidx.test.uiautomator.UiSelector;
 import androidx.test.uiautomator.Until;
 
 import io.bitrise.trace.testapp.ui.MainActivity;
@@ -15,8 +16,10 @@ import io.bitrise.trace.testapp.ui.SecondActivity;
  */
 public class MainActivityScreen extends BaseScreen {
 
-    private static final BySelector parentFragmentButton = By.res(id + "fragment_parent_button");
-    private static final BySelector secondActivityButton = By.res(id + "second_activity_button");
+    private static final UiSelector parentFragmentButton = new UiSelector()
+            .text("Show fragment").className("android.widget.Button");
+    private static final UiSelector secondActivityButton = new UiSelector()
+            .text("Go to second activity").className("android.widget.Button");
 
     /**
      * Constructor for class. Waits till the view is displayed.
@@ -51,7 +54,6 @@ public class MainActivityScreen extends BaseScreen {
 
     @Override
     public void waitTillLoad() {
-        uiDevice.wait(Until.findObject(secondActivityButton), DEFAULT_TIMEOUT);
-        uiDevice.wait(Until.findObject(parentFragmentButton), DEFAULT_TIMEOUT);
+
     }
 }

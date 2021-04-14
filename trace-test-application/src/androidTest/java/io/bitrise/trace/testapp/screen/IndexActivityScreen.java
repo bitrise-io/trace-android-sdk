@@ -2,8 +2,6 @@ package io.bitrise.trace.testapp.screen;
 
 import androidx.annotation.NonNull;
 import androidx.test.uiautomator.UiDevice;
-import androidx.test.uiautomator.UiObject;
-import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
 
 import io.bitrise.trace.testapp.IndexActivity;
@@ -14,6 +12,11 @@ import io.bitrise.trace.testapp.ui.MainActivity;
  * Screen class for {@link IndexActivity}.
  */
 public class IndexActivityScreen extends BaseScreen {
+
+    private static final UiSelector uiTestsButton = new UiSelector()
+            .text("ui tests").className("android.widget.Button");
+    private static final UiSelector networkTestsButton = new UiSelector()
+            .text("network tests").className("android.widget.Button");
 
     /**
      * Constructor for class.
@@ -31,16 +34,7 @@ public class IndexActivityScreen extends BaseScreen {
      */
     @NonNull
     public MainActivityScreen launchUiTests() {
-        UiObject button = uiDevice.findObject(new UiSelector()
-                .text("ui tests")
-                .className("android.widget.Button"));
-        try {
-            if (button.exists() && button.isClickable()) {
-                button.click();
-            }
-        } catch (UiObjectNotFoundException e) {
-            e.printStackTrace();
-        }
+        click(uiTestsButton);
         return new MainActivityScreen(uiDevice);
     }
 
@@ -51,16 +45,7 @@ public class IndexActivityScreen extends BaseScreen {
      */
     @NonNull
     public NetworkActivityScreen launchNetworkTests() {
-        UiObject button = uiDevice.findObject(new UiSelector()
-                .text("network tests")
-                .className("android.widget.Button"));
-        try {
-            if (button.exists() && button.isClickable()) {
-                button.click();
-            }
-        } catch (UiObjectNotFoundException e) {
-            e.printStackTrace();
-        }
+        click(networkTestsButton);
         return new NetworkActivityScreen(uiDevice);
     }
 
