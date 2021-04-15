@@ -6,6 +6,9 @@ trace-android-sdk public beta versions
 **Note:** these versions of the *trace-android-sdk* are stored in a public repo, but should be 
 considered still as beta.
 
+### trace-sdk - 0.2.0 - 2021-04-15
+* feat: **Support Android version 21:** Update minSdkVersion to 21 for trace-sdk and trace-test-application
+
 ### trace-sdk - 0.1.1 - 2021-04-09
 * fix: **Update metric endpoint:** Update metric endpoint to the updated endpoint.
 * fix: **remove key description from startup latency metric:** Remove description from the label key in startup latency metric.
