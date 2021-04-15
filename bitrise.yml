@@ -225,7 +225,7 @@ workflows:
       - build-router-start@0:
           inputs:
             - workflows: |-
-                test_trace-android-sdk_api_22
+                test_trace-android-sdk_api_21
                 test_trace-android-sdk_api_24
                 test_trace-android-sdk_api_29
                 test_trace-android-sdk_api_30
@@ -829,7 +829,9 @@ workflows:
     before_run: []
   build_trace-test-application:
     steps:
-      - cache-pull@2: {}
+      - cache-pull@2:
+          inputs:
+            - allow_fallback: false
       - android-build:
           inputs:
             - module: trace-test-application
@@ -1167,9 +1169,9 @@ workflows:
           inputs:
             - api_level: "$AVD_API_LEVEL"
           title: launch_avd_24
-  test_trace-android-sdk_api_22:
+  test_trace-android-sdk_api_21:
     description: |-
-      test_trace-android-sdk workflow usage for API level 30.
+      test_trace-android-sdk workflow usage for API level 21.
       1. Runs the instrumented tests for trace-sdk
       2. Runs the instrumented tests for trace-test-application
       Important note: The android connected tests occasionally fail if the emulator crashes - you will need to rebuild the project if this happens.
@@ -1186,12 +1188,12 @@ workflows:
                 # debug log
                 set -x
 
-                envman add --key AVD_API_LEVEL --value 22
+                envman add --key AVD_API_LEVEL --value 21
           title: add_avd_api_level
       - avd-manager@1:
           inputs:
             - api_level: "$AVD_API_LEVEL"
-          title: launch_avd_22
+          title: launch_avd_21
   wait_for_trace-test-application:
     steps:
       - wait-for-android-emulator@1:

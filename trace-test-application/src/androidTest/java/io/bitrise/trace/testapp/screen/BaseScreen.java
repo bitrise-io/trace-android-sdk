@@ -31,7 +31,7 @@ public abstract class BaseScreen {
     protected final UiDevice uiDevice;
 
     /**
-     * The id prefix for the resources.
+     * The id prefix to find resource by id.
      */
     @NonNull
     protected final static String id = InstrumentationRegistry.getInstrumentation()
@@ -54,7 +54,7 @@ public abstract class BaseScreen {
     }
 
     /**
-     * Searches fpr the given {@link BySelector} on the active UI.
+     * Searches for the given {@link BySelector} on the active UI.
      *
      * @param by the given BySelector to search for.
      * @return the {@link UiObject2} if found, {@code null} otherwise.
