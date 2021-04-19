@@ -21,7 +21,7 @@ Use Trace to:
 
 ## Requirements
 
-* Minimum SDK version is **22**.
+* Minimum SDK version is **21**.
 * If using **OkHttp** <https://square.github.io/okhttp/> in the application, it should have at least
  the version **3.11.0**.
 * SDK uses AndroidX libraries, there could be issues when integrating it to an app with the 
