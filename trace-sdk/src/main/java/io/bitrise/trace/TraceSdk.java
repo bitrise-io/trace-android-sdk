@@ -41,6 +41,11 @@ public class TraceSdk {
      */
     public static final String NAME = "Trace Android";
 
+    /**
+     * Flag to configure the sdk into debug mode, by default this will be false.
+     */
+    public static boolean DEBUG_ENABLED = false;
+
     private TraceSdk() {
         // nop
     }
@@ -69,9 +74,19 @@ public class TraceSdk {
             initDataCollection(context);
             initLifeCycleListener(context);
             initNetworkTracing();
+            TraceLog.i(String.format(LogMessageConstants.TRACE_DEBUG_FLAG_STATUS, DEBUG_ENABLED));
         } else {
             TraceLog.e(new TraceException.TraceConfigNotInitialisedException());
         }
+    }
+
+    /**
+     * Flag to enable TraceSdk into debug mode.
+     * @param debugEnabled boolean value to enable or disable debug mode in the TraceSdk.
+     */
+    public synchronized static void setDebugEnabled(boolean debugEnabled) {
+        DEBUG_ENABLED = debugEnabled;
+        TraceLog.i(String.format(LogMessageConstants.TRACE_DEBUG_FLAG_STATUS, DEBUG_ENABLED));
     }
 
     /**

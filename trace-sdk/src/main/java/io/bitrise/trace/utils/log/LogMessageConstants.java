@@ -50,6 +50,7 @@ public final class LogMessageConstants {
     public static final String SET_URL_STREAM_HANDLER_FACTORY_FAILED = "setURLStreamHandlerFactory failed. This means" +
             " the Trace SDK will not be able to capture network metrics that use URLConnection. Please refer to the " +
             "documentation for further guidance.";
+    public static final String TRACE_DEBUG_FLAG_STATUS = "TraceSdk debug = %b";
     public static final String TRACE_SENDING = "Attempting to send a trace.";
     public static final String TRACE_SENT_SUCCESSFULLY = "Trace sent successfully";
     public static final String TRACE_SDK_SUCCESSFULLY_INITIALISED = "Trace SDK is successfully initialised.";
