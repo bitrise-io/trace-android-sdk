@@ -5,6 +5,7 @@ import android.app.job.JobParameters;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
 import com.google.common.util.concurrent.SettableFuture;
@@ -12,10 +13,12 @@ import com.google.common.util.concurrent.SettableFuture;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.Future;
 
 import io.bitrise.trace.data.metric.MetricEntity;
 import io.bitrise.trace.data.metric.MetricUtils;
+import io.bitrise.trace.utils.StringUtils;
 import io.bitrise.trace.utils.TraceException;
 import io.bitrise.trace.utils.log.LogMessageConstants;
 import io.bitrise.trace.utils.log.TraceLog;
@@ -58,6 +61,7 @@ public class MetricSender extends DataSender {
                 final Response<Void> response = getNetworkCommunicator().sendMetrics(metricRequest).execute();
                 if (response.isSuccessful()) {
                     onSuccess();
+                    headerComparison(metricRequest, response);
                 } else {
                     TraceLog.w(
                             new TraceException.MetricSenderFailedException(response.code(), response.message()));
@@ -90,6 +94,39 @@ public class MetricSender extends DataSender {
 
             getResultSettableFuture().set(Result.SUCCESS);
         });
+    }
+
+    @VisibleForTesting
+    protected static int headerComparison(@NonNull final MetricRequest request,
+                                  @NonNull final Response<Void> response) {
+        final String metricCountHeader = response.headers().get("accepted-metrics-count");
+        final String acceptedLabelsHeader = response.headers().get("accepted-metrics-labels");
+
+        if (metricCountHeader == null
+                || acceptedLabelsHeader == null) {
+            TraceLog.debugV(LogMessageConstants.METRIC_HEADERS_MISSING);
+            return 0;
+        }
+
+        final int metricCount = Integer.parseInt(metricCountHeader);
+        final int difference = request.getMetrics().size() - metricCount;
+
+        if (difference == 0) {
+            TraceLog.debugV(String.format(Locale.getDefault(), LogMessageConstants.METRIC_HEADERS_MATCH,
+                    request.getMetrics().size(), metricCount));
+        } else {
+
+            final List<String> sentKeyList = new ArrayList<>();
+            for (Metric metric : request.getMetrics()) {
+                sentKeyList.add(metric.getMetricDescriptor().getName());
+            }
+            final String sentKeys = StringUtils.join(sentKeyList, ",");
+
+            TraceLog.debugV(String.format(Locale.getDefault(), LogMessageConstants.METRIC_HEADERS_INCORRECT,
+                    request.getMetrics().size(), metricCount, sentKeys, acceptedLabelsHeader));
+        }
+
+        return difference;
     }
 
     @Override

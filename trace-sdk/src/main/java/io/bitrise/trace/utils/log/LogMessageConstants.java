@@ -38,6 +38,9 @@ public final class LogMessageConstants {
     public static final String FAILED_TO_READ_SYSTEM_CPU_STATS = "Failed to read System CPU stats, Trace may not " +
             "report any CPU stats for this session.";
     public static final String INITIALISING_SDK = "Initialising the Trace SDK";
+    public static final String METRIC_HEADERS_MISSING = "Metric response headers missing, failed to complete header validation.";
+    public static final String METRIC_HEADERS_MATCH = "Metric response headers match: %d sent and %d received.";
+    public static final String METRIC_HEADERS_INCORRECT = "Metric response headers do not match: %d sent and %d received.\nsent keys: %s\nreceived keys: %s";
     public static final String METRIC_SENDING = "Attempting to send a metric.";
     public static final String METRIC_SENT_SUCCESSFULLY = "Metric sent successfully";
     public static final String SAVE_METRIC = "Metric saved to storage.";
