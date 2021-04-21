@@ -75,6 +75,24 @@ public class ConfigurationManager {
     }
 
     /**
+     * Creates an instance of the Configuration Manager for debugging uses only. You can pass a token
+     * that should be used for the trace addon configuration.
+     * @param token the token that should be used to work with trace.
+     * @return the ConfigurationManager instance.
+     */
+    @NonNull
+    public static synchronized ConfigurationManager getDebugInstance(@NonNull final String token) {
+        if (configurationManager == null) {
+            configurationManager = new ConfigurationManager();
+        }
+        configurationMap = new HashMap<>();
+        configurationMap.put(ConfigurationConstants.BITRISE_BC_TOKEN_KEY, token);
+        initialised = true;
+
+        return configurationManager;
+    }
+
+    /**
      * Resets the state of the ConfigurationManager.
      */
     public static synchronized void reset() {
