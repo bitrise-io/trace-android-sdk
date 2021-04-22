@@ -93,10 +93,8 @@ public class TraceGradlePluginFunctionalTest {
         }
 
         try {
-            FunctionalTestUtils.copyFile(TestConstants.GRADLE_PROPERTIES_FILE_NAME,
-                    testDirPath + "traceGradlePlugin.properties");
-            FunctionalTestUtils.copyFile("../trace-sdk/" + TestConstants.GRADLE_PROPERTIES_FILE_NAME,
-                    testDirPath + "traceSdk.properties");
+            FunctionalTestUtils.copyFile("../" + TestConstants.VERSIONS_GRADLE,
+                    testDirPath + TestConstants.VERSIONS_GRADLE);
             FunctionalTestUtils.copyFile(FunctionalTestUtils.getGradlePropertiesForResource(0),
                     testDirPath + TestConstants.GRADLE_PROPERTIES_FILE_NAME);
             FunctionalTestUtils.copyFile(FunctionalTestUtils.getBuildGradleForResource(0),

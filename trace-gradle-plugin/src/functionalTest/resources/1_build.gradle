@@ -1,15 +1,9 @@
 // Constraints: This build file should
 // 1. contain dependency on trace-sdk
 // 2. use the latest version of com.android.tools:gradle
+apply from: "versions.gradle"
 buildscript {
-    // These property files are copied during the setup of TraceGradlePluginFunctionalTest
-    final Properties traceGradlePluginProperties = new Properties()
-    final File traceGradlePluginPropertiesFile = new File(getProject().getProjectDir().getAbsolutePath() + ("/traceGradlePlugin.properties"))
-    traceGradlePluginPropertiesFile.withInputStream {
-        traceGradlePluginProperties.load(it)
-    }
-    def tgpVersion = traceGradlePluginProperties.get("version")
-
+    apply from: "versions.gradle"
     repositories {
         mavenLocal()
         mavenCentral()
@@ -17,7 +11,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.3'
-        classpath "io.bitrise.trace.plugin:trace-gradle-plugin:$tgpVersion"
+        classpath "io.bitrise.trace.plugin:trace-gradle-plugin:$traceVersions.traceGradlePlugin"
     }
 }
 
@@ -50,15 +44,7 @@ android {
         }
     }
 }
-
-// These property files are copied during the setup of TraceGradlePluginFunctionalTest
-final Properties traceSdkProperties = new Properties()
-final File traceSdkPropertiesFile = new File(getProject().getProjectDir().getAbsolutePath() + ("/traceSdk.properties"))
-traceSdkPropertiesFile.withInputStream {
-    traceSdkProperties.load(it)
-}
-def tsVersion = traceSdkProperties.get("version")
-
+apply from: "versions.gradle"
 dependencies {
-    implementation "io.bitrise.trace:trace-sdk:$tsVersion"
+    implementation "io.bitrise.trace:trace-sdk:$traceVersions.traceSdk"
 }

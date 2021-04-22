@@ -53,4 +53,9 @@ public class TestConstants {
      * The directory name for the main sources.
      */
     public static final String MAIN_SOURCE_DIRECTORY_NAME = "src/main";
+
+    /**
+     * The name for the versions.gradle file.
+     */
+    public static final String VERSIONS_GRADLE = "versions.gradle";
 }
