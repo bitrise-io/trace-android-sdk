@@ -106,4 +106,27 @@ public class MetricUtilsTest {
         final Metric flattenedMetric = MetricUtils.flattenAttributes(mergedMetric.toBuilder());
         assertThat(flattenedMetric.getMetricDescriptor().getLabelKeysCount(), is(1));
     }
+
+    @Test
+    public void getAllKeysFromMetrics_severalMetrics() {
+        final List<Metric> metricList = new ArrayList<>();
+        metricList.add(MetricTestProvider.getApplicationStartUpMetric());
+        metricList.add(MetricTestProvider.getApplicationCpuMetric());
+        metricList.add(MetricTestProvider.getSystemCpuMetric());
+        assertThat(MetricUtils.getAllKeysFromMetrics(metricList),
+                is(equalTo("app.startup.latency.ms,process.cpu.pct,system.cpu.pct")));
+    }
+
+    @Test
+    public void getAllKeysFromMetrics_oneMetric() {
+        final List<Metric> metricList = new ArrayList<>();
+        metricList.add(MetricTestProvider.getApplicationStartUpMetric());
+        assertThat(MetricUtils.getAllKeysFromMetrics(metricList),
+                is(equalTo("app.startup.latency.ms")));
+    }
+
+    @Test
+    public void getAllKeysFromMetrics_noMetrics() {
+        assertThat(MetricUtils.getAllKeysFromMetrics(new ArrayList<>()), is(equalTo("")));
+    }
 }

@@ -95,9 +95,6 @@ public class MetricSenderTest {
         assertTrue(metricSender.isRescheduleNeeded());
     }
 
-    private final String headerAcceptedMetricsCount = "accepted-metrics-count";
-    private final String headerAcceptedMetricsLabels = "accepted-metrics-labels";
-
     @Test
     public void headerComparison_headersMatch() {
         final List<Metric> metricList = new ArrayList<>();
@@ -107,14 +104,14 @@ public class MetricSenderTest {
         final MetricRequest request = new MetricRequest(
                 DataTestUtils.getSampleResource("sessionId"), metricList);
         final Response<Void> response = Response.success(null, Headers.of(
-                headerAcceptedMetricsCount, "3",
-                headerAcceptedMetricsLabels, "app.startup.latency.ms,process.cpu.pct,system.cpu.pct"));
+                NetworkCommunicator.METRIC_HEADER_ACCEPTED_COUNT, "3",
+                NetworkCommunicator.METRIC_HEADER_ACCEPTED_LABELS, "app.startup.latency.ms,process.cpu.pct,system.cpu.pct"));
 
-        assertEquals(0, MetricSender.headerComparison(request, response));
+        assertEquals(0, MetricSender.countHeaderComparisonDifference(request, response));
     }
 
     @Test
-    public void headerComparison_headersDoNotMatch() {
+    public void headerComparison_headersDoNotMatch_backendAcceptedLess() {
         final List<Metric> metricList = new ArrayList<>();
         metricList.add(MetricTestProvider.getApplicationStartUpMetric());
         metricList.add(MetricTestProvider.getApplicationCpuMetric());
@@ -122,10 +119,36 @@ public class MetricSenderTest {
         final MetricRequest request = new MetricRequest(
                 DataTestUtils.getSampleResource("sessionId"), metricList);
         final Response<Void> response = Response.success(null, Headers.of(
-                headerAcceptedMetricsCount, "1",
-                headerAcceptedMetricsLabels, "app.startup.latency.ms"));
+                NetworkCommunicator.METRIC_HEADER_ACCEPTED_COUNT, "1",
+                NetworkCommunicator.METRIC_HEADER_ACCEPTED_LABELS, "app.startup.latency.ms"));
 
-        assertEquals(2, MetricSender.headerComparison(request, response));
+        assertEquals(2, MetricSender.countHeaderComparisonDifference(request, response));
+    }
+
+    @Test
+    public void headerComparison_headersDoNotMatch_backendAcceptedMore() {
+        final List<Metric> metricList = new ArrayList<>();
+        metricList.add(MetricTestProvider.getApplicationStartUpMetric());
+        final MetricRequest request = new MetricRequest(
+                DataTestUtils.getSampleResource("sessionId"), metricList);
+        final Response<Void> response = Response.success(null, Headers.of(
+                NetworkCommunicator.METRIC_HEADER_ACCEPTED_COUNT, "3",
+                NetworkCommunicator.METRIC_HEADER_ACCEPTED_LABELS, "app.startup.latency.ms,process.cpu.pct,system.cpu.pct"));
+
+        assertEquals(2, MetricSender.countHeaderComparisonDifference(request, response));
+    }
+
+    @Test
+    public void headerComparison_headersNotInt() {
+        final List<Metric> metricList = new ArrayList<>();
+        metricList.add(MetricTestProvider.getApplicationStartUpMetric());
+        final MetricRequest request = new MetricRequest(
+                DataTestUtils.getSampleResource("sessionId"), metricList);
+        final Response<Void> response = Response.success(null, Headers.of(
+                NetworkCommunicator.METRIC_HEADER_ACCEPTED_COUNT, "cats",
+                NetworkCommunicator.METRIC_HEADER_ACCEPTED_LABELS, "app.startup.latency.ms"));
+
+        assertEquals(0, MetricSender.countHeaderComparisonDifference(request, response));
     }
 
     @Test
@@ -136,7 +159,7 @@ public class MetricSenderTest {
                 DataTestUtils.getSampleResource("sessionId"), metricList);
         final Response<Void> response = Response.success(null, Headers.of());
 
-        assertEquals(0, MetricSender.headerComparison(request, response));
+        assertEquals(0, MetricSender.countHeaderComparisonDifference(request, response));
     }
 
     @Test
@@ -145,9 +168,9 @@ public class MetricSenderTest {
         final MetricRequest request = new MetricRequest(
                 DataTestUtils.getSampleResource("sessionId"), metricList);
         final Response<Void> response = Response.success(null, Headers.of(
-                headerAcceptedMetricsCount, "0",
-                headerAcceptedMetricsLabels, ""));
+                NetworkCommunicator.METRIC_HEADER_ACCEPTED_COUNT, "0",
+                NetworkCommunicator.METRIC_HEADER_ACCEPTED_LABELS, ""));
 
-        assertEquals(0, MetricSender.headerComparison(request, response));
+        assertEquals(0, MetricSender.countHeaderComparisonDifference(request, response));
     }
 }

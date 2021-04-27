@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import io.bitrise.trace.utils.StringUtils;
 import io.opencensus.proto.metrics.v1.LabelKey;
 import io.opencensus.proto.metrics.v1.Metric;
 import io.opencensus.proto.metrics.v1.MetricDescriptor;
@@ -123,5 +124,26 @@ public class MetricUtils {
             }
         }
         return metricMap;
+    }
+
+    /**
+     * Creates a string comma separated list of the keys for a list of metrics.
+     * e.g. "app.startup.latency.ms,process.cpu.pct,system.cpu.pct"
+     *
+     * @param metrics the metrics to get the keys from.
+     * @return a comma separated list of the metric keys.
+     */
+    @NonNull
+    public static String getAllKeysFromMetrics(@NonNull final List<Metric> metrics) {
+        final List<String> sentKeyList = new ArrayList<>();
+
+        if (metrics.isEmpty()) {
+            return "";
+        }
+
+        for (Metric metric : metrics) {
+            sentKeyList.add(metric.getMetricDescriptor().getName());
+        }
+        return StringUtils.join(sentKeyList, ",");
     }
 }
