@@ -61,7 +61,7 @@ public class MetricSender extends DataSender {
                 final Response<Void> response = getNetworkCommunicator().sendMetrics(metricRequest).execute();
                 if (response.isSuccessful()) {
                     onSuccess();
-                    headerComparison(metricRequest, response);
+                    countHeaderComparisonDifference(metricRequest, response);
                 } else {
                     TraceLog.w(
                             new TraceException.MetricSenderFailedException(response.code(), response.message()));
@@ -96,11 +96,19 @@ public class MetricSender extends DataSender {
         });
     }
 
+    /**
+     * Uses the accepted metric count header to validate and log whether all sent metrics were accepted.
+     *
+     * @param request  the MetricRequest that was sent.
+     * @param response the Response received from the backend.
+     * @return the number of metrics mismatched e.g. 0 for no difference, 1 if one metric not accepted
+     * by the backend.
+     */
     @VisibleForTesting
-    protected static int headerComparison(@NonNull final MetricRequest request,
+    static int countHeaderComparisonDifference(@NonNull final MetricRequest request,
                                   @NonNull final Response<Void> response) {
-        final String metricCountHeader = response.headers().get("accepted-metrics-count");
-        final String acceptedLabelsHeader = response.headers().get("accepted-metrics-labels");
+        final String metricCountHeader = response.headers().get(NetworkCommunicator.METRIC_HEADER_ACCEPTED_COUNT);
+        final String acceptedLabelsHeader = response.headers().get(NetworkCommunicator.METRIC_HEADER_ACCEPTED_LABELS);
 
         if (metricCountHeader == null
                 || acceptedLabelsHeader == null) {
@@ -108,25 +116,25 @@ public class MetricSender extends DataSender {
             return 0;
         }
 
-        final int metricCount = Integer.parseInt(metricCountHeader);
-        final int difference = request.getMetrics().size() - metricCount;
+        try {
+            final int metricCount = Integer.parseInt(metricCountHeader);
+            final int difference = request.getMetrics().size() - metricCount;
 
-        if (difference == 0) {
-            TraceLog.debugV(String.format(Locale.getDefault(), LogMessageConstants.METRIC_HEADERS_MATCH,
-                    request.getMetrics().size(), metricCount));
-        } else {
-
-            final List<String> sentKeyList = new ArrayList<>();
-            for (Metric metric : request.getMetrics()) {
-                sentKeyList.add(metric.getMetricDescriptor().getName());
+            if (difference == 0) {
+                TraceLog.debugV(String.format(Locale.getDefault(), LogMessageConstants.METRIC_HEADERS_MATCH,
+                        request.getMetrics().size()));
+            } else {
+                TraceLog.debugV(String.format(Locale.getDefault(),
+                        LogMessageConstants.METRIC_HEADERS_INCORRECT,
+                        request.getMetrics().size(), metricCount,
+                        MetricUtils.getAllKeysFromMetrics(request.getMetrics()), acceptedLabelsHeader));
             }
-            final String sentKeys = StringUtils.join(sentKeyList, ",");
 
-            TraceLog.debugV(String.format(Locale.getDefault(), LogMessageConstants.METRIC_HEADERS_INCORRECT,
-                    request.getMetrics().size(), metricCount, sentKeys, acceptedLabelsHeader));
+            return Math.abs(difference);
+
+        } catch (final NumberFormatException numberFormatException) {
+            return 0;
         }
-
-        return difference;
     }
 
     @Override

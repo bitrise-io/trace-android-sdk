@@ -39,7 +39,7 @@ public final class LogMessageConstants {
             "report any CPU stats for this session.";
     public static final String INITIALISING_SDK = "Initialising the Trace SDK";
     public static final String METRIC_HEADERS_MISSING = "Metric response headers missing, failed to complete header validation.";
-    public static final String METRIC_HEADERS_MATCH = "Metric response headers match: %d sent and %d received.";
+    public static final String METRIC_HEADERS_MATCH = "Metric response headers match: %d sent";
     public static final String METRIC_HEADERS_INCORRECT = "Metric response headers do not match: %d sent and %d received.\nsent keys: %s\nreceived keys: %s";
     public static final String METRIC_SENDING = "Attempting to send a metric.";
     public static final String METRIC_SENT_SUCCESSFULLY = "Metric sent successfully";
