@@ -102,3 +102,10 @@ Trace is released under the MIT license. See
 
 Test kit is an **internal product** made for mobile developers in the Trace team to be able to test 
 the behaviour of the SDK with a locally emulated service that mimics the backend.
+
+### Local properties
+Some of the tests require having a valid trace token to send network requests, this is populated using an env var on bitrise. If you want to run the tests locally please ensure you have the following in your local.properties:
+
+```
+traceToken="<YOUR_TOKEN_HERE>"
+```

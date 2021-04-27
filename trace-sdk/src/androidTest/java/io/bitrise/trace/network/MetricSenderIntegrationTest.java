@@ -31,6 +31,7 @@ import io.bitrise.trace.data.management.formatter.memory.ApplicationUsedMemoryDa
 import io.bitrise.trace.data.management.formatter.memory.SystemMemoryDataFormatter;
 import io.bitrise.trace.data.management.formatter.view.ApplicationStartUpDataFormatter;
 import io.bitrise.trace.session.ApplicationSessionManager;
+import io.bitrise.trace.BuildConfig;
 import io.bitrise.trace.test.DataTestUtils;
 import io.opencensus.proto.metrics.v1.Metric;
 import retrofit2.Response;
@@ -43,11 +44,9 @@ import static org.junit.Assert.assertEquals;
 @LargeTest
 public class MetricSenderIntegrationTest {
 
-    private static final String TRACE_TOKEN = "70a14e32-97b1-4b6d-b4bc-ff592c780325";
-
     @Before
     public void setUp() {
-        ConfigurationManager.getDebugInstance(TRACE_TOKEN);
+        ConfigurationManager.getDebugInstance(BuildConfig.TRACE_TOKEN);
         ApplicationSessionManager.getInstance().startSession();
     }
 
