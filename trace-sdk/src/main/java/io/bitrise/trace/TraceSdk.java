@@ -43,8 +43,9 @@ public class TraceSdk {
 
     /**
      * Flag to configure the sdk into debug mode, by default this will be false.
+     * Currently, debug mode will add more debug log messages.
      */
-    public static boolean DEBUG_ENABLED = false;
+    private static boolean DEBUG_ENABLED = false;
 
     private TraceSdk() {
         // nop
@@ -81,12 +82,20 @@ public class TraceSdk {
     }
 
     /**
-     * Flag to enable TraceSdk into debug mode.
+     * Flag to enable TraceSdk into debug mode. Currently, this will add more debug log messages.
+     *
      * @param debugEnabled boolean value to enable or disable debug mode in the TraceSdk.
      */
-    public synchronized static void setDebugEnabled(boolean debugEnabled) {
+    public synchronized static void setDebugEnabled(final boolean debugEnabled) {
         DEBUG_ENABLED = debugEnabled;
         TraceLog.i(String.format(LogMessageConstants.TRACE_DEBUG_FLAG_STATUS, DEBUG_ENABLED));
+    }
+
+    /**
+     * @return whether the sdk is in debug mode.
+     */
+    public static boolean isDebugEnabled() {
+        return DEBUG_ENABLED;
     }
 
     /**
