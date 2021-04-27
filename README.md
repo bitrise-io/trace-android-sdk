@@ -27,7 +27,7 @@ Use Trace to:
 * SDK uses AndroidX libraries, there could be issues when integrating it to an app with the 
 deprecated Android support libraries.
 
-Debug mode
+## Debug mode
 
 The TraceSdk has a debug mode - currently this will mean more debug level log messages. 
 
