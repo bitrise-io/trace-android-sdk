@@ -119,6 +119,8 @@ workflows:
           title: Switch to Java 11
           inputs:
             - content: |-
+                git fetch
+
                 sudo update-alternatives --set javac /usr/lib/jvm/java-11-openjdk-amd64/bin/javac
                 sudo update-alternatives --set java /usr/lib/jvm/java-11-openjdk-amd64/bin/java
 
