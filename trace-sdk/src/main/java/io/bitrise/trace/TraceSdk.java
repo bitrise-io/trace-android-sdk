@@ -43,7 +43,8 @@ public class TraceSdk {
 
     /**
      * Flag to configure the sdk into debug mode, by default this will be false.
-     * Currently, debug mode will add more debug log messages.
+     * Currently, debug mode will add more debug log messages. Note: we do not log anything if your
+     * app is in release mode. To see these log messages your app should also be in debug mode.
      */
     private static boolean DEBUG_ENABLED = false;
 
@@ -83,6 +84,8 @@ public class TraceSdk {
 
     /**
      * Flag to enable TraceSdk into debug mode. Currently, this will add more debug log messages.
+     * Note: we do not log anything if your app is in release mode. To see these log messages your
+     * app should also be in debug mode.
      *
      * @param debugEnabled boolean value to enable or disable debug mode in the TraceSdk.
      */

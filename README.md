@@ -29,7 +29,7 @@ deprecated Android support libraries.
 
 ## Debug mode
 
-The TraceSdk has a debug mode - currently this will mean more debug level log messages. 
+The TraceSdk has a debug mode - currently this will mean more debug level log messages. Note: we do not log anything if your app is in release mode. To see these log messages your app should also be in debug mode.
 
 To enable this add the following to your project e.g. in your MainActivity:
 
