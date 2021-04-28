@@ -94,7 +94,7 @@ sonarqube {
         property "sonar.projectKey", "bitrise-io_trace-android-sdk"
         property "sonar.organization", "bitrise-io"
         property "sonar.host.url", "https://sonarcloud.io"
-        property "sonar.branch.name", ".*"
+        property "sonar.branch.name", System.getenv("BITRISE_GIT_BRANCH")
         property "sonar.branch.target", "main"
     }
 }
