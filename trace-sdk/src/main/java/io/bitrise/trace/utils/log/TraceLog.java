@@ -270,7 +270,7 @@ public class TraceLog {
      * @param message the message to log.
      */
     public static void debugV(@NonNull String message) {
-        if (TraceSdk.DEBUG_ENABLED) {
+        if (TraceSdk.isDebugEnabled()) {
             TraceLog.v(message);
         }
     }
