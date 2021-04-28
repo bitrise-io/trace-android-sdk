@@ -7,7 +7,9 @@ import androidx.test.filters.LargeTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -40,17 +42,20 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * Integration tests that send a metric to the backend and expect confirmation by headers.
+ *
+ * Note: to run these tests locally, you need to add a traceToken property to local.properties
+ * with a valid trace token. Please see the readme for more information.
  */
 @LargeTest
 public class MetricSenderIntegrationTest {
 
-    @Before
+    @BeforeClass
     public void setUp() {
         ConfigurationManager.getDebugInstance(BuildConfig.TRACE_TOKEN);
         ApplicationSessionManager.getInstance().startSession();
     }
 
-    @After
+    @AfterClass
     public void tearDown() {
         ConfigurationManager.reset();
         ApplicationSessionManager.getInstance().stopSession();
