@@ -6,7 +6,6 @@ import io.bitrise.trace.data.collector.cpu.ApplicationCpuUsageDataCollector;
 import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.dto.FormattedData;
 import io.bitrise.trace.data.management.formatter.BaseDataFormatterTest;
-import io.bitrise.trace.data.metric.MetricEntity;
 import io.opencensus.proto.metrics.v1.Metric;
 import io.opencensus.proto.metrics.v1.MetricDescriptor;
 import io.opencensus.proto.metrics.v1.Point;
