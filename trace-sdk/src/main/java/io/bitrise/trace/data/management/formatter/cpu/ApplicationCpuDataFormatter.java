@@ -32,12 +32,8 @@ public class ApplicationCpuDataFormatter extends DataFormatter {
             return new FormattedData[]{};
         }
         final Double appCpuStat = (Double) data.getContent();
-        if (appCpuStat == null) {
-            return new FormattedData[]{};
-        }
         final Timestamp timestamp = getTimestamp();
         final Metric appCpuMetric = createAppCpuMetric(appCpuStat, timestamp);
-
 
         return new FormattedData[]{new FormattedData(appCpuMetric)};
     }
@@ -59,7 +55,7 @@ public class ApplicationCpuDataFormatter extends DataFormatter {
                                 .setUnit(percent)
                                 .setType(MetricDescriptor.Type.GAUGE_DOUBLE);
 
-        final TimeSeries appTimeSeries = createCpuTimeSeriesEntry(timestamp, (float) cpuUsagePercent);
+        final TimeSeries appTimeSeries = createCpuTimeSeriesEntry(timestamp, cpuUsagePercent);
         builder.setMetricDescriptor(cpuDescriptorBuilder.build());
         builder.addTimeseries(appTimeSeries);
         return builder.build();
@@ -73,7 +69,7 @@ public class ApplicationCpuDataFormatter extends DataFormatter {
      * @return the created TimeSeries.
      */
     @NonNull
-    private static TimeSeries createCpuTimeSeriesEntry(@NonNull final Timestamp timestamp, final float value) {
+    private static TimeSeries createCpuTimeSeriesEntry(@NonNull final Timestamp timestamp, final Double value) {
         return TimeSeries.newBuilder()
                          .addPoints(
                                  Point.newBuilder()
