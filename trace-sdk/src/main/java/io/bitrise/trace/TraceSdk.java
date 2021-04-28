@@ -42,9 +42,12 @@ public class TraceSdk {
     public static final String NAME = "Trace Android";
 
     /**
-     * Flag to configure the sdk into debug mode, by default this will be false.
-     * Currently, debug mode will add more debug log messages. Note: we do not log anything if your
-     * app is in release mode. To see these log messages your app should also be in debug mode.
+     * The TraceSdk has a debug mode - currently this will mean more debug level log messages.
+     *
+     * Please note if you are not using a debug build, and or minify is enabled it can affect these
+     * logs, and they can be stripped out depending on your configuration.
+     * You also need to ensure that the TraceSdk has been initialised before setting the debug
+     * enabled mode.
      */
     private static boolean DEBUG_ENABLED = false;
 
@@ -83,9 +86,12 @@ public class TraceSdk {
     }
 
     /**
-     * Flag to enable TraceSdk into debug mode. Currently, this will add more debug log messages.
-     * Note: we do not log anything if your app is in release mode. To see these log messages your
-     * app should also be in debug mode.
+     * Flag to enable debug mode - currently this will mean more debug level log messages.
+     *
+     * Please note if you are not using a debug build, and or minify is enabled it can affect these
+     * logs, and they can be stripped out depending on your configuration.
+     * You also need to ensure that the TraceSdk has been initialised before setting the debug
+     * enabled mode.
      *
      * @param debugEnabled boolean value to enable or disable debug mode in the TraceSdk.
      */
