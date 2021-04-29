@@ -89,7 +89,7 @@ task tagModule() {
     description = "Internal task that creates a tag for the given module"
 }
 
-String currentBranch = "main"//System.getenv("BITRISE_GIT_BRANCH")
+String currentBranch = System.getenv("BITRISE_GIT_BRANCH")
 
 sonarqube {
     properties {

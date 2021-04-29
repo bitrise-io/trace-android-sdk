@@ -108,7 +108,6 @@ workflows:
       - git-clone:
           inputs:
             - manual_merge: 'no'
-      - cache-pull@2: {}
       - script@1:
           inputs:
             - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# debug
@@ -164,12 +163,6 @@ workflows:
             the 2nd report file to a suitable place, so that the deploy step\n# can
             include it in the zip file artifacts \nmv $BITRISE_SOURCE_DIR/infer-out/bugs.txt
             $BITRISE_SOURCE_DIR/reports/infer_report_trace-gradle-plugin_$BITRISE_BUILD_NUMBER.txt"
-          is_always_run: true
-      - cache-push@2:
-          inputs:
-            - cache_paths: |-
-                $BITRISE_CACHE_DIR
-                $ANDROID_HOME/infer-download
           is_always_run: true
       - deploy-to-bitrise-io@1:
           inputs:
