@@ -21,7 +21,7 @@ Use Trace to:
 
 ## Requirements
 
-* Minimum SDK version is **22**.
+* Minimum SDK version is **21**.
 * If using **OkHttp** <https://square.github.io/okhttp/> in the application, it should have at least
  the version **3.11.0**.
 * SDK uses AndroidX libraries, there could be issues when integrating it to an app with the 
@@ -29,7 +29,10 @@ deprecated Android support libraries.
 
 ## Debug mode
 
-The TraceSdk has a debug mode - currently this will mean more debug level log messages. 
+The TraceSdk has a debug mode - currently this will mean more debug level log messages.
+
+Please note if you are not using a debug build, and or minify is enabled it can affect these logs, and they can be stripped out depending on your configuration
+You also need to ensure that the TraceSdk has been initialised before setting the debug enabled mode.
 
 To enable this add the following to your project e.g. in your MainActivity:
 
