@@ -5,6 +5,7 @@ import android.app.job.JobParameters;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
 import com.google.common.util.concurrent.SettableFuture;
@@ -12,10 +13,12 @@ import com.google.common.util.concurrent.SettableFuture;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.Future;
 
 import io.bitrise.trace.data.metric.MetricEntity;
 import io.bitrise.trace.data.metric.MetricUtils;
+import io.bitrise.trace.utils.StringUtils;
 import io.bitrise.trace.utils.TraceException;
 import io.bitrise.trace.utils.log.LogMessageConstants;
 import io.bitrise.trace.utils.log.TraceLog;
@@ -58,6 +61,7 @@ public class MetricSender extends DataSender {
                 final Response<Void> response = getNetworkCommunicator().sendMetrics(metricRequest).execute();
                 if (response.isSuccessful()) {
                     onSuccess();
+                    countHeaderComparisonDifference(metricRequest, response);
                 } else {
                     TraceLog.w(
                             new TraceException.MetricSenderFailedException(response.code(), response.message()));
@@ -90,6 +94,47 @@ public class MetricSender extends DataSender {
 
             getResultSettableFuture().set(Result.SUCCESS);
         });
+    }
+
+    /**
+     * Uses the accepted metric count header to validate and log whether all sent metrics were accepted.
+     *
+     * @param request  the MetricRequest that was sent.
+     * @param response the Response received from the backend.
+     * @return the number of metrics mismatched e.g. 0 for no difference, 1 if one metric not accepted
+     * by the backend.
+     */
+    @VisibleForTesting
+    static int countHeaderComparisonDifference(@NonNull final MetricRequest request,
+                                  @NonNull final Response<Void> response) {
+        final String metricCountHeader = response.headers().get(NetworkCommunicator.METRIC_HEADER_ACCEPTED_COUNT);
+        final String acceptedLabelsHeader = response.headers().get(NetworkCommunicator.METRIC_HEADER_ACCEPTED_LABELS);
+
+        if (metricCountHeader == null
+                || acceptedLabelsHeader == null) {
+            TraceLog.debugV(LogMessageConstants.METRIC_HEADERS_MISSING);
+            return 0;
+        }
+
+        try {
+            final int metricCount = Integer.parseInt(metricCountHeader);
+            final int difference = request.getMetrics().size() - metricCount;
+
+            if (difference == 0) {
+                TraceLog.debugV(String.format(Locale.getDefault(), LogMessageConstants.METRIC_HEADERS_MATCH,
+                        request.getMetrics().size()));
+            } else {
+                TraceLog.debugV(String.format(Locale.getDefault(),
+                        LogMessageConstants.METRIC_HEADERS_INCORRECT,
+                        request.getMetrics().size(), metricCount,
+                        MetricUtils.getAllKeysFromMetrics(request.getMetrics()), acceptedLabelsHeader));
+            }
+
+            return Math.abs(difference);
+
+        } catch (final NumberFormatException numberFormatException) {
+            return 0;
+        }
     }
 
     @Override
