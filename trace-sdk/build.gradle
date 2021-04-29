@@ -10,6 +10,7 @@ android {
         versionCode = "$project.versionCode" as int
         versionName "$project.version"
         buildConfigField('String', 'VERSION_NAME', "\"${project.version}\"")
+        buildConfigField('String', 'TRACE_TOKEN', getTraceToken())
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
@@ -79,6 +80,18 @@ dependencies {
 
 junitJacoco {
     jacocoVersion = '0.8.6'
+}
+
+def getTraceToken() {
+    // try to get the environment variable in CI
+    def traceToken = findProperty("traceToken")
+    if (traceToken != null) {
+        return traceToken
+    }
+    // if we don't have a env var - get it from the local.properties
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    return properties.getProperty("traceToken");
 }
 
 apply from: "release-trace-sdk.gradle"
