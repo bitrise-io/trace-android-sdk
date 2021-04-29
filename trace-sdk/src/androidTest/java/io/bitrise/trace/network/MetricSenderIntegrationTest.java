@@ -50,13 +50,13 @@ import static org.junit.Assert.assertEquals;
 public class MetricSenderIntegrationTest {
 
     @BeforeClass
-    public void setUp() {
+    public static void setUp() {
         ConfigurationManager.getDebugInstance(BuildConfig.TRACE_TOKEN);
         ApplicationSessionManager.getInstance().startSession();
     }
 
     @AfterClass
-    public void tearDown() {
+    public static void tearDown() {
         ConfigurationManager.reset();
         ApplicationSessionManager.getInstance().stopSession();
     }
