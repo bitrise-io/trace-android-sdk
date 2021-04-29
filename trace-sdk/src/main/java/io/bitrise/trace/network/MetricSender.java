@@ -110,6 +110,7 @@ public class MetricSender extends DataSender {
     @VisibleForTesting
     static int countHeaderComparisonDifference(@NonNull final MetricRequest request,
                                   @NonNull final Response<Void> response) {
+      
         final String metricCountHeader = response.headers().get(METRIC_HEADER_ACCEPTED_COUNT);
         final String acceptedLabelsHeader = response.headers().get(METRIC_HEADER_ACCEPTED_LABELS);
 
