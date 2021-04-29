@@ -31,6 +31,9 @@ import retrofit2.Response;
  */
 public class MetricSender extends DataSender {
 
+    static String METRIC_HEADER_ACCEPTED_COUNT = "accepted-metrics-count";
+    static String METRIC_HEADER_ACCEPTED_LABELS = "accepted-metrics-labels";
+
     /**
      * The List of Metrics that will be sent.
      */
@@ -107,8 +110,8 @@ public class MetricSender extends DataSender {
     @VisibleForTesting
     static int countHeaderComparisonDifference(@NonNull final MetricRequest request,
                                   @NonNull final Response<Void> response) {
-        final String metricCountHeader = response.headers().get(NetworkCommunicator.METRIC_HEADER_ACCEPTED_COUNT);
-        final String acceptedLabelsHeader = response.headers().get(NetworkCommunicator.METRIC_HEADER_ACCEPTED_LABELS);
+        final String metricCountHeader = response.headers().get(METRIC_HEADER_ACCEPTED_COUNT);
+        final String acceptedLabelsHeader = response.headers().get(METRIC_HEADER_ACCEPTED_LABELS);
 
         if (metricCountHeader == null
                 || acceptedLabelsHeader == null) {
