@@ -27,6 +27,21 @@ Use Trace to:
 * SDK uses AndroidX libraries, there could be issues when integrating it to an app with the 
 deprecated Android support libraries.
 
+## Debug mode
+
+The TraceSdk has a debug mode - currently this will mean more debug level log messages.
+
+Please note if you are not using a debug build, and or minify is enabled it can affect these logs, and they can be stripped out depending on your configuration
+You also need to ensure that the TraceSdk has been initialised before setting the debug enabled mode.
+
+To enable this add the following to your project e.g. in your MainActivity:
+
+```java
+TraceSdk.setDebugEnabled(true)
+```
+
+Note: You can enable and disable debug mode anywhere in your application, this could be the first activity, or a specific activity later in the application lifecycle.
+
 ## Installation
 
 ### Using the Bitrise Step
