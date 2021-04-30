@@ -87,7 +87,6 @@ public class TraceGradlePluginFunctionalTest {
     public void setUpTest() {
         functionalTestHelper.logTestNameInAsciiBox(testName);
         functionalTestHelper.setupTestDir(testName);
-        functionalTestHelper.setupLocalProperties(testName);
         functionalTestHelper.setupTraceProperties(testName);
         functionalTestHelper.setupGradleProperties(testName, 0);
         functionalTestHelper.setupBitriseAddons(testName, 0);
