@@ -2,7 +2,8 @@ package io.bitrise.trace.plugin.util;
 
 import androidx.annotation.NonNull;
 
-import org.apache.log4j.Logger;
+import org.gradle.api.logging.Logger;
+import org.gradle.api.logging.Logging;
 import org.junit.rules.TestName;
 
 import java.io.File;
@@ -10,6 +11,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import io.bitrise.trace.plugin.TraceConstants;
 
@@ -24,20 +27,107 @@ public class FunctionalTestHelper {
      */
     private static final File testProjectDir =
             new File(System.getProperty("user.home") + "/BitriseTrace-TestGradleProject");
+
     @NonNull
     private final Logger logger;
 
     public FunctionalTestHelper() {
-        this.logger = Logger.getRootLogger();
+        this.logger = Logging.getLogger(this.getClass().getName());
     }
 
     /**
      * Publishes the trace-gradle-plugin itself and logs it.
      */
     public void publishTraceGradlePlugin() {
-        logger.info("Publishing plugin, to make sure it is up-to-date");
+        logger.lifecycle("Publishing plugin, to make sure it is up-to-date");
         FunctionalTestUtils.publishTraceGradlePlugin();
-        logger.info("Publishing plugin finished");
+        logger.lifecycle("Publishing plugin finished");
+    }
+
+    /**
+     * Prints the name of the test in a pretty ASCII text box.
+     *
+     * @param testName the name of the test to print.
+     */
+    public void logTestName(@NonNull final TestName testName) {
+        final String testNameString = testName.getMethodName();
+        final int testNameLength = testNameString.length();
+        final int paddingLength = 30;
+        final int lineLength = paddingLength + testNameLength;
+
+        final StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append("\n");
+        stringBuilder.append(getTestNameBorderLogLine(lineLength));
+        stringBuilder.append(getTestNameEmptyLogLine(lineLength));
+        stringBuilder.append(getTestNameLogLine(testNameString, paddingLength));
+        stringBuilder.append(getTestNameEmptyLogLine(lineLength));
+        stringBuilder.append(getTestNameBorderLogLine(lineLength));
+
+        logger.lifecycle(stringBuilder.toString());
+    }
+
+    /**
+     * Prints the top or bottom line. Contains separators only.
+     *
+     * @param lineLength the length of the lines.
+     * @return the line.
+     */
+    @NonNull
+    private String getTestNameBorderLogLine(final int lineLength) {
+        final StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("+");
+        stringBuilder.append(concatWord("=", lineLength));
+        stringBuilder.append("+");
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
+    }
+
+    /**
+     * Prints a line with empty content.
+     *
+     * @param lineLength the length of the lines.
+     * @return the line.
+     */
+    @NonNull
+    private String getTestNameEmptyLogLine(final int lineLength) {
+        final StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("|");
+        stringBuilder.append(concatWord(" ", lineLength));
+        stringBuilder.append("|");
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
+    }
+
+    /**
+     * Prints the line with the name of the test.
+     *
+     * @param testName      the given text to display.
+     * @param paddingLength the length of padding for the line, excluding starting and ending cahars.
+     * @return the line.
+     */
+    @NonNull
+    private String getTestNameLogLine(final String testName, final int paddingLength) {
+        final StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("|");
+        stringBuilder.append(concatWord(" ", paddingLength / 2));
+        stringBuilder.append(testName);
+        stringBuilder.append(concatWord(" ", paddingLength / 2));
+        stringBuilder.append("|");
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
+    }
+
+    /**
+     * Concats the given word the given amount of times.
+     *
+     * @param word  the word to concat.
+     * @param times the number of times it should be concatenated.
+     * @return the concatenated String.
+     */
+    @NonNull
+    private String concatWord(@NonNull final String word, final int times) {
+        return IntStream.range(0, times).mapToObj(i -> word).collect(Collectors.joining(""));
     }
 
     /**

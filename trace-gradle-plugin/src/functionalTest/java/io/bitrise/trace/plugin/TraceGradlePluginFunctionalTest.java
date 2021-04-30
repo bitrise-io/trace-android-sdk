@@ -74,6 +74,7 @@ public class TraceGradlePluginFunctionalTest {
      */
     @Before
     public void setUpTest() {
+        functionalTestHelper.logTestName(testName);
         functionalTestHelper.setupTestDir(testName);
         functionalTestHelper.setupLocalProperties(testName);
         functionalTestHelper.setupTraceProperties(testName);
