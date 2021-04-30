@@ -280,19 +280,4 @@ public class FunctionalTestHelper {
         }
 
     }
-
-    /**
-     * Sets up the local properties file by copying the given file to the given test. Consumes any I/O error if occurs.
-     *
-     * @param testName the name of the given test.
-     */
-    public void setupLocalProperties(@NonNull final TestName testName) {
-        final String testDirPath = getTestDirName(testName);
-
-        try {
-            FunctionalTestUtils.setUpAndroidSdkDirectory(testDirPath);
-        } catch (final IOException ioe) {
-            ioe.printStackTrace();
-        }
-    }
 }
