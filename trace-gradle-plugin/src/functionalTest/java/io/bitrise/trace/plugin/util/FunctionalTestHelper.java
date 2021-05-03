@@ -45,26 +45,34 @@ public class FunctionalTestHelper {
     }
 
     /**
-     * Prints the name of the test in a pretty ASCII text box.
+     * Prints multiple lines with the given text in a pretty ASCII text box.
      *
-     * @param testName the name of the test to print.
+     * @param text the text to print.
      */
-    public void logTestName(@NonNull final TestName testName) {
-        final String testNameString = testName.getMethodName();
-        final int testNameLength = testNameString.length();
+    public void logInAsciiBox(@NonNull final String text) {
+        final int textLength = text.length();
         final int paddingLength = 30;
-        final int lineLength = paddingLength + testNameLength;
+        final int lineLength = paddingLength + textLength;
 
         final StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append("\n");
         stringBuilder.append(getTestNameBorderLogLine(lineLength));
         stringBuilder.append(getTestNameEmptyLogLine(lineLength));
-        stringBuilder.append(getTestNameLogLine(testNameString, paddingLength));
+        stringBuilder.append(getTestNameLogLine(text, paddingLength));
         stringBuilder.append(getTestNameEmptyLogLine(lineLength));
         stringBuilder.append(getTestNameBorderLogLine(lineLength));
 
         logger.lifecycle(stringBuilder.toString());
+    }
+
+    /**
+     * Prints multiple lines with the name of the test in a pretty ASCII text box.
+     *
+     * @param testName the name of the test to print.
+     */
+    public void logTestNameInAsciiBox(@NonNull final TestName testName) {
+        logInAsciiBox(testName.getMethodName());
     }
 
     /**
