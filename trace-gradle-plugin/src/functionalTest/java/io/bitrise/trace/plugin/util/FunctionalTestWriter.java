@@ -103,7 +103,7 @@ public class FunctionalTestWriter extends PrintWriter {
     }
 
     /**
-     * Enum class for different colors. This is based on the ANSI escape codes-
+     * Enum class for different colors. This is based on the ANSI escape codes.
      *
      * @see <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">https://en.wikipedia.org/wiki/ANSI_escape_code</a>
      */
