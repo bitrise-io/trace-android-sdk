@@ -23,6 +23,7 @@ import io.bitrise.trace.plugin.task.GenerateBuildIDTask;
 import io.bitrise.trace.plugin.task.ManifestModifierTask;
 import io.bitrise.trace.plugin.task.VerifyTraceTask;
 import io.bitrise.trace.plugin.util.FunctionalTestHelper;
+import io.bitrise.trace.plugin.util.FunctionalTestWriter;
 import io.bitrise.trace.plugin.util.TestConstants;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -67,6 +68,20 @@ public class TraceGradlePluginFunctionalTest {
     private static final String buildIdFileRelativePathFormat = "/build/outputs/apk/%s/bitriseBuildId.txt";
 
     /**
+     * An instance of {@link FunctionalTestWriter} that will write the output of each test case to the console with
+     * cyan color.
+     */
+    private final FunctionalTestWriter stdOutWriter = new FunctionalTestWriter(System.out,
+            FunctionalTestWriter.PrintColor.CYAN);
+
+    /**
+     * An instance of {@link FunctionalTestWriter} that will write the error of each test case to the console with
+     * magenta color.
+     */
+    private final FunctionalTestWriter errWriter = new FunctionalTestWriter(System.err,
+            FunctionalTestWriter.PrintColor.MAGENTA);
+
+    /**
      * Sets up the test class.
      */
     @BeforeClass
@@ -101,6 +116,8 @@ public class TraceGradlePluginFunctionalTest {
         if (DELETE_TEMP_PROJECT) {
             functionalTestHelper.deleteTestProjectDir(testName);
         }
+
+        FunctionalTestWriter.reset();
     }
 
     /**
@@ -110,13 +127,8 @@ public class TraceGradlePluginFunctionalTest {
     @Test
     public void assembleDebugTraceTaskHookTest_withGradleConfig_0() {
         functionalTestHelper.setupBuildGradle(testName, 0);
+        final BuildResult buildResult = executeTaskForResult(TestConstants.ASSEMBLE_DEBUG_TASK_NAME);
 
-        final BuildResult buildResult =
-                GradleRunner.create()
-                            .withProjectDir(functionalTestHelper.getTestDir(testName))
-                            .withArguments(TestConstants.ASSEMBLE_DEBUG_TASK_NAME)
-                            .forwardOutput()
-                            .build();
         verifyDebugManifestTasks(buildResult);
         verifyDebugGenerateBuildIdTasks(buildResult);
         verifyGenerateBuildIdTasksForAssembleDebug();
@@ -129,13 +141,8 @@ public class TraceGradlePluginFunctionalTest {
     @Test
     public void assembleDebugTraceTaskHookTest_withGradleConfig_1() {
         functionalTestHelper.setupBuildGradle(testName, 1);
+        final BuildResult buildResult = executeTaskForResult(TestConstants.ASSEMBLE_DEBUG_TASK_NAME);
 
-        final BuildResult buildResult =
-                GradleRunner.create()
-                            .withProjectDir(functionalTestHelper.getTestDir(testName))
-                            .withArguments(TestConstants.ASSEMBLE_DEBUG_TASK_NAME)
-                            .forwardOutput()
-                            .build();
         verifyDebugManifestTasks(buildResult);
         verifyDebugGenerateBuildIdTasks(buildResult);
         verifyGenerateBuildIdTasksForAssembleDebug();
@@ -147,13 +154,8 @@ public class TraceGradlePluginFunctionalTest {
     @Test
     public void buildTraceTaskHookTest_withGradleConfig_0() {
         functionalTestHelper.setupBuildGradle(testName, 0);
+        final BuildResult buildResult = executeTaskForResult(TestConstants.BUILD_TASK_NAME);
 
-        final BuildResult buildResult =
-                GradleRunner.create()
-                            .withProjectDir(functionalTestHelper.getTestDir(testName))
-                            .withArguments(TestConstants.BUILD_TASK_NAME)
-                            .forwardOutput()
-                            .build();
         verifyDebugManifestTasks(buildResult);
         verifyDebugGenerateBuildIdTasks(buildResult);
 
@@ -170,12 +172,7 @@ public class TraceGradlePluginFunctionalTest {
     @Test(expected = UnexpectedBuildFailure.class)
     public void verifyTraceTaskTest_withGradleConfig_0() {
         functionalTestHelper.setupBuildGradle(testName, 0);
-
-        final BuildResult buildResult = GradleRunner.create()
-                                                    .withProjectDir(functionalTestHelper.getTestDir(testName))
-                                                    .withArguments(TestConstants.VERIFY_TRACE_TASK_NAME)
-                                                    .forwardOutput()
-                                                    .build();
+        final BuildResult buildResult = executeTaskForResult(TestConstants.VERIFY_TRACE_TASK_NAME);
 
         final List<BuildTask> buildTasks = buildResult.getTasks();
         final Optional<BuildTask> verifyTraceTaskOptional =
@@ -194,12 +191,7 @@ public class TraceGradlePluginFunctionalTest {
     @Test
     public void verifyTraceTaskTest_withGradleConfig_1() {
         functionalTestHelper.setupBuildGradle(testName, 1);
-
-        final BuildResult buildResult = GradleRunner.create()
-                                                    .withProjectDir(functionalTestHelper.getTestDir(testName))
-                                                    .withArguments(TestConstants.VERIFY_TRACE_TASK_NAME)
-                                                    .forwardOutput()
-                                                    .build();
+        final BuildResult buildResult = executeTaskForResult(TestConstants.VERIFY_TRACE_TASK_NAME);
 
         final List<BuildTask> buildTasks = buildResult.getTasks();
         final Optional<BuildTask> verifyTraceTaskOptional =
@@ -361,5 +353,22 @@ public class TraceGradlePluginFunctionalTest {
                         "debug"));
 
         assertThat(debugBuildIdFile.exists(), is(true));
+    }
+
+    /**
+     * Executes the given Gradle task in a project directory with the name of the current test. Uses
+     * {@link FunctionalTestWriter} to modify the text appearance of it's output.
+     *
+     * @param taskName the name of the task to execute.
+     * @return the {@link BuildResult}.
+     */
+    @NonNull
+    private BuildResult executeTaskForResult(@NonNull final String taskName) {
+        return GradleRunner.create()
+                           .withProjectDir(functionalTestHelper.getTestDir(testName))
+                           .withArguments(taskName)
+                           .forwardStdOutput(stdOutWriter)
+                           .forwardStdError(errWriter)
+                           .build();
     }
 }
