@@ -8,6 +8,7 @@ import org.gradle.testkit.runner.GradleRunner;
 import org.gradle.testkit.runner.TaskOutcome;
 import org.gradle.testkit.runner.UnexpectedBuildFailure;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -66,7 +67,13 @@ public class TraceGradlePluginFunctionalTest {
      */
     @BeforeClass
     public static void setUpTests() {
+        functionalTestHelper.logInAsciiBox("Starting tests for " + TraceGradlePluginFunctionalTest.class.getName());
         functionalTestHelper.publishTraceGradlePlugin();
+    }
+
+    @AfterClass
+    public static void tearDownClass() {
+        functionalTestHelper.logInAsciiBox("Finished tests for " + TraceGradlePluginFunctionalTest.class.getName());
     }
 
     /**
@@ -74,7 +81,7 @@ public class TraceGradlePluginFunctionalTest {
      */
     @Before
     public void setUpTest() {
-        functionalTestHelper.logTestName(testName);
+        functionalTestHelper.logTestNameInAsciiBox(testName);
         functionalTestHelper.setupTestDir(testName);
         functionalTestHelper.setupLocalProperties(testName);
         functionalTestHelper.setupTraceProperties(testName);
@@ -84,10 +91,10 @@ public class TraceGradlePluginFunctionalTest {
     }
 
     /**
-     * Delete (permanently) the temporary gradle project folder, if {@link #DELETE_TEMP_PROJECT} is enabled.
+     * Delete (permanently) the temporary Gradle project folder, if {@link #DELETE_TEMP_PROJECT} is enabled.
      */
     @After
-    public void deleteTemporaryProjectAfterTest() {
+    public void tearDownTest() {
         if (DELETE_TEMP_PROJECT) {
             functionalTestHelper.deleteTemporaryProject(testName);
         }
