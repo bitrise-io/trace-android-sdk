@@ -22,7 +22,9 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.GrantPermissionRule;
 import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.UiDevice;
-import androidx.test.uiautomator.UiObject2;
+import androidx.test.uiautomator.UiObject;
+import androidx.test.uiautomator.UiObjectNotFoundException;
+import androidx.test.uiautomator.UiSelector;
 import androidx.test.uiautomator.Until;
 
 import org.junit.Before;
@@ -47,7 +49,7 @@ import static org.hamcrest.Matchers.not;
 /**
  * Base class for UI tests. Has the commonly used methods and members.
  * <p>
- * ome methods are based on Google sample. These are:
+ * Some methods are based on Google sample. These are:
  *  <ul>
  *      <li>{@link #getLauncherPackageName()}</li>
  *      <li>{@link #launchTraceTestApp(boolean)}</li>
@@ -92,6 +94,7 @@ public abstract class BaseUiTest {
     public static void setUpBeforeClass() {
         uiDevice = UiDevice.getInstance(getInstrumentation());
         uiDevice.pressHome();
+        registerANRWatcher();
     }
 
     @Before
@@ -109,7 +112,6 @@ public abstract class BaseUiTest {
     @Nullable
     protected Boolean launchTraceTestApp(final boolean clear) {
         final String launcherPackage = getLauncherPackageName();
-        closeAnrDialog();
         uiDevice.wait(Until.hasObject(By.pkg(launcherPackage).depth(0)), LAUNCH_TIMEOUT);
 
         final Context context = getApplicationContext();
@@ -138,16 +140,6 @@ public abstract class BaseUiTest {
         final PackageManager packageManager = getApplicationContext().getPackageManager();
         final ResolveInfo resolveInfo = packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
         return resolveInfo.activityInfo.packageName;
-    }
-
-    /**
-     * Check if there is an ANR dialog and closes the app if there is one.
-     */
-    private void closeAnrDialog() {
-        final UiObject2 anrDialog = uiDevice.wait(Until.findObject(By.text("Close app")), WAIT_FOR_IDLE_TIMEOUT);
-        if (anrDialog != null) {
-            anrDialog.click();
-        }
     }
 
     /**
@@ -276,6 +268,40 @@ public abstract class BaseUiTest {
         contentValues.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
         contentValues.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
         return contentValues;
+    }
+
+    /**
+     * Registers a watcher that will looks for ANR dialogs, and will tries to wait for the given apps.
+     */
+    private static void registerANRWatcher() {
+        uiDevice.registerWatcher("ANR", () -> {
+            UiObject anrDialog = uiDevice.findObject(
+                    new UiSelector().className("com.android.server.am.AppNotRespondingDialog"));
+            if (!anrDialog.exists()) {
+                anrDialog = uiDevice.findObject(new UiSelector()
+                        .packageName("android")
+                        .textContains("isn't responding."));
+            }
+            return clickWaitForAnrDialog(anrDialog);
+        });
+    }
+
+    /**
+     * Tries to press the button to wait for the app that is not responding.
+     *
+     * @param anrDialog the given ANR dialog.
+     * @return {@code true} if there was an ANR dialog, {@code false} otherwise.
+     */
+    private static boolean clickWaitForAnrDialog(@NonNull final UiObject anrDialog) {
+        if (anrDialog.exists()) {
+            try {
+                anrDialog.getChild(new UiSelector().text("Wait")).click();
+            } catch (final UiObjectNotFoundException e) {
+                Log.i(UI_TEST_TAG, "Detected ANR, but window disappeared!");
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
