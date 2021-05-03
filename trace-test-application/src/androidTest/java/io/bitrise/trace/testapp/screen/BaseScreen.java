@@ -1,6 +1,7 @@
 package io.bitrise.trace.testapp.screen;
 
 import android.app.Activity;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +14,8 @@ import androidx.test.uiautomator.UiObject2;
 import androidx.test.uiautomator.Until;
 
 import java.util.ArrayList;
+
+import io.bitrise.trace.testapp.BaseUiTest;
 
 /**
  * Base Screen class, which should be the parent class for all Screen classes. Contains the common ports for them.
@@ -65,12 +68,21 @@ public abstract class BaseScreen {
     }
 
     /**
-     * Performs a click action on the given {@link BySelector}.
+     * Performs a click action on the given {@link BySelector}. Retries the finding 3 times.
      *
      * @param by the given BySelector.
      */
     public void click(@NonNull final BySelector by) {
-        find(by).click();
+        for (int i = 0; i < 3; i++) {
+            final UiObject2 uiObject2 = find(by);
+            if (uiObject2 != null) {
+                uiObject2.click();
+                break;
+            } else {
+                Log.i(BaseUiTest.UI_TEST_TAG, String.format("Could not find selector with name %s, retrying %s",
+                        by.toString(), i));
+            }
+        }
     }
 
     /**

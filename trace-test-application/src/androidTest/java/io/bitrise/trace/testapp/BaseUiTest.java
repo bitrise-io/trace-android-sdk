@@ -27,6 +27,8 @@ import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
 import androidx.test.uiautomator.Until;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -64,7 +66,7 @@ public abstract class BaseUiTest {
     protected static final int WAIT_FOR_IDLE_TIMEOUT = 10000;
     protected static final int SCREENSHOT_COMPRESSION = 100;
     protected static UiDevice uiDevice;
-    protected static final String UI_TEST_TAG = "Trace UI Test";
+    public static final String UI_TEST_TAG = "Trace UI Test";
     private static final int LAUNCH_TIMEOUT = 15000;
 
     /**
@@ -92,14 +94,26 @@ public abstract class BaseUiTest {
      */
     @BeforeClass
     public static void setUpBeforeClass() {
+        Log.i(UI_TEST_TAG, "Starting UI tests");
         uiDevice = UiDevice.getInstance(getInstrumentation());
         uiDevice.pressHome();
         registerANRWatcher();
     }
 
+    @AfterClass
+    public static void tearDownClass() {
+        Log.i(UI_TEST_TAG, "Finished UI tests");
+    }
+
     @Before
     public void setup() {
+        Log.i(UI_TEST_TAG, "Launching test " + testName.getMethodName());
         assertThat(launchTraceTestApp(true), not(false));
+    }
+
+    @After
+    public void tearDown() {
+        Log.i(UI_TEST_TAG, "Finished test " + testName.getMethodName());
     }
 
     /**
@@ -181,6 +195,7 @@ public abstract class BaseUiTest {
             }
             Log.i(UI_TEST_TAG, "Created screenshot " + screenShotFileName);
         } catch (final IOException e) {
+            Log.e(UI_TEST_TAG, "Failed to take screenshot!", e);
             e.printStackTrace();
         }
     }
