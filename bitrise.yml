@@ -1064,7 +1064,7 @@ workflows:
                 mkdir -p /bitrise/src/trace-test-application/build/reports
                 adb logcat -d > $BITRISE_SOURCE_DIR/trace-test-application/build/reports/logcat.txt &
       - script@1:
-          title: save_screenshots
+          title: save_collected_test_data
           is_always_run: true
           inputs:
             - content: |-
@@ -1076,6 +1076,8 @@ workflows:
 
                 mkdir -p /bitrise/src/trace-test-application/build/reports/screenshots/
                 adb pull /sdcard/Pictures/UiTestScreenShots/ /bitrise/src/trace-test-application/build/reports/screenshots/
+                mkdir -p /bitrise/src/trace-test-application/build/reports/viewhierarchy/
+                adb pull /sdcard/Documents/UiTestHierarchy/ /bitrise/src/trace-test-application/build/reports/viewhierarchy/
       - script@1:
           inputs:
             - content: |-

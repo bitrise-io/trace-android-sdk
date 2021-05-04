@@ -70,10 +70,10 @@ public abstract class BaseUiTest {
     private static final int LAUNCH_TIMEOUT = 15000;
 
     /**
-     * Rule for taking a screenshot every time a test case fails.
+     * Rule for collecting data for every test case.
      */
     @Rule
-    public ScreenshotRule screenshotRule = new ScreenshotRule();
+    public TestDataCollectionRule testDataCollectionRule = new TestDataCollectionRule();
 
     /**
      * Rule for the name of the test. Used to determine the name of the screenshot for the given test case.
@@ -136,7 +136,7 @@ public abstract class BaseUiTest {
         context.startActivity(intent);
 
         final boolean result = uiDevice.wait(Until.hasObject(By.pkg(PACKAGE_NAME).depth(0)), LAUNCH_TIMEOUT);
-        takeScreenShot(ScreenshotEvent.LAUNCHED);
+        takeScreenShot(TestEvent.LAUNCHED);
         return result;
     }
 
@@ -159,15 +159,27 @@ public abstract class BaseUiTest {
     /**
      * Takes and stores a screenshot of the device.
      *
-     * @param event a {@link ScreenshotEvent} value to postfix the tested method.
+     * @param testEvent a {@link TestEvent} value to postfix the tested method.
      */
-    protected void takeScreenShot(@NonNull final ScreenshotEvent event) {
+    protected void takeScreenShot(@NonNull final TestEvent testEvent) {
         final Bitmap screenshotBitmap = getInstrumentation().getUiAutomation().takeScreenshot();
-        final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd_hh:mm:ss");
-        final String timeStamp = simpleDateFormat.format(Calendar.getInstance().getTime());
-        final String screenShotFileName = timeStamp + "_" + testName.getMethodName() + "_" + event;
+        final String screenShotFileName = getTestReportFileBaseName(testEvent);
 
         storeScreenshot(screenshotBitmap, screenShotFileName);
+    }
+
+    /**
+     * Gets the base name for collected test data files, which is the current time concatenated with the name of the
+     * test and the {@link TestEvent}.
+     *
+     * @param testEvent the current TestEvent.
+     * @return the base name for test data files.
+     */
+    @NonNull
+    private String getTestReportFileBaseName(@NonNull final TestEvent testEvent) {
+        final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd_hhmmss");
+        final String timeStamp = simpleDateFormat.format(Calendar.getInstance().getTime());
+        return timeStamp + "_" + testName.getMethodName() + "_" + testEvent;
     }
 
     /**
@@ -247,11 +259,12 @@ public abstract class BaseUiTest {
                                            @NonNull final String screenshotLocation,
                                            @NonNull final Bitmap screenshotBitmap) throws IOException {
         final File picturesDir = new File("/sdcard/Pictures/" + screenshotLocation);
-        if (!picturesDir.exists()) {
-            picturesDir.mkdirs();
+        final File screenshotFile = new File(picturesDir, screenshotFileName + ".jpg");
+        screenshotFile.mkdirs();
+        if (screenshotFile.exists()) {
+            screenshotFile.delete();
         }
 
-        final File screenshotFile = new File(picturesDir, screenshotFileName + ".jpg");
         try (final FileOutputStream outputStream = new FileOutputStream(screenshotFile)) {
             saveScreenshotToStream(screenshotBitmap, outputStream);
         }
@@ -320,29 +333,71 @@ public abstract class BaseUiTest {
     }
 
     /**
-     * Event to identify the state when the screenshot was taken.
+     * Dumps the view hierarchy to an xml file.
+     *
+     * @param testEvent the current {@link TestEvent}.
      */
-    public enum ScreenshotEvent {
+    private void dumpWindowHierarchy(@NonNull final TestEvent testEvent) {
+        try {
+            uiDevice.dumpWindowHierarchy(createViewHierarchyFile(testEvent));
+        } catch (IOException e) {
+            Log.i(UI_TEST_TAG, "Failed to dump view hierarchy.", e);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Creates a File to store the view hierarchy.
+     *
+     * @param testEvent the current {@link TestEvent}.
+     * @return the created File.
+     */
+    @NonNull
+    private File createViewHierarchyFile(@NonNull final TestEvent testEvent) {
+        final String hierarchyReportFileName = getTestReportFileBaseName(testEvent) + "_hierarchy.xml";
+        final File hierarchyDump = new File("/sdcard/Documents/UiTestHierarchy", hierarchyReportFileName);
+        hierarchyDump.mkdirs();
+        if (hierarchyDump.exists()) {
+            hierarchyDump.delete();
+        }
+
+        return hierarchyDump;
+    }
+
+    /**
+     * Event to identify the state of the test.
+     */
+    public enum TestEvent {
         START,
         LAUNCHED,
         FAIL,
     }
 
     /**
-     * Inner class for creating Rules for taking screenshots.
+     * Inner class for creating Rules for collecting test data.
      */
-    public class ScreenshotRule extends TestWatcher {
+    public class TestDataCollectionRule extends TestWatcher {
 
         @Override
         protected void starting(@NonNull final Description description) {
             super.starting(description);
-            takeScreenShot(ScreenshotEvent.START);
+            Log.i(UI_TEST_TAG, "Test started: " + testName);
+            takeScreenShot(TestEvent.START);
+            dumpWindowHierarchy(TestEvent.START);
+        }
+
+        @Override
+        protected void succeeded(Description description) {
+            super.succeeded(description);
+            Log.i(UI_TEST_TAG, "Test success: " + testName);
         }
 
         @Override
         protected void failed(@NonNull final Throwable e, @NonNull final Description description) {
             super.failed(e, description);
-            takeScreenShot(ScreenshotEvent.FAIL);
+            Log.i(UI_TEST_TAG, "Test failed: " + testName);
+            takeScreenShot(TestEvent.FAIL);
+            dumpWindowHierarchy(TestEvent.FAIL);
         }
     }
 }
