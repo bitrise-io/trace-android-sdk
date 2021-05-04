@@ -104,11 +104,4 @@ dependencies {
     androidTestImplementation "org.mockito:mockito-android:${versions.mockitoAndroid}"
 }
 
-junitJacoco {
-    jacocoVersion = '0.8.6'
-    xml.enabled = true
-    csv.enabled = false
-    html.enabled = false
-}
-
 apply from: "release-trace-sdk.gradle"
