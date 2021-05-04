@@ -1025,9 +1025,9 @@ workflows:
 
                 if [ $RUN_TESTKIT == 'true' ]
                 then
-                  $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:connectedDebugAndroidTest" --stacktrace
+                  $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:jacocoTestReport" --stacktrace
                 else
-                  $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:connectedDebugAndroidTest" "-Pandroid.testInstrumentationRunnerArguments.notAnnotation=io.bitrise.trace.TestKitTest" --stacktrace
+                  $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:jacocoTestReport" "-Pandroid.testInstrumentationRunnerArguments.notAnnotation=io.bitrise.trace.TestKitTest" --stacktrace
                 fi
           title: trace-sdk connectedAndroidTest
       - script@1:
