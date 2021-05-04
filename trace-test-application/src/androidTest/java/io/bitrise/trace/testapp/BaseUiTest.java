@@ -28,7 +28,6 @@ import androidx.test.uiautomator.UiSelector;
 import androidx.test.uiautomator.Until;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -68,6 +67,7 @@ public abstract class BaseUiTest {
     protected static UiDevice uiDevice;
     public static final String UI_TEST_TAG = "Trace UI Test";
     private static final int LAUNCH_TIMEOUT = 15000;
+    private static final String anrText = "isn't responding";
 
     /**
      * Rule for collecting data for every test case.
@@ -94,15 +94,9 @@ public abstract class BaseUiTest {
      */
     @BeforeClass
     public static void setUpBeforeClass() {
-        Log.i(UI_TEST_TAG, "Starting UI tests");
         uiDevice = UiDevice.getInstance(getInstrumentation());
         uiDevice.pressHome();
         registerANRWatcher();
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-        Log.i(UI_TEST_TAG, "Finished UI tests");
     }
 
     @Before
@@ -273,7 +267,6 @@ public abstract class BaseUiTest {
         contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
     }
 
-
     /**
      * Compresses the bitmap object to a .jpeg image format using the specified OutputStream of bytes.
      *
@@ -303,13 +296,11 @@ public abstract class BaseUiTest {
      */
     private static void registerANRWatcher() {
         uiDevice.registerWatcher("ANR", () -> {
-            UiObject anrDialog = uiDevice.findObject(
-                    new UiSelector().className("com.android.server.am.AppNotRespondingDialog"));
-            if (!anrDialog.exists()) {
-                anrDialog = uiDevice.findObject(new UiSelector()
-                        .packageName("android")
-                        .textContains("isn't responding."));
-            }
+            Log.i(UI_TEST_TAG, "ANR dialog detected!");
+            final UiObject anrDialog = uiDevice.findObject(new UiSelector()
+                    .packageName("android")
+                    .textContains(anrText));
+
             return clickWaitForAnrDialog(anrDialog);
         });
     }
@@ -323,10 +314,15 @@ public abstract class BaseUiTest {
     private static boolean clickWaitForAnrDialog(@NonNull final UiObject anrDialog) {
         if (anrDialog.exists()) {
             try {
-                anrDialog.getChild(new UiSelector().text("Wait")).click();
+                uiDevice.findObject(new UiSelector().text("Wait").className("android.widget.Button").packageName(
+                        "android")).click();
+                final String anrDialogText = anrDialog.getText();
+                final String appName = anrDialogText.substring(0, anrDialogText.length() - anrText.length());
+                Log.i(UI_TEST_TAG, String.format("Application \"%s\" is not responding!", appName));
             } catch (final UiObjectNotFoundException e) {
                 Log.i(UI_TEST_TAG, "Detected ANR, but window disappeared!");
             }
+            Log.i(UI_TEST_TAG, "ANR dialog closed: pressed on wait!");
             return true;
         }
         return false;
@@ -381,21 +377,21 @@ public abstract class BaseUiTest {
         @Override
         protected void starting(@NonNull final Description description) {
             super.starting(description);
-            Log.i(UI_TEST_TAG, "Test started: " + testName);
+            Log.i(UI_TEST_TAG, "Test started: " + testName.getMethodName());
             takeScreenShot(TestEvent.START);
             dumpWindowHierarchy(TestEvent.START);
         }
 
         @Override
-        protected void succeeded(Description description) {
+        protected void succeeded(@NonNull final Description description) {
             super.succeeded(description);
-            Log.i(UI_TEST_TAG, "Test success: " + testName);
+            Log.i(UI_TEST_TAG, "Test success: " + testName.getMethodName());
         }
 
         @Override
         protected void failed(@NonNull final Throwable e, @NonNull final Description description) {
             super.failed(e, description);
-            Log.i(UI_TEST_TAG, "Test failed: " + testName);
+            Log.i(UI_TEST_TAG, "Test failed: " + testName.getMethodName());
             takeScreenShot(TestEvent.FAIL);
             dumpWindowHierarchy(TestEvent.FAIL);
         }

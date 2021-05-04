@@ -1043,6 +1043,7 @@ workflows:
                 # debug log
                 set -x
 
+                adb devices
                 $BITRISE_SOURCE_DIR/gradlew ":trace-test-application:connectedAndroidTest" --stacktrace
           title: trace-test-application connectedAndroidTest
       - codecov@2:
@@ -1062,7 +1063,7 @@ workflows:
                 set -x
 
                 mkdir -p /bitrise/src/trace-test-application/build/reports
-                adb logcat -d > $BITRISE_SOURCE_DIR/trace-test-application/build/reports/logcat.txt &
+                adb logcat -d > $BITRISE_SOURCE_DIR/trace-test-application/build/reports/logcat.txt
       - script@1:
           title: save_collected_test_data
           is_always_run: true
@@ -1073,6 +1074,14 @@ workflows:
                 set -e
                 # debug log
                 set -x
+
+                echo "Listing files in /sdcard/Pictures/UiTestScreenShots/"
+                adb shell ls /sdcard/Pictures/UiTestScreenShots/ || true
+
+                echo
+
+                echo "Listing files in /sdcard/Documents/UiTestHierarchy/"
+                adb shell ls /sdcard/Documents/UiTestHierarchy/ || true
 
                 mkdir -p /bitrise/src/trace-test-application/build/reports/screenshots/
                 adb pull /sdcard/Pictures/UiTestScreenShots/ /bitrise/src/trace-test-application/build/reports/screenshots/
