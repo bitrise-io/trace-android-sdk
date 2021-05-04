@@ -64,17 +64,17 @@ public class TraceGradlePluginFunctionalTest {
 
     /**
      * An instance of {@link FunctionalTestWriter} that will write the output of each test case to the console with
-     * cyan color.
+     * AQUA4 color from the Bitkit.
      */
     private final FunctionalTestWriter stdOutWriter = new FunctionalTestWriter(System.out,
-            FunctionalTestWriter.PrintColor.CYAN);
+            FunctionalTestWriter.PrintColor.AQUA4);
 
     /**
      * An instance of {@link FunctionalTestWriter} that will write the error of each test case to the console with
-     * magenta color.
+     * RED4 color from the Bitkit.
      */
     private final FunctionalTestWriter errWriter = new FunctionalTestWriter(System.err,
-            FunctionalTestWriter.PrintColor.MAGENTA);
+            FunctionalTestWriter.PrintColor.RED4);
 
     /**
      * Sets up the test class.
