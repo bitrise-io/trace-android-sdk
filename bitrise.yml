@@ -295,7 +295,7 @@ workflows:
           title: android_build
       - gradle-runner@1:
           inputs:
-            - gradle_task: :trace-sdk:test
+            - gradle_task: :trace-sdk:jacocoTestReportDebug
             - gradlew_path: "$BITRISE_SOURCE_DIR/gradlew"
       - cache-push@2:
           title: cache_push
@@ -1041,10 +1041,6 @@ workflows:
 
                 $BITRISE_SOURCE_DIR/gradlew ":trace-test-application:connectedAndroidTest" --stacktrace
           title: trace-test-application connectedAndroidTest
-      - gradle-runner@1:
-          inputs:
-            - gradle_task: :trace-sdk:jacocoTestReportDebug
-            - gradlew_path: "$BITRISE_SOURCE_DIR/gradlew"
       - codecov@2:
           inputs:
             - CODECOV_TOKEN: "$CODECOV_TOKEN"
