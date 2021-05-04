@@ -85,7 +85,7 @@ public class FunctionalTestHelper {
     private String getTestNameBorderLogLine(final int lineLength) {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("+");
-        stringBuilder.append(concatWord("=", lineLength));
+        stringBuilder.append(concatString("=", lineLength));
         stringBuilder.append("+");
         stringBuilder.append("\n");
         return stringBuilder.toString();
@@ -101,7 +101,7 @@ public class FunctionalTestHelper {
     private String getTestNameEmptyLogLine(final int lineLength) {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("|");
-        stringBuilder.append(concatWord(" ", lineLength));
+        stringBuilder.append(concatString(" ", lineLength));
         stringBuilder.append("|");
         stringBuilder.append("\n");
         return stringBuilder.toString();
@@ -118,24 +118,24 @@ public class FunctionalTestHelper {
     private String getTestNameLogLine(final String testName, final int paddingLength) {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("|");
-        stringBuilder.append(concatWord(" ", paddingLength / 2));
+        stringBuilder.append(concatString(" ", paddingLength / 2));
         stringBuilder.append(testName);
-        stringBuilder.append(concatWord(" ", paddingLength / 2));
+        stringBuilder.append(concatString(" ", paddingLength / 2));
         stringBuilder.append("|");
         stringBuilder.append("\n");
         return stringBuilder.toString();
     }
 
     /**
-     * Concats the given word the given amount of times.
+     * Concatenates the given String the given amount of times.
      *
-     * @param word  the word to concat.
-     * @param times the number of times it should be concatenated.
+     * @param string the String to concat.
+     * @param times  the number of times it should be concatenated.
      * @return the concatenated String.
      */
     @NonNull
-    private String concatWord(@NonNull final String word, final int times) {
-        return IntStream.range(0, times).mapToObj(i -> word).collect(Collectors.joining(""));
+    private String concatString(@NonNull final String string, final int times) {
+        return IntStream.range(0, times).mapToObj(i -> string).collect(Collectors.joining(""));
     }
 
     /**
@@ -165,7 +165,7 @@ public class FunctionalTestHelper {
      *
      * @param testName the name of the test.
      */
-    public void deleteTemporaryProject(@NonNull final TestName testName) {
+    public void deleteTestProjectDir(@NonNull final TestName testName) {
         final File testDir = getTestDir(testName);
         try {
             if (testDir.exists()) {
@@ -188,7 +188,7 @@ public class FunctionalTestHelper {
      */
     public void setupTestDir(@NonNull final TestName testName) {
         final String testDirPath = getTestDirName(testName);
-        deleteTemporaryProject(testName);
+        deleteTestProjectDir(testName);
         new File(testDirPath).mkdirs();
     }
 
