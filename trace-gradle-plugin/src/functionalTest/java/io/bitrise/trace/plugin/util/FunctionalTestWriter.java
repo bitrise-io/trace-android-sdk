@@ -7,7 +7,10 @@ import java.io.PrintWriter;
 
 /**
  * Custom implementation of the {@link PrintWriter} class, to add different coloring to the output and some extra
- * indentation.
+ * indentation. Please note that adding the coloring will stay until changed. To reset it to the default please use
+ * the {@link #reset()} method. The coloring is based on the ANSI escape codes.
+ *
+ * @see <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">https://en.wikipedia.org/wiki/ANSI_escape_code</a>
  */
 public class FunctionalTestWriter extends PrintWriter {
 
@@ -62,14 +65,25 @@ public class FunctionalTestWriter extends PrintWriter {
      */
     @NonNull
     private static char[] createColorCode(@NonNull final PrintColor printColor) {
-        return ("[" + printColor.getColorCode() + "m").toCharArray();
+        final Rgb rgb = printColor.getRgb();
+        return String.format("[38;2;%s;%s;%sm", rgb.getRed(), rgb.getGreen(), rgb.getBlue()).toCharArray();
+    }
+
+    /**
+     * Gets the default console printing color.
+     *
+     * @return the char array representation of the default color.
+     */
+    @NonNull
+    private static char[] getDefaultColorCode() {
+        return ("[39m").toCharArray();
     }
 
     /**
      * Resets the console to the default color.
      */
     public static void reset() {
-        System.out.println(concatEscapeChar(createColorCode(PrintColor.DEFAULT)));
+        System.out.println(concatEscapeChar(getDefaultColorCode()));
     }
 
     @Override
@@ -91,7 +105,8 @@ public class FunctionalTestWriter extends PrintWriter {
     }
 
     /**
-     * Inserts to the start the coloring chars to a given array of chars.
+     * Inserts to the start the coloring chars to a given array of chars. Please note that adding the coloring will
+     * stay until changed. To reset it to the default please use the {@link #reset()} method.
      *
      * @param chars the given array of chars.
      * @return the given text with the coloring chars.
@@ -103,28 +118,52 @@ public class FunctionalTestWriter extends PrintWriter {
     }
 
     /**
-     * Enum class for different colors. This is based on the ANSI escape codes.
+     * Enum class for different colors. The color RGB values are in align with the Bitkit.
      *
-     * @see <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">https://en.wikipedia.org/wiki/ANSI_escape_code</a>
+     * @see
+     * <a href="https://bitkit.netlify.app/documentation/materials/colors">https://bitkit.netlify.app/documentation/materials/colors</a>
      */
     public enum PrintColor {
-        RED(31),
-        GREEN(32),
-        YELLOW(33),
-        BLUE(34),
-        MAGENTA(35),
-        CYAN(36),
-        WHITE(36),
-        DEFAULT(39);
+        RED4(new Rgb(238, 0, 59)),
+        AQUA4(new Rgb(14, 199, 186));
 
-        private final int colorCode;
+        private final Rgb rgb;
 
-        PrintColor(final int colorCode) {
-            this.colorCode = colorCode;
+        PrintColor(@NonNull final Rgb rgb) {
+            this.rgb = rgb;
         }
 
-        public int getColorCode() {
-            return colorCode;
+        public Rgb getRgb() {
+            return rgb;
         }
+    }
+
+    /**
+     * Data class for representing a RGB color.
+     */
+    public static class Rgb {
+
+        private final int red;
+        private final int green;
+        private final int blue;
+
+        public Rgb(final int red, final int green, final int blue) {
+            this.red = red;
+            this.green = green;
+            this.blue = blue;
+        }
+
+        public int getRed() {
+            return red;
+        }
+
+        public int getGreen() {
+            return green;
+        }
+
+        public int getBlue() {
+            return blue;
+        }
+
     }
 }
