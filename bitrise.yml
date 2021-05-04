@@ -1013,6 +1013,34 @@ workflows:
                 adb devices
                 sdkmanager --list
           title: Log emulators and installed SDK packages
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+                adb -s emulator-5554 shell input keyevent 82
+
+                if [ $RUN_TESTKIT == 'true' ]
+                then
+                  $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:connectedAndroidTest" --stacktrace
+                else
+                  $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:connectedAndroidTest" "-Pandroid.testInstrumentationRunnerArguments.notAnnotation=io.bitrise.trace.TestKitTest" --stacktrace
+                fi
+          title: trace-sdk connectedAndroidTest
+      - script@1:
+          inputs:
+            - content: |
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                $BITRISE_SOURCE_DIR/gradlew ":trace-test-application:connectedAndroidTest" --stacktrace
+          title: trace-test-application connectedAndroidTest
       - gradle-runner@1:
           inputs:
             - gradle_task: :trace-sdk:jacocoTestReportDebug
