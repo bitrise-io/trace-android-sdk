@@ -17,14 +17,6 @@ android {
             }
         }
     }
-    testOptions {
-        unitTests.all {
-            jacoco {
-                includeNoLocationClasses = true
-            }
-        }
-        unitTests.returnDefaultValues = true
-    }
     buildTypes {
         debug {
             testCoverageEnabled = true
@@ -40,23 +32,86 @@ android {
     }
 }
 
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
+    // see related issue https://github.com/gradle/gradle/issues/5184#issuecomment-457865951
+}
 
-    reports {
-        xml.enabled = true
-        html.enabled = true
+project.afterEvaluate {
+    // A Set that will contain all the report task names for each variant
+    Set<String> reportTaskNames = new HashSet<>()
+    android.'libraryVariants'
+            .all { variant ->
+                def variantName = variant.name
+                def unitTestTask = "test${variantName.capitalize()}UnitTest"
+                def androidTestCoverageTask = "create${variantName.capitalize()}CoverageReport"
+
+                // Add the report task name for the given variant to the Set above
+                reportTaskNames.add("create${variantName.capitalize()}AndroidTestCoverageReport")
+
+                tasks.create(name: "${variantName}JacocoReport", type: JacocoReport, dependsOn: [
+                        "$unitTestTask",
+                        "$androidTestCoverageTask"
+                ]) {
+                    group = "Reporting"
+                    description = "Generate Jacoco coverage reports for the ${variantName.capitalize()} build"
+
+                    reports {
+                        html.enabled = false
+                        xml.enabled = true
+                        csv.enabled = false
+                    }
+
+                    def excludes = [
+                            '**/R.class',
+                            '**/R$*.class',
+                            '**/BuildConfig.*',
+                            '**/Manifest*.*',
+                            '**/*Test*.*',
+                            'android/**/*.*',
+                    ]
+
+                    def javaClasses = fileTree(dir: variant.javaCompileProvider.get().destinationDir,
+                            excludes: excludes)
+
+                    classDirectories.setFrom(files([
+                            javaClasses
+                    ]))
+
+                    def variantSourceSets = variant.sourceSets.java.srcDirs.collect { it.path }.flatten()
+                    sourceDirectories.setFrom(project.files(variantSourceSets))
+
+                    def androidTestsData = fileTree(dir: "${buildDir}/outputs/code_coverage/${variantName}AndroidTest/connected/", includes: ["**/*.ec"])
+
+                    executionData(files([
+                            "$project.buildDir/jacoco/${unitTestTask}.exec",
+                            androidTestsData
+                    ]))
+                }
+            }
+    // Get the task of running the connected tests
+    Task connectedAndroidTestTask = tasks.findByName("connectedAndroidTest")
+    // Create a set that will contain the required dependsOn elements
+    Set<?> deps = new HashSet<>();
+    connectedAndroidTestTask.dependsOn.each {
+        // Filter out Jacoco report tasks. this is an issue, connected tests should not depend on them
+        String providerName = ((TaskProvider) it).getName()
+        if (!reportTaskNames.grep{it == providerName}) {
+            deps.add(it)
+        }
     }
+    // Replace the original dependsOn with the filtered
+    connectedAndroidTestTask.setDependsOn(deps)
 
-    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
-    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
-    def mainSrc = "${project.projectDir}/src/main/java"
-
-    sourceDirectories.setFrom(files([mainSrc]))
-    classDirectories.setFrom(files([debugTree]))
-    executionData.setFrom(fileTree(dir: "$buildDir", includes: [
-            "jacoco/testDebugUnitTest.exec",
-            "outputs/code-coverage/connected/*coverage.ec"
-    ]))
+    // Finally make sure that each report task depends on the connected tests.
+    reportTaskNames.forEach({
+        // Will be null, if testCoverageEnabled is false for the given variant
+        def reportTask = tasks.findByName(it)
+        if (reportTask != null) {
+            reportTask.dependsOn(connectedAndroidTestTask)
+        }
+    })
 }
 
 dependencies {
