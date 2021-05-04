@@ -56,11 +56,15 @@ public class TraceGradlePluginFunctionalTest {
      */
     private static final boolean DELETE_TEMP_PROJECT = false;
 
-
     /**
      * The {@link FunctionalTestHelper} class that provides some supportive functions to the tests.
      */
     private static final FunctionalTestHelper functionalTestHelper = new FunctionalTestHelper();
+
+    /**
+     * Format for the relative path of the build ID file. The formatting arguments should be the build variant.
+     */
+    private static final String buildIdFileRelativePathFormat = "/build/outputs/apk/%s/bitriseBuildId.txt";
 
     /**
      * Sets up the test class.
@@ -96,7 +100,7 @@ public class TraceGradlePluginFunctionalTest {
     @After
     public void tearDownTest() {
         if (DELETE_TEMP_PROJECT) {
-            functionalTestHelper.deleteTemporaryProject(testName);
+            functionalTestHelper.deleteTestProjectDir(testName);
         }
     }
 
@@ -337,12 +341,12 @@ public class TraceGradlePluginFunctionalTest {
      * contains the build ID.
      */
     private void verifyGenerateBuildIdTasksForBuild() {
-        final File debugBuildIdFile =
-                new File(functionalTestHelper.getTestDir(testName)
-                                             .getPath() + "/build/outputs/apk/debug/bitriseBuildId.txt");
-        final File releaseBuildIdFile =
-                new File(functionalTestHelper.getTestDir(testName)
-                                             .getPath() + "/build/outputs/apk/release/bitriseBuildId.txt");
+        final File debugBuildIdFile = new File(
+                functionalTestHelper.getTestDir(testName).getPath() + String.format(buildIdFileRelativePathFormat,
+                        "debug"));
+        final File releaseBuildIdFile = new File(
+                functionalTestHelper.getTestDir(testName).getPath() + String.format(buildIdFileRelativePathFormat,
+                        "release"));
 
         assertThat(debugBuildIdFile.exists(), is(true));
         assertThat(releaseBuildIdFile.exists(), is(true));
@@ -353,9 +357,9 @@ public class TraceGradlePluginFunctionalTest {
      * contains the build ID.
      */
     private void verifyGenerateBuildIdTasksForAssembleDebug() {
-        final File debugBuildIdFile =
-                new File(functionalTestHelper.getTestDir(testName)
-                                             .getPath() + "/build/outputs/apk/debug/bitriseBuildId.txt");
+        final File debugBuildIdFile = new File(
+                functionalTestHelper.getTestDir(testName).getPath() + String.format(buildIdFileRelativePathFormat,
+                        "debug"));
 
         assertThat(debugBuildIdFile.exists(), is(true));
     }
