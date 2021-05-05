@@ -6,6 +6,7 @@ import io.bitrise.trace.data.collector.device.DeviceLocaleDataCollector;
 import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.dto.FormattedData;
 import io.bitrise.trace.data.management.formatter.BaseDataFormatterTest;
+import io.bitrise.trace.data.resource.ResourceEntity;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -15,6 +16,7 @@ import static org.junit.Assert.assertNotNull;
  */
 public class DeviceLocaleDataFormatterTest extends BaseDataFormatterTest {
 
+    final String deviceLocale = "en_US";
     @Test
     public void formatData_localeShouldBeEnUs() {
         final Data inputData = new Data(DeviceLocaleDataCollector.class);
@@ -23,7 +25,6 @@ public class DeviceLocaleDataFormatterTest extends BaseDataFormatterTest {
         final FormattedData[] outputData =  new DeviceLocaleDataFormatter().formatData(inputData);
         assertEquals(1, outputData.length);
         assertNotNull(outputData[0].getResourceEntity());
-        assertEquals("device.locale", outputData[0].getResourceEntity().getLabel());
-        assertEquals("en_US", outputData[0].getResourceEntity().getValue());
+        assertEquals(new ResourceEntity("device.locale", deviceLocale), outputData[0].getResourceEntity());
     }
 }
