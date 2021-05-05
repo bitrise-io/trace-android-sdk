@@ -3,8 +3,13 @@ package io.bitrise.trace.data.management.formatter.view;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import io.bitrise.trace.data.collector.view.FragmentStateDataListener;
+import io.bitrise.trace.data.dto.Data;
+import io.bitrise.trace.data.dto.FormattedData;
 import io.bitrise.trace.data.dto.FragmentData;
 import io.bitrise.trace.data.dto.FragmentDataStateEntry;
 import io.bitrise.trace.data.dto.FragmentState;
@@ -16,6 +21,8 @@ import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Instrumented test for the {@link FragmentStateDataFormatter} class.
@@ -39,6 +46,8 @@ public class FragmentStateDataFormatterTest {
             new FragmentDataStateEntry(FragmentState.PAUSED, 2500);
     private FragmentDataStateEntry fragmentDataStateEntryPaused3 =
             new FragmentDataStateEntry(FragmentState.PAUSED, 3500);
+
+    private FragmentStateDataFormatter formatter = new FragmentStateDataFormatter();
 
     /**
      * When the input data timestamp is before all of the timestamps of {@link FragmentDataStateEntry}s, it should
@@ -334,5 +343,58 @@ public class FragmentStateDataFormatterTest {
 
         final List<Span> actualValue = FragmentStateDataFormatter.getFragmentSpans(fragmentData);
         assertThat(actualValue.size(), is(0));
+    }
+
+    @Test
+    public void formatData_notMap() {
+        final Data data = new Data(FragmentStateDataListener.class);
+        data.setContent("kittens");
+        assertArrayEquals(new FormattedData[]{}, formatter.formatData(data));
+    }
+
+    @Test
+    public void formatData_oneSpan() {
+        final List<FragmentDataStateEntry> fragmentDataStateEntries =
+                new ArrayList<FragmentDataStateEntry>() {{
+                    add(fragmentDataStateEntryCreated1);
+                    add(fragmentDataStateEntryPaused1);
+                }};
+        final FragmentData fragmentData = new FragmentData(DUMMY_SPAN_ID);
+        fragmentData.setName(DUMMY_FRAGMENT_NAME);
+        fragmentData.setParentSpanId(DUMMY_PARENT_SPAN_ID);
+        fragmentData.setStates(fragmentDataStateEntries);
+
+        final Map<Integer, FragmentData> map = new HashMap<>();
+        map.put(1234, fragmentData);
+        final Data data = new Data(FragmentStateDataListener.class);
+        data.setContent(map);
+
+        final FormattedData[] formattedData = formatter.formatData(data);
+
+        assertEquals(1, formattedData.length);
+    }
+
+    @Test
+    public void formatData_twoSpan() {
+        final List<FragmentDataStateEntry> fragmentDataStateEntries =
+                new ArrayList<FragmentDataStateEntry>() {{
+                    add(fragmentDataStateEntryCreated1);
+                    add(fragmentDataStateEntryPaused1);
+                    add(fragmentDataStateEntryCreated2);
+                    add(fragmentDataStateEntryPaused2);
+                }};
+        final FragmentData fragmentData = new FragmentData(DUMMY_SPAN_ID);
+        fragmentData.setName(DUMMY_FRAGMENT_NAME);
+        fragmentData.setParentSpanId(DUMMY_PARENT_SPAN_ID);
+        fragmentData.setStates(fragmentDataStateEntries);
+
+        final Map<Integer, FragmentData> map = new HashMap<>();
+        map.put(1234, fragmentData);
+        final Data data = new Data(FragmentStateDataListener.class);
+        data.setContent(map);
+
+        final FormattedData[] formattedData = formatter.formatData(data);
+
+        assertEquals(2, formattedData.length);
     }
 }
