@@ -295,7 +295,7 @@ workflows:
           title: android_build
       - gradle-runner@1:
           inputs:
-            - gradle_task: :trace-sdk:jacocoTestReportDebug
+            - gradle_task: :trace-sdk:test
             - gradlew_path: "$BITRISE_SOURCE_DIR/gradlew"
       - cache-push@2:
           title: cache_push
@@ -1025,9 +1025,9 @@ workflows:
 
                 if [ $RUN_TESTKIT == 'true' ]
                 then
-                  $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:connectedAndroidTest" --stacktrace
+                  $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:combinedTestReportDebug" --stacktrace
                 else
-                  $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:connectedAndroidTest" "-Pandroid.testInstrumentationRunnerArguments.notAnnotation=io.bitrise.trace.TestKitTest" --stacktrace
+                  $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:combinedTestReportDebug" "-Pandroid.testInstrumentationRunnerArguments.notAnnotation=io.bitrise.trace.TestKitTest" --stacktrace
                 fi
           title: trace-sdk connectedAndroidTest
       - script@1:
