@@ -14,7 +14,7 @@ import static org.hamcrest.core.IsNull.notNullValue;
 public class SessionTest {
 
     /**
-     * When a {@link Session} is created the {@link ULID} of it should not be {@code null}.
+     * When a {@link Session} is created the {@link io.azam.ulidj.ULID} of it should not be {@code null}.
      */
     @Test
     public void newSession_createsNonNullULID() {
@@ -24,7 +24,7 @@ public class SessionTest {
     }
 
     /**
-     * When multiple {@link Session}s are created the String value of the {@link ULID} of it should be different.
+     * When multiple {@link Session}s are created the String value of the {@link io.azam.ulidj.ULID} of it should be different.
      */
     @Test
     public void newSessions_createDifferentULIDStrings() {

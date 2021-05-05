@@ -2,8 +2,6 @@ package io.bitrise.trace.data.management.formatter.memory;
 
 import org.junit.Test;
 
-import io.bitrise.trace.data.collector.cpu.SystemCpuUsageDataCollector;
-import io.bitrise.trace.data.collector.memory.ApplicationUsedMemoryDataCollector;
 import io.bitrise.trace.data.collector.memory.SystemMemoryDataCollector;
 import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.dto.FormattedData;

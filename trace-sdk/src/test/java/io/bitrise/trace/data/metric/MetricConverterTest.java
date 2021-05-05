@@ -5,10 +5,7 @@ import org.junit.Test;
 import io.bitrise.trace.test.MetricTestProvider;
 import io.opencensus.proto.metrics.v1.Metric;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 /**
  * Checks that the converting methods of {@link MetricConverter} works as intended.

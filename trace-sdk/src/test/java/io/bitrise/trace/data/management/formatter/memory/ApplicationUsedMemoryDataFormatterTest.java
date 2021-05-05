@@ -9,11 +9,6 @@ import io.bitrise.trace.data.management.formatter.BaseDataFormatterTest;
 import io.opencensus.proto.metrics.v1.LabelKey;
 import io.opencensus.proto.metrics.v1.MetricDescriptor;
 
-import static io.bitrise.trace.data.dto.DataValues.bytes;
-import static io.bitrise.trace.data.dto.DataValues.getName;
-import static io.bitrise.trace.data.dto.DataValues.memory;
-import static io.bitrise.trace.data.dto.DataValues.state;
-import static io.bitrise.trace.data.dto.DataValues.system;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
