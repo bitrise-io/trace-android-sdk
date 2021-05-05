@@ -111,7 +111,8 @@ public class FunctionalTestHelper {
      * Prints the line with the name of the test.
      *
      * @param testName      the given text to display.
-     * @param paddingLength the length of padding for the line, excluding starting and ending cahars.
+     * @param paddingLength the length of padding for the line, excluding starting and ending chars. Padding length
+     *                      should be an even number, otherwise it will result in uneven line lengths.
      * @return the line.
      */
     @NonNull
