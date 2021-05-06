@@ -9,9 +9,10 @@ import io.bitrise.trace.data.collector.DataSourceType;
 
 import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertNotNull;
 
 /**
- * Instrumented tests for the {@link DataFormatterDelegator} class.
+ * Unit tests for the {@link DataFormatterDelegator} class.
  */
 public class DataFormatterDelegatorTest {
 
@@ -32,7 +33,7 @@ public class DataFormatterDelegatorTest {
     public void formatData_allDataSourceTypesShouldBeDelegated() {
         final DataFormatterDelegator dataFormatterDelegator = DataFormatterDelegator.getInstance();
         for (@NonNull final DataSourceType dataSourceType : DataSourceType.values()) {
-            dataFormatterDelegator.formatData(new Data(dataSourceType));
+            assertNotNull(dataFormatterDelegator.formatData(new Data(dataSourceType)));
         }
     }
 
@@ -41,7 +42,7 @@ public class DataFormatterDelegatorTest {
      * DataFormatterDelegator tries to format it.
      */
     @Test(expected = IllegalArgumentException.class)
-    public void formatData_allDataSourceTypesShouldBeDelted() {
+    public void formatData_allDataSourceTypesShouldBeDeleted() {
         final DataFormatterDelegator dataFormatterDelegator = DataFormatterDelegator.getInstance();
         dataFormatterDelegator.formatData(new Data(DataSourceType.valueOf("Invalid")));
     }
