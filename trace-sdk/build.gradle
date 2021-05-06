@@ -77,7 +77,7 @@ dependencies {
 }
 
 junitJacoco {
-    jacocoVersion = '0.8.3'
+    jacocoVersion = '0.8.6'
 }
 
 apply from: "release-trace-sdk.gradle"
