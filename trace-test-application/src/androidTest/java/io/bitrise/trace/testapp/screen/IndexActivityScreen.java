@@ -49,6 +49,16 @@ public class IndexActivityScreen extends BaseScreen {
         return new NetworkActivityScreen(uiDevice);
     }
 
+    /**
+     * Get's the ui tests button label.
+     *
+     * @return the button label
+     */
+    @NonNull
+    public String getButtonUiTestsLabel() {
+        return find(uiTestsButton).getText();
+    }
+
     @Override
     public void waitTillLoad() {
         uiDevice.wait(Until.findObject(uiTestsButton), DEFAULT_TIMEOUT);
