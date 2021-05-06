@@ -1,5 +1,7 @@
 package io.bitrise.trace.data;
 
+import androidx.annotation.NonNull;
+
 import org.junit.Test;
 
 import io.azam.ulidj.ULID;
@@ -21,7 +23,7 @@ public class ULIDTest {
      * Tests that the length of the ULID should be 26 chars.
      */
     @Test
-    public void length_shouldBe26() {
+    public void length_shouldBe26Characters() {
         final int actualValue = ULID.random().length();
         assertThat(actualValue, equalTo(26));
     }
@@ -37,13 +39,19 @@ public class ULIDTest {
     }
 
     /**
+     * Asserts that the provided String ulid is NOT valid.
+     * @param ulid the String to validate.
+     */
+    private void assertUlidIsNotValid(@NonNull final String ulid) {
+        assertThat(ULID.isValid(ulid), is(false));
+    }
+
+    /**
      * Tests that ULIDs with letter "I" should be invalid.
      */
     @Test
     public void isValid_shouldNotContainI() {
-        final String invalidULID = "01BX5ZZKBKACTAV9WEVGEMMVRI";
-        final boolean actualValue = ULID.isValid(invalidULID);
-        assertThat(actualValue, is(false));
+        assertUlidIsNotValid("01BX5ZZKBKACTAV9WEVGEMMVRI");
     }
 
     /**
@@ -51,9 +59,7 @@ public class ULIDTest {
      */
     @Test
     public void isValid_shouldNotContainL() {
-        final String invalidULID = "01BX5ZZKBKACTAV9WEVGEMMVRL";
-        final boolean actualValue = ULID.isValid(invalidULID);
-        assertThat(actualValue, is(false));
+        assertUlidIsNotValid("01BX5ZZKBKACTAV9WEVGEMMVRL");
     }
 
     /**
@@ -61,9 +67,7 @@ public class ULIDTest {
      */
     @Test
     public void isValid_shouldNotContainO() {
-        final String invalidULID = "01BX5ZZKBKACTAV9WEVGEMMVRO";
-        final boolean actualValue = ULID.isValid(invalidULID);
-        assertThat(actualValue, is(false));
+        assertUlidIsNotValid("01BX5ZZKBKACTAV9WEVGEMMVRO");
     }
 
     /**
@@ -71,9 +75,7 @@ public class ULIDTest {
      */
     @Test
     public void isValid_shouldNotContainU() {
-        final String invalidULID = "01BX5ZZKBKACTAV9WEVGEMMVRU";
-        final boolean actualValue = ULID.isValid(invalidULID);
-        assertThat(actualValue, is(false));
+        assertUlidIsNotValid("01BX5ZZKBKACTAV9WEVGEMMVRU");
     }
 
     /**
