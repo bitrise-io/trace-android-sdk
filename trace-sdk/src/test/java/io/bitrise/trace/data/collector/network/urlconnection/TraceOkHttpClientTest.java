@@ -54,7 +54,7 @@ public class TraceOkHttpClientTest {
         assertEquals(1, TraceOkHttpClient.okHttpClients.size());
 
         assertEquals(client.proxy(), dummyProxy);
-        assertEquals(client.connectTimeoutMillis(), 32);
+        assertEquals(32, client.connectTimeoutMillis());
     }
 
     @Test
@@ -64,7 +64,7 @@ public class TraceOkHttpClientTest {
         assertEquals(1, TraceOkHttpClient.okHttpClients.size());
 
         assertNull(client.proxy());
-        assertEquals(client.connectTimeoutMillis(), 21);
+        assertEquals(21, client.connectTimeoutMillis());
     }
 
     @Test
