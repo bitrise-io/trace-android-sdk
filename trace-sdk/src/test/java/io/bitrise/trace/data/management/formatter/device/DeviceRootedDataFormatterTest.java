@@ -5,7 +5,7 @@ import org.junit.Test;
 import io.bitrise.trace.data.collector.device.DeviceRootedDataCollector;
 import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.dto.FormattedData;
-import io.bitrise.trace.data.management.formatter.BaseDataFormatterTest;
+import io.bitrise.trace.data.management.formatter.BaseDataFormatter;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -13,7 +13,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Tests for {@link DeviceRootedDataFormatter}.
  */
-public class DeviceRootedDataFormatterTest extends BaseDataFormatterTest {
+public class DeviceRootedDataFormatterTest extends BaseDataFormatter {
 
     @Test
     public void formatData_shouldBeRooted() {
