@@ -390,4 +390,13 @@ public abstract class DataStorage {
         traceDatabase.getResourceDao().deleteAll();
         TraceLog.d(LogMessageConstants.DELETE_ALL_RESOURCE_ENTITIES);
     }
+
+    /**
+     * Sets the trace database to use.
+     * @param traceDatabase the database to use.
+     */
+    @VisibleForTesting
+    public void setTraceDatabase(@NonNull final TraceDatabase traceDatabase) {
+        this.traceDatabase = traceDatabase;
+    }
 }
