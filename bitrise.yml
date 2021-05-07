@@ -1080,13 +1080,13 @@ workflows:
 
                 echo
 
-                echo "Listing files in /sdcard/Documents/UiTestHierarchy/"
-                adb shell ls /sdcard/Documents/UiTestHierarchy/ || true
+                echo "Listing files in /sdcard/Download/UiTestHierarchy/"
+                adb shell ls /sdcard/Download/UiTestHierarchy/ || true
 
                 mkdir -p /bitrise/src/trace-test-application/build/reports/screenshots/
                 adb pull /sdcard/Pictures/UiTestScreenShots/ /bitrise/src/trace-test-application/build/reports/screenshots/
                 mkdir -p /bitrise/src/trace-test-application/build/reports/viewhierarchy/
-                adb pull /sdcard/Documents/UiTestHierarchy/ /bitrise/src/trace-test-application/build/reports/viewhierarchy/
+                adb pull /sdcard/Download/UiTestHierarchy/ /bitrise/src/trace-test-application/build/reports/viewhierarchy/
       - script@1:
           inputs:
             - content: |-
