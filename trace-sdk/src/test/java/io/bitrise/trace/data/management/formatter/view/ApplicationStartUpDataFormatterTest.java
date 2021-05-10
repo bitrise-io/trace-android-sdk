@@ -21,7 +21,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Unit tests for {@link ApplicationStartUpDataFormatter}
+ * Unit tests for {@link ApplicationStartUpDataFormatter}.
  */
 public class ApplicationStartUpDataFormatterTest extends BaseDataFormatterTest {
 

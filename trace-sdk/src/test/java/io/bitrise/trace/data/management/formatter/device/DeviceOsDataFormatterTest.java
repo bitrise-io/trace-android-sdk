@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class DeviceOsDataFormatterTest extends BaseDataFormatterTest {
 
-    final String deviceOs = "11.0.0";
+    final String deviceOs = "30";
 
     @Test
     public void formatData() {

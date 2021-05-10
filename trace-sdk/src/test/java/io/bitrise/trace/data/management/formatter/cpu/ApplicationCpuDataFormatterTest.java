@@ -25,7 +25,7 @@ import static org.junit.Assert.assertEquals;
 public class ApplicationCpuDataFormatterTest extends BaseDataFormatterTest {
 
     final ApplicationCpuDataFormatter formatter = new ApplicationCpuDataFormatter();
-    final Double cpuValue = 12.3;
+    final double cpuValue = 12.3;
     final String metricDescriptorDescription = "Application CPU Usage";
 
     @Test
