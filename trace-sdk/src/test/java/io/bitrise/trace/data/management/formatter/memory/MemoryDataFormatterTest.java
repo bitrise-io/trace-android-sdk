@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import io.bitrise.trace.data.dto.FormattedData;
-import io.bitrise.trace.data.management.formatter.BaseDataFormatter;
+import io.bitrise.trace.data.management.formatter.BaseDataFormatterTest;
 import io.opencensus.proto.metrics.v1.LabelKey;
 import io.opencensus.proto.metrics.v1.LabelValue;
 import io.opencensus.proto.metrics.v1.Metric;
@@ -25,7 +25,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Tests for {@link MemoryDataFormatter}.
  */
-public class MemoryDataFormatterTest extends BaseDataFormatter {
+public class MemoryDataFormatterTest extends BaseDataFormatterTest {
 
     final MemoryDataFormatter mockMemoryDataFormatter = Mockito.mock(
             MemoryDataFormatter.class,

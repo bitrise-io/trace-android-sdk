@@ -7,7 +7,7 @@ import io.bitrise.trace.data.collector.network.okhttp.OkHttpDataListener;
 import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.dto.FormattedData;
 import io.bitrise.trace.data.dto.NetworkData;
-import io.bitrise.trace.data.management.formatter.BaseDataFormatter;
+import io.bitrise.trace.data.management.formatter.BaseDataFormatterTest;
 import io.opencensus.proto.trace.v1.Span;
 
 import static org.junit.Assert.assertEquals;
@@ -16,7 +16,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Tests for {@link NetworkDataFormatter}.
  */
-public class NetworkDataFormatterTest extends BaseDataFormatter {
+public class NetworkDataFormatterTest extends BaseDataFormatterTest {
     final NetworkDataFormatter networkDataFormatter = new NetworkDataFormatter();
 
     @Test

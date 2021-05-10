@@ -14,7 +14,7 @@ import static org.junit.Assert.assertNull;
 /**
  * Tests for {@link ResourceDataFormatter}.
  */
-public class ResourceDataFormatterTest extends BaseDataFormatter {
+public class ResourceDataFormatterTest extends BaseDataFormatterTest {
 
     final ResourceDataFormatter mockResourceDataFormatter = Mockito.mock(
             ResourceDataFormatter.class,

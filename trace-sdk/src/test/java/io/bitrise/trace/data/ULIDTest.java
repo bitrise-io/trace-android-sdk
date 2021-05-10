@@ -40,6 +40,7 @@ public class ULIDTest {
 
     /**
      * Asserts that the provided String ulid is NOT valid.
+     *
      * @param ulid the String to validate.
      */
     private void assertUlidIsNotValid(@NonNull final String ulid) {

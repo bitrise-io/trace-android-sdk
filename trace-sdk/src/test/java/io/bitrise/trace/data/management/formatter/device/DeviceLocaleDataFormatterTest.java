@@ -5,7 +5,7 @@ import org.junit.Test;
 import io.bitrise.trace.data.collector.device.DeviceLocaleDataCollector;
 import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.dto.FormattedData;
-import io.bitrise.trace.data.management.formatter.BaseDataFormatter;
+import io.bitrise.trace.data.management.formatter.BaseDataFormatterTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -13,7 +13,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Tests for {@link DeviceLocaleDataFormatter}.
  */
-public class DeviceLocaleDataFormatterTest extends BaseDataFormatter {
+public class DeviceLocaleDataFormatterTest extends BaseDataFormatterTest {
 
     @Test
     public void formatData_localeShouldBeEnUs() {

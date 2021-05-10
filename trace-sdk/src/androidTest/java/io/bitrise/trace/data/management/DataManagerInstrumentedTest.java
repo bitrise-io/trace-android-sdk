@@ -2,7 +2,6 @@ package io.bitrise.trace.data.management;
 
 import android.content.Context;
 
-import androidx.room.Room;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Before;
@@ -23,9 +22,7 @@ import io.bitrise.trace.data.collector.DummyDataCollector;
 import io.bitrise.trace.data.collector.DummyDataListener;
 import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.storage.DataStorage;
-import io.bitrise.trace.data.storage.MetricDao;
-import io.bitrise.trace.data.storage.TraceDataStorage;
-import io.bitrise.trace.data.storage.TraceDatabase;
+import io.bitrise.trace.data.storage.TestDataStorage;
 import io.bitrise.trace.scheduler.ServiceScheduler;
 import io.bitrise.trace.session.ApplicationSessionManager;
 
@@ -216,9 +213,7 @@ public class DataManagerInstrumentedTest {
     public void handleReceivedData_shouldHandleMetricWithoutException() {
         DataManager.getInstance(context);
         ApplicationSessionManager.getInstance().startSession();
-        final TraceDatabase traceDatabase = Room.inMemoryDatabaseBuilder(context, TraceDatabase.class).build();
-        final DataStorage traceDataStorage = TraceDataStorage.getInstance(InstrumentationRegistry.getInstrumentation().getContext());
-        traceDataStorage.setTraceDatabase(traceDatabase);
+        final DataStorage traceDataStorage = TestDataStorage.getInstance(context);
         dataManager.setDataStorage(traceDataStorage);
 
         final Data data = new Data(DataSourceType.SYSTEM_USED_MEMORY);
@@ -226,8 +221,6 @@ public class DataManagerInstrumentedTest {
         data.setContent(dummyValue);
         dataManager.handleReceivedData(data);
 
-        final MetricDao metricDao = traceDatabase.getMetricDao();
-        assertThat(metricDao.getAll().size(), is(equalTo(1)));
-        traceDatabase.close();
+        assertThat(traceDataStorage.getAllMetrics().size(), is(equalTo(1)));
     }
 }
