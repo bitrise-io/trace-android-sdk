@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import io.bitrise.trace.data.dto.DataValues;
 
 import static io.bitrise.trace.data.dto.DataValues.app;
-import static io.bitrise.trace.data.dto.DataValues.br;
 import static io.bitrise.trace.data.dto.DataValues.build;
 import static io.bitrise.trace.data.dto.DataValues.carrier;
 import static io.bitrise.trace.data.dto.DataValues.device;

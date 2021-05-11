@@ -20,6 +20,7 @@ import io.bitrise.trace.data.collector.TraceActivityLifecycleSink;
 import io.bitrise.trace.data.management.DataManager;
 import io.bitrise.trace.data.trace.ApplicationTraceManager;
 import io.bitrise.trace.data.trace.TraceManager;
+import io.opencensus.proto.trace.v1.Span;
 
 /**
  * Listens to the state changes of the Activities of the Application. Gathers and sends the data to the

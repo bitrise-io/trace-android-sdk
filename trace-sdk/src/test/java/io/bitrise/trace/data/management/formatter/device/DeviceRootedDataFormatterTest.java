@@ -6,9 +6,9 @@ import io.bitrise.trace.data.collector.device.DeviceRootedDataCollector;
 import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.dto.FormattedData;
 import io.bitrise.trace.data.management.formatter.BaseDataFormatterTest;
+import io.bitrise.trace.data.resource.ResourceEntity;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 /**
  * Tests for {@link DeviceRootedDataFormatter}.
@@ -22,8 +22,7 @@ public class DeviceRootedDataFormatterTest extends BaseDataFormatterTest {
 
         final FormattedData[] outputData =  new DeviceRootedDataFormatter().formatData(inputData);
         assertEquals(1, outputData.length);
-        assertNotNull(outputData[0].getResourceEntity());
-        assertEquals("device.rooted", outputData[0].getResourceEntity().getLabel());
-        assertEquals("true", outputData[0].getResourceEntity().getValue());
+        assertEquals(new ResourceEntity("device.rooted", "true"),
+                outputData[0].getResourceEntity());
     }
 }

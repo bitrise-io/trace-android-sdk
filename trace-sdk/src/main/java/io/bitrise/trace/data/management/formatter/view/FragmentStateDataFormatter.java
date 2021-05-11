@@ -70,7 +70,6 @@ public class FragmentStateDataFormatter extends DataFormatter {
         @SuppressWarnings("unchecked") final Map<Integer, FragmentData> contentMap =
                 (Map<Integer, FragmentData>) contentObject;
 
-
         final List<Span> spans = new ArrayList<>();
         for (@NonNull final FragmentData fragmentData : contentMap.values()) {
             spans.addAll(getFragmentSpans(fragmentData));

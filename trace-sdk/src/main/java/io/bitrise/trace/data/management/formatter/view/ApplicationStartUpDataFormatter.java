@@ -20,7 +20,6 @@ import io.opencensus.proto.metrics.v1.TimeSeries;
 
 import static io.bitrise.trace.data.dto.DataValues.app;
 import static io.bitrise.trace.data.dto.DataValues.getName;
-import static io.bitrise.trace.data.dto.DataValues.key;
 import static io.bitrise.trace.data.dto.DataValues.latency;
 import static io.bitrise.trace.data.dto.DataValues.ms;
 import static io.bitrise.trace.data.dto.DataValues.start;

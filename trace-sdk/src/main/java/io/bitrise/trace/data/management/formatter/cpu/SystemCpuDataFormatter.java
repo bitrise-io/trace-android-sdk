@@ -47,9 +47,6 @@ public class SystemCpuDataFormatter extends DataFormatter {
         }
 
         final CpuStat systemCpuStat = (CpuStat) data.getContent();
-        if (systemCpuStat == null) {
-            return new FormattedData[]{};
-        }
         final Timestamp timestamp = getTimestamp();
         final Metric systemCpuMetric = createSystemCpuMetric(systemCpuStat, timestamp);
 

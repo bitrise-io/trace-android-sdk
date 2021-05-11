@@ -17,6 +17,6 @@ public class ApplicationVersionNameDataFormatter extends ResourceDataFormatter {
     @NonNull
     @Override
     public FormattedData[] formatData(@NonNull final Data data) {
-        return new FormattedData[]{formatResource(data, ResourceLabel.APPLICATION_VERSION_NAME)};
+        return formatResource(data, ResourceLabel.APPLICATION_VERSION_NAME);
     }
 }

@@ -1,8 +1,6 @@
 package io.bitrise.trace.data.management.formatter;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
 
 import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.dto.FormattedData;
@@ -20,18 +18,17 @@ public abstract class ResourceDataFormatter extends DataFormatter {
      *
      * @param data          the {@link Data} to handle.
      * @param resourceLabel the {@link ResourceLabel} for the given resource.
-     * @return the {@link FormattedData}.
+     * @return the {@link FormattedData[]}.
      */
-    @VisibleForTesting
-    @Nullable
-    public static FormattedData formatResource(@NonNull final Data data, @NonNull final ResourceLabel resourceLabel) {
+    @NonNull
+    public static FormattedData[] formatResource(@NonNull final Data data, @NonNull final ResourceLabel resourceLabel) {
         final Object content = data.getContent();
 
         if (content == null) {
-            return null;
+            return new FormattedData[]{};
         }
 
         final ResourceEntity resourceEntity = new ResourceEntity(resourceLabel.getName(), content.toString());
-        return new FormattedData(resourceEntity);
+        return new FormattedData[]{new FormattedData(resourceEntity)};
     }
 }
