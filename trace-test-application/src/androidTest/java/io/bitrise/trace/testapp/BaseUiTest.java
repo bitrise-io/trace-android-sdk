@@ -71,13 +71,13 @@ public abstract class BaseUiTest {
     private static final String anrText = "isn't responding";
 
     /**
-     * Rule for collecting data for every test case.
+     * Rule for collecting data for the test cases of this class (and subclasses).
      */
     @Rule
     public TestDataCollectionRule testDataCollectionRule = new TestDataCollectionRule();
 
     /**
-     * Rule for the name of the test. Used to determine the name of the screenshot for the given test case.
+     * Rule for the name of the test. Used to determine the name of the test resource files for the given test case.
      */
     @Rule
     public TestName testName = new TestName();
@@ -178,27 +178,37 @@ public abstract class BaseUiTest {
     }
 
     /**
-     * Tries to press the button to wait for the app that is not responding.
+     * Checks if there is an ANR dialog. If there is, it tries to press the button to wait for the app that is not
+     * responding. This is required as ANR dialogs can appear at any time of the test runs, which could make the test
+     * assertions fail.
      *
      * @param anrDialog the given ANR dialog.
      * @return {@code true} if there was an ANR dialog, {@code false} otherwise.
      */
-    private static boolean clickWaitForAnrDialog(@NonNull final UiObject anrDialog) {
-        if (anrDialog.exists()) {
-            Log.i(UI_TEST_TAG, "ANR dialog detected!");
-            try {
-                uiDevice.findObject(new UiSelector().text("Wait").className("android.widget.Button").packageName(
-                        "android")).click();
-                final String anrDialogText = anrDialog.getText();
-                final String appName = anrDialogText.substring(0, anrDialogText.length() - anrText.length());
-                Log.i(UI_TEST_TAG, String.format("Application \"%s\" is not responding!", appName));
-            } catch (final UiObjectNotFoundException e) {
-                Log.i(UI_TEST_TAG, "Detected ANR, but window disappeared!");
-            }
-            Log.i(UI_TEST_TAG, "ANR dialog closed: pressed on wait!");
-            return true;
+    private static boolean checkForAnrDialogToClose(@NonNull final UiObject anrDialog) {
+        return anrDialog.exists() && closeAnrWithWait(anrDialog);
+    }
+
+    /**
+     * Tries to press the button to wait for the app that is not responding. This is required as ANR dialogs can
+     * appear at any time of the test runs, which could make the test assertions fail.
+     *
+     * @param anrDialog the given ANR dialog.
+     * @return {@code true} if there was an ANR dialog, {@code false} otherwise.
+     */
+    private static boolean closeAnrWithWait(@NonNull final UiObject anrDialog) {
+        Log.i(UI_TEST_TAG, "ANR dialog detected!");
+        try {
+            uiDevice.findObject(new UiSelector().text("Wait").className("android.widget.Button").packageName(
+                    "android")).click();
+            final String anrDialogText = anrDialog.getText();
+            final String appName = anrDialogText.substring(0, anrDialogText.length() - anrText.length());
+            Log.i(UI_TEST_TAG, String.format("Application \"%s\" is not responding!", appName));
+        } catch (final UiObjectNotFoundException e) {
+            Log.i(UI_TEST_TAG, "Detected ANR, but window disappeared!");
         }
-        return false;
+        Log.i(UI_TEST_TAG, "ANR dialog closed: pressed on wait!");
+        return true;
     }
 
     /**
@@ -312,7 +322,8 @@ public abstract class BaseUiTest {
     }
 
     /**
-     * Registers a watcher that will looks for ANR dialogs, and will tries to wait for the given apps.
+     * Registers a watcher that will looks for ANR dialogs, and will dismiss the dialog by pressing the wait action
+     * button.
      */
     private static void registerANRWatcher() {
         uiDevice.registerWatcher("ANR", () -> {
@@ -320,7 +331,7 @@ public abstract class BaseUiTest {
                     .packageName("android")
                     .textContains(anrText));
 
-            return clickWaitForAnrDialog(anrDialog);
+            return checkForAnrDialogToClose(anrDialog);
         });
     }
 
