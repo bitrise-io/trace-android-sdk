@@ -1,5 +1,7 @@
 package io.bitrise.trace.data.management.formatter.view;
 
+import androidx.annotation.NonNull;
+
 import com.google.protobuf.Timestamp;
 
 import org.junit.Test;
@@ -41,11 +43,17 @@ public class ApplicationStartUpDataFormatterTest extends BaseDataFormatterTest {
         final Data data = new Data(ApplicationStartUpDataListener.class);
         data.setContent(applicationStartData);
         final FormattedData[] formattedData = formatter.formatData(data);
-
         assertEquals(1, formattedData.length);
 
         final Timestamp timestamp = formattedData[0].getMetricEntity().getMetric()
                 .getTimeseries(0).getPoints(0).getTimestamp();
+
+        assertEquals(createExpectedMetric(applicationStartData, timestamp),
+                formattedData[0].getMetricEntity().getMetric());
+    }
+
+    private Metric createExpectedMetric(@NonNull final ApplicationStartData applicationStartData,
+                                        @NonNull final Timestamp timestamp) {
 
         final MetricDescriptor expectedMetricDescriptor = MetricDescriptor.newBuilder()
                 .setName("app.startup.latency.ms")
@@ -67,11 +75,9 @@ public class ApplicationStartUpDataFormatterTest extends BaseDataFormatterTest {
                                 .build())
                 .build();
 
-        final Metric expectedMetric = Metric.newBuilder()
+        return Metric.newBuilder()
                 .setMetricDescriptor(expectedMetricDescriptor)
                 .addTimeseries(expectedTimeSeries).build();
-
-        assertEquals(expectedMetric, formattedData[0].getMetricEntity().getMetric());
 
     }
 
