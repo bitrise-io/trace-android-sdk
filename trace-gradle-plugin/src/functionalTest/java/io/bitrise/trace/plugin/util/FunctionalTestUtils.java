@@ -100,44 +100,6 @@ public class FunctionalTestUtils {
     }
 
     /**
-     * Gets the path of the working directory.
-     *
-     * @return the working directory path.
-     * @see <a href="https://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html">System Properties</a>
-     */
-    @NonNull
-    public static String getWorkingDirectoryPath() {
-        return new File(System.getProperty("user.dir")).getParentFile().toString() + "/";
-    }
-
-    /**
-     * Sets up your SDK directory location by copying the local.properties auto-generated file (if available) to the
-     * test directory. Tests might fail if the SDK directory is not set. To set the SDK directory one of the
-     * following should be true:
-     * <ul>
-     * <li>Must have copy the local.properties to the given folder</li>
-     * <li>Environment variables {@code $ANDROID_HOME} and {@code $ANDROID_SDK_ROOT} are
-     * set:</li>
-     * <ul>
-     * <li>Globally, see documentation</li>
-     * <li>In the 'Run Configuration' of the given build in Android Studio</li>
-     * </ul>
-     * </ul>
-     *
-     * @param dirPath the destination directory for the copy of the local.properties file.
-     * @throws IOException if an I/O error occurs.
-     * @see
-     * <a href="https://developer.android.com/studio/command-line/variables">Defining global environment variables</a>
-     */
-    public static void setUpAndroidSdkDirectory(@NonNull final String dirPath)
-            throws IOException {
-        final String workingDirectoryPath = FunctionalTestUtils.getWorkingDirectoryPath();
-
-        FunctionalTestUtils.copyFile(workingDirectoryPath + TestConstants.LOCAL_DOT_PROPERTIES,
-                dirPath + TestConstants.LOCAL_DOT_PROPERTIES);
-    }
-
-    /**
      * Publishes the 'trace-gradle-plugin' with it's current state, to make sure tests are run on the up-to-date
      * version.
      */

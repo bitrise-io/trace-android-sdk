@@ -9,16 +9,12 @@ import io.bitrise.trace.data.resource.ResourceLabel;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 /**
  * Tests for {@link ResourceDataFormatter}.
  */
 public class ResourceDataFormatterTest extends BaseDataFormatterTest{
 
-    final ResourceDataFormatter mockResourceDataFormatter = Mockito.mock(
-            ResourceDataFormatter.class,
-            Mockito.CALLS_REAL_METHODS);
     final Data inputData = Mockito.mock(Data.class, Mockito.CALLS_REAL_METHODS);
     final ResourceLabel dummyResourceLabel = ResourceLabel.DEVICE_ROOTED;
     final String dummyResourceEntityLabel = "device.rooted";
@@ -27,7 +23,9 @@ public class ResourceDataFormatterTest extends BaseDataFormatterTest{
     public void formatResource_string() {
         inputData.setContent("an exciting string resource");
 
-        final FormattedData outputData = mockResourceDataFormatter.formatResource(inputData, dummyResourceLabel);
+        final FormattedData[] outputArray = ResourceDataFormatter.formatResource(inputData, dummyResourceLabel);
+        assertEquals(1, outputArray.length);
+        final FormattedData outputData = outputArray[0];
 
         assertNotNull(outputData);
         assertNotNull(outputData.getResourceEntity());
@@ -39,7 +37,9 @@ public class ResourceDataFormatterTest extends BaseDataFormatterTest{
     public void formatResource_integer() {
         inputData.setContent((int)21);
 
-        final FormattedData outputData = mockResourceDataFormatter.formatResource(inputData, dummyResourceLabel);
+        final FormattedData[] outputArray = ResourceDataFormatter.formatResource(inputData, dummyResourceLabel);
+        assertEquals(1, outputArray.length);
+        final FormattedData outputData = outputArray[0];
 
         assertNotNull(outputData);
         assertNotNull(outputData.getResourceEntity());
@@ -51,7 +51,9 @@ public class ResourceDataFormatterTest extends BaseDataFormatterTest{
     public void formatResource_float() {
         inputData.setContent((float)3.145);
 
-        final FormattedData outputData = mockResourceDataFormatter.formatResource(inputData, dummyResourceLabel);
+        final FormattedData[] outputArray = ResourceDataFormatter.formatResource(inputData, dummyResourceLabel);
+        assertEquals(1, outputArray.length);
+        final FormattedData outputData = outputArray[0];
 
         assertNotNull(outputData);
         assertNotNull(outputData.getResourceEntity());
@@ -63,7 +65,9 @@ public class ResourceDataFormatterTest extends BaseDataFormatterTest{
     public void formatResource_boolean() {
         inputData.setContent(true);
 
-        final FormattedData outputData = mockResourceDataFormatter.formatResource(inputData, dummyResourceLabel);
+        final FormattedData[] outputArray = ResourceDataFormatter.formatResource(inputData, dummyResourceLabel);
+        assertEquals(1, outputArray.length);
+        final FormattedData outputData = outputArray[0];
 
         assertNotNull(outputData);
         assertNotNull(outputData.getResourceEntity());
@@ -74,9 +78,7 @@ public class ResourceDataFormatterTest extends BaseDataFormatterTest{
     @Test
     public void formatResource_nullContent() {
         inputData.setContent(null);
-
-        final FormattedData outputData = mockResourceDataFormatter.formatResource(inputData, dummyResourceLabel);
-
-        assertNull(outputData);
+        final FormattedData[] outputArray = ResourceDataFormatter.formatResource(inputData, dummyResourceLabel);
+        assertEquals(0, outputArray.length);
     }
 }

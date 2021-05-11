@@ -2,13 +2,13 @@ package io.bitrise.trace.plugin;
 
 import androidx.annotation.NonNull;
 
-import org.apache.log4j.Logger;
 import org.gradle.testkit.runner.BuildResult;
 import org.gradle.testkit.runner.BuildTask;
 import org.gradle.testkit.runner.GradleRunner;
 import org.gradle.testkit.runner.TaskOutcome;
 import org.gradle.testkit.runner.UnexpectedBuildFailure;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -16,17 +16,14 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
 import io.bitrise.trace.plugin.task.GenerateBuildIDTask;
 import io.bitrise.trace.plugin.task.ManifestModifierTask;
 import io.bitrise.trace.plugin.task.VerifyTraceTask;
-import io.bitrise.trace.plugin.util.FunctionalTestUtils;
+import io.bitrise.trace.plugin.util.FunctionalTestHelper;
+import io.bitrise.trace.plugin.util.FunctionalTestWriter;
 import io.bitrise.trace.plugin.util.TestConstants;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -59,22 +56,43 @@ public class TraceGradlePluginFunctionalTest {
      * off, to allow inspection of the files after the test has run.
      */
     private static final boolean DELETE_TEMP_PROJECT = false;
+
     /**
-     * A temporary folder for running functional tests. A new gradle project will be setup in this folder, and the
-     * tests will run in this project.
+     * The {@link FunctionalTestHelper} class that provides some supportive functions to the tests.
      */
-    private static File testProjectDir =
-            new File(System.getProperty("user.home") + "/BitriseTrace-TestGradleProject");
+    private static final FunctionalTestHelper functionalTestHelper = new FunctionalTestHelper();
+
+    /**
+     * Format for the relative path of the build ID file. The formatting arguments should be the build variant.
+     */
+    private static final String buildIdFileRelativePathFormat = "/build/outputs/apk/%s/bitriseBuildId.txt";
+
+    /**
+     * An instance of {@link FunctionalTestWriter} that will write the output of each test case to the console with
+     * AQUA4 color from the Bitkit.
+     */
+    private final FunctionalTestWriter stdOutWriter = new FunctionalTestWriter(System.out,
+            FunctionalTestWriter.PrintColor.AQUA4);
+
+    /**
+     * An instance of {@link FunctionalTestWriter} that will write the error of each test case to the console with
+     * RED4 color from the Bitkit.
+     */
+    private final FunctionalTestWriter errWriter = new FunctionalTestWriter(System.err,
+            FunctionalTestWriter.PrintColor.RED4);
 
     /**
      * Sets up the test class.
      */
     @BeforeClass
     public static void setUpTests() {
-        final Logger logger = Logger.getRootLogger();
-        logger.info("Publishing plugin, to make sure it is up-to-date");
-        FunctionalTestUtils.publishTraceGradlePlugin();
-        logger.info("Publishing plugin finished");
+        functionalTestHelper.logInAsciiBox("Starting tests for " + TraceGradlePluginFunctionalTest.class.getName());
+        functionalTestHelper.publishTraceGradlePlugin();
+    }
+
+    @AfterClass
+    public static void tearDownClass() {
+        functionalTestHelper.logInAsciiBox("Finished tests for " + TraceGradlePluginFunctionalTest.class.getName());
     }
 
     /**
@@ -82,76 +100,24 @@ public class TraceGradlePluginFunctionalTest {
      */
     @Before
     public void setUpTest() {
-        final String testDirPath = getTestDirName();
-
-        try {
-            deleteTemporaryProject();
-            new File(testDirPath).mkdirs();
-            FunctionalTestUtils.setUpAndroidSdkDirectory(testDirPath);
-        } catch (final IOException ioe) {
-            ioe.printStackTrace();
-        }
-
-        try {
-            FunctionalTestUtils.copyFile(TestConstants.GRADLE_PROPERTIES_FILE_NAME,
-                    testDirPath + "traceGradlePlugin.properties");
-            FunctionalTestUtils.copyFile("../trace-sdk/" + TestConstants.GRADLE_PROPERTIES_FILE_NAME,
-                    testDirPath + "traceSdk.properties");
-            FunctionalTestUtils.copyFile(FunctionalTestUtils.getGradlePropertiesForResource(0),
-                    testDirPath + TestConstants.GRADLE_PROPERTIES_FILE_NAME);
-            FunctionalTestUtils.copyFile(FunctionalTestUtils.getBuildGradleForResource(0),
-                    testDirPath + TestConstants.BUILD_GRADLE_FILE_NAME);
-            FunctionalTestUtils.copyFile(FunctionalTestUtils.getBitriseAddonsConfigForResource(0),
-                    testDirPath + TraceConstants.BITRISE_ADDONS_CONFIGURATION_FILE);
-            FunctionalTestUtils.copyFile(FunctionalTestUtils.getAndroidManifestForResource(0),
-                    FunctionalTestUtils.getAndroidManifestDefaultPath(testDirPath));
-        } catch (final IOException ioe) {
-            ioe.printStackTrace();
-        }
+        functionalTestHelper.logTestNameInAsciiBox(testName);
+        functionalTestHelper.setupTestDir(testName);
+        functionalTestHelper.setupTraceProperties(testName);
+        functionalTestHelper.setupGradleProperties(testName, 0);
+        functionalTestHelper.setupBitriseAddons(testName, 0);
+        functionalTestHelper.setupAndroidManifest(testName, 0);
     }
 
     /**
-     * Gets the name of the current test's directory.
-     *
-     * @return the name of the test's directory.
-     */
-    @NonNull
-    private String getTestDirName() {
-        return testProjectDir.getAbsolutePath() + "/" + testName.getMethodName() + "/";
-    }
-
-    /**
-     * Gets the the current test's directory.
-     *
-     * @return the test's directory.
-     */
-    @NonNull
-    private File getTestDir() {
-        return new File(getTestDirName());
-    }
-
-    /**
-     * Force-delete an existing folder and its contents, located at {@link #testProjectDir}
-     */
-    private void deleteTemporaryProject() throws IOException {
-        final File testDir = getTestDir();
-        if (testDir.exists()) {
-            Path pathToBeDeleted = testDir.toPath();
-            Files.walk(pathToBeDeleted)
-                 .sorted(Comparator.reverseOrder())
-                 .map(Path::toFile)
-                 .forEach(File::delete);
-        }
-    }
-
-    /**
-     * Delete (permanently) the temporary gradle project folder, if {@link #DELETE_TEMP_PROJECT} is enabled.
+     * Delete (permanently) the temporary Gradle project folder, if {@link #DELETE_TEMP_PROJECT} is enabled.
      */
     @After
-    public void deleteTemporaryProjectAfterTest() throws IOException {
+    public void tearDownTest() {
         if (DELETE_TEMP_PROJECT) {
-            deleteTemporaryProject();
+            functionalTestHelper.deleteTestProjectDir(testName);
         }
+
+        FunctionalTestWriter.reset();
     }
 
     /**
@@ -160,12 +126,9 @@ public class TraceGradlePluginFunctionalTest {
      */
     @Test
     public void assembleDebugTraceTaskHookTest_withGradleConfig_0() {
-        final BuildResult buildResult =
-                GradleRunner.create()
-                            .withProjectDir(getTestDir())
-                            .withArguments(TestConstants.ASSEMBLE_DEBUG_TASK_NAME)
-                            .forwardOutput()
-                            .build();
+        functionalTestHelper.setupBuildGradle(testName, 0);
+        final BuildResult buildResult = executeTaskForResult(TestConstants.ASSEMBLE_DEBUG_TASK_NAME);
+
         verifyDebugManifestTasks(buildResult);
         verifyDebugGenerateBuildIdTasks(buildResult);
         verifyGenerateBuildIdTasksForAssembleDebug();
@@ -177,19 +140,9 @@ public class TraceGradlePluginFunctionalTest {
      */
     @Test
     public void assembleDebugTraceTaskHookTest_withGradleConfig_1() {
-        try {
-            FunctionalTestUtils.copyFile(FunctionalTestUtils.getBuildGradleForResource(1),
-                    getTestDirName() + TestConstants.BUILD_GRADLE_FILE_NAME);
-        } catch (final IOException ioe) {
-            ioe.printStackTrace();
-        }
+        functionalTestHelper.setupBuildGradle(testName, 1);
+        final BuildResult buildResult = executeTaskForResult(TestConstants.ASSEMBLE_DEBUG_TASK_NAME);
 
-        final BuildResult buildResult =
-                GradleRunner.create()
-                            .withProjectDir(getTestDir())
-                            .withArguments(TestConstants.ASSEMBLE_DEBUG_TASK_NAME)
-                            .forwardOutput()
-                            .build();
         verifyDebugManifestTasks(buildResult);
         verifyDebugGenerateBuildIdTasks(buildResult);
         verifyGenerateBuildIdTasksForAssembleDebug();
@@ -200,12 +153,9 @@ public class TraceGradlePluginFunctionalTest {
      */
     @Test
     public void buildTraceTaskHookTest_withGradleConfig_0() {
-        final BuildResult buildResult =
-                GradleRunner.create()
-                            .withProjectDir(getTestDir())
-                            .withArguments(TestConstants.BUILD_TASK_NAME)
-                            .forwardOutput()
-                            .build();
+        functionalTestHelper.setupBuildGradle(testName, 0);
+        final BuildResult buildResult = executeTaskForResult(TestConstants.BUILD_TASK_NAME);
+
         verifyDebugManifestTasks(buildResult);
         verifyDebugGenerateBuildIdTasks(buildResult);
 
@@ -221,11 +171,8 @@ public class TraceGradlePluginFunctionalTest {
      */
     @Test(expected = UnexpectedBuildFailure.class)
     public void verifyTraceTaskTest_withGradleConfig_0() {
-        final BuildResult buildResult = GradleRunner.create()
-                                                    .withProjectDir(getTestDir())
-                                                    .withArguments(TestConstants.VERIFY_TRACE_TASK_NAME)
-                                                    .forwardOutput()
-                                                    .build();
+        functionalTestHelper.setupBuildGradle(testName, 0);
+        final BuildResult buildResult = executeTaskForResult(TestConstants.VERIFY_TRACE_TASK_NAME);
 
         final List<BuildTask> buildTasks = buildResult.getTasks();
         final Optional<BuildTask> verifyTraceTaskOptional =
@@ -243,17 +190,8 @@ public class TraceGradlePluginFunctionalTest {
      */
     @Test
     public void verifyTraceTaskTest_withGradleConfig_1() {
-        try {
-            FunctionalTestUtils.copyFile(FunctionalTestUtils.getBuildGradleForResource(1),
-                    getTestDirName() + TestConstants.BUILD_GRADLE_FILE_NAME);
-        } catch (final IOException ioe) {
-            ioe.printStackTrace();
-        }
-        final BuildResult buildResult = GradleRunner.create()
-                                                    .withProjectDir(getTestDir())
-                                                    .withArguments(TestConstants.VERIFY_TRACE_TASK_NAME)
-                                                    .forwardOutput()
-                                                    .build();
+        functionalTestHelper.setupBuildGradle(testName, 1);
+        final BuildResult buildResult = executeTaskForResult(TestConstants.VERIFY_TRACE_TASK_NAME);
 
         final List<BuildTask> buildTasks = buildResult.getTasks();
         final Optional<BuildTask> verifyTraceTaskOptional =
@@ -394,10 +332,12 @@ public class TraceGradlePluginFunctionalTest {
      * contains the build ID.
      */
     private void verifyGenerateBuildIdTasksForBuild() {
-        final File debugBuildIdFile =
-                new File(getTestDir().getPath() + "/build/outputs/apk/debug/bitriseBuildId.txt");
-        final File releaseBuildIdFile =
-                new File(getTestDir().getPath() + "/build/outputs/apk/release/bitriseBuildId.txt");
+        final File debugBuildIdFile = new File(
+                functionalTestHelper.getTestDir(testName).getPath() + String.format(buildIdFileRelativePathFormat,
+                        "debug"));
+        final File releaseBuildIdFile = new File(
+                functionalTestHelper.getTestDir(testName).getPath() + String.format(buildIdFileRelativePathFormat,
+                        "release"));
 
         assertThat(debugBuildIdFile.exists(), is(true));
         assertThat(releaseBuildIdFile.exists(), is(true));
@@ -408,9 +348,27 @@ public class TraceGradlePluginFunctionalTest {
      * contains the build ID.
      */
     private void verifyGenerateBuildIdTasksForAssembleDebug() {
-        final File debugBuildIdFile =
-                new File(getTestDir().getPath() + "/build/outputs/apk/debug/bitriseBuildId.txt");
+        final File debugBuildIdFile = new File(
+                functionalTestHelper.getTestDir(testName).getPath() + String.format(buildIdFileRelativePathFormat,
+                        "debug"));
 
         assertThat(debugBuildIdFile.exists(), is(true));
+    }
+
+    /**
+     * Executes the given Gradle task in a project directory with the name of the current test. Uses
+     * {@link FunctionalTestWriter} to modify the text appearance of it's output.
+     *
+     * @param taskName the name of the task to execute.
+     * @return the {@link BuildResult}.
+     */
+    @NonNull
+    private BuildResult executeTaskForResult(@NonNull final String taskName) {
+        return GradleRunner.create()
+                           .withProjectDir(functionalTestHelper.getTestDir(testName))
+                           .withArguments(taskName)
+                           .forwardStdOutput(stdOutWriter)
+                           .forwardStdError(errWriter)
+                           .build();
     }
 }

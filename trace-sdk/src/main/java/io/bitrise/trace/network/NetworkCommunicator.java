@@ -17,6 +17,9 @@ import retrofit2.http.POST;
 @Singleton
 public interface NetworkCommunicator {
 
+    String METRIC_HEADER_ACCEPTED_COUNT = "accepted-metrics-count";
+    String METRIC_HEADER_ACCEPTED_LABELS = "accepted-metrics-labels";
+
     /**
      * Sends the given List of {@link Metric}s to the server.
      * Note: These headers are required for the updated endpoint.

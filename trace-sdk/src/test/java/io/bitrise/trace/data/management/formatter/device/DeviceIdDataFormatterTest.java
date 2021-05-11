@@ -17,10 +17,10 @@ import static org.junit.Assert.assertEquals;
  */
 public class DeviceIdDataFormatterTest extends BaseDataFormatterTest {
 
-    final String devideId = UUID.randomUUID().toString();
-
     @Test
     public void formatData() {
+        final String devideId = UUID.randomUUID().toString();
+
         final Data inputData = new Data(DeviceIdDataCollector.class);
         inputData.setContent(devideId);
         final FormattedData[] outputData =  new DeviceIdDataFormatter().formatData(inputData);

@@ -41,6 +41,16 @@ public class TraceSdk {
      */
     public static final String NAME = "Trace Android";
 
+    /**
+     * The TraceSdk has a debug mode - currently this will mean more debug level log messages.
+     *
+     * Please note if you are not using a debug build, and or minify is enabled it can affect these
+     * logs, and they can be stripped out depending on your configuration.
+     * You also need to ensure that the TraceSdk has been initialised before setting the debug
+     * enabled mode.
+     */
+    private static boolean DEBUG_ENABLED = false;
+
     private TraceSdk() {
         // nop
     }
@@ -69,9 +79,32 @@ public class TraceSdk {
             initDataCollection(context);
             initLifeCycleListener(context);
             initNetworkTracing();
+            TraceLog.i(String.format(LogMessageConstants.TRACE_DEBUG_FLAG_STATUS, DEBUG_ENABLED));
         } else {
             TraceLog.e(new TraceException.TraceConfigNotInitialisedException());
         }
+    }
+
+    /**
+     * Flag to enable debug mode - currently this will mean more debug level log messages.
+     *
+     * Please note if you are not using a debug build, and or minify is enabled it can affect these
+     * logs, and they can be stripped out depending on your configuration.
+     * You also need to ensure that the TraceSdk has been initialised before setting the debug
+     * enabled mode.
+     *
+     * @param debugEnabled boolean value to enable or disable debug mode in the TraceSdk.
+     */
+    public synchronized static void setDebugEnabled(final boolean debugEnabled) {
+        DEBUG_ENABLED = debugEnabled;
+        TraceLog.i(String.format(LogMessageConstants.TRACE_DEBUG_FLAG_STATUS, DEBUG_ENABLED));
+    }
+
+    /**
+     * @return whether the sdk is in debug mode.
+     */
+    public static boolean isDebugEnabled() {
+        return DEBUG_ENABLED;
     }
 
     /**

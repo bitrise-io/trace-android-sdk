@@ -6,6 +6,8 @@ import androidx.annotation.VisibleForTesting;
 import javax.annotation.Nonnull;
 import javax.inject.Singleton;
 
+import io.bitrise.trace.TraceSdk;
+
 /**
  * Singleton class for logging messages to the console.
  */
@@ -259,6 +261,17 @@ public class TraceLog {
                     "() : ";
         } else {
             return "location unknown: ";
+        }
+    }
+
+
+    /**
+     * Creates a TraceLog.v log message only if the TraceSdk is also set to DEBUG_ENABLED to true.
+     * @param message the message to log.
+     */
+    public static void debugV(@NonNull String message) {
+        if (TraceSdk.isDebugEnabled()) {
+            TraceLog.v(message);
         }
     }
 }

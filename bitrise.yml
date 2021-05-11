@@ -108,13 +108,23 @@ workflows:
       - git-clone:
           inputs:
             - manual_merge: 'no'
-      - cache-pull@2: {}
       - script@1:
           inputs:
             - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# debug
             log\nset -x\n\n{\necho $GOOGLE_APPLICATION_CREDENTIALS_CONTENT > $HOME/trace-android-sa.json\n}
             &> /dev/null "
           title: Add google credentials
+      - script@1:
+          title: Switch to Java 11
+          inputs:
+            - content: |-
+                git fetch
+
+                sudo update-alternatives --set javac /usr/lib/jvm/java-11-openjdk-amd64/bin/javac
+                sudo update-alternatives --set java /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+
+                export JAVA_HOME='/usr/lib/jvm/java-11-openjdk-amd64'
+                envman add --key JAVA_HOME --value '/usr/lib/jvm/java-11-openjdk-amd64'
       - gradle-runner@1:
           inputs:
             - gradlew_path: "$BITRISE_SOURCE_DIR/gradlew"
@@ -153,12 +163,6 @@ workflows:
             the 2nd report file to a suitable place, so that the deploy step\n# can
             include it in the zip file artifacts \nmv $BITRISE_SOURCE_DIR/infer-out/bugs.txt
             $BITRISE_SOURCE_DIR/reports/infer_report_trace-gradle-plugin_$BITRISE_BUILD_NUMBER.txt"
-          is_always_run: true
-      - cache-push@2:
-          inputs:
-            - cache_paths: |-
-                $BITRISE_CACHE_DIR
-                $ANDROID_HOME/infer-download
           is_always_run: true
       - deploy-to-bitrise-io@1:
           inputs:

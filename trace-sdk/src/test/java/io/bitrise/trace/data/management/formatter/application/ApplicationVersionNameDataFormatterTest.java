@@ -15,18 +15,17 @@ import static org.junit.Assert.assertNotNull;
  */
 public class ApplicationVersionNameDataFormatterTest extends BaseDataFormatterTest {
 
-    final String resourceLabel = "app.version";
-    final String versionName = "1.2.3";
-
     @Test
     public void formatData() {
+        final String versionName = "1.2.3";
+
         final Data data = new Data(ApplicationVersionNameDataCollector.class);
         data.setContent(versionName);
         final ApplicationVersionNameDataFormatter formatter = new ApplicationVersionNameDataFormatter();
         final FormattedData[] formattedData = formatter.formatData(data);
         assertEquals(1, formattedData.length);
         assertNotNull(formattedData[0].getResourceEntity());
-        assertEquals(resourceLabel, formattedData[0].getResourceEntity().getLabel());
+        assertEquals("app.version", formattedData[0].getResourceEntity().getLabel());
         assertEquals(versionName, formattedData[0].getResourceEntity().getValue());
     }
 }

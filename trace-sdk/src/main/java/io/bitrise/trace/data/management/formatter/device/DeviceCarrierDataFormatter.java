@@ -17,6 +17,6 @@ public class DeviceCarrierDataFormatter extends ResourceDataFormatter {
     @NonNull
     @Override
     public FormattedData[] formatData(@NonNull final Data data) {
-        return new FormattedData[]{formatResource(data, ResourceLabel.DEVICE_CARRIER)};
+        return formatResource(data, ResourceLabel.DEVICE_CARRIER);
     }
 }

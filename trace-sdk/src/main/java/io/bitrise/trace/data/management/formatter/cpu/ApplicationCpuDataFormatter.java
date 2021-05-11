@@ -69,7 +69,7 @@ public class ApplicationCpuDataFormatter extends DataFormatter {
      * @return the created TimeSeries.
      */
     @NonNull
-    private static TimeSeries createCpuTimeSeriesEntry(@NonNull final Timestamp timestamp, final Double value) {
+    private static TimeSeries createCpuTimeSeriesEntry(@NonNull final Timestamp timestamp, final double value) {
         return TimeSeries.newBuilder()
                          .addPoints(
                                  Point.newBuilder()

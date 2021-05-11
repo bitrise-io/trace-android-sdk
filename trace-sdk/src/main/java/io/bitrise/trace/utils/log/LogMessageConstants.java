@@ -38,6 +38,9 @@ public final class LogMessageConstants {
     public static final String FAILED_TO_READ_SYSTEM_CPU_STATS = "Failed to read System CPU stats, Trace may not " +
             "report any CPU stats for this session.";
     public static final String INITIALISING_SDK = "Initialising the Trace SDK";
+    public static final String METRIC_HEADERS_MISSING = "Metric response headers missing, failed to complete header validation.";
+    public static final String METRIC_HEADERS_MATCH = "Metric response headers match: %d sent";
+    public static final String METRIC_HEADERS_INCORRECT = "Metric response headers do not match: %d sent and %d received.\nsent keys: %s\nreceived keys: %s";
     public static final String METRIC_SENDING = "Attempting to send a metric.";
     public static final String METRIC_SENT_SUCCESSFULLY = "Metric sent successfully";
     public static final String SAVE_METRIC = "Metric saved to storage.";
@@ -50,6 +53,7 @@ public final class LogMessageConstants {
     public static final String SET_URL_STREAM_HANDLER_FACTORY_FAILED = "setURLStreamHandlerFactory failed. This means" +
             " the Trace SDK will not be able to capture network metrics that use URLConnection. Please refer to the " +
             "documentation for further guidance.";
+    public static final String TRACE_DEBUG_FLAG_STATUS = "TraceSdk debug mode enabled = %b";
     public static final String TRACE_SENDING = "Attempting to send a trace.";
     public static final String TRACE_SENT_SUCCESSFULLY = "Trace sent successfully";
     public static final String TRACE_SDK_SUCCESSFULLY_INITIALISED = "Trace SDK is successfully initialised.";

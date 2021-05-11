@@ -36,7 +36,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "io.bitrise.trace:trace-sdk:${traceVersions.traceSdk}"
+    implementation project(path: ':trace-sdk')
 
     implementation "androidx.appcompat:appcompat:${versions.appcompat}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"

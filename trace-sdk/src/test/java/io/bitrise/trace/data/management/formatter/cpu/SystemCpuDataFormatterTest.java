@@ -44,8 +44,6 @@ import static org.junit.Assert.assertEquals;
 public class SystemCpuDataFormatterTest extends BaseDataFormatterTest {
 
     final SystemCpuDataFormatter formatter = new SystemCpuDataFormatter();
-    final CpuUsageData.CpuStat cpuStat = new CpuUsageData.CpuStat(1,2,3,4,5,6,7,8);
-    final String metricDescriptionDescription = "System CPU Usage";
 
     @Test
     public void formatData_notCpuStat() {
@@ -56,6 +54,8 @@ public class SystemCpuDataFormatterTest extends BaseDataFormatterTest {
 
     @Test
     public void formatData() {
+        final CpuUsageData.CpuStat cpuStat = new CpuUsageData.CpuStat(1,2,3,4,5,6,7,8);
+
         final Data data = new Data(SystemCpuUsageDataCollector.class);
         data.setContent(cpuStat);
 
@@ -77,7 +77,7 @@ public class SystemCpuDataFormatterTest extends BaseDataFormatterTest {
         final Metric.Builder metricBuilder = Metric.newBuilder();
         final MetricDescriptor.Builder cpuDescriptorBuilder =
                 MetricDescriptor.newBuilder()
-                        .setDescription(metricDescriptionDescription)
+                        .setDescription("System CPU Usage")
                         .setName(getName(system, cpu, pct))
                         .setUnit(percent)
                         .setType(MetricDescriptor.Type.GAUGE_DOUBLE)

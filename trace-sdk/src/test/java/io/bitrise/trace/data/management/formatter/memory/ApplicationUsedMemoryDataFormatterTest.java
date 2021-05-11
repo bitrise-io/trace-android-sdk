@@ -18,7 +18,6 @@ import static org.junit.Assert.assertEquals;
 public class ApplicationUsedMemoryDataFormatterTest extends BaseDataFormatterTest {
 
     final ApplicationUsedMemoryDataFormatter formatter = new ApplicationUsedMemoryDataFormatter();
-    final Long memoryUsed = 1234L;
 
     @Test
     public void formatData_contentNull() {
@@ -29,6 +28,8 @@ public class ApplicationUsedMemoryDataFormatterTest extends BaseDataFormatterTes
 
     @Test
     public void handleMemoryFormatting() {
+        final Long memoryUsed = 1234L;
+
         final Data data = new Data(ApplicationUsedMemoryDataCollector.class);
         data.setContent(memoryUsed);
         final FormattedData[] formattedData = formatter.formatData(data);

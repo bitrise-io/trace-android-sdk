@@ -15,10 +15,10 @@ import static org.junit.Assert.assertEquals;
  */
 public class DeviceModelDataFormatterTest extends BaseDataFormatterTest {
 
-    final String deviceModel = "Pixel 3";
-
     @Test
     public void formatData() {
+        final String deviceModel = "Pixel 3";
+
         final Data inputData = new Data(DeviceModelDataCollector.class);
         inputData.setContent(deviceModel);
         final FormattedData[] outputData =  new DeviceModelDataFormatter().formatData(inputData);
