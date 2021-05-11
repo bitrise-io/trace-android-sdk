@@ -26,7 +26,6 @@ import static org.junit.Assert.assertEquals;
 public class ApplicationStartUpDataFormatterTest extends BaseDataFormatterTest {
 
     final ApplicationStartUpDataFormatter formatter = new ApplicationStartUpDataFormatter();
-    final ApplicationStartData applicationStartData = new ApplicationStartData(1234, ApplicationStartType.COLD);
 
     @Test
     public void formatData_notApplicationStartUp() {
@@ -37,6 +36,8 @@ public class ApplicationStartUpDataFormatterTest extends BaseDataFormatterTest {
 
     @Test
     public void formatData() {
+        final ApplicationStartData applicationStartData = new ApplicationStartData(1234, ApplicationStartType.COLD);
+        
         final Data data = new Data(ApplicationStartUpDataListener.class);
         data.setContent(applicationStartData);
         final FormattedData[] formattedData = formatter.formatData(data);

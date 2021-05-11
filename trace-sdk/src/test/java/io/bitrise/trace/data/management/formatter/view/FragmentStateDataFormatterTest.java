@@ -33,21 +33,21 @@ public class FragmentStateDataFormatterTest {
     private static final String DUMMY_PARENT_SPAN_ID = "ABCDEF0123456789";
     private static final String DUMMY_FRAGMENT_NAME = "ExampleName";
 
-    private FragmentDataStateEntry fragmentDataStateEntryCreated1 =
+    private final FragmentDataStateEntry fragmentDataStateEntryCreated1 =
             new FragmentDataStateEntry(FragmentState.VIEW_CREATED, 1000);
-    private FragmentDataStateEntry fragmentDataStateEntryCreated2 =
+    private final FragmentDataStateEntry fragmentDataStateEntryCreated2 =
             new FragmentDataStateEntry(FragmentState.VIEW_CREATED, 2000);
-    private FragmentDataStateEntry fragmentDataStateEntryCreated3 =
+    private final FragmentDataStateEntry fragmentDataStateEntryCreated3 =
             new FragmentDataStateEntry(FragmentState.VIEW_CREATED, 3000);
 
-    private FragmentDataStateEntry fragmentDataStateEntryPaused1 =
+    private final FragmentDataStateEntry fragmentDataStateEntryPaused1 =
             new FragmentDataStateEntry(FragmentState.PAUSED, 1500);
-    private FragmentDataStateEntry fragmentDataStateEntryPaused2 =
+    private final FragmentDataStateEntry fragmentDataStateEntryPaused2 =
             new FragmentDataStateEntry(FragmentState.PAUSED, 2500);
-    private FragmentDataStateEntry fragmentDataStateEntryPaused3 =
+    private final FragmentDataStateEntry fragmentDataStateEntryPaused3 =
             new FragmentDataStateEntry(FragmentState.PAUSED, 3500);
 
-    private FragmentStateDataFormatter formatter = new FragmentStateDataFormatter();
+    private final FragmentStateDataFormatter formatter = new FragmentStateDataFormatter();
 
     /**
      * When the input data timestamp is before all of the timestamps of {@link FragmentDataStateEntry}s, it should

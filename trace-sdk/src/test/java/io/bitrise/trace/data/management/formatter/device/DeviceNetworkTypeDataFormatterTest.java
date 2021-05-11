@@ -15,10 +15,10 @@ import static org.junit.Assert.assertEquals;
  */
 public class DeviceNetworkTypeDataFormatterTest extends BaseDataFormatterTest {
 
-    final String deviceNetworkType = "WIFI";
-
     @Test
     public void formatData() {
+        final String deviceNetworkType = "WIFI";
+
         final Data inputData = new Data(DeviceNetworkTypeDataCollector.class);
         inputData.setContent(deviceNetworkType);
         final FormattedData[] outputData =  new DeviceNetworkTypeDataFormatter().formatData(inputData);

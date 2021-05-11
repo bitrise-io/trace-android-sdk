@@ -15,10 +15,10 @@ import static org.junit.Assert.assertEquals;
  */
 public class DeviceOsDataFormatterTest extends BaseDataFormatterTest {
 
-    final String deviceOs = "30";
-
     @Test
     public void formatData() {
+        final String deviceOs = "30";
+
         final Data inputData = new Data(DeviceOsVersionDataCollector.class);
         inputData.setContent(deviceOs);
         final FormattedData[] outputData =  new DeviceOsDataFormatter().formatData(inputData);

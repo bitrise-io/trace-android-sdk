@@ -15,10 +15,10 @@ import static org.junit.Assert.assertEquals;
  */
 public class DeviceCarrierDataFormatterTest extends BaseDataFormatterTest {
 
-    final String carrier = "vodafone";
-
     @Test
     public void formatData() {
+        final String carrier = "vodafone";
+
         final Data inputData = new Data(DeviceCarrierDataCollector.class);
         inputData.setContent(carrier);
         final FormattedData[] outputData =  new DeviceCarrierDataFormatter().formatData(inputData);

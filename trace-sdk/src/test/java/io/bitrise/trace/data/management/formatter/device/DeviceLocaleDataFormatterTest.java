@@ -16,9 +16,10 @@ import static org.junit.Assert.assertNotNull;
  */
 public class DeviceLocaleDataFormatterTest extends BaseDataFormatterTest {
 
-    final String deviceLocale = "en_US";
     @Test
     public void formatData_localeShouldBeEnUs() {
+        final String deviceLocale = "en_US";
+
         final Data inputData = new Data(DeviceLocaleDataCollector.class);
         inputData.setContent("en_US");
 

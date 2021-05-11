@@ -9,7 +9,6 @@ import io.bitrise.trace.data.resource.ResourceLabel;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 /**
  * Tests for {@link ResourceDataFormatter}.

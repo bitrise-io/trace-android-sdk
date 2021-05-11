@@ -25,8 +25,6 @@ import static org.junit.Assert.assertEquals;
 public class ApplicationCpuDataFormatterTest extends BaseDataFormatterTest {
 
     final ApplicationCpuDataFormatter formatter = new ApplicationCpuDataFormatter();
-    final double cpuValue = 12.3;
-    final String metricDescriptorDescription = "Application CPU Usage";
 
     @Test
     public void formatData_contentNotDouble() {
@@ -37,6 +35,8 @@ public class ApplicationCpuDataFormatterTest extends BaseDataFormatterTest {
 
     @Test
     public void formatData() {
+        final double cpuValue = 12.3;
+
         final Data data = new Data(ApplicationCpuUsageDataCollector.class);
         data.setContent(cpuValue);
         final FormattedData formattedData = formatter.formatData(data)[0];
@@ -52,7 +52,7 @@ public class ApplicationCpuDataFormatterTest extends BaseDataFormatterTest {
         final Metric.Builder metricBuilder = Metric.newBuilder();
         final MetricDescriptor.Builder cpuDescriptorBuilder =
                 MetricDescriptor.newBuilder()
-                        .setDescription(metricDescriptorDescription)
+                        .setDescription("Application CPU Usage")
                         .setName(getName(process, cpu, pct))
                         .setUnit(percent)
                         .setType(MetricDescriptor.Type.GAUGE_DOUBLE);
