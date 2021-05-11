@@ -1043,6 +1043,7 @@ workflows:
                 # debug log
                 set -x
 
+                adb devices
                 $BITRISE_SOURCE_DIR/gradlew ":trace-test-application:connectedAndroidTest" --stacktrace
           title: trace-test-application connectedAndroidTest
       - codecov@2:
@@ -1062,10 +1063,14 @@ workflows:
                 set -x
 
                 mkdir -p /bitrise/src/trace-test-application/build/reports
-                adb logcat -d > $BITRISE_SOURCE_DIR/trace-test-application/build/reports/logcat.txt &
+                adb logcat -d > $BITRISE_SOURCE_DIR/trace-test-application/build/reports/logcat.txt
       - script@1:
-          title: save_screenshots
+          title: save_collected_test_data
           is_always_run: true
+          description: |-
+            Pulls from the virtual device and moves it to the build reports dir the following things:
+            1. screenshots of UI tests
+            2. view hierarchy xmls of UI tests
           inputs:
             - content: |-
                 #!/usr/bin/env bash
@@ -1074,8 +1079,19 @@ workflows:
                 # debug log
                 set -x
 
+                echo "Listing files in /sdcard/Pictures/UiTestScreenShots/"
+                adb shell ls /sdcard/Pictures/UiTestScreenShots/ || true
+
+                echo
+
+                echo "Listing files in /sdcard/Download/UiTestHierarchy/"
+                adb shell ls /sdcard/Download/UiTestHierarchy/ || true
+
+                echo "Pulling test data files"
                 mkdir -p /bitrise/src/trace-test-application/build/reports/screenshots/
                 adb pull /sdcard/Pictures/UiTestScreenShots/ /bitrise/src/trace-test-application/build/reports/screenshots/
+                mkdir -p /bitrise/src/trace-test-application/build/reports/viewhierarchy/
+                adb pull /sdcard/Download/UiTestHierarchy/ /bitrise/src/trace-test-application/build/reports/viewhierarchy/
       - script@1:
           inputs:
             - content: |-
