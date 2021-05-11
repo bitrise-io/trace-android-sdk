@@ -8,6 +8,7 @@ import io.bitrise.trace.testapp.screen.IndexActivityScreen;
 import io.bitrise.trace.testapp.screen.MainActivityScreen;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * UiTest for Activity related behaviour.
@@ -27,15 +28,16 @@ public class ActivityUiTest extends BaseUiTest {
     @Test
     public void activityStateTest() {
         final IndexActivityScreen indexActivityScreen = new IndexActivityScreen(uiDevice);
-        assertNotNull(indexActivityScreen.getButtonUiTestsLabel());
         final MainActivityScreen mainActivityScreen = indexActivityScreen.launchUiTests();
         uiDevice.pressHome();
-        launchTraceTestApp(false);
+        final boolean launchSuccessful1 = launchTraceTestApp(false);
+        assertTrue(launchSuccessful1);
 
         mainActivityScreen.waitTillLoad();
         mainActivityScreen.launchSecondActivity();
         uiDevice.pressHome();
-        launchTraceTestApp(false);
+        final boolean launchSuccessful2 = launchTraceTestApp(false);
+        assertTrue(launchSuccessful2);
 
         uiDevice.pressBack();
         uiDevice.waitForIdle(WAIT_FOR_IDLE_TIMEOUT);
