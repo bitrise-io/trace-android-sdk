@@ -77,10 +77,6 @@ dependencies {
     androidTestImplementation "org.mockito:mockito-android:${versions.mockitoAndroid}"
 }
 
-junitJacoco {
-    jacocoVersion = '0.8.6'
-}
-
 def getTraceToken() {
     // try to get the environment variable in CI
     def traceToken = findProperty("traceToken")

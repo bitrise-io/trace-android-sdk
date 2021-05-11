@@ -31,6 +31,10 @@ plugins {
 apply from: "versions.gradle"
 apply plugin: "com.vanniktech.android.junit.jacoco"
 
+junitJacoco {
+    jacocoVersion = '0.8.6'
+}
+
 allprojects {
     repositories {
         mavenLocal() // For allowing the usage of local publishing and downloading them from there
