@@ -17,6 +17,6 @@ public class DeviceRootedDataFormatter extends ResourceDataFormatter {
     @NonNull
     @Override
     public FormattedData[] formatData(@NonNull final Data data) {
-        return new FormattedData[]{formatResource(data, ResourceLabel.DEVICE_ROOTED)};
+        return formatResource(data, ResourceLabel.DEVICE_ROOTED);
     }
 }

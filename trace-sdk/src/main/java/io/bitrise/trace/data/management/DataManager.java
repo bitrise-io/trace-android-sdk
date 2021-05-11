@@ -31,6 +31,7 @@ import io.bitrise.trace.scheduler.ServiceScheduler;
 import io.bitrise.trace.utils.log.LogMessageConstants;
 import io.bitrise.trace.utils.log.TraceLog;
 import io.opencensus.proto.metrics.v1.Metric;
+import io.opencensus.proto.resource.v1.Resource;
 
 /**
  * Manages the {@link Data} collection. Starts and stops the {@link DataSource}s.
