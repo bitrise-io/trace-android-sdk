@@ -32,7 +32,7 @@ apply from: "versions.gradle"
 apply plugin: "com.vanniktech.android.junit.jacoco"
 
 junitJacoco {
-    jacocoVersion = '0.8.6'
+    jacocoVersion = '0.8.4'
 }
 
 allprojects {
