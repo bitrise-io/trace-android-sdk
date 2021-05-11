@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import io.bitrise.trace.InstrumentedTestRequirements;
@@ -51,7 +52,7 @@ public class MetricSenderIntegrationTest {
 
     @BeforeClass
     public static void setUp() {
-        ConfigurationManager.getDebugInstance(BuildConfig.TRACE_TOKEN);
+        ConfigurationManager.getDebugInstance(BuildConfig.TRACE_TOKEN, new HashMap<>());
         ApplicationSessionManager.getInstance().startSession();
     }
 
