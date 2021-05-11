@@ -37,7 +37,7 @@ public abstract class BaseScreen {
      * The id prefix to find resource by id.
      */
     @NonNull
-    protected final static String id = InstrumentationRegistry.getInstrumentation()
+    protected static final String id = InstrumentationRegistry.getInstrumentation()
                                                               .getTargetContext()
                                                               .getPackageName() + ":id/";
 
@@ -45,6 +45,11 @@ public abstract class BaseScreen {
      * The default value for timeouts.
      */
     protected long DEFAULT_TIMEOUT = 10000;
+
+    /**
+     * The number of times the test will try to click on a given BySelector before failing the test.
+     */
+    private static final int numberOfClickAttempts = 3;
 
     /**
      * Constructor for class.
@@ -68,12 +73,13 @@ public abstract class BaseScreen {
     }
 
     /**
-     * Performs a click action on the given {@link BySelector}. Retries the finding 3 times.
+     * Performs a click action on the given {@link BySelector}. Attempts to find the given BySelector 3 times. This
+     * is needed for cases when the UI is not ready.
      *
      * @param by the given BySelector.
      */
     public void click(@NonNull final BySelector by) {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < numberOfClickAttempts; i++) {
             final UiObject2 uiObject2 = find(by);
             if (uiObject2 != null) {
                 uiObject2.click();
