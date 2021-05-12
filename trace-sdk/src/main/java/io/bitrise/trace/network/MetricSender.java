@@ -18,7 +18,6 @@ import java.util.concurrent.Future;
 
 import io.bitrise.trace.data.metric.MetricEntity;
 import io.bitrise.trace.data.metric.MetricUtils;
-import io.bitrise.trace.utils.StringUtils;
 import io.bitrise.trace.utils.TraceException;
 import io.bitrise.trace.utils.log.LogMessageConstants;
 import io.bitrise.trace.utils.log.TraceLog;

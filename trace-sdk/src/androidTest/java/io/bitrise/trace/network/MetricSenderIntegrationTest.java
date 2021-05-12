@@ -6,9 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.test.filters.LargeTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -17,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import io.bitrise.trace.BuildConfig;
 import io.bitrise.trace.InstrumentedTestRequirements;
 import io.bitrise.trace.configuration.ConfigurationManager;
 import io.bitrise.trace.data.collector.cpu.ApplicationCpuUsageDataCollector;
@@ -34,7 +33,6 @@ import io.bitrise.trace.data.management.formatter.memory.ApplicationUsedMemoryDa
 import io.bitrise.trace.data.management.formatter.memory.SystemMemoryDataFormatter;
 import io.bitrise.trace.data.management.formatter.view.ApplicationStartUpDataFormatter;
 import io.bitrise.trace.session.ApplicationSessionManager;
-import io.bitrise.trace.BuildConfig;
 import io.bitrise.trace.test.DataTestUtils;
 import io.opencensus.proto.metrics.v1.Metric;
 import retrofit2.Response;

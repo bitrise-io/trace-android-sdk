@@ -10,17 +10,16 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import io.bitrise.trace.data.TraceActivityLifecycleTracker;
+import io.bitrise.trace.data.collector.BaseDataCollectorInstrumentedTest;
 import io.bitrise.trace.data.dto.ActivityData;
 import io.bitrise.trace.data.dto.ActivityState;
 import io.bitrise.trace.data.dto.Data;
-import io.bitrise.trace.data.collector.BaseDataCollectorInstrumentedTest;
 import io.bitrise.trace.data.management.DataManager;
 import io.bitrise.trace.session.ApplicationSessionManager;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;

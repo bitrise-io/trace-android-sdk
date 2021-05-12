@@ -5,12 +5,11 @@ import android.telephony.TelephonyManager;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.collector.BaseDataCollectorInstrumentedTest;
+import io.bitrise.trace.data.dto.Data;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
