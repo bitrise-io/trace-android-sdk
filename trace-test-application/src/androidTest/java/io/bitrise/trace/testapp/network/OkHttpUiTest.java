@@ -25,9 +25,9 @@ public class OkHttpUiTest extends BaseUiTest {
         final BaseNetworkActivityScreen okHttpActivityScreen = networkActivityScreen.launchOkHttpActivity();
         okHttpActivityScreen.callHttp();
         okHttpActivityScreen.waitForCallFinish();
-        assertEquals(okHttpActivityScreen.getResponseCodeText(), "301");
+        assertEquals("301", okHttpActivityScreen.getResponseCodeText());
         okHttpActivityScreen.callHttps();
         okHttpActivityScreen.waitForCallFinish();
-        assertEquals(okHttpActivityScreen.getResponseCodeText(), "200");
+        assertEquals("200", okHttpActivityScreen.getResponseCodeText());
     }
 }

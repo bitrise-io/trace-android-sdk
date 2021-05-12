@@ -8,9 +8,9 @@ import io.bitrise.trace.session.ApplicationSessionManager;
 /**
  * Base DataFormatter for DataFormatter Tests.
  * This ensures the ApplicationSessionManager is started before which is required to be able to
- * format any data
+ * format any data.
  */
-public class BaseDataFormatterTest {
+public abstract class BaseDataFormatterTest {
 
     @Before
     public void setUpBeforeClass() {

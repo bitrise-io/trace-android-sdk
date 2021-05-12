@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import io.bitrise.trace.testapp.screen.IndexActivityScreen;
 
+import static org.junit.Assert.assertNotNull;
+
 /**
  * UiTest for Application startup related behaviour.
  */
@@ -14,8 +16,9 @@ public class ApplicationStartUpUiTest extends BaseUiTest {
      */
     @Test
     public void coldStartTest() {
-        new IndexActivityScreen(uiDevice);
+        final IndexActivityScreen indexActivityScreen = new IndexActivityScreen(uiDevice);
         uiDevice.waitForIdle(WAIT_FOR_IDLE_TIMEOUT);
+        assertNotNull(indexActivityScreen.getButtonUiTestsLabel());
         uiDevice.pressHome();
     }
 
@@ -24,8 +27,8 @@ public class ApplicationStartUpUiTest extends BaseUiTest {
      */
     @Test
     public void hotStartTest() {
-        new IndexActivityScreen(uiDevice);
-
+        final IndexActivityScreen indexActivityScreen = new IndexActivityScreen(uiDevice);
+        assertNotNull(indexActivityScreen.getButtonUiTestsLabel());
         uiDevice.pressHome();
         uiDevice.waitForIdle(WAIT_FOR_IDLE_TIMEOUT);
 

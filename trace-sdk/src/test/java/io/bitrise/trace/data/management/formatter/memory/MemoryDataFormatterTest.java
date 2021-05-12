@@ -7,7 +7,6 @@ import org.mockito.Mockito;
 
 import io.bitrise.trace.data.dto.FormattedData;
 import io.bitrise.trace.data.management.formatter.BaseDataFormatterTest;
-import io.bitrise.trace.data.management.formatter.memory.MemoryDataFormatter;
 import io.opencensus.proto.metrics.v1.LabelKey;
 import io.opencensus.proto.metrics.v1.LabelValue;
 import io.opencensus.proto.metrics.v1.Metric;

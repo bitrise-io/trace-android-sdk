@@ -1,6 +1,7 @@
 package io.bitrise.trace.data.management;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
 import androidx.test.annotation.UiThreadTest;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -16,15 +17,18 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import io.bitrise.trace.configuration.ConfigurationManager;
-import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.collector.DataCollector;
 import io.bitrise.trace.data.collector.DataListener;
 import io.bitrise.trace.data.collector.DataSourceType;
 import io.bitrise.trace.data.collector.DummyDataCollector;
 import io.bitrise.trace.data.collector.DummyDataListener;
+import io.bitrise.trace.data.dto.Data;
+import io.bitrise.trace.data.storage.DataStorage;
+import io.bitrise.trace.data.storage.TestDataStorage;
 import io.bitrise.trace.scheduler.ServiceScheduler;
 import io.bitrise.trace.session.ApplicationSessionManager;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -204,16 +208,27 @@ public class DataManagerInstrumentedTest {
 
     /**
      * When the {@link DataManager#handleReceivedData(Data)} is called with a valid {@link Data} that will be
-     * converted to a {@link io.opencensus.proto.metrics.v1.Metric} it should not throw an exception.
+     * converted to a {@link io.opencensus.proto.metrics.v1.Metric} it should not throw an exception and be saved
+     * to the database correctly.
+     *
+     * Note: We use the @UiThreadTest annotation to ensure this test runs synchronously on it's own.
+     * however, as we also use Room for our db, we must do that off the main thread, hence the AsyncTask.
      */
     @Test
     @UiThreadTest
     public void handleReceivedData_shouldHandleMetricWithoutException() {
-        DataManager.getInstance(context);
-        ApplicationSessionManager.getInstance().startSession();
-        final Data data = new Data(DataSourceType.SYSTEM_USED_MEMORY);
-        final long dummyValue = 500L;
-        data.setContent(dummyValue);
-        dataManager.handleReceivedData(data);
+        AsyncTask.execute(() -> {
+            DataManager.getInstance(context);
+            ApplicationSessionManager.getInstance().startSession();
+            final DataStorage traceDataStorage = TestDataStorage.getInstance(context);
+            dataManager.setDataStorage(traceDataStorage);
+
+            final Data data = new Data(DataSourceType.SYSTEM_USED_MEMORY);
+            final long dummyValue = 500L;
+            data.setContent(dummyValue);
+            dataManager.handleReceivedData(data);
+
+            assertThat(traceDataStorage.getAllMetrics().size(), is(equalTo(1)));
+        });
     }
 }

@@ -13,7 +13,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Tests for {@link ResourceDataFormatter}.
  */
-public class ResourceDataFormatterTest extends BaseDataFormatterTest{
+public class ResourceDataFormatterTest extends BaseDataFormatterTest {
 
     final Data inputData = Mockito.mock(Data.class, Mockito.CALLS_REAL_METHODS);
     final ResourceLabel dummyResourceLabel = ResourceLabel.DEVICE_ROOTED;

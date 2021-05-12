@@ -9,6 +9,8 @@ import io.bitrise.trace.testapp.screen.MainActivityScreen;
 import io.bitrise.trace.testapp.screen.SecondActivityScreen;
 import io.bitrise.trace.testapp.screen.ThirdActivityScreen;
 
+import static org.junit.Assert.assertNotNull;
+
 /**
  * UiTest for Fragment related behaviour.
  */
@@ -27,7 +29,8 @@ public class FragmentUiTest extends BaseUiTest {
     @Test
     public void fragmentStateTest() {
         final IndexActivityScreen indexActivityScreen = new IndexActivityScreen(uiDevice);
-
+        assertNotNull(indexActivityScreen.getButtonUiTestsLabel());
+        
         final MainActivityScreen mainActivityScreen = indexActivityScreen.launchUiTests();
         mainActivityScreen
                 .showParentFragment()
