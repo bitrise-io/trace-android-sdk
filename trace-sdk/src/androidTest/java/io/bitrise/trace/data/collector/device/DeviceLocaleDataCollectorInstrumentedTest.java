@@ -59,4 +59,9 @@ public class DeviceLocaleDataCollectorInstrumentedTest extends BaseDataCollector
     public void getPermissions() {
         assertArrayEquals(new String[0], collector.getPermissions());
     }
+
+    @Test
+    public void getIntervalMs() {
+        assertEquals(0, collector.getIntervalMs());
+    }
 }

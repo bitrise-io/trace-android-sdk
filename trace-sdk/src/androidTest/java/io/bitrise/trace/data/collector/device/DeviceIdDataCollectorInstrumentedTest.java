@@ -9,6 +9,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Instrumented tests for {@link DeviceIdDataCollector}.
@@ -42,5 +43,10 @@ public class DeviceIdDataCollectorInstrumentedTest extends BaseDataCollectorInst
     @Test
     public void getPermissions() {
         assertArrayEquals(new String[0], deviceIdDataCollector.getPermissions());
+    }
+
+    @Test
+    public void getIntervalMs() {
+        assertEquals(0, deviceIdDataCollector.getIntervalMs());
     }
 }

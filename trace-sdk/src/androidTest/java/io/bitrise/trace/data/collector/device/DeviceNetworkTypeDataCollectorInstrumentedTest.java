@@ -20,6 +20,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -216,5 +217,11 @@ public class DeviceNetworkTypeDataCollectorInstrumentedTest extends BaseDataColl
         final DeviceNetworkTypeDataCollector collector = new DeviceNetworkTypeDataCollector(context);
         assertArrayEquals(new String[]{android.Manifest.permission.ACCESS_NETWORK_STATE},
                 collector.getPermissions());
+    }
+
+    @Test
+    public void getIntervalMs() {
+        final DeviceNetworkTypeDataCollector collector = new DeviceNetworkTypeDataCollector(context);
+        assertEquals(0, collector.getIntervalMs());
     }
 }

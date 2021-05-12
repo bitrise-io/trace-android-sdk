@@ -21,6 +21,7 @@ import io.bitrise.trace.session.ApplicationSessionManager;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertArrayEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -239,5 +240,10 @@ public class ApplicationStartUpDataListenerInstrumentedTest {
         traceActivityLifecycleTracker.onActivityStarted(mockActivity1);
         traceActivityLifecycleTracker.onActivityResumed(mockActivity1);
         verify(mockDataManager, times(1)).handleReceivedData(any(Data.class));
+    }
+
+    @Test
+    public void getPermissions() {
+        assertArrayEquals(new String[0], applicationStartUpDataListener.getPermissions());
     }
 }

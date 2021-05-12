@@ -19,6 +19,8 @@ import io.bitrise.trace.session.ApplicationSessionManager;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -190,5 +192,10 @@ public class ActivityStateDataListenerInstrumentedTest {
         activityStateDataListener.stopCollecting();
         activityStateDataListener.startCollecting();
         assertThat(activityStateDataListener.activityMap.size(), is(0));
+    }
+
+    @Test
+    public void getPermissions() {
+        assertArrayEquals(new String[0], activityStateDataListener.getPermissions());
     }
 }

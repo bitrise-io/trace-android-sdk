@@ -16,6 +16,7 @@ import io.bitrise.trace.session.ApplicationSessionManager;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertArrayEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -92,4 +93,8 @@ public class FragmentStateDataListenerInstrumentedTest {
         assertThat(fragmentStateDataListener.activityFragmentMap.containsKey(mockActivity.hashCode()), is(true));
     }
 
+    @Test
+    public void getPermissions() {
+        assertArrayEquals(new String[0], fragmentStateDataListener.getPermissions());
+    }
 }
