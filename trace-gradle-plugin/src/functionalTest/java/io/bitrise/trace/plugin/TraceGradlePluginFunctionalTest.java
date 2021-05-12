@@ -116,8 +116,6 @@ public class TraceGradlePluginFunctionalTest {
         if (DELETE_TEMP_PROJECT) {
             functionalTestHelper.deleteTestProjectDir(testName);
         }
-
-        FunctionalTestWriter.reset();
     }
 
     /**
