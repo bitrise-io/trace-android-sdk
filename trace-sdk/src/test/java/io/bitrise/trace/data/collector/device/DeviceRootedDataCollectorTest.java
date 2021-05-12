@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 
 import io.bitrise.trace.data.dto.Data;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -50,5 +51,10 @@ public class DeviceRootedDataCollectorTest {
     public void collectData_contentShouldBeTrue() {
         when(mockRootBeer.isRooted()).thenReturn(true);
         assertTrue((boolean)deviceRootedDataCollector.collectData().getContent());
+    }
+
+    @Test
+    public void getPermissions() {
+        assertArrayEquals(new String[0], deviceRootedDataCollector.getPermissions());
     }
 }
