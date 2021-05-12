@@ -1,9 +1,8 @@
 apply plugin: 'com.android.library'
-apply plugin: "com.vanniktech.android.junit.jacoco"
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "30.0.2"
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 30
@@ -76,10 +75,6 @@ dependencies {
     }
     androidTestImplementation "org.hamcrest:hamcrest:${versions.hamcrest}"
     androidTestImplementation "org.mockito:mockito-android:${versions.mockitoAndroid}"
-}
-
-junitJacoco {
-    jacocoVersion = '0.8.6'
 }
 
 def getTraceToken() {
