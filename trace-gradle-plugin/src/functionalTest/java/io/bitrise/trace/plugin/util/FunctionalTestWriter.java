@@ -1,23 +1,24 @@
 package io.bitrise.trace.plugin.util;
 
 import androidx.annotation.NonNull;
-
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 /**
- * Custom implementation of the {@link PrintWriter} class, to add different coloring to the output and some extra
- * indentation. Please note that adding the coloring will stay until changed. To reset it to the default please use
- * the {@link #reset()} method. The coloring is based on the ANSI escape codes.
+ * Custom implementation of the {@link PrintWriter} class, to add different coloring to the
+ * output and some extra
+ * indentation. The coloring is based on the ANSI escape codes.
  *
- * @see <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">https://en.wikipedia.org/wiki/ANSI_escape_code</a>
+ * @see
+ * <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">https://en.wikipedia.org/wiki/ANSI_escape_code</a>
  */
 public class FunctionalTestWriter extends PrintWriter {
 
     private static final char[] indentation = new char[]{' ', ' ', ' '};
     private static final char[] escapeChar = new char[]{27};
     private final char[] coloringCode;
-    private final int extraLength;
+    private final char[] coloringEnd = concatEscapeChar("[39;49m".toCharArray());
 
     /**
      * Constructor for class, Requires the given OutputStream and the {@link PrintColor} which will be used.
@@ -28,7 +29,6 @@ public class FunctionalTestWriter extends PrintWriter {
     public FunctionalTestWriter(@NonNull final OutputStream outputStream, @NonNull final PrintColor printColor) {
         super(outputStream);
         this.coloringCode = createColorCode(printColor);
-        this.extraLength = indentation.length + coloringCode.length + escapeChar.length;
     }
 
     /**
@@ -69,28 +69,13 @@ public class FunctionalTestWriter extends PrintWriter {
         return String.format("[38;2;%s;%s;%sm", rgb.getRed(), rgb.getGreen(), rgb.getBlue()).toCharArray();
     }
 
-    /**
-     * Gets the default console printing color.
-     *
-     * @return the char array representation of the default color.
-     */
-    @NonNull
-    private static char[] getDefaultColorCode() {
-        return ("[39m").toCharArray();
-    }
-
-    /**
-     * Resets the console to the default color.
-     */
-    public static void reset() {
-        System.out.println(concatEscapeChar(getDefaultColorCode()));
-    }
-
     @Override
     public void write(@NonNull final char[] chars, final int i, final int i1) {
-        final char[] coloredChars = color(chars);
-        final char[] output = addIndent(coloredChars);
-        super.write(output, i, i1 + extraLength);
+        final char[] charsToWrite = Arrays.copyOfRange(chars, i, i + i1);
+        final char[] coloredChars = color(charsToWrite);
+        final char[] indentedAndColoredChars = addIndent(coloredChars);
+        final char[] toPrint = concatCharArrays(indentedAndColoredChars, coloringEnd);
+        super.write(toPrint, 0, toPrint.length);
     }
 
     /**
@@ -105,8 +90,7 @@ public class FunctionalTestWriter extends PrintWriter {
     }
 
     /**
-     * Inserts to the start the coloring chars to a given array of chars. Please note that adding the coloring will
-     * stay until changed. To reset it to the default please use the {@link #reset()} method.
+     * Inserts to the start the coloring chars to a given array of chars.
      *
      * @param chars the given array of chars.
      * @return the given text with the coloring chars.
@@ -164,6 +148,5 @@ public class FunctionalTestWriter extends PrintWriter {
         public int getBlue() {
             return blue;
         }
-
     }
 }
