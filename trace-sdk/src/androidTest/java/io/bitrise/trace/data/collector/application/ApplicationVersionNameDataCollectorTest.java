@@ -1,5 +1,7 @@
 package io.bitrise.trace.data.collector.application;
 
+import android.content.res.Resources;
+
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.AfterClass;
@@ -15,6 +17,7 @@ import io.bitrise.trace.data.dto.Data;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Unit tests for {@link ApplicationVersionNameDataCollector}
@@ -25,24 +28,23 @@ public class ApplicationVersionNameDataCollectorTest {
     private final ApplicationVersionNameDataCollector collector = new ApplicationVersionNameDataCollector(
             InstrumentationRegistry.getInstrumentation().getContext());
 
-    @BeforeClass
-    public static void setUp() {
+    @Test
+    public void collectData_configurationManagerInitialised() {
         final Map<String, Object> configuration = new HashMap<>();
         configuration.put("VERSION_NAME", versionName);
         ConfigurationManager.getDebugInstance(BuildConfig.TRACE_TOKEN, configuration);
-    }
 
-    @AfterClass
-    public static void tearDown() {
-        ConfigurationManager.reset();
-    }
-
-    @Test
-    public void collectData() {
         final Data expectedData = new Data(ApplicationVersionNameDataCollector.class);
         expectedData.setContent(versionName);
 
         assertEquals(expectedData, collector.collectData());
+
+        ConfigurationManager.reset();
+    }
+
+    @Test(expected = Resources.NotFoundException.class)
+    public void collectData_configurationManagerNotInitialised() {
+        assertNotNull(collector.collectData());
     }
 
     @Test
