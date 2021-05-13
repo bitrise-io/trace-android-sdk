@@ -5,6 +5,11 @@ buildscript {
         google()
     }
 }
+
+plugins {
+    id 'checkstyle'
+}
+
 allprojects {
     repositories {
         mavenLocal() // For allowing the usage of local publishing and downloading them from there
@@ -69,3 +74,5 @@ dependencies {
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
+
+apply from: "../checkstyle.gradle"

@@ -7,6 +7,9 @@ buildscript {
     }
 }
 
+plugins {
+    id 'checkstyle'
+}
 apply plugin: 'java-library'
 
 java {
@@ -28,3 +31,5 @@ dependencies {
     testImplementation "org.hamcrest:hamcrest:2.2"
     testImplementation "org.mockito:mockito-core:3.2.4"
 }
+
+apply from: "../checkstyle.gradle"
