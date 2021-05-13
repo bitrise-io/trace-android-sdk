@@ -168,8 +168,60 @@ workflows:
           inputs:
             - deploy_path: "$BITRISE_SOURCE_DIR/reports"
     description: Run the static code analyser (FB Infer) and save the reports.
+  check_code_formatting:
+    before_run:
+      - clone_repo
+    steps:
+      - gradle-runner@1:
+          inputs:
+            - gradle_task: "checkStyle"
+            - gradlew_path: "$BITRISE_SOURCE_DIR/gradlew"
+      - script@1:
+          title: prepare_output
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                # Set appropriate zip file name, and export these as environment variables
+                envman add --key TRACE_CHECKSTYLE_REPORTS_ZIP_NAME --value "trace_checkstyle_reports_$PRIMARY_BUILD_NUMBER"
+          is_always_run: true
+      - script@1:
+          title: create_checkstyle_reports
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                mkdir $BITRISE_SOURCE_DIR/checkStyleReports/
+                mkdir $BITRISE_SOURCE_DIR/checkStyleReports/buildSrc/
+                mkdir $BITRISE_SOURCE_DIR/checkStyleReports/opencensus/
+                mkdir $BITRISE_SOURCE_DIR/checkStyleReports/trace-gradle-plugin/
+                mkdir $BITRISE_SOURCE_DIR/checkStyleReports/trace-sdk/
+                mkdir $BITRISE_SOURCE_DIR/checkStyleReports/trace-test-application/
+
+                cp -R $BITRISE_SOURCE_DIR/buildSrc/build/reports/checkstyle/ $BITRISE_SOURCE_DIR/checkStyleReports/buildSrc/
+                cp -R $BITRISE_SOURCE_DIR/opencensus/build/reports/checkstyle/ $BITRISE_SOURCE_DIR/checkStyleReports/opencensus/
+                cp -R $BITRISE_SOURCE_DIR/trace-gradle-plugin/build/reports/checkstyle/ $BITRISE_SOURCE_DIR/checkStyleReports/trace-gradle-plugin/
+                cp -R $BITRISE_SOURCE_DIR/trace-sdk/build/reports/checkstyle/ $BITRISE_SOURCE_DIR/checkStyleReports/trace-sdk/
+                cp -R $BITRISE_SOURCE_DIR/trace-test-application/build/reports/checkstyle/ $BITRISE_SOURCE_DIR/checkStyleReports/trace-test-application/
+          is_always_run: true
+      - deploy-to-bitrise-io@1:
+          title: deploy_checkstyle reports
+          inputs:
+            - is_enable_public_page: 'false'
+            - is_compress: 'true'
+            - zip_name: "$TRACE_CHECKSTYLE_REPORTS_ZIP_NAME"
+            - deploy_path: "$BITRISE_SOURCE_DIR/checkStyleReports/"
+          is_always_run: true
   primary_v2:
-    before_run: []
+    before_run: [ ]
     steps:
       - script@1:
           title: prepare_envs
