@@ -30,3 +30,6 @@ captures/
 
 # Output folder of infer static analysis tool: http://fbinfer.com/
 infer-out/
+
+# Jacoco files
+jacoco.exec

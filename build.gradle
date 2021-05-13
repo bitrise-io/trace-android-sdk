@@ -107,3 +107,21 @@ sonarqube {
         }
     }
 }
+
+/**
+ * Task that will call the checkStyle task fpr all subproject and included build.
+ */
+task checkStyle() {
+    gradle.includedBuilds.forEach {
+        dependsOn it.task(':checkStyle')
+    }
+
+    project.getSubprojects().forEach {
+        it.afterEvaluate {
+            dependsOn it.tasks.findByName('checkStyle')
+        }
+    }
+}
+
+
+
