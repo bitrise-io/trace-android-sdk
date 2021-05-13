@@ -221,7 +221,8 @@ workflows:
             - deploy_path: "$BITRISE_SOURCE_DIR/checkStyleReports/"
           is_always_run: true
   primary_v2:
-    before_run: [ ]
+    before_run:
+      - check_code_formatting
     steps:
       - script@1:
           title: prepare_envs
