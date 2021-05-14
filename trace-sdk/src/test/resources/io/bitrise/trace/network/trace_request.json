@@ -1,75 +1,75 @@
 {
-  "spans":[
+  "spans": [
     {
-      "trace_id":"trace-id",
-      "span_id":"span-id",
-      "name":{
-        "value":"name"
+      "trace_id": "trace-id",
+      "span_id": "span-id",
+      "name": {
+        "value": "name"
       },
-      "start_time":{
-        "seconds":1613645681,
-        "nanos":160000000
+      "start_time": {
+        "seconds": 1613645681,
+        "nanos": 160000000
       },
-      "end_time":{
-        "seconds":1613645691,
-        "nanos":170000000
+      "end_time": {
+        "seconds": 1613645691,
+        "nanos": 170000000
       },
-      "kind":2
+      "kind": 2
     },
     {
-      "trace_id":"trace-id",
-      "span_id":"span-id2",
-      "parent_span_id":"parent-span-id",
-      "name":{
-        "value":"https:///www.google.com"
+      "trace_id": "trace-id",
+      "span_id": "span-id2",
+      "parent_span_id": "parent-span-id",
+      "name": {
+        "value": "https:///www.google.com"
       },
-      "start_time":{
-        "seconds":1613645681,
-        "nanos":140000000
+      "start_time": {
+        "seconds": 1613645681,
+        "nanos": 140000000
       },
-      "end_time":{
-        "seconds":1613645691,
-        "nanos":150000000
+      "end_time": {
+        "seconds": 1613645691,
+        "nanos": 150000000
       },
-      "attributes":{
-        "attribute_map":{
-          "http.method":{
-            "value":{
-              "value_case":1,
-              "value":"POST"
+      "attributes": {
+        "attribute_map": {
+          "http.method": {
+            "value": {
+              "value_case": 1,
+              "value": "POST"
             }
           },
-          "http.url":{
-            "value":{
-              "value_case":1,
-              "value":"https:///www.google.com"
+          "http.url": {
+            "value": {
+              "value_case": 1,
+              "value": "https:///www.google.com"
             }
           },
-          "http.status_code":{
-            "value":{
-              "value_case":1,
-              "value":"200"
+          "http.status_code": {
+            "value": {
+              "value_case": 1,
+              "value": "200"
             }
           }
         }
       },
-      "kind":2
+      "kind": 2
     }
   ],
-  "resource":{
-    "labels":{
-      "app.build":"21",
-      "app.platform":"android",
-      "app.session.id":"session-id",
-      "app.version":"2.1.0",
-      "device.carrier":"Telenor Hu",
-      "device.id":"01DJ5NXYX23M9SVKJ2WQM4PQ7X",
-      "device.locale":"en_US",
-      "device.network":"WIFI",
-      "device.rooted":"false",
-      "device.type":"sdk_gphone_x86",
-      "os.version":"30"
+  "resource": {
+    "labels": {
+      "app.build": "21",
+      "app.platform": "android",
+      "app.session.id": "session-id",
+      "app.version": "2.1.0",
+      "device.carrier": "Telenor Hu",
+      "device.id": "01DJ5NXYX23M9SVKJ2WQM4PQ7X",
+      "device.locale": "en_US",
+      "device.network": "WIFI",
+      "device.rooted": "false",
+      "device.type": "sdk_gphone_x86",
+      "os.version": "30"
     },
-    "type":"mobile"
+    "type": "mobile"
   }
 }

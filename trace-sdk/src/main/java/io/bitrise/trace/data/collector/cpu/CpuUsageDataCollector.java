@@ -1,7 +1,6 @@
 package io.bitrise.trace.data.collector.cpu;
 
 import androidx.annotation.NonNull;
-
 import io.bitrise.trace.data.collector.DataCollector;
 
 /**
@@ -9,14 +8,14 @@ import io.bitrise.trace.data.collector.DataCollector;
  */
 public abstract class CpuUsageDataCollector implements DataCollector {
 
-    @Override
-    public long getIntervalMs() {
-        return 15000;
-    }
+  @Override
+  public long getIntervalMs() {
+    return 15000;
+  }
 
-    @NonNull
-    @Override
-    public String[] getPermissions() {
-        return new String[0];
-    }
+  @NonNull
+  @Override
+  public String[] getPermissions() {
+    return new String[0];
+  }
 }

@@ -7,8 +7,8 @@ import io.bitrise.trace.data.collector.DataCollector;
  */
 public abstract class MemoryDataCollector implements DataCollector {
 
-    @Override
-    public long getIntervalMs() {
-        return 15 * 1000;
-    }
+  @Override
+  public long getIntervalMs() {
+    return 15 * 1000;
+  }
 }
