@@ -1,7 +1,6 @@
 package io.bitrise.trace.network;
 
 import androidx.annotation.NonNull;
-
 import io.opencensus.proto.resource.v1.Resource;
 
 /**
@@ -9,15 +8,15 @@ import io.opencensus.proto.resource.v1.Resource;
  */
 public abstract class NetworkRequest {
 
-    @NonNull
-    Resource resource;
+  @NonNull
+  Resource resource;
 
-    @NonNull
-    public Resource getResource() {
-        return resource;
-    }
+  @NonNull
+  public Resource getResource() {
+    return resource;
+  }
 
-    public void setResource(Resource resource) {
-        this.resource = resource;
-    }
+  public void setResource(Resource resource) {
+    this.resource = resource;
+  }
 }

@@ -9,8 +9,8 @@ import io.bitrise.trace.data.dto.Data;
  */
 public abstract class ApplicationDataCollector implements DataCollector {
 
-    @Override
-    public long getIntervalMs() {
-        return 0;
-    }
+  @Override
+  public long getIntervalMs() {
+    return 0;
+  }
 }

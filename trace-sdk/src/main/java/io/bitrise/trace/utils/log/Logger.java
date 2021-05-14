@@ -7,10 +7,14 @@ import androidx.annotation.NonNull;
  */
 public interface Logger {
 
-     void d(@NonNull final String tag, @NonNull final String message);
-     void e(@NonNull final String tag, @NonNull final String message);
-     void i(@NonNull final String tag, @NonNull final String message);
-     void v(@NonNull final String tag, @NonNull final String message);
-     void w(@NonNull final String tag, @NonNull final String message);
+  void d(@NonNull final String tag, @NonNull final String message);
+
+  void e(@NonNull final String tag, @NonNull final String message);
+
+  void i(@NonNull final String tag, @NonNull final String message);
+
+  void v(@NonNull final String tag, @NonNull final String message);
+
+  void w(@NonNull final String tag, @NonNull final String message);
 
 }
