@@ -1,31 +1,31 @@
 {
-  "metrics":[
+  "metrics": [
     {
-      "metric_descriptor":{
-        "name":"app.startup.latency.ms",
-        "description":"App startup latency in milliseconds",
-        "unit":"ms",
-        "type":1,
-        "label_keys":[
+      "metric_descriptor": {
+        "name": "app.startup.latency.ms",
+        "description": "App startup latency in milliseconds",
+        "unit": "ms",
+        "type": 1,
+        "label_keys": [
           {
-            "key":"app.start.state"
+            "key": "app.start.state"
           }
         ]
       },
-      "timeseries":[
+      "timeseries": [
         {
-          "label_values":[
+          "label_values": [
             {
-              "value":"cold"
+              "value": "cold"
             }
           ],
-          "points":[
+          "points": [
             {
-              "value":1234.0,
-              "value_case":3,
-              "timestamp":{
-                "seconds":1614687783,
-                "nanos":614000000
+              "value": 1234.0,
+              "value_case": 3,
+              "timestamp": {
+                "seconds": 1614687783,
+                "nanos": 614000000
               }
             }
           ]
@@ -33,21 +33,21 @@
       ]
     },
     {
-      "metric_descriptor":{
-        "name":"process.cpu.pct",
-        "description":"Application CPU Usage",
-        "unit":"percent",
-        "type":2
+      "metric_descriptor": {
+        "name": "process.cpu.pct",
+        "description": "Application CPU Usage",
+        "unit": "percent",
+        "type": 2
       },
-      "timeseries":[
+      "timeseries": [
         {
-          "points":[
+          "points": [
             {
-              "value":21.5,
-              "value_case":3,
-              "timestamp":{
-                "seconds":1615384507,
-                "nanos":681000000
+              "value": 21.5,
+              "value_case": 3,
+              "timestamp": {
+                "seconds": 1615384507,
+                "nanos": 681000000
               }
             }
           ]
@@ -55,150 +55,150 @@
       ]
     },
     {
-      "metric_descriptor":{
-        "name":"system.cpu.pct",
-        "description":"System CPU Usage",
-        "unit":"percent",
-        "type":2,
-        "label_keys":[
+      "metric_descriptor": {
+        "name": "system.cpu.pct",
+        "description": "System CPU Usage",
+        "unit": "percent",
+        "type": 2,
+        "label_keys": [
           {
-            "key":"cpu.state"
+            "key": "cpu.state"
           }
         ]
       },
-      "timeseries":[
+      "timeseries": [
         {
-          "label_values":[
+          "label_values": [
             {
-              "value":"user"
+              "value": "user"
             }
           ],
-          "points":[
+          "points": [
             {
-              "value":1.0,
-              "value_case":3,
-              "timestamp":{
-                "seconds":1615394500,
-                "nanos":981000000
+              "value": 1.0,
+              "value_case": 3,
+              "timestamp": {
+                "seconds": 1615394500,
+                "nanos": 981000000
               }
             }
           ]
         },
         {
-          "label_values":[
+          "label_values": [
             {
-              "value":"system"
+              "value": "system"
             }
           ],
-          "points":[
+          "points": [
             {
-              "value":3.0,
-              "value_case":3,
-              "timestamp":{
-                "seconds":1615394500,
-                "nanos":981000000
+              "value": 3.0,
+              "value_case": 3,
+              "timestamp": {
+                "seconds": 1615394500,
+                "nanos": 981000000
               }
             }
           ]
         },
         {
-          "label_values":[
+          "label_values": [
             {
-              "value":"nice"
+              "value": "nice"
             }
           ],
-          "points":[
+          "points": [
             {
-              "value":2.0,
-              "value_case":3,
-              "timestamp":{
-                "seconds":1615394500,
-                "nanos":981000000
+              "value": 2.0,
+              "value_case": 3,
+              "timestamp": {
+                "seconds": 1615394500,
+                "nanos": 981000000
               }
             }
           ]
         },
         {
-          "label_values":[
+          "label_values": [
             {
-              "value":"idle"
+              "value": "idle"
             }
           ],
-          "points":[
+          "points": [
             {
-              "value":4.0,
-              "value_case":3,
-              "timestamp":{
-                "seconds":1615394500,
-                "nanos":981000000
+              "value": 4.0,
+              "value_case": 3,
+              "timestamp": {
+                "seconds": 1615394500,
+                "nanos": 981000000
               }
             }
           ]
         },
         {
-          "label_values":[
+          "label_values": [
             {
-              "value":"ioWait"
+              "value": "ioWait"
             }
           ],
-          "points":[
+          "points": [
             {
-              "value":5.0,
-              "value_case":3,
-              "timestamp":{
-                "seconds":1615394500,
-                "nanos":981000000
+              "value": 5.0,
+              "value_case": 3,
+              "timestamp": {
+                "seconds": 1615394500,
+                "nanos": 981000000
               }
             }
           ]
         },
         {
-          "label_values":[
+          "label_values": [
             {
-              "value":"irq"
+              "value": "irq"
             }
           ],
-          "points":[
+          "points": [
             {
-              "value":6.0,
-              "value_case":3,
-              "timestamp":{
-                "seconds":1615394500,
-                "nanos":981000000
+              "value": 6.0,
+              "value_case": 3,
+              "timestamp": {
+                "seconds": 1615394500,
+                "nanos": 981000000
               }
             }
           ]
         },
         {
-          "label_values":[
+          "label_values": [
             {
-              "value":"softIrq"
+              "value": "softIrq"
             }
           ],
-          "points":[
+          "points": [
             {
-              "value":7.0,
-              "value_case":3,
-              "timestamp":{
-                "seconds":1615394500,
-                "nanos":981000000
+              "value": 7.0,
+              "value_case": 3,
+              "timestamp": {
+                "seconds": 1615394500,
+                "nanos": 981000000
               }
             }
           ]
         },
         {
-          "label_values":[
+          "label_values": [
             {
-              "value":"steal"
+              "value": "steal"
             }
           ],
-          "points":[
+          "points": [
             {
-              "value":8.0,
-              "value_case":3,
-              "timestamp":{
-                "seconds":1615394500,
-                "nanos":981000000
+              "value": 8.0,
+              "value_case": 3,
+              "timestamp": {
+                "seconds": 1615394500,
+                "nanos": 981000000
               }
             }
           ]
@@ -206,31 +206,31 @@
       ]
     },
     {
-      "metric_descriptor":{
-        "name":"app.memory.bytes",
-        "description":"App Memory Usage",
-        "unit":"bytes",
-        "type":1,
-        "label_keys":[
+      "metric_descriptor": {
+        "name": "app.memory.bytes",
+        "description": "App Memory Usage",
+        "unit": "bytes",
+        "type": 1,
+        "label_keys": [
           {
-            "key":"memory.state"
+            "key": "memory.state"
           }
         ]
       },
-      "timeseries":[
+      "timeseries": [
         {
-          "label_values":[
+          "label_values": [
             {
-              "value":"res"
+              "value": "res"
             }
           ],
-          "points":[
+          "points": [
             {
-              "value":10,
-              "value_case":2,
-              "timestamp":{
-                "seconds":1615384500,
-                "nanos":780000000
+              "value": 10,
+              "value_case": 2,
+              "timestamp": {
+                "seconds": 1615384500,
+                "nanos": 780000000
               }
             }
           ]
@@ -238,31 +238,31 @@
       ]
     },
     {
-      "metric_descriptor":{
-        "name":"system.memory.bytes",
-        "description":"System Memory Usage",
-        "unit":"bytes",
-        "type":1,
-        "label_keys":[
+      "metric_descriptor": {
+        "name": "system.memory.bytes",
+        "description": "System Memory Usage",
+        "unit": "bytes",
+        "type": 1,
+        "label_keys": [
           {
-            "key":"memory.state"
+            "key": "memory.state"
           }
         ]
       },
-      "timeseries":[
+      "timeseries": [
         {
-          "label_values":[
+          "label_values": [
             {
-              "value":"res"
+              "value": "res"
             }
           ],
-          "points":[
+          "points": [
             {
-              "value":10,
-              "value_case":2,
-              "timestamp":{
-                "seconds":1615384600,
-                "nanos":881000000
+              "value": 10,
+              "value_case": 2,
+              "timestamp": {
+                "seconds": 1615384600,
+                "nanos": 881000000
               }
             }
           ]
@@ -270,20 +270,20 @@
       ]
     }
   ],
-  "resource":{
-    "labels":{
-      "app.build":"21",
-      "app.platform":"android",
-      "app.session.id":"session-id",
-      "app.version":"2.1.0",
-      "device.carrier":"Telenor Hu",
-      "device.id":"01DJ5NXYX23M9SVKJ2WQM4PQ7X",
-      "device.locale":"en_US",
-      "device.network":"WIFI",
-      "device.rooted":"false",
-      "device.type":"sdk_gphone_x86",
-      "os.version":"30"
+  "resource": {
+    "labels": {
+      "app.build": "21",
+      "app.platform": "android",
+      "app.session.id": "session-id",
+      "app.version": "2.1.0",
+      "device.carrier": "Telenor Hu",
+      "device.id": "01DJ5NXYX23M9SVKJ2WQM4PQ7X",
+      "device.locale": "en_US",
+      "device.network": "WIFI",
+      "device.rooted": "false",
+      "device.type": "sdk_gphone_x86",
+      "os.version": "30"
     },
-    "type":"mobile"
+    "type": "mobile"
   }
 }

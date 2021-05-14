@@ -1,27 +1,5 @@
 package io.bitrise.trace.data.management.formatter.cpu;
 
-import androidx.annotation.NonNull;
-
-import com.google.protobuf.Timestamp;
-
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import io.bitrise.trace.data.collector.cpu.CpuUsageData;
-import io.bitrise.trace.data.collector.cpu.SystemCpuUsageDataCollector;
-import io.bitrise.trace.data.dto.Data;
-import io.bitrise.trace.data.dto.FormattedData;
-import io.bitrise.trace.data.management.formatter.BaseDataFormatterTest;
-import io.opencensus.proto.metrics.v1.LabelKey;
-import io.opencensus.proto.metrics.v1.LabelValue;
-import io.opencensus.proto.metrics.v1.Metric;
-import io.opencensus.proto.metrics.v1.MetricDescriptor;
-import io.opencensus.proto.metrics.v1.Point;
-import io.opencensus.proto.metrics.v1.TimeSeries;
-
 import static io.bitrise.trace.data.dto.DataValues.cpu;
 import static io.bitrise.trace.data.dto.DataValues.getName;
 import static io.bitrise.trace.data.dto.DataValues.idle;
@@ -38,74 +16,92 @@ import static io.bitrise.trace.data.dto.DataValues.user;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
+import androidx.annotation.NonNull;
+import com.google.protobuf.Timestamp;
+import io.bitrise.trace.data.collector.cpu.CpuUsageData;
+import io.bitrise.trace.data.collector.cpu.SystemCpuUsageDataCollector;
+import io.bitrise.trace.data.dto.Data;
+import io.bitrise.trace.data.dto.FormattedData;
+import io.bitrise.trace.data.management.formatter.BaseDataFormatterTest;
+import io.opencensus.proto.metrics.v1.LabelKey;
+import io.opencensus.proto.metrics.v1.LabelValue;
+import io.opencensus.proto.metrics.v1.Metric;
+import io.opencensus.proto.metrics.v1.MetricDescriptor;
+import io.opencensus.proto.metrics.v1.Point;
+import io.opencensus.proto.metrics.v1.TimeSeries;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.Test;
+
 /**
  * Unit tests for {@link SystemCpuDataFormatter}.
  */
 public class SystemCpuDataFormatterTest extends BaseDataFormatterTest {
 
-    final SystemCpuDataFormatter formatter = new SystemCpuDataFormatter();
+  final SystemCpuDataFormatter formatter = new SystemCpuDataFormatter();
 
-    @Test
-    public void formatData_notCpuStat() {
-        final Data data = new Data(SystemCpuUsageDataCollector.class);
-        data.setContent("cpu usage");
-        assertArrayEquals(new FormattedData[]{}, formatter.formatData(data));
-    }
+  @NonNull
+  private static TimeSeries createCpuTimeSeriesEntry(@NonNull final Timestamp timestamp,
+                                                     @NonNull final String labelName,
+                                                     final float value) {
+    return TimeSeries.newBuilder()
+                     .addLabelValues(
+                         LabelValue.newBuilder()
+                                   .setValue(labelName)
+                                   .build())
+                     .addPoints(
+                         Point.newBuilder()
+                              .setTimestamp(timestamp)
+                              .setDoubleValue(value)
+                              .build())
+                     .build();
+  }
 
-    @Test
-    public void formatData() {
-        final CpuUsageData.CpuStat cpuStat = new CpuUsageData.CpuStat(1,2,3,4,5,6,7,8);
+  @Test
+  public void formatData_notCpuStat() {
+    final Data data = new Data(SystemCpuUsageDataCollector.class);
+    data.setContent("cpu usage");
+    assertArrayEquals(new FormattedData[] {}, formatter.formatData(data));
+  }
 
-        final Data data = new Data(SystemCpuUsageDataCollector.class);
-        data.setContent(cpuStat);
+  @Test
+  public void formatData() {
+    final CpuUsageData.CpuStat cpuStat = new CpuUsageData.CpuStat(1, 2, 3, 4, 5, 6, 7, 8);
 
-        final FormattedData formattedData = formatter.formatData(data)[0];
+    final Data data = new Data(SystemCpuUsageDataCollector.class);
+    data.setContent(cpuStat);
 
-        final Timestamp timestamp = formattedData.getMetricEntity().getMetric()
-                .getTimeseries(0).getPoints(0).getTimestamp();
+    final FormattedData formattedData = formatter.formatData(data)[0];
 
-        List<TimeSeries> expectedTimeSeries = new ArrayList<>(Arrays.asList(
-                createCpuTimeSeriesEntry(timestamp, user, cpuStat.getUser()),
-                createCpuTimeSeriesEntry(timestamp, system, cpuStat.getSystem()),
-                createCpuTimeSeriesEntry(timestamp, nice, cpuStat.getNice()),
-                createCpuTimeSeriesEntry(timestamp, idle, cpuStat.getIdle()),
-                createCpuTimeSeriesEntry(timestamp, ioWait, cpuStat.getIoWait()),
-                createCpuTimeSeriesEntry(timestamp, irq, cpuStat.getIrq()),
-                createCpuTimeSeriesEntry(timestamp, softIrq, cpuStat.getSoftIrq()),
-                createCpuTimeSeriesEntry(timestamp, steal, cpuStat.getSteal())));
+    final Timestamp timestamp = formattedData.getMetricEntity().getMetric()
+                                             .getTimeseries(0).getPoints(0).getTimestamp();
 
-        final Metric.Builder metricBuilder = Metric.newBuilder();
-        final MetricDescriptor.Builder cpuDescriptorBuilder =
-                MetricDescriptor.newBuilder()
+    List<TimeSeries> expectedTimeSeries = new ArrayList<>(Arrays.asList(
+        createCpuTimeSeriesEntry(timestamp, user, cpuStat.getUser()),
+        createCpuTimeSeriesEntry(timestamp, system, cpuStat.getSystem()),
+        createCpuTimeSeriesEntry(timestamp, nice, cpuStat.getNice()),
+        createCpuTimeSeriesEntry(timestamp, idle, cpuStat.getIdle()),
+        createCpuTimeSeriesEntry(timestamp, ioWait, cpuStat.getIoWait()),
+        createCpuTimeSeriesEntry(timestamp, irq, cpuStat.getIrq()),
+        createCpuTimeSeriesEntry(timestamp, softIrq, cpuStat.getSoftIrq()),
+        createCpuTimeSeriesEntry(timestamp, steal, cpuStat.getSteal())));
+
+    final Metric.Builder metricBuilder = Metric.newBuilder();
+    final MetricDescriptor.Builder cpuDescriptorBuilder =
+        MetricDescriptor.newBuilder()
                         .setDescription("System CPU Usage")
                         .setName(getName(system, cpu, pct))
                         .setUnit(percent)
                         .setType(MetricDescriptor.Type.GAUGE_DOUBLE)
                         .addLabelKeys(LabelKey.newBuilder()
-                                .setKey(getName(cpu, state))
-                                .build());
+                                              .setKey(getName(cpu, state))
+                                              .build());
 
-        metricBuilder.setMetricDescriptor(cpuDescriptorBuilder.build());
-        metricBuilder.addAllTimeseries(expectedTimeSeries);
-        final Metric expectedMetric = metricBuilder.build();
+    metricBuilder.setMetricDescriptor(cpuDescriptorBuilder.build());
+    metricBuilder.addAllTimeseries(expectedTimeSeries);
+    final Metric expectedMetric = metricBuilder.build();
 
-        assertEquals(expectedMetric, formattedData.getMetricEntity().getMetric() );
-    }
-
-    @NonNull
-    private static TimeSeries createCpuTimeSeriesEntry(@NonNull final Timestamp timestamp,
-                                                       @NonNull final String labelName,
-                                                       final float value) {
-        return TimeSeries.newBuilder()
-                .addLabelValues(
-                        LabelValue.newBuilder()
-                                .setValue(labelName)
-                                .build())
-                .addPoints(
-                        Point.newBuilder()
-                                .setTimestamp(timestamp)
-                                .setDoubleValue(value)
-                                .build())
-                .build();
-    }
+    assertEquals(expectedMetric, formattedData.getMetricEntity().getMetric());
+  }
 }
