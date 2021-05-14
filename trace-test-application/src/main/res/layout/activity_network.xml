@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IndexActivity"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="20dp"
+    tools:context=".IndexActivity">
 
     <Button
         android:id="@+id/btn_network_okhttp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="okhttp tests"/>
+        android:text="okhttp tests" />
 
     <Button
         android:id="@+id/btn_network_urlconnection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="URLConnection tests"/>
+        android:text="URLConnection tests" />
 
 </LinearLayout>
