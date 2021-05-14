@@ -7,31 +7,32 @@ import androidx.annotation.NonNull;
  */
 public class ApplicationStartData {
 
-    private long duration;
+  private long duration;
 
-    /**
-     * The {@link ApplicationStartType} of this launch.
-     */
-    @NonNull
-    private ApplicationStartType applicationStartType;
+  /**
+   * The {@link ApplicationStartType} of this launch.
+   */
+  @NonNull
+  private ApplicationStartType applicationStartType;
 
-    /**
-     * Constructor for class.
-     *
-     * @param duration             the duration of the start time.
-     * @param applicationStartType the {@link ApplicationStartType} of this launch.
-     */
-    public ApplicationStartData(final long duration, @NonNull final ApplicationStartType applicationStartType) {
-        this.duration = duration;
-        this.applicationStartType = applicationStartType;
-    }
+  /**
+   * Constructor for class.
+   *
+   * @param duration             the duration of the start time.
+   * @param applicationStartType the {@link ApplicationStartType} of this launch.
+   */
+  public ApplicationStartData(final long duration,
+                              @NonNull final ApplicationStartType applicationStartType) {
+    this.duration = duration;
+    this.applicationStartType = applicationStartType;
+  }
 
-    public long getDuration() {
-        return duration;
-    }
+  public long getDuration() {
+    return duration;
+  }
 
-    @NonNull
-    public ApplicationStartType getApplicationStartType() {
-        return applicationStartType;
-    }
+  @NonNull
+  public ApplicationStartType getApplicationStartType() {
+    return applicationStartType;
+  }
 }
