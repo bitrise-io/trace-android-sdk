@@ -75,9 +75,9 @@ public class DeviceNetworkTypeDataCollector extends DeviceDataCollector {
    *
    * @param connectivityManager the ConnectivityManager from to extract the data.
    * @return the String value network type, or {@link #UNKNOWN_NETWORK} if it cannot be
-   * determined.
+   *     determined.
    * @deprecated as NetworkInfo was deprecated with API level 29, this cannot be used for newer
-   * versions of Android.
+   *     versions of Android.
    */
   @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
   @NonNull
@@ -102,8 +102,8 @@ public class DeviceNetworkTypeDataCollector extends DeviceDataCollector {
    * @param connectivityManager the ConnectivityManager from to extract the data.
    * @param context             the Android Context.
    * @return the String value network type, or {@link #UNKNOWN_NETWORK} if it cannot be
-   * determined. If the app has {@link Manifest.permission#READ_PHONE_STATE} it will return the
-   * exact network type, otherwise it can determine if it uses wifi or cellular connection.
+   *     determined. If the app has {@link Manifest.permission#READ_PHONE_STATE} it will return the
+   *     exact network type, otherwise it can determine if it uses wifi or cellular connection.
    */
   @SuppressLint("MissingPermission")
   @RequiresApi(api = Build.VERSION_CODES.M)
@@ -137,8 +137,8 @@ public class DeviceNetworkTypeDataCollector extends DeviceDataCollector {
    *
    * @param context the Android Context.
    * @return the String value network type, or {@link #UNKNOWN_NETWORK} if it cannot be
-   * determined. If the app has {@link Manifest.permission#READ_PHONE_STATE} it will return the
-   * exact network type, otherwise it can determine if it uses wifi or cellular connection.
+   *     determined. If the app has {@link Manifest.permission#READ_PHONE_STATE} it will return the
+   *     exact network type, otherwise it can determine if it uses wifi or cellular connection.
    */
   @RequiresApi(api = Build.VERSION_CODES.N)
   @RequiresPermission(Manifest.permission.READ_PHONE_STATE)

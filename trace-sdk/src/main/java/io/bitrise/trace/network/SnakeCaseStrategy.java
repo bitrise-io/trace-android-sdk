@@ -10,12 +10,18 @@ import java.util.Locale;
  * A {@link FieldNamingStrategy} implementation to convert JSON field names to snake case.
  * Similar to {@link com.google.gson.FieldNamingPolicy#LOWER_CASE_WITH_UNDERSCORES}, but this
  * removes the underscore char from the end if present.
+ *
+ * <p>Note: because of JDK issues, Checkstyle will give warning for nested Javadoc links, those have
+ * been removed.
+ *
+ * @see
+ * <a href="https://bugs.openjdk.java.net/browse/JDK-8031625">https://bugs.openjdk.java.net/browse/JDK-8031625</a>
  */
 public class SnakeCaseStrategy implements FieldNamingStrategy {
 
   /**
    * Separates word, if it was written with camel case. Copy of
-   * {@link FieldNamingPolicy#LOWER_CASE_WITH_UNDERSCORES#separateCamelCase(String, String)}.
+   * {@link FieldNamingPolicy#LOWER_CASE_WITH_UNDERSCORES} /separateCamelCase(String, String)}.
    *
    * @param name      the field to work on.
    * @param separator the separator char.
@@ -41,7 +47,7 @@ public class SnakeCaseStrategy implements FieldNamingStrategy {
   /**
    * {@inheritDoc}
    *
-   * <p>Copy of {@link FieldNamingPolicy#LOWER_CASE_WITH_UNDERSCORES#translateName(Field)} with
+   * <p>Copy of {@link FieldNamingPolicy#LOWER_CASE_WITH_UNDERSCORES} /translateName(Field)} with
    * addition to remove underscore from endings.
    */
   @Override

@@ -119,7 +119,7 @@ public class ConfigurationManager {
    *
    * @param context the Android Context.
    * @deprecated as of version 0.0.6, configurations should be passed as resources, like
-   * {@link #importConfigurationFromResValues(Context)}.
+   *     {@link #importConfigurationFromResValues(Context)}.
    */
   @Deprecated
   private static void importConfigurationFromBuildConfig(@NonNull final Context context) {

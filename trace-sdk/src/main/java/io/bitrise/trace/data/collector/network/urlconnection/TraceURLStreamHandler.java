@@ -10,6 +10,7 @@ import java.net.URLStreamHandler;
  * Custom implementation of {@link URLStreamHandler} so that we can use our custom
  * {@link TraceHttpURLConnection} or {@link TraceHttpsURLConnection}.
  */
+@SuppressWarnings("checkstyle:abbreviation")
 public class TraceURLStreamHandler extends URLStreamHandler {
 
   @Override

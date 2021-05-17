@@ -42,7 +42,7 @@ public class MetricSender extends DataSender {
    * @param request  the MetricRequest that was sent.
    * @param response the Response received from the backend.
    * @return the number of metrics mismatched e.g. 0 for no difference, 1 if one metric not
-   * accepted by the backend.
+   *     accepted by the backend.
    */
   @VisibleForTesting
   static int countHeaderComparisonDifference(@NonNull final MetricRequest request,

@@ -13,6 +13,7 @@ import okhttp3.Response;
 /**
  * Custom implementation of the {@link HttpURLConnection}.
  */
+@SuppressWarnings("checkstyle:abbreviation")
 public class TraceHttpURLConnection extends HttpURLConnection {
 
   @VisibleForTesting

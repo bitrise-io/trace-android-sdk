@@ -51,7 +51,7 @@ public class SystemMemoryDataCollector extends MemoryDataCollector {
    * Gets the total amount of used memory for the device.
    *
    * @return the long value of the memory amount, or {@code null}, when we cannot access to the
-   * {@link Context#ACTIVITY_SERVICE}.
+   *     {@link Context#ACTIVITY_SERVICE}.
    */
   @Nullable
   private Long getTotalUsedMemory() {

@@ -15,6 +15,7 @@ import okhttp3.Response;
 /**
  * Custom implementation of the {@link HttpsURLConnection}.
  */
+@SuppressWarnings("checkstyle:abbreviation")
 public class TraceHttpsURLConnection extends HttpsURLConnection {
 
   @VisibleForTesting
@@ -58,20 +59,20 @@ public class TraceHttpsURLConnection extends HttpsURLConnection {
 
   @Override
   public String getCipherSuite() {
-    return response.handshake() != null ?
-        response.handshake().cipherSuite().toString() : null;
+    return response.handshake() != null
+        ? response.handshake().cipherSuite().toString() : null;
   }
 
   @Override
   public Certificate[] getLocalCertificates() {
-    return response.handshake() != null ?
-        response.handshake().localCertificates().toArray(new Certificate[0]) : null;
+    return response.handshake() != null
+        ? response.handshake().localCertificates().toArray(new Certificate[0]) : null;
   }
 
   @Override
   public Certificate[] getServerCertificates() throws SSLPeerUnverifiedException {
-    return response.handshake() != null ?
-        response.handshake().peerCertificates().toArray(new Certificate[0]) : null;
+    return response.handshake() != null
+        ? response.handshake().peerCertificates().toArray(new Certificate[0]) : null;
   }
 
   @Override

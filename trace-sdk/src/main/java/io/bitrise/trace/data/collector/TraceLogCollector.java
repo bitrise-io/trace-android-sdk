@@ -31,6 +31,7 @@ public final class TraceLogCollector {
    * @param tag     the Tag for the message.
    * @param message the message.
    */
+  @SuppressWarnings("checkstyle:MethodName")
   public static void v(@NonNull final String tag, @NonNull final String message) {
     // TODO add implementation.
   }
@@ -41,6 +42,7 @@ public final class TraceLogCollector {
    * @param tag     the Tag for the message.
    * @param message the message.
    */
+  @SuppressWarnings("checkstyle:MethodName")
   public static void d(@NonNull final String tag, @NonNull final String message) {
     // TODO add implementation.
   }
@@ -51,6 +53,7 @@ public final class TraceLogCollector {
    * @param tag     the Tag for the message.
    * @param message the message.
    */
+  @SuppressWarnings("checkstyle:MethodName")
   public static void i(@NonNull final String tag, @NonNull final String message) {
     // TODO add implementation.
   }
@@ -61,6 +64,7 @@ public final class TraceLogCollector {
    * @param tag     the Tag for the message.
    * @param message the message.
    */
+  @SuppressWarnings("checkstyle:MethodName")
   public static void w(@NonNull final String tag, @NonNull final String message) {
     // TODO add implementation.
   }
@@ -71,6 +75,7 @@ public final class TraceLogCollector {
    * @param tag     the Tag for the message.
    * @param message the message.
    */
+  @SuppressWarnings("checkstyle:MethodName")
   public static void e(@NonNull final String tag, @NonNull final String message) {
     // TODO add implementation.
   }

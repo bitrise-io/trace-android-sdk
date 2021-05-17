@@ -16,6 +16,7 @@ import org.junit.Test;
  *
  * @see <a href="https://github.com/ulid/spec">https://github.com/ulid/spec</a>
  */
+@SuppressWarnings("checkstyle:abbreviation")
 public class ULIDTest {
 
   /**
