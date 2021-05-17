@@ -51,7 +51,7 @@ public class Version implements Comparable<Version> {
    *
    * @param that the Version to compare to.
    * @return a negative integer, zero, or a positive integer as this object is less than, equal to,
-   * or greater than the specified object.
+   *     or greater than the specified object.
    */
   @Override
   public int compareTo(@Nullable final Version that) {

@@ -137,9 +137,9 @@ public class FunctionalTestWriter extends PrintWriter {
     /**
      * constructor for class.
      *
-     * @param red the value of Red color.
+     * @param red   the value of Red color.
      * @param green the value of Green color.
-     * @param blue the value of Blue color.
+     * @param blue  the value of Blue color.
      */
     public Rgb(final int red, final int green, final int blue) {
       this.red = red;

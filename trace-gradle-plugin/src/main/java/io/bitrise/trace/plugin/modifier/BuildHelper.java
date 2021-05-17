@@ -42,8 +42,8 @@ public class BuildHelper {
    * @param value the value of the String.
    * @return the ClassField.
    * @deprecated as of version 0.0.5, as com.android.tools:gradle have issues with adding
-   * programmatically buildconfig values, please use
-   * {@link #createResValueStringClassField(String, String)}.
+   *     programmatically buildconfig values, please use
+   *     {@link #createResValueStringClassField(String, String)}.
    */
   @NonNull
   @Deprecated
