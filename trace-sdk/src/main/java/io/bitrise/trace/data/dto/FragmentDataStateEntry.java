@@ -1,6 +1,9 @@
 package io.bitrise.trace.data.dto;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import java.util.Objects;
 
 import io.bitrise.trace.utils.TraceClock;
 
@@ -50,6 +53,16 @@ public class FragmentDataStateEntry {
                 "fragmentState=" + fragmentState +
                 ", timeStamp=" + timeStamp +
                 '}';
+    }
+
+    @Override
+    public boolean equals(@Nullable final Object obj) {
+        if (! (obj instanceof FragmentDataStateEntry)) {
+            return false;
+        }
+        final FragmentDataStateEntry entry = (FragmentDataStateEntry)obj;
+        return Objects.equals(entry.fragmentState, fragmentState) &&
+                Objects.equals(entry.timeStamp, timeStamp);
     }
 
     /**

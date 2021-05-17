@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.Application;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 import org.hamcrest.core.IsNull;
@@ -12,8 +14,13 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockito.Mockito;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import io.bitrise.trace.data.TraceActivityLifecycleTracker;
+import io.bitrise.trace.data.dto.ActivityData;
 import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.dto.FragmentData;
 import io.bitrise.trace.data.dto.FragmentDataStateEntry;
@@ -21,11 +28,15 @@ import io.bitrise.trace.data.dto.FragmentState;
 import io.bitrise.trace.data.management.DataManager;
 import io.bitrise.trace.session.ApplicationSessionManager;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
@@ -43,7 +54,8 @@ public class FragmentStateDataListenerTest {
     private static Application mockApplication;
     private static Activity mockActivity = mock(Activity.class);
     private static Activity mockActivity2 = mock(Activity.class);
-    private Fragment mockFragment1 = mock(Fragment.class);
+    private Fragment mockFragment1 = mock(Fragment.class, Mockito.CALLS_REAL_METHODS);
+    private android.app.Fragment mockDeprecatedFragment = mock(android.app.Fragment.class);
     private static FragmentManager mockFragmentManager1 = mock(FragmentManager.class);
     private static android.app.FragmentManager mockFragmentManager2 = mock(android.app.FragmentManager.class);
     private View mockView = mock(View.class);
@@ -123,7 +135,6 @@ public class FragmentStateDataListenerTest {
         fragmentStateDataListener.onFragmentViewCreated(mockFragmentManager1, mockFragment1, mockView, null);
         assertThat(fragmentStateDataListener.activityFragmentMap.containsKey(mockActivity.hashCode()), is(true));
     }
-
 
     /**
      * When a {@link Fragment} is paused, it should be in the {@link FragmentStateDataListener#activityFragmentMap}.
@@ -296,4 +307,110 @@ public class FragmentStateDataListenerTest {
         fragmentStateDataListener.recordFragmentData(mockFragment1.hashCode(), fragmentData);
         assertEquals(0, fragmentStateDataListener.activityFragmentMap.size());
     }
+
+    @Test
+    public void createFragmentData_deprecatedFragment() {
+        final FragmentData fragmentData = fragmentStateDataListener.createFragmentData(
+                mockDeprecatedFragment, FragmentState.CREATED);
+        assertNotNull(fragmentData);
+        assertEquals(1, fragmentData.getStates().size());
+
+        assertFragmentDataMatch(fragmentData, mockDeprecatedFragment.getClass().getSimpleName(),
+                FragmentState.CREATED);
+    }
+
+    @Test
+    public void createFragmentData_androidxFragment() {
+        final FragmentData fragmentData = fragmentStateDataListener.createFragmentData(
+                mockFragment1, FragmentState.STOPPED);
+
+        assertNotNull(fragmentData);
+        assertEquals(1, fragmentData.getStates().size());
+
+        assertFragmentDataMatch(fragmentData, mockFragment1.getClass().getSimpleName(),
+                FragmentState.STOPPED);
+    }
+
+    /**
+     * Asserts that an actual FragmentData matches an expected FragmentData.
+     * @param fragmentData the created FragmentData to test against (actual).
+     * @param name the name the actual fragmentData should contain.
+     * @param fragmentState the state the actual fragmentData should contain.
+     */
+    private void assertFragmentDataMatch(@NonNull final FragmentData fragmentData,
+                                         @NonNull final String name,
+                                         @NonNull final FragmentState fragmentState) {
+        final String spanId = fragmentData.getSpanId();
+        final long timestamp = fragmentData.getStates().get(0).getTimeStamp();
+        final String parentTimestamp = fragmentData.getParentSpanId();
+
+        final FragmentData expectedData = new FragmentData(spanId);
+        expectedData.setName(name);
+        expectedData.addState(fragmentState, timestamp);
+        expectedData.setParentSpanId(parentTimestamp);
+
+        assertEquals(expectedData, fragmentData);
+    }
+
+
+    @Test
+    public void getParentSpanIdFromActivityId_found() {
+        final int activityId = 123;
+        final String spanId = "707ccf317d314af1";
+        activityStateDataListener.activityMap.put(activityId, new ActivityData(spanId));
+
+        assertEquals(fragmentStateDataListener.getParentSpanIdFromActivityId(activityId), spanId);
+    }
+
+    @Test
+    public void getParentSpanIdFromActivityId_notFound() {
+        final int activityId = 123;
+        activityStateDataListener.activityMap.clear();
+
+        assertNull(fragmentStateDataListener.getParentSpanIdFromActivityId(activityId));
+    }
+
+    @Test
+    public void getParentSpanIdFromFragmentId_found() {
+        final int fragmentId = 234;
+        final String fragmentSpanId = "707ccf317d314af2";
+        final int activeActivityId = 345;
+        final Map<Integer, FragmentData> fragmentDataMap = new HashMap<>();
+        fragmentDataMap.put(fragmentId, new FragmentData(fragmentSpanId));
+
+        fragmentStateDataListener.activityFragmentMap.put(activeActivityId, fragmentDataMap);
+        fragmentStateDataListener.activeActivityHashCode = activeActivityId;
+
+        assertEquals(fragmentStateDataListener.getParentSpanIdFromFragmentId(fragmentId), fragmentSpanId);
+    }
+
+    @Test
+    public void getParentSpanIdFromFragmentId_noFragmentData() {
+        final int fragmentId = 234;
+        final int activeActivityId = 345;
+        final Map<Integer, FragmentData> fragmentDataMap = new HashMap<>();
+        fragmentDataMap.put(fragmentId, null);
+
+        fragmentStateDataListener.activityFragmentMap.put(activeActivityId, fragmentDataMap);
+        fragmentStateDataListener.activeActivityHashCode = activeActivityId;
+
+        assertNull(fragmentStateDataListener.getParentSpanIdFromFragmentId(fragmentId));
+    }
+
+    @Test
+    public void getParentSpanIdFromFragmentId_noRecords() {
+        final int fragmentId = 234;
+        final int activeActivityId = 345;
+
+        fragmentStateDataListener.activityFragmentMap.clear();
+        fragmentStateDataListener.activeActivityHashCode = activeActivityId;
+
+        assertNull(fragmentStateDataListener.getParentSpanIdFromFragmentId(fragmentId));
+    }
+
+    @Test
+    public void getPermissions() {
+        assertArrayEquals(new String[0], fragmentStateDataListener.getPermissions());
+    }
+
 }
