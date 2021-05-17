@@ -1,7 +1,6 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id 'checkstyle'
 }
 
 apply from: "../versions.gradle"
@@ -94,5 +93,3 @@ project.afterEvaluate {
         }
     }
 }
-
-apply from: "../checkstyle.gradle"
