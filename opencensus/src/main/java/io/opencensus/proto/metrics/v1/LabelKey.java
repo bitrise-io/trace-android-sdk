@@ -37,6 +37,7 @@ public final class LabelKey extends
   private volatile java.lang.Object key_;
   private volatile java.lang.Object description_;
   private byte memoizedIsInitialized = -1;
+
   // Use LabelKey.newBuilder() to construct.
   private LabelKey(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);

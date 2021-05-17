@@ -44,6 +44,7 @@ public final class ServiceInfo extends
   private ServiceInfo() {
     name_ = "";
   }
+
   private ServiceInfo(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

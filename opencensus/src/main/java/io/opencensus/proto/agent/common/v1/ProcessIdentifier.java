@@ -49,6 +49,7 @@ public final class ProcessIdentifier extends
   private ProcessIdentifier() {
     hostName_ = "";
   }
+
   private ProcessIdentifier(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

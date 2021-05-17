@@ -42,6 +42,7 @@ public final class Point extends
 
   private com.google.protobuf.Timestamp timestamp_;
   private byte memoizedIsInitialized = -1;
+
   // Use Point.newBuilder() to construct.
   private Point(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);

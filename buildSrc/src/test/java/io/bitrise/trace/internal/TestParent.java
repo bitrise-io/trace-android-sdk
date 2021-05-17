@@ -159,7 +159,7 @@ public abstract class TestParent {
   protected final InputHelper inputHelper = new InputHelper(dummyLogger);
 
   /**
-   * Initialises a a Git repo in the {@link #tempFolder}. Creates different folders for the
+   * Initialises a Git repo in the {@link #tempFolder}. Creates different folders for the
    * local and the remote of the repository.
    *
    * @throws GitAPIException if any Git call fails.

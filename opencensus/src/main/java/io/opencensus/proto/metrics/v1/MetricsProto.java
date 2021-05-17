@@ -265,6 +265,7 @@ public final class MetricsProto {
     com.google.protobuf.WrappersProto.getDescriptor();
     io.opencensus.proto.resource.v1.ResourceProto.getDescriptor();
   }
+
   private MetricsProto() {
   }
 

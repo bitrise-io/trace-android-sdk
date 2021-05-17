@@ -37,6 +37,7 @@ public final class TruncatableString extends
   private volatile java.lang.Object value_;
   private int truncatedByteCount_;
   private byte memoizedIsInitialized = -1;
+
   // Use TruncatableString.newBuilder() to construct.
   private TruncatableString(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);

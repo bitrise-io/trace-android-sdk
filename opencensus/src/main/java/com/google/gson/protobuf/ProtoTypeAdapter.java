@@ -86,6 +86,7 @@ public class ProtoTypeAdapter
   private final CaseFormat jsonFormat;
   private final Set<Extension<FieldOptions, String>> serializedNameExtensions;
   private final Set<Extension<EnumValueOptions, String>> serializedEnumValueExtensions;
+
   private ProtoTypeAdapter(EnumSerialization enumSerialization,
                            CaseFormat protoFormat,
                            CaseFormat jsonFormat,

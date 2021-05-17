@@ -43,6 +43,7 @@ public final class RateLimitingSampler extends
 
   private RateLimitingSampler() {
   }
+
   private RateLimitingSampler(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
