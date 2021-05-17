@@ -2,6 +2,7 @@ package io.bitrise.trace.data.collector.view;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -50,6 +51,7 @@ public class FragmentStateDataListenerTest {
     private static FragmentStateDataListener fragmentStateDataListener;
     private static ActivityStateDataListener activityStateDataListener;
     private static Application mockApplication;
+    final static Context mockContext = Mockito.mock(Context.class);
     private static Activity mockActivity = mock(Activity.class);
     private static Activity mockActivity2 = mock(Activity.class);
     private Fragment mockFragment1 = mock(Fragment.class, Mockito.CALLS_REAL_METHODS);
@@ -413,30 +415,38 @@ public class FragmentStateDataListenerTest {
 
     @Test
     public void onActivityCreated_notActive() {
-        fragmentStateDataListener.onActivityCreated(mockActivity, null);
-        assertFalse(fragmentStateDataListener.isActive());
-        assertEquals(fragmentStateDataListener.activityFragmentMap.size(), 0);
+        final FragmentStateDataListener listener = new FragmentStateDataListener(
+                mockContext, activityStateDataListener);
+        listener.onActivityCreated(mockActivity, null);
+        assertFalse(listener.isActive());
+        assertEquals(listener.activityFragmentMap.size(), 0);
     }
 
     @Test
     public void onActivityStopped_notActive() {
-        fragmentStateDataListener.onActivityStopped(mockActivity);
-        assertFalse(fragmentStateDataListener.isActive());
-        assertEquals(fragmentStateDataListener.activityFragmentMap.size(), 0);
+        final FragmentStateDataListener listener = new FragmentStateDataListener(
+                mockContext, activityStateDataListener);
+        listener.onActivityStopped(mockActivity);
+        assertFalse(listener.isActive());
+        assertEquals(listener.activityFragmentMap.size(), 0);
     }
 
     @Test
     public void onFragmentViewCreated_notActive() {
-        fragmentStateDataListener.onFragmentViewCreated(mockFragmentManager1, mockFragment1,
+        final FragmentStateDataListener listener = new FragmentStateDataListener(
+                mockContext, activityStateDataListener);
+        listener.onFragmentViewCreated(mockFragmentManager1, mockFragment1,
                 mockView, null);
-        assertFalse(fragmentStateDataListener.isActive());
-        assertEquals(fragmentStateDataListener.activityFragmentMap.size(), 0);
+        assertFalse(listener.isActive());
+        assertEquals(listener.activityFragmentMap.size(), 0);
     }
 
     @Test
     public void onFragmentPaused_notActive() {
-        fragmentStateDataListener.onFragmentPaused(mockFragmentManager1, mockFragment1);
-        assertFalse(fragmentStateDataListener.isActive());
-        assertEquals(fragmentStateDataListener.activityFragmentMap.size(), 0);
+        final FragmentStateDataListener listener = new FragmentStateDataListener(
+                mockContext, activityStateDataListener);
+        listener.onFragmentPaused(mockFragmentManager1, mockFragment1);
+        assertFalse(listener.isActive());
+        assertEquals(listener.activityFragmentMap.size(), 0);
     }
 }
