@@ -31,17 +31,17 @@ import org.junit.rules.TemporaryFolder;
 
 /**
  * Abstract parent class for test classes.
- * <p>
- * Note: you might have issues with running a single test case or this test via the gutter
+ *
+ * <p>Note: you might have issues with running a single test case or this test via the gutter
  * buttons/Android JUnit Test configurations in Android Studio. The issue is "Gradle-Aware Make",
  * for some reason it hangs Android Studio from running test cases this way. To overcome this,
  * you have to remove "Gradle-Aware Make" from the given configuration. Also, if you previously
  * run it without this fix, you may have to restart Android Studio.
- * <p>
- * Further note: you might have to redo this after every restart, as "Gradle-Aware Make" is
+ *
+ * <p>Further note: you might have to redo this after every restart, as "Gradle-Aware Make" is
  * re-added each time to your configurations by Android Studio. See linked Google issue.
- * <p>
- * Additional note: for some reason if you right click on the reports file in
+ *
+ * <p>Additional note: for some reason if you right click on the reports file in
  * build/reports/tests/test/index.html and press "Open in Browser", it will open the test results
  * for root folder tests (InjectTraceTaskTest). Seems like this is an Android Studio/IntelliJ
  * IDEA issue. To overcome this, you have to open manually the file from any compatible
@@ -78,8 +78,8 @@ public abstract class TestParent {
   protected static final String dummyCommitType4 = "feat!";
   protected static final String dummyCommitTitle4 = "Title 4. Breaking change";
   protected static final String dummyCommitDetails4 =
-      "API break, new API enables everything!\nUse it " +
-          "wisely!\nDeprecated some things. Removed file!";
+      "API break, new API enables everything!\nUse it "
+          + "wisely!\nDeprecated some things. Removed file!";
   protected static final String dummyCommitFooter4 = "APM-45678";
   protected static final String dummyCommitMessage4 =
       String.format(dummyCommitTemplate, dummyCommitType4,
@@ -133,7 +133,7 @@ public abstract class TestParent {
    */
   protected static File remoteDir;
   /**
-   * The {@link Git} that will be used for testing
+   * The {@link Git} that will be used for testing.
    */
   protected static Git git;
   protected static File dummyModule1;
@@ -141,17 +141,19 @@ public abstract class TestParent {
   protected final ChangeLogHelper changeLogHelper = new ChangeLogHelper(
       Logging.getLogger(TestParent.class.getName()));
   protected final String dummyReleaseName = "Dummy release";
-  protected final List<String> changeLogLines = new ArrayList<String>() {{
-    add("CHANGES");
-    add("=======");
-    add("");
-    add("trace-android-sdk public beta versions");
-    add("--------------------------------------");
-    add("**Note:** these versions of the *trace-android-sdk* are stored in a public repo, but " +
-        "should be");
-    add("considered still as beta.");
-    add("");
-  }};
+  protected final List<String> changeLogLines = new ArrayList<String>() {
+    {
+      add("CHANGES");
+      add("=======");
+      add("");
+      add("trace-android-sdk public beta versions");
+      add("--------------------------------------");
+      add("**Note:** these versions of the *trace-android-sdk* are stored in a public repo, but "
+          + "should be");
+      add("considered still as beta.");
+      add("");
+    }
+  };
   protected final Logger dummyLogger = Logging.getLogger(TestParent.class.getName());
   protected final GitHelper gitHelper = new GitHelper(dummyLogger);
   protected final InputHelper inputHelper = new InputHelper(dummyLogger);

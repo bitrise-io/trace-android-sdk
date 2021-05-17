@@ -36,8 +36,8 @@ public class ChangeLogHelperTest extends TestParent {
         changeLogHelper.formatCommitToChangeLogEntry(dummyCommitMessage1.toUpperCase())
                        .toString();
     final String expected =
-        "* " + dummyCommitType1 + ": **" + dummyCommitTitle1.toUpperCase() + ":** " +
-            dummyCommitDetails1.toUpperCase();
+        "* " + dummyCommitType1 + ": **" + dummyCommitTitle1.toUpperCase() + ":** "
+            + dummyCommitDetails1.toUpperCase();
 
     assertThat(actual, is(expected));
   }
