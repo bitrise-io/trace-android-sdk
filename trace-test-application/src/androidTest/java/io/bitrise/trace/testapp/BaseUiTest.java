@@ -48,7 +48,7 @@ import org.junit.runner.Description;
 /**
  * Base class for UI tests. Has the commonly used methods and members.
  *
- * <p>Some methods are based on Google sample. These are:
+ * <p>Some methods are based on Google sample.
  *  <ul>
  *      <li>{@link #getLauncherPackageName()}</li>
  *      <li>{@link #launchTraceTestApp(boolean)}</li>
@@ -162,7 +162,7 @@ public abstract class BaseUiTest {
    *
    * @param clear if any previous instance of the application should be cleared or not.
    * @return The final result returned by the {@code condition}, or {@code null} if the {@code
-   * condition} was not met before the {@code timeout}.
+   *     condition} was not met before the {@code timeout}.
    */
   @Nullable
   protected Boolean launchTraceTestApp(final boolean clear) {
