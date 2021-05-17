@@ -386,7 +386,7 @@ public class ManifestHelper {
    * Gets the path of the AndroidManifest document.
    *
    * @return the path, or {@code null} when {@link #ManifestHelper(Document, Logger)}
-   * constructor was used.
+   *     constructor was used.
    */
   @Nullable
   public String getAndroidManifestPath() {
