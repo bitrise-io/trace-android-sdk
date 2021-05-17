@@ -37,6 +37,7 @@ public final class Module extends
   private io.opencensus.proto.trace.v1.TruncatableString module_;
   private io.opencensus.proto.trace.v1.TruncatableString buildId_;
   private byte memoizedIsInitialized = -1;
+
   // Use Module.newBuilder() to construct.
   private Module(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);

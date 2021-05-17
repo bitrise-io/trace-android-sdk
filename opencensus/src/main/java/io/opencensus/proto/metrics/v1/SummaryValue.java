@@ -39,6 +39,7 @@ public final class SummaryValue extends
   private com.google.protobuf.DoubleValue sum_;
   private io.opencensus.proto.metrics.v1.SummaryValue.Snapshot snapshot_;
   private byte memoizedIsInitialized = -1;
+
   // Use SummaryValue.newBuilder() to construct.
   private SummaryValue(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -611,7 +612,7 @@ public final class SummaryValue extends
      * </pre>
      *
      * <code>repeated .opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile
-* percentile_values = 3;</code>
+     * percentile_values = 3;</code>
      */
     java.util.List<io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile>
     getPercentileValuesList();
@@ -635,7 +636,7 @@ public final class SummaryValue extends
      * </pre>
      *
      * <code>repeated .opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile
-* percentile_values = 3;</code>
+     * percentile_values = 3;</code>
      */
     int getPercentileValuesCount();
 
@@ -646,10 +647,10 @@ public final class SummaryValue extends
      * </pre>
      *
      * <code>repeated .opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile
-* percentile_values = 3;</code>
+     * percentile_values = 3;</code>
      */
     java.util.List<?
-     extends io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentileOrBuilder>
+        extends io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentileOrBuilder>
     getPercentileValuesOrBuilderList();
 
     /**
@@ -704,6 +705,7 @@ public final class SummaryValue extends
     private java.util.List<io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile>
         percentileValues_;
     private byte memoizedIsInitialized = -1;
+
     // Use Snapshot.newBuilder() to construct.
     private Snapshot(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -1035,7 +1037,7 @@ public final class SummaryValue extends
      */
     @java.lang.Override
     public java.util.List<?
-     extends io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentileOrBuilder>
+        extends io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentileOrBuilder>
     getPercentileValuesOrBuilderList() {
       return percentileValues_;
     }
@@ -1047,7 +1049,7 @@ public final class SummaryValue extends
      * </pre>
      *
      * <code>repeated .opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile
-            * percentile_values = 3;</code>
+     * percentile_values = 3;</code>
      */
     @java.lang.Override
     public int getPercentileValuesCount() {
@@ -1061,7 +1063,7 @@ public final class SummaryValue extends
      * </pre>
      *
      * <code>repeated .opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile
- * percentile_values = 3;</code>
+     * percentile_values = 3;</code>
      */
     @java.lang.Override
     public io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile getPercentileValues(
@@ -1228,7 +1230,7 @@ public final class SummaryValue extends
 
     public interface ValueAtPercentileOrBuilder extends
         // @@protoc_insertion_point(interface_extends:opencensus.proto.metrics.v1.SummaryValue
-    // .Snapshot.ValueAtPercentile)
+        // .Snapshot.ValueAtPercentile)
         com.google.protobuf.MessageOrBuilder {
 
       /**
@@ -1265,7 +1267,7 @@ public final class SummaryValue extends
     public static final class ValueAtPercentile extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:opencensus.proto.metrics.v1.SummaryValue
-    // .Snapshot.ValueAtPercentile)
+        // .Snapshot.ValueAtPercentile)
         ValueAtPercentileOrBuilder {
       public static final int PERCENTILE_FIELD_NUMBER = 1;
       public static final int VALUE_FIELD_NUMBER = 2;
@@ -1293,6 +1295,7 @@ public final class SummaryValue extends
       private double percentile_;
       private double value_;
       private byte memoizedIsInitialized = -1;
+
       // Use ValueAtPercentile.newBuilder() to construct.
       private ValueAtPercentile(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -1916,7 +1919,7 @@ public final class SummaryValue extends
 
 
         // @@protoc_insertion_point(builder_scope:opencensus.proto.metrics.v1.SummaryValue
-      // .Snapshot.ValueAtPercentile)
+        // .Snapshot.ValueAtPercentile)
       }
 
     }
@@ -1938,19 +1941,19 @@ public final class SummaryValue extends
       private com.google.protobuf.Int64Value count_;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Int64Value, com.google.protobuf.Int64Value.Builder,
-           com.google.protobuf.Int64ValueOrBuilder>
+          com.google.protobuf.Int64ValueOrBuilder>
           countBuilder_;
       private com.google.protobuf.DoubleValue sum_;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.DoubleValue, com.google.protobuf.DoubleValue.Builder,
-           com.google.protobuf.DoubleValueOrBuilder>
+          com.google.protobuf.DoubleValueOrBuilder>
           sumBuilder_;
       private java.util.List<io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile>
           percentileValues_ =
           java.util.Collections.emptyList();
       private com.google.protobuf.RepeatedFieldBuilderV3<
           io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile,
-           io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile.Builder,
+          io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile.Builder,
           io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentileOrBuilder>
           percentileValuesBuilder_;
 
@@ -2331,12 +2334,12 @@ public final class SummaryValue extends
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Int64Value, com.google.protobuf.Int64Value.Builder,
- com.google.protobuf.Int64ValueOrBuilder>
+          com.google.protobuf.Int64ValueOrBuilder>
       getCountFieldBuilder() {
         if (countBuilder_ == null) {
           countBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               com.google.protobuf.Int64Value, com.google.protobuf.Int64Value.Builder,
-               com.google.protobuf.Int64ValueOrBuilder>(
+              com.google.protobuf.Int64ValueOrBuilder>(
               getCount(),
               getParentForChildren(),
               isClean());
@@ -2513,12 +2516,12 @@ public final class SummaryValue extends
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.DoubleValue, com.google.protobuf.DoubleValue.Builder,
-           com.google.protobuf.DoubleValueOrBuilder>
+          com.google.protobuf.DoubleValueOrBuilder>
       getSumFieldBuilder() {
         if (sumBuilder_ == null) {
           sumBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               com.google.protobuf.DoubleValue, com.google.protobuf.DoubleValue.Builder,
-com.google.protobuf.DoubleValueOrBuilder>(
+              com.google.protobuf.DoubleValueOrBuilder>(
               getSum(),
               getParentForChildren(),
               isClean());
@@ -2665,7 +2668,7 @@ com.google.protobuf.DoubleValueOrBuilder>(
        * </pre>
        *
        * <code>repeated .opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile
- * percentile_values = 3;</code>
+       * percentile_values = 3;</code>
        */
       public Builder addPercentileValues(
           int index, io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile value) {
@@ -2736,7 +2739,7 @@ com.google.protobuf.DoubleValueOrBuilder>(
        */
       public Builder addAllPercentileValues(
           java.lang.Iterable<?
-           extends io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile> values) {
+              extends io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile> values) {
         if (percentileValuesBuilder_ == null) {
           ensurePercentileValuesIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -2795,7 +2798,7 @@ com.google.protobuf.DoubleValueOrBuilder>(
        * </pre>
        *
        * <code>repeated .opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile
-* percentile_values = 3;</code>
+       * percentile_values = 3;</code>
        */
       public io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile.Builder getPercentileValuesBuilder(
           int index) {
@@ -2830,7 +2833,7 @@ com.google.protobuf.DoubleValueOrBuilder>(
        * percentile_values = 3;</code>
        */
       public java.util.List<?
-       extends io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentileOrBuilder>
+          extends io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentileOrBuilder>
       getPercentileValuesOrBuilderList() {
         if (percentileValuesBuilder_ != null) {
           return percentileValuesBuilder_.getMessageOrBuilderList();
@@ -2886,14 +2889,14 @@ com.google.protobuf.DoubleValueOrBuilder>(
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
           io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile,
-           io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile.Builder,
-            io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentileOrBuilder>
+          io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile.Builder,
+          io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentileOrBuilder>
       getPercentileValuesFieldBuilder() {
         if (percentileValuesBuilder_ == null) {
           percentileValuesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile,
-               io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile.Builder,
-      io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentileOrBuilder>(
+              io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentile.Builder,
+              io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.ValueAtPercentileOrBuilder>(
               percentileValues_,
               ((bitField0_ & 0x00000001) != 0),
               getParentForChildren(),
@@ -2935,18 +2938,18 @@ com.google.protobuf.DoubleValueOrBuilder>(
     private com.google.protobuf.Int64Value count_;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Int64Value, com.google.protobuf.Int64Value.Builder,
-         com.google.protobuf.Int64ValueOrBuilder>
+        com.google.protobuf.Int64ValueOrBuilder>
         countBuilder_;
     private com.google.protobuf.DoubleValue sum_;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.DoubleValue, com.google.protobuf.DoubleValue.Builder,
-     com.google.protobuf.DoubleValueOrBuilder>
+        com.google.protobuf.DoubleValueOrBuilder>
         sumBuilder_;
     private io.opencensus.proto.metrics.v1.SummaryValue.Snapshot snapshot_;
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.metrics.v1.SummaryValue.Snapshot,
-         io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.Builder,
-          io.opencensus.proto.metrics.v1.SummaryValue.SnapshotOrBuilder>
+        io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.Builder,
+        io.opencensus.proto.metrics.v1.SummaryValue.SnapshotOrBuilder>
         snapshotBuilder_;
 
     // Construct using io.opencensus.proto.metrics.v1.SummaryValue.newBuilder()
@@ -3296,12 +3299,12 @@ com.google.protobuf.DoubleValueOrBuilder>(
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Int64Value, com.google.protobuf.Int64Value.Builder,
-         com.google.protobuf.Int64ValueOrBuilder>
+        com.google.protobuf.Int64ValueOrBuilder>
     getCountFieldBuilder() {
       if (countBuilder_ == null) {
         countBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             com.google.protobuf.Int64Value, com.google.protobuf.Int64Value.Builder,
-             com.google.protobuf.Int64ValueOrBuilder>(
+            com.google.protobuf.Int64ValueOrBuilder>(
             getCount(),
             getParentForChildren(),
             isClean());
@@ -3478,12 +3481,12 @@ com.google.protobuf.DoubleValueOrBuilder>(
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.DoubleValue, com.google.protobuf.DoubleValue.Builder,
-         com.google.protobuf.DoubleValueOrBuilder>
+        com.google.protobuf.DoubleValueOrBuilder>
     getSumFieldBuilder() {
       if (sumBuilder_ == null) {
         sumBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             com.google.protobuf.DoubleValue, com.google.protobuf.DoubleValue.Builder,
-             com.google.protobuf.DoubleValueOrBuilder>(
+            com.google.protobuf.DoubleValueOrBuilder>(
             getSum(),
             getParentForChildren(),
             isClean());
@@ -3644,14 +3647,14 @@ com.google.protobuf.DoubleValueOrBuilder>(
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.metrics.v1.SummaryValue.Snapshot,
-         io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.Builder,
-          io.opencensus.proto.metrics.v1.SummaryValue.SnapshotOrBuilder>
+        io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.Builder,
+        io.opencensus.proto.metrics.v1.SummaryValue.SnapshotOrBuilder>
     getSnapshotFieldBuilder() {
       if (snapshotBuilder_ == null) {
         snapshotBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             io.opencensus.proto.metrics.v1.SummaryValue.Snapshot,
-             io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.Builder,
-              io.opencensus.proto.metrics.v1.SummaryValue.SnapshotOrBuilder>(
+            io.opencensus.proto.metrics.v1.SummaryValue.Snapshot.Builder,
+            io.opencensus.proto.metrics.v1.SummaryValue.SnapshotOrBuilder>(
             getSnapshot(),
             getParentForChildren(),
             isClean());

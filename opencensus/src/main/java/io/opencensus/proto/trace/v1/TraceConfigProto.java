@@ -83,6 +83,7 @@ public final class TraceConfigProto {
         internal_static_opencensus_proto_trace_v1_RateLimitingSampler_descriptor,
         new java.lang.String[] {"Qps",});
   }
+
   private TraceConfigProto() {
   }
 

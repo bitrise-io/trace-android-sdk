@@ -606,7 +606,7 @@ public final class StackTrace extends
 
   public interface StackFramesOrBuilder extends
       // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.StackTrace
-        // .StackFrames)
+      // .StackFrames)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -716,6 +716,7 @@ public final class StackTrace extends
     private io.opencensus.proto.trace.v1.Module loadModule_;
     private io.opencensus.proto.trace.v1.TruncatableString sourceVersion_;
     private byte memoizedIsInitialized = -1;
+
     // Use StackFrame.newBuilder() to construct.
     private StackFrame(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -1445,33 +1446,33 @@ public final class StackTrace extends
       private io.opencensus.proto.trace.v1.TruncatableString functionName_;
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.trace.v1.TruncatableString,
-           io.opencensus.proto.trace.v1.TruncatableString.Builder,
-            io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
+          io.opencensus.proto.trace.v1.TruncatableString.Builder,
+          io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
           functionNameBuilder_;
       private io.opencensus.proto.trace.v1.TruncatableString originalFunctionName_;
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.trace.v1.TruncatableString,
- io.opencensus.proto.trace.v1.TruncatableString.Builder,
+          io.opencensus.proto.trace.v1.TruncatableString.Builder,
           io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
           originalFunctionNameBuilder_;
       private io.opencensus.proto.trace.v1.TruncatableString fileName_;
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.trace.v1.TruncatableString,
-           io.opencensus.proto.trace.v1.TruncatableString.Builder,
- io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
+          io.opencensus.proto.trace.v1.TruncatableString.Builder,
+          io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
           fileNameBuilder_;
       private long lineNumber_;
       private long columnNumber_;
       private io.opencensus.proto.trace.v1.Module loadModule_;
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.trace.v1.Module, io.opencensus.proto.trace.v1.Module.Builder,
-io.opencensus.proto.trace.v1.ModuleOrBuilder>
+          io.opencensus.proto.trace.v1.ModuleOrBuilder>
           loadModuleBuilder_;
       private io.opencensus.proto.trace.v1.TruncatableString sourceVersion_;
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.trace.v1.TruncatableString,
-           io.opencensus.proto.trace.v1.TruncatableString.Builder,
-            io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
+          io.opencensus.proto.trace.v1.TruncatableString.Builder,
+          io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
           sourceVersionBuilder_;
 
       // Construct using io.opencensus.proto.trace.v1.StackTrace.StackFrame.newBuilder()
@@ -1864,14 +1865,14 @@ io.opencensus.proto.trace.v1.ModuleOrBuilder>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.trace.v1.TruncatableString,
-           io.opencensus.proto.trace.v1.TruncatableString.Builder,
-            io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
+          io.opencensus.proto.trace.v1.TruncatableString.Builder,
+          io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
       getFunctionNameFieldBuilder() {
         if (functionNameBuilder_ == null) {
           functionNameBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               io.opencensus.proto.trace.v1.TruncatableString,
-io.opencensus.proto.trace.v1.TruncatableString.Builder,
-                io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>(
+              io.opencensus.proto.trace.v1.TruncatableString.Builder,
+              io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>(
               getFunctionName(),
               getParentForChildren(),
               isClean());
@@ -2053,14 +2054,14 @@ io.opencensus.proto.trace.v1.TruncatableString.Builder,
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.trace.v1.TruncatableString,
-io.opencensus.proto.trace.v1.TruncatableString.Builder,
-        io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
+          io.opencensus.proto.trace.v1.TruncatableString.Builder,
+          io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
       getOriginalFunctionNameFieldBuilder() {
         if (originalFunctionNameBuilder_ == null) {
           originalFunctionNameBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               io.opencensus.proto.trace.v1.TruncatableString,
-               io.opencensus.proto.trace.v1.TruncatableString.Builder,
-                io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>(
+              io.opencensus.proto.trace.v1.TruncatableString.Builder,
+              io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>(
               getOriginalFunctionName(),
               getParentForChildren(),
               isClean());
@@ -2221,14 +2222,14 @@ io.opencensus.proto.trace.v1.TruncatableString.Builder,
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.trace.v1.TruncatableString,
-           io.opencensus.proto.trace.v1.TruncatableString.Builder,
-       io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
+          io.opencensus.proto.trace.v1.TruncatableString.Builder,
+          io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
       getFileNameFieldBuilder() {
         if (fileNameBuilder_ == null) {
           fileNameBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               io.opencensus.proto.trace.v1.TruncatableString,
-               io.opencensus.proto.trace.v1.TruncatableString.Builder,
-                io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>(
+              io.opencensus.proto.trace.v1.TruncatableString.Builder,
+              io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>(
               getFileName(),
               getParentForChildren(),
               isClean());
@@ -2486,12 +2487,12 @@ io.opencensus.proto.trace.v1.TruncatableString.Builder,
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.trace.v1.Module, io.opencensus.proto.trace.v1.Module.Builder,
-           io.opencensus.proto.trace.v1.ModuleOrBuilder>
+          io.opencensus.proto.trace.v1.ModuleOrBuilder>
       getLoadModuleFieldBuilder() {
         if (loadModuleBuilder_ == null) {
           loadModuleBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               io.opencensus.proto.trace.v1.Module, io.opencensus.proto.trace.v1.Module.Builder,
-io.opencensus.proto.trace.v1.ModuleOrBuilder>(
+              io.opencensus.proto.trace.v1.ModuleOrBuilder>(
               getLoadModule(),
               getParentForChildren(),
               isClean());
@@ -2652,8 +2653,8 @@ io.opencensus.proto.trace.v1.ModuleOrBuilder>(
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.trace.v1.TruncatableString,
-           io.opencensus.proto.trace.v1.TruncatableString.Builder,
-            io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
+          io.opencensus.proto.trace.v1.TruncatableString.Builder,
+          io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
       getSourceVersionFieldBuilder() {
         if (sourceVersionBuilder_ == null) {
           sourceVersionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -2721,6 +2722,7 @@ io.opencensus.proto.trace.v1.ModuleOrBuilder>(
     private java.util.List<io.opencensus.proto.trace.v1.StackTrace.StackFrame> frame_;
     private int droppedFramesCount_;
     private byte memoizedIsInitialized = -1;
+
     // Use StackFrames.newBuilder() to construct.
     private StackFrames(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -3118,15 +3120,15 @@ io.opencensus.proto.trace.v1.ModuleOrBuilder>(
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.StackTrace
-          // .StackFrames)
+        // .StackFrames)
         io.opencensus.proto.trace.v1.StackTrace.StackFramesOrBuilder {
       private int bitField0_;
       private java.util.List<io.opencensus.proto.trace.v1.StackTrace.StackFrame> frame_ =
           java.util.Collections.emptyList();
       private com.google.protobuf.RepeatedFieldBuilderV3<
           io.opencensus.proto.trace.v1.StackTrace.StackFrame,
-io.opencensus.proto.trace.v1.StackTrace.StackFrame.Builder,
-            io.opencensus.proto.trace.v1.StackTrace.StackFrameOrBuilder>
+          io.opencensus.proto.trace.v1.StackTrace.StackFrame.Builder,
+          io.opencensus.proto.trace.v1.StackTrace.StackFrameOrBuilder>
           frameBuilder_;
       private int droppedFramesCount_;
 
@@ -3640,14 +3642,14 @@ io.opencensus.proto.trace.v1.StackTrace.StackFrame.Builder,
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
           io.opencensus.proto.trace.v1.StackTrace.StackFrame,
- io.opencensus.proto.trace.v1.StackTrace.StackFrame.Builder,
-            io.opencensus.proto.trace.v1.StackTrace.StackFrameOrBuilder>
+          io.opencensus.proto.trace.v1.StackTrace.StackFrame.Builder,
+          io.opencensus.proto.trace.v1.StackTrace.StackFrameOrBuilder>
       getFrameFieldBuilder() {
         if (frameBuilder_ == null) {
           frameBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               io.opencensus.proto.trace.v1.StackTrace.StackFrame,
-               io.opencensus.proto.trace.v1.StackTrace.StackFrame.Builder,
-                io.opencensus.proto.trace.v1.StackTrace.StackFrameOrBuilder>(
+              io.opencensus.proto.trace.v1.StackTrace.StackFrame.Builder,
+              io.opencensus.proto.trace.v1.StackTrace.StackFrameOrBuilder>(
               frame_,
               ((bitField0_ & 0x00000001) != 0),
               getParentForChildren(),
@@ -3742,7 +3744,7 @@ io.opencensus.proto.trace.v1.StackTrace.StackFrame.Builder,
     private io.opencensus.proto.trace.v1.StackTrace.StackFrames stackFrames_;
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.trace.v1.StackTrace.StackFrames,
-io.opencensus.proto.trace.v1.StackTrace.StackFrames.Builder,
+        io.opencensus.proto.trace.v1.StackTrace.StackFrames.Builder,
         io.opencensus.proto.trace.v1.StackTrace.StackFramesOrBuilder>
         stackFramesBuilder_;
     private long stackTraceHashId_;
@@ -4065,14 +4067,14 @@ io.opencensus.proto.trace.v1.StackTrace.StackFrames.Builder,
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.trace.v1.StackTrace.StackFrames,
-         io.opencensus.proto.trace.v1.StackTrace.StackFrames.Builder,
-     io.opencensus.proto.trace.v1.StackTrace.StackFramesOrBuilder>
+        io.opencensus.proto.trace.v1.StackTrace.StackFrames.Builder,
+        io.opencensus.proto.trace.v1.StackTrace.StackFramesOrBuilder>
     getStackFramesFieldBuilder() {
       if (stackFramesBuilder_ == null) {
         stackFramesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             io.opencensus.proto.trace.v1.StackTrace.StackFrames,
-             io.opencensus.proto.trace.v1.StackTrace.StackFrames.Builder,
-              io.opencensus.proto.trace.v1.StackTrace.StackFramesOrBuilder>(
+            io.opencensus.proto.trace.v1.StackTrace.StackFrames.Builder,
+            io.opencensus.proto.trace.v1.StackTrace.StackFramesOrBuilder>(
             getStackFrames(),
             getParentForChildren(),
             isClean());

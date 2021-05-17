@@ -141,6 +141,7 @@ public final class StatsProto {
             "Value",});
     com.google.protobuf.TimestampProto.getDescriptor();
   }
+
   private StatsProto() {
   }
 

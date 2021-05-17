@@ -2626,6 +2626,7 @@ public final class Span extends
       private volatile java.lang.Object key_;
       private volatile java.lang.Object value_;
       private byte memoizedIsInitialized = -1;
+
       // Use Entry.newBuilder() to construct.
       private Entry(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -3462,8 +3463,8 @@ public final class Span extends
           java.util.Collections.emptyList();
       private com.google.protobuf.RepeatedFieldBuilderV3<
           io.opencensus.proto.trace.v1.Span.Tracestate.Entry,
-           io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder,
-            io.opencensus.proto.trace.v1.Span.Tracestate.EntryOrBuilder>
+          io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder,
+          io.opencensus.proto.trace.v1.Span.Tracestate.EntryOrBuilder>
           entriesBuilder_;
 
       // Construct using io.opencensus.proto.trace.v1.Span.Tracestate.newBuilder()
@@ -3969,14 +3970,14 @@ public final class Span extends
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
           io.opencensus.proto.trace.v1.Span.Tracestate.Entry,
-      io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder,
-            io.opencensus.proto.trace.v1.Span.Tracestate.EntryOrBuilder>
+          io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder,
+          io.opencensus.proto.trace.v1.Span.Tracestate.EntryOrBuilder>
       getEntriesFieldBuilder() {
         if (entriesBuilder_ == null) {
           entriesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               io.opencensus.proto.trace.v1.Span.Tracestate.Entry,
-               io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder,
-     io.opencensus.proto.trace.v1.Span.Tracestate.EntryOrBuilder>(
+              io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder,
+              io.opencensus.proto.trace.v1.Span.Tracestate.EntryOrBuilder>(
               entries_,
               ((bitField0_ & 0x00000001) != 0),
               getParentForChildren(),
@@ -4074,7 +4075,7 @@ public final class Span extends
                 mutable_bitField0_ |= 0x00000001;
               }
               com.google.protobuf.MapEntry<java.lang.String,
-               io.opencensus.proto.trace.v1.AttributeValue>
+                  io.opencensus.proto.trace.v1.AttributeValue>
                   attributeMap__ = input.readMessage(
                   AttributeMapDefaultEntryHolder.defaultEntry.getParserForType(),
                   extensionRegistry);
@@ -4246,7 +4247,7 @@ public final class Span extends
     }
 
     private com.google.protobuf.MapField<java.lang.String,
-     io.opencensus.proto.trace.v1.AttributeValue>
+        io.opencensus.proto.trace.v1.AttributeValue>
     internalGetAttributeMap() {
       if (attributeMap_ == null) {
         return com.google.protobuf.MapField.emptyMapField(
@@ -4715,7 +4716,7 @@ public final class Span extends
       }
 
       private com.google.protobuf.MapField<java.lang.String,
-         io.opencensus.proto.trace.v1.AttributeValue>
+          io.opencensus.proto.trace.v1.AttributeValue>
       internalGetAttributeMap() {
         if (attributeMap_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
@@ -4725,7 +4726,7 @@ public final class Span extends
       }
 
       private com.google.protobuf.MapField<java.lang.String,
-       io.opencensus.proto.trace.v1.AttributeValue>
+          io.opencensus.proto.trace.v1.AttributeValue>
       internalGetMutableAttributeMap() {
         onChanged();
         if (attributeMap_ == null) {
@@ -4754,7 +4755,7 @@ public final class Span extends
        * </pre>
        *
        * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;
-        * </code>
+       * </code>
        */
 
       @java.lang.Override
@@ -4834,7 +4835,7 @@ public final class Span extends
        * </pre>
        *
        * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;
-      * </code>
+       * </code>
        */
       @java.lang.Override
 
@@ -4931,7 +4932,7 @@ public final class Span extends
        * </pre>
        *
        * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;
-* </code>
+       * </code>
        */
 
       public Builder putAllAttributeMap(
@@ -5056,6 +5057,7 @@ public final class Span extends
 
     private TimeEvent() {
     }
+
     private TimeEvent(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5768,6 +5770,7 @@ public final class Span extends
       private io.opencensus.proto.trace.v1.TruncatableString description_;
       private io.opencensus.proto.trace.v1.Span.Attributes attributes_;
       private byte memoizedIsInitialized = -1;
+
       // Use Annotation.newBuilder() to construct.
       private Annotation(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -6195,14 +6198,14 @@ public final class Span extends
         private io.opencensus.proto.trace.v1.TruncatableString description_;
         private com.google.protobuf.SingleFieldBuilderV3<
             io.opencensus.proto.trace.v1.TruncatableString,
-        io.opencensus.proto.trace.v1.TruncatableString.Builder,
-        io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
+            io.opencensus.proto.trace.v1.TruncatableString.Builder,
+            io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
             descriptionBuilder_;
         private io.opencensus.proto.trace.v1.Span.Attributes attributes_;
         private com.google.protobuf.SingleFieldBuilderV3<
             io.opencensus.proto.trace.v1.Span.Attributes,
-             io.opencensus.proto.trace.v1.Span.Attributes.Builder,
-          io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
+            io.opencensus.proto.trace.v1.Span.Attributes.Builder,
+            io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
             attributesBuilder_;
 
         // Construct using io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.newBuilder()
@@ -6533,14 +6536,14 @@ public final class Span extends
          */
         private com.google.protobuf.SingleFieldBuilderV3<
             io.opencensus.proto.trace.v1.TruncatableString,
-             io.opencensus.proto.trace.v1.TruncatableString.Builder,
- io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
+            io.opencensus.proto.trace.v1.TruncatableString.Builder,
+            io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
         getDescriptionFieldBuilder() {
           if (descriptionBuilder_ == null) {
             descriptionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
                 io.opencensus.proto.trace.v1.TruncatableString,
-                 io.opencensus.proto.trace.v1.TruncatableString.Builder,
-                  io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>(
+                io.opencensus.proto.trace.v1.TruncatableString.Builder,
+                io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>(
                 getDescription(),
                 getParentForChildren(),
                 isClean());
@@ -6701,14 +6704,14 @@ public final class Span extends
          */
         private com.google.protobuf.SingleFieldBuilderV3<
             io.opencensus.proto.trace.v1.Span.Attributes,
-             io.opencensus.proto.trace.v1.Span.Attributes.Builder,
-              io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
+            io.opencensus.proto.trace.v1.Span.Attributes.Builder,
+            io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
         getAttributesFieldBuilder() {
           if (attributesBuilder_ == null) {
             attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
                 io.opencensus.proto.trace.v1.Span.Attributes,
-io.opencensus.proto.trace.v1.Span.Attributes.Builder,
-                  io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>(
+                io.opencensus.proto.trace.v1.Span.Attributes.Builder,
+                io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>(
                 getAttributes(),
                 getParentForChildren(),
                 isClean());
@@ -6781,6 +6784,7 @@ io.opencensus.proto.trace.v1.Span.Attributes.Builder,
       private MessageEvent(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
       }
+
       private MessageEvent() {
         type_ = 0;
       }
@@ -7791,7 +7795,7 @@ io.opencensus.proto.trace.v1.Span.Attributes.Builder,
 
 
         // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.Span.TimeEvent
-// .MessageEvent)
+        // .MessageEvent)
       }
 
     }
@@ -7812,17 +7816,17 @@ io.opencensus.proto.trace.v1.Span.Attributes.Builder,
       private com.google.protobuf.Timestamp time_;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
- com.google.protobuf.TimestampOrBuilder>
+          com.google.protobuf.TimestampOrBuilder>
           timeBuilder_;
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation,
-           io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
- io.opencensus.proto.trace.v1.Span.TimeEvent.AnnotationOrBuilder>
+          io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
+          io.opencensus.proto.trace.v1.Span.TimeEvent.AnnotationOrBuilder>
           annotationBuilder_;
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent,
-        io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Builder,
-            io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEventOrBuilder>
+          io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Builder,
+          io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEventOrBuilder>
           messageEventBuilder_;
 
       // Construct using io.opencensus.proto.trace.v1.Span.TimeEvent.newBuilder()
@@ -8178,12 +8182,12 @@ io.opencensus.proto.trace.v1.Span.Attributes.Builder,
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-           com.google.protobuf.TimestampOrBuilder>
+          com.google.protobuf.TimestampOrBuilder>
       getTimeFieldBuilder() {
         if (timeBuilder_ == null) {
           timeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-               com.google.protobuf.TimestampOrBuilder>(
+              com.google.protobuf.TimestampOrBuilder>(
               getTime(),
               getParentForChildren(),
               isClean());
@@ -8362,8 +8366,8 @@ io.opencensus.proto.trace.v1.Span.Attributes.Builder,
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation,
-           io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
-            io.opencensus.proto.trace.v1.Span.TimeEvent.AnnotationOrBuilder>
+          io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
+          io.opencensus.proto.trace.v1.Span.TimeEvent.AnnotationOrBuilder>
       getAnnotationFieldBuilder() {
         if (annotationBuilder_ == null) {
           if (!(valueCase_ == 2)) {
@@ -8371,8 +8375,8 @@ io.opencensus.proto.trace.v1.Span.Attributes.Builder,
           }
           annotationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation,
-io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
-                io.opencensus.proto.trace.v1.Span.TimeEvent.AnnotationOrBuilder>(
+              io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
+              io.opencensus.proto.trace.v1.Span.TimeEvent.AnnotationOrBuilder>(
               (io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation) value_,
               getParentForChildren(),
               isClean());
@@ -8555,8 +8559,8 @@ io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent,
-        io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Builder,
-        io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEventOrBuilder>
+          io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Builder,
+          io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEventOrBuilder>
       getMessageEventFieldBuilder() {
         if (messageEventBuilder_ == null) {
           if (!(valueCase_ == 3)) {
@@ -8564,8 +8568,8 @@ io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
           }
           messageEventBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent,
-               io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Builder,
-        io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEventOrBuilder>(
+              io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Builder,
+              io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEventOrBuilder>(
               (io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent) value_,
               getParentForChildren(),
               isClean());
@@ -9068,7 +9072,7 @@ io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
       private com.google.protobuf.RepeatedFieldBuilderV3<
           io.opencensus.proto.trace.v1.Span.TimeEvent,
           io.opencensus.proto.trace.v1.Span.TimeEvent.Builder,
-            io.opencensus.proto.trace.v1.Span.TimeEventOrBuilder>
+          io.opencensus.proto.trace.v1.Span.TimeEventOrBuilder>
           timeEventBuilder_;
       private int droppedAnnotationsCount_;
       private int droppedMessageEventsCount_;
@@ -9588,14 +9592,14 @@ io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
           io.opencensus.proto.trace.v1.Span.TimeEvent,
-           io.opencensus.proto.trace.v1.Span.TimeEvent.Builder,
-            io.opencensus.proto.trace.v1.Span.TimeEventOrBuilder>
+          io.opencensus.proto.trace.v1.Span.TimeEvent.Builder,
+          io.opencensus.proto.trace.v1.Span.TimeEventOrBuilder>
       getTimeEventFieldBuilder() {
         if (timeEventBuilder_ == null) {
           timeEventBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               io.opencensus.proto.trace.v1.Span.TimeEvent,
-          io.opencensus.proto.trace.v1.Span.TimeEvent.Builder,
-                io.opencensus.proto.trace.v1.Span.TimeEventOrBuilder>(
+              io.opencensus.proto.trace.v1.Span.TimeEvent.Builder,
+              io.opencensus.proto.trace.v1.Span.TimeEventOrBuilder>(
               timeEvent_,
               ((bitField0_ & 0x00000001) != 0),
               getParentForChildren(),
@@ -9771,6 +9775,7 @@ io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
     private Link(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private Link() {
       traceId_ = com.google.protobuf.ByteString.EMPTY;
       spanId_ = com.google.protobuf.ByteString.EMPTY;
@@ -10461,14 +10466,14 @@ io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
       private io.opencensus.proto.trace.v1.Span.Attributes attributes_;
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.trace.v1.Span.Attributes,
-           io.opencensus.proto.trace.v1.Span.Attributes.Builder,
-            io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
+          io.opencensus.proto.trace.v1.Span.Attributes.Builder,
+          io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
           attributesBuilder_;
       private io.opencensus.proto.trace.v1.Span.Tracestate tracestate_;
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.trace.v1.Span.Tracestate,
-           io.opencensus.proto.trace.v1.Span.Tracestate.Builder,
-            io.opencensus.proto.trace.v1.Span.TracestateOrBuilder>
+          io.opencensus.proto.trace.v1.Span.Tracestate.Builder,
+          io.opencensus.proto.trace.v1.Span.TracestateOrBuilder>
           tracestateBuilder_;
 
       // Construct using io.opencensus.proto.trace.v1.Span.Link.newBuilder()
@@ -11002,14 +11007,14 @@ io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.trace.v1.Span.Attributes,
-           io.opencensus.proto.trace.v1.Span.Attributes.Builder,
-            io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
+          io.opencensus.proto.trace.v1.Span.Attributes.Builder,
+          io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
       getAttributesFieldBuilder() {
         if (attributesBuilder_ == null) {
           attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               io.opencensus.proto.trace.v1.Span.Attributes,
-               io.opencensus.proto.trace.v1.Span.Attributes.Builder,
-      io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>(
+              io.opencensus.proto.trace.v1.Span.Attributes.Builder,
+              io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>(
               getAttributes(),
               getParentForChildren(),
               isClean());
@@ -11170,14 +11175,14 @@ io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.trace.v1.Span.Tracestate,
-           io.opencensus.proto.trace.v1.Span.Tracestate.Builder,
-            io.opencensus.proto.trace.v1.Span.TracestateOrBuilder>
+          io.opencensus.proto.trace.v1.Span.Tracestate.Builder,
+          io.opencensus.proto.trace.v1.Span.TracestateOrBuilder>
       getTracestateFieldBuilder() {
         if (tracestateBuilder_ == null) {
           tracestateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               io.opencensus.proto.trace.v1.Span.Tracestate,
-               io.opencensus.proto.trace.v1.Span.Tracestate.Builder,
-                io.opencensus.proto.trace.v1.Span.TracestateOrBuilder>(
+              io.opencensus.proto.trace.v1.Span.Tracestate.Builder,
+              io.opencensus.proto.trace.v1.Span.TracestateOrBuilder>(
               getTracestate(),
               getParentForChildren(),
               isClean());
@@ -11239,6 +11244,7 @@ io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
     private java.util.List<io.opencensus.proto.trace.v1.Span.Link> link_;
     private int droppedLinksCount_;
     private byte memoizedIsInitialized = -1;
+
     // Use Links.newBuilder() to construct.
     private Links(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -11638,7 +11644,7 @@ io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
           java.util.Collections.emptyList();
       private com.google.protobuf.RepeatedFieldBuilderV3<
           io.opencensus.proto.trace.v1.Span.Link, io.opencensus.proto.trace.v1.Span.Link.Builder,
-           io.opencensus.proto.trace.v1.Span.LinkOrBuilder>
+          io.opencensus.proto.trace.v1.Span.LinkOrBuilder>
           linkBuilder_;
       private int droppedLinksCount_;
 
@@ -12150,13 +12156,13 @@ io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
           io.opencensus.proto.trace.v1.Span.Link, io.opencensus.proto.trace.v1.Span.Link.Builder,
-           io.opencensus.proto.trace.v1.Span.LinkOrBuilder>
+          io.opencensus.proto.trace.v1.Span.LinkOrBuilder>
       getLinkFieldBuilder() {
         if (linkBuilder_ == null) {
           linkBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               io.opencensus.proto.trace.v1.Span.Link,
-               io.opencensus.proto.trace.v1.Span.Link.Builder,
-                io.opencensus.proto.trace.v1.Span.LinkOrBuilder>(
+              io.opencensus.proto.trace.v1.Span.Link.Builder,
+              io.opencensus.proto.trace.v1.Span.LinkOrBuilder>(
               link_,
               ((bitField0_ & 0x00000001) != 0),
               getParentForChildren(),
@@ -12258,42 +12264,42 @@ io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
     private io.opencensus.proto.trace.v1.Span.Tracestate tracestate_;
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.trace.v1.Span.Tracestate,
-         io.opencensus.proto.trace.v1.Span.Tracestate.Builder,
+        io.opencensus.proto.trace.v1.Span.Tracestate.Builder,
         io.opencensus.proto.trace.v1.Span.TracestateOrBuilder>
         tracestateBuilder_;
     private com.google.protobuf.ByteString parentSpanId_ = com.google.protobuf.ByteString.EMPTY;
     private io.opencensus.proto.trace.v1.TruncatableString name_;
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.trace.v1.TruncatableString,
-         io.opencensus.proto.trace.v1.TruncatableString.Builder,
-          io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
+        io.opencensus.proto.trace.v1.TruncatableString.Builder,
+        io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
         nameBuilder_;
     private int kind_ = 0;
     private com.google.protobuf.Timestamp startTime_;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-         com.google.protobuf.TimestampOrBuilder>
+        com.google.protobuf.TimestampOrBuilder>
         startTimeBuilder_;
     private com.google.protobuf.Timestamp endTime_;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-         com.google.protobuf.TimestampOrBuilder>
+        com.google.protobuf.TimestampOrBuilder>
         endTimeBuilder_;
     private io.opencensus.proto.trace.v1.Span.Attributes attributes_;
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.trace.v1.Span.Attributes,
-      io.opencensus.proto.trace.v1.Span.Attributes.Builder,
-io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
+        io.opencensus.proto.trace.v1.Span.Attributes.Builder,
+        io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
         attributesBuilder_;
     private io.opencensus.proto.trace.v1.StackTrace stackTrace_;
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.trace.v1.StackTrace, io.opencensus.proto.trace.v1.StackTrace.Builder,
-     io.opencensus.proto.trace.v1.StackTraceOrBuilder>
+        io.opencensus.proto.trace.v1.StackTraceOrBuilder>
         stackTraceBuilder_;
     private io.opencensus.proto.trace.v1.Span.TimeEvents timeEvents_;
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.trace.v1.Span.TimeEvents,
-      io.opencensus.proto.trace.v1.Span.TimeEvents.Builder,
+        io.opencensus.proto.trace.v1.Span.TimeEvents.Builder,
         io.opencensus.proto.trace.v1.Span.TimeEventsOrBuilder>
         timeEventsBuilder_;
     private io.opencensus.proto.trace.v1.Span.Links links_;
@@ -12304,29 +12310,30 @@ io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
     private io.opencensus.proto.trace.v1.Status status_;
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.trace.v1.Status, io.opencensus.proto.trace.v1.Status.Builder,
-io.opencensus.proto.trace.v1.StatusOrBuilder>
+        io.opencensus.proto.trace.v1.StatusOrBuilder>
         statusBuilder_;
     private io.opencensus.proto.resource.v1.Resource resource_;
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.resource.v1.Resource,
-         io.opencensus.proto.resource.v1.Resource.Builder,
+        io.opencensus.proto.resource.v1.Resource.Builder,
         io.opencensus.proto.resource.v1.ResourceOrBuilder>
         resourceBuilder_;
     private com.google.protobuf.BoolValue sameProcessAsParentSpan_;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.BoolValue, com.google.protobuf.BoolValue.Builder,
-         com.google.protobuf.BoolValueOrBuilder>
+        com.google.protobuf.BoolValueOrBuilder>
         sameProcessAsParentSpanBuilder_;
     private com.google.protobuf.UInt32Value childSpanCount_;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.UInt32Value, com.google.protobuf.UInt32Value.Builder,
-         com.google.protobuf.UInt32ValueOrBuilder>
+        com.google.protobuf.UInt32ValueOrBuilder>
         childSpanCountBuilder_;
 
     // Construct using io.opencensus.proto.trace.v1.Span.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
+
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
@@ -12942,13 +12949,13 @@ io.opencensus.proto.trace.v1.StatusOrBuilder>
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.trace.v1.Span.Tracestate,
         io.opencensus.proto.trace.v1.Span.Tracestate.Builder,
-          io.opencensus.proto.trace.v1.Span.TracestateOrBuilder>
+        io.opencensus.proto.trace.v1.Span.TracestateOrBuilder>
     getTracestateFieldBuilder() {
       if (tracestateBuilder_ == null) {
         tracestateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             io.opencensus.proto.trace.v1.Span.Tracestate,
-     io.opencensus.proto.trace.v1.Span.Tracestate.Builder,
-              io.opencensus.proto.trace.v1.Span.TracestateOrBuilder>(
+            io.opencensus.proto.trace.v1.Span.Tracestate.Builder,
+            io.opencensus.proto.trace.v1.Span.TracestateOrBuilder>(
             getTracestate(),
             getParentForChildren(),
             isClean());
@@ -13243,14 +13250,14 @@ io.opencensus.proto.trace.v1.StatusOrBuilder>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.trace.v1.TruncatableString,
-         io.opencensus.proto.trace.v1.TruncatableString.Builder,
-     io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
+        io.opencensus.proto.trace.v1.TruncatableString.Builder,
+        io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
     getNameFieldBuilder() {
       if (nameBuilder_ == null) {
         nameBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             io.opencensus.proto.trace.v1.TruncatableString,
-                                                            io.opencensus.proto.trace.v1.TruncatableString.Builder,
-              io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>(
+            io.opencensus.proto.trace.v1.TruncatableString.Builder,
+            io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>(
             getName(),
             getParentForChildren(),
             isClean());
@@ -13566,12 +13573,12 @@ io.opencensus.proto.trace.v1.StatusOrBuilder>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-         com.google.protobuf.TimestampOrBuilder>
+        com.google.protobuf.TimestampOrBuilder>
     getStartTimeFieldBuilder() {
       if (startTimeBuilder_ == null) {
         startTimeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-             com.google.protobuf.TimestampOrBuilder>(
+            com.google.protobuf.TimestampOrBuilder>(
             getStartTime(),
             getParentForChildren(),
             isClean());
@@ -13784,12 +13791,12 @@ io.opencensus.proto.trace.v1.StatusOrBuilder>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-         com.google.protobuf.TimestampOrBuilder>
+        com.google.protobuf.TimestampOrBuilder>
     getEndTimeFieldBuilder() {
       if (endTimeBuilder_ == null) {
         endTimeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-     com.google.protobuf.TimestampOrBuilder>(
+            com.google.protobuf.TimestampOrBuilder>(
             getEndTime(),
             getParentForChildren(),
             isClean());
@@ -13950,14 +13957,14 @@ io.opencensus.proto.trace.v1.StatusOrBuilder>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.trace.v1.Span.Attributes,
-         io.opencensus.proto.trace.v1.Span.Attributes.Builder,
-io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
+        io.opencensus.proto.trace.v1.Span.Attributes.Builder,
+        io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
     getAttributesFieldBuilder() {
       if (attributesBuilder_ == null) {
         attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             io.opencensus.proto.trace.v1.Span.Attributes,
-             io.opencensus.proto.trace.v1.Span.Attributes.Builder,
-              io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>(
+            io.opencensus.proto.trace.v1.Span.Attributes.Builder,
+            io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>(
             getAttributes(),
             getParentForChildren(),
             isClean());
@@ -14118,13 +14125,13 @@ io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.trace.v1.StackTrace, io.opencensus.proto.trace.v1.StackTrace.Builder,
-         io.opencensus.proto.trace.v1.StackTraceOrBuilder>
+        io.opencensus.proto.trace.v1.StackTraceOrBuilder>
     getStackTraceFieldBuilder() {
       if (stackTraceBuilder_ == null) {
         stackTraceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             io.opencensus.proto.trace.v1.StackTrace,
-             io.opencensus.proto.trace.v1.StackTrace.Builder,
-              io.opencensus.proto.trace.v1.StackTraceOrBuilder>(
+            io.opencensus.proto.trace.v1.StackTrace.Builder,
+            io.opencensus.proto.trace.v1.StackTraceOrBuilder>(
             getStackTrace(),
             getParentForChildren(),
             isClean());
@@ -14285,14 +14292,14 @@ io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.trace.v1.Span.TimeEvents,
-         io.opencensus.proto.trace.v1.Span.TimeEvents.Builder,
-          io.opencensus.proto.trace.v1.Span.TimeEventsOrBuilder>
+        io.opencensus.proto.trace.v1.Span.TimeEvents.Builder,
+        io.opencensus.proto.trace.v1.Span.TimeEventsOrBuilder>
     getTimeEventsFieldBuilder() {
       if (timeEventsBuilder_ == null) {
         timeEventsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             io.opencensus.proto.trace.v1.Span.TimeEvents,
-             io.opencensus.proto.trace.v1.Span.TimeEvents.Builder,
-              io.opencensus.proto.trace.v1.Span.TimeEventsOrBuilder>(
+            io.opencensus.proto.trace.v1.Span.TimeEvents.Builder,
+            io.opencensus.proto.trace.v1.Span.TimeEventsOrBuilder>(
             getTimeEvents(),
             getParentForChildren(),
             isClean());
@@ -14458,8 +14465,8 @@ io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
       if (linksBuilder_ == null) {
         linksBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             io.opencensus.proto.trace.v1.Span.Links,
-             io.opencensus.proto.trace.v1.Span.Links.Builder,
- io.opencensus.proto.trace.v1.Span.LinksOrBuilder>(
+            io.opencensus.proto.trace.v1.Span.Links.Builder,
+            io.opencensus.proto.trace.v1.Span.LinksOrBuilder>(
             getLinks(),
             getParentForChildren(),
             isClean());
@@ -14637,12 +14644,12 @@ io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.trace.v1.Status, io.opencensus.proto.trace.v1.Status.Builder,
-                                                 io.opencensus.proto.trace.v1.StatusOrBuilder>
+        io.opencensus.proto.trace.v1.StatusOrBuilder>
     getStatusFieldBuilder() {
       if (statusBuilder_ == null) {
         statusBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             io.opencensus.proto.trace.v1.Status, io.opencensus.proto.trace.v1.Status.Builder,
-        io.opencensus.proto.trace.v1.StatusOrBuilder>(
+            io.opencensus.proto.trace.v1.StatusOrBuilder>(
             getStatus(),
             getParentForChildren(),
             isClean());
@@ -14821,14 +14828,14 @@ io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.resource.v1.Resource,
-         io.opencensus.proto.resource.v1.Resource.Builder,
-          io.opencensus.proto.resource.v1.ResourceOrBuilder>
+        io.opencensus.proto.resource.v1.Resource.Builder,
+        io.opencensus.proto.resource.v1.ResourceOrBuilder>
     getResourceFieldBuilder() {
       if (resourceBuilder_ == null) {
         resourceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             io.opencensus.proto.resource.v1.Resource,
-             io.opencensus.proto.resource.v1.Resource.Builder,
-              io.opencensus.proto.resource.v1.ResourceOrBuilder>(
+            io.opencensus.proto.resource.v1.Resource.Builder,
+            io.opencensus.proto.resource.v1.ResourceOrBuilder>(
             getResource(),
             getParentForChildren(),
             isClean());
@@ -15025,12 +15032,12 @@ io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.BoolValue, com.google.protobuf.BoolValue.Builder,
-         com.google.protobuf.BoolValueOrBuilder>
+        com.google.protobuf.BoolValueOrBuilder>
     getSameProcessAsParentSpanFieldBuilder() {
       if (sameProcessAsParentSpanBuilder_ == null) {
         sameProcessAsParentSpanBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             com.google.protobuf.BoolValue, com.google.protobuf.BoolValue.Builder,
-             com.google.protobuf.BoolValueOrBuilder>(
+            com.google.protobuf.BoolValueOrBuilder>(
             getSameProcessAsParentSpan(),
             getParentForChildren(),
             isClean());
@@ -15199,11 +15206,13 @@ io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
      * <code>.google.protobuf.UInt32Value child_span_count = 13;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.UInt32Value, com.google.protobuf.UInt32Value.Builder, com.google.protobuf.UInt32ValueOrBuilder>
+        com.google.protobuf.UInt32Value, com.google.protobuf.UInt32Value.Builder,
+        com.google.protobuf.UInt32ValueOrBuilder>
     getChildSpanCountFieldBuilder() {
       if (childSpanCountBuilder_ == null) {
         childSpanCountBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.google.protobuf.UInt32Value, com.google.protobuf.UInt32Value.Builder, com.google.protobuf.UInt32ValueOrBuilder>(
+            com.google.protobuf.UInt32Value, com.google.protobuf.UInt32Value.Builder,
+            com.google.protobuf.UInt32ValueOrBuilder>(
             getChildSpanCount(),
             getParentForChildren(),
             isClean());

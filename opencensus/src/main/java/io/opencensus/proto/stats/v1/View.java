@@ -54,6 +54,7 @@ public final class View extends
     description_ = "";
     columns_ = com.google.protobuf.LazyStringArrayList.EMPTY;
   }
+
   private View(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

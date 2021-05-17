@@ -53,6 +53,7 @@ public final class Node extends
 
   private Node() {
   }
+
   private Node(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
