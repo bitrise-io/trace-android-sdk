@@ -75,7 +75,7 @@ public class DeviceIdDataCollector extends DeviceDataCollector {
    *
    * @param context the Android Context.
    * @return the ID for the device, or {@code null}, when the ID cannot be found in the
-   * SharedPreferences.
+   *     SharedPreferences.
    */
   @Nullable
   private String getDeviceId(@NonNull final Context context) {

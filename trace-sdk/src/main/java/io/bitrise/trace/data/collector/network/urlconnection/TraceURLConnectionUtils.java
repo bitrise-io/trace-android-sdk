@@ -10,6 +10,7 @@ import okhttp3.Headers;
 /**
  * Utility methods for {@link TraceHttpURLConnection} and {@link TraceHttpsURLConnection}.
  */
+@SuppressWarnings("checkstyle:abbreviation")
 public class TraceURLConnectionUtils {
 
   private TraceURLConnectionUtils() {

@@ -94,8 +94,8 @@ public class ServiceScheduler extends Scheduler {
    *
    * @param jobService the given JobService.
    * @return the ID for the given JobService, IllegalArgumentException if it is not a
-   * {@link MetricSender} or
-   * {@link TraceSender}.
+   *     {@link MetricSender} or
+   *     {@link TraceSender}.
    */
   private int getJobIdForService(@NonNull final Class<? extends JobService> jobService) {
     if (jobService == MetricSender.class) {

@@ -126,7 +126,7 @@ public class FragmentStateDataFormatter extends DataFormatter {
    * @param pausedEntries        the FragmentDataStateEntries with the
    *                             {@link FragmentState#PAUSED} state.
    * @return {@code true} if {@link Span}s can be created FragmentDataStateEntries, {@code false}
-   * otherwise.
+   *     otherwise.
    */
   @VisibleForTesting
   static boolean validateEntries(@NonNull final String fragmentName,
