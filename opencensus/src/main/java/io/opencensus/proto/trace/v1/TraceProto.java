@@ -322,6 +322,7 @@ public final class TraceProto {
     com.google.protobuf.TimestampProto.getDescriptor();
     com.google.protobuf.WrappersProto.getDescriptor();
   }
+
   private TraceProto() {
   }
 

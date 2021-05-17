@@ -44,6 +44,7 @@ public final class ProbabilitySampler extends
 
   private ProbabilitySampler() {
   }
+
   private ProbabilitySampler(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

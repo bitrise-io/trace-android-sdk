@@ -102,6 +102,7 @@ public final class CommonProto {
         new java.lang.String[] {"Name",});
     com.google.protobuf.TimestampProto.getDescriptor();
   }
+
   private CommonProto() {
   }
 

@@ -66,6 +66,7 @@ public final class MetricsServiceProto {
     io.opencensus.proto.metrics.v1.MetricsProto.getDescriptor();
     io.opencensus.proto.resource.v1.ResourceProto.getDescriptor();
   }
+
   private MetricsServiceProto() {
   }
 

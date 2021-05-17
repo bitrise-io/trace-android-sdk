@@ -38,6 +38,7 @@ public final class DistributionAggregation extends
   private DistributionAggregation(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
+
   private DistributionAggregation() {
     bucketBounds_ = emptyDoubleList();
   }

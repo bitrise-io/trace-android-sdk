@@ -43,6 +43,7 @@ public final class Resource extends
   private Resource(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
+
   private Resource() {
     type_ = "";
   }

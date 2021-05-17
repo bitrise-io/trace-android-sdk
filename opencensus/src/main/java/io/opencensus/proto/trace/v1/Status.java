@@ -41,6 +41,7 @@ public final class Status extends
   private int code_;
   private volatile java.lang.Object message_;
   private byte memoizedIsInitialized = -1;
+
   // Use Status.newBuilder() to construct.
   private Status(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);

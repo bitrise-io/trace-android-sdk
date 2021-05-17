@@ -45,6 +45,7 @@ public final class DistributionValue extends
   private io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucketOptions_;
   private java.util.List<io.opencensus.proto.metrics.v1.DistributionValue.Bucket> buckets_;
   private byte memoizedIsInitialized = -1;
+
   // Use DistributionValue.newBuilder() to construct.
   private DistributionValue(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -647,7 +648,7 @@ public final class DistributionValue extends
 
   public interface BucketOrBuilder extends
       // @@protoc_insertion_point(interface_extends:opencensus.proto.metrics.v1.DistributionValue
-                // .Bucket)
+      // .Bucket)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -816,12 +817,12 @@ public final class DistributionValue extends
   public static final class BucketOptions extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:opencensus.proto.metrics.v1
- // .DistributionValue.BucketOptions)
+      // .DistributionValue.BucketOptions)
       BucketOptionsOrBuilder {
     public static final int EXPLICIT_FIELD_NUMBER = 1;
     private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.DistributionValue
-        // .BucketOptions)
+    // .BucketOptions)
     private static final io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions
         DEFAULT_INSTANCE;
     private static final com.google.protobuf.Parser<BucketOptions>
@@ -1049,7 +1050,7 @@ public final class DistributionValue extends
      * </pre>
      *
      * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;
-              * </code>
+     * </code>
      *
      * @return Whether the explicit field is set.
      */
@@ -1064,7 +1065,7 @@ public final class DistributionValue extends
      * </pre>
      *
      * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;
- * </code>
+     * </code>
      *
      * @return The explicit.
      */
@@ -1335,6 +1336,7 @@ public final class DistributionValue extends
       private Explicit(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
       }
+
       private Explicit() {
         bounds_ = emptyDoubleList();
       }
@@ -2038,8 +2040,8 @@ public final class DistributionValue extends
       private java.lang.Object type_;
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit,
-           io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.Builder,
-            io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.ExplicitOrBuilder>
+          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.Builder,
+          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.ExplicitOrBuilder>
           explicitBuilder_;
 
       // Construct using io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.newBuilder()
@@ -2229,7 +2231,7 @@ public final class DistributionValue extends
        * </pre>
        *
        * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit =
-      * 1;</code>
+       * 1;</code>
        *
        * @return Whether the explicit field is set.
        */
@@ -2346,7 +2348,7 @@ public final class DistributionValue extends
        * </pre>
        *
        * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit =
-* 1;</code>
+       * 1;</code>
        */
       public Builder clearExplicit() {
         if (explicitBuilder_ == null) {
@@ -2383,7 +2385,7 @@ public final class DistributionValue extends
        * </pre>
        *
        * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit =
-              * 1;</code>
+       * 1;</code>
        */
       @java.lang.Override
       public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.ExplicitOrBuilder getExplicitOrBuilder() {
@@ -2409,7 +2411,7 @@ public final class DistributionValue extends
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit,
           io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.Builder,
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.ExplicitOrBuilder>
+          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.ExplicitOrBuilder>
       getExplicitFieldBuilder() {
         if (explicitBuilder_ == null) {
           if (!(typeCase_ == 1)) {
@@ -2418,8 +2420,8 @@ public final class DistributionValue extends
           }
           explicitBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit,
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.Builder,
-                io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.ExplicitOrBuilder>(
+              io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.Builder,
+              io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.ExplicitOrBuilder>(
               (io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit) type_,
               getParentForChildren(),
               isClean());
@@ -2480,6 +2482,7 @@ public final class DistributionValue extends
     private long count_;
     private io.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar_;
     private byte memoizedIsInitialized = -1;
+
     // Use Bucket.newBuilder() to construct.
     private Bucket(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -2863,8 +2866,8 @@ public final class DistributionValue extends
       private io.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar_;
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.metrics.v1.DistributionValue.Exemplar,
-           io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.Builder,
-            io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder>
+          io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.Builder,
+          io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder>
           exemplarBuilder_;
 
       // Construct using io.opencensus.proto.metrics.v1.DistributionValue.Bucket.newBuilder()
@@ -3240,14 +3243,14 @@ public final class DistributionValue extends
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           io.opencensus.proto.metrics.v1.DistributionValue.Exemplar,
-           io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.Builder,
-io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder>
+          io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.Builder,
+          io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder>
       getExemplarFieldBuilder() {
         if (exemplarBuilder_ == null) {
           exemplarBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               io.opencensus.proto.metrics.v1.DistributionValue.Exemplar,
-               io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.Builder,
-                io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder>(
+              io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.Builder,
+              io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder>(
               getExemplar(),
               getParentForChildren(),
               isClean());
@@ -3323,6 +3326,7 @@ io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder>
 
     private Exemplar() {
     }
+
     private Exemplar(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3853,14 +3857,14 @@ io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder>
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:opencensus.proto.metrics.v1
-              // .DistributionValue.Exemplar)
+        // .DistributionValue.Exemplar)
         io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder {
       private int bitField0_;
       private double value_;
       private com.google.protobuf.Timestamp timestamp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-           com.google.protobuf.TimestampOrBuilder>
+          com.google.protobuf.TimestampOrBuilder>
           timestampBuilder_;
       private com.google.protobuf.MapField<
           java.lang.String, java.lang.String> attachments_;
@@ -4265,12 +4269,12 @@ io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-            com.google.protobuf.TimestampOrBuilder>
+          com.google.protobuf.TimestampOrBuilder>
       getTimestampFieldBuilder() {
         if (timestampBuilder_ == null) {
           timestampBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-      com.google.protobuf.TimestampOrBuilder>(
+              com.google.protobuf.TimestampOrBuilder>(
               getTimestamp(),
               getParentForChildren(),
               isClean());
@@ -4494,15 +4498,15 @@ io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder>
     private io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucketOptions_;
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions,
-         io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Builder,
-          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptionsOrBuilder>
+        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Builder,
+        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptionsOrBuilder>
         bucketOptionsBuilder_;
     private java.util.List<io.opencensus.proto.metrics.v1.DistributionValue.Bucket> buckets_ =
         java.util.Collections.emptyList();
     private com.google.protobuf.RepeatedFieldBuilderV3<
         io.opencensus.proto.metrics.v1.DistributionValue.Bucket,
-     io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder,
-          io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder>
+        io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder,
+        io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder>
         bucketsBuilder_;
 
     // Construct using io.opencensus.proto.metrics.v1.DistributionValue.newBuilder()
@@ -5074,14 +5078,14 @@ io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions,
-         io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Builder,
-          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptionsOrBuilder>
+        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Builder,
+        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptionsOrBuilder>
     getBucketOptionsFieldBuilder() {
       if (bucketOptionsBuilder_ == null) {
         bucketOptionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions,
-             io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Builder,
-    io.opencensus.proto.metrics.v1.DistributionValue.BucketOptionsOrBuilder>(
+            io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Builder,
+            io.opencensus.proto.metrics.v1.DistributionValue.BucketOptionsOrBuilder>(
             getBucketOptions(),
             getParentForChildren(),
             isClean());
@@ -5389,7 +5393,7 @@ io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder>
      * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
      */
     public java.util.List<?
-     extends io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder>
+        extends io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder>
     getBucketsOrBuilderList() {
       if (bucketsBuilder_ != null) {
         return bucketsBuilder_.getMessageOrBuilderList();
@@ -5443,11 +5447,14 @@ io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder>
 
     private com.google.protobuf.RepeatedFieldBuilderV3<
         io.opencensus.proto.metrics.v1.DistributionValue.Bucket,
-     io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder, io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder>
+        io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder,
+        io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder>
     getBucketsFieldBuilder() {
       if (bucketsBuilder_ == null) {
         bucketsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            io.opencensus.proto.metrics.v1.DistributionValue.Bucket, io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder, io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder>(
+            io.opencensus.proto.metrics.v1.DistributionValue.Bucket,
+            io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder,
+            io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder>(
             buckets_,
             ((bitField0_ & 0x00000001) != 0),
             getParentForChildren(),

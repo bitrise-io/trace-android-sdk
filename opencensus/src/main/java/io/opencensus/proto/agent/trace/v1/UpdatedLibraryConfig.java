@@ -34,6 +34,7 @@ public final class UpdatedLibraryConfig extends
   private io.opencensus.proto.agent.common.v1.Node node_;
   private io.opencensus.proto.trace.v1.TraceConfig config_;
   private byte memoizedIsInitialized = -1;
+
   // Use UpdatedLibraryConfig.newBuilder() to construct.
   private UpdatedLibraryConfig(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);

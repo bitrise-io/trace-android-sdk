@@ -100,6 +100,7 @@ public final class TraceServiceProto {
     io.opencensus.proto.trace.v1.TraceProto.getDescriptor();
     io.opencensus.proto.trace.v1.TraceConfigProto.getDescriptor();
   }
+
   private TraceServiceProto() {
   }
 

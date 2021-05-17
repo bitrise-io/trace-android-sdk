@@ -47,6 +47,7 @@ public final class ResourceProto {
         internal_static_opencensus_proto_resource_v1_Resource_LabelsEntry_descriptor,
         new java.lang.String[] {"Key", "Value",});
   }
+
   private ResourceProto() {
   }
 
