@@ -13,19 +13,22 @@ public interface LabelKeyOrBuilder extends
    * </pre>
    *
    * <code>string key = 1;</code>
+   *
    * @return The key.
    */
   java.lang.String getKey();
+
   /**
    * <pre>
    * The key for the label.
    * </pre>
    *
    * <code>string key = 1;</code>
+   *
    * @return The bytes for key.
    */
   com.google.protobuf.ByteString
-      getKeyBytes();
+  getKeyBytes();
 
   /**
    * <pre>
@@ -33,17 +36,20 @@ public interface LabelKeyOrBuilder extends
    * </pre>
    *
    * <code>string description = 2;</code>
+   *
    * @return The description.
    */
   java.lang.String getDescription();
+
   /**
    * <pre>
    * A human-readable description of what this label key represents.
    * </pre>
    *
    * <code>string description = 2;</code>
+   *
    * @return The bytes for description.
    */
   com.google.protobuf.ByteString
-      getDescriptionBytes();
+  getDescriptionBytes();
 }

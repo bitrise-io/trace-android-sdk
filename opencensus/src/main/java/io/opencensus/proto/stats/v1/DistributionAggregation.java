@@ -8,9 +8,32 @@ package io.opencensus.proto.stats.v1;
  */
 public final class DistributionAggregation extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:opencensus.proto.stats.v1.DistributionAggregation)
+    // @@protoc_insertion_point(message_implements:opencensus.proto.stats.v1
+    // .DistributionAggregation)
     DistributionAggregationOrBuilder {
-private static final long serialVersionUID = 0L;
+  public static final int BUCKET_BOUNDS_FIELD_NUMBER = 1;
+  private static final long serialVersionUID = 0L;
+  // @@protoc_insertion_point(class_scope:opencensus.proto.stats.v1.DistributionAggregation)
+  private static final io.opencensus.proto.stats.v1.DistributionAggregation DEFAULT_INSTANCE;
+  private static final com.google.protobuf.Parser<DistributionAggregation>
+      PARSER = new com.google.protobuf.AbstractParser<DistributionAggregation>() {
+    @java.lang.Override
+    public DistributionAggregation parsePartialFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return new DistributionAggregation(input, extensionRegistry);
+    }
+  };
+
+  static {
+    DEFAULT_INSTANCE = new io.opencensus.proto.stats.v1.DistributionAggregation();
+  }
+
+  private com.google.protobuf.Internal.DoubleList bucketBounds_;
+  private int bucketBoundsMemoizedSerializedSize = -1;
+  private byte memoizedIsInitialized = -1;
+
   // Use DistributionAggregation.newBuilder() to construct.
   private DistributionAggregation(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -19,18 +42,6 @@ private static final long serialVersionUID = 0L;
     bucketBounds_ = emptyDoubleList();
   }
 
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new DistributionAggregation();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
   private DistributionAggregation(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -93,21 +104,133 @@ private static final long serialVersionUID = 0L;
       makeExtensionsImmutable();
     }
   }
+
   public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
+  getDescriptor() {
     return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_DistributionAggregation_descriptor;
+  }
+
+  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(
+      java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.stats.v1.DistributionAggregation parseDelimitedFrom(
+      java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.stats.v1.DistributionAggregation parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(io.opencensus.proto.stats.v1.DistributionAggregation prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
+  public static io.opencensus.proto.stats.v1.DistributionAggregation getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  public static com.google.protobuf.Parser<DistributionAggregation> parser() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new DistributionAggregation();
+  }
+
+  @java.lang.Override
+  public final com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
+  internalGetFieldAccessorTable() {
     return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_DistributionAggregation_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.stats.v1.DistributionAggregation.class, io.opencensus.proto.stats.v1.DistributionAggregation.Builder.class);
+            io.opencensus.proto.stats.v1.DistributionAggregation.class,
+            io.opencensus.proto.stats.v1.DistributionAggregation.Builder.class);
   }
 
-  public static final int BUCKET_BOUNDS_FIELD_NUMBER = 1;
-  private com.google.protobuf.Internal.DoubleList bucketBounds_;
   /**
    * <pre>
    * A Distribution may optionally contain a histogram of the values in the
@@ -128,13 +251,15 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>repeated double bucket_bounds = 1;</code>
+   *
    * @return A list containing the bucketBounds.
    */
   @java.lang.Override
   public java.util.List<java.lang.Double>
-      getBucketBoundsList() {
+  getBucketBoundsList() {
     return bucketBounds_;
   }
+
   /**
    * <pre>
    * A Distribution may optionally contain a histogram of the values in the
@@ -155,11 +280,13 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>repeated double bucket_bounds = 1;</code>
+   *
    * @return The count of bucketBounds.
    */
   public int getBucketBoundsCount() {
     return bucketBounds_.size();
   }
+
   /**
    * <pre>
    * A Distribution may optionally contain a histogram of the values in the
@@ -180,20 +307,23 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>repeated double bucket_bounds = 1;</code>
+   *
    * @param index The index of the element to return.
    * @return The bucketBounds at the given index.
    */
   public double getBucketBounds(int index) {
     return bucketBounds_.getDouble(index);
   }
-  private int bucketBoundsMemoizedSerializedSize = -1;
 
-  private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
+    if (isInitialized == 1) {
+      return true;
+    }
+    if (isInitialized == 0) {
+      return false;
+    }
 
     memoizedIsInitialized = 1;
     return true;
@@ -201,7 +331,7 @@ private static final long serialVersionUID = 0L;
 
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
+      throws java.io.IOException {
     getSerializedSize();
     if (getBucketBoundsList().size() > 0) {
       output.writeUInt32NoTag(10);
@@ -216,7 +346,9 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public int getSerializedSize() {
     int size = memoizedSize;
-    if (size != -1) return size;
+    if (size != -1) {
+      return size;
+    }
 
     size = 0;
     {
@@ -238,17 +370,19 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-     return true;
+      return true;
     }
     if (!(obj instanceof io.opencensus.proto.stats.v1.DistributionAggregation)) {
       return super.equals(obj);
     }
-    io.opencensus.proto.stats.v1.DistributionAggregation other = (io.opencensus.proto.stats.v1.DistributionAggregation) obj;
+    io.opencensus.proto.stats.v1.DistributionAggregation other =
+        (io.opencensus.proto.stats.v1.DistributionAggregation) obj;
 
     if (!getBucketBoundsList()
-        .equals(other.getBucketBoundsList())) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
+        .equals(other.getBucketBoundsList())) {
+      return false;
+    }
+    return unknownFields.equals(other.unknownFields);
   }
 
   @java.lang.Override
@@ -267,84 +401,11 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.stats.v1.DistributionAggregation parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.stats.v1.DistributionAggregation parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.stats.v1.DistributionAggregation parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
+  @java.lang.Override
+  public Builder newBuilderForType() {
+    return newBuilder();
   }
 
-  @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(io.opencensus.proto.stats.v1.DistributionAggregation prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
   @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
@@ -357,25 +418,27 @@ private static final long serialVersionUID = 0L;
     Builder builder = new Builder(parent);
     return builder;
   }
+
+  @java.lang.Override
+  public com.google.protobuf.Parser<DistributionAggregation> getParserForType() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public io.opencensus.proto.stats.v1.DistributionAggregation getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
+  }
+
   /**
    * Protobuf type {@code opencensus.proto.stats.v1.DistributionAggregation}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:opencensus.proto.stats.v1.DistributionAggregation)
+      // @@protoc_insertion_point(builder_implements:opencensus.proto.stats.v1
+      // .DistributionAggregation)
       io.opencensus.proto.stats.v1.DistributionAggregationOrBuilder {
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_DistributionAggregation_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_DistributionAggregation_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.stats.v1.DistributionAggregation.class, io.opencensus.proto.stats.v1.DistributionAggregation.Builder.class);
-    }
+    private int bitField0_;
+    private com.google.protobuf.Internal.DoubleList bucketBounds_ = emptyDoubleList();
 
     // Construct using io.opencensus.proto.stats.v1.DistributionAggregation.newBuilder()
     private Builder() {
@@ -387,11 +450,27 @@ private static final long serialVersionUID = 0L;
       super(parent);
       maybeForceBuilderInitialization();
     }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+      return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_DistributionAggregation_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_DistributionAggregation_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.opencensus.proto.stats.v1.DistributionAggregation.class,
+              io.opencensus.proto.stats.v1.DistributionAggregation.Builder.class);
+    }
+
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
+          .alwaysUseFieldBuilders) {
       }
     }
+
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -402,7 +481,7 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+    getDescriptorForType() {
       return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_DistributionAggregation_descriptor;
     }
 
@@ -422,7 +501,8 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public io.opencensus.proto.stats.v1.DistributionAggregation buildPartial() {
-      io.opencensus.proto.stats.v1.DistributionAggregation result = new io.opencensus.proto.stats.v1.DistributionAggregation(this);
+      io.opencensus.proto.stats.v1.DistributionAggregation result =
+          new io.opencensus.proto.stats.v1.DistributionAggregation(this);
       int from_bitField0_ = bitField0_;
       if (((bitField0_ & 0x00000001) != 0)) {
         bucketBounds_.makeImmutable();
@@ -437,38 +517,44 @@ private static final long serialVersionUID = 0L;
     public Builder clone() {
       return super.clone();
     }
+
     @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.setField(field, value);
     }
+
     @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
+
     @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
+
     @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
     }
+
     @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.addRepeatedField(field, value);
     }
+
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof io.opencensus.proto.stats.v1.DistributionAggregation) {
-        return mergeFrom((io.opencensus.proto.stats.v1.DistributionAggregation)other);
+        return mergeFrom((io.opencensus.proto.stats.v1.DistributionAggregation) other);
       } else {
         super.mergeFrom(other);
         return this;
@@ -476,7 +562,9 @@ private static final long serialVersionUID = 0L;
     }
 
     public Builder mergeFrom(io.opencensus.proto.stats.v1.DistributionAggregation other) {
-      if (other == io.opencensus.proto.stats.v1.DistributionAggregation.getDefaultInstance()) return this;
+      if (other == io.opencensus.proto.stats.v1.DistributionAggregation.getDefaultInstance()) {
+        return this;
+      }
       if (!other.bucketBounds_.isEmpty()) {
         if (bucketBounds_.isEmpty()) {
           bucketBounds_ = other.bucketBounds_;
@@ -506,7 +594,8 @@ private static final long serialVersionUID = 0L;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.opencensus.proto.stats.v1.DistributionAggregation) e.getUnfinishedMessage();
+        parsedMessage =
+            (io.opencensus.proto.stats.v1.DistributionAggregation) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -515,15 +604,14 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
-    private int bitField0_;
 
-    private com.google.protobuf.Internal.DoubleList bucketBounds_ = emptyDoubleList();
     private void ensureBucketBoundsIsMutable() {
       if (!((bitField0_ & 0x00000001) != 0)) {
         bucketBounds_ = mutableCopy(bucketBounds_);
         bitField0_ |= 0x00000001;
-       }
+      }
     }
+
     /**
      * <pre>
      * A Distribution may optionally contain a histogram of the values in the
@@ -544,13 +632,15 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>repeated double bucket_bounds = 1;</code>
+     *
      * @return A list containing the bucketBounds.
      */
     public java.util.List<java.lang.Double>
-        getBucketBoundsList() {
+    getBucketBoundsList() {
       return ((bitField0_ & 0x00000001) != 0) ?
-               java.util.Collections.unmodifiableList(bucketBounds_) : bucketBounds_;
+          java.util.Collections.unmodifiableList(bucketBounds_) : bucketBounds_;
     }
+
     /**
      * <pre>
      * A Distribution may optionally contain a histogram of the values in the
@@ -571,11 +661,13 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>repeated double bucket_bounds = 1;</code>
+     *
      * @return The count of bucketBounds.
      */
     public int getBucketBoundsCount() {
       return bucketBounds_.size();
     }
+
     /**
      * <pre>
      * A Distribution may optionally contain a histogram of the values in the
@@ -596,12 +688,14 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>repeated double bucket_bounds = 1;</code>
+     *
      * @param index The index of the element to return.
      * @return The bucketBounds at the given index.
      */
     public double getBucketBounds(int index) {
       return bucketBounds_.getDouble(index);
     }
+
     /**
      * <pre>
      * A Distribution may optionally contain a histogram of the values in the
@@ -622,6 +716,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>repeated double bucket_bounds = 1;</code>
+     *
      * @param index The index to set the value at.
      * @param value The bucketBounds to set.
      * @return This builder for chaining.
@@ -633,6 +728,7 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
     /**
      * <pre>
      * A Distribution may optionally contain a histogram of the values in the
@@ -653,6 +749,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>repeated double bucket_bounds = 1;</code>
+     *
      * @param value The bucketBounds to add.
      * @return This builder for chaining.
      */
@@ -662,6 +759,7 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
     /**
      * <pre>
      * A Distribution may optionally contain a histogram of the values in the
@@ -682,6 +780,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>repeated double bucket_bounds = 1;</code>
+     *
      * @param values The bucketBounds to add.
      * @return This builder for chaining.
      */
@@ -693,6 +792,7 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
     /**
      * <pre>
      * A Distribution may optionally contain a histogram of the values in the
@@ -713,6 +813,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>repeated double bucket_bounds = 1;</code>
+     *
      * @return This builder for chaining.
      */
     public Builder clearBucketBounds() {
@@ -721,6 +822,7 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -735,41 +837,6 @@ private static final long serialVersionUID = 0L;
 
 
     // @@protoc_insertion_point(builder_scope:opencensus.proto.stats.v1.DistributionAggregation)
-  }
-
-  // @@protoc_insertion_point(class_scope:opencensus.proto.stats.v1.DistributionAggregation)
-  private static final io.opencensus.proto.stats.v1.DistributionAggregation DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.stats.v1.DistributionAggregation();
-  }
-
-  public static io.opencensus.proto.stats.v1.DistributionAggregation getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<DistributionAggregation>
-      PARSER = new com.google.protobuf.AbstractParser<DistributionAggregation>() {
-    @java.lang.Override
-    public DistributionAggregation parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new DistributionAggregation(input, extensionRegistry);
-    }
-  };
-
-  public static com.google.protobuf.Parser<DistributionAggregation> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<DistributionAggregation> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.stats.v1.DistributionAggregation getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
   }
 
 }

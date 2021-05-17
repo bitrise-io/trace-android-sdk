@@ -4,7 +4,8 @@
 package io.opencensus.proto.agent.common.v1;
 
 public interface ProcessIdentifierOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:opencensus.proto.agent.common.v1.ProcessIdentifier)
+    // @@protoc_insertion_point(interface_extends:opencensus.proto.agent.common.v1
+    // .ProcessIdentifier)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -14,9 +15,11 @@ public interface ProcessIdentifierOrBuilder extends
    * </pre>
    *
    * <code>string host_name = 1;</code>
+   *
    * @return The hostName.
    */
   java.lang.String getHostName();
+
   /**
    * <pre>
    * The host name. Usually refers to the machine/container name.
@@ -24,10 +27,11 @@ public interface ProcessIdentifierOrBuilder extends
    * </pre>
    *
    * <code>string host_name = 1;</code>
+   *
    * @return The bytes for hostName.
    */
   com.google.protobuf.ByteString
-      getHostNameBytes();
+  getHostNameBytes();
 
   /**
    * <pre>
@@ -35,6 +39,7 @@ public interface ProcessIdentifierOrBuilder extends
    * </pre>
    *
    * <code>uint32 pid = 2;</code>
+   *
    * @return The pid.
    */
   int getPid();
@@ -45,18 +50,22 @@ public interface ProcessIdentifierOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.Timestamp start_timestamp = 3;</code>
+   *
    * @return Whether the startTimestamp field is set.
    */
   boolean hasStartTimestamp();
+
   /**
    * <pre>
    * Start time of this ProcessIdentifier. Represented in epoch time.
    * </pre>
    *
    * <code>.google.protobuf.Timestamp start_timestamp = 3;</code>
+   *
    * @return The startTimestamp.
    */
   com.google.protobuf.Timestamp getStartTimestamp();
+
   /**
    * <pre>
    * Start time of this ProcessIdentifier. Represented in epoch time.

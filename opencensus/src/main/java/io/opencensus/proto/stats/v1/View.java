@@ -10,28 +10,49 @@ public final class View extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:opencensus.proto.stats.v1.View)
     ViewOrBuilder {
-private static final long serialVersionUID = 0L;
+  public static final int NAME_FIELD_NUMBER = 1;
+  public static final int DESCRIPTION_FIELD_NUMBER = 2;
+  public static final int MEASURE_FIELD_NUMBER = 3;
+  public static final int COLUMNS_FIELD_NUMBER = 4;
+  public static final int COUNT_AGGREGATION_FIELD_NUMBER = 5;
+  public static final int SUM_AGGREGATION_FIELD_NUMBER = 6;
+  public static final int LAST_VALUE_AGGREGATION_FIELD_NUMBER = 7;
+  public static final int DISTRIBUTION_AGGREGATION_FIELD_NUMBER = 8;
+  private static final long serialVersionUID = 0L;
+  // @@protoc_insertion_point(class_scope:opencensus.proto.stats.v1.View)
+  private static final io.opencensus.proto.stats.v1.View DEFAULT_INSTANCE;
+  private static final com.google.protobuf.Parser<View>
+      PARSER = new com.google.protobuf.AbstractParser<View>() {
+    @java.lang.Override
+    public View parsePartialFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return new View(input, extensionRegistry);
+    }
+  };
+
+  static {
+    DEFAULT_INSTANCE = new io.opencensus.proto.stats.v1.View();
+  }
+
+  private int aggregationCase_ = 0;
+  private java.lang.Object aggregation_;
+  private volatile java.lang.Object name_;
+  private volatile java.lang.Object description_;
+  private io.opencensus.proto.stats.v1.Measure measure_;
+  private com.google.protobuf.LazyStringList columns_;
+  private byte memoizedIsInitialized = -1;
+
   // Use View.newBuilder() to construct.
   private View(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
+
   private View() {
     name_ = "";
     description_ = "";
     columns_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-  }
-
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new View();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
   }
   private View(
       com.google.protobuf.CodedInputStream input,
@@ -69,7 +90,8 @@ private static final long serialVersionUID = 0L;
             if (measure_ != null) {
               subBuilder = measure_.toBuilder();
             }
-            measure_ = input.readMessage(io.opencensus.proto.stats.v1.Measure.parser(), extensionRegistry);
+            measure_ =
+                input.readMessage(io.opencensus.proto.stats.v1.Measure.parser(), extensionRegistry);
             if (subBuilder != null) {
               subBuilder.mergeFrom(measure_);
               measure_ = subBuilder.buildPartial();
@@ -89,10 +111,12 @@ private static final long serialVersionUID = 0L;
           case 42: {
             io.opencensus.proto.stats.v1.CountAggregation.Builder subBuilder = null;
             if (aggregationCase_ == 5) {
-              subBuilder = ((io.opencensus.proto.stats.v1.CountAggregation) aggregation_).toBuilder();
+              subBuilder =
+                  ((io.opencensus.proto.stats.v1.CountAggregation) aggregation_).toBuilder();
             }
             aggregation_ =
-                input.readMessage(io.opencensus.proto.stats.v1.CountAggregation.parser(), extensionRegistry);
+                input.readMessage(io.opencensus.proto.stats.v1.CountAggregation.parser(),
+                    extensionRegistry);
             if (subBuilder != null) {
               subBuilder.mergeFrom((io.opencensus.proto.stats.v1.CountAggregation) aggregation_);
               aggregation_ = subBuilder.buildPartial();
@@ -106,7 +130,8 @@ private static final long serialVersionUID = 0L;
               subBuilder = ((io.opencensus.proto.stats.v1.SumAggregation) aggregation_).toBuilder();
             }
             aggregation_ =
-                input.readMessage(io.opencensus.proto.stats.v1.SumAggregation.parser(), extensionRegistry);
+                input.readMessage(io.opencensus.proto.stats.v1.SumAggregation.parser(),
+                    extensionRegistry);
             if (subBuilder != null) {
               subBuilder.mergeFrom((io.opencensus.proto.stats.v1.SumAggregation) aggregation_);
               aggregation_ = subBuilder.buildPartial();
@@ -117,12 +142,15 @@ private static final long serialVersionUID = 0L;
           case 58: {
             io.opencensus.proto.stats.v1.LastValueAggregation.Builder subBuilder = null;
             if (aggregationCase_ == 7) {
-              subBuilder = ((io.opencensus.proto.stats.v1.LastValueAggregation) aggregation_).toBuilder();
+              subBuilder =
+                  ((io.opencensus.proto.stats.v1.LastValueAggregation) aggregation_).toBuilder();
             }
             aggregation_ =
-                input.readMessage(io.opencensus.proto.stats.v1.LastValueAggregation.parser(), extensionRegistry);
+                input.readMessage(io.opencensus.proto.stats.v1.LastValueAggregation.parser(),
+                    extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom((io.opencensus.proto.stats.v1.LastValueAggregation) aggregation_);
+              subBuilder
+                  .mergeFrom((io.opencensus.proto.stats.v1.LastValueAggregation) aggregation_);
               aggregation_ = subBuilder.buildPartial();
             }
             aggregationCase_ = 7;
@@ -131,12 +159,15 @@ private static final long serialVersionUID = 0L;
           case 66: {
             io.opencensus.proto.stats.v1.DistributionAggregation.Builder subBuilder = null;
             if (aggregationCase_ == 8) {
-              subBuilder = ((io.opencensus.proto.stats.v1.DistributionAggregation) aggregation_).toBuilder();
+              subBuilder =
+                  ((io.opencensus.proto.stats.v1.DistributionAggregation) aggregation_).toBuilder();
             }
             aggregation_ =
-                input.readMessage(io.opencensus.proto.stats.v1.DistributionAggregation.parser(), extensionRegistry);
+                input.readMessage(io.opencensus.proto.stats.v1.DistributionAggregation.parser(),
+                    extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom((io.opencensus.proto.stats.v1.DistributionAggregation) aggregation_);
+              subBuilder
+                  .mergeFrom((io.opencensus.proto.stats.v1.DistributionAggregation) aggregation_);
               aggregation_ = subBuilder.buildPartial();
             }
             aggregationCase_ = 8;
@@ -164,57 +195,130 @@ private static final long serialVersionUID = 0L;
       makeExtensionsImmutable();
     }
   }
+
   public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
+  getDescriptor() {
     return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_View_descriptor;
+  }
+
+  public static io.opencensus.proto.stats.v1.View parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.stats.v1.View parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.stats.v1.View parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.stats.v1.View parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.stats.v1.View parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.stats.v1.View parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.stats.v1.View parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.stats.v1.View parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.stats.v1.View parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.stats.v1.View parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.stats.v1.View parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.stats.v1.View parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(io.opencensus.proto.stats.v1.View prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
+  public static io.opencensus.proto.stats.v1.View getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  public static com.google.protobuf.Parser<View> parser() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new View();
+  }
+
+  @java.lang.Override
+  public final com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
+  internalGetFieldAccessorTable() {
     return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_View_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.stats.v1.View.class, io.opencensus.proto.stats.v1.View.Builder.class);
+            io.opencensus.proto.stats.v1.View.class,
+            io.opencensus.proto.stats.v1.View.Builder.class);
   }
-
-  private int aggregationCase_ = 0;
-  private java.lang.Object aggregation_;
-  public enum AggregationCase
-      implements com.google.protobuf.Internal.EnumLite,
-          com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-    COUNT_AGGREGATION(5),
-    SUM_AGGREGATION(6),
-    LAST_VALUE_AGGREGATION(7),
-    DISTRIBUTION_AGGREGATION(8),
-    AGGREGATION_NOT_SET(0);
-    private final int value;
-    private AggregationCase(int value) {
-      this.value = value;
-    }
-    /**
-     * @param value The number of the enum to look for.
-     * @return The enum associated with the given number.
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
-    public static AggregationCase valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static AggregationCase forNumber(int value) {
-      switch (value) {
-        case 5: return COUNT_AGGREGATION;
-        case 6: return SUM_AGGREGATION;
-        case 7: return LAST_VALUE_AGGREGATION;
-        case 8: return DISTRIBUTION_AGGREGATION;
-        case 0: return AGGREGATION_NOT_SET;
-        default: return null;
-      }
-    }
-    public int getNumber() {
-      return this.value;
-    }
-  };
 
   public AggregationCase
   getAggregationCase() {
@@ -222,8 +326,6 @@ private static final long serialVersionUID = 0L;
         aggregationCase_);
   }
 
-  public static final int NAME_FIELD_NUMBER = 1;
-  private volatile java.lang.Object name_;
   /**
    * <pre>
    * A string by which the View will be referred to, e.g. "rpc_latency". Names MUST be unique
@@ -231,6 +333,7 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string name = 1;</code>
+   *
    * @return The name.
    */
   @java.lang.Override
@@ -239,13 +342,14 @@ private static final long serialVersionUID = 0L;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
-      com.google.protobuf.ByteString bs = 
+      com.google.protobuf.ByteString bs =
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
       name_ = s;
       return s;
     }
   }
+
   /**
    * <pre>
    * A string by which the View will be referred to, e.g. "rpc_latency". Names MUST be unique
@@ -253,14 +357,15 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string name = 1;</code>
+   *
    * @return The bytes for name.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getNameBytes() {
+  getNameBytes() {
     java.lang.Object ref = name_;
     if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
+      com.google.protobuf.ByteString b =
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
       name_ = b;
@@ -270,14 +375,13 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int DESCRIPTION_FIELD_NUMBER = 2;
-  private volatile java.lang.Object description_;
   /**
    * <pre>
    * Describes the view, e.g. "RPC latency distribution"
    * </pre>
    *
    * <code>string description = 2;</code>
+   *
    * @return The description.
    */
   @java.lang.Override
@@ -286,27 +390,29 @@ private static final long serialVersionUID = 0L;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
-      com.google.protobuf.ByteString bs = 
+      com.google.protobuf.ByteString bs =
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
       description_ = s;
       return s;
     }
   }
+
   /**
    * <pre>
    * Describes the view, e.g. "RPC latency distribution"
    * </pre>
    *
    * <code>string description = 2;</code>
+   *
    * @return The bytes for description.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getDescriptionBytes() {
+  getDescriptionBytes() {
     java.lang.Object ref = description_;
     if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
+      com.google.protobuf.ByteString b =
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
       description_ = b;
@@ -316,32 +422,34 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int MEASURE_FIELD_NUMBER = 3;
-  private io.opencensus.proto.stats.v1.Measure measure_;
   /**
    * <pre>
    * The Measure to which this view is applied.
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.Measure measure = 3;</code>
+   *
    * @return Whether the measure field is set.
    */
   @java.lang.Override
   public boolean hasMeasure() {
     return measure_ != null;
   }
+
   /**
    * <pre>
    * The Measure to which this view is applied.
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.Measure measure = 3;</code>
+   *
    * @return The measure.
    */
   @java.lang.Override
   public io.opencensus.proto.stats.v1.Measure getMeasure() {
     return measure_ == null ? io.opencensus.proto.stats.v1.Measure.getDefaultInstance() : measure_;
   }
+
   /**
    * <pre>
    * The Measure to which this view is applied.
@@ -354,8 +462,6 @@ private static final long serialVersionUID = 0L;
     return getMeasure();
   }
 
-  public static final int COLUMNS_FIELD_NUMBER = 4;
-  private com.google.protobuf.LazyStringList columns_;
   /**
    * <pre>
    * An array of tag keys. These values associated with tags of this name form the basis by which
@@ -364,12 +470,14 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>repeated string columns = 4;</code>
+   *
    * @return A list containing the columns.
    */
   public com.google.protobuf.ProtocolStringList
-      getColumnsList() {
+  getColumnsList() {
     return columns_;
   }
+
   /**
    * <pre>
    * An array of tag keys. These values associated with tags of this name form the basis by which
@@ -378,11 +486,13 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>repeated string columns = 4;</code>
+   *
    * @return The count of columns.
    */
   public int getColumnsCount() {
     return columns_.size();
   }
+
   /**
    * <pre>
    * An array of tag keys. These values associated with tags of this name form the basis by which
@@ -391,12 +501,14 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>repeated string columns = 4;</code>
+   *
    * @param index The index of the element to return.
    * @return The columns at the given index.
    */
   public java.lang.String getColumns(int index) {
     return columns_.get(index);
   }
+
   /**
    * <pre>
    * An array of tag keys. These values associated with tags of this name form the basis by which
@@ -405,42 +517,46 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>repeated string columns = 4;</code>
+   *
    * @param index The index of the value to return.
    * @return The bytes of the columns at the given index.
    */
   public com.google.protobuf.ByteString
-      getColumnsBytes(int index) {
+  getColumnsBytes(int index) {
     return columns_.getByteString(index);
   }
 
-  public static final int COUNT_AGGREGATION_FIELD_NUMBER = 5;
   /**
    * <pre>
    * Counts the number of measurements recorded.
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.CountAggregation count_aggregation = 5;</code>
+   *
    * @return Whether the countAggregation field is set.
    */
   @java.lang.Override
   public boolean hasCountAggregation() {
     return aggregationCase_ == 5;
   }
+
   /**
    * <pre>
    * Counts the number of measurements recorded.
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.CountAggregation count_aggregation = 5;</code>
+   *
    * @return The countAggregation.
    */
   @java.lang.Override
   public io.opencensus.proto.stats.v1.CountAggregation getCountAggregation() {
     if (aggregationCase_ == 5) {
-       return (io.opencensus.proto.stats.v1.CountAggregation) aggregation_;
+      return (io.opencensus.proto.stats.v1.CountAggregation) aggregation_;
     }
     return io.opencensus.proto.stats.v1.CountAggregation.getDefaultInstance();
   }
+
   /**
    * <pre>
    * Counts the number of measurements recorded.
@@ -451,39 +567,42 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public io.opencensus.proto.stats.v1.CountAggregationOrBuilder getCountAggregationOrBuilder() {
     if (aggregationCase_ == 5) {
-       return (io.opencensus.proto.stats.v1.CountAggregation) aggregation_;
+      return (io.opencensus.proto.stats.v1.CountAggregation) aggregation_;
     }
     return io.opencensus.proto.stats.v1.CountAggregation.getDefaultInstance();
   }
 
-  public static final int SUM_AGGREGATION_FIELD_NUMBER = 6;
   /**
    * <pre>
    * Indicates that data collected and aggregated with this Aggregation will be summed up.
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.SumAggregation sum_aggregation = 6;</code>
+   *
    * @return Whether the sumAggregation field is set.
    */
   @java.lang.Override
   public boolean hasSumAggregation() {
     return aggregationCase_ == 6;
   }
+
   /**
    * <pre>
    * Indicates that data collected and aggregated with this Aggregation will be summed up.
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.SumAggregation sum_aggregation = 6;</code>
+   *
    * @return The sumAggregation.
    */
   @java.lang.Override
   public io.opencensus.proto.stats.v1.SumAggregation getSumAggregation() {
     if (aggregationCase_ == 6) {
-       return (io.opencensus.proto.stats.v1.SumAggregation) aggregation_;
+      return (io.opencensus.proto.stats.v1.SumAggregation) aggregation_;
     }
     return io.opencensus.proto.stats.v1.SumAggregation.getDefaultInstance();
   }
+
   /**
    * <pre>
    * Indicates that data collected and aggregated with this Aggregation will be summed up.
@@ -494,12 +613,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public io.opencensus.proto.stats.v1.SumAggregationOrBuilder getSumAggregationOrBuilder() {
     if (aggregationCase_ == 6) {
-       return (io.opencensus.proto.stats.v1.SumAggregation) aggregation_;
+      return (io.opencensus.proto.stats.v1.SumAggregation) aggregation_;
     }
     return io.opencensus.proto.stats.v1.SumAggregation.getDefaultInstance();
   }
 
-  public static final int LAST_VALUE_AGGREGATION_FIELD_NUMBER = 7;
   /**
    * <pre>
    * Indicates that data collected and aggregated with this Aggregation will represent the last
@@ -507,12 +625,14 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.LastValueAggregation last_value_aggregation = 7;</code>
+   *
    * @return Whether the lastValueAggregation field is set.
    */
   @java.lang.Override
   public boolean hasLastValueAggregation() {
     return aggregationCase_ == 7;
   }
+
   /**
    * <pre>
    * Indicates that data collected and aggregated with this Aggregation will represent the last
@@ -520,15 +640,17 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.LastValueAggregation last_value_aggregation = 7;</code>
+   *
    * @return The lastValueAggregation.
    */
   @java.lang.Override
   public io.opencensus.proto.stats.v1.LastValueAggregation getLastValueAggregation() {
     if (aggregationCase_ == 7) {
-       return (io.opencensus.proto.stats.v1.LastValueAggregation) aggregation_;
+      return (io.opencensus.proto.stats.v1.LastValueAggregation) aggregation_;
     }
     return io.opencensus.proto.stats.v1.LastValueAggregation.getDefaultInstance();
   }
+
   /**
    * <pre>
    * Indicates that data collected and aggregated with this Aggregation will represent the last
@@ -540,12 +662,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public io.opencensus.proto.stats.v1.LastValueAggregationOrBuilder getLastValueAggregationOrBuilder() {
     if (aggregationCase_ == 7) {
-       return (io.opencensus.proto.stats.v1.LastValueAggregation) aggregation_;
+      return (io.opencensus.proto.stats.v1.LastValueAggregation) aggregation_;
     }
     return io.opencensus.proto.stats.v1.LastValueAggregation.getDefaultInstance();
   }
 
-  public static final int DISTRIBUTION_AGGREGATION_FIELD_NUMBER = 8;
   /**
    * <pre>
    * Indicates that the desired Aggregation is a histogram distribution. A distribution
@@ -554,12 +675,14 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.DistributionAggregation distribution_aggregation = 8;</code>
+   *
    * @return Whether the distributionAggregation field is set.
    */
   @java.lang.Override
   public boolean hasDistributionAggregation() {
     return aggregationCase_ == 8;
   }
+
   /**
    * <pre>
    * Indicates that the desired Aggregation is a histogram distribution. A distribution
@@ -568,15 +691,17 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.DistributionAggregation distribution_aggregation = 8;</code>
+   *
    * @return The distributionAggregation.
    */
   @java.lang.Override
   public io.opencensus.proto.stats.v1.DistributionAggregation getDistributionAggregation() {
     if (aggregationCase_ == 8) {
-       return (io.opencensus.proto.stats.v1.DistributionAggregation) aggregation_;
+      return (io.opencensus.proto.stats.v1.DistributionAggregation) aggregation_;
     }
     return io.opencensus.proto.stats.v1.DistributionAggregation.getDefaultInstance();
   }
+
   /**
    * <pre>
    * Indicates that the desired Aggregation is a histogram distribution. A distribution
@@ -589,17 +714,20 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public io.opencensus.proto.stats.v1.DistributionAggregationOrBuilder getDistributionAggregationOrBuilder() {
     if (aggregationCase_ == 8) {
-       return (io.opencensus.proto.stats.v1.DistributionAggregation) aggregation_;
+      return (io.opencensus.proto.stats.v1.DistributionAggregation) aggregation_;
     }
     return io.opencensus.proto.stats.v1.DistributionAggregation.getDefaultInstance();
   }
 
-  private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
+    if (isInitialized == 1) {
+      return true;
+    }
+    if (isInitialized == 0) {
+      return false;
+    }
 
     memoizedIsInitialized = 1;
     return true;
@@ -607,7 +735,7 @@ private static final long serialVersionUID = 0L;
 
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
+      throws java.io.IOException {
     if (!getNameBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
     }
@@ -638,7 +766,9 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public int getSerializedSize() {
     int size = memoizedSize;
-    if (size != -1) return size;
+    if (size != -1) {
+      return size;
+    }
 
     size = 0;
     if (!getNameBytes().isEmpty()) {
@@ -649,7 +779,7 @@ private static final long serialVersionUID = 0L;
     }
     if (measure_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, getMeasure());
+          .computeMessageSize(3, getMeasure());
     }
     {
       int dataSize = 0;
@@ -661,19 +791,20 @@ private static final long serialVersionUID = 0L;
     }
     if (aggregationCase_ == 5) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(5, (io.opencensus.proto.stats.v1.CountAggregation) aggregation_);
+          .computeMessageSize(5, (io.opencensus.proto.stats.v1.CountAggregation) aggregation_);
     }
     if (aggregationCase_ == 6) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(6, (io.opencensus.proto.stats.v1.SumAggregation) aggregation_);
+          .computeMessageSize(6, (io.opencensus.proto.stats.v1.SumAggregation) aggregation_);
     }
     if (aggregationCase_ == 7) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(7, (io.opencensus.proto.stats.v1.LastValueAggregation) aggregation_);
+          .computeMessageSize(7, (io.opencensus.proto.stats.v1.LastValueAggregation) aggregation_);
     }
     if (aggregationCase_ == 8) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(8, (io.opencensus.proto.stats.v1.DistributionAggregation) aggregation_);
+          .computeMessageSize(8,
+              (io.opencensus.proto.stats.v1.DistributionAggregation) aggregation_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -683,7 +814,7 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-     return true;
+      return true;
     }
     if (!(obj instanceof io.opencensus.proto.stats.v1.View)) {
       return super.equals(obj);
@@ -691,39 +822,58 @@ private static final long serialVersionUID = 0L;
     io.opencensus.proto.stats.v1.View other = (io.opencensus.proto.stats.v1.View) obj;
 
     if (!getName()
-        .equals(other.getName())) return false;
+        .equals(other.getName())) {
+      return false;
+    }
     if (!getDescription()
-        .equals(other.getDescription())) return false;
-    if (hasMeasure() != other.hasMeasure()) return false;
+        .equals(other.getDescription())) {
+      return false;
+    }
+    if (hasMeasure() != other.hasMeasure()) {
+      return false;
+    }
     if (hasMeasure()) {
       if (!getMeasure()
-          .equals(other.getMeasure())) return false;
+          .equals(other.getMeasure())) {
+        return false;
+      }
     }
     if (!getColumnsList()
-        .equals(other.getColumnsList())) return false;
-    if (!getAggregationCase().equals(other.getAggregationCase())) return false;
+        .equals(other.getColumnsList())) {
+      return false;
+    }
+    if (!getAggregationCase().equals(other.getAggregationCase())) {
+      return false;
+    }
     switch (aggregationCase_) {
       case 5:
         if (!getCountAggregation()
-            .equals(other.getCountAggregation())) return false;
+            .equals(other.getCountAggregation())) {
+          return false;
+        }
         break;
       case 6:
         if (!getSumAggregation()
-            .equals(other.getSumAggregation())) return false;
+            .equals(other.getSumAggregation())) {
+          return false;
+        }
         break;
       case 7:
         if (!getLastValueAggregation()
-            .equals(other.getLastValueAggregation())) return false;
+            .equals(other.getLastValueAggregation())) {
+          return false;
+        }
         break;
       case 8:
         if (!getDistributionAggregation()
-            .equals(other.getDistributionAggregation())) return false;
+            .equals(other.getDistributionAggregation())) {
+          return false;
+        }
         break;
       case 0:
       default:
     }
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
+    return unknownFields.equals(other.unknownFields);
   }
 
   @java.lang.Override
@@ -770,84 +920,11 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static io.opencensus.proto.stats.v1.View parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.stats.v1.View parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.stats.v1.View parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.stats.v1.View parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.stats.v1.View parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.stats.v1.View parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.stats.v1.View parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.stats.v1.View parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.stats.v1.View parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.stats.v1.View parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.stats.v1.View parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.stats.v1.View parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
+  @java.lang.Override
+  public Builder newBuilderForType() {
+    return newBuilder();
   }
 
-  @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(io.opencensus.proto.stats.v1.View prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
   @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
@@ -860,6 +937,63 @@ private static final long serialVersionUID = 0L;
     Builder builder = new Builder(parent);
     return builder;
   }
+
+  @java.lang.Override
+  public com.google.protobuf.Parser<View> getParserForType() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public io.opencensus.proto.stats.v1.View getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
+  }
+
+  public enum AggregationCase
+      implements com.google.protobuf.Internal.EnumLite,
+      com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+    COUNT_AGGREGATION(5),
+    SUM_AGGREGATION(6),
+    LAST_VALUE_AGGREGATION(7),
+    DISTRIBUTION_AGGREGATION(8),
+    AGGREGATION_NOT_SET(0);
+    private final int value;
+
+    AggregationCase(int value) {
+      this.value = value;
+    }
+
+    /**
+     * @param value The number of the enum to look for.
+     * @return The enum associated with the given number.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static AggregationCase valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static AggregationCase forNumber(int value) {
+      switch (value) {
+        case 5:
+          return COUNT_AGGREGATION;
+        case 6:
+          return SUM_AGGREGATION;
+        case 7:
+          return LAST_VALUE_AGGREGATION;
+        case 8:
+          return DISTRIBUTION_AGGREGATION;
+        case 0:
+          return AGGREGATION_NOT_SET;
+        default:
+          return null;
+      }
+    }
+
+    public int getNumber() {
+      return this.value;
+    }
+  }
+
   /**
    * Protobuf type {@code opencensus.proto.stats.v1.View}
    */
@@ -867,18 +1001,38 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
       // @@protoc_insertion_point(builder_implements:opencensus.proto.stats.v1.View)
       io.opencensus.proto.stats.v1.ViewOrBuilder {
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_View_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_View_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.stats.v1.View.class, io.opencensus.proto.stats.v1.View.Builder.class);
-    }
+    private int aggregationCase_ = 0;
+    private java.lang.Object aggregation_;
+    private int bitField0_;
+    private java.lang.Object name_ = "";
+    private java.lang.Object description_ = "";
+    private io.opencensus.proto.stats.v1.Measure measure_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.opencensus.proto.stats.v1.Measure, io.opencensus.proto.stats.v1.Measure.Builder,
+        io.opencensus.proto.stats.v1.MeasureOrBuilder>
+        measureBuilder_;
+    private com.google.protobuf.LazyStringList columns_ =
+        com.google.protobuf.LazyStringArrayList.EMPTY;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.opencensus.proto.stats.v1.CountAggregation,
+        io.opencensus.proto.stats.v1.CountAggregation.Builder,
+        io.opencensus.proto.stats.v1.CountAggregationOrBuilder>
+        countAggregationBuilder_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.opencensus.proto.stats.v1.SumAggregation,
+        io.opencensus.proto.stats.v1.SumAggregation.Builder,
+        io.opencensus.proto.stats.v1.SumAggregationOrBuilder>
+        sumAggregationBuilder_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.opencensus.proto.stats.v1.LastValueAggregation,
+        io.opencensus.proto.stats.v1.LastValueAggregation.Builder,
+        io.opencensus.proto.stats.v1.LastValueAggregationOrBuilder>
+        lastValueAggregationBuilder_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.opencensus.proto.stats.v1.DistributionAggregation,
+        io.opencensus.proto.stats.v1.DistributionAggregation.Builder,
+        io.opencensus.proto.stats.v1.DistributionAggregationOrBuilder>
+        distributionAggregationBuilder_;
 
     // Construct using io.opencensus.proto.stats.v1.View.newBuilder()
     private Builder() {
@@ -890,11 +1044,27 @@ private static final long serialVersionUID = 0L;
       super(parent);
       maybeForceBuilderInitialization();
     }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+      return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_View_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_View_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.opencensus.proto.stats.v1.View.class,
+              io.opencensus.proto.stats.v1.View.Builder.class);
+    }
+
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
+          .alwaysUseFieldBuilders) {
       }
     }
+
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -917,7 +1087,7 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+    getDescriptorForType() {
       return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_View_descriptor;
     }
 
@@ -988,38 +1158,44 @@ private static final long serialVersionUID = 0L;
     public Builder clone() {
       return super.clone();
     }
+
     @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.setField(field, value);
     }
+
     @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
+
     @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
+
     @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
     }
+
     @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.addRepeatedField(field, value);
     }
+
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof io.opencensus.proto.stats.v1.View) {
-        return mergeFrom((io.opencensus.proto.stats.v1.View)other);
+        return mergeFrom((io.opencensus.proto.stats.v1.View) other);
       } else {
         super.mergeFrom(other);
         return this;
@@ -1027,7 +1203,9 @@ private static final long serialVersionUID = 0L;
     }
 
     public Builder mergeFrom(io.opencensus.proto.stats.v1.View other) {
-      if (other == io.opencensus.proto.stats.v1.View.getDefaultInstance()) return this;
+      if (other == io.opencensus.proto.stats.v1.View.getDefaultInstance()) {
+        return this;
+      }
       if (!other.getName().isEmpty()) {
         name_ = other.name_;
         onChanged();
@@ -1098,10 +1276,9 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
-    private int aggregationCase_ = 0;
-    private java.lang.Object aggregation_;
+
     public AggregationCase
-        getAggregationCase() {
+    getAggregationCase() {
       return AggregationCase.forNumber(
           aggregationCase_);
     }
@@ -1113,9 +1290,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int bitField0_;
-
-    private java.lang.Object name_ = "";
     /**
      * <pre>
      * A string by which the View will be referred to, e.g. "rpc_latency". Names MUST be unique
@@ -1123,6 +1297,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string name = 1;</code>
+     *
      * @return The name.
      */
     public java.lang.String getName() {
@@ -1137,6 +1312,7 @@ private static final long serialVersionUID = 0L;
         return (java.lang.String) ref;
       }
     }
+
     /**
      * <pre>
      * A string by which the View will be referred to, e.g. "rpc_latency". Names MUST be unique
@@ -1144,13 +1320,36 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string name = 1;</code>
+     *
+     * @param value The name to set.
+     * @return This builder for chaining.
+     */
+    public Builder setName(
+        java.lang.String value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+
+      name_ = value;
+      onChanged();
+      return this;
+    }
+
+    /**
+     * <pre>
+     * A string by which the View will be referred to, e.g. "rpc_latency". Names MUST be unique
+     * within the library.
+     * </pre>
+     *
+     * <code>string name = 1;</code>
+     *
      * @return The bytes for name.
      */
     public com.google.protobuf.ByteString
-        getNameBytes() {
+    getNameBytes() {
       java.lang.Object ref = name_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         name_ = b;
@@ -1159,6 +1358,7 @@ private static final long serialVersionUID = 0L;
         return (com.google.protobuf.ByteString) ref;
       }
     }
+
     /**
      * <pre>
      * A string by which the View will be referred to, e.g. "rpc_latency". Names MUST be unique
@@ -1166,63 +1366,46 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string name = 1;</code>
-     * @param value The name to set.
-     * @return This builder for chaining.
-     */
-    public Builder setName(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      name_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * A string by which the View will be referred to, e.g. "rpc_latency". Names MUST be unique
-     * within the library.
-     * </pre>
      *
-     * <code>string name = 1;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearName() {
-      
-      name_ = getDefaultInstance().getName();
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * A string by which the View will be referred to, e.g. "rpc_latency". Names MUST be unique
-     * within the library.
-     * </pre>
-     *
-     * <code>string name = 1;</code>
      * @param value The bytes for name to set.
      * @return This builder for chaining.
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+        throw new NullPointerException();
+      }
+      checkByteStringIsUtf8(value);
+
       name_ = value;
       onChanged();
       return this;
     }
 
-    private java.lang.Object description_ = "";
+    /**
+     * <pre>
+     * A string by which the View will be referred to, e.g. "rpc_latency". Names MUST be unique
+     * within the library.
+     * </pre>
+     *
+     * <code>string name = 1;</code>
+     *
+     * @return This builder for chaining.
+     */
+    public Builder clearName() {
+
+      name_ = getDefaultInstance().getName();
+      onChanged();
+      return this;
+    }
+
     /**
      * <pre>
      * Describes the view, e.g. "RPC latency distribution"
      * </pre>
      *
      * <code>string description = 2;</code>
+     *
      * @return The description.
      */
     public java.lang.String getDescription() {
@@ -1237,19 +1420,42 @@ private static final long serialVersionUID = 0L;
         return (java.lang.String) ref;
       }
     }
+
     /**
      * <pre>
      * Describes the view, e.g. "RPC latency distribution"
      * </pre>
      *
      * <code>string description = 2;</code>
+     *
+     * @param value The description to set.
+     * @return This builder for chaining.
+     */
+    public Builder setDescription(
+        java.lang.String value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+
+      description_ = value;
+      onChanged();
+      return this;
+    }
+
+    /**
+     * <pre>
+     * Describes the view, e.g. "RPC latency distribution"
+     * </pre>
+     *
+     * <code>string description = 2;</code>
+     *
      * @return The bytes for description.
      */
     public com.google.protobuf.ByteString
-        getDescriptionBytes() {
+    getDescriptionBytes() {
       java.lang.Object ref = description_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         description_ = b;
@@ -1258,89 +1464,76 @@ private static final long serialVersionUID = 0L;
         return (com.google.protobuf.ByteString) ref;
       }
     }
+
     /**
      * <pre>
      * Describes the view, e.g. "RPC latency distribution"
      * </pre>
      *
      * <code>string description = 2;</code>
-     * @param value The description to set.
-     * @return This builder for chaining.
-     */
-    public Builder setDescription(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      description_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Describes the view, e.g. "RPC latency distribution"
-     * </pre>
      *
-     * <code>string description = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearDescription() {
-      
-      description_ = getDefaultInstance().getDescription();
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Describes the view, e.g. "RPC latency distribution"
-     * </pre>
-     *
-     * <code>string description = 2;</code>
      * @param value The bytes for description to set.
      * @return This builder for chaining.
      */
     public Builder setDescriptionBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+        throw new NullPointerException();
+      }
+      checkByteStringIsUtf8(value);
+
       description_ = value;
       onChanged();
       return this;
     }
 
-    private io.opencensus.proto.stats.v1.Measure measure_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.stats.v1.Measure, io.opencensus.proto.stats.v1.Measure.Builder, io.opencensus.proto.stats.v1.MeasureOrBuilder> measureBuilder_;
+    /**
+     * <pre>
+     * Describes the view, e.g. "RPC latency distribution"
+     * </pre>
+     *
+     * <code>string description = 2;</code>
+     *
+     * @return This builder for chaining.
+     */
+    public Builder clearDescription() {
+
+      description_ = getDefaultInstance().getDescription();
+      onChanged();
+      return this;
+    }
+
     /**
      * <pre>
      * The Measure to which this view is applied.
      * </pre>
      *
      * <code>.opencensus.proto.stats.v1.Measure measure = 3;</code>
+     *
      * @return Whether the measure field is set.
      */
     public boolean hasMeasure() {
       return measureBuilder_ != null || measure_ != null;
     }
+
     /**
      * <pre>
      * The Measure to which this view is applied.
      * </pre>
      *
      * <code>.opencensus.proto.stats.v1.Measure measure = 3;</code>
+     *
      * @return The measure.
      */
     public io.opencensus.proto.stats.v1.Measure getMeasure() {
       if (measureBuilder_ == null) {
-        return measure_ == null ? io.opencensus.proto.stats.v1.Measure.getDefaultInstance() : measure_;
+        return measure_ == null ? io.opencensus.proto.stats.v1.Measure.getDefaultInstance() :
+            measure_;
       } else {
         return measureBuilder_.getMessage();
       }
     }
+
     /**
      * <pre>
      * The Measure to which this view is applied.
@@ -1361,6 +1554,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * The Measure to which this view is applied.
@@ -1379,6 +1573,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * The Measure to which this view is applied.
@@ -1390,7 +1585,8 @@ private static final long serialVersionUID = 0L;
       if (measureBuilder_ == null) {
         if (measure_ != null) {
           measure_ =
-            io.opencensus.proto.stats.v1.Measure.newBuilder(measure_).mergeFrom(value).buildPartial();
+              io.opencensus.proto.stats.v1.Measure.newBuilder(measure_).mergeFrom(value)
+                                                  .buildPartial();
         } else {
           measure_ = value;
         }
@@ -1401,6 +1597,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * The Measure to which this view is applied.
@@ -1419,6 +1616,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * The Measure to which this view is applied.
@@ -1427,10 +1625,11 @@ private static final long serialVersionUID = 0L;
      * <code>.opencensus.proto.stats.v1.Measure measure = 3;</code>
      */
     public io.opencensus.proto.stats.v1.Measure.Builder getMeasureBuilder() {
-      
+
       onChanged();
       return getMeasureFieldBuilder().getBuilder();
     }
+
     /**
      * <pre>
      * The Measure to which this view is applied.
@@ -1446,6 +1645,7 @@ private static final long serialVersionUID = 0L;
             io.opencensus.proto.stats.v1.Measure.getDefaultInstance() : measure_;
       }
     }
+
     /**
      * <pre>
      * The Measure to which this view is applied.
@@ -1454,26 +1654,28 @@ private static final long serialVersionUID = 0L;
      * <code>.opencensus.proto.stats.v1.Measure measure = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.stats.v1.Measure, io.opencensus.proto.stats.v1.Measure.Builder, io.opencensus.proto.stats.v1.MeasureOrBuilder> 
-        getMeasureFieldBuilder() {
+        io.opencensus.proto.stats.v1.Measure, io.opencensus.proto.stats.v1.Measure.Builder,
+        io.opencensus.proto.stats.v1.MeasureOrBuilder>
+    getMeasureFieldBuilder() {
       if (measureBuilder_ == null) {
         measureBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.stats.v1.Measure, io.opencensus.proto.stats.v1.Measure.Builder, io.opencensus.proto.stats.v1.MeasureOrBuilder>(
-                getMeasure(),
-                getParentForChildren(),
-                isClean());
+            io.opencensus.proto.stats.v1.Measure, io.opencensus.proto.stats.v1.Measure.Builder,
+            io.opencensus.proto.stats.v1.MeasureOrBuilder>(
+            getMeasure(),
+            getParentForChildren(),
+            isClean());
         measure_ = null;
       }
       return measureBuilder_;
     }
 
-    private com.google.protobuf.LazyStringList columns_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     private void ensureColumnsIsMutable() {
       if (!((bitField0_ & 0x00000001) != 0)) {
         columns_ = new com.google.protobuf.LazyStringArrayList(columns_);
         bitField0_ |= 0x00000001;
-       }
+      }
     }
+
     /**
      * <pre>
      * An array of tag keys. These values associated with tags of this name form the basis by which
@@ -1482,12 +1684,14 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>repeated string columns = 4;</code>
+     *
      * @return A list containing the columns.
      */
     public com.google.protobuf.ProtocolStringList
-        getColumnsList() {
+    getColumnsList() {
       return columns_.getUnmodifiableView();
     }
+
     /**
      * <pre>
      * An array of tag keys. These values associated with tags of this name form the basis by which
@@ -1496,11 +1700,13 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>repeated string columns = 4;</code>
+     *
      * @return The count of columns.
      */
     public int getColumnsCount() {
       return columns_.size();
     }
+
     /**
      * <pre>
      * An array of tag keys. These values associated with tags of this name form the basis by which
@@ -1509,12 +1715,14 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>repeated string columns = 4;</code>
+     *
      * @param index The index of the element to return.
      * @return The columns at the given index.
      */
     public java.lang.String getColumns(int index) {
       return columns_.get(index);
     }
+
     /**
      * <pre>
      * An array of tag keys. These values associated with tags of this name form the basis by which
@@ -1523,13 +1731,15 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>repeated string columns = 4;</code>
+     *
      * @param index The index of the value to return.
      * @return The bytes of the columns at the given index.
      */
     public com.google.protobuf.ByteString
-        getColumnsBytes(int index) {
+    getColumnsBytes(int index) {
       return columns_.getByteString(index);
     }
+
     /**
      * <pre>
      * An array of tag keys. These values associated with tags of this name form the basis by which
@@ -1538,6 +1748,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>repeated string columns = 4;</code>
+     *
      * @param index The index to set the value at.
      * @param value The columns to set.
      * @return This builder for chaining.
@@ -1545,13 +1756,14 @@ private static final long serialVersionUID = 0L;
     public Builder setColumns(
         int index, java.lang.String value) {
       if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureColumnsIsMutable();
+        throw new NullPointerException();
+      }
+      ensureColumnsIsMutable();
       columns_.set(index, value);
       onChanged();
       return this;
     }
+
     /**
      * <pre>
      * An array of tag keys. These values associated with tags of this name form the basis by which
@@ -1560,19 +1772,21 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>repeated string columns = 4;</code>
+     *
      * @param value The columns to add.
      * @return This builder for chaining.
      */
     public Builder addColumns(
         java.lang.String value) {
       if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureColumnsIsMutable();
+        throw new NullPointerException();
+      }
+      ensureColumnsIsMutable();
       columns_.add(value);
       onChanged();
       return this;
     }
+
     /**
      * <pre>
      * An array of tag keys. These values associated with tags of this name form the basis by which
@@ -1581,6 +1795,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>repeated string columns = 4;</code>
+     *
      * @param values The columns to add.
      * @return This builder for chaining.
      */
@@ -1592,6 +1807,7 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
     /**
      * <pre>
      * An array of tag keys. These values associated with tags of this name form the basis by which
@@ -1600,6 +1816,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>repeated string columns = 4;</code>
+     *
      * @return This builder for chaining.
      */
     public Builder clearColumns() {
@@ -1608,6 +1825,7 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
     /**
      * <pre>
      * An array of tag keys. These values associated with tags of this name form the basis by which
@@ -1616,41 +1834,43 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>repeated string columns = 4;</code>
+     *
      * @param value The bytes of the columns to add.
      * @return This builder for chaining.
      */
     public Builder addColumnsBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        throw new NullPointerException();
+      }
+      checkByteStringIsUtf8(value);
       ensureColumnsIsMutable();
       columns_.add(value);
       onChanged();
       return this;
     }
 
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.stats.v1.CountAggregation, io.opencensus.proto.stats.v1.CountAggregation.Builder, io.opencensus.proto.stats.v1.CountAggregationOrBuilder> countAggregationBuilder_;
     /**
      * <pre>
      * Counts the number of measurements recorded.
      * </pre>
      *
      * <code>.opencensus.proto.stats.v1.CountAggregation count_aggregation = 5;</code>
+     *
      * @return Whether the countAggregation field is set.
      */
     @java.lang.Override
     public boolean hasCountAggregation() {
       return aggregationCase_ == 5;
     }
+
     /**
      * <pre>
      * Counts the number of measurements recorded.
      * </pre>
      *
      * <code>.opencensus.proto.stats.v1.CountAggregation count_aggregation = 5;</code>
+     *
      * @return The countAggregation.
      */
     @java.lang.Override
@@ -1667,6 +1887,7 @@ private static final long serialVersionUID = 0L;
         return io.opencensus.proto.stats.v1.CountAggregation.getDefaultInstance();
       }
     }
+
     /**
      * <pre>
      * Counts the number of measurements recorded.
@@ -1687,6 +1908,7 @@ private static final long serialVersionUID = 0L;
       aggregationCase_ = 5;
       return this;
     }
+
     /**
      * <pre>
      * Counts the number of measurements recorded.
@@ -1705,6 +1927,7 @@ private static final long serialVersionUID = 0L;
       aggregationCase_ = 5;
       return this;
     }
+
     /**
      * <pre>
      * Counts the number of measurements recorded.
@@ -1716,7 +1939,8 @@ private static final long serialVersionUID = 0L;
       if (countAggregationBuilder_ == null) {
         if (aggregationCase_ == 5 &&
             aggregation_ != io.opencensus.proto.stats.v1.CountAggregation.getDefaultInstance()) {
-          aggregation_ = io.opencensus.proto.stats.v1.CountAggregation.newBuilder((io.opencensus.proto.stats.v1.CountAggregation) aggregation_)
+          aggregation_ = io.opencensus.proto.stats.v1.CountAggregation
+              .newBuilder((io.opencensus.proto.stats.v1.CountAggregation) aggregation_)
               .mergeFrom(value).buildPartial();
         } else {
           aggregation_ = value;
@@ -1731,6 +1955,7 @@ private static final long serialVersionUID = 0L;
       aggregationCase_ = 5;
       return this;
     }
+
     /**
      * <pre>
      * Counts the number of measurements recorded.
@@ -1754,6 +1979,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * Counts the number of measurements recorded.
@@ -1764,6 +1990,7 @@ private static final long serialVersionUID = 0L;
     public io.opencensus.proto.stats.v1.CountAggregation.Builder getCountAggregationBuilder() {
       return getCountAggregationFieldBuilder().getBuilder();
     }
+
     /**
      * <pre>
      * Counts the number of measurements recorded.
@@ -1782,6 +2009,7 @@ private static final long serialVersionUID = 0L;
         return io.opencensus.proto.stats.v1.CountAggregation.getDefaultInstance();
       }
     }
+
     /**
      * <pre>
      * Counts the number of measurements recorded.
@@ -1790,44 +2018,49 @@ private static final long serialVersionUID = 0L;
      * <code>.opencensus.proto.stats.v1.CountAggregation count_aggregation = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.stats.v1.CountAggregation, io.opencensus.proto.stats.v1.CountAggregation.Builder, io.opencensus.proto.stats.v1.CountAggregationOrBuilder> 
-        getCountAggregationFieldBuilder() {
+        io.opencensus.proto.stats.v1.CountAggregation,
+        io.opencensus.proto.stats.v1.CountAggregation.Builder,
+        io.opencensus.proto.stats.v1.CountAggregationOrBuilder>
+    getCountAggregationFieldBuilder() {
       if (countAggregationBuilder_ == null) {
         if (!(aggregationCase_ == 5)) {
           aggregation_ = io.opencensus.proto.stats.v1.CountAggregation.getDefaultInstance();
         }
         countAggregationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.stats.v1.CountAggregation, io.opencensus.proto.stats.v1.CountAggregation.Builder, io.opencensus.proto.stats.v1.CountAggregationOrBuilder>(
-                (io.opencensus.proto.stats.v1.CountAggregation) aggregation_,
-                getParentForChildren(),
-                isClean());
+            io.opencensus.proto.stats.v1.CountAggregation,
+            io.opencensus.proto.stats.v1.CountAggregation.Builder,
+            io.opencensus.proto.stats.v1.CountAggregationOrBuilder>(
+            (io.opencensus.proto.stats.v1.CountAggregation) aggregation_,
+            getParentForChildren(),
+            isClean());
         aggregation_ = null;
       }
       aggregationCase_ = 5;
-      onChanged();;
+      onChanged();
       return countAggregationBuilder_;
     }
 
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.stats.v1.SumAggregation, io.opencensus.proto.stats.v1.SumAggregation.Builder, io.opencensus.proto.stats.v1.SumAggregationOrBuilder> sumAggregationBuilder_;
     /**
      * <pre>
      * Indicates that data collected and aggregated with this Aggregation will be summed up.
      * </pre>
      *
      * <code>.opencensus.proto.stats.v1.SumAggregation sum_aggregation = 6;</code>
+     *
      * @return Whether the sumAggregation field is set.
      */
     @java.lang.Override
     public boolean hasSumAggregation() {
       return aggregationCase_ == 6;
     }
+
     /**
      * <pre>
      * Indicates that data collected and aggregated with this Aggregation will be summed up.
      * </pre>
      *
      * <code>.opencensus.proto.stats.v1.SumAggregation sum_aggregation = 6;</code>
+     *
      * @return The sumAggregation.
      */
     @java.lang.Override
@@ -1844,6 +2077,7 @@ private static final long serialVersionUID = 0L;
         return io.opencensus.proto.stats.v1.SumAggregation.getDefaultInstance();
       }
     }
+
     /**
      * <pre>
      * Indicates that data collected and aggregated with this Aggregation will be summed up.
@@ -1864,6 +2098,7 @@ private static final long serialVersionUID = 0L;
       aggregationCase_ = 6;
       return this;
     }
+
     /**
      * <pre>
      * Indicates that data collected and aggregated with this Aggregation will be summed up.
@@ -1882,6 +2117,7 @@ private static final long serialVersionUID = 0L;
       aggregationCase_ = 6;
       return this;
     }
+
     /**
      * <pre>
      * Indicates that data collected and aggregated with this Aggregation will be summed up.
@@ -1893,7 +2129,8 @@ private static final long serialVersionUID = 0L;
       if (sumAggregationBuilder_ == null) {
         if (aggregationCase_ == 6 &&
             aggregation_ != io.opencensus.proto.stats.v1.SumAggregation.getDefaultInstance()) {
-          aggregation_ = io.opencensus.proto.stats.v1.SumAggregation.newBuilder((io.opencensus.proto.stats.v1.SumAggregation) aggregation_)
+          aggregation_ = io.opencensus.proto.stats.v1.SumAggregation
+              .newBuilder((io.opencensus.proto.stats.v1.SumAggregation) aggregation_)
               .mergeFrom(value).buildPartial();
         } else {
           aggregation_ = value;
@@ -1908,6 +2145,7 @@ private static final long serialVersionUID = 0L;
       aggregationCase_ = 6;
       return this;
     }
+
     /**
      * <pre>
      * Indicates that data collected and aggregated with this Aggregation will be summed up.
@@ -1931,6 +2169,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * Indicates that data collected and aggregated with this Aggregation will be summed up.
@@ -1941,6 +2180,7 @@ private static final long serialVersionUID = 0L;
     public io.opencensus.proto.stats.v1.SumAggregation.Builder getSumAggregationBuilder() {
       return getSumAggregationFieldBuilder().getBuilder();
     }
+
     /**
      * <pre>
      * Indicates that data collected and aggregated with this Aggregation will be summed up.
@@ -1959,6 +2199,7 @@ private static final long serialVersionUID = 0L;
         return io.opencensus.proto.stats.v1.SumAggregation.getDefaultInstance();
       }
     }
+
     /**
      * <pre>
      * Indicates that data collected and aggregated with this Aggregation will be summed up.
@@ -1967,26 +2208,28 @@ private static final long serialVersionUID = 0L;
      * <code>.opencensus.proto.stats.v1.SumAggregation sum_aggregation = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.stats.v1.SumAggregation, io.opencensus.proto.stats.v1.SumAggregation.Builder, io.opencensus.proto.stats.v1.SumAggregationOrBuilder> 
-        getSumAggregationFieldBuilder() {
+        io.opencensus.proto.stats.v1.SumAggregation,
+        io.opencensus.proto.stats.v1.SumAggregation.Builder,
+        io.opencensus.proto.stats.v1.SumAggregationOrBuilder>
+    getSumAggregationFieldBuilder() {
       if (sumAggregationBuilder_ == null) {
         if (!(aggregationCase_ == 6)) {
           aggregation_ = io.opencensus.proto.stats.v1.SumAggregation.getDefaultInstance();
         }
         sumAggregationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.stats.v1.SumAggregation, io.opencensus.proto.stats.v1.SumAggregation.Builder, io.opencensus.proto.stats.v1.SumAggregationOrBuilder>(
-                (io.opencensus.proto.stats.v1.SumAggregation) aggregation_,
-                getParentForChildren(),
-                isClean());
+            io.opencensus.proto.stats.v1.SumAggregation,
+            io.opencensus.proto.stats.v1.SumAggregation.Builder,
+            io.opencensus.proto.stats.v1.SumAggregationOrBuilder>(
+            (io.opencensus.proto.stats.v1.SumAggregation) aggregation_,
+            getParentForChildren(),
+            isClean());
         aggregation_ = null;
       }
       aggregationCase_ = 6;
-      onChanged();;
+      onChanged();
       return sumAggregationBuilder_;
     }
 
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.stats.v1.LastValueAggregation, io.opencensus.proto.stats.v1.LastValueAggregation.Builder, io.opencensus.proto.stats.v1.LastValueAggregationOrBuilder> lastValueAggregationBuilder_;
     /**
      * <pre>
      * Indicates that data collected and aggregated with this Aggregation will represent the last
@@ -1994,12 +2237,14 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.opencensus.proto.stats.v1.LastValueAggregation last_value_aggregation = 7;</code>
+     *
      * @return Whether the lastValueAggregation field is set.
      */
     @java.lang.Override
     public boolean hasLastValueAggregation() {
       return aggregationCase_ == 7;
     }
+
     /**
      * <pre>
      * Indicates that data collected and aggregated with this Aggregation will represent the last
@@ -2007,6 +2252,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.opencensus.proto.stats.v1.LastValueAggregation last_value_aggregation = 7;</code>
+     *
      * @return The lastValueAggregation.
      */
     @java.lang.Override
@@ -2023,6 +2269,7 @@ private static final long serialVersionUID = 0L;
         return io.opencensus.proto.stats.v1.LastValueAggregation.getDefaultInstance();
       }
     }
+
     /**
      * <pre>
      * Indicates that data collected and aggregated with this Aggregation will represent the last
@@ -2031,7 +2278,8 @@ private static final long serialVersionUID = 0L;
      *
      * <code>.opencensus.proto.stats.v1.LastValueAggregation last_value_aggregation = 7;</code>
      */
-    public Builder setLastValueAggregation(io.opencensus.proto.stats.v1.LastValueAggregation value) {
+    public Builder setLastValueAggregation(
+        io.opencensus.proto.stats.v1.LastValueAggregation value) {
       if (lastValueAggregationBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -2044,6 +2292,7 @@ private static final long serialVersionUID = 0L;
       aggregationCase_ = 7;
       return this;
     }
+
     /**
      * <pre>
      * Indicates that data collected and aggregated with this Aggregation will represent the last
@@ -2063,6 +2312,7 @@ private static final long serialVersionUID = 0L;
       aggregationCase_ = 7;
       return this;
     }
+
     /**
      * <pre>
      * Indicates that data collected and aggregated with this Aggregation will represent the last
@@ -2071,11 +2321,14 @@ private static final long serialVersionUID = 0L;
      *
      * <code>.opencensus.proto.stats.v1.LastValueAggregation last_value_aggregation = 7;</code>
      */
-    public Builder mergeLastValueAggregation(io.opencensus.proto.stats.v1.LastValueAggregation value) {
+    public Builder mergeLastValueAggregation(
+        io.opencensus.proto.stats.v1.LastValueAggregation value) {
       if (lastValueAggregationBuilder_ == null) {
         if (aggregationCase_ == 7 &&
-            aggregation_ != io.opencensus.proto.stats.v1.LastValueAggregation.getDefaultInstance()) {
-          aggregation_ = io.opencensus.proto.stats.v1.LastValueAggregation.newBuilder((io.opencensus.proto.stats.v1.LastValueAggregation) aggregation_)
+            aggregation_ !=
+                io.opencensus.proto.stats.v1.LastValueAggregation.getDefaultInstance()) {
+          aggregation_ = io.opencensus.proto.stats.v1.LastValueAggregation
+              .newBuilder((io.opencensus.proto.stats.v1.LastValueAggregation) aggregation_)
               .mergeFrom(value).buildPartial();
         } else {
           aggregation_ = value;
@@ -2090,6 +2343,7 @@ private static final long serialVersionUID = 0L;
       aggregationCase_ = 7;
       return this;
     }
+
     /**
      * <pre>
      * Indicates that data collected and aggregated with this Aggregation will represent the last
@@ -2114,6 +2368,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * Indicates that data collected and aggregated with this Aggregation will represent the last
@@ -2125,6 +2380,7 @@ private static final long serialVersionUID = 0L;
     public io.opencensus.proto.stats.v1.LastValueAggregation.Builder getLastValueAggregationBuilder() {
       return getLastValueAggregationFieldBuilder().getBuilder();
     }
+
     /**
      * <pre>
      * Indicates that data collected and aggregated with this Aggregation will represent the last
@@ -2144,6 +2400,7 @@ private static final long serialVersionUID = 0L;
         return io.opencensus.proto.stats.v1.LastValueAggregation.getDefaultInstance();
       }
     }
+
     /**
      * <pre>
      * Indicates that data collected and aggregated with this Aggregation will represent the last
@@ -2153,26 +2410,28 @@ private static final long serialVersionUID = 0L;
      * <code>.opencensus.proto.stats.v1.LastValueAggregation last_value_aggregation = 7;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.stats.v1.LastValueAggregation, io.opencensus.proto.stats.v1.LastValueAggregation.Builder, io.opencensus.proto.stats.v1.LastValueAggregationOrBuilder> 
-        getLastValueAggregationFieldBuilder() {
+        io.opencensus.proto.stats.v1.LastValueAggregation,
+        io.opencensus.proto.stats.v1.LastValueAggregation.Builder,
+        io.opencensus.proto.stats.v1.LastValueAggregationOrBuilder>
+    getLastValueAggregationFieldBuilder() {
       if (lastValueAggregationBuilder_ == null) {
         if (!(aggregationCase_ == 7)) {
           aggregation_ = io.opencensus.proto.stats.v1.LastValueAggregation.getDefaultInstance();
         }
         lastValueAggregationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.stats.v1.LastValueAggregation, io.opencensus.proto.stats.v1.LastValueAggregation.Builder, io.opencensus.proto.stats.v1.LastValueAggregationOrBuilder>(
-                (io.opencensus.proto.stats.v1.LastValueAggregation) aggregation_,
-                getParentForChildren(),
-                isClean());
+            io.opencensus.proto.stats.v1.LastValueAggregation,
+            io.opencensus.proto.stats.v1.LastValueAggregation.Builder,
+            io.opencensus.proto.stats.v1.LastValueAggregationOrBuilder>(
+            (io.opencensus.proto.stats.v1.LastValueAggregation) aggregation_,
+            getParentForChildren(),
+            isClean());
         aggregation_ = null;
       }
       aggregationCase_ = 7;
-      onChanged();;
+      onChanged();
       return lastValueAggregationBuilder_;
     }
 
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.stats.v1.DistributionAggregation, io.opencensus.proto.stats.v1.DistributionAggregation.Builder, io.opencensus.proto.stats.v1.DistributionAggregationOrBuilder> distributionAggregationBuilder_;
     /**
      * <pre>
      * Indicates that the desired Aggregation is a histogram distribution. A distribution
@@ -2181,12 +2440,14 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.opencensus.proto.stats.v1.DistributionAggregation distribution_aggregation = 8;</code>
+     *
      * @return Whether the distributionAggregation field is set.
      */
     @java.lang.Override
     public boolean hasDistributionAggregation() {
       return aggregationCase_ == 8;
     }
+
     /**
      * <pre>
      * Indicates that the desired Aggregation is a histogram distribution. A distribution
@@ -2195,6 +2456,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.opencensus.proto.stats.v1.DistributionAggregation distribution_aggregation = 8;</code>
+     *
      * @return The distributionAggregation.
      */
     @java.lang.Override
@@ -2211,6 +2473,7 @@ private static final long serialVersionUID = 0L;
         return io.opencensus.proto.stats.v1.DistributionAggregation.getDefaultInstance();
       }
     }
+
     /**
      * <pre>
      * Indicates that the desired Aggregation is a histogram distribution. A distribution
@@ -2220,7 +2483,8 @@ private static final long serialVersionUID = 0L;
      *
      * <code>.opencensus.proto.stats.v1.DistributionAggregation distribution_aggregation = 8;</code>
      */
-    public Builder setDistributionAggregation(io.opencensus.proto.stats.v1.DistributionAggregation value) {
+    public Builder setDistributionAggregation(
+        io.opencensus.proto.stats.v1.DistributionAggregation value) {
       if (distributionAggregationBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -2233,6 +2497,7 @@ private static final long serialVersionUID = 0L;
       aggregationCase_ = 8;
       return this;
     }
+
     /**
      * <pre>
      * Indicates that the desired Aggregation is a histogram distribution. A distribution
@@ -2253,6 +2518,7 @@ private static final long serialVersionUID = 0L;
       aggregationCase_ = 8;
       return this;
     }
+
     /**
      * <pre>
      * Indicates that the desired Aggregation is a histogram distribution. A distribution
@@ -2262,11 +2528,14 @@ private static final long serialVersionUID = 0L;
      *
      * <code>.opencensus.proto.stats.v1.DistributionAggregation distribution_aggregation = 8;</code>
      */
-    public Builder mergeDistributionAggregation(io.opencensus.proto.stats.v1.DistributionAggregation value) {
+    public Builder mergeDistributionAggregation(
+        io.opencensus.proto.stats.v1.DistributionAggregation value) {
       if (distributionAggregationBuilder_ == null) {
         if (aggregationCase_ == 8 &&
-            aggregation_ != io.opencensus.proto.stats.v1.DistributionAggregation.getDefaultInstance()) {
-          aggregation_ = io.opencensus.proto.stats.v1.DistributionAggregation.newBuilder((io.opencensus.proto.stats.v1.DistributionAggregation) aggregation_)
+            aggregation_ !=
+                io.opencensus.proto.stats.v1.DistributionAggregation.getDefaultInstance()) {
+          aggregation_ = io.opencensus.proto.stats.v1.DistributionAggregation
+              .newBuilder((io.opencensus.proto.stats.v1.DistributionAggregation) aggregation_)
               .mergeFrom(value).buildPartial();
         } else {
           aggregation_ = value;
@@ -2281,6 +2550,7 @@ private static final long serialVersionUID = 0L;
       aggregationCase_ = 8;
       return this;
     }
+
     /**
      * <pre>
      * Indicates that the desired Aggregation is a histogram distribution. A distribution
@@ -2306,6 +2576,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * Indicates that the desired Aggregation is a histogram distribution. A distribution
@@ -2318,6 +2589,7 @@ private static final long serialVersionUID = 0L;
     public io.opencensus.proto.stats.v1.DistributionAggregation.Builder getDistributionAggregationBuilder() {
       return getDistributionAggregationFieldBuilder().getBuilder();
     }
+
     /**
      * <pre>
      * Indicates that the desired Aggregation is a histogram distribution. A distribution
@@ -2338,6 +2610,7 @@ private static final long serialVersionUID = 0L;
         return io.opencensus.proto.stats.v1.DistributionAggregation.getDefaultInstance();
       }
     }
+
     /**
      * <pre>
      * Indicates that the desired Aggregation is a histogram distribution. A distribution
@@ -2348,23 +2621,28 @@ private static final long serialVersionUID = 0L;
      * <code>.opencensus.proto.stats.v1.DistributionAggregation distribution_aggregation = 8;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.stats.v1.DistributionAggregation, io.opencensus.proto.stats.v1.DistributionAggregation.Builder, io.opencensus.proto.stats.v1.DistributionAggregationOrBuilder> 
-        getDistributionAggregationFieldBuilder() {
+        io.opencensus.proto.stats.v1.DistributionAggregation,
+        io.opencensus.proto.stats.v1.DistributionAggregation.Builder,
+        io.opencensus.proto.stats.v1.DistributionAggregationOrBuilder>
+    getDistributionAggregationFieldBuilder() {
       if (distributionAggregationBuilder_ == null) {
         if (!(aggregationCase_ == 8)) {
           aggregation_ = io.opencensus.proto.stats.v1.DistributionAggregation.getDefaultInstance();
         }
         distributionAggregationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.stats.v1.DistributionAggregation, io.opencensus.proto.stats.v1.DistributionAggregation.Builder, io.opencensus.proto.stats.v1.DistributionAggregationOrBuilder>(
-                (io.opencensus.proto.stats.v1.DistributionAggregation) aggregation_,
-                getParentForChildren(),
-                isClean());
+            io.opencensus.proto.stats.v1.DistributionAggregation,
+            io.opencensus.proto.stats.v1.DistributionAggregation.Builder,
+            io.opencensus.proto.stats.v1.DistributionAggregationOrBuilder>(
+            (io.opencensus.proto.stats.v1.DistributionAggregation) aggregation_,
+            getParentForChildren(),
+            isClean());
         aggregation_ = null;
       }
       aggregationCase_ = 8;
-      onChanged();;
+      onChanged();
       return distributionAggregationBuilder_;
     }
+
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -2379,41 +2657,6 @@ private static final long serialVersionUID = 0L;
 
 
     // @@protoc_insertion_point(builder_scope:opencensus.proto.stats.v1.View)
-  }
-
-  // @@protoc_insertion_point(class_scope:opencensus.proto.stats.v1.View)
-  private static final io.opencensus.proto.stats.v1.View DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.stats.v1.View();
-  }
-
-  public static io.opencensus.proto.stats.v1.View getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<View>
-      PARSER = new com.google.protobuf.AbstractParser<View>() {
-    @java.lang.Override
-    public View parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new View(input, extensionRegistry);
-    }
-  };
-
-  public static com.google.protobuf.Parser<View> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<View> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.stats.v1.View getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
   }
 
 }

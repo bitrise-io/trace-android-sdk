@@ -15,9 +15,11 @@ public interface MetricOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.metrics.v1.MetricDescriptor metric_descriptor = 1;</code>
+   *
    * @return Whether the metricDescriptor field is set.
    */
   boolean hasMetricDescriptor();
+
   /**
    * <pre>
    * The descriptor of the Metric.
@@ -26,9 +28,11 @@ public interface MetricOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.metrics.v1.MetricDescriptor metric_descriptor = 1;</code>
+   *
    * @return The metricDescriptor.
    */
   io.opencensus.proto.metrics.v1.MetricDescriptor getMetricDescriptor();
+
   /**
    * <pre>
    * The descriptor of the Metric.
@@ -48,8 +52,9 @@ public interface MetricOrBuilder extends
    *
    * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
    */
-  java.util.List<io.opencensus.proto.metrics.v1.TimeSeries> 
-      getTimeseriesList();
+  java.util.List<io.opencensus.proto.metrics.v1.TimeSeries>
+  getTimeseriesList();
+
   /**
    * <pre>
    * One or more timeseries for a single metric, where each timeseries has
@@ -59,6 +64,7 @@ public interface MetricOrBuilder extends
    * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
    */
   io.opencensus.proto.metrics.v1.TimeSeries getTimeseries(int index);
+
   /**
    * <pre>
    * One or more timeseries for a single metric, where each timeseries has
@@ -68,6 +74,7 @@ public interface MetricOrBuilder extends
    * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
    */
   int getTimeseriesCount();
+
   /**
    * <pre>
    * One or more timeseries for a single metric, where each timeseries has
@@ -76,8 +83,9 @@ public interface MetricOrBuilder extends
    *
    * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
    */
-  java.util.List<? extends io.opencensus.proto.metrics.v1.TimeSeriesOrBuilder> 
-      getTimeseriesOrBuilderList();
+  java.util.List<? extends io.opencensus.proto.metrics.v1.TimeSeriesOrBuilder>
+  getTimeseriesOrBuilderList();
+
   /**
    * <pre>
    * One or more timeseries for a single metric, where each timeseries has
@@ -96,9 +104,11 @@ public interface MetricOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
+   *
    * @return Whether the resource field is set.
    */
   boolean hasResource();
+
   /**
    * <pre>
    * The resource for the metric. If unset, it may be set to a default value
@@ -106,9 +116,11 @@ public interface MetricOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
+   *
    * @return The resource.
    */
   io.opencensus.proto.resource.v1.Resource getResource();
+
   /**
    * <pre>
    * The resource for the metric. If unset, it may be set to a default value

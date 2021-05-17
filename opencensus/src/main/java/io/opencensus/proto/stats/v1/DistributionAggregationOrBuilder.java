@@ -27,9 +27,11 @@ public interface DistributionAggregationOrBuilder extends
    * </pre>
    *
    * <code>repeated double bucket_bounds = 1;</code>
+   *
    * @return A list containing the bucketBounds.
    */
   java.util.List<java.lang.Double> getBucketBoundsList();
+
   /**
    * <pre>
    * A Distribution may optionally contain a histogram of the values in the
@@ -50,9 +52,11 @@ public interface DistributionAggregationOrBuilder extends
    * </pre>
    *
    * <code>repeated double bucket_bounds = 1;</code>
+   *
    * @return The count of bucketBounds.
    */
   int getBucketBoundsCount();
+
   /**
    * <pre>
    * A Distribution may optionally contain a histogram of the values in the
@@ -73,6 +77,7 @@ public interface DistributionAggregationOrBuilder extends
    * </pre>
    *
    * <code>repeated double bucket_bounds = 1;</code>
+   *
    * @param index The index of the element to return.
    * @return The bucketBounds at the given index.
    */

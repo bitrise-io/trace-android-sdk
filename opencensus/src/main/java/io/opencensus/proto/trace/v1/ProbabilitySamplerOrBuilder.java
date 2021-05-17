@@ -13,6 +13,7 @@ public interface ProbabilitySamplerOrBuilder extends
    * </pre>
    *
    * <code>double samplingProbability = 1;</code>
+   *
    * @return The samplingProbability.
    */
   double getSamplingProbability();

@@ -10,21 +10,25 @@ public interface MeasurementOrBuilder extends
   /**
    * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
    */
-  java.util.List<io.opencensus.proto.stats.v1.Tag> 
-      getTagsList();
+  java.util.List<io.opencensus.proto.stats.v1.Tag>
+  getTagsList();
+
   /**
    * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
    */
   io.opencensus.proto.stats.v1.Tag getTags(int index);
+
   /**
    * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
    */
   int getTagsCount();
+
   /**
    * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
    */
-  java.util.List<? extends io.opencensus.proto.stats.v1.TagOrBuilder> 
-      getTagsOrBuilderList();
+  java.util.List<? extends io.opencensus.proto.stats.v1.TagOrBuilder>
+  getTagsOrBuilderList();
+
   /**
    * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
    */
@@ -37,28 +41,33 @@ public interface MeasurementOrBuilder extends
    * </pre>
    *
    * <code>string measure_name = 2;</code>
+   *
    * @return The measureName.
    */
   java.lang.String getMeasureName();
+
   /**
    * <pre>
    * The name of the measure to which the value is applied.
    * </pre>
    *
    * <code>string measure_name = 2;</code>
+   *
    * @return The bytes for measureName.
    */
   com.google.protobuf.ByteString
-      getMeasureNameBytes();
+  getMeasureNameBytes();
 
   /**
    * <code>double double_value = 3;</code>
+   *
    * @return The doubleValue.
    */
   double getDoubleValue();
 
   /**
    * <code>int64 int_value = 4;</code>
+   *
    * @return The intValue.
    */
   long getIntValue();
@@ -70,9 +79,11 @@ public interface MeasurementOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.Timestamp time = 5;</code>
+   *
    * @return Whether the time field is set.
    */
   boolean hasTime();
+
   /**
    * <pre>
    * The time when this measurement was recorded. If the implementation uses a async buffer to
@@ -80,9 +91,11 @@ public interface MeasurementOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.Timestamp time = 5;</code>
+   *
    * @return The time.
    */
   com.google.protobuf.Timestamp getTime();
+
   /**
    * <pre>
    * The time when this measurement was recorded. If the implementation uses a async buffer to
@@ -93,5 +106,5 @@ public interface MeasurementOrBuilder extends
    */
   com.google.protobuf.TimestampOrBuilder getTimeOrBuilder();
 
-  public io.opencensus.proto.stats.v1.Measurement.ValueCase getValueCase();
+  io.opencensus.proto.stats.v1.Measurement.ValueCase getValueCase();
 }
