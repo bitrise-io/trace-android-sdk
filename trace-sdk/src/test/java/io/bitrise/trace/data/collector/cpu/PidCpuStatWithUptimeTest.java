@@ -44,7 +44,7 @@ public class PidCpuStatWithUptimeTest {
         final CpuUsageData.PidCpuStat differentPidCpuStat = new CpuUsageData.PidCpuStat(
                 10,20,30,40,50 );
         final CpuUsageData.PidCpuStatWithUptime differentPidCpuStatWithUptime =
-                new CpuUsageData.PidCpuStatWithUptime(differentPidCpuStat, 100, 200 );
+                new CpuUsageData.PidCpuStatWithUptime(differentPidCpuStat, 10, 20 );
         assertFalse(pidCpuStatWithUptime.equals(differentPidCpuStatWithUptime));
     }
 

@@ -32,7 +32,7 @@ public class CpuStatTest {
     @Test
     public void equals_differentCpuStat() {
         final CpuUsageData.CpuStat differentCpuStat = new CpuUsageData.CpuStat(
-                10, 20, 30, 40, 50, 60, 70, 80 );
+                1, 2, 3, 4, 5, 6, 7, 80 );
         assertFalse(cpuStat.equals(differentCpuStat));
     }
 
