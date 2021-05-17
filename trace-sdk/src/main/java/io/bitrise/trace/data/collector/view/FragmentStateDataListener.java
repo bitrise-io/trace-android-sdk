@@ -1,6 +1,7 @@
 package io.bitrise.trace.data.collector.view;
 
 import android.app.Activity;
+import android.app.FragmentManager.FragmentLifecycleCallbacks;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -250,8 +251,7 @@ public class FragmentStateDataListener extends FragmentManager.FragmentLifecycle
   @VisibleForTesting
   @RequiresApi(api = Build.VERSION_CODES.O)
   @NonNull
-  synchronized android.app.FragmentManager.FragmentLifecycleCallbacks
-  getDeprecatedFragmentCallbackTracker() {
+  synchronized FragmentLifecycleCallbacks getDeprecatedFragmentCallbackTracker() {
     if (deprecatedFragmentCallbackTracker == null) {
       deprecatedFragmentCallbackTracker =
           new android.app.FragmentManager.FragmentLifecycleCallbacks() {

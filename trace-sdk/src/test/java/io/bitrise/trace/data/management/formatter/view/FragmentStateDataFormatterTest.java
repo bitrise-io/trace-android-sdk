@@ -49,16 +49,17 @@ public class FragmentStateDataFormatterTest {
 
   /**
    * When the input data timestamp is before all of the timestamps of
-   * {@link FragmentDataStateEntry}s, it should
-   * return 0.
+   * {@link FragmentDataStateEntry}s, it should return 0.
    */
   @Test
   public void getFirstValidPausedIndex_ShouldBeZero() {
     final List<FragmentDataStateEntry> fragmentDataStateEntries =
-        new ArrayList<FragmentDataStateEntry>() {{
-          add(fragmentDataStateEntryPaused1);
-          add(fragmentDataStateEntryPaused2);
-        }};
+        new ArrayList<FragmentDataStateEntry>() {
+          {
+            add(fragmentDataStateEntryPaused1);
+            add(fragmentDataStateEntryPaused2);
+          }
+        };
     final int actualValue =
         FragmentStateDataFormatter.getFirstValidPausedIndex(1000, fragmentDataStateEntries);
     assertThat(actualValue, is(0));
@@ -66,15 +67,17 @@ public class FragmentStateDataFormatterTest {
 
   /**
    * When the input data timestamp is between the timestamps of {@link FragmentDataStateEntry}s,
-   * it should return anumber greater than zero.
+   * it should return a number greater than zero.
    */
   @Test
   public void getFirstValidPausedIndex_ShouldBeGreaterThanZero() {
     final List<FragmentDataStateEntry> fragmentDataStateEntries =
-        new ArrayList<FragmentDataStateEntry>() {{
-          add(fragmentDataStateEntryPaused1);
-          add(fragmentDataStateEntryPaused2);
-        }};
+        new ArrayList<FragmentDataStateEntry>() {
+          {
+            add(fragmentDataStateEntryPaused1);
+            add(fragmentDataStateEntryPaused2);
+          }
+        };
     final int actualValue =
         FragmentStateDataFormatter.getFirstValidPausedIndex(2000, fragmentDataStateEntries);
     assertThat(actualValue, greaterThan(0));
@@ -88,10 +91,12 @@ public class FragmentStateDataFormatterTest {
   @Test
   public void getFirstValidPausedIndex_ShouldBeInvalid() {
     final List<FragmentDataStateEntry> fragmentDataStateEntries =
-        new ArrayList<FragmentDataStateEntry>() {{
-          add(fragmentDataStateEntryPaused1);
-          add(fragmentDataStateEntryPaused2);
-        }};
+        new ArrayList<FragmentDataStateEntry>() {
+          {
+            add(fragmentDataStateEntryPaused1);
+            add(fragmentDataStateEntryPaused2);
+          }
+        };
     final int actualValue =
         FragmentStateDataFormatter.getFirstValidPausedIndex(3000, fragmentDataStateEntries);
     assertThat(actualValue, is(FragmentStateDataFormatter.INVALID_INDEX));
@@ -104,17 +109,21 @@ public class FragmentStateDataFormatterTest {
   @Test
   public void sortFragmentDataStates_ShouldSortList() {
     final List<FragmentDataStateEntry> fragmentDataStateEntries =
-        new ArrayList<FragmentDataStateEntry>() {{
-          add(fragmentDataStateEntryPaused2);
-          add(fragmentDataStateEntryPaused1);
-          add(fragmentDataStateEntryPaused3);
-        }};
+        new ArrayList<FragmentDataStateEntry>() {
+          {
+            add(fragmentDataStateEntryPaused2);
+            add(fragmentDataStateEntryPaused1);
+            add(fragmentDataStateEntryPaused3);
+          }
+        };
 
-    final List<FragmentDataStateEntry> expectedValue = new ArrayList<FragmentDataStateEntry>() {{
-      add(fragmentDataStateEntryPaused1);
-      add(fragmentDataStateEntryPaused2);
-      add(fragmentDataStateEntryPaused3);
-    }};
+    final List<FragmentDataStateEntry> expectedValue = new ArrayList<FragmentDataStateEntry>() {
+      {
+        add(fragmentDataStateEntryPaused1);
+        add(fragmentDataStateEntryPaused2);
+        add(fragmentDataStateEntryPaused3);
+      }
+    };
 
     FragmentStateDataFormatter.sortFragmentDataStates(fragmentDataStateEntries);
     assertThat(fragmentDataStateEntries,
@@ -129,18 +138,22 @@ public class FragmentStateDataFormatterTest {
   @Test
   public void validatePausedEntries_ShouldNotFilter() {
     final List<FragmentDataStateEntry> viewCreatedFragmentDataStateEntries =
-        new ArrayList<FragmentDataStateEntry>() {{
-          add(fragmentDataStateEntryCreated1);
-          add(fragmentDataStateEntryCreated3);
-          add(fragmentDataStateEntryCreated2);
-        }};
+        new ArrayList<FragmentDataStateEntry>() {
+          {
+            add(fragmentDataStateEntryCreated1);
+            add(fragmentDataStateEntryCreated3);
+            add(fragmentDataStateEntryCreated2);
+          }
+        };
 
     final List<FragmentDataStateEntry> pausedFragmentDataStateEntries =
-        new ArrayList<FragmentDataStateEntry>() {{
-          add(fragmentDataStateEntryPaused3);
-          add(fragmentDataStateEntryPaused2);
-          add(fragmentDataStateEntryPaused1);
-        }};
+        new ArrayList<FragmentDataStateEntry>() {
+          {
+            add(fragmentDataStateEntryPaused3);
+            add(fragmentDataStateEntryPaused2);
+            add(fragmentDataStateEntryPaused1);
+          }
+        };
     final List<FragmentDataStateEntry> actualValue =
         FragmentStateDataFormatter.validatePausedEntries(
             "fragmentName", viewCreatedFragmentDataStateEntries, pausedFragmentDataStateEntries);
@@ -157,25 +170,31 @@ public class FragmentStateDataFormatterTest {
   @Test
   public void validatePausedEntries_ShouldFilter() {
     final List<FragmentDataStateEntry> viewCreatedFragmentDataStateEntries =
-        new ArrayList<FragmentDataStateEntry>() {{
-          add(fragmentDataStateEntryCreated3);
-          add(fragmentDataStateEntryCreated2);
-        }};
+        new ArrayList<FragmentDataStateEntry>() {
+          {
+            add(fragmentDataStateEntryCreated3);
+            add(fragmentDataStateEntryCreated2);
+          }
+        };
 
     final List<FragmentDataStateEntry> pausedFragmentDataStateEntries =
-        new ArrayList<FragmentDataStateEntry>() {{
-          add(fragmentDataStateEntryPaused3);
-          add(fragmentDataStateEntryPaused2);
-          add(fragmentDataStateEntryPaused1);
-        }};
+        new ArrayList<FragmentDataStateEntry>() {
+          {
+            add(fragmentDataStateEntryPaused3);
+            add(fragmentDataStateEntryPaused2);
+            add(fragmentDataStateEntryPaused1);
+          }
+        };
 
     final List<FragmentDataStateEntry> actualValue =
         FragmentStateDataFormatter.validatePausedEntries("fragmentName",
             viewCreatedFragmentDataStateEntries, pausedFragmentDataStateEntries);
-    final List<FragmentDataStateEntry> expectedValue = new ArrayList<FragmentDataStateEntry>() {{
-      add(fragmentDataStateEntryPaused2);
-      add(fragmentDataStateEntryPaused3);
-    }};
+    final List<FragmentDataStateEntry> expectedValue = new ArrayList<FragmentDataStateEntry>() {
+      {
+        add(fragmentDataStateEntryPaused2);
+        add(fragmentDataStateEntryPaused3);
+      }
+    };
 
     assertThat(actualValue, contains(expectedValue.toArray(new FragmentDataStateEntry[] {})));
   }
@@ -188,15 +207,19 @@ public class FragmentStateDataFormatterTest {
   @Test
   public void validatePausedEntries_ShouldReturnEmpty() {
     final List<FragmentDataStateEntry> viewCreatedFragmentDataStateEntries =
-        new ArrayList<FragmentDataStateEntry>() {{
-          add(fragmentDataStateEntryCreated3);
-        }};
+        new ArrayList<FragmentDataStateEntry>() {
+          {
+            add(fragmentDataStateEntryCreated3);
+          }
+        };
 
     final List<FragmentDataStateEntry> pausedFragmentDataStateEntries =
-        new ArrayList<FragmentDataStateEntry>() {{
-          add(fragmentDataStateEntryPaused2);
-          add(fragmentDataStateEntryPaused1);
-        }};
+        new ArrayList<FragmentDataStateEntry>() {
+          {
+            add(fragmentDataStateEntryPaused2);
+            add(fragmentDataStateEntryPaused1);
+          }
+        };
 
     final List<FragmentDataStateEntry> actualValue =
         FragmentStateDataFormatter.validatePausedEntries("fragmentName",
@@ -211,14 +234,18 @@ public class FragmentStateDataFormatterTest {
   @Test
   public void validateEntries_ShouldBeValidWithEntries() {
     final List<FragmentDataStateEntry> viewCreatedFragmentDataStateEntries =
-        new ArrayList<FragmentDataStateEntry>() {{
-          add(fragmentDataStateEntryCreated2);
-        }};
+        new ArrayList<FragmentDataStateEntry>() {
+          {
+            add(fragmentDataStateEntryCreated2);
+          }
+        };
 
     final List<FragmentDataStateEntry> pausedFragmentDataStateEntries =
-        new ArrayList<FragmentDataStateEntry>() {{
-          add(fragmentDataStateEntryPaused3);
-        }};
+        new ArrayList<FragmentDataStateEntry>() {
+          {
+            add(fragmentDataStateEntryPaused3);
+          }
+        };
 
     final boolean actualValue = FragmentStateDataFormatter.validateEntries(DUMMY_FRAGMENT_NAME,
         viewCreatedFragmentDataStateEntries, pausedFragmentDataStateEntries);
@@ -235,11 +262,13 @@ public class FragmentStateDataFormatterTest {
     final List<FragmentDataStateEntry> viewCreatedFragmentDataStateEntries = new ArrayList<>();
 
     final List<FragmentDataStateEntry> pausedFragmentDataStateEntries =
-        new ArrayList<FragmentDataStateEntry>() {{
-          add(fragmentDataStateEntryPaused3);
-          add(fragmentDataStateEntryPaused2);
-          add(fragmentDataStateEntryPaused1);
-        }};
+        new ArrayList<FragmentDataStateEntry>() {
+          {
+            add(fragmentDataStateEntryPaused3);
+            add(fragmentDataStateEntryPaused2);
+            add(fragmentDataStateEntryPaused1);
+          }
+        };
 
     final boolean actualValue = FragmentStateDataFormatter.validateEntries(DUMMY_FRAGMENT_NAME,
         viewCreatedFragmentDataStateEntries, pausedFragmentDataStateEntries);
@@ -254,11 +283,13 @@ public class FragmentStateDataFormatterTest {
   @Test
   public void validateEntries_ShouldBeInvalidWithoutPausedEntries() {
     final List<FragmentDataStateEntry> viewCreatedFragmentDataStateEntries =
-        new ArrayList<FragmentDataStateEntry>() {{
-          add(fragmentDataStateEntryCreated2);
-          add(fragmentDataStateEntryCreated3);
-          add(fragmentDataStateEntryCreated1);
-        }};
+        new ArrayList<FragmentDataStateEntry>() {
+          {
+            add(fragmentDataStateEntryCreated2);
+            add(fragmentDataStateEntryCreated3);
+            add(fragmentDataStateEntryCreated1);
+          }
+        };
 
     final List<FragmentDataStateEntry> pausedFragmentDataStateEntries = new ArrayList<>();
 
@@ -275,16 +306,20 @@ public class FragmentStateDataFormatterTest {
   @Test
   public void findAllByState_ShouldReturnOnlyViewCreated() {
     final List<FragmentDataStateEntry> fragmentDataStateEntries =
-        new ArrayList<FragmentDataStateEntry>() {{
-          add(fragmentDataStateEntryCreated2);
-          add(fragmentDataStateEntryPaused1);
-          add(fragmentDataStateEntryCreated1);
-        }};
+        new ArrayList<FragmentDataStateEntry>() {
+          {
+            add(fragmentDataStateEntryCreated2);
+            add(fragmentDataStateEntryPaused1);
+            add(fragmentDataStateEntryCreated1);
+          }
+        };
 
-    final List<FragmentDataStateEntry> expectedValue = new ArrayList<FragmentDataStateEntry>() {{
-      add(fragmentDataStateEntryCreated2);
-      add(fragmentDataStateEntryCreated1);
-    }};
+    final List<FragmentDataStateEntry> expectedValue = new ArrayList<FragmentDataStateEntry>() {
+      {
+        add(fragmentDataStateEntryCreated2);
+        add(fragmentDataStateEntryCreated1);
+      }
+    };
 
     final List<FragmentDataStateEntry> actualValue = FragmentStateDataFormatter.findAllByState(
         fragmentDataStateEntries,
@@ -300,15 +335,19 @@ public class FragmentStateDataFormatterTest {
   @Test
   public void findAllByState_ShouldReturnOnlyPaused() {
     final List<FragmentDataStateEntry> fragmentDataStateEntries =
-        new ArrayList<FragmentDataStateEntry>() {{
-          add(fragmentDataStateEntryCreated2);
-          add(fragmentDataStateEntryPaused1);
-          add(fragmentDataStateEntryCreated1);
-        }};
+        new ArrayList<FragmentDataStateEntry>() {
+          {
+            add(fragmentDataStateEntryCreated2);
+            add(fragmentDataStateEntryPaused1);
+            add(fragmentDataStateEntryCreated1);
+          }
+        };
 
-    final List<FragmentDataStateEntry> expectedValue = new ArrayList<FragmentDataStateEntry>() {{
-      add(fragmentDataStateEntryPaused1);
-    }};
+    final List<FragmentDataStateEntry> expectedValue = new ArrayList<FragmentDataStateEntry>() {
+      {
+        add(fragmentDataStateEntryPaused1);
+      }
+    };
 
     assertThat(FragmentStateDataFormatter.findAllByState(fragmentDataStateEntries,
         FragmentState.PAUSED),
@@ -322,12 +361,14 @@ public class FragmentStateDataFormatterTest {
   @Test
   public void getFragmentSpans_ShouldCreateProperSpans() {
     final List<FragmentDataStateEntry> fragmentDataStateEntries =
-        new ArrayList<FragmentDataStateEntry>() {{
-          add(fragmentDataStateEntryCreated2);
-          add(fragmentDataStateEntryPaused1);
-          add(fragmentDataStateEntryCreated1);
-          add(fragmentDataStateEntryPaused2);
-        }};
+        new ArrayList<FragmentDataStateEntry>() {
+          {
+            add(fragmentDataStateEntryCreated2);
+            add(fragmentDataStateEntryPaused1);
+            add(fragmentDataStateEntryCreated1);
+            add(fragmentDataStateEntryPaused2);
+          }
+        };
 
     final FragmentData fragmentData = new FragmentData(DUMMY_SPAN_ID);
 
@@ -337,22 +378,24 @@ public class FragmentStateDataFormatterTest {
 
     final List<Span> actualValue = FragmentStateDataFormatter.getFragmentSpans(fragmentData);
 
-    final List<Span> expectedValue = new ArrayList<Span>() {{
-      add(FragmentStateDataFormatter.createFragmentViewSpan(DUMMY_FRAGMENT_NAME, 1000,
-          1500, ByteStringConverter.toString(actualValue.get(0).getSpanId()),
-          DUMMY_PARENT_SPAN_ID));
-      add(FragmentStateDataFormatter.createFragmentViewSpan(DUMMY_FRAGMENT_NAME, 2000,
-          2500, ByteStringConverter.toString(actualValue.get(1).getSpanId()),
-          DUMMY_PARENT_SPAN_ID));
-    }};
+    final List<Span> expectedValue = new ArrayList<Span>() {
+      {
+        add(FragmentStateDataFormatter.createFragmentViewSpan(DUMMY_FRAGMENT_NAME, 1000,
+            1500, ByteStringConverter.toString(actualValue.get(0).getSpanId()),
+            DUMMY_PARENT_SPAN_ID));
+        add(FragmentStateDataFormatter.createFragmentViewSpan(DUMMY_FRAGMENT_NAME, 2000,
+            2500, ByteStringConverter.toString(actualValue.get(1).getSpanId()),
+            DUMMY_PARENT_SPAN_ID));
+      }
+    };
 
     assertThat(actualValue, contains(expectedValue.toArray(new Span[] {})));
   }
 
   /**
    * Providing an empty input for
-   * {@link FragmentStateDataFormatter#getFragmentSpans(FragmentData)} should produce
-   * an empty output.
+   * {@link FragmentStateDataFormatter#getFragmentSpans(FragmentData)} should produce an empty
+   * output.
    */
   @Test
   public void getFragmentSpans_ShouldBeEmpty() {
@@ -377,10 +420,12 @@ public class FragmentStateDataFormatterTest {
   @Test
   public void formatData_oneSpan() {
     final List<FragmentDataStateEntry> fragmentDataStateEntries =
-        new ArrayList<FragmentDataStateEntry>() {{
-          add(fragmentDataStateEntryCreated1);
-          add(fragmentDataStateEntryPaused1);
-        }};
+        new ArrayList<FragmentDataStateEntry>() {
+          {
+            add(fragmentDataStateEntryCreated1);
+            add(fragmentDataStateEntryPaused1);
+          }
+        };
     final FragmentData fragmentData = new FragmentData(DUMMY_SPAN_ID);
     fragmentData.setName(DUMMY_FRAGMENT_NAME);
     fragmentData.setParentSpanId(DUMMY_PARENT_SPAN_ID);
@@ -399,12 +444,14 @@ public class FragmentStateDataFormatterTest {
   @Test
   public void formatData_twoSpan() {
     final List<FragmentDataStateEntry> fragmentDataStateEntries =
-        new ArrayList<FragmentDataStateEntry>() {{
-          add(fragmentDataStateEntryCreated1);
-          add(fragmentDataStateEntryPaused1);
-          add(fragmentDataStateEntryCreated2);
-          add(fragmentDataStateEntryPaused2);
-        }};
+        new ArrayList<FragmentDataStateEntry>() {
+          {
+            add(fragmentDataStateEntryCreated1);
+            add(fragmentDataStateEntryPaused1);
+            add(fragmentDataStateEntryCreated2);
+            add(fragmentDataStateEntryPaused2);
+          }
+        };
     final FragmentData fragmentData = new FragmentData(DUMMY_SPAN_ID);
     fragmentData.setName(DUMMY_FRAGMENT_NAME);
     fragmentData.setParentSpanId(DUMMY_PARENT_SPAN_ID);

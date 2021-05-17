@@ -11,6 +11,7 @@ import java.net.URLStreamHandlerFactory;
  * Custom implementation of {@link URLStreamHandlerFactory} so that we can override http and https
  * connections with our {@link TraceURLStreamHandler}.
  */
+@SuppressWarnings("checkstyle:abbreviation")
 public class TraceURLStreamHandlerFactory implements URLStreamHandlerFactory {
 
   @Override

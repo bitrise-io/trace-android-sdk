@@ -76,14 +76,14 @@ public class SystemCpuUsageDataCollector extends CpuUsageDataCollector {
    */
   @VisibleForTesting
   static float getTotalUsage(@NonNull final CpuUsageData.CpuStat cpuStat) {
-    return cpuStat.getUser() +
-        cpuStat.getNice() +
-        cpuStat.getSystem() +
-        cpuStat.getIdle() +
-        cpuStat.getIoWait() +
-        cpuStat.getIrq() +
-        cpuStat.getSoftIrq() +
-        cpuStat.getSteal();
+    return cpuStat.getUser()
+        + cpuStat.getNice()
+        + cpuStat.getSystem()
+        + cpuStat.getIdle()
+        + cpuStat.getIoWait()
+        + cpuStat.getIrq()
+        + cpuStat.getSoftIrq()
+        + cpuStat.getSteal();
   }
 
   /**
@@ -194,7 +194,7 @@ public class SystemCpuUsageDataCollector extends CpuUsageDataCollector {
    *     <li>Reads the total usage from it</li>
    * </ul>
    *
-   * <p> If the proc/stat file cannot be read, the IOException is caught and logged, and {@code
+   * <p>If the proc/stat file cannot be read, the IOException is caught and logged, and {@code
    * null} is returned.
    *
    * @return the total CPU usage, or {@code null} when it cannot be read.
@@ -226,7 +226,7 @@ public class SystemCpuUsageDataCollector extends CpuUsageDataCollector {
    * @param randomAccessFile the RandomAccessFile to read from.
    * @param numberOfCores    the number of cores.
    * @return an ArrayList of each CPU core stat, element can be {@code null} when the given core
-   * is switched off.
+   *     is switched off.
    * @throws IOException if the given RandomAccessFile cannot be read.
    */
   @NonNull

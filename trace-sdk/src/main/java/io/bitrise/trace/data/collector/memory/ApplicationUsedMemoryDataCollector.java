@@ -53,7 +53,7 @@ public class ApplicationUsedMemoryDataCollector extends MemoryDataCollector {
    * Gets the total amount of used memory for the application.
    *
    * @return the long value of the memory amount, or {@code null}, when we cannot access to the
-   * {@link Context#ACTIVITY_SERVICE}.
+   *     {@link Context#ACTIVITY_SERVICE}.
    */
   @Nullable
   private Long getAppUsedMemory() {

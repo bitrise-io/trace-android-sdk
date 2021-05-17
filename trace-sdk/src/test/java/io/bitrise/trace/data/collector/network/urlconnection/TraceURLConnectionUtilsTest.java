@@ -14,6 +14,7 @@ import org.junit.Test;
 /**
  * Tests for {@link TraceURLConnectionUtils}.
  */
+@SuppressWarnings("checkstyle:abbreviation")
 public class TraceURLConnectionUtilsTest {
 
   @Test

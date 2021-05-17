@@ -67,6 +67,7 @@ public class TraceLogTest {
   }
 
   @Test
+  @SuppressWarnings("checkstyle:MethodName")
   public void destroyLogger_changesType() {
     TraceLog.makeAndroidLogger();
     assertTrue(TraceLog.getLogger() instanceof AndroidLogger);
@@ -76,7 +77,8 @@ public class TraceLogTest {
   }
 
   @Test
-  public void d() {
+  @SuppressWarnings("checkstyle:MethodName")
+  public void d_shouldPrintOnce() {
     Logger mockLogger = Mockito.mock(Logger.class);
     TraceLog.logger = mockLogger;
 
@@ -85,7 +87,8 @@ public class TraceLogTest {
   }
 
   @Test
-  public void e() {
+  @SuppressWarnings("checkstyle:MethodName")
+  public void e_shouldPrintOnce() {
     Logger mockLogger = Mockito.mock(Logger.class);
     TraceLog.logger = mockLogger;
 
@@ -94,7 +97,8 @@ public class TraceLogTest {
   }
 
   @Test
-  public void i() {
+  @SuppressWarnings("checkstyle:MethodName")
+  public void i_shouldPrintOnce() {
     Logger mockLogger = Mockito.mock(Logger.class);
     TraceLog.logger = mockLogger;
 
@@ -103,7 +107,8 @@ public class TraceLogTest {
   }
 
   @Test
-  public void v() {
+  @SuppressWarnings("checkstyle:MethodName")
+  public void v_shouldPrintOnce() {
     Logger mockLogger = Mockito.mock(Logger.class);
     TraceLog.logger = mockLogger;
 
@@ -112,7 +117,8 @@ public class TraceLogTest {
   }
 
   @Test
-  public void w() {
+  @SuppressWarnings("checkstyle:MethodName")
+  public void w_shouldPrintOnce() {
     Logger mockLogger = Mockito.mock(Logger.class);
     TraceLog.logger = mockLogger;
 
@@ -121,30 +127,35 @@ public class TraceLogTest {
   }
 
   @Test
+  @SuppressWarnings("checkstyle:MethodName")
   public void d_notInitialisedShouldBeSilent() {
     TraceLog.d("debug message");
     assertTrue(TraceLog.getLogger() instanceof SilentLogger);
   }
 
   @Test
+  @SuppressWarnings("checkstyle:MethodName")
   public void e_notInitialisedShouldBeSilent() {
     TraceLog.e("error message");
     assertTrue(TraceLog.getLogger() instanceof SilentLogger);
   }
 
   @Test
+  @SuppressWarnings("checkstyle:MethodName")
   public void i_notInitialisedShouldBeSilent() {
     TraceLog.i("info message");
     assertTrue(TraceLog.getLogger() instanceof SilentLogger);
   }
 
   @Test
+  @SuppressWarnings("checkstyle:MethodName")
   public void w_notInitialisedShouldBeSilent() {
     TraceLog.w("warning message");
     assertTrue(TraceLog.getLogger() instanceof SilentLogger);
   }
 
   @Test
+  @SuppressWarnings("checkstyle:MethodName")
   public void v_notInitialisedShouldBeSilent() {
     TraceLog.v("verbose message");
     assertTrue(TraceLog.getLogger() instanceof SilentLogger);

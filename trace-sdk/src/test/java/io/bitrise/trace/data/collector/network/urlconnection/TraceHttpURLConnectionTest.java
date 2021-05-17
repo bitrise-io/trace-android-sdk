@@ -30,6 +30,7 @@ import org.mockito.Mockito;
 /**
  * Tests for {@link TraceHttpURLConnection}.
  */
+@SuppressWarnings("checkstyle:abbreviation")
 public class TraceHttpURLConnectionTest {
 
   private final Proxy dummyProxy = new Proxy(Proxy.Type.HTTP,
