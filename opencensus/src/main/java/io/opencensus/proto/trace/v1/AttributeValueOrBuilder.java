@@ -13,18 +13,22 @@ public interface AttributeValueOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TruncatableString string_value = 1;</code>
+   *
    * @return Whether the stringValue field is set.
    */
   boolean hasStringValue();
+
   /**
    * <pre>
    * A string up to 256 bytes long.
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TruncatableString string_value = 1;</code>
+   *
    * @return The stringValue.
    */
   io.opencensus.proto.trace.v1.TruncatableString getStringValue();
+
   /**
    * <pre>
    * A string up to 256 bytes long.
@@ -40,6 +44,7 @@ public interface AttributeValueOrBuilder extends
    * </pre>
    *
    * <code>int64 int_value = 2;</code>
+   *
    * @return The intValue.
    */
   long getIntValue();
@@ -50,6 +55,7 @@ public interface AttributeValueOrBuilder extends
    * </pre>
    *
    * <code>bool bool_value = 3;</code>
+   *
    * @return The boolValue.
    */
   boolean getBoolValue();
@@ -60,9 +66,10 @@ public interface AttributeValueOrBuilder extends
    * </pre>
    *
    * <code>double double_value = 4;</code>
+   *
    * @return The doubleValue.
    */
   double getDoubleValue();
 
-  public io.opencensus.proto.trace.v1.AttributeValue.ValueCase getValueCase();
+  io.opencensus.proto.trace.v1.AttributeValue.ValueCase getValueCase();
 }

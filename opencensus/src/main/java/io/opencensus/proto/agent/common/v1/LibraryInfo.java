@@ -7,36 +7,50 @@ package io.opencensus.proto.agent.common.v1;
  * <pre>
  * Information on OpenCensus Library.
  * </pre>
- *
+ * <p>
  * Protobuf type {@code opencensus.proto.agent.common.v1.LibraryInfo}
  */
 public final class LibraryInfo extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:opencensus.proto.agent.common.v1.LibraryInfo)
     LibraryInfoOrBuilder {
-private static final long serialVersionUID = 0L;
+  public static final int LANGUAGE_FIELD_NUMBER = 1;
+  public static final int EXPORTER_VERSION_FIELD_NUMBER = 2;
+  public static final int CORE_LIBRARY_VERSION_FIELD_NUMBER = 3;
+  private static final long serialVersionUID = 0L;
+  // @@protoc_insertion_point(class_scope:opencensus.proto.agent.common.v1.LibraryInfo)
+  private static final io.opencensus.proto.agent.common.v1.LibraryInfo DEFAULT_INSTANCE;
+  private static final com.google.protobuf.Parser<LibraryInfo>
+      PARSER = new com.google.protobuf.AbstractParser<LibraryInfo>() {
+    @java.lang.Override
+    public LibraryInfo parsePartialFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return new LibraryInfo(input, extensionRegistry);
+    }
+  };
+
+  static {
+    DEFAULT_INSTANCE = new io.opencensus.proto.agent.common.v1.LibraryInfo();
+  }
+
+  private int language_;
+  private volatile java.lang.Object exporterVersion_;
+  private volatile java.lang.Object coreLibraryVersion_;
+  private byte memoizedIsInitialized = -1;
+
   // Use LibraryInfo.newBuilder() to construct.
   private LibraryInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
+
   private LibraryInfo() {
     language_ = 0;
     exporterVersion_ = "";
     coreLibraryVersion_ = "";
   }
 
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new LibraryInfo();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
   private LibraryInfo(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -92,17 +106,381 @@ private static final long serialVersionUID = 0L;
       makeExtensionsImmutable();
     }
   }
+
   public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
+  getDescriptor() {
     return io.opencensus.proto.agent.common.v1.CommonProto.internal_static_opencensus_proto_agent_common_v1_LibraryInfo_descriptor;
+  }
+
+  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseDelimitedFrom(
+      java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(io.opencensus.proto.agent.common.v1.LibraryInfo prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
+  public static io.opencensus.proto.agent.common.v1.LibraryInfo getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  public static com.google.protobuf.Parser<LibraryInfo> parser() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new LibraryInfo();
+  }
+
+  @java.lang.Override
+  public final com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
+  internalGetFieldAccessorTable() {
     return io.opencensus.proto.agent.common.v1.CommonProto.internal_static_opencensus_proto_agent_common_v1_LibraryInfo_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.agent.common.v1.LibraryInfo.class, io.opencensus.proto.agent.common.v1.LibraryInfo.Builder.class);
+            io.opencensus.proto.agent.common.v1.LibraryInfo.class,
+            io.opencensus.proto.agent.common.v1.LibraryInfo.Builder.class);
+  }
+
+  /**
+   * <pre>
+   * Language of OpenCensus Library.
+   * </pre>
+   *
+   * <code>.opencensus.proto.agent.common.v1.LibraryInfo.Language language = 1;</code>
+   *
+   * @return The enum numeric value on the wire for language.
+   */
+  @java.lang.Override
+  public int getLanguageValue() {
+    return language_;
+  }
+
+  /**
+   * <pre>
+   * Language of OpenCensus Library.
+   * </pre>
+   *
+   * <code>.opencensus.proto.agent.common.v1.LibraryInfo.Language language = 1;</code>
+   *
+   * @return The language.
+   */
+  @java.lang.Override
+  public io.opencensus.proto.agent.common.v1.LibraryInfo.Language getLanguage() {
+    @SuppressWarnings("deprecation")
+    io.opencensus.proto.agent.common.v1.LibraryInfo.Language result =
+        io.opencensus.proto.agent.common.v1.LibraryInfo.Language.valueOf(language_);
+    return result == null ? io.opencensus.proto.agent.common.v1.LibraryInfo.Language.UNRECOGNIZED :
+        result;
+  }
+
+  /**
+   * <pre>
+   * Version of Agent exporter of Library.
+   * </pre>
+   *
+   * <code>string exporter_version = 2;</code>
+   *
+   * @return The exporterVersion.
+   */
+  @java.lang.Override
+  public java.lang.String getExporterVersion() {
+    java.lang.Object ref = exporterVersion_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs =
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      exporterVersion_ = s;
+      return s;
+    }
+  }
+
+  /**
+   * <pre>
+   * Version of Agent exporter of Library.
+   * </pre>
+   *
+   * <code>string exporter_version = 2;</code>
+   *
+   * @return The bytes for exporterVersion.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+  getExporterVersionBytes() {
+    java.lang.Object ref = exporterVersion_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      exporterVersion_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  /**
+   * <pre>
+   * Version of OpenCensus Library.
+   * </pre>
+   *
+   * <code>string core_library_version = 3;</code>
+   *
+   * @return The coreLibraryVersion.
+   */
+  @java.lang.Override
+  public java.lang.String getCoreLibraryVersion() {
+    java.lang.Object ref = coreLibraryVersion_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs =
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      coreLibraryVersion_ = s;
+      return s;
+    }
+  }
+
+  /**
+   * <pre>
+   * Version of OpenCensus Library.
+   * </pre>
+   *
+   * <code>string core_library_version = 3;</code>
+   *
+   * @return The bytes for coreLibraryVersion.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+  getCoreLibraryVersionBytes() {
+    java.lang.Object ref = coreLibraryVersion_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      coreLibraryVersion_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  @java.lang.Override
+  public final boolean isInitialized() {
+    byte isInitialized = memoizedIsInitialized;
+    if (isInitialized == 1) {
+      return true;
+    }
+    if (isInitialized == 0) {
+      return false;
+    }
+
+    memoizedIsInitialized = 1;
+    return true;
+  }
+
+  @java.lang.Override
+  public void writeTo(com.google.protobuf.CodedOutputStream output)
+      throws java.io.IOException {
+    if (language_ !=
+        io.opencensus.proto.agent.common.v1.LibraryInfo.Language.LANGUAGE_UNSPECIFIED.getNumber()) {
+      output.writeEnum(1, language_);
+    }
+    if (!getExporterVersionBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, exporterVersion_);
+    }
+    if (!getCoreLibraryVersionBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, coreLibraryVersion_);
+    }
+    unknownFields.writeTo(output);
+  }
+
+  @java.lang.Override
+  public int getSerializedSize() {
+    int size = memoizedSize;
+    if (size != -1) {
+      return size;
+    }
+
+    size = 0;
+    if (language_ !=
+        io.opencensus.proto.agent.common.v1.LibraryInfo.Language.LANGUAGE_UNSPECIFIED.getNumber()) {
+      size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, language_);
+    }
+    if (!getExporterVersionBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, exporterVersion_);
+    }
+    if (!getCoreLibraryVersionBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, coreLibraryVersion_);
+    }
+    size += unknownFields.getSerializedSize();
+    memoizedSize = size;
+    return size;
+  }
+
+  @java.lang.Override
+  public boolean equals(final java.lang.Object obj) {
+    if (obj == this) {
+      return true;
+    }
+    if (!(obj instanceof io.opencensus.proto.agent.common.v1.LibraryInfo)) {
+      return super.equals(obj);
+    }
+    io.opencensus.proto.agent.common.v1.LibraryInfo other =
+        (io.opencensus.proto.agent.common.v1.LibraryInfo) obj;
+
+    if (language_ != other.language_) {
+      return false;
+    }
+    if (!getExporterVersion()
+        .equals(other.getExporterVersion())) {
+      return false;
+    }
+    if (!getCoreLibraryVersion()
+        .equals(other.getCoreLibraryVersion())) {
+      return false;
+    }
+    return unknownFields.equals(other.unknownFields);
+  }
+
+  @java.lang.Override
+  public int hashCode() {
+    if (memoizedHashCode != 0) {
+      return memoizedHashCode;
+    }
+    int hash = 41;
+    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + LANGUAGE_FIELD_NUMBER;
+    hash = (53 * hash) + language_;
+    hash = (37 * hash) + EXPORTER_VERSION_FIELD_NUMBER;
+    hash = (53 * hash) + getExporterVersion().hashCode();
+    hash = (37 * hash) + CORE_LIBRARY_VERSION_FIELD_NUMBER;
+    hash = (53 * hash) + getCoreLibraryVersion().hashCode();
+    hash = (29 * hash) + unknownFields.hashCode();
+    memoizedHashCode = hash;
+    return hash;
+  }
+
+  @java.lang.Override
+  public Builder newBuilderForType() {
+    return newBuilder();
+  }
+
+  @java.lang.Override
+  public Builder toBuilder() {
+    return this == DEFAULT_INSTANCE
+        ? new Builder() : new Builder().mergeFrom(this);
+  }
+
+  @java.lang.Override
+  protected Builder newBuilderForType(
+      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    Builder builder = new Builder(parent);
+    return builder;
+  }
+
+  @java.lang.Override
+  public com.google.protobuf.Parser<LibraryInfo> getParserForType() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public io.opencensus.proto.agent.common.v1.LibraryInfo getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
   }
 
   /**
@@ -201,14 +579,18 @@ private static final long serialVersionUID = 0L;
      * <code>WEB_JS = 10;</code>
      */
     public static final int WEB_JS_VALUE = 10;
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        Language> internalValueMap =
+        new com.google.protobuf.Internal.EnumLiteMap<Language>() {
+          public Language findValueByNumber(int number) {
+            return Language.forNumber(number);
+          }
+        };
+    private static final Language[] VALUES = values();
+    private final int value;
 
-
-    public final int getNumber() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
-            "Can't get the number of an unknown enum value.");
-      }
-      return value;
+    Language(int value) {
+      this.value = value;
     }
 
     /**
@@ -227,57 +609,48 @@ private static final long serialVersionUID = 0L;
      */
     public static Language forNumber(int value) {
       switch (value) {
-        case 0: return LANGUAGE_UNSPECIFIED;
-        case 1: return CPP;
-        case 2: return C_SHARP;
-        case 3: return ERLANG;
-        case 4: return GO_LANG;
-        case 5: return JAVA;
-        case 6: return NODE_JS;
-        case 7: return PHP;
-        case 8: return PYTHON;
-        case 9: return RUBY;
-        case 10: return WEB_JS;
-        default: return null;
+        case 0:
+          return LANGUAGE_UNSPECIFIED;
+        case 1:
+          return CPP;
+        case 2:
+          return C_SHARP;
+        case 3:
+          return ERLANG;
+        case 4:
+          return GO_LANG;
+        case 5:
+          return JAVA;
+        case 6:
+          return NODE_JS;
+        case 7:
+          return PHP;
+        case 8:
+          return PYTHON;
+        case 9:
+          return RUBY;
+        case 10:
+          return WEB_JS;
+        default:
+          return null;
       }
     }
 
     public static com.google.protobuf.Internal.EnumLiteMap<Language>
-        internalGetValueMap() {
+    internalGetValueMap() {
       return internalValueMap;
     }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        Language> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<Language>() {
-            public Language findValueByNumber(int number) {
-              return Language.forNumber(number);
-            }
-          };
 
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalStateException(
-            "Can't get the descriptor of an unrecognized enum value.");
-      }
-      return getDescriptor().getValues().get(ordinal());
-    }
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
-      return getDescriptor();
-    }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
+    getDescriptor() {
       return io.opencensus.proto.agent.common.v1.LibraryInfo.getDescriptor().getEnumTypes().get(0);
     }
-
-    private static final Language[] VALUES = values();
 
     public static Language valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
         return UNRECOGNIZED;
@@ -285,331 +658,45 @@ private static final long serialVersionUID = 0L;
       return VALUES[desc.getIndex()];
     }
 
-    private final int value;
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
 
-    private Language(int value) {
-      this.value = value;
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+    getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
+    }
+
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+    getDescriptorForType() {
+      return getDescriptor();
     }
 
     // @@protoc_insertion_point(enum_scope:opencensus.proto.agent.common.v1.LibraryInfo.Language)
   }
 
-  public static final int LANGUAGE_FIELD_NUMBER = 1;
-  private int language_;
-  /**
-   * <pre>
-   * Language of OpenCensus Library.
-   * </pre>
-   *
-   * <code>.opencensus.proto.agent.common.v1.LibraryInfo.Language language = 1;</code>
-   * @return The enum numeric value on the wire for language.
-   */
-  @java.lang.Override public int getLanguageValue() {
-    return language_;
-  }
-  /**
-   * <pre>
-   * Language of OpenCensus Library.
-   * </pre>
-   *
-   * <code>.opencensus.proto.agent.common.v1.LibraryInfo.Language language = 1;</code>
-   * @return The language.
-   */
-  @java.lang.Override public io.opencensus.proto.agent.common.v1.LibraryInfo.Language getLanguage() {
-    @SuppressWarnings("deprecation")
-    io.opencensus.proto.agent.common.v1.LibraryInfo.Language result = io.opencensus.proto.agent.common.v1.LibraryInfo.Language.valueOf(language_);
-    return result == null ? io.opencensus.proto.agent.common.v1.LibraryInfo.Language.UNRECOGNIZED : result;
-  }
-
-  public static final int EXPORTER_VERSION_FIELD_NUMBER = 2;
-  private volatile java.lang.Object exporterVersion_;
-  /**
-   * <pre>
-   * Version of Agent exporter of Library.
-   * </pre>
-   *
-   * <code>string exporter_version = 2;</code>
-   * @return The exporterVersion.
-   */
-  @java.lang.Override
-  public java.lang.String getExporterVersion() {
-    java.lang.Object ref = exporterVersion_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      exporterVersion_ = s;
-      return s;
-    }
-  }
-  /**
-   * <pre>
-   * Version of Agent exporter of Library.
-   * </pre>
-   *
-   * <code>string exporter_version = 2;</code>
-   * @return The bytes for exporterVersion.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getExporterVersionBytes() {
-    java.lang.Object ref = exporterVersion_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      exporterVersion_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int CORE_LIBRARY_VERSION_FIELD_NUMBER = 3;
-  private volatile java.lang.Object coreLibraryVersion_;
-  /**
-   * <pre>
-   * Version of OpenCensus Library.
-   * </pre>
-   *
-   * <code>string core_library_version = 3;</code>
-   * @return The coreLibraryVersion.
-   */
-  @java.lang.Override
-  public java.lang.String getCoreLibraryVersion() {
-    java.lang.Object ref = coreLibraryVersion_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      coreLibraryVersion_ = s;
-      return s;
-    }
-  }
-  /**
-   * <pre>
-   * Version of OpenCensus Library.
-   * </pre>
-   *
-   * <code>string core_library_version = 3;</code>
-   * @return The bytes for coreLibraryVersion.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getCoreLibraryVersionBytes() {
-    java.lang.Object ref = coreLibraryVersion_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      coreLibraryVersion_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  private byte memoizedIsInitialized = -1;
-  @java.lang.Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
-    if (language_ != io.opencensus.proto.agent.common.v1.LibraryInfo.Language.LANGUAGE_UNSPECIFIED.getNumber()) {
-      output.writeEnum(1, language_);
-    }
-    if (!getExporterVersionBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, exporterVersion_);
-    }
-    if (!getCoreLibraryVersionBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, coreLibraryVersion_);
-    }
-    unknownFields.writeTo(output);
-  }
-
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
-
-    size = 0;
-    if (language_ != io.opencensus.proto.agent.common.v1.LibraryInfo.Language.LANGUAGE_UNSPECIFIED.getNumber()) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(1, language_);
-    }
-    if (!getExporterVersionBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, exporterVersion_);
-    }
-    if (!getCoreLibraryVersionBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, coreLibraryVersion_);
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-     return true;
-    }
-    if (!(obj instanceof io.opencensus.proto.agent.common.v1.LibraryInfo)) {
-      return super.equals(obj);
-    }
-    io.opencensus.proto.agent.common.v1.LibraryInfo other = (io.opencensus.proto.agent.common.v1.LibraryInfo) obj;
-
-    if (language_ != other.language_) return false;
-    if (!getExporterVersion()
-        .equals(other.getExporterVersion())) return false;
-    if (!getCoreLibraryVersion()
-        .equals(other.getCoreLibraryVersion())) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
-  }
-
-  @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + LANGUAGE_FIELD_NUMBER;
-    hash = (53 * hash) + language_;
-    hash = (37 * hash) + EXPORTER_VERSION_FIELD_NUMBER;
-    hash = (53 * hash) + getExporterVersion().hashCode();
-    hash = (37 * hash) + CORE_LIBRARY_VERSION_FIELD_NUMBER;
-    hash = (53 * hash) + getCoreLibraryVersion().hashCode();
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.agent.common.v1.LibraryInfo parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(io.opencensus.proto.agent.common.v1.LibraryInfo prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
   /**
    * <pre>
    * Information on OpenCensus Library.
    * </pre>
-   *
+   * <p>
    * Protobuf type {@code opencensus.proto.agent.common.v1.LibraryInfo}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
       // @@protoc_insertion_point(builder_implements:opencensus.proto.agent.common.v1.LibraryInfo)
       io.opencensus.proto.agent.common.v1.LibraryInfoOrBuilder {
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return io.opencensus.proto.agent.common.v1.CommonProto.internal_static_opencensus_proto_agent_common_v1_LibraryInfo_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return io.opencensus.proto.agent.common.v1.CommonProto.internal_static_opencensus_proto_agent_common_v1_LibraryInfo_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.agent.common.v1.LibraryInfo.class, io.opencensus.proto.agent.common.v1.LibraryInfo.Builder.class);
-    }
+    private int language_ = 0;
+    private java.lang.Object exporterVersion_ = "";
+    private java.lang.Object coreLibraryVersion_ = "";
 
     // Construct using io.opencensus.proto.agent.common.v1.LibraryInfo.newBuilder()
     private Builder() {
@@ -621,11 +708,27 @@ private static final long serialVersionUID = 0L;
       super(parent);
       maybeForceBuilderInitialization();
     }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+      return io.opencensus.proto.agent.common.v1.CommonProto.internal_static_opencensus_proto_agent_common_v1_LibraryInfo_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return io.opencensus.proto.agent.common.v1.CommonProto.internal_static_opencensus_proto_agent_common_v1_LibraryInfo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.opencensus.proto.agent.common.v1.LibraryInfo.class,
+              io.opencensus.proto.agent.common.v1.LibraryInfo.Builder.class);
+    }
+
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
+          .alwaysUseFieldBuilders) {
       }
     }
+
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -640,7 +743,7 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+    getDescriptorForType() {
       return io.opencensus.proto.agent.common.v1.CommonProto.internal_static_opencensus_proto_agent_common_v1_LibraryInfo_descriptor;
     }
 
@@ -660,7 +763,8 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public io.opencensus.proto.agent.common.v1.LibraryInfo buildPartial() {
-      io.opencensus.proto.agent.common.v1.LibraryInfo result = new io.opencensus.proto.agent.common.v1.LibraryInfo(this);
+      io.opencensus.proto.agent.common.v1.LibraryInfo result =
+          new io.opencensus.proto.agent.common.v1.LibraryInfo(this);
       result.language_ = language_;
       result.exporterVersion_ = exporterVersion_;
       result.coreLibraryVersion_ = coreLibraryVersion_;
@@ -672,38 +776,44 @@ private static final long serialVersionUID = 0L;
     public Builder clone() {
       return super.clone();
     }
+
     @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.setField(field, value);
     }
+
     @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
+
     @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
+
     @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
     }
+
     @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.addRepeatedField(field, value);
     }
+
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof io.opencensus.proto.agent.common.v1.LibraryInfo) {
-        return mergeFrom((io.opencensus.proto.agent.common.v1.LibraryInfo)other);
+        return mergeFrom((io.opencensus.proto.agent.common.v1.LibraryInfo) other);
       } else {
         super.mergeFrom(other);
         return this;
@@ -711,7 +821,9 @@ private static final long serialVersionUID = 0L;
     }
 
     public Builder mergeFrom(io.opencensus.proto.agent.common.v1.LibraryInfo other) {
-      if (other == io.opencensus.proto.agent.common.v1.LibraryInfo.getDefaultInstance()) return this;
+      if (other == io.opencensus.proto.agent.common.v1.LibraryInfo.getDefaultInstance()) {
+        return this;
+      }
       if (other.language_ != 0) {
         setLanguageValue(other.getLanguageValue());
       }
@@ -752,53 +864,62 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int language_ = 0;
     /**
      * <pre>
      * Language of OpenCensus Library.
      * </pre>
      *
      * <code>.opencensus.proto.agent.common.v1.LibraryInfo.Language language = 1;</code>
+     *
      * @return The enum numeric value on the wire for language.
      */
-    @java.lang.Override public int getLanguageValue() {
+    @java.lang.Override
+    public int getLanguageValue() {
       return language_;
     }
+
     /**
      * <pre>
      * Language of OpenCensus Library.
      * </pre>
      *
      * <code>.opencensus.proto.agent.common.v1.LibraryInfo.Language language = 1;</code>
+     *
      * @param value The enum numeric value on the wire for language to set.
      * @return This builder for chaining.
      */
     public Builder setLanguageValue(int value) {
-      
+
       language_ = value;
       onChanged();
       return this;
     }
+
     /**
      * <pre>
      * Language of OpenCensus Library.
      * </pre>
      *
      * <code>.opencensus.proto.agent.common.v1.LibraryInfo.Language language = 1;</code>
+     *
      * @return The language.
      */
     @java.lang.Override
     public io.opencensus.proto.agent.common.v1.LibraryInfo.Language getLanguage() {
       @SuppressWarnings("deprecation")
-      io.opencensus.proto.agent.common.v1.LibraryInfo.Language result = io.opencensus.proto.agent.common.v1.LibraryInfo.Language.valueOf(language_);
-      return result == null ? io.opencensus.proto.agent.common.v1.LibraryInfo.Language.UNRECOGNIZED : result;
+      io.opencensus.proto.agent.common.v1.LibraryInfo.Language result =
+          io.opencensus.proto.agent.common.v1.LibraryInfo.Language.valueOf(language_);
+      return result == null ?
+          io.opencensus.proto.agent.common.v1.LibraryInfo.Language.UNRECOGNIZED : result;
     }
+
     /**
      * <pre>
      * Language of OpenCensus Library.
      * </pre>
      *
      * <code>.opencensus.proto.agent.common.v1.LibraryInfo.Language language = 1;</code>
+     *
      * @param value The language to set.
      * @return This builder for chaining.
      */
@@ -806,33 +927,35 @@ private static final long serialVersionUID = 0L;
       if (value == null) {
         throw new NullPointerException();
       }
-      
+
       language_ = value.getNumber();
       onChanged();
       return this;
     }
+
     /**
      * <pre>
      * Language of OpenCensus Library.
      * </pre>
      *
      * <code>.opencensus.proto.agent.common.v1.LibraryInfo.Language language = 1;</code>
+     *
      * @return This builder for chaining.
      */
     public Builder clearLanguage() {
-      
+
       language_ = 0;
       onChanged();
       return this;
     }
 
-    private java.lang.Object exporterVersion_ = "";
     /**
      * <pre>
      * Version of Agent exporter of Library.
      * </pre>
      *
      * <code>string exporter_version = 2;</code>
+     *
      * @return The exporterVersion.
      */
     public java.lang.String getExporterVersion() {
@@ -847,19 +970,42 @@ private static final long serialVersionUID = 0L;
         return (java.lang.String) ref;
       }
     }
+
     /**
      * <pre>
      * Version of Agent exporter of Library.
      * </pre>
      *
      * <code>string exporter_version = 2;</code>
+     *
+     * @param value The exporterVersion to set.
+     * @return This builder for chaining.
+     */
+    public Builder setExporterVersion(
+        java.lang.String value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+
+      exporterVersion_ = value;
+      onChanged();
+      return this;
+    }
+
+    /**
+     * <pre>
+     * Version of Agent exporter of Library.
+     * </pre>
+     *
+     * <code>string exporter_version = 2;</code>
+     *
      * @return The bytes for exporterVersion.
      */
     public com.google.protobuf.ByteString
-        getExporterVersionBytes() {
+    getExporterVersionBytes() {
       java.lang.Object ref = exporterVersion_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         exporterVersion_ = b;
@@ -868,67 +1014,52 @@ private static final long serialVersionUID = 0L;
         return (com.google.protobuf.ByteString) ref;
       }
     }
+
     /**
      * <pre>
      * Version of Agent exporter of Library.
      * </pre>
      *
      * <code>string exporter_version = 2;</code>
-     * @param value The exporterVersion to set.
-     * @return This builder for chaining.
-     */
-    public Builder setExporterVersion(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      exporterVersion_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Version of Agent exporter of Library.
-     * </pre>
      *
-     * <code>string exporter_version = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearExporterVersion() {
-      
-      exporterVersion_ = getDefaultInstance().getExporterVersion();
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Version of Agent exporter of Library.
-     * </pre>
-     *
-     * <code>string exporter_version = 2;</code>
      * @param value The bytes for exporterVersion to set.
      * @return This builder for chaining.
      */
     public Builder setExporterVersionBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+        throw new NullPointerException();
+      }
+      checkByteStringIsUtf8(value);
+
       exporterVersion_ = value;
       onChanged();
       return this;
     }
 
-    private java.lang.Object coreLibraryVersion_ = "";
+    /**
+     * <pre>
+     * Version of Agent exporter of Library.
+     * </pre>
+     *
+     * <code>string exporter_version = 2;</code>
+     *
+     * @return This builder for chaining.
+     */
+    public Builder clearExporterVersion() {
+
+      exporterVersion_ = getDefaultInstance().getExporterVersion();
+      onChanged();
+      return this;
+    }
+
     /**
      * <pre>
      * Version of OpenCensus Library.
      * </pre>
      *
      * <code>string core_library_version = 3;</code>
+     *
      * @return The coreLibraryVersion.
      */
     public java.lang.String getCoreLibraryVersion() {
@@ -943,19 +1074,42 @@ private static final long serialVersionUID = 0L;
         return (java.lang.String) ref;
       }
     }
+
     /**
      * <pre>
      * Version of OpenCensus Library.
      * </pre>
      *
      * <code>string core_library_version = 3;</code>
+     *
+     * @param value The coreLibraryVersion to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCoreLibraryVersion(
+        java.lang.String value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+
+      coreLibraryVersion_ = value;
+      onChanged();
+      return this;
+    }
+
+    /**
+     * <pre>
+     * Version of OpenCensus Library.
+     * </pre>
+     *
+     * <code>string core_library_version = 3;</code>
+     *
      * @return The bytes for coreLibraryVersion.
      */
     public com.google.protobuf.ByteString
-        getCoreLibraryVersionBytes() {
+    getCoreLibraryVersionBytes() {
       java.lang.Object ref = coreLibraryVersion_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         coreLibraryVersion_ = b;
@@ -964,59 +1118,45 @@ private static final long serialVersionUID = 0L;
         return (com.google.protobuf.ByteString) ref;
       }
     }
+
     /**
      * <pre>
      * Version of OpenCensus Library.
      * </pre>
      *
      * <code>string core_library_version = 3;</code>
-     * @param value The coreLibraryVersion to set.
-     * @return This builder for chaining.
-     */
-    public Builder setCoreLibraryVersion(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      coreLibraryVersion_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Version of OpenCensus Library.
-     * </pre>
      *
-     * <code>string core_library_version = 3;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearCoreLibraryVersion() {
-      
-      coreLibraryVersion_ = getDefaultInstance().getCoreLibraryVersion();
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Version of OpenCensus Library.
-     * </pre>
-     *
-     * <code>string core_library_version = 3;</code>
      * @param value The bytes for coreLibraryVersion to set.
      * @return This builder for chaining.
      */
     public Builder setCoreLibraryVersionBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+        throw new NullPointerException();
+      }
+      checkByteStringIsUtf8(value);
+
       coreLibraryVersion_ = value;
       onChanged();
       return this;
     }
+
+    /**
+     * <pre>
+     * Version of OpenCensus Library.
+     * </pre>
+     *
+     * <code>string core_library_version = 3;</code>
+     *
+     * @return This builder for chaining.
+     */
+    public Builder clearCoreLibraryVersion() {
+
+      coreLibraryVersion_ = getDefaultInstance().getCoreLibraryVersion();
+      onChanged();
+      return this;
+    }
+
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1031,41 +1171,6 @@ private static final long serialVersionUID = 0L;
 
 
     // @@protoc_insertion_point(builder_scope:opencensus.proto.agent.common.v1.LibraryInfo)
-  }
-
-  // @@protoc_insertion_point(class_scope:opencensus.proto.agent.common.v1.LibraryInfo)
-  private static final io.opencensus.proto.agent.common.v1.LibraryInfo DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.agent.common.v1.LibraryInfo();
-  }
-
-  public static io.opencensus.proto.agent.common.v1.LibraryInfo getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<LibraryInfo>
-      PARSER = new com.google.protobuf.AbstractParser<LibraryInfo>() {
-    @java.lang.Override
-    public LibraryInfo parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new LibraryInfo(input, extensionRegistry);
-    }
-  };
-
-  public static com.google.protobuf.Parser<LibraryInfo> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<LibraryInfo> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.agent.common.v1.LibraryInfo getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
   }
 
 }
