@@ -6,7 +6,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 import org.hamcrest.core.IsNull;
@@ -28,15 +27,14 @@ import io.bitrise.trace.data.dto.FragmentState;
 import io.bitrise.trace.data.management.DataManager;
 import io.bitrise.trace.session.ApplicationSessionManager;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
@@ -413,4 +411,32 @@ public class FragmentStateDataListenerTest {
         assertArrayEquals(new String[0], fragmentStateDataListener.getPermissions());
     }
 
+    @Test
+    public void onActivityCreated_notActive() {
+        fragmentStateDataListener.onActivityCreated(mockActivity, null);
+        assertFalse(fragmentStateDataListener.isActive());
+        assertEquals(fragmentStateDataListener.activityFragmentMap.size(), 0);
+    }
+
+    @Test
+    public void onActivityStopped_notActive() {
+        fragmentStateDataListener.onActivityStopped(mockActivity);
+        assertFalse(fragmentStateDataListener.isActive());
+        assertEquals(fragmentStateDataListener.activityFragmentMap.size(), 0);
+    }
+
+    @Test
+    public void onFragmentViewCreated_notActive() {
+        fragmentStateDataListener.onFragmentViewCreated(mockFragmentManager1, mockFragment1,
+                mockView, null);
+        assertFalse(fragmentStateDataListener.isActive());
+        assertEquals(fragmentStateDataListener.activityFragmentMap.size(), 0);
+    }
+
+    @Test
+    public void onFragmentPaused_notActive() {
+        fragmentStateDataListener.onFragmentPaused(mockFragmentManager1, mockFragment1);
+        assertFalse(fragmentStateDataListener.isActive());
+        assertEquals(fragmentStateDataListener.activityFragmentMap.size(), 0);
+    }
 }
