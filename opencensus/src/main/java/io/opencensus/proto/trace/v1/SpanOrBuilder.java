@@ -18,6 +18,7 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>bytes trace_id = 1;</code>
+   *
    * @return The traceId.
    */
   com.google.protobuf.ByteString getTraceId();
@@ -33,6 +34,7 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>bytes span_id = 2;</code>
+   *
    * @return The spanId.
    */
   com.google.protobuf.ByteString getSpanId();
@@ -43,18 +45,22 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 15;</code>
+   *
    * @return Whether the tracestate field is set.
    */
   boolean hasTracestate();
+
   /**
    * <pre>
    * The Tracestate on the span.
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 15;</code>
+   *
    * @return The tracestate.
    */
   io.opencensus.proto.trace.v1.Span.Tracestate getTracestate();
+
   /**
    * <pre>
    * The Tracestate on the span.
@@ -71,6 +77,7 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>bytes parent_span_id = 3;</code>
+   *
    * @return The parentSpanId.
    */
   com.google.protobuf.ByteString getParentSpanId();
@@ -90,9 +97,11 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TruncatableString name = 4;</code>
+   *
    * @return Whether the name field is set.
    */
   boolean hasName();
+
   /**
    * <pre>
    * A description of the span's operation.
@@ -108,9 +117,11 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TruncatableString name = 4;</code>
+   *
    * @return The name.
    */
   io.opencensus.proto.trace.v1.TruncatableString getName();
+
   /**
    * <pre>
    * A description of the span's operation.
@@ -137,9 +148,11 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.Span.SpanKind kind = 14;</code>
+   *
    * @return The enum numeric value on the wire for kind.
    */
   int getKindValue();
+
   /**
    * <pre>
    * Distinguishes between spans generated in a particular context. For example,
@@ -148,6 +161,7 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.Span.SpanKind kind = 14;</code>
+   *
    * @return The kind.
    */
   io.opencensus.proto.trace.v1.Span.SpanKind getKind();
@@ -165,9 +179,11 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.Timestamp start_time = 5;</code>
+   *
    * @return Whether the startTime field is set.
    */
   boolean hasStartTime();
+
   /**
    * <pre>
    * The start time of the span. On the client side, this is the time kept by
@@ -181,9 +197,11 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.Timestamp start_time = 5;</code>
+   *
    * @return The startTime.
    */
   com.google.protobuf.Timestamp getStartTime();
+
   /**
    * <pre>
    * The start time of the span. On the client side, this is the time kept by
@@ -212,9 +230,11 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.Timestamp end_time = 6;</code>
+   *
    * @return Whether the endTime field is set.
    */
   boolean hasEndTime();
+
   /**
    * <pre>
    * The end time of the span. On the client side, this is the time kept by
@@ -227,9 +247,11 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.Timestamp end_time = 6;</code>
+   *
    * @return The endTime.
    */
   com.google.protobuf.Timestamp getEndTime();
+
   /**
    * <pre>
    * The end time of the span. On the client side, this is the time kept by
@@ -251,18 +273,22 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 7;</code>
+   *
    * @return Whether the attributes field is set.
    */
   boolean hasAttributes();
+
   /**
    * <pre>
    * A set of attributes on the span.
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 7;</code>
+   *
    * @return The attributes.
    */
   io.opencensus.proto.trace.v1.Span.Attributes getAttributes();
+
   /**
    * <pre>
    * A set of attributes on the span.
@@ -278,18 +304,22 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.StackTrace stack_trace = 8;</code>
+   *
    * @return Whether the stackTrace field is set.
    */
   boolean hasStackTrace();
+
   /**
    * <pre>
    * A stack trace captured at the start of the span.
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.StackTrace stack_trace = 8;</code>
+   *
    * @return The stackTrace.
    */
   io.opencensus.proto.trace.v1.StackTrace getStackTrace();
+
   /**
    * <pre>
    * A stack trace captured at the start of the span.
@@ -305,18 +335,22 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.Span.TimeEvents time_events = 9;</code>
+   *
    * @return Whether the timeEvents field is set.
    */
   boolean hasTimeEvents();
+
   /**
    * <pre>
    * The included time events.
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.Span.TimeEvents time_events = 9;</code>
+   *
    * @return The timeEvents.
    */
   io.opencensus.proto.trace.v1.Span.TimeEvents getTimeEvents();
+
   /**
    * <pre>
    * The included time events.
@@ -332,18 +366,22 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.Span.Links links = 10;</code>
+   *
    * @return Whether the links field is set.
    */
   boolean hasLinks();
+
   /**
    * <pre>
    * The included links.
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.Span.Links links = 10;</code>
+   *
    * @return The links.
    */
   io.opencensus.proto.trace.v1.Span.Links getLinks();
+
   /**
    * <pre>
    * The included links.
@@ -361,9 +399,11 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.Status status = 11;</code>
+   *
    * @return Whether the status field is set.
    */
   boolean hasStatus();
+
   /**
    * <pre>
    * An optional final status for this span. Semantically when Status
@@ -372,9 +412,11 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.Status status = 11;</code>
+   *
    * @return The status.
    */
   io.opencensus.proto.trace.v1.Status getStatus();
+
   /**
    * <pre>
    * An optional final status for this span. Semantically when Status
@@ -388,30 +430,34 @@ public interface SpanOrBuilder extends
 
   /**
    * <pre>
-   * An optional resource that is associated with this span. If not set, this span 
-   * should be part of a batch that does include the resource information, unless resource 
+   * An optional resource that is associated with this span. If not set, this span
+   * should be part of a batch that does include the resource information, unless resource
    * information is unknown.
    * </pre>
    *
    * <code>.opencensus.proto.resource.v1.Resource resource = 16;</code>
+   *
    * @return Whether the resource field is set.
    */
   boolean hasResource();
+
   /**
    * <pre>
-   * An optional resource that is associated with this span. If not set, this span 
-   * should be part of a batch that does include the resource information, unless resource 
+   * An optional resource that is associated with this span. If not set, this span
+   * should be part of a batch that does include the resource information, unless resource
    * information is unknown.
    * </pre>
    *
    * <code>.opencensus.proto.resource.v1.Resource resource = 16;</code>
+   *
    * @return The resource.
    */
   io.opencensus.proto.resource.v1.Resource getResource();
+
   /**
    * <pre>
-   * An optional resource that is associated with this span. If not set, this span 
-   * should be part of a batch that does include the resource information, unless resource 
+   * An optional resource that is associated with this span. If not set, this span
+   * should be part of a batch that does include the resource information, unless resource
    * information is unknown.
    * </pre>
    *
@@ -429,9 +475,11 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
+   *
    * @return Whether the sameProcessAsParentSpan field is set.
    */
   boolean hasSameProcessAsParentSpan();
+
   /**
    * <pre>
    * A highly recommended but not required flag that identifies when a
@@ -442,9 +490,11 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
+   *
    * @return The sameProcessAsParentSpan.
    */
   com.google.protobuf.BoolValue getSameProcessAsParentSpan();
+
   /**
    * <pre>
    * A highly recommended but not required flag that identifies when a
@@ -465,9 +515,11 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.UInt32Value child_span_count = 13;</code>
+   *
    * @return Whether the childSpanCount field is set.
    */
   boolean hasChildSpanCount();
+
   /**
    * <pre>
    * An optional number of child spans that were generated while this span
@@ -475,9 +527,11 @@ public interface SpanOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.UInt32Value child_span_count = 13;</code>
+   *
    * @return The childSpanCount.
    */
   com.google.protobuf.UInt32Value getChildSpanCount();
+
   /**
    * <pre>
    * An optional number of child spans that were generated while this span

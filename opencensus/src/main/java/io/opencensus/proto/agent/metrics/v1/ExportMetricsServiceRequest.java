@@ -8,29 +8,46 @@ package io.opencensus.proto.agent.metrics.v1;
  */
 public final class ExportMetricsServiceRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest)
+    // @@protoc_insertion_point(message_implements:opencensus.proto.agent.metrics.v1
+    // .ExportMetricsServiceRequest)
     ExportMetricsServiceRequestOrBuilder {
-private static final long serialVersionUID = 0L;
+  public static final int NODE_FIELD_NUMBER = 1;
+  public static final int METRICS_FIELD_NUMBER = 2;
+  public static final int RESOURCE_FIELD_NUMBER = 3;
+  private static final long serialVersionUID = 0L;
+  // @@protoc_insertion_point(class_scope:opencensus.proto.agent.metrics.v1
+  // .ExportMetricsServiceRequest)
+  private static final io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest
+      DEFAULT_INSTANCE;
+  private static final com.google.protobuf.Parser<ExportMetricsServiceRequest>
+      PARSER = new com.google.protobuf.AbstractParser<ExportMetricsServiceRequest>() {
+    @java.lang.Override
+    public ExportMetricsServiceRequest parsePartialFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return new ExportMetricsServiceRequest(input, extensionRegistry);
+    }
+  };
+
+  static {
+    DEFAULT_INSTANCE = new io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest();
+  }
+
+  private io.opencensus.proto.agent.common.v1.Node node_;
+  private java.util.List<io.opencensus.proto.metrics.v1.Metric> metrics_;
+  private io.opencensus.proto.resource.v1.Resource resource_;
+  private byte memoizedIsInitialized = -1;
+
   // Use ExportMetricsServiceRequest.newBuilder() to construct.
   private ExportMetricsServiceRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
+
   private ExportMetricsServiceRequest() {
     metrics_ = java.util.Collections.emptyList();
   }
 
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new ExportMetricsServiceRequest();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
   private ExportMetricsServiceRequest(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -55,7 +72,8 @@ private static final long serialVersionUID = 0L;
             if (node_ != null) {
               subBuilder = node_.toBuilder();
             }
-            node_ = input.readMessage(io.opencensus.proto.agent.common.v1.Node.parser(), extensionRegistry);
+            node_ = input
+                .readMessage(io.opencensus.proto.agent.common.v1.Node.parser(), extensionRegistry);
             if (subBuilder != null) {
               subBuilder.mergeFrom(node_);
               node_ = subBuilder.buildPartial();
@@ -69,7 +87,8 @@ private static final long serialVersionUID = 0L;
               mutable_bitField0_ |= 0x00000001;
             }
             metrics_.add(
-                input.readMessage(io.opencensus.proto.metrics.v1.Metric.parser(), extensionRegistry));
+                input.readMessage(io.opencensus.proto.metrics.v1.Metric.parser(),
+                    extensionRegistry));
             break;
           }
           case 26: {
@@ -77,7 +96,8 @@ private static final long serialVersionUID = 0L;
             if (resource_ != null) {
               subBuilder = resource_.toBuilder();
             }
-            resource_ = input.readMessage(io.opencensus.proto.resource.v1.Resource.parser(), extensionRegistry);
+            resource_ = input
+                .readMessage(io.opencensus.proto.resource.v1.Resource.parser(), extensionRegistry);
             if (subBuilder != null) {
               subBuilder.mergeFrom(resource_);
               resource_ = subBuilder.buildPartial();
@@ -107,21 +127,135 @@ private static final long serialVersionUID = 0L;
       makeExtensionsImmutable();
     }
   }
+
   public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
+  getDescriptor() {
     return io.opencensus.proto.agent.metrics.v1.MetricsServiceProto.internal_static_opencensus_proto_agent_metrics_v1_ExportMetricsServiceRequest_descriptor;
+  }
+
+  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(
+      byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(
+      java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseDelimitedFrom(
+      java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(
+      io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
+  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  public static com.google.protobuf.Parser<ExportMetricsServiceRequest> parser() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new ExportMetricsServiceRequest();
+  }
+
+  @java.lang.Override
+  public final com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
+  internalGetFieldAccessorTable() {
     return io.opencensus.proto.agent.metrics.v1.MetricsServiceProto.internal_static_opencensus_proto_agent_metrics_v1_ExportMetricsServiceRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest.class, io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest.Builder.class);
+            io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest.class,
+            io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest.Builder.class);
   }
 
-  public static final int NODE_FIELD_NUMBER = 1;
-  private io.opencensus.proto.agent.common.v1.Node node_;
   /**
    * <pre>
    * This is required only in the first message on the stream or if the
@@ -130,12 +264,14 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
+   *
    * @return Whether the node field is set.
    */
   @java.lang.Override
   public boolean hasNode() {
     return node_ != null;
   }
+
   /**
    * <pre>
    * This is required only in the first message on the stream or if the
@@ -144,12 +280,14 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
+   *
    * @return The node.
    */
   @java.lang.Override
   public io.opencensus.proto.agent.common.v1.Node getNode() {
     return node_ == null ? io.opencensus.proto.agent.common.v1.Node.getDefaultInstance() : node_;
   }
+
   /**
    * <pre>
    * This is required only in the first message on the stream or if the
@@ -164,8 +302,6 @@ private static final long serialVersionUID = 0L;
     return getNode();
   }
 
-  public static final int METRICS_FIELD_NUMBER = 2;
-  private java.util.List<io.opencensus.proto.metrics.v1.Metric> metrics_;
   /**
    * <pre>
    * A list of metrics that belong to the last received Node.
@@ -177,6 +313,7 @@ private static final long serialVersionUID = 0L;
   public java.util.List<io.opencensus.proto.metrics.v1.Metric> getMetricsList() {
     return metrics_;
   }
+
   /**
    * <pre>
    * A list of metrics that belong to the last received Node.
@@ -185,10 +322,11 @@ private static final long serialVersionUID = 0L;
    * <code>repeated .opencensus.proto.metrics.v1.Metric metrics = 2;</code>
    */
   @java.lang.Override
-  public java.util.List<? extends io.opencensus.proto.metrics.v1.MetricOrBuilder> 
-      getMetricsOrBuilderList() {
+  public java.util.List<? extends io.opencensus.proto.metrics.v1.MetricOrBuilder>
+  getMetricsOrBuilderList() {
     return metrics_;
   }
+
   /**
    * <pre>
    * A list of metrics that belong to the last received Node.
@@ -200,6 +338,7 @@ private static final long serialVersionUID = 0L;
   public int getMetricsCount() {
     return metrics_.size();
   }
+
   /**
    * <pre>
    * A list of metrics that belong to the last received Node.
@@ -211,6 +350,7 @@ private static final long serialVersionUID = 0L;
   public io.opencensus.proto.metrics.v1.Metric getMetrics(int index) {
     return metrics_.get(index);
   }
+
   /**
    * <pre>
    * A list of metrics that belong to the last received Node.
@@ -224,8 +364,6 @@ private static final long serialVersionUID = 0L;
     return metrics_.get(index);
   }
 
-  public static final int RESOURCE_FIELD_NUMBER = 3;
-  private io.opencensus.proto.resource.v1.Resource resource_;
   /**
    * <pre>
    * The resource for the metrics in this message that do not have an explicit
@@ -236,12 +374,14 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
+   *
    * @return Whether the resource field is set.
    */
   @java.lang.Override
   public boolean hasResource() {
     return resource_ != null;
   }
+
   /**
    * <pre>
    * The resource for the metrics in this message that do not have an explicit
@@ -252,12 +392,15 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
+   *
    * @return The resource.
    */
   @java.lang.Override
   public io.opencensus.proto.resource.v1.Resource getResource() {
-    return resource_ == null ? io.opencensus.proto.resource.v1.Resource.getDefaultInstance() : resource_;
+    return resource_ == null ? io.opencensus.proto.resource.v1.Resource.getDefaultInstance() :
+        resource_;
   }
+
   /**
    * <pre>
    * The resource for the metrics in this message that do not have an explicit
@@ -274,12 +417,15 @@ private static final long serialVersionUID = 0L;
     return getResource();
   }
 
-  private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
+    if (isInitialized == 1) {
+      return true;
+    }
+    if (isInitialized == 0) {
+      return false;
+    }
 
     memoizedIsInitialized = 1;
     return true;
@@ -287,7 +433,7 @@ private static final long serialVersionUID = 0L;
 
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
+      throws java.io.IOException {
     if (node_ != null) {
       output.writeMessage(1, getNode());
     }
@@ -303,20 +449,22 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public int getSerializedSize() {
     int size = memoizedSize;
-    if (size != -1) return size;
+    if (size != -1) {
+      return size;
+    }
 
     size = 0;
     if (node_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, getNode());
+          .computeMessageSize(1, getNode());
     }
     for (int i = 0; i < metrics_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, metrics_.get(i));
+          .computeMessageSize(2, metrics_.get(i));
     }
     if (resource_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, getResource());
+          .computeMessageSize(3, getResource());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -326,27 +474,37 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-     return true;
+      return true;
     }
     if (!(obj instanceof io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest)) {
       return super.equals(obj);
     }
-    io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest other = (io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest) obj;
+    io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest other =
+        (io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest) obj;
 
-    if (hasNode() != other.hasNode()) return false;
+    if (hasNode() != other.hasNode()) {
+      return false;
+    }
     if (hasNode()) {
       if (!getNode()
-          .equals(other.getNode())) return false;
+          .equals(other.getNode())) {
+        return false;
+      }
     }
     if (!getMetricsList()
-        .equals(other.getMetricsList())) return false;
-    if (hasResource() != other.hasResource()) return false;
+        .equals(other.getMetricsList())) {
+      return false;
+    }
+    if (hasResource() != other.hasResource()) {
+      return false;
+    }
     if (hasResource()) {
       if (!getResource()
-          .equals(other.getResource())) return false;
+          .equals(other.getResource())) {
+        return false;
+      }
     }
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
+    return unknownFields.equals(other.unknownFields);
   }
 
   @java.lang.Override
@@ -373,84 +531,11 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
+  @java.lang.Override
+  public Builder newBuilderForType() {
+    return newBuilder();
   }
 
-  @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
   @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
@@ -463,25 +548,44 @@ private static final long serialVersionUID = 0L;
     Builder builder = new Builder(parent);
     return builder;
   }
+
+  @java.lang.Override
+  public com.google.protobuf.Parser<ExportMetricsServiceRequest> getParserForType() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
+  }
+
   /**
    * Protobuf type {@code opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest)
+      // @@protoc_insertion_point(builder_implements:opencensus.proto.agent.metrics.v1
+      // .ExportMetricsServiceRequest)
       io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequestOrBuilder {
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return io.opencensus.proto.agent.metrics.v1.MetricsServiceProto.internal_static_opencensus_proto_agent_metrics_v1_ExportMetricsServiceRequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return io.opencensus.proto.agent.metrics.v1.MetricsServiceProto.internal_static_opencensus_proto_agent_metrics_v1_ExportMetricsServiceRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest.class, io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest.Builder.class);
-    }
+    private int bitField0_;
+    private io.opencensus.proto.agent.common.v1.Node node_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.opencensus.proto.agent.common.v1.Node,
+        io.opencensus.proto.agent.common.v1.Node.Builder,
+        io.opencensus.proto.agent.common.v1.NodeOrBuilder>
+        nodeBuilder_;
+    private java.util.List<io.opencensus.proto.metrics.v1.Metric> metrics_ =
+        java.util.Collections.emptyList();
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        io.opencensus.proto.metrics.v1.Metric, io.opencensus.proto.metrics.v1.Metric.Builder,
+        io.opencensus.proto.metrics.v1.MetricOrBuilder>
+        metricsBuilder_;
+    private io.opencensus.proto.resource.v1.Resource resource_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.opencensus.proto.resource.v1.Resource,
+        io.opencensus.proto.resource.v1.Resource.Builder,
+        io.opencensus.proto.resource.v1.ResourceOrBuilder>
+        resourceBuilder_;
 
     // Construct using io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest.newBuilder()
     private Builder() {
@@ -493,12 +597,28 @@ private static final long serialVersionUID = 0L;
       super(parent);
       maybeForceBuilderInitialization();
     }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+      return io.opencensus.proto.agent.metrics.v1.MetricsServiceProto.internal_static_opencensus_proto_agent_metrics_v1_ExportMetricsServiceRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return io.opencensus.proto.agent.metrics.v1.MetricsServiceProto.internal_static_opencensus_proto_agent_metrics_v1_ExportMetricsServiceRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest.class,
+              io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest.Builder.class);
+    }
+
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
+          .alwaysUseFieldBuilders) {
         getMetricsFieldBuilder();
       }
     }
+
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -525,7 +645,7 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+    getDescriptorForType() {
       return io.opencensus.proto.agent.metrics.v1.MetricsServiceProto.internal_static_opencensus_proto_agent_metrics_v1_ExportMetricsServiceRequest_descriptor;
     }
 
@@ -545,7 +665,8 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest buildPartial() {
-      io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest result = new io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest(this);
+      io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest result =
+          new io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest(this);
       int from_bitField0_ = bitField0_;
       if (nodeBuilder_ == null) {
         result.node_ = node_;
@@ -574,46 +695,56 @@ private static final long serialVersionUID = 0L;
     public Builder clone() {
       return super.clone();
     }
+
     @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.setField(field, value);
     }
+
     @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
+
     @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
+
     @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
     }
+
     @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.addRepeatedField(field, value);
     }
+
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest) {
-        return mergeFrom((io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest)other);
+        return mergeFrom((io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest) other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest other) {
-      if (other == io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest.getDefaultInstance()) return this;
+    public Builder mergeFrom(
+        io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest other) {
+      if (other ==
+          io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest.getDefaultInstance()) {
+        return this;
+      }
       if (other.hasNode()) {
         mergeNode(other.getNode());
       }
@@ -635,9 +766,9 @@ private static final long serialVersionUID = 0L;
             metricsBuilder_ = null;
             metrics_ = other.metrics_;
             bitField0_ = (bitField0_ & ~0x00000001);
-            metricsBuilder_ = 
-              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                 getMetricsFieldBuilder() : null;
+            metricsBuilder_ =
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                    getMetricsFieldBuilder() : null;
           } else {
             metricsBuilder_.addAllMessages(other.metrics_);
           }
@@ -665,7 +796,8 @@ private static final long serialVersionUID = 0L;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest) e.getUnfinishedMessage();
+        parsedMessage = (io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest) e
+            .getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -674,11 +806,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
-    private int bitField0_;
 
-    private io.opencensus.proto.agent.common.v1.Node node_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.agent.common.v1.Node, io.opencensus.proto.agent.common.v1.Node.Builder, io.opencensus.proto.agent.common.v1.NodeOrBuilder> nodeBuilder_;
     /**
      * <pre>
      * This is required only in the first message on the stream or if the
@@ -687,11 +815,13 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
+     *
      * @return Whether the node field is set.
      */
     public boolean hasNode() {
       return nodeBuilder_ != null || node_ != null;
     }
+
     /**
      * <pre>
      * This is required only in the first message on the stream or if the
@@ -700,15 +830,18 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
+     *
      * @return The node.
      */
     public io.opencensus.proto.agent.common.v1.Node getNode() {
       if (nodeBuilder_ == null) {
-        return node_ == null ? io.opencensus.proto.agent.common.v1.Node.getDefaultInstance() : node_;
+        return node_ == null ? io.opencensus.proto.agent.common.v1.Node.getDefaultInstance() :
+            node_;
       } else {
         return nodeBuilder_.getMessage();
       }
     }
+
     /**
      * <pre>
      * This is required only in the first message on the stream or if the
@@ -731,6 +864,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * This is required only in the first message on the stream or if the
@@ -751,6 +885,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * This is required only in the first message on the stream or if the
@@ -764,7 +899,8 @@ private static final long serialVersionUID = 0L;
       if (nodeBuilder_ == null) {
         if (node_ != null) {
           node_ =
-            io.opencensus.proto.agent.common.v1.Node.newBuilder(node_).mergeFrom(value).buildPartial();
+              io.opencensus.proto.agent.common.v1.Node.newBuilder(node_).mergeFrom(value)
+                                                      .buildPartial();
         } else {
           node_ = value;
         }
@@ -775,6 +911,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * This is required only in the first message on the stream or if the
@@ -795,6 +932,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * This is required only in the first message on the stream or if the
@@ -805,10 +943,11 @@ private static final long serialVersionUID = 0L;
      * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
      */
     public io.opencensus.proto.agent.common.v1.Node.Builder getNodeBuilder() {
-      
+
       onChanged();
       return getNodeFieldBuilder().getBuilder();
     }
+
     /**
      * <pre>
      * This is required only in the first message on the stream or if the
@@ -826,6 +965,7 @@ private static final long serialVersionUID = 0L;
             io.opencensus.proto.agent.common.v1.Node.getDefaultInstance() : node_;
       }
     }
+
     /**
      * <pre>
      * This is required only in the first message on the stream or if the
@@ -836,30 +976,29 @@ private static final long serialVersionUID = 0L;
      * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.agent.common.v1.Node, io.opencensus.proto.agent.common.v1.Node.Builder, io.opencensus.proto.agent.common.v1.NodeOrBuilder> 
-        getNodeFieldBuilder() {
+        io.opencensus.proto.agent.common.v1.Node,
+        io.opencensus.proto.agent.common.v1.Node.Builder,
+        io.opencensus.proto.agent.common.v1.NodeOrBuilder>
+    getNodeFieldBuilder() {
       if (nodeBuilder_ == null) {
         nodeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.agent.common.v1.Node, io.opencensus.proto.agent.common.v1.Node.Builder, io.opencensus.proto.agent.common.v1.NodeOrBuilder>(
-                getNode(),
-                getParentForChildren(),
-                isClean());
+            io.opencensus.proto.agent.common.v1.Node,
+            io.opencensus.proto.agent.common.v1.Node.Builder,
+            io.opencensus.proto.agent.common.v1.NodeOrBuilder>(
+            getNode(),
+            getParentForChildren(),
+            isClean());
         node_ = null;
       }
       return nodeBuilder_;
     }
 
-    private java.util.List<io.opencensus.proto.metrics.v1.Metric> metrics_ =
-      java.util.Collections.emptyList();
     private void ensureMetricsIsMutable() {
       if (!((bitField0_ & 0x00000001) != 0)) {
         metrics_ = new java.util.ArrayList<io.opencensus.proto.metrics.v1.Metric>(metrics_);
         bitField0_ |= 0x00000001;
-       }
+      }
     }
-
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.Metric, io.opencensus.proto.metrics.v1.Metric.Builder, io.opencensus.proto.metrics.v1.MetricOrBuilder> metricsBuilder_;
 
     /**
      * <pre>
@@ -875,6 +1014,7 @@ private static final long serialVersionUID = 0L;
         return metricsBuilder_.getMessageList();
       }
     }
+
     /**
      * <pre>
      * A list of metrics that belong to the last received Node.
@@ -889,6 +1029,7 @@ private static final long serialVersionUID = 0L;
         return metricsBuilder_.getCount();
       }
     }
+
     /**
      * <pre>
      * A list of metrics that belong to the last received Node.
@@ -903,6 +1044,7 @@ private static final long serialVersionUID = 0L;
         return metricsBuilder_.getMessage(index);
       }
     }
+
     /**
      * <pre>
      * A list of metrics that belong to the last received Node.
@@ -924,6 +1066,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * A list of metrics that belong to the last received Node.
@@ -942,6 +1085,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * A list of metrics that belong to the last received Node.
@@ -962,6 +1106,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * A list of metrics that belong to the last received Node.
@@ -983,6 +1128,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * A list of metrics that belong to the last received Node.
@@ -1001,6 +1147,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * A list of metrics that belong to the last received Node.
@@ -1019,6 +1166,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * A list of metrics that belong to the last received Node.
@@ -1038,6 +1186,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * A list of metrics that belong to the last received Node.
@@ -1055,6 +1204,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * A list of metrics that belong to the last received Node.
@@ -1072,6 +1222,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * A list of metrics that belong to the last received Node.
@@ -1083,6 +1234,7 @@ private static final long serialVersionUID = 0L;
         int index) {
       return getMetricsFieldBuilder().getBuilder(index);
     }
+
     /**
      * <pre>
      * A list of metrics that belong to the last received Node.
@@ -1093,10 +1245,12 @@ private static final long serialVersionUID = 0L;
     public io.opencensus.proto.metrics.v1.MetricOrBuilder getMetricsOrBuilder(
         int index) {
       if (metricsBuilder_ == null) {
-        return metrics_.get(index);  } else {
+        return metrics_.get(index);
+      } else {
         return metricsBuilder_.getMessageOrBuilder(index);
       }
     }
+
     /**
      * <pre>
      * A list of metrics that belong to the last received Node.
@@ -1104,14 +1258,15 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opencensus.proto.metrics.v1.Metric metrics = 2;</code>
      */
-    public java.util.List<? extends io.opencensus.proto.metrics.v1.MetricOrBuilder> 
-         getMetricsOrBuilderList() {
+    public java.util.List<? extends io.opencensus.proto.metrics.v1.MetricOrBuilder>
+    getMetricsOrBuilderList() {
       if (metricsBuilder_ != null) {
         return metricsBuilder_.getMessageOrBuilderList();
       } else {
         return java.util.Collections.unmodifiableList(metrics_);
       }
     }
+
     /**
      * <pre>
      * A list of metrics that belong to the last received Node.
@@ -1123,6 +1278,7 @@ private static final long serialVersionUID = 0L;
       return getMetricsFieldBuilder().addBuilder(
           io.opencensus.proto.metrics.v1.Metric.getDefaultInstance());
     }
+
     /**
      * <pre>
      * A list of metrics that belong to the last received Node.
@@ -1135,6 +1291,7 @@ private static final long serialVersionUID = 0L;
       return getMetricsFieldBuilder().addBuilder(
           index, io.opencensus.proto.metrics.v1.Metric.getDefaultInstance());
     }
+
     /**
      * <pre>
      * A list of metrics that belong to the last received Node.
@@ -1142,28 +1299,28 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opencensus.proto.metrics.v1.Metric metrics = 2;</code>
      */
-    public java.util.List<io.opencensus.proto.metrics.v1.Metric.Builder> 
-         getMetricsBuilderList() {
+    public java.util.List<io.opencensus.proto.metrics.v1.Metric.Builder>
+    getMetricsBuilderList() {
       return getMetricsFieldBuilder().getBuilderList();
     }
+
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.Metric, io.opencensus.proto.metrics.v1.Metric.Builder, io.opencensus.proto.metrics.v1.MetricOrBuilder> 
-        getMetricsFieldBuilder() {
+        io.opencensus.proto.metrics.v1.Metric, io.opencensus.proto.metrics.v1.Metric.Builder,
+        io.opencensus.proto.metrics.v1.MetricOrBuilder>
+    getMetricsFieldBuilder() {
       if (metricsBuilder_ == null) {
         metricsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            io.opencensus.proto.metrics.v1.Metric, io.opencensus.proto.metrics.v1.Metric.Builder, io.opencensus.proto.metrics.v1.MetricOrBuilder>(
-                metrics_,
-                ((bitField0_ & 0x00000001) != 0),
-                getParentForChildren(),
-                isClean());
+            io.opencensus.proto.metrics.v1.Metric, io.opencensus.proto.metrics.v1.Metric.Builder,
+            io.opencensus.proto.metrics.v1.MetricOrBuilder>(
+            metrics_,
+            ((bitField0_ & 0x00000001) != 0),
+            getParentForChildren(),
+            isClean());
         metrics_ = null;
       }
       return metricsBuilder_;
     }
 
-    private io.opencensus.proto.resource.v1.Resource resource_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.resource.v1.Resource, io.opencensus.proto.resource.v1.Resource.Builder, io.opencensus.proto.resource.v1.ResourceOrBuilder> resourceBuilder_;
     /**
      * <pre>
      * The resource for the metrics in this message that do not have an explicit
@@ -1174,11 +1331,13 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
+     *
      * @return Whether the resource field is set.
      */
     public boolean hasResource() {
       return resourceBuilder_ != null || resource_ != null;
     }
+
     /**
      * <pre>
      * The resource for the metrics in this message that do not have an explicit
@@ -1189,15 +1348,18 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
+     *
      * @return The resource.
      */
     public io.opencensus.proto.resource.v1.Resource getResource() {
       if (resourceBuilder_ == null) {
-        return resource_ == null ? io.opencensus.proto.resource.v1.Resource.getDefaultInstance() : resource_;
+        return resource_ == null ? io.opencensus.proto.resource.v1.Resource.getDefaultInstance() :
+            resource_;
       } else {
         return resourceBuilder_.getMessage();
       }
     }
+
     /**
      * <pre>
      * The resource for the metrics in this message that do not have an explicit
@@ -1222,6 +1384,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * The resource for the metrics in this message that do not have an explicit
@@ -1244,6 +1407,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * The resource for the metrics in this message that do not have an explicit
@@ -1259,7 +1423,8 @@ private static final long serialVersionUID = 0L;
       if (resourceBuilder_ == null) {
         if (resource_ != null) {
           resource_ =
-            io.opencensus.proto.resource.v1.Resource.newBuilder(resource_).mergeFrom(value).buildPartial();
+              io.opencensus.proto.resource.v1.Resource.newBuilder(resource_).mergeFrom(value)
+                                                      .buildPartial();
         } else {
           resource_ = value;
         }
@@ -1270,6 +1435,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * The resource for the metrics in this message that do not have an explicit
@@ -1292,6 +1458,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * The resource for the metrics in this message that do not have an explicit
@@ -1304,10 +1471,11 @@ private static final long serialVersionUID = 0L;
      * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
      */
     public io.opencensus.proto.resource.v1.Resource.Builder getResourceBuilder() {
-      
+
       onChanged();
       return getResourceFieldBuilder().getBuilder();
     }
+
     /**
      * <pre>
      * The resource for the metrics in this message that do not have an explicit
@@ -1327,6 +1495,7 @@ private static final long serialVersionUID = 0L;
             io.opencensus.proto.resource.v1.Resource.getDefaultInstance() : resource_;
       }
     }
+
     /**
      * <pre>
      * The resource for the metrics in this message that do not have an explicit
@@ -1339,18 +1508,23 @@ private static final long serialVersionUID = 0L;
      * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.resource.v1.Resource, io.opencensus.proto.resource.v1.Resource.Builder, io.opencensus.proto.resource.v1.ResourceOrBuilder> 
-        getResourceFieldBuilder() {
+        io.opencensus.proto.resource.v1.Resource,
+        io.opencensus.proto.resource.v1.Resource.Builder,
+        io.opencensus.proto.resource.v1.ResourceOrBuilder>
+    getResourceFieldBuilder() {
       if (resourceBuilder_ == null) {
         resourceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.resource.v1.Resource, io.opencensus.proto.resource.v1.Resource.Builder, io.opencensus.proto.resource.v1.ResourceOrBuilder>(
-                getResource(),
-                getParentForChildren(),
-                isClean());
+            io.opencensus.proto.resource.v1.Resource,
+            io.opencensus.proto.resource.v1.Resource.Builder,
+            io.opencensus.proto.resource.v1.ResourceOrBuilder>(
+            getResource(),
+            getParentForChildren(),
+            isClean());
         resource_ = null;
       }
       return resourceBuilder_;
     }
+
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1364,42 +1538,8 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest)
-  }
-
-  // @@protoc_insertion_point(class_scope:opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest)
-  private static final io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest();
-  }
-
-  public static io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<ExportMetricsServiceRequest>
-      PARSER = new com.google.protobuf.AbstractParser<ExportMetricsServiceRequest>() {
-    @java.lang.Override
-    public ExportMetricsServiceRequest parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new ExportMetricsServiceRequest(input, extensionRegistry);
-    }
-  };
-
-  public static com.google.protobuf.Parser<ExportMetricsServiceRequest> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<ExportMetricsServiceRequest> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(builder_scope:opencensus.proto.agent.metrics.v1
+    // .ExportMetricsServiceRequest)
   }
 
 }

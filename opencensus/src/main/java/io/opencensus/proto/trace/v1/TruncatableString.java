@@ -7,34 +7,45 @@ package io.opencensus.proto.trace.v1;
  * <pre>
  * A string that might be shortened to a specified length.
  * </pre>
- *
+ * <p>
  * Protobuf type {@code opencensus.proto.trace.v1.TruncatableString}
  */
 public final class TruncatableString extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.TruncatableString)
     TruncatableStringOrBuilder {
-private static final long serialVersionUID = 0L;
+  public static final int VALUE_FIELD_NUMBER = 1;
+  public static final int TRUNCATED_BYTE_COUNT_FIELD_NUMBER = 2;
+  private static final long serialVersionUID = 0L;
+  // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.TruncatableString)
+  private static final io.opencensus.proto.trace.v1.TruncatableString DEFAULT_INSTANCE;
+  private static final com.google.protobuf.Parser<TruncatableString>
+      PARSER = new com.google.protobuf.AbstractParser<TruncatableString>() {
+    @java.lang.Override
+    public TruncatableString parsePartialFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return new TruncatableString(input, extensionRegistry);
+    }
+  };
+
+  static {
+    DEFAULT_INSTANCE = new io.opencensus.proto.trace.v1.TruncatableString();
+  }
+
+  private volatile java.lang.Object value_;
+  private int truncatedByteCount_;
+  private byte memoizedIsInitialized = -1;
   // Use TruncatableString.newBuilder() to construct.
   private TruncatableString(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
+
   private TruncatableString() {
     value_ = "";
   }
 
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new TruncatableString();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
   private TruncatableString(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -83,21 +94,132 @@ private static final long serialVersionUID = 0L;
       makeExtensionsImmutable();
     }
   }
+
   public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
+  getDescriptor() {
     return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_TruncatableString_descriptor;
+  }
+
+  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.TruncatableString parseDelimitedFrom(
+      java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.trace.v1.TruncatableString parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(io.opencensus.proto.trace.v1.TruncatableString prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
+  public static io.opencensus.proto.trace.v1.TruncatableString getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  public static com.google.protobuf.Parser<TruncatableString> parser() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new TruncatableString();
+  }
+
+  @java.lang.Override
+  public final com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
+  internalGetFieldAccessorTable() {
     return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_TruncatableString_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.trace.v1.TruncatableString.class, io.opencensus.proto.trace.v1.TruncatableString.Builder.class);
+            io.opencensus.proto.trace.v1.TruncatableString.class,
+            io.opencensus.proto.trace.v1.TruncatableString.Builder.class);
   }
 
-  public static final int VALUE_FIELD_NUMBER = 1;
-  private volatile java.lang.Object value_;
   /**
    * <pre>
    * The shortened string. For example, if the original string was 500 bytes long and
@@ -109,6 +231,7 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string value = 1;</code>
+   *
    * @return The value.
    */
   @java.lang.Override
@@ -117,13 +240,14 @@ private static final long serialVersionUID = 0L;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
-      com.google.protobuf.ByteString bs = 
+      com.google.protobuf.ByteString bs =
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
       value_ = s;
       return s;
     }
   }
+
   /**
    * <pre>
    * The shortened string. For example, if the original string was 500 bytes long and
@@ -135,14 +259,15 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>string value = 1;</code>
+   *
    * @return The bytes for value.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getValueBytes() {
+  getValueBytes() {
     java.lang.Object ref = value_;
     if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
+      com.google.protobuf.ByteString b =
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
       value_ = b;
@@ -152,8 +277,6 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int TRUNCATED_BYTE_COUNT_FIELD_NUMBER = 2;
-  private int truncatedByteCount_;
   /**
    * <pre>
    * The number of bytes removed from the original string. If this
@@ -161,6 +284,7 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>int32 truncated_byte_count = 2;</code>
+   *
    * @return The truncatedByteCount.
    */
   @java.lang.Override
@@ -168,12 +292,15 @@ private static final long serialVersionUID = 0L;
     return truncatedByteCount_;
   }
 
-  private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
+    if (isInitialized == 1) {
+      return true;
+    }
+    if (isInitialized == 0) {
+      return false;
+    }
 
     memoizedIsInitialized = 1;
     return true;
@@ -181,7 +308,7 @@ private static final long serialVersionUID = 0L;
 
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
+      throws java.io.IOException {
     if (!getValueBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, value_);
     }
@@ -194,7 +321,9 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public int getSerializedSize() {
     int size = memoizedSize;
-    if (size != -1) return size;
+    if (size != -1) {
+      return size;
+    }
 
     size = 0;
     if (!getValueBytes().isEmpty()) {
@@ -202,7 +331,7 @@ private static final long serialVersionUID = 0L;
     }
     if (truncatedByteCount_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(2, truncatedByteCount_);
+          .computeInt32Size(2, truncatedByteCount_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -212,19 +341,23 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-     return true;
+      return true;
     }
     if (!(obj instanceof io.opencensus.proto.trace.v1.TruncatableString)) {
       return super.equals(obj);
     }
-    io.opencensus.proto.trace.v1.TruncatableString other = (io.opencensus.proto.trace.v1.TruncatableString) obj;
+    io.opencensus.proto.trace.v1.TruncatableString other =
+        (io.opencensus.proto.trace.v1.TruncatableString) obj;
 
     if (!getValue()
-        .equals(other.getValue())) return false;
+        .equals(other.getValue())) {
+      return false;
+    }
     if (getTruncatedByteCount()
-        != other.getTruncatedByteCount()) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
+        != other.getTruncatedByteCount()) {
+      return false;
+    }
+    return unknownFields.equals(other.unknownFields);
   }
 
   @java.lang.Override
@@ -243,84 +376,11 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.TruncatableString parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.trace.v1.TruncatableString parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.trace.v1.TruncatableString parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
+  @java.lang.Override
+  public Builder newBuilderForType() {
+    return newBuilder();
   }
 
-  @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(io.opencensus.proto.trace.v1.TruncatableString prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
   @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
@@ -333,29 +393,30 @@ private static final long serialVersionUID = 0L;
     Builder builder = new Builder(parent);
     return builder;
   }
+
+  @java.lang.Override
+  public com.google.protobuf.Parser<TruncatableString> getParserForType() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public io.opencensus.proto.trace.v1.TruncatableString getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
+  }
+
   /**
    * <pre>
    * A string that might be shortened to a specified length.
    * </pre>
-   *
+   * <p>
    * Protobuf type {@code opencensus.proto.trace.v1.TruncatableString}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
       // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.TruncatableString)
       io.opencensus.proto.trace.v1.TruncatableStringOrBuilder {
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_TruncatableString_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_TruncatableString_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.trace.v1.TruncatableString.class, io.opencensus.proto.trace.v1.TruncatableString.Builder.class);
-    }
+    private java.lang.Object value_ = "";
+    private int truncatedByteCount_;
 
     // Construct using io.opencensus.proto.trace.v1.TruncatableString.newBuilder()
     private Builder() {
@@ -367,11 +428,27 @@ private static final long serialVersionUID = 0L;
       super(parent);
       maybeForceBuilderInitialization();
     }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_TruncatableString_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_TruncatableString_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.opencensus.proto.trace.v1.TruncatableString.class,
+              io.opencensus.proto.trace.v1.TruncatableString.Builder.class);
+    }
+
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
+          .alwaysUseFieldBuilders) {
       }
     }
+
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -384,7 +461,7 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+    getDescriptorForType() {
       return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_TruncatableString_descriptor;
     }
 
@@ -404,7 +481,8 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public io.opencensus.proto.trace.v1.TruncatableString buildPartial() {
-      io.opencensus.proto.trace.v1.TruncatableString result = new io.opencensus.proto.trace.v1.TruncatableString(this);
+      io.opencensus.proto.trace.v1.TruncatableString result =
+          new io.opencensus.proto.trace.v1.TruncatableString(this);
       result.value_ = value_;
       result.truncatedByteCount_ = truncatedByteCount_;
       onBuilt();
@@ -415,38 +493,44 @@ private static final long serialVersionUID = 0L;
     public Builder clone() {
       return super.clone();
     }
+
     @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.setField(field, value);
     }
+
     @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
+
     @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
+
     @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
     }
+
     @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.addRepeatedField(field, value);
     }
+
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof io.opencensus.proto.trace.v1.TruncatableString) {
-        return mergeFrom((io.opencensus.proto.trace.v1.TruncatableString)other);
+        return mergeFrom((io.opencensus.proto.trace.v1.TruncatableString) other);
       } else {
         super.mergeFrom(other);
         return this;
@@ -454,7 +538,9 @@ private static final long serialVersionUID = 0L;
     }
 
     public Builder mergeFrom(io.opencensus.proto.trace.v1.TruncatableString other) {
-      if (other == io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance()) return this;
+      if (other == io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance()) {
+        return this;
+      }
       if (!other.getValue().isEmpty()) {
         value_ = other.value_;
         onChanged();
@@ -491,7 +577,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object value_ = "";
     /**
      * <pre>
      * The shortened string. For example, if the original string was 500 bytes long and
@@ -503,6 +588,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string value = 1;</code>
+     *
      * @return The value.
      */
     public java.lang.String getValue() {
@@ -517,6 +603,7 @@ private static final long serialVersionUID = 0L;
         return (java.lang.String) ref;
       }
     }
+
     /**
      * <pre>
      * The shortened string. For example, if the original string was 500 bytes long and
@@ -528,13 +615,40 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string value = 1;</code>
+     *
+     * @param value The value to set.
+     * @return This builder for chaining.
+     */
+    public Builder setValue(
+        java.lang.String value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+
+      value_ = value;
+      onChanged();
+      return this;
+    }
+
+    /**
+     * <pre>
+     * The shortened string. For example, if the original string was 500 bytes long and
+     * the limit of the string was 128 bytes, then this value contains the first 128
+     * bytes of the 500-byte string. Note that truncation always happens on a
+     * character boundary, to ensure that a truncated string is still valid UTF-8.
+     * Because it may contain multi-byte characters, the size of the truncated string
+     * may be less than the truncation limit.
+     * </pre>
+     *
+     * <code>string value = 1;</code>
+     *
      * @return The bytes for value.
      */
     public com.google.protobuf.ByteString
-        getValueBytes() {
+    getValueBytes() {
       java.lang.Object ref = value_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         value_ = b;
@@ -543,6 +657,7 @@ private static final long serialVersionUID = 0L;
         return (com.google.protobuf.ByteString) ref;
       }
     }
+
     /**
      * <pre>
      * The shortened string. For example, if the original string was 500 bytes long and
@@ -554,65 +669,43 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string value = 1;</code>
-     * @param value The value to set.
-     * @return This builder for chaining.
-     */
-    public Builder setValue(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      value_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * The shortened string. For example, if the original string was 500 bytes long and
-     * the limit of the string was 128 bytes, then this value contains the first 128
-     * bytes of the 500-byte string. Note that truncation always happens on a
-     * character boundary, to ensure that a truncated string is still valid UTF-8.
-     * Because it may contain multi-byte characters, the size of the truncated string
-     * may be less than the truncation limit.
-     * </pre>
      *
-     * <code>string value = 1;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearValue() {
-      
-      value_ = getDefaultInstance().getValue();
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * The shortened string. For example, if the original string was 500 bytes long and
-     * the limit of the string was 128 bytes, then this value contains the first 128
-     * bytes of the 500-byte string. Note that truncation always happens on a
-     * character boundary, to ensure that a truncated string is still valid UTF-8.
-     * Because it may contain multi-byte characters, the size of the truncated string
-     * may be less than the truncation limit.
-     * </pre>
-     *
-     * <code>string value = 1;</code>
      * @param value The bytes for value to set.
      * @return This builder for chaining.
      */
     public Builder setValueBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+        throw new NullPointerException();
+      }
+      checkByteStringIsUtf8(value);
+
       value_ = value;
       onChanged();
       return this;
     }
 
-    private int truncatedByteCount_ ;
+    /**
+     * <pre>
+     * The shortened string. For example, if the original string was 500 bytes long and
+     * the limit of the string was 128 bytes, then this value contains the first 128
+     * bytes of the 500-byte string. Note that truncation always happens on a
+     * character boundary, to ensure that a truncated string is still valid UTF-8.
+     * Because it may contain multi-byte characters, the size of the truncated string
+     * may be less than the truncation limit.
+     * </pre>
+     *
+     * <code>string value = 1;</code>
+     *
+     * @return This builder for chaining.
+     */
+    public Builder clearValue() {
+
+      value_ = getDefaultInstance().getValue();
+      onChanged();
+      return this;
+    }
+
     /**
      * <pre>
      * The number of bytes removed from the original string. If this
@@ -620,12 +713,14 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int32 truncated_byte_count = 2;</code>
+     *
      * @return The truncatedByteCount.
      */
     @java.lang.Override
     public int getTruncatedByteCount() {
       return truncatedByteCount_;
     }
+
     /**
      * <pre>
      * The number of bytes removed from the original string. If this
@@ -633,15 +728,17 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int32 truncated_byte_count = 2;</code>
+     *
      * @param value The truncatedByteCount to set.
      * @return This builder for chaining.
      */
     public Builder setTruncatedByteCount(int value) {
-      
+
       truncatedByteCount_ = value;
       onChanged();
       return this;
     }
+
     /**
      * <pre>
      * The number of bytes removed from the original string. If this
@@ -649,14 +746,16 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int32 truncated_byte_count = 2;</code>
+     *
      * @return This builder for chaining.
      */
     public Builder clearTruncatedByteCount() {
-      
+
       truncatedByteCount_ = 0;
       onChanged();
       return this;
     }
+
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -671,41 +770,6 @@ private static final long serialVersionUID = 0L;
 
 
     // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.TruncatableString)
-  }
-
-  // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.TruncatableString)
-  private static final io.opencensus.proto.trace.v1.TruncatableString DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.trace.v1.TruncatableString();
-  }
-
-  public static io.opencensus.proto.trace.v1.TruncatableString getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<TruncatableString>
-      PARSER = new com.google.protobuf.AbstractParser<TruncatableString>() {
-    @java.lang.Override
-    public TruncatableString parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new TruncatableString(input, extensionRegistry);
-    }
-  };
-
-  public static com.google.protobuf.Parser<TruncatableString> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<TruncatableString> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.TruncatableString getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
   }
 
 }

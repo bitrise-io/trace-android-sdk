@@ -14,9 +14,11 @@ public interface SummaryValueOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.Int64Value count = 1;</code>
+   *
    * @return Whether the count field is set.
    */
   boolean hasCount();
+
   /**
    * <pre>
    * The total number of recorded values since start_time. Optional since
@@ -24,9 +26,11 @@ public interface SummaryValueOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.Int64Value count = 1;</code>
+   *
    * @return The count.
    */
   com.google.protobuf.Int64Value getCount();
+
   /**
    * <pre>
    * The total number of recorded values since start_time. Optional since
@@ -45,9 +49,11 @@ public interface SummaryValueOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.DoubleValue sum = 2;</code>
+   *
    * @return Whether the sum field is set.
    */
   boolean hasSum();
+
   /**
    * <pre>
    * The total sum of recorded values since start_time. Optional since some
@@ -56,9 +62,11 @@ public interface SummaryValueOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.DoubleValue sum = 2;</code>
+   *
    * @return The sum.
    */
   com.google.protobuf.DoubleValue getSum();
+
   /**
    * <pre>
    * The total sum of recorded values since start_time. Optional since some
@@ -76,18 +84,22 @@ public interface SummaryValueOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.metrics.v1.SummaryValue.Snapshot snapshot = 3;</code>
+   *
    * @return Whether the snapshot field is set.
    */
   boolean hasSnapshot();
+
   /**
    * <pre>
    * Values calculated over an arbitrary time window.
    * </pre>
    *
    * <code>.opencensus.proto.metrics.v1.SummaryValue.Snapshot snapshot = 3;</code>
+   *
    * @return The snapshot.
    */
   io.opencensus.proto.metrics.v1.SummaryValue.Snapshot getSnapshot();
+
   /**
    * <pre>
    * Values calculated over an arbitrary time window.

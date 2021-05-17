@@ -8,35 +8,49 @@ package io.opencensus.proto.metrics.v1;
  * A collection of data points that describes the time-varying values
  * of a metric.
  * </pre>
- *
+ * <p>
  * Protobuf type {@code opencensus.proto.metrics.v1.TimeSeries}
  */
 public final class TimeSeries extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:opencensus.proto.metrics.v1.TimeSeries)
     TimeSeriesOrBuilder {
-private static final long serialVersionUID = 0L;
+  public static final int START_TIMESTAMP_FIELD_NUMBER = 1;
+  public static final int LABEL_VALUES_FIELD_NUMBER = 2;
+  public static final int POINTS_FIELD_NUMBER = 3;
+  private static final long serialVersionUID = 0L;
+  // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.TimeSeries)
+  private static final io.opencensus.proto.metrics.v1.TimeSeries DEFAULT_INSTANCE;
+  private static final com.google.protobuf.Parser<TimeSeries>
+      PARSER = new com.google.protobuf.AbstractParser<TimeSeries>() {
+    @java.lang.Override
+    public TimeSeries parsePartialFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return new TimeSeries(input, extensionRegistry);
+    }
+  };
+
+  static {
+    DEFAULT_INSTANCE = new io.opencensus.proto.metrics.v1.TimeSeries();
+  }
+
+  private com.google.protobuf.Timestamp startTimestamp_;
+  private java.util.List<io.opencensus.proto.metrics.v1.LabelValue> labelValues_;
+  private java.util.List<io.opencensus.proto.metrics.v1.Point> points_;
+  private byte memoizedIsInitialized = -1;
+
   // Use TimeSeries.newBuilder() to construct.
   private TimeSeries(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
+
   private TimeSeries() {
     labelValues_ = java.util.Collections.emptyList();
     points_ = java.util.Collections.emptyList();
   }
 
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new TimeSeries();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
   private TimeSeries(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -61,7 +75,8 @@ private static final long serialVersionUID = 0L;
             if (startTimestamp_ != null) {
               subBuilder = startTimestamp_.toBuilder();
             }
-            startTimestamp_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
+            startTimestamp_ =
+                input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
             if (subBuilder != null) {
               subBuilder.mergeFrom(startTimestamp_);
               startTimestamp_ = subBuilder.buildPartial();
@@ -75,7 +90,8 @@ private static final long serialVersionUID = 0L;
               mutable_bitField0_ |= 0x00000001;
             }
             labelValues_.add(
-                input.readMessage(io.opencensus.proto.metrics.v1.LabelValue.parser(), extensionRegistry));
+                input.readMessage(io.opencensus.proto.metrics.v1.LabelValue.parser(),
+                    extensionRegistry));
             break;
           }
           case 26: {
@@ -84,7 +100,8 @@ private static final long serialVersionUID = 0L;
               mutable_bitField0_ |= 0x00000002;
             }
             points_.add(
-                input.readMessage(io.opencensus.proto.metrics.v1.Point.parser(), extensionRegistry));
+                input
+                    .readMessage(io.opencensus.proto.metrics.v1.Point.parser(), extensionRegistry));
             break;
           }
           default: {
@@ -112,21 +129,132 @@ private static final long serialVersionUID = 0L;
       makeExtensionsImmutable();
     }
   }
+
   public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
+  getDescriptor() {
     return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_TimeSeries_descriptor;
+  }
+
+  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.metrics.v1.TimeSeries parseDelimitedFrom(
+      java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.metrics.v1.TimeSeries parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(io.opencensus.proto.metrics.v1.TimeSeries prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
+  public static io.opencensus.proto.metrics.v1.TimeSeries getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  public static com.google.protobuf.Parser<TimeSeries> parser() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new TimeSeries();
+  }
+
+  @java.lang.Override
+  public final com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
+  internalGetFieldAccessorTable() {
     return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_TimeSeries_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.metrics.v1.TimeSeries.class, io.opencensus.proto.metrics.v1.TimeSeries.Builder.class);
+            io.opencensus.proto.metrics.v1.TimeSeries.class,
+            io.opencensus.proto.metrics.v1.TimeSeries.Builder.class);
   }
 
-  public static final int START_TIMESTAMP_FIELD_NUMBER = 1;
-  private com.google.protobuf.Timestamp startTimestamp_;
   /**
    * <pre>
    * Must be present for cumulative metrics. The time when the cumulative value
@@ -136,12 +264,14 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.google.protobuf.Timestamp start_timestamp = 1;</code>
+   *
    * @return Whether the startTimestamp field is set.
    */
   @java.lang.Override
   public boolean hasStartTimestamp() {
     return startTimestamp_ != null;
   }
+
   /**
    * <pre>
    * Must be present for cumulative metrics. The time when the cumulative value
@@ -151,12 +281,15 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.google.protobuf.Timestamp start_timestamp = 1;</code>
+   *
    * @return The startTimestamp.
    */
   @java.lang.Override
   public com.google.protobuf.Timestamp getStartTimestamp() {
-    return startTimestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : startTimestamp_;
+    return startTimestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() :
+        startTimestamp_;
   }
+
   /**
    * <pre>
    * Must be present for cumulative metrics. The time when the cumulative value
@@ -172,8 +305,6 @@ private static final long serialVersionUID = 0L;
     return getStartTimestamp();
   }
 
-  public static final int LABEL_VALUES_FIELD_NUMBER = 2;
-  private java.util.List<io.opencensus.proto.metrics.v1.LabelValue> labelValues_;
   /**
    * <pre>
    * The set of label values that uniquely identify this timeseries. Applies to
@@ -187,6 +318,7 @@ private static final long serialVersionUID = 0L;
   public java.util.List<io.opencensus.proto.metrics.v1.LabelValue> getLabelValuesList() {
     return labelValues_;
   }
+
   /**
    * <pre>
    * The set of label values that uniquely identify this timeseries. Applies to
@@ -197,10 +329,11 @@ private static final long serialVersionUID = 0L;
    * <code>repeated .opencensus.proto.metrics.v1.LabelValue label_values = 2;</code>
    */
   @java.lang.Override
-  public java.util.List<? extends io.opencensus.proto.metrics.v1.LabelValueOrBuilder> 
-      getLabelValuesOrBuilderList() {
+  public java.util.List<? extends io.opencensus.proto.metrics.v1.LabelValueOrBuilder>
+  getLabelValuesOrBuilderList() {
     return labelValues_;
   }
+
   /**
    * <pre>
    * The set of label values that uniquely identify this timeseries. Applies to
@@ -214,6 +347,7 @@ private static final long serialVersionUID = 0L;
   public int getLabelValuesCount() {
     return labelValues_.size();
   }
+
   /**
    * <pre>
    * The set of label values that uniquely identify this timeseries. Applies to
@@ -227,6 +361,7 @@ private static final long serialVersionUID = 0L;
   public io.opencensus.proto.metrics.v1.LabelValue getLabelValues(int index) {
     return labelValues_.get(index);
   }
+
   /**
    * <pre>
    * The set of label values that uniquely identify this timeseries. Applies to
@@ -242,8 +377,6 @@ private static final long serialVersionUID = 0L;
     return labelValues_.get(index);
   }
 
-  public static final int POINTS_FIELD_NUMBER = 3;
-  private java.util.List<io.opencensus.proto.metrics.v1.Point> points_;
   /**
    * <pre>
    * The data points of this timeseries. Point.value type MUST match the
@@ -256,6 +389,7 @@ private static final long serialVersionUID = 0L;
   public java.util.List<io.opencensus.proto.metrics.v1.Point> getPointsList() {
     return points_;
   }
+
   /**
    * <pre>
    * The data points of this timeseries. Point.value type MUST match the
@@ -265,10 +399,11 @@ private static final long serialVersionUID = 0L;
    * <code>repeated .opencensus.proto.metrics.v1.Point points = 3;</code>
    */
   @java.lang.Override
-  public java.util.List<? extends io.opencensus.proto.metrics.v1.PointOrBuilder> 
-      getPointsOrBuilderList() {
+  public java.util.List<? extends io.opencensus.proto.metrics.v1.PointOrBuilder>
+  getPointsOrBuilderList() {
     return points_;
   }
+
   /**
    * <pre>
    * The data points of this timeseries. Point.value type MUST match the
@@ -281,6 +416,7 @@ private static final long serialVersionUID = 0L;
   public int getPointsCount() {
     return points_.size();
   }
+
   /**
    * <pre>
    * The data points of this timeseries. Point.value type MUST match the
@@ -293,6 +429,7 @@ private static final long serialVersionUID = 0L;
   public io.opencensus.proto.metrics.v1.Point getPoints(int index) {
     return points_.get(index);
   }
+
   /**
    * <pre>
    * The data points of this timeseries. Point.value type MUST match the
@@ -307,12 +444,15 @@ private static final long serialVersionUID = 0L;
     return points_.get(index);
   }
 
-  private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
+    if (isInitialized == 1) {
+      return true;
+    }
+    if (isInitialized == 0) {
+      return false;
+    }
 
     memoizedIsInitialized = 1;
     return true;
@@ -320,7 +460,7 @@ private static final long serialVersionUID = 0L;
 
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
+      throws java.io.IOException {
     if (startTimestamp_ != null) {
       output.writeMessage(1, getStartTimestamp());
     }
@@ -336,20 +476,22 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public int getSerializedSize() {
     int size = memoizedSize;
-    if (size != -1) return size;
+    if (size != -1) {
+      return size;
+    }
 
     size = 0;
     if (startTimestamp_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, getStartTimestamp());
+          .computeMessageSize(1, getStartTimestamp());
     }
     for (int i = 0; i < labelValues_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, labelValues_.get(i));
+          .computeMessageSize(2, labelValues_.get(i));
     }
     for (int i = 0; i < points_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, points_.get(i));
+          .computeMessageSize(3, points_.get(i));
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -359,24 +501,32 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-     return true;
+      return true;
     }
     if (!(obj instanceof io.opencensus.proto.metrics.v1.TimeSeries)) {
       return super.equals(obj);
     }
-    io.opencensus.proto.metrics.v1.TimeSeries other = (io.opencensus.proto.metrics.v1.TimeSeries) obj;
+    io.opencensus.proto.metrics.v1.TimeSeries other =
+        (io.opencensus.proto.metrics.v1.TimeSeries) obj;
 
-    if (hasStartTimestamp() != other.hasStartTimestamp()) return false;
+    if (hasStartTimestamp() != other.hasStartTimestamp()) {
+      return false;
+    }
     if (hasStartTimestamp()) {
       if (!getStartTimestamp()
-          .equals(other.getStartTimestamp())) return false;
+          .equals(other.getStartTimestamp())) {
+        return false;
+      }
     }
     if (!getLabelValuesList()
-        .equals(other.getLabelValuesList())) return false;
+        .equals(other.getLabelValuesList())) {
+      return false;
+    }
     if (!getPointsList()
-        .equals(other.getPointsList())) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
+        .equals(other.getPointsList())) {
+      return false;
+    }
+    return unknownFields.equals(other.unknownFields);
   }
 
   @java.lang.Override
@@ -403,84 +553,11 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.metrics.v1.TimeSeries parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.metrics.v1.TimeSeries parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.metrics.v1.TimeSeries parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
+  @java.lang.Override
+  public Builder newBuilderForType() {
+    return newBuilder();
   }
 
-  @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(io.opencensus.proto.metrics.v1.TimeSeries prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
   @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
@@ -493,30 +570,48 @@ private static final long serialVersionUID = 0L;
     Builder builder = new Builder(parent);
     return builder;
   }
+
+  @java.lang.Override
+  public com.google.protobuf.Parser<TimeSeries> getParserForType() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public io.opencensus.proto.metrics.v1.TimeSeries getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
+  }
+
   /**
    * <pre>
    * A collection of data points that describes the time-varying values
    * of a metric.
    * </pre>
-   *
+   * <p>
    * Protobuf type {@code opencensus.proto.metrics.v1.TimeSeries}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
       // @@protoc_insertion_point(builder_implements:opencensus.proto.metrics.v1.TimeSeries)
       io.opencensus.proto.metrics.v1.TimeSeriesOrBuilder {
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_TimeSeries_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_TimeSeries_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.metrics.v1.TimeSeries.class, io.opencensus.proto.metrics.v1.TimeSeries.Builder.class);
-    }
+    private int bitField0_;
+    private com.google.protobuf.Timestamp startTimestamp_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
+        com.google.protobuf.TimestampOrBuilder>
+        startTimestampBuilder_;
+    private java.util.List<io.opencensus.proto.metrics.v1.LabelValue> labelValues_ =
+        java.util.Collections.emptyList();
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        io.opencensus.proto.metrics.v1.LabelValue,
+        io.opencensus.proto.metrics.v1.LabelValue.Builder,
+        io.opencensus.proto.metrics.v1.LabelValueOrBuilder>
+        labelValuesBuilder_;
+    private java.util.List<io.opencensus.proto.metrics.v1.Point> points_ =
+        java.util.Collections.emptyList();
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        io.opencensus.proto.metrics.v1.Point, io.opencensus.proto.metrics.v1.Point.Builder,
+        io.opencensus.proto.metrics.v1.PointOrBuilder>
+        pointsBuilder_;
 
     // Construct using io.opencensus.proto.metrics.v1.TimeSeries.newBuilder()
     private Builder() {
@@ -528,13 +623,29 @@ private static final long serialVersionUID = 0L;
       super(parent);
       maybeForceBuilderInitialization();
     }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_TimeSeries_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_TimeSeries_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.opencensus.proto.metrics.v1.TimeSeries.class,
+              io.opencensus.proto.metrics.v1.TimeSeries.Builder.class);
+    }
+
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
+          .alwaysUseFieldBuilders) {
         getLabelValuesFieldBuilder();
         getPointsFieldBuilder();
       }
     }
+
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -561,7 +672,7 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+    getDescriptorForType() {
       return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_TimeSeries_descriptor;
     }
 
@@ -581,7 +692,8 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public io.opencensus.proto.metrics.v1.TimeSeries buildPartial() {
-      io.opencensus.proto.metrics.v1.TimeSeries result = new io.opencensus.proto.metrics.v1.TimeSeries(this);
+      io.opencensus.proto.metrics.v1.TimeSeries result =
+          new io.opencensus.proto.metrics.v1.TimeSeries(this);
       int from_bitField0_ = bitField0_;
       if (startTimestampBuilder_ == null) {
         result.startTimestamp_ = startTimestamp_;
@@ -614,38 +726,44 @@ private static final long serialVersionUID = 0L;
     public Builder clone() {
       return super.clone();
     }
+
     @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.setField(field, value);
     }
+
     @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
+
     @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
+
     @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
     }
+
     @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.addRepeatedField(field, value);
     }
+
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof io.opencensus.proto.metrics.v1.TimeSeries) {
-        return mergeFrom((io.opencensus.proto.metrics.v1.TimeSeries)other);
+        return mergeFrom((io.opencensus.proto.metrics.v1.TimeSeries) other);
       } else {
         super.mergeFrom(other);
         return this;
@@ -653,7 +771,9 @@ private static final long serialVersionUID = 0L;
     }
 
     public Builder mergeFrom(io.opencensus.proto.metrics.v1.TimeSeries other) {
-      if (other == io.opencensus.proto.metrics.v1.TimeSeries.getDefaultInstance()) return this;
+      if (other == io.opencensus.proto.metrics.v1.TimeSeries.getDefaultInstance()) {
+        return this;
+      }
       if (other.hasStartTimestamp()) {
         mergeStartTimestamp(other.getStartTimestamp());
       }
@@ -675,9 +795,9 @@ private static final long serialVersionUID = 0L;
             labelValuesBuilder_ = null;
             labelValues_ = other.labelValues_;
             bitField0_ = (bitField0_ & ~0x00000001);
-            labelValuesBuilder_ = 
-              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                 getLabelValuesFieldBuilder() : null;
+            labelValuesBuilder_ =
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                    getLabelValuesFieldBuilder() : null;
           } else {
             labelValuesBuilder_.addAllMessages(other.labelValues_);
           }
@@ -701,9 +821,9 @@ private static final long serialVersionUID = 0L;
             pointsBuilder_ = null;
             points_ = other.points_;
             bitField0_ = (bitField0_ & ~0x00000002);
-            pointsBuilder_ = 
-              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                 getPointsFieldBuilder() : null;
+            pointsBuilder_ =
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                    getPointsFieldBuilder() : null;
           } else {
             pointsBuilder_.addAllMessages(other.points_);
           }
@@ -737,11 +857,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
-    private int bitField0_;
 
-    private com.google.protobuf.Timestamp startTimestamp_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> startTimestampBuilder_;
     /**
      * <pre>
      * Must be present for cumulative metrics. The time when the cumulative value
@@ -751,11 +867,13 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.google.protobuf.Timestamp start_timestamp = 1;</code>
+     *
      * @return Whether the startTimestamp field is set.
      */
     public boolean hasStartTimestamp() {
       return startTimestampBuilder_ != null || startTimestamp_ != null;
     }
+
     /**
      * <pre>
      * Must be present for cumulative metrics. The time when the cumulative value
@@ -765,15 +883,18 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.google.protobuf.Timestamp start_timestamp = 1;</code>
+     *
      * @return The startTimestamp.
      */
     public com.google.protobuf.Timestamp getStartTimestamp() {
       if (startTimestampBuilder_ == null) {
-        return startTimestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : startTimestamp_;
+        return startTimestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() :
+            startTimestamp_;
       } else {
         return startTimestampBuilder_.getMessage();
       }
     }
+
     /**
      * <pre>
      * Must be present for cumulative metrics. The time when the cumulative value
@@ -797,6 +918,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * Must be present for cumulative metrics. The time when the cumulative value
@@ -818,6 +940,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * Must be present for cumulative metrics. The time when the cumulative value
@@ -832,7 +955,8 @@ private static final long serialVersionUID = 0L;
       if (startTimestampBuilder_ == null) {
         if (startTimestamp_ != null) {
           startTimestamp_ =
-            com.google.protobuf.Timestamp.newBuilder(startTimestamp_).mergeFrom(value).buildPartial();
+              com.google.protobuf.Timestamp.newBuilder(startTimestamp_).mergeFrom(value)
+                                           .buildPartial();
         } else {
           startTimestamp_ = value;
         }
@@ -843,6 +967,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * Must be present for cumulative metrics. The time when the cumulative value
@@ -864,6 +989,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * Must be present for cumulative metrics. The time when the cumulative value
@@ -875,10 +1001,11 @@ private static final long serialVersionUID = 0L;
      * <code>.google.protobuf.Timestamp start_timestamp = 1;</code>
      */
     public com.google.protobuf.Timestamp.Builder getStartTimestampBuilder() {
-      
+
       onChanged();
       return getStartTimestampFieldBuilder().getBuilder();
     }
+
     /**
      * <pre>
      * Must be present for cumulative metrics. The time when the cumulative value
@@ -897,6 +1024,7 @@ private static final long serialVersionUID = 0L;
             com.google.protobuf.Timestamp.getDefaultInstance() : startTimestamp_;
       }
     }
+
     /**
      * <pre>
      * Must be present for cumulative metrics. The time when the cumulative value
@@ -908,30 +1036,28 @@ private static final long serialVersionUID = 0L;
      * <code>.google.protobuf.Timestamp start_timestamp = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
-        getStartTimestampFieldBuilder() {
+        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
+        com.google.protobuf.TimestampOrBuilder>
+    getStartTimestampFieldBuilder() {
       if (startTimestampBuilder_ == null) {
         startTimestampBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
-                getStartTimestamp(),
-                getParentForChildren(),
-                isClean());
+            com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
+            com.google.protobuf.TimestampOrBuilder>(
+            getStartTimestamp(),
+            getParentForChildren(),
+            isClean());
         startTimestamp_ = null;
       }
       return startTimestampBuilder_;
     }
 
-    private java.util.List<io.opencensus.proto.metrics.v1.LabelValue> labelValues_ =
-      java.util.Collections.emptyList();
     private void ensureLabelValuesIsMutable() {
       if (!((bitField0_ & 0x00000001) != 0)) {
-        labelValues_ = new java.util.ArrayList<io.opencensus.proto.metrics.v1.LabelValue>(labelValues_);
+        labelValues_ =
+            new java.util.ArrayList<io.opencensus.proto.metrics.v1.LabelValue>(labelValues_);
         bitField0_ |= 0x00000001;
-       }
+      }
     }
-
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.LabelValue, io.opencensus.proto.metrics.v1.LabelValue.Builder, io.opencensus.proto.metrics.v1.LabelValueOrBuilder> labelValuesBuilder_;
 
     /**
      * <pre>
@@ -949,6 +1075,7 @@ private static final long serialVersionUID = 0L;
         return labelValuesBuilder_.getMessageList();
       }
     }
+
     /**
      * <pre>
      * The set of label values that uniquely identify this timeseries. Applies to
@@ -965,6 +1092,7 @@ private static final long serialVersionUID = 0L;
         return labelValuesBuilder_.getCount();
       }
     }
+
     /**
      * <pre>
      * The set of label values that uniquely identify this timeseries. Applies to
@@ -981,6 +1109,7 @@ private static final long serialVersionUID = 0L;
         return labelValuesBuilder_.getMessage(index);
       }
     }
+
     /**
      * <pre>
      * The set of label values that uniquely identify this timeseries. Applies to
@@ -1004,6 +1133,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The set of label values that uniquely identify this timeseries. Applies to
@@ -1024,6 +1154,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The set of label values that uniquely identify this timeseries. Applies to
@@ -1046,6 +1177,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The set of label values that uniquely identify this timeseries. Applies to
@@ -1069,6 +1201,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The set of label values that uniquely identify this timeseries. Applies to
@@ -1089,6 +1222,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The set of label values that uniquely identify this timeseries. Applies to
@@ -1109,6 +1243,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The set of label values that uniquely identify this timeseries. Applies to
@@ -1130,6 +1265,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The set of label values that uniquely identify this timeseries. Applies to
@@ -1149,6 +1285,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The set of label values that uniquely identify this timeseries. Applies to
@@ -1168,6 +1305,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The set of label values that uniquely identify this timeseries. Applies to
@@ -1181,6 +1319,7 @@ private static final long serialVersionUID = 0L;
         int index) {
       return getLabelValuesFieldBuilder().getBuilder(index);
     }
+
     /**
      * <pre>
      * The set of label values that uniquely identify this timeseries. Applies to
@@ -1193,10 +1332,12 @@ private static final long serialVersionUID = 0L;
     public io.opencensus.proto.metrics.v1.LabelValueOrBuilder getLabelValuesOrBuilder(
         int index) {
       if (labelValuesBuilder_ == null) {
-        return labelValues_.get(index);  } else {
+        return labelValues_.get(index);
+      } else {
         return labelValuesBuilder_.getMessageOrBuilder(index);
       }
     }
+
     /**
      * <pre>
      * The set of label values that uniquely identify this timeseries. Applies to
@@ -1206,14 +1347,15 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opencensus.proto.metrics.v1.LabelValue label_values = 2;</code>
      */
-    public java.util.List<? extends io.opencensus.proto.metrics.v1.LabelValueOrBuilder> 
-         getLabelValuesOrBuilderList() {
+    public java.util.List<? extends io.opencensus.proto.metrics.v1.LabelValueOrBuilder>
+    getLabelValuesOrBuilderList() {
       if (labelValuesBuilder_ != null) {
         return labelValuesBuilder_.getMessageOrBuilderList();
       } else {
         return java.util.Collections.unmodifiableList(labelValues_);
       }
     }
+
     /**
      * <pre>
      * The set of label values that uniquely identify this timeseries. Applies to
@@ -1227,6 +1369,7 @@ private static final long serialVersionUID = 0L;
       return getLabelValuesFieldBuilder().addBuilder(
           io.opencensus.proto.metrics.v1.LabelValue.getDefaultInstance());
     }
+
     /**
      * <pre>
      * The set of label values that uniquely identify this timeseries. Applies to
@@ -1241,6 +1384,7 @@ private static final long serialVersionUID = 0L;
       return getLabelValuesFieldBuilder().addBuilder(
           index, io.opencensus.proto.metrics.v1.LabelValue.getDefaultInstance());
     }
+
     /**
      * <pre>
      * The set of label values that uniquely identify this timeseries. Applies to
@@ -1250,36 +1394,36 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opencensus.proto.metrics.v1.LabelValue label_values = 2;</code>
      */
-    public java.util.List<io.opencensus.proto.metrics.v1.LabelValue.Builder> 
-         getLabelValuesBuilderList() {
+    public java.util.List<io.opencensus.proto.metrics.v1.LabelValue.Builder>
+    getLabelValuesBuilderList() {
       return getLabelValuesFieldBuilder().getBuilderList();
     }
+
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.LabelValue, io.opencensus.proto.metrics.v1.LabelValue.Builder, io.opencensus.proto.metrics.v1.LabelValueOrBuilder> 
-        getLabelValuesFieldBuilder() {
+        io.opencensus.proto.metrics.v1.LabelValue,
+        io.opencensus.proto.metrics.v1.LabelValue.Builder,
+        io.opencensus.proto.metrics.v1.LabelValueOrBuilder>
+    getLabelValuesFieldBuilder() {
       if (labelValuesBuilder_ == null) {
         labelValuesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            io.opencensus.proto.metrics.v1.LabelValue, io.opencensus.proto.metrics.v1.LabelValue.Builder, io.opencensus.proto.metrics.v1.LabelValueOrBuilder>(
-                labelValues_,
-                ((bitField0_ & 0x00000001) != 0),
-                getParentForChildren(),
-                isClean());
+            io.opencensus.proto.metrics.v1.LabelValue,
+            io.opencensus.proto.metrics.v1.LabelValue.Builder,
+            io.opencensus.proto.metrics.v1.LabelValueOrBuilder>(
+            labelValues_,
+            ((bitField0_ & 0x00000001) != 0),
+            getParentForChildren(),
+            isClean());
         labelValues_ = null;
       }
       return labelValuesBuilder_;
     }
 
-    private java.util.List<io.opencensus.proto.metrics.v1.Point> points_ =
-      java.util.Collections.emptyList();
     private void ensurePointsIsMutable() {
       if (!((bitField0_ & 0x00000002) != 0)) {
         points_ = new java.util.ArrayList<io.opencensus.proto.metrics.v1.Point>(points_);
         bitField0_ |= 0x00000002;
-       }
+      }
     }
-
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.Point, io.opencensus.proto.metrics.v1.Point.Builder, io.opencensus.proto.metrics.v1.PointOrBuilder> pointsBuilder_;
 
     /**
      * <pre>
@@ -1296,6 +1440,7 @@ private static final long serialVersionUID = 0L;
         return pointsBuilder_.getMessageList();
       }
     }
+
     /**
      * <pre>
      * The data points of this timeseries. Point.value type MUST match the
@@ -1311,6 +1456,7 @@ private static final long serialVersionUID = 0L;
         return pointsBuilder_.getCount();
       }
     }
+
     /**
      * <pre>
      * The data points of this timeseries. Point.value type MUST match the
@@ -1326,6 +1472,7 @@ private static final long serialVersionUID = 0L;
         return pointsBuilder_.getMessage(index);
       }
     }
+
     /**
      * <pre>
      * The data points of this timeseries. Point.value type MUST match the
@@ -1348,6 +1495,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The data points of this timeseries. Point.value type MUST match the
@@ -1367,6 +1515,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The data points of this timeseries. Point.value type MUST match the
@@ -1388,6 +1537,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The data points of this timeseries. Point.value type MUST match the
@@ -1410,6 +1560,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The data points of this timeseries. Point.value type MUST match the
@@ -1429,6 +1580,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The data points of this timeseries. Point.value type MUST match the
@@ -1448,6 +1600,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The data points of this timeseries. Point.value type MUST match the
@@ -1468,6 +1621,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The data points of this timeseries. Point.value type MUST match the
@@ -1486,6 +1640,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The data points of this timeseries. Point.value type MUST match the
@@ -1504,6 +1659,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The data points of this timeseries. Point.value type MUST match the
@@ -1516,6 +1672,7 @@ private static final long serialVersionUID = 0L;
         int index) {
       return getPointsFieldBuilder().getBuilder(index);
     }
+
     /**
      * <pre>
      * The data points of this timeseries. Point.value type MUST match the
@@ -1527,10 +1684,12 @@ private static final long serialVersionUID = 0L;
     public io.opencensus.proto.metrics.v1.PointOrBuilder getPointsOrBuilder(
         int index) {
       if (pointsBuilder_ == null) {
-        return points_.get(index);  } else {
+        return points_.get(index);
+      } else {
         return pointsBuilder_.getMessageOrBuilder(index);
       }
     }
+
     /**
      * <pre>
      * The data points of this timeseries. Point.value type MUST match the
@@ -1539,14 +1698,15 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opencensus.proto.metrics.v1.Point points = 3;</code>
      */
-    public java.util.List<? extends io.opencensus.proto.metrics.v1.PointOrBuilder> 
-         getPointsOrBuilderList() {
+    public java.util.List<? extends io.opencensus.proto.metrics.v1.PointOrBuilder>
+    getPointsOrBuilderList() {
       if (pointsBuilder_ != null) {
         return pointsBuilder_.getMessageOrBuilderList();
       } else {
         return java.util.Collections.unmodifiableList(points_);
       }
     }
+
     /**
      * <pre>
      * The data points of this timeseries. Point.value type MUST match the
@@ -1559,6 +1719,7 @@ private static final long serialVersionUID = 0L;
       return getPointsFieldBuilder().addBuilder(
           io.opencensus.proto.metrics.v1.Point.getDefaultInstance());
     }
+
     /**
      * <pre>
      * The data points of this timeseries. Point.value type MUST match the
@@ -1572,6 +1733,7 @@ private static final long serialVersionUID = 0L;
       return getPointsFieldBuilder().addBuilder(
           index, io.opencensus.proto.metrics.v1.Point.getDefaultInstance());
     }
+
     /**
      * <pre>
      * The data points of this timeseries. Point.value type MUST match the
@@ -1580,24 +1742,28 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opencensus.proto.metrics.v1.Point points = 3;</code>
      */
-    public java.util.List<io.opencensus.proto.metrics.v1.Point.Builder> 
-         getPointsBuilderList() {
+    public java.util.List<io.opencensus.proto.metrics.v1.Point.Builder>
+    getPointsBuilderList() {
       return getPointsFieldBuilder().getBuilderList();
     }
+
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.Point, io.opencensus.proto.metrics.v1.Point.Builder, io.opencensus.proto.metrics.v1.PointOrBuilder> 
-        getPointsFieldBuilder() {
+        io.opencensus.proto.metrics.v1.Point, io.opencensus.proto.metrics.v1.Point.Builder,
+        io.opencensus.proto.metrics.v1.PointOrBuilder>
+    getPointsFieldBuilder() {
       if (pointsBuilder_ == null) {
         pointsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            io.opencensus.proto.metrics.v1.Point, io.opencensus.proto.metrics.v1.Point.Builder, io.opencensus.proto.metrics.v1.PointOrBuilder>(
-                points_,
-                ((bitField0_ & 0x00000002) != 0),
-                getParentForChildren(),
-                isClean());
+            io.opencensus.proto.metrics.v1.Point, io.opencensus.proto.metrics.v1.Point.Builder,
+            io.opencensus.proto.metrics.v1.PointOrBuilder>(
+            points_,
+            ((bitField0_ & 0x00000002) != 0),
+            getParentForChildren(),
+            isClean());
         points_ = null;
       }
       return pointsBuilder_;
     }
+
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1612,41 +1778,6 @@ private static final long serialVersionUID = 0L;
 
 
     // @@protoc_insertion_point(builder_scope:opencensus.proto.metrics.v1.TimeSeries)
-  }
-
-  // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.TimeSeries)
-  private static final io.opencensus.proto.metrics.v1.TimeSeries DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.metrics.v1.TimeSeries();
-  }
-
-  public static io.opencensus.proto.metrics.v1.TimeSeries getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<TimeSeries>
-      PARSER = new com.google.protobuf.AbstractParser<TimeSeries>() {
-    @java.lang.Override
-    public TimeSeries parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new TimeSeries(input, extensionRegistry);
-    }
-  };
-
-  public static com.google.protobuf.Parser<TimeSeries> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<TimeSeries> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.metrics.v1.TimeSeries getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
   }
 
 }

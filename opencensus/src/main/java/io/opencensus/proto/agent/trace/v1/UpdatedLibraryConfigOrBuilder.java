@@ -4,7 +4,8 @@
 package io.opencensus.proto.agent.trace.v1;
 
 public interface UpdatedLibraryConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:opencensus.proto.agent.trace.v1.UpdatedLibraryConfig)
+    // @@protoc_insertion_point(interface_extends:opencensus.proto.agent.trace.v1
+    // .UpdatedLibraryConfig)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -15,9 +16,11 @@ public interface UpdatedLibraryConfigOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
+   *
    * @return Whether the node field is set.
    */
   boolean hasNode();
+
   /**
    * <pre>
    * This field is ignored when the RPC is used to configure only one Application.
@@ -26,9 +29,11 @@ public interface UpdatedLibraryConfigOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
+   *
    * @return The node.
    */
   io.opencensus.proto.agent.common.v1.Node getNode();
+
   /**
    * <pre>
    * This field is ignored when the RPC is used to configure only one Application.
@@ -46,18 +51,22 @@ public interface UpdatedLibraryConfigOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TraceConfig config = 2;</code>
+   *
    * @return Whether the config field is set.
    */
   boolean hasConfig();
+
   /**
    * <pre>
    * Requested updated configuration.
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TraceConfig config = 2;</code>
+   *
    * @return The config.
    */
   io.opencensus.proto.trace.v1.TraceConfig getConfig();
+
   /**
    * <pre>
    * Requested updated configuration.

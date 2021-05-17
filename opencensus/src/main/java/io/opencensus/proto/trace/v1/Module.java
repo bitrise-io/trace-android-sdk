@@ -7,33 +7,44 @@ package io.opencensus.proto.trace.v1;
  * <pre>
  * A description of a binary module.
  * </pre>
- *
+ * <p>
  * Protobuf type {@code opencensus.proto.trace.v1.Module}
  */
 public final class Module extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.Module)
     ModuleOrBuilder {
-private static final long serialVersionUID = 0L;
+  public static final int MODULE_FIELD_NUMBER = 1;
+  public static final int BUILD_ID_FIELD_NUMBER = 2;
+  private static final long serialVersionUID = 0L;
+  // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Module)
+  private static final io.opencensus.proto.trace.v1.Module DEFAULT_INSTANCE;
+  private static final com.google.protobuf.Parser<Module>
+      PARSER = new com.google.protobuf.AbstractParser<Module>() {
+    @java.lang.Override
+    public Module parsePartialFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return new Module(input, extensionRegistry);
+    }
+  };
+
+  static {
+    DEFAULT_INSTANCE = new io.opencensus.proto.trace.v1.Module();
+  }
+
+  private io.opencensus.proto.trace.v1.TruncatableString module_;
+  private io.opencensus.proto.trace.v1.TruncatableString buildId_;
+  private byte memoizedIsInitialized = -1;
   // Use Module.newBuilder() to construct.
   private Module(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
+
   private Module() {
   }
 
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new Module();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
   private Module(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -57,7 +68,8 @@ private static final long serialVersionUID = 0L;
             if (module_ != null) {
               subBuilder = module_.toBuilder();
             }
-            module_ = input.readMessage(io.opencensus.proto.trace.v1.TruncatableString.parser(), extensionRegistry);
+            module_ = input.readMessage(io.opencensus.proto.trace.v1.TruncatableString.parser(),
+                extensionRegistry);
             if (subBuilder != null) {
               subBuilder.mergeFrom(module_);
               module_ = subBuilder.buildPartial();
@@ -70,7 +82,8 @@ private static final long serialVersionUID = 0L;
             if (buildId_ != null) {
               subBuilder = buildId_.toBuilder();
             }
-            buildId_ = input.readMessage(io.opencensus.proto.trace.v1.TruncatableString.parser(), extensionRegistry);
+            buildId_ = input.readMessage(io.opencensus.proto.trace.v1.TruncatableString.parser(),
+                extensionRegistry);
             if (subBuilder != null) {
               subBuilder.mergeFrom(buildId_);
               buildId_ = subBuilder.buildPartial();
@@ -97,21 +110,131 @@ private static final long serialVersionUID = 0L;
       makeExtensionsImmutable();
     }
   }
+
   public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
+  getDescriptor() {
     return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Module_descriptor;
+  }
+
+  public static io.opencensus.proto.trace.v1.Module parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.trace.v1.Module parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.Module parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.trace.v1.Module parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.Module parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.trace.v1.Module parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.Module parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.trace.v1.Module parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.Module parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.trace.v1.Module parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.Module parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.trace.v1.Module parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(io.opencensus.proto.trace.v1.Module prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
+  public static io.opencensus.proto.trace.v1.Module getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  public static com.google.protobuf.Parser<Module> parser() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new Module();
+  }
+
+  @java.lang.Override
+  public final com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
+  internalGetFieldAccessorTable() {
     return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Module_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.trace.v1.Module.class, io.opencensus.proto.trace.v1.Module.Builder.class);
+            io.opencensus.proto.trace.v1.Module.class,
+            io.opencensus.proto.trace.v1.Module.Builder.class);
   }
 
-  public static final int MODULE_FIELD_NUMBER = 1;
-  private io.opencensus.proto.trace.v1.TruncatableString module_;
   /**
    * <pre>
    * TODO: document the meaning of this field.
@@ -120,12 +243,14 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TruncatableString module = 1;</code>
+   *
    * @return Whether the module field is set.
    */
   @java.lang.Override
   public boolean hasModule() {
     return module_ != null;
   }
+
   /**
    * <pre>
    * TODO: document the meaning of this field.
@@ -134,12 +259,15 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TruncatableString module = 1;</code>
+   *
    * @return The module.
    */
   @java.lang.Override
   public io.opencensus.proto.trace.v1.TruncatableString getModule() {
-    return module_ == null ? io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance() : module_;
+    return module_ == null ? io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance() :
+        module_;
   }
+
   /**
    * <pre>
    * TODO: document the meaning of this field.
@@ -154,8 +282,6 @@ private static final long serialVersionUID = 0L;
     return getModule();
   }
 
-  public static final int BUILD_ID_FIELD_NUMBER = 2;
-  private io.opencensus.proto.trace.v1.TruncatableString buildId_;
   /**
    * <pre>
    * A unique identifier for the module, usually a hash of its
@@ -163,12 +289,14 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TruncatableString build_id = 2;</code>
+   *
    * @return Whether the buildId field is set.
    */
   @java.lang.Override
   public boolean hasBuildId() {
     return buildId_ != null;
   }
+
   /**
    * <pre>
    * A unique identifier for the module, usually a hash of its
@@ -176,12 +304,15 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TruncatableString build_id = 2;</code>
+   *
    * @return The buildId.
    */
   @java.lang.Override
   public io.opencensus.proto.trace.v1.TruncatableString getBuildId() {
-    return buildId_ == null ? io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance() : buildId_;
+    return buildId_ == null ? io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance() :
+        buildId_;
   }
+
   /**
    * <pre>
    * A unique identifier for the module, usually a hash of its
@@ -195,12 +326,15 @@ private static final long serialVersionUID = 0L;
     return getBuildId();
   }
 
-  private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
+    if (isInitialized == 1) {
+      return true;
+    }
+    if (isInitialized == 0) {
+      return false;
+    }
 
     memoizedIsInitialized = 1;
     return true;
@@ -208,7 +342,7 @@ private static final long serialVersionUID = 0L;
 
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
+      throws java.io.IOException {
     if (module_ != null) {
       output.writeMessage(1, getModule());
     }
@@ -221,16 +355,18 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public int getSerializedSize() {
     int size = memoizedSize;
-    if (size != -1) return size;
+    if (size != -1) {
+      return size;
+    }
 
     size = 0;
     if (module_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, getModule());
+          .computeMessageSize(1, getModule());
     }
     if (buildId_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, getBuildId());
+          .computeMessageSize(2, getBuildId());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -240,25 +376,32 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-     return true;
+      return true;
     }
     if (!(obj instanceof io.opencensus.proto.trace.v1.Module)) {
       return super.equals(obj);
     }
     io.opencensus.proto.trace.v1.Module other = (io.opencensus.proto.trace.v1.Module) obj;
 
-    if (hasModule() != other.hasModule()) return false;
+    if (hasModule() != other.hasModule()) {
+      return false;
+    }
     if (hasModule()) {
       if (!getModule()
-          .equals(other.getModule())) return false;
+          .equals(other.getModule())) {
+        return false;
+      }
     }
-    if (hasBuildId() != other.hasBuildId()) return false;
+    if (hasBuildId() != other.hasBuildId()) {
+      return false;
+    }
     if (hasBuildId()) {
       if (!getBuildId()
-          .equals(other.getBuildId())) return false;
+          .equals(other.getBuildId())) {
+        return false;
+      }
     }
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
+    return unknownFields.equals(other.unknownFields);
   }
 
   @java.lang.Override
@@ -281,84 +424,11 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static io.opencensus.proto.trace.v1.Module parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.trace.v1.Module parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.Module parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.trace.v1.Module parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.Module parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.trace.v1.Module parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.Module parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.trace.v1.Module parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.Module parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.trace.v1.Module parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.Module parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.trace.v1.Module parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
+  @java.lang.Override
+  public Builder newBuilderForType() {
+    return newBuilder();
   }
 
-  @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(io.opencensus.proto.trace.v1.Module prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
   @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
@@ -371,29 +441,40 @@ private static final long serialVersionUID = 0L;
     Builder builder = new Builder(parent);
     return builder;
   }
+
+  @java.lang.Override
+  public com.google.protobuf.Parser<Module> getParserForType() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public io.opencensus.proto.trace.v1.Module getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
+  }
+
   /**
    * <pre>
    * A description of a binary module.
    * </pre>
-   *
+   * <p>
    * Protobuf type {@code opencensus.proto.trace.v1.Module}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
       // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.Module)
       io.opencensus.proto.trace.v1.ModuleOrBuilder {
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Module_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Module_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.trace.v1.Module.class, io.opencensus.proto.trace.v1.Module.Builder.class);
-    }
+    private io.opencensus.proto.trace.v1.TruncatableString module_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.opencensus.proto.trace.v1.TruncatableString,
+        io.opencensus.proto.trace.v1.TruncatableString.Builder,
+        io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
+        moduleBuilder_;
+    private io.opencensus.proto.trace.v1.TruncatableString buildId_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.opencensus.proto.trace.v1.TruncatableString,
+        io.opencensus.proto.trace.v1.TruncatableString.Builder,
+        io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
+        buildIdBuilder_;
 
     // Construct using io.opencensus.proto.trace.v1.Module.newBuilder()
     private Builder() {
@@ -405,11 +486,27 @@ private static final long serialVersionUID = 0L;
       super(parent);
       maybeForceBuilderInitialization();
     }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Module_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Module_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.opencensus.proto.trace.v1.Module.class,
+              io.opencensus.proto.trace.v1.Module.Builder.class);
+    }
+
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
+          .alwaysUseFieldBuilders) {
       }
     }
+
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -430,7 +527,7 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+    getDescriptorForType() {
       return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Module_descriptor;
     }
 
@@ -469,38 +566,44 @@ private static final long serialVersionUID = 0L;
     public Builder clone() {
       return super.clone();
     }
+
     @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.setField(field, value);
     }
+
     @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
+
     @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
+
     @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
     }
+
     @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.addRepeatedField(field, value);
     }
+
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof io.opencensus.proto.trace.v1.Module) {
-        return mergeFrom((io.opencensus.proto.trace.v1.Module)other);
+        return mergeFrom((io.opencensus.proto.trace.v1.Module) other);
       } else {
         super.mergeFrom(other);
         return this;
@@ -508,7 +611,9 @@ private static final long serialVersionUID = 0L;
     }
 
     public Builder mergeFrom(io.opencensus.proto.trace.v1.Module other) {
-      if (other == io.opencensus.proto.trace.v1.Module.getDefaultInstance()) return this;
+      if (other == io.opencensus.proto.trace.v1.Module.getDefaultInstance()) {
+        return this;
+      }
       if (other.hasModule()) {
         mergeModule(other.getModule());
       }
@@ -544,9 +649,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private io.opencensus.proto.trace.v1.TruncatableString module_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.TruncatableString, io.opencensus.proto.trace.v1.TruncatableString.Builder, io.opencensus.proto.trace.v1.TruncatableStringOrBuilder> moduleBuilder_;
     /**
      * <pre>
      * TODO: document the meaning of this field.
@@ -555,11 +657,13 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.TruncatableString module = 1;</code>
+     *
      * @return Whether the module field is set.
      */
     public boolean hasModule() {
       return moduleBuilder_ != null || module_ != null;
     }
+
     /**
      * <pre>
      * TODO: document the meaning of this field.
@@ -568,15 +672,18 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.TruncatableString module = 1;</code>
+     *
      * @return The module.
      */
     public io.opencensus.proto.trace.v1.TruncatableString getModule() {
       if (moduleBuilder_ == null) {
-        return module_ == null ? io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance() : module_;
+        return module_ == null ?
+            io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance() : module_;
       } else {
         return moduleBuilder_.getMessage();
       }
     }
+
     /**
      * <pre>
      * TODO: document the meaning of this field.
@@ -599,6 +706,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * TODO: document the meaning of this field.
@@ -619,6 +727,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * TODO: document the meaning of this field.
@@ -632,7 +741,8 @@ private static final long serialVersionUID = 0L;
       if (moduleBuilder_ == null) {
         if (module_ != null) {
           module_ =
-            io.opencensus.proto.trace.v1.TruncatableString.newBuilder(module_).mergeFrom(value).buildPartial();
+              io.opencensus.proto.trace.v1.TruncatableString.newBuilder(module_).mergeFrom(value)
+                                                            .buildPartial();
         } else {
           module_ = value;
         }
@@ -643,6 +753,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * TODO: document the meaning of this field.
@@ -663,6 +774,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * TODO: document the meaning of this field.
@@ -673,10 +785,11 @@ private static final long serialVersionUID = 0L;
      * <code>.opencensus.proto.trace.v1.TruncatableString module = 1;</code>
      */
     public io.opencensus.proto.trace.v1.TruncatableString.Builder getModuleBuilder() {
-      
+
       onChanged();
       return getModuleFieldBuilder().getBuilder();
     }
+
     /**
      * <pre>
      * TODO: document the meaning of this field.
@@ -694,6 +807,7 @@ private static final long serialVersionUID = 0L;
             io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance() : module_;
       }
     }
+
     /**
      * <pre>
      * TODO: document the meaning of this field.
@@ -704,22 +818,23 @@ private static final long serialVersionUID = 0L;
      * <code>.opencensus.proto.trace.v1.TruncatableString module = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.TruncatableString, io.opencensus.proto.trace.v1.TruncatableString.Builder, io.opencensus.proto.trace.v1.TruncatableStringOrBuilder> 
-        getModuleFieldBuilder() {
+        io.opencensus.proto.trace.v1.TruncatableString,
+        io.opencensus.proto.trace.v1.TruncatableString.Builder,
+        io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
+    getModuleFieldBuilder() {
       if (moduleBuilder_ == null) {
         moduleBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.trace.v1.TruncatableString, io.opencensus.proto.trace.v1.TruncatableString.Builder, io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>(
-                getModule(),
-                getParentForChildren(),
-                isClean());
+            io.opencensus.proto.trace.v1.TruncatableString,
+            io.opencensus.proto.trace.v1.TruncatableString.Builder,
+            io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>(
+            getModule(),
+            getParentForChildren(),
+            isClean());
         module_ = null;
       }
       return moduleBuilder_;
     }
 
-    private io.opencensus.proto.trace.v1.TruncatableString buildId_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.TruncatableString, io.opencensus.proto.trace.v1.TruncatableString.Builder, io.opencensus.proto.trace.v1.TruncatableStringOrBuilder> buildIdBuilder_;
     /**
      * <pre>
      * A unique identifier for the module, usually a hash of its
@@ -727,11 +842,13 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.TruncatableString build_id = 2;</code>
+     *
      * @return Whether the buildId field is set.
      */
     public boolean hasBuildId() {
       return buildIdBuilder_ != null || buildId_ != null;
     }
+
     /**
      * <pre>
      * A unique identifier for the module, usually a hash of its
@@ -739,15 +856,18 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.TruncatableString build_id = 2;</code>
+     *
      * @return The buildId.
      */
     public io.opencensus.proto.trace.v1.TruncatableString getBuildId() {
       if (buildIdBuilder_ == null) {
-        return buildId_ == null ? io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance() : buildId_;
+        return buildId_ == null ?
+            io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance() : buildId_;
       } else {
         return buildIdBuilder_.getMessage();
       }
     }
+
     /**
      * <pre>
      * A unique identifier for the module, usually a hash of its
@@ -769,6 +889,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * A unique identifier for the module, usually a hash of its
@@ -788,6 +909,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * A unique identifier for the module, usually a hash of its
@@ -800,7 +922,8 @@ private static final long serialVersionUID = 0L;
       if (buildIdBuilder_ == null) {
         if (buildId_ != null) {
           buildId_ =
-            io.opencensus.proto.trace.v1.TruncatableString.newBuilder(buildId_).mergeFrom(value).buildPartial();
+              io.opencensus.proto.trace.v1.TruncatableString.newBuilder(buildId_).mergeFrom(value)
+                                                            .buildPartial();
         } else {
           buildId_ = value;
         }
@@ -811,6 +934,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * A unique identifier for the module, usually a hash of its
@@ -830,6 +954,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * A unique identifier for the module, usually a hash of its
@@ -839,10 +964,11 @@ private static final long serialVersionUID = 0L;
      * <code>.opencensus.proto.trace.v1.TruncatableString build_id = 2;</code>
      */
     public io.opencensus.proto.trace.v1.TruncatableString.Builder getBuildIdBuilder() {
-      
+
       onChanged();
       return getBuildIdFieldBuilder().getBuilder();
     }
+
     /**
      * <pre>
      * A unique identifier for the module, usually a hash of its
@@ -859,6 +985,7 @@ private static final long serialVersionUID = 0L;
             io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance() : buildId_;
       }
     }
+
     /**
      * <pre>
      * A unique identifier for the module, usually a hash of its
@@ -868,18 +995,23 @@ private static final long serialVersionUID = 0L;
      * <code>.opencensus.proto.trace.v1.TruncatableString build_id = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.TruncatableString, io.opencensus.proto.trace.v1.TruncatableString.Builder, io.opencensus.proto.trace.v1.TruncatableStringOrBuilder> 
-        getBuildIdFieldBuilder() {
+        io.opencensus.proto.trace.v1.TruncatableString,
+        io.opencensus.proto.trace.v1.TruncatableString.Builder,
+        io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
+    getBuildIdFieldBuilder() {
       if (buildIdBuilder_ == null) {
         buildIdBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.trace.v1.TruncatableString, io.opencensus.proto.trace.v1.TruncatableString.Builder, io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>(
-                getBuildId(),
-                getParentForChildren(),
-                isClean());
+            io.opencensus.proto.trace.v1.TruncatableString,
+            io.opencensus.proto.trace.v1.TruncatableString.Builder,
+            io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>(
+            getBuildId(),
+            getParentForChildren(),
+            isClean());
         buildId_ = null;
       }
       return buildIdBuilder_;
     }
+
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -894,41 +1026,6 @@ private static final long serialVersionUID = 0L;
 
 
     // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.Module)
-  }
-
-  // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Module)
-  private static final io.opencensus.proto.trace.v1.Module DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.trace.v1.Module();
-  }
-
-  public static io.opencensus.proto.trace.v1.Module getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<Module>
-      PARSER = new com.google.protobuf.AbstractParser<Module>() {
-    @java.lang.Override
-    public Module parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Module(input, extensionRegistry);
-    }
-  };
-
-  public static com.google.protobuf.Parser<Module> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<Module> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.Module getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
   }
 
 }

@@ -8,28 +8,39 @@ package io.opencensus.proto.agent.trace.v1;
  */
 public final class ExportTraceServiceResponse extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:opencensus.proto.agent.trace.v1.ExportTraceServiceResponse)
+    // @@protoc_insertion_point(message_implements:opencensus.proto.agent.trace.v1
+    // .ExportTraceServiceResponse)
     ExportTraceServiceResponseOrBuilder {
-private static final long serialVersionUID = 0L;
+  private static final long serialVersionUID = 0L;
+  // @@protoc_insertion_point(class_scope:opencensus.proto.agent.trace.v1
+  // .ExportTraceServiceResponse)
+  private static final io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse
+      DEFAULT_INSTANCE;
+  private static final com.google.protobuf.Parser<ExportTraceServiceResponse>
+      PARSER = new com.google.protobuf.AbstractParser<ExportTraceServiceResponse>() {
+    @java.lang.Override
+    public ExportTraceServiceResponse parsePartialFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return new ExportTraceServiceResponse(input, extensionRegistry);
+    }
+  };
+
+  static {
+    DEFAULT_INSTANCE = new io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse();
+  }
+
+  private byte memoizedIsInitialized = -1;
+
   // Use ExportTraceServiceResponse.newBuilder() to construct.
   private ExportTraceServiceResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
+
   private ExportTraceServiceResponse() {
   }
 
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new ExportTraceServiceResponse();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
   private ExportTraceServiceResponse(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -67,25 +78,143 @@ private static final long serialVersionUID = 0L;
       makeExtensionsImmutable();
     }
   }
+
   public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
+  getDescriptor() {
     return io.opencensus.proto.agent.trace.v1.TraceServiceProto.internal_static_opencensus_proto_agent_trace_v1_ExportTraceServiceResponse_descriptor;
+  }
+
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(
+      java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseDelimitedFrom(
+      java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(
+      io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  public static com.google.protobuf.Parser<ExportTraceServiceResponse> parser() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new ExportTraceServiceResponse();
+  }
+
+  @java.lang.Override
+  public final com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
+  internalGetFieldAccessorTable() {
     return io.opencensus.proto.agent.trace.v1.TraceServiceProto.internal_static_opencensus_proto_agent_trace_v1_ExportTraceServiceResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse.class, io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse.Builder.class);
+            io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse.class,
+            io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse.Builder.class);
   }
 
-  private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
+    if (isInitialized == 1) {
+      return true;
+    }
+    if (isInitialized == 0) {
+      return false;
+    }
 
     memoizedIsInitialized = 1;
     return true;
@@ -93,14 +222,16 @@ private static final long serialVersionUID = 0L;
 
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
+      throws java.io.IOException {
     unknownFields.writeTo(output);
   }
 
   @java.lang.Override
   public int getSerializedSize() {
     int size = memoizedSize;
-    if (size != -1) return size;
+    if (size != -1) {
+      return size;
+    }
 
     size = 0;
     size += unknownFields.getSerializedSize();
@@ -111,15 +242,15 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-     return true;
+      return true;
     }
     if (!(obj instanceof io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse)) {
       return super.equals(obj);
     }
-    io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse other = (io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse) obj;
+    io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse other =
+        (io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse) obj;
 
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
+    return unknownFields.equals(other.unknownFields);
   }
 
   @java.lang.Override
@@ -134,84 +265,11 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
+  @java.lang.Override
+  public Builder newBuilderForType() {
+    return newBuilder();
   }
 
-  @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
   @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
@@ -224,26 +282,25 @@ private static final long serialVersionUID = 0L;
     Builder builder = new Builder(parent);
     return builder;
   }
+
+  @java.lang.Override
+  public com.google.protobuf.Parser<ExportTraceServiceResponse> getParserForType() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
+  }
+
   /**
    * Protobuf type {@code opencensus.proto.agent.trace.v1.ExportTraceServiceResponse}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:opencensus.proto.agent.trace.v1.ExportTraceServiceResponse)
+      // @@protoc_insertion_point(builder_implements:opencensus.proto.agent.trace.v1
+      // .ExportTraceServiceResponse)
       io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponseOrBuilder {
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return io.opencensus.proto.agent.trace.v1.TraceServiceProto.internal_static_opencensus_proto_agent_trace_v1_ExportTraceServiceResponse_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return io.opencensus.proto.agent.trace.v1.TraceServiceProto.internal_static_opencensus_proto_agent_trace_v1_ExportTraceServiceResponse_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse.class, io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse.Builder.class);
-    }
-
     // Construct using io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
@@ -254,11 +311,27 @@ private static final long serialVersionUID = 0L;
       super(parent);
       maybeForceBuilderInitialization();
     }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+      return io.opencensus.proto.agent.trace.v1.TraceServiceProto.internal_static_opencensus_proto_agent_trace_v1_ExportTraceServiceResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return io.opencensus.proto.agent.trace.v1.TraceServiceProto.internal_static_opencensus_proto_agent_trace_v1_ExportTraceServiceResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse.class,
+              io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse.Builder.class);
+    }
+
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
+          .alwaysUseFieldBuilders) {
       }
     }
+
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -267,7 +340,7 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+    getDescriptorForType() {
       return io.opencensus.proto.agent.trace.v1.TraceServiceProto.internal_static_opencensus_proto_agent_trace_v1_ExportTraceServiceResponse_descriptor;
     }
 
@@ -287,7 +360,8 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse buildPartial() {
-      io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse result = new io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse(this);
+      io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse result =
+          new io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse(this);
       onBuilt();
       return result;
     }
@@ -296,38 +370,44 @@ private static final long serialVersionUID = 0L;
     public Builder clone() {
       return super.clone();
     }
+
     @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.setField(field, value);
     }
+
     @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
+
     @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
+
     @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
     }
+
     @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.addRepeatedField(field, value);
     }
+
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse) {
-        return mergeFrom((io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse)other);
+        return mergeFrom((io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse) other);
       } else {
         super.mergeFrom(other);
         return this;
@@ -335,7 +415,10 @@ private static final long serialVersionUID = 0L;
     }
 
     public Builder mergeFrom(io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse other) {
-      if (other == io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse.getDefaultInstance()) return this;
+      if (other ==
+          io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse.getDefaultInstance()) {
+        return this;
+      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
@@ -355,7 +438,8 @@ private static final long serialVersionUID = 0L;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse) e.getUnfinishedMessage();
+        parsedMessage = (io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse) e
+            .getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -364,6 +448,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -377,42 +462,8 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:opencensus.proto.agent.trace.v1.ExportTraceServiceResponse)
-  }
-
-  // @@protoc_insertion_point(class_scope:opencensus.proto.agent.trace.v1.ExportTraceServiceResponse)
-  private static final io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse();
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<ExportTraceServiceResponse>
-      PARSER = new com.google.protobuf.AbstractParser<ExportTraceServiceResponse>() {
-    @java.lang.Override
-    public ExportTraceServiceResponse parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new ExportTraceServiceResponse(input, extensionRegistry);
-    }
-  };
-
-  public static com.google.protobuf.Parser<ExportTraceServiceResponse> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<ExportTraceServiceResponse> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.agent.trace.v1.ExportTraceServiceResponse getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(builder_scope:opencensus.proto.agent.trace.v1
+    // .ExportTraceServiceResponse)
   }
 
 }

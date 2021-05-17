@@ -7,18 +7,48 @@ package io.opencensus.proto.metrics.v1;
  * <pre>
  * Defines a metric type and its schema.
  * </pre>
- *
+ * <p>
  * Protobuf type {@code opencensus.proto.metrics.v1.MetricDescriptor}
  */
 public final class MetricDescriptor extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:opencensus.proto.metrics.v1.MetricDescriptor)
     MetricDescriptorOrBuilder {
-private static final long serialVersionUID = 0L;
+  public static final int NAME_FIELD_NUMBER = 1;
+  public static final int DESCRIPTION_FIELD_NUMBER = 2;
+  public static final int UNIT_FIELD_NUMBER = 3;
+  public static final int TYPE_FIELD_NUMBER = 4;
+  public static final int LABEL_KEYS_FIELD_NUMBER = 5;
+  private static final long serialVersionUID = 0L;
+  // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.MetricDescriptor)
+  private static final io.opencensus.proto.metrics.v1.MetricDescriptor DEFAULT_INSTANCE;
+  private static final com.google.protobuf.Parser<MetricDescriptor>
+      PARSER = new com.google.protobuf.AbstractParser<MetricDescriptor>() {
+    @java.lang.Override
+    public MetricDescriptor parsePartialFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return new MetricDescriptor(input, extensionRegistry);
+    }
+  };
+
+  static {
+    DEFAULT_INSTANCE = new io.opencensus.proto.metrics.v1.MetricDescriptor();
+  }
+
+  private volatile java.lang.Object name_;
+  private volatile java.lang.Object description_;
+  private volatile java.lang.Object unit_;
+  private int type_;
+  private java.util.List<io.opencensus.proto.metrics.v1.LabelKey> labelKeys_;
+  private byte memoizedIsInitialized = -1;
+
   // Use MetricDescriptor.newBuilder() to construct.
   private MetricDescriptor(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
+
   private MetricDescriptor() {
     name_ = "";
     description_ = "";
@@ -27,18 +57,6 @@ private static final long serialVersionUID = 0L;
     labelKeys_ = java.util.Collections.emptyList();
   }
 
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new MetricDescriptor();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
   private MetricDescriptor(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -88,7 +106,8 @@ private static final long serialVersionUID = 0L;
               mutable_bitField0_ |= 0x00000001;
             }
             labelKeys_.add(
-                input.readMessage(io.opencensus.proto.metrics.v1.LabelKey.parser(), extensionRegistry));
+                input.readMessage(io.opencensus.proto.metrics.v1.LabelKey.parser(),
+                    extensionRegistry));
             break;
           }
           default: {
@@ -113,17 +132,509 @@ private static final long serialVersionUID = 0L;
       makeExtensionsImmutable();
     }
   }
+
   public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
+  getDescriptor() {
     return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_MetricDescriptor_descriptor;
+  }
+
+  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseDelimitedFrom(
+      java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(io.opencensus.proto.metrics.v1.MetricDescriptor prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
+  public static io.opencensus.proto.metrics.v1.MetricDescriptor getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  public static com.google.protobuf.Parser<MetricDescriptor> parser() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new MetricDescriptor();
+  }
+
+  @java.lang.Override
+  public final com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
+  internalGetFieldAccessorTable() {
     return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_MetricDescriptor_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.metrics.v1.MetricDescriptor.class, io.opencensus.proto.metrics.v1.MetricDescriptor.Builder.class);
+            io.opencensus.proto.metrics.v1.MetricDescriptor.class,
+            io.opencensus.proto.metrics.v1.MetricDescriptor.Builder.class);
+  }
+
+  /**
+   * <pre>
+   * The metric type, including its DNS name prefix. It must be unique.
+   * </pre>
+   *
+   * <code>string name = 1;</code>
+   *
+   * @return The name.
+   */
+  @java.lang.Override
+  public java.lang.String getName() {
+    java.lang.Object ref = name_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs =
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      name_ = s;
+      return s;
+    }
+  }
+
+  /**
+   * <pre>
+   * The metric type, including its DNS name prefix. It must be unique.
+   * </pre>
+   *
+   * <code>string name = 1;</code>
+   *
+   * @return The bytes for name.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+  getNameBytes() {
+    java.lang.Object ref = name_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      name_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  /**
+   * <pre>
+   * A detailed description of the metric, which can be used in documentation.
+   * </pre>
+   *
+   * <code>string description = 2;</code>
+   *
+   * @return The description.
+   */
+  @java.lang.Override
+  public java.lang.String getDescription() {
+    java.lang.Object ref = description_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs =
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      description_ = s;
+      return s;
+    }
+  }
+
+  /**
+   * <pre>
+   * A detailed description of the metric, which can be used in documentation.
+   * </pre>
+   *
+   * <code>string description = 2;</code>
+   *
+   * @return The bytes for description.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+  getDescriptionBytes() {
+    java.lang.Object ref = description_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      description_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  /**
+   * <pre>
+   * The unit in which the metric value is reported. Follows the format
+   * described by http://unitsofmeasure.org/ucum.html.
+   * </pre>
+   *
+   * <code>string unit = 3;</code>
+   *
+   * @return The unit.
+   */
+  @java.lang.Override
+  public java.lang.String getUnit() {
+    java.lang.Object ref = unit_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs =
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      unit_ = s;
+      return s;
+    }
+  }
+
+  /**
+   * <pre>
+   * The unit in which the metric value is reported. Follows the format
+   * described by http://unitsofmeasure.org/ucum.html.
+   * </pre>
+   *
+   * <code>string unit = 3;</code>
+   *
+   * @return The bytes for unit.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+  getUnitBytes() {
+    java.lang.Object ref = unit_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      unit_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  /**
+   * <code>.opencensus.proto.metrics.v1.MetricDescriptor.Type type = 4;</code>
+   *
+   * @return The enum numeric value on the wire for type.
+   */
+  @java.lang.Override
+  public int getTypeValue() {
+    return type_;
+  }
+
+  /**
+   * <code>.opencensus.proto.metrics.v1.MetricDescriptor.Type type = 4;</code>
+   *
+   * @return The type.
+   */
+  @java.lang.Override
+  public io.opencensus.proto.metrics.v1.MetricDescriptor.Type getType() {
+    @SuppressWarnings("deprecation")
+    io.opencensus.proto.metrics.v1.MetricDescriptor.Type result =
+        io.opencensus.proto.metrics.v1.MetricDescriptor.Type.valueOf(type_);
+    return result == null ? io.opencensus.proto.metrics.v1.MetricDescriptor.Type.UNRECOGNIZED :
+        result;
+  }
+
+  /**
+   * <pre>
+   * The label keys associated with the metric descriptor.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.metrics.v1.LabelKey label_keys = 5;</code>
+   */
+  @java.lang.Override
+  public java.util.List<io.opencensus.proto.metrics.v1.LabelKey> getLabelKeysList() {
+    return labelKeys_;
+  }
+
+  /**
+   * <pre>
+   * The label keys associated with the metric descriptor.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.metrics.v1.LabelKey label_keys = 5;</code>
+   */
+  @java.lang.Override
+  public java.util.List<? extends io.opencensus.proto.metrics.v1.LabelKeyOrBuilder>
+  getLabelKeysOrBuilderList() {
+    return labelKeys_;
+  }
+
+  /**
+   * <pre>
+   * The label keys associated with the metric descriptor.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.metrics.v1.LabelKey label_keys = 5;</code>
+   */
+  @java.lang.Override
+  public int getLabelKeysCount() {
+    return labelKeys_.size();
+  }
+
+  /**
+   * <pre>
+   * The label keys associated with the metric descriptor.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.metrics.v1.LabelKey label_keys = 5;</code>
+   */
+  @java.lang.Override
+  public io.opencensus.proto.metrics.v1.LabelKey getLabelKeys(int index) {
+    return labelKeys_.get(index);
+  }
+
+  /**
+   * <pre>
+   * The label keys associated with the metric descriptor.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.metrics.v1.LabelKey label_keys = 5;</code>
+   */
+  @java.lang.Override
+  public io.opencensus.proto.metrics.v1.LabelKeyOrBuilder getLabelKeysOrBuilder(
+      int index) {
+    return labelKeys_.get(index);
+  }
+
+  @java.lang.Override
+  public final boolean isInitialized() {
+    byte isInitialized = memoizedIsInitialized;
+    if (isInitialized == 1) {
+      return true;
+    }
+    if (isInitialized == 0) {
+      return false;
+    }
+
+    memoizedIsInitialized = 1;
+    return true;
+  }
+
+  @java.lang.Override
+  public void writeTo(com.google.protobuf.CodedOutputStream output)
+      throws java.io.IOException {
+    if (!getNameBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
+    }
+    if (!getDescriptionBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, description_);
+    }
+    if (!getUnitBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, unit_);
+    }
+    if (type_ != io.opencensus.proto.metrics.v1.MetricDescriptor.Type.UNSPECIFIED.getNumber()) {
+      output.writeEnum(4, type_);
+    }
+    for (int i = 0; i < labelKeys_.size(); i++) {
+      output.writeMessage(5, labelKeys_.get(i));
+    }
+    unknownFields.writeTo(output);
+  }
+
+  @java.lang.Override
+  public int getSerializedSize() {
+    int size = memoizedSize;
+    if (size != -1) {
+      return size;
+    }
+
+    size = 0;
+    if (!getNameBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
+    }
+    if (!getDescriptionBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, description_);
+    }
+    if (!getUnitBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, unit_);
+    }
+    if (type_ != io.opencensus.proto.metrics.v1.MetricDescriptor.Type.UNSPECIFIED.getNumber()) {
+      size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(4, type_);
+    }
+    for (int i = 0; i < labelKeys_.size(); i++) {
+      size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, labelKeys_.get(i));
+    }
+    size += unknownFields.getSerializedSize();
+    memoizedSize = size;
+    return size;
+  }
+
+  @java.lang.Override
+  public boolean equals(final java.lang.Object obj) {
+    if (obj == this) {
+      return true;
+    }
+    if (!(obj instanceof io.opencensus.proto.metrics.v1.MetricDescriptor)) {
+      return super.equals(obj);
+    }
+    io.opencensus.proto.metrics.v1.MetricDescriptor other =
+        (io.opencensus.proto.metrics.v1.MetricDescriptor) obj;
+
+    if (!getName()
+        .equals(other.getName())) {
+      return false;
+    }
+    if (!getDescription()
+        .equals(other.getDescription())) {
+      return false;
+    }
+    if (!getUnit()
+        .equals(other.getUnit())) {
+      return false;
+    }
+    if (type_ != other.type_) {
+      return false;
+    }
+    if (!getLabelKeysList()
+        .equals(other.getLabelKeysList())) {
+      return false;
+    }
+    return unknownFields.equals(other.unknownFields);
+  }
+
+  @java.lang.Override
+  public int hashCode() {
+    if (memoizedHashCode != 0) {
+      return memoizedHashCode;
+    }
+    int hash = 41;
+    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + NAME_FIELD_NUMBER;
+    hash = (53 * hash) + getName().hashCode();
+    hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
+    hash = (53 * hash) + getDescription().hashCode();
+    hash = (37 * hash) + UNIT_FIELD_NUMBER;
+    hash = (53 * hash) + getUnit().hashCode();
+    hash = (37 * hash) + TYPE_FIELD_NUMBER;
+    hash = (53 * hash) + type_;
+    if (getLabelKeysCount() > 0) {
+      hash = (37 * hash) + LABEL_KEYS_FIELD_NUMBER;
+      hash = (53 * hash) + getLabelKeysList().hashCode();
+    }
+    hash = (29 * hash) + unknownFields.hashCode();
+    memoizedHashCode = hash;
+    return hash;
+  }
+
+  @java.lang.Override
+  public Builder newBuilderForType() {
+    return newBuilder();
+  }
+
+  @java.lang.Override
+  public Builder toBuilder() {
+    return this == DEFAULT_INSTANCE
+        ? new Builder() : new Builder().mergeFrom(this);
+  }
+
+  @java.lang.Override
+  protected Builder newBuilderForType(
+      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    Builder builder = new Builder(parent);
+    return builder;
+  }
+
+  @java.lang.Override
+  public com.google.protobuf.Parser<MetricDescriptor> getParserForType() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public io.opencensus.proto.metrics.v1.MetricDescriptor getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
   }
 
   /**
@@ -136,7 +647,7 @@ private static final long serialVersionUID = 0L;
    * cumulative value to zero and sets a new start time for the following
    * points.
    * </pre>
-   *
+   * <p>
    * Protobuf enum {@code opencensus.proto.metrics.v1.MetricDescriptor.Type}
    */
   public enum Type
@@ -294,14 +805,18 @@ private static final long serialVersionUID = 0L;
      * <code>SUMMARY = 7;</code>
      */
     public static final int SUMMARY_VALUE = 7;
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        Type> internalValueMap =
+        new com.google.protobuf.Internal.EnumLiteMap<Type>() {
+          public Type findValueByNumber(int number) {
+            return Type.forNumber(number);
+          }
+        };
+    private static final Type[] VALUES = values();
+    private final int value;
 
-
-    public final int getNumber() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
-            "Can't get the number of an unknown enum value.");
-      }
-      return value;
+    Type(int value) {
+      this.value = value;
     }
 
     /**
@@ -320,54 +835,42 @@ private static final long serialVersionUID = 0L;
      */
     public static Type forNumber(int value) {
       switch (value) {
-        case 0: return UNSPECIFIED;
-        case 1: return GAUGE_INT64;
-        case 2: return GAUGE_DOUBLE;
-        case 3: return GAUGE_DISTRIBUTION;
-        case 4: return CUMULATIVE_INT64;
-        case 5: return CUMULATIVE_DOUBLE;
-        case 6: return CUMULATIVE_DISTRIBUTION;
-        case 7: return SUMMARY;
-        default: return null;
+        case 0:
+          return UNSPECIFIED;
+        case 1:
+          return GAUGE_INT64;
+        case 2:
+          return GAUGE_DOUBLE;
+        case 3:
+          return GAUGE_DISTRIBUTION;
+        case 4:
+          return CUMULATIVE_INT64;
+        case 5:
+          return CUMULATIVE_DOUBLE;
+        case 6:
+          return CUMULATIVE_DISTRIBUTION;
+        case 7:
+          return SUMMARY;
+        default:
+          return null;
       }
     }
 
     public static com.google.protobuf.Internal.EnumLiteMap<Type>
-        internalGetValueMap() {
+    internalGetValueMap() {
       return internalValueMap;
     }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        Type> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<Type>() {
-            public Type findValueByNumber(int number) {
-              return Type.forNumber(number);
-            }
-          };
 
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalStateException(
-            "Can't get the descriptor of an unrecognized enum value.");
-      }
-      return getDescriptor().getValues().get(ordinal());
-    }
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
-      return getDescriptor();
-    }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
+    getDescriptor() {
       return io.opencensus.proto.metrics.v1.MetricDescriptor.getDescriptor().getEnumTypes().get(0);
     }
-
-    private static final Type[] VALUES = values();
 
     public static Type valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
         return UNRECOGNIZED;
@@ -375,454 +878,53 @@ private static final long serialVersionUID = 0L;
       return VALUES[desc.getIndex()];
     }
 
-    private final int value;
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
 
-    private Type(int value) {
-      this.value = value;
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+    getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
+    }
+
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+    getDescriptorForType() {
+      return getDescriptor();
     }
 
     // @@protoc_insertion_point(enum_scope:opencensus.proto.metrics.v1.MetricDescriptor.Type)
   }
 
-  public static final int NAME_FIELD_NUMBER = 1;
-  private volatile java.lang.Object name_;
-  /**
-   * <pre>
-   * The metric type, including its DNS name prefix. It must be unique.
-   * </pre>
-   *
-   * <code>string name = 1;</code>
-   * @return The name.
-   */
-  @java.lang.Override
-  public java.lang.String getName() {
-    java.lang.Object ref = name_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      name_ = s;
-      return s;
-    }
-  }
-  /**
-   * <pre>
-   * The metric type, including its DNS name prefix. It must be unique.
-   * </pre>
-   *
-   * <code>string name = 1;</code>
-   * @return The bytes for name.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getNameBytes() {
-    java.lang.Object ref = name_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      name_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int DESCRIPTION_FIELD_NUMBER = 2;
-  private volatile java.lang.Object description_;
-  /**
-   * <pre>
-   * A detailed description of the metric, which can be used in documentation.
-   * </pre>
-   *
-   * <code>string description = 2;</code>
-   * @return The description.
-   */
-  @java.lang.Override
-  public java.lang.String getDescription() {
-    java.lang.Object ref = description_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      description_ = s;
-      return s;
-    }
-  }
-  /**
-   * <pre>
-   * A detailed description of the metric, which can be used in documentation.
-   * </pre>
-   *
-   * <code>string description = 2;</code>
-   * @return The bytes for description.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getDescriptionBytes() {
-    java.lang.Object ref = description_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      description_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int UNIT_FIELD_NUMBER = 3;
-  private volatile java.lang.Object unit_;
-  /**
-   * <pre>
-   * The unit in which the metric value is reported. Follows the format
-   * described by http://unitsofmeasure.org/ucum.html.
-   * </pre>
-   *
-   * <code>string unit = 3;</code>
-   * @return The unit.
-   */
-  @java.lang.Override
-  public java.lang.String getUnit() {
-    java.lang.Object ref = unit_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      unit_ = s;
-      return s;
-    }
-  }
-  /**
-   * <pre>
-   * The unit in which the metric value is reported. Follows the format
-   * described by http://unitsofmeasure.org/ucum.html.
-   * </pre>
-   *
-   * <code>string unit = 3;</code>
-   * @return The bytes for unit.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getUnitBytes() {
-    java.lang.Object ref = unit_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      unit_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int TYPE_FIELD_NUMBER = 4;
-  private int type_;
-  /**
-   * <code>.opencensus.proto.metrics.v1.MetricDescriptor.Type type = 4;</code>
-   * @return The enum numeric value on the wire for type.
-   */
-  @java.lang.Override public int getTypeValue() {
-    return type_;
-  }
-  /**
-   * <code>.opencensus.proto.metrics.v1.MetricDescriptor.Type type = 4;</code>
-   * @return The type.
-   */
-  @java.lang.Override public io.opencensus.proto.metrics.v1.MetricDescriptor.Type getType() {
-    @SuppressWarnings("deprecation")
-    io.opencensus.proto.metrics.v1.MetricDescriptor.Type result = io.opencensus.proto.metrics.v1.MetricDescriptor.Type.valueOf(type_);
-    return result == null ? io.opencensus.proto.metrics.v1.MetricDescriptor.Type.UNRECOGNIZED : result;
-  }
-
-  public static final int LABEL_KEYS_FIELD_NUMBER = 5;
-  private java.util.List<io.opencensus.proto.metrics.v1.LabelKey> labelKeys_;
-  /**
-   * <pre>
-   * The label keys associated with the metric descriptor.
-   * </pre>
-   *
-   * <code>repeated .opencensus.proto.metrics.v1.LabelKey label_keys = 5;</code>
-   */
-  @java.lang.Override
-  public java.util.List<io.opencensus.proto.metrics.v1.LabelKey> getLabelKeysList() {
-    return labelKeys_;
-  }
-  /**
-   * <pre>
-   * The label keys associated with the metric descriptor.
-   * </pre>
-   *
-   * <code>repeated .opencensus.proto.metrics.v1.LabelKey label_keys = 5;</code>
-   */
-  @java.lang.Override
-  public java.util.List<? extends io.opencensus.proto.metrics.v1.LabelKeyOrBuilder> 
-      getLabelKeysOrBuilderList() {
-    return labelKeys_;
-  }
-  /**
-   * <pre>
-   * The label keys associated with the metric descriptor.
-   * </pre>
-   *
-   * <code>repeated .opencensus.proto.metrics.v1.LabelKey label_keys = 5;</code>
-   */
-  @java.lang.Override
-  public int getLabelKeysCount() {
-    return labelKeys_.size();
-  }
-  /**
-   * <pre>
-   * The label keys associated with the metric descriptor.
-   * </pre>
-   *
-   * <code>repeated .opencensus.proto.metrics.v1.LabelKey label_keys = 5;</code>
-   */
-  @java.lang.Override
-  public io.opencensus.proto.metrics.v1.LabelKey getLabelKeys(int index) {
-    return labelKeys_.get(index);
-  }
-  /**
-   * <pre>
-   * The label keys associated with the metric descriptor.
-   * </pre>
-   *
-   * <code>repeated .opencensus.proto.metrics.v1.LabelKey label_keys = 5;</code>
-   */
-  @java.lang.Override
-  public io.opencensus.proto.metrics.v1.LabelKeyOrBuilder getLabelKeysOrBuilder(
-      int index) {
-    return labelKeys_.get(index);
-  }
-
-  private byte memoizedIsInitialized = -1;
-  @java.lang.Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
-    if (!getNameBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
-    }
-    if (!getDescriptionBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, description_);
-    }
-    if (!getUnitBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, unit_);
-    }
-    if (type_ != io.opencensus.proto.metrics.v1.MetricDescriptor.Type.UNSPECIFIED.getNumber()) {
-      output.writeEnum(4, type_);
-    }
-    for (int i = 0; i < labelKeys_.size(); i++) {
-      output.writeMessage(5, labelKeys_.get(i));
-    }
-    unknownFields.writeTo(output);
-  }
-
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
-
-    size = 0;
-    if (!getNameBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
-    }
-    if (!getDescriptionBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, description_);
-    }
-    if (!getUnitBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, unit_);
-    }
-    if (type_ != io.opencensus.proto.metrics.v1.MetricDescriptor.Type.UNSPECIFIED.getNumber()) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(4, type_);
-    }
-    for (int i = 0; i < labelKeys_.size(); i++) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(5, labelKeys_.get(i));
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-     return true;
-    }
-    if (!(obj instanceof io.opencensus.proto.metrics.v1.MetricDescriptor)) {
-      return super.equals(obj);
-    }
-    io.opencensus.proto.metrics.v1.MetricDescriptor other = (io.opencensus.proto.metrics.v1.MetricDescriptor) obj;
-
-    if (!getName()
-        .equals(other.getName())) return false;
-    if (!getDescription()
-        .equals(other.getDescription())) return false;
-    if (!getUnit()
-        .equals(other.getUnit())) return false;
-    if (type_ != other.type_) return false;
-    if (!getLabelKeysList()
-        .equals(other.getLabelKeysList())) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
-  }
-
-  @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + NAME_FIELD_NUMBER;
-    hash = (53 * hash) + getName().hashCode();
-    hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
-    hash = (53 * hash) + getDescription().hashCode();
-    hash = (37 * hash) + UNIT_FIELD_NUMBER;
-    hash = (53 * hash) + getUnit().hashCode();
-    hash = (37 * hash) + TYPE_FIELD_NUMBER;
-    hash = (53 * hash) + type_;
-    if (getLabelKeysCount() > 0) {
-      hash = (37 * hash) + LABEL_KEYS_FIELD_NUMBER;
-      hash = (53 * hash) + getLabelKeysList().hashCode();
-    }
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.metrics.v1.MetricDescriptor parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(io.opencensus.proto.metrics.v1.MetricDescriptor prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
   /**
    * <pre>
    * Defines a metric type and its schema.
    * </pre>
-   *
+   * <p>
    * Protobuf type {@code opencensus.proto.metrics.v1.MetricDescriptor}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
       // @@protoc_insertion_point(builder_implements:opencensus.proto.metrics.v1.MetricDescriptor)
       io.opencensus.proto.metrics.v1.MetricDescriptorOrBuilder {
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_MetricDescriptor_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_MetricDescriptor_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.metrics.v1.MetricDescriptor.class, io.opencensus.proto.metrics.v1.MetricDescriptor.Builder.class);
-    }
+    private int bitField0_;
+    private java.lang.Object name_ = "";
+    private java.lang.Object description_ = "";
+    private java.lang.Object unit_ = "";
+    private int type_ = 0;
+    private java.util.List<io.opencensus.proto.metrics.v1.LabelKey> labelKeys_ =
+        java.util.Collections.emptyList();
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        io.opencensus.proto.metrics.v1.LabelKey, io.opencensus.proto.metrics.v1.LabelKey.Builder,
+        io.opencensus.proto.metrics.v1.LabelKeyOrBuilder>
+        labelKeysBuilder_;
 
     // Construct using io.opencensus.proto.metrics.v1.MetricDescriptor.newBuilder()
     private Builder() {
@@ -834,12 +936,28 @@ private static final long serialVersionUID = 0L;
       super(parent);
       maybeForceBuilderInitialization();
     }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_MetricDescriptor_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_MetricDescriptor_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.opencensus.proto.metrics.v1.MetricDescriptor.class,
+              io.opencensus.proto.metrics.v1.MetricDescriptor.Builder.class);
+    }
+
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
+          .alwaysUseFieldBuilders) {
         getLabelKeysFieldBuilder();
       }
     }
+
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -862,7 +980,7 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+    getDescriptorForType() {
       return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_MetricDescriptor_descriptor;
     }
 
@@ -882,7 +1000,8 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public io.opencensus.proto.metrics.v1.MetricDescriptor buildPartial() {
-      io.opencensus.proto.metrics.v1.MetricDescriptor result = new io.opencensus.proto.metrics.v1.MetricDescriptor(this);
+      io.opencensus.proto.metrics.v1.MetricDescriptor result =
+          new io.opencensus.proto.metrics.v1.MetricDescriptor(this);
       int from_bitField0_ = bitField0_;
       result.name_ = name_;
       result.description_ = description_;
@@ -905,38 +1024,44 @@ private static final long serialVersionUID = 0L;
     public Builder clone() {
       return super.clone();
     }
+
     @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.setField(field, value);
     }
+
     @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
+
     @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
+
     @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
     }
+
     @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.addRepeatedField(field, value);
     }
+
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof io.opencensus.proto.metrics.v1.MetricDescriptor) {
-        return mergeFrom((io.opencensus.proto.metrics.v1.MetricDescriptor)other);
+        return mergeFrom((io.opencensus.proto.metrics.v1.MetricDescriptor) other);
       } else {
         super.mergeFrom(other);
         return this;
@@ -944,7 +1069,9 @@ private static final long serialVersionUID = 0L;
     }
 
     public Builder mergeFrom(io.opencensus.proto.metrics.v1.MetricDescriptor other) {
-      if (other == io.opencensus.proto.metrics.v1.MetricDescriptor.getDefaultInstance()) return this;
+      if (other == io.opencensus.proto.metrics.v1.MetricDescriptor.getDefaultInstance()) {
+        return this;
+      }
       if (!other.getName().isEmpty()) {
         name_ = other.name_;
         onChanged();
@@ -978,9 +1105,9 @@ private static final long serialVersionUID = 0L;
             labelKeysBuilder_ = null;
             labelKeys_ = other.labelKeys_;
             bitField0_ = (bitField0_ & ~0x00000001);
-            labelKeysBuilder_ = 
-              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                 getLabelKeysFieldBuilder() : null;
+            labelKeysBuilder_ =
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                    getLabelKeysFieldBuilder() : null;
           } else {
             labelKeysBuilder_.addAllMessages(other.labelKeys_);
           }
@@ -1014,15 +1141,14 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
-    private int bitField0_;
 
-    private java.lang.Object name_ = "";
     /**
      * <pre>
      * The metric type, including its DNS name prefix. It must be unique.
      * </pre>
      *
      * <code>string name = 1;</code>
+     *
      * @return The name.
      */
     public java.lang.String getName() {
@@ -1037,19 +1163,42 @@ private static final long serialVersionUID = 0L;
         return (java.lang.String) ref;
       }
     }
+
     /**
      * <pre>
      * The metric type, including its DNS name prefix. It must be unique.
      * </pre>
      *
      * <code>string name = 1;</code>
+     *
+     * @param value The name to set.
+     * @return This builder for chaining.
+     */
+    public Builder setName(
+        java.lang.String value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+
+      name_ = value;
+      onChanged();
+      return this;
+    }
+
+    /**
+     * <pre>
+     * The metric type, including its DNS name prefix. It must be unique.
+     * </pre>
+     *
+     * <code>string name = 1;</code>
+     *
      * @return The bytes for name.
      */
     public com.google.protobuf.ByteString
-        getNameBytes() {
+    getNameBytes() {
       java.lang.Object ref = name_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         name_ = b;
@@ -1058,67 +1207,52 @@ private static final long serialVersionUID = 0L;
         return (com.google.protobuf.ByteString) ref;
       }
     }
+
     /**
      * <pre>
      * The metric type, including its DNS name prefix. It must be unique.
      * </pre>
      *
      * <code>string name = 1;</code>
-     * @param value The name to set.
-     * @return This builder for chaining.
-     */
-    public Builder setName(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      name_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * The metric type, including its DNS name prefix. It must be unique.
-     * </pre>
      *
-     * <code>string name = 1;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearName() {
-      
-      name_ = getDefaultInstance().getName();
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * The metric type, including its DNS name prefix. It must be unique.
-     * </pre>
-     *
-     * <code>string name = 1;</code>
      * @param value The bytes for name to set.
      * @return This builder for chaining.
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+        throw new NullPointerException();
+      }
+      checkByteStringIsUtf8(value);
+
       name_ = value;
       onChanged();
       return this;
     }
 
-    private java.lang.Object description_ = "";
+    /**
+     * <pre>
+     * The metric type, including its DNS name prefix. It must be unique.
+     * </pre>
+     *
+     * <code>string name = 1;</code>
+     *
+     * @return This builder for chaining.
+     */
+    public Builder clearName() {
+
+      name_ = getDefaultInstance().getName();
+      onChanged();
+      return this;
+    }
+
     /**
      * <pre>
      * A detailed description of the metric, which can be used in documentation.
      * </pre>
      *
      * <code>string description = 2;</code>
+     *
      * @return The description.
      */
     public java.lang.String getDescription() {
@@ -1133,19 +1267,42 @@ private static final long serialVersionUID = 0L;
         return (java.lang.String) ref;
       }
     }
+
     /**
      * <pre>
      * A detailed description of the metric, which can be used in documentation.
      * </pre>
      *
      * <code>string description = 2;</code>
+     *
+     * @param value The description to set.
+     * @return This builder for chaining.
+     */
+    public Builder setDescription(
+        java.lang.String value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+
+      description_ = value;
+      onChanged();
+      return this;
+    }
+
+    /**
+     * <pre>
+     * A detailed description of the metric, which can be used in documentation.
+     * </pre>
+     *
+     * <code>string description = 2;</code>
+     *
      * @return The bytes for description.
      */
     public com.google.protobuf.ByteString
-        getDescriptionBytes() {
+    getDescriptionBytes() {
       java.lang.Object ref = description_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         description_ = b;
@@ -1154,61 +1311,45 @@ private static final long serialVersionUID = 0L;
         return (com.google.protobuf.ByteString) ref;
       }
     }
+
     /**
      * <pre>
      * A detailed description of the metric, which can be used in documentation.
      * </pre>
      *
      * <code>string description = 2;</code>
-     * @param value The description to set.
-     * @return This builder for chaining.
-     */
-    public Builder setDescription(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      description_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * A detailed description of the metric, which can be used in documentation.
-     * </pre>
      *
-     * <code>string description = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearDescription() {
-      
-      description_ = getDefaultInstance().getDescription();
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * A detailed description of the metric, which can be used in documentation.
-     * </pre>
-     *
-     * <code>string description = 2;</code>
      * @param value The bytes for description to set.
      * @return This builder for chaining.
      */
     public Builder setDescriptionBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+        throw new NullPointerException();
+      }
+      checkByteStringIsUtf8(value);
+
       description_ = value;
       onChanged();
       return this;
     }
 
-    private java.lang.Object unit_ = "";
+    /**
+     * <pre>
+     * A detailed description of the metric, which can be used in documentation.
+     * </pre>
+     *
+     * <code>string description = 2;</code>
+     *
+     * @return This builder for chaining.
+     */
+    public Builder clearDescription() {
+
+      description_ = getDefaultInstance().getDescription();
+      onChanged();
+      return this;
+    }
+
     /**
      * <pre>
      * The unit in which the metric value is reported. Follows the format
@@ -1216,6 +1357,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string unit = 3;</code>
+     *
      * @return The unit.
      */
     public java.lang.String getUnit() {
@@ -1230,6 +1372,7 @@ private static final long serialVersionUID = 0L;
         return (java.lang.String) ref;
       }
     }
+
     /**
      * <pre>
      * The unit in which the metric value is reported. Follows the format
@@ -1237,13 +1380,36 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string unit = 3;</code>
+     *
+     * @param value The unit to set.
+     * @return This builder for chaining.
+     */
+    public Builder setUnit(
+        java.lang.String value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+
+      unit_ = value;
+      onChanged();
+      return this;
+    }
+
+    /**
+     * <pre>
+     * The unit in which the metric value is reported. Follows the format
+     * described by http://unitsofmeasure.org/ucum.html.
+     * </pre>
+     *
+     * <code>string unit = 3;</code>
+     *
      * @return The bytes for unit.
      */
     public com.google.protobuf.ByteString
-        getUnitBytes() {
+    getUnitBytes() {
       java.lang.Object ref = unit_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         unit_ = b;
@@ -1252,6 +1418,7 @@ private static final long serialVersionUID = 0L;
         return (com.google.protobuf.ByteString) ref;
       }
     }
+
     /**
      * <pre>
      * The unit in which the metric value is reported. Follows the format
@@ -1259,87 +1426,79 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>string unit = 3;</code>
-     * @param value The unit to set.
-     * @return This builder for chaining.
-     */
-    public Builder setUnit(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      unit_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * The unit in which the metric value is reported. Follows the format
-     * described by http://unitsofmeasure.org/ucum.html.
-     * </pre>
      *
-     * <code>string unit = 3;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearUnit() {
-      
-      unit_ = getDefaultInstance().getUnit();
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * The unit in which the metric value is reported. Follows the format
-     * described by http://unitsofmeasure.org/ucum.html.
-     * </pre>
-     *
-     * <code>string unit = 3;</code>
      * @param value The bytes for unit to set.
      * @return This builder for chaining.
      */
     public Builder setUnitBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+        throw new NullPointerException();
+      }
+      checkByteStringIsUtf8(value);
+
       unit_ = value;
       onChanged();
       return this;
     }
 
-    private int type_ = 0;
+    /**
+     * <pre>
+     * The unit in which the metric value is reported. Follows the format
+     * described by http://unitsofmeasure.org/ucum.html.
+     * </pre>
+     *
+     * <code>string unit = 3;</code>
+     *
+     * @return This builder for chaining.
+     */
+    public Builder clearUnit() {
+
+      unit_ = getDefaultInstance().getUnit();
+      onChanged();
+      return this;
+    }
+
     /**
      * <code>.opencensus.proto.metrics.v1.MetricDescriptor.Type type = 4;</code>
+     *
      * @return The enum numeric value on the wire for type.
      */
-    @java.lang.Override public int getTypeValue() {
+    @java.lang.Override
+    public int getTypeValue() {
       return type_;
     }
+
     /**
      * <code>.opencensus.proto.metrics.v1.MetricDescriptor.Type type = 4;</code>
+     *
      * @param value The enum numeric value on the wire for type to set.
      * @return This builder for chaining.
      */
     public Builder setTypeValue(int value) {
-      
+
       type_ = value;
       onChanged();
       return this;
     }
+
     /**
      * <code>.opencensus.proto.metrics.v1.MetricDescriptor.Type type = 4;</code>
+     *
      * @return The type.
      */
     @java.lang.Override
     public io.opencensus.proto.metrics.v1.MetricDescriptor.Type getType() {
       @SuppressWarnings("deprecation")
-      io.opencensus.proto.metrics.v1.MetricDescriptor.Type result = io.opencensus.proto.metrics.v1.MetricDescriptor.Type.valueOf(type_);
-      return result == null ? io.opencensus.proto.metrics.v1.MetricDescriptor.Type.UNRECOGNIZED : result;
+      io.opencensus.proto.metrics.v1.MetricDescriptor.Type result =
+          io.opencensus.proto.metrics.v1.MetricDescriptor.Type.valueOf(type_);
+      return result == null ? io.opencensus.proto.metrics.v1.MetricDescriptor.Type.UNRECOGNIZED :
+          result;
     }
+
     /**
      * <code>.opencensus.proto.metrics.v1.MetricDescriptor.Type type = 4;</code>
+     *
      * @param value The type to set.
      * @return This builder for chaining.
      */
@@ -1347,33 +1506,30 @@ private static final long serialVersionUID = 0L;
       if (value == null) {
         throw new NullPointerException();
       }
-      
+
       type_ = value.getNumber();
       onChanged();
       return this;
     }
+
     /**
      * <code>.opencensus.proto.metrics.v1.MetricDescriptor.Type type = 4;</code>
+     *
      * @return This builder for chaining.
      */
     public Builder clearType() {
-      
+
       type_ = 0;
       onChanged();
       return this;
     }
 
-    private java.util.List<io.opencensus.proto.metrics.v1.LabelKey> labelKeys_ =
-      java.util.Collections.emptyList();
     private void ensureLabelKeysIsMutable() {
       if (!((bitField0_ & 0x00000001) != 0)) {
         labelKeys_ = new java.util.ArrayList<io.opencensus.proto.metrics.v1.LabelKey>(labelKeys_);
         bitField0_ |= 0x00000001;
-       }
+      }
     }
-
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.LabelKey, io.opencensus.proto.metrics.v1.LabelKey.Builder, io.opencensus.proto.metrics.v1.LabelKeyOrBuilder> labelKeysBuilder_;
 
     /**
      * <pre>
@@ -1389,6 +1545,7 @@ private static final long serialVersionUID = 0L;
         return labelKeysBuilder_.getMessageList();
       }
     }
+
     /**
      * <pre>
      * The label keys associated with the metric descriptor.
@@ -1403,6 +1560,7 @@ private static final long serialVersionUID = 0L;
         return labelKeysBuilder_.getCount();
       }
     }
+
     /**
      * <pre>
      * The label keys associated with the metric descriptor.
@@ -1417,6 +1575,7 @@ private static final long serialVersionUID = 0L;
         return labelKeysBuilder_.getMessage(index);
       }
     }
+
     /**
      * <pre>
      * The label keys associated with the metric descriptor.
@@ -1438,6 +1597,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The label keys associated with the metric descriptor.
@@ -1456,6 +1616,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The label keys associated with the metric descriptor.
@@ -1476,6 +1637,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The label keys associated with the metric descriptor.
@@ -1497,6 +1659,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The label keys associated with the metric descriptor.
@@ -1515,6 +1678,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The label keys associated with the metric descriptor.
@@ -1533,6 +1697,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The label keys associated with the metric descriptor.
@@ -1552,6 +1717,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The label keys associated with the metric descriptor.
@@ -1569,6 +1735,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The label keys associated with the metric descriptor.
@@ -1586,6 +1753,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <pre>
      * The label keys associated with the metric descriptor.
@@ -1597,6 +1765,7 @@ private static final long serialVersionUID = 0L;
         int index) {
       return getLabelKeysFieldBuilder().getBuilder(index);
     }
+
     /**
      * <pre>
      * The label keys associated with the metric descriptor.
@@ -1607,10 +1776,12 @@ private static final long serialVersionUID = 0L;
     public io.opencensus.proto.metrics.v1.LabelKeyOrBuilder getLabelKeysOrBuilder(
         int index) {
       if (labelKeysBuilder_ == null) {
-        return labelKeys_.get(index);  } else {
+        return labelKeys_.get(index);
+      } else {
         return labelKeysBuilder_.getMessageOrBuilder(index);
       }
     }
+
     /**
      * <pre>
      * The label keys associated with the metric descriptor.
@@ -1618,14 +1789,15 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opencensus.proto.metrics.v1.LabelKey label_keys = 5;</code>
      */
-    public java.util.List<? extends io.opencensus.proto.metrics.v1.LabelKeyOrBuilder> 
-         getLabelKeysOrBuilderList() {
+    public java.util.List<? extends io.opencensus.proto.metrics.v1.LabelKeyOrBuilder>
+    getLabelKeysOrBuilderList() {
       if (labelKeysBuilder_ != null) {
         return labelKeysBuilder_.getMessageOrBuilderList();
       } else {
         return java.util.Collections.unmodifiableList(labelKeys_);
       }
     }
+
     /**
      * <pre>
      * The label keys associated with the metric descriptor.
@@ -1637,6 +1809,7 @@ private static final long serialVersionUID = 0L;
       return getLabelKeysFieldBuilder().addBuilder(
           io.opencensus.proto.metrics.v1.LabelKey.getDefaultInstance());
     }
+
     /**
      * <pre>
      * The label keys associated with the metric descriptor.
@@ -1649,6 +1822,7 @@ private static final long serialVersionUID = 0L;
       return getLabelKeysFieldBuilder().addBuilder(
           index, io.opencensus.proto.metrics.v1.LabelKey.getDefaultInstance());
     }
+
     /**
      * <pre>
      * The label keys associated with the metric descriptor.
@@ -1656,24 +1830,29 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opencensus.proto.metrics.v1.LabelKey label_keys = 5;</code>
      */
-    public java.util.List<io.opencensus.proto.metrics.v1.LabelKey.Builder> 
-         getLabelKeysBuilderList() {
+    public java.util.List<io.opencensus.proto.metrics.v1.LabelKey.Builder>
+    getLabelKeysBuilderList() {
       return getLabelKeysFieldBuilder().getBuilderList();
     }
+
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.LabelKey, io.opencensus.proto.metrics.v1.LabelKey.Builder, io.opencensus.proto.metrics.v1.LabelKeyOrBuilder> 
-        getLabelKeysFieldBuilder() {
+        io.opencensus.proto.metrics.v1.LabelKey, io.opencensus.proto.metrics.v1.LabelKey.Builder,
+        io.opencensus.proto.metrics.v1.LabelKeyOrBuilder>
+    getLabelKeysFieldBuilder() {
       if (labelKeysBuilder_ == null) {
         labelKeysBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            io.opencensus.proto.metrics.v1.LabelKey, io.opencensus.proto.metrics.v1.LabelKey.Builder, io.opencensus.proto.metrics.v1.LabelKeyOrBuilder>(
-                labelKeys_,
-                ((bitField0_ & 0x00000001) != 0),
-                getParentForChildren(),
-                isClean());
+            io.opencensus.proto.metrics.v1.LabelKey,
+            io.opencensus.proto.metrics.v1.LabelKey.Builder,
+            io.opencensus.proto.metrics.v1.LabelKeyOrBuilder>(
+            labelKeys_,
+            ((bitField0_ & 0x00000001) != 0),
+            getParentForChildren(),
+            isClean());
         labelKeys_ = null;
       }
       return labelKeysBuilder_;
     }
+
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1688,41 +1867,6 @@ private static final long serialVersionUID = 0L;
 
 
     // @@protoc_insertion_point(builder_scope:opencensus.proto.metrics.v1.MetricDescriptor)
-  }
-
-  // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.MetricDescriptor)
-  private static final io.opencensus.proto.metrics.v1.MetricDescriptor DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.metrics.v1.MetricDescriptor();
-  }
-
-  public static io.opencensus.proto.metrics.v1.MetricDescriptor getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<MetricDescriptor>
-      PARSER = new com.google.protobuf.AbstractParser<MetricDescriptor>() {
-    @java.lang.Override
-    public MetricDescriptor parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new MetricDescriptor(input, extensionRegistry);
-    }
-  };
-
-  public static com.google.protobuf.Parser<MetricDescriptor> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<MetricDescriptor> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.metrics.v1.MetricDescriptor getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
   }
 
 }
