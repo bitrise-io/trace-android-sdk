@@ -26,6 +26,7 @@ import org.junit.runner.RunWith;
  */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
+@SuppressWarnings("checkstyle:abbreviation")
 public class URLConnectionUiTest extends BaseUiTest {
 
   @Rule
@@ -44,6 +45,7 @@ public class URLConnectionUiTest extends BaseUiTest {
   }
 
   @Test
+  @SuppressWarnings({"checkstyle:abbreviation", "checkstyle:MethodName"})
   public void URLConnection_httpRequest() {
     onView(withId(R.id.btn_connect_http)).check(matches(isClickable()));
     onView(withId(R.id.btn_connect_http)).perform(click());
@@ -52,6 +54,7 @@ public class URLConnectionUiTest extends BaseUiTest {
   }
 
   @Test
+  @SuppressWarnings({"checkstyle:abbreviation", "checkstyle:MethodName"})
   public void URLConnection_httpsRequest() {
     onView(withId(R.id.btn_connect_https)).check(matches(isClickable()));
     onView(withId(R.id.btn_connect_https)).perform(click());
