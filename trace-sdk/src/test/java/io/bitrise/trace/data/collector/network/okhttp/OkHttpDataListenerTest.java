@@ -1,13 +1,17 @@
 package io.bitrise.trace.data.collector.network.okhttp;
 
 
+import android.content.Context;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
 
+import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.dto.NetworkData;
+import io.bitrise.trace.data.management.DataManager;
 import okhttp3.HttpUrl;
 import okhttp3.MediaType;
 import okhttp3.Protocol;
@@ -18,9 +22,14 @@ import okhttp3.ResponseBody;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 /**
  * Unit test for {@link OkHttpDataListener}.
@@ -48,6 +57,7 @@ public class OkHttpDataListenerTest {
     private static final long DUMMY_END_TIME = 23456789;
     private static final String DUMMY_SPAN_ID = "1234567890ABCDEF";
     private static final String DUMMY_ROOT_SPAN_ID = "ABCDEF1234567890";
+    final Context mockContext = Mockito.mock(Context.class);
 
     private OkHttpDataListener okHttpDataListener;
 
@@ -168,5 +178,42 @@ public class OkHttpDataListenerTest {
                                                                   .setStatusCode(DUMMY_RESPONSE.code())
                                                                   .setStart(DUMMY_START_TIME).setEnd(DUMMY_END_TIME);
         assertThat(actualValue, is(expectedValue));
+    }
+
+    @Test
+    public void constructor() {
+        final OkHttpDataListener listener = new OkHttpDataListener(mockContext);
+        assertNotNull(listener);
+    }
+
+    @Test
+    public void getPermissions() {
+        final OkHttpDataListener listener = new OkHttpDataListener(mockContext);
+        assertArrayEquals(new String[0], listener.getPermissions());
+    }
+
+    @Test
+    public void createData() {
+        final OkHttpDataListener listener = new OkHttpDataListener(mockContext);
+        final NetworkData networkData = new NetworkData("spanId", "parentSpanId");
+        networkData.setUrl("https://www.example.com");
+
+        final Data data = listener.createData(networkData);
+        final Data expectedData = new Data(OkHttpDataListener.class);
+        expectedData.setContent(networkData);
+
+        assertEquals(expectedData, data);
+    }
+
+    @Test
+    public void onDataCollected() {
+        final Data data = new Data(OkHttpDataListener.class);
+        final OkHttpDataListener listener = new OkHttpDataListener(mockContext);
+        final DataManager mockDataManager = Mockito.mock(DataManager.class);
+        listener.setDataManager(mockDataManager);
+
+        listener.onDataCollected(data);
+
+        verify(mockDataManager, times(1)).handleReceivedData(data);
     }
 }
