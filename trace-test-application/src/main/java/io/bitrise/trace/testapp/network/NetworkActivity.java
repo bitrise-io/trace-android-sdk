@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import io.bitrise.trace.testapp.R;
 
 /**
- * Shows the networking related UI tests
+ * Shows the networking related UI tests.
  */
 public class NetworkActivity extends AppCompatActivity {
 
@@ -18,13 +18,13 @@ public class NetworkActivity extends AppCompatActivity {
     setContentView(R.layout.activity_network);
 
     final Button btnOkhttp = findViewById(R.id.btn_network_okhttp);
-    final Button btnURLConnection = findViewById(R.id.btn_network_urlconnection);
+    final Button btnUrlConnection = findViewById(R.id.btn_network_urlconnection);
 
     btnOkhttp.setOnClickListener(v -> {
       startActivity(new Intent(NetworkActivity.this, OkHttpActivity.class));
     });
 
-    btnURLConnection.setOnClickListener(new View.OnClickListener() {
+    btnUrlConnection.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         startActivity(new Intent(NetworkActivity.this, UrlConnectionActivity.class));

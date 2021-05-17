@@ -15,7 +15,7 @@ import org.junit.Test;
 public class ActivityUiTest extends BaseUiTest {
 
   /**
-   * Tests Activity lifecycle states in different cases:
+   * Tests Activity lifecycle states in different cases.
    * <ul>
    *     <li>Cold application start</li>
    *     <li>Hot application start</li>
