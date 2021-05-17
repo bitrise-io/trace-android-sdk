@@ -149,4 +149,11 @@ public class TraceHttpURLConnectionTest {
         }
     }
 
+    @Test
+    public void setInstanceFollowRedirects() {
+        final TraceHttpURLConnection traceHttpURLConnection = new TraceHttpURLConnection(dummyUrl);
+        traceHttpURLConnection.setInstanceFollowRedirects(true);
+        assertTrue(traceHttpURLConnection.getInstanceFollowRedirects());
+    }
+
 }

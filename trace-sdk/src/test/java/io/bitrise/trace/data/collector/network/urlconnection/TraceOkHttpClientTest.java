@@ -92,6 +92,14 @@ public class TraceOkHttpClientTest {
     }
 
     @Test
+    public void getOkHttpClient_differentRedirects() {
+        assertEquals(0, TraceOkHttpClient.okHttpClients.size());
+        final OkHttpClient client1 = TraceOkHttpClient.getOkHttpClient(null, 32, false);
+        final OkHttpClient client2 = TraceOkHttpClient.getOkHttpClient(null, 32, true);
+        assertEquals(2, TraceOkHttpClient.okHttpClients.size());
+    }
+
+    @Test
     public void reset() {
         assertEquals(0, TraceOkHttpClient.okHttpClients.size());
         final OkHttpClient client = TraceOkHttpClient.getOkHttpClient(dummyProxy, 32);
