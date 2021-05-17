@@ -11,17 +11,16 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
 import io.bitrise.trace.data.TraceActivityLifecycleTracker;
+import io.bitrise.trace.data.collector.BaseDataCollectorInstrumentedTest;
+import io.bitrise.trace.data.collector.DataSourceType;
 import io.bitrise.trace.data.dto.ApplicationStartData;
 import io.bitrise.trace.data.dto.ApplicationStartType;
 import io.bitrise.trace.data.dto.Data;
-import io.bitrise.trace.data.collector.BaseDataCollectorInstrumentedTest;
-import io.bitrise.trace.data.collector.DataSourceType;
 import io.bitrise.trace.data.management.DataManager;
 import io.bitrise.trace.session.ApplicationSessionManager;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertArrayEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -242,8 +241,4 @@ public class ApplicationStartUpDataListenerInstrumentedTest {
         verify(mockDataManager, times(1)).handleReceivedData(any(Data.class));
     }
 
-    @Test
-    public void getPermissions() {
-        assertArrayEquals(new String[0], applicationStartUpDataListener.getPermissions());
-    }
 }
