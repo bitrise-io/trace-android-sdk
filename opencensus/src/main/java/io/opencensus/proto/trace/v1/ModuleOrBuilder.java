@@ -15,9 +15,11 @@ public interface ModuleOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TruncatableString module = 1;</code>
+   *
    * @return Whether the module field is set.
    */
   boolean hasModule();
+
   /**
    * <pre>
    * TODO: document the meaning of this field.
@@ -26,9 +28,11 @@ public interface ModuleOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TruncatableString module = 1;</code>
+   *
    * @return The module.
    */
   io.opencensus.proto.trace.v1.TruncatableString getModule();
+
   /**
    * <pre>
    * TODO: document the meaning of this field.
@@ -47,9 +51,11 @@ public interface ModuleOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TruncatableString build_id = 2;</code>
+   *
    * @return Whether the buildId field is set.
    */
   boolean hasBuildId();
+
   /**
    * <pre>
    * A unique identifier for the module, usually a hash of its
@@ -57,9 +63,11 @@ public interface ModuleOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TruncatableString build_id = 2;</code>
+   *
    * @return The buildId.
    */
   io.opencensus.proto.trace.v1.TruncatableString getBuildId();
+
   /**
    * <pre>
    * A unique identifier for the module, usually a hash of its

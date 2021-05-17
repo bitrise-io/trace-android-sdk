@@ -7,35 +7,54 @@ package io.opencensus.proto.stats.v1;
  * <pre>
  * Describes a data point to be collected for a Measure.
  * </pre>
- *
+ * <p>
  * Protobuf type {@code opencensus.proto.stats.v1.Measurement}
  */
 public final class Measurement extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:opencensus.proto.stats.v1.Measurement)
     MeasurementOrBuilder {
-private static final long serialVersionUID = 0L;
+  public static final int TAGS_FIELD_NUMBER = 1;
+  public static final int MEASURE_NAME_FIELD_NUMBER = 2;
+  public static final int DOUBLE_VALUE_FIELD_NUMBER = 3;
+  public static final int INT_VALUE_FIELD_NUMBER = 4;
+  public static final int TIME_FIELD_NUMBER = 5;
+  private static final long serialVersionUID = 0L;
+  // @@protoc_insertion_point(class_scope:opencensus.proto.stats.v1.Measurement)
+  private static final io.opencensus.proto.stats.v1.Measurement DEFAULT_INSTANCE;
+  private static final com.google.protobuf.Parser<Measurement>
+      PARSER = new com.google.protobuf.AbstractParser<Measurement>() {
+    @java.lang.Override
+    public Measurement parsePartialFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return new Measurement(input, extensionRegistry);
+    }
+  };
+
+  static {
+    DEFAULT_INSTANCE = new io.opencensus.proto.stats.v1.Measurement();
+  }
+
+  private int valueCase_ = 0;
+  private java.lang.Object value_;
+
+  private java.util.List<io.opencensus.proto.stats.v1.Tag> tags_;
+  private volatile java.lang.Object measureName_;
+  private com.google.protobuf.Timestamp time_;
+  private byte memoizedIsInitialized = -1;
+
   // Use Measurement.newBuilder() to construct.
   private Measurement(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
+
   private Measurement() {
     tags_ = java.util.Collections.emptyList();
     measureName_ = "";
   }
 
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new Measurement();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
   private Measurement(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -115,53 +134,131 @@ private static final long serialVersionUID = 0L;
       makeExtensionsImmutable();
     }
   }
+
   public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
+  getDescriptor() {
     return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_Measurement_descriptor;
+  }
+
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.stats.v1.Measurement parseDelimitedFrom(
+      java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.stats.v1.Measurement parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(io.opencensus.proto.stats.v1.Measurement prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
+  public static io.opencensus.proto.stats.v1.Measurement getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  public static com.google.protobuf.Parser<Measurement> parser() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new Measurement();
+  }
+
+  @java.lang.Override
+  public final com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
+  internalGetFieldAccessorTable() {
     return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_Measurement_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.stats.v1.Measurement.class, io.opencensus.proto.stats.v1.Measurement.Builder.class);
+            io.opencensus.proto.stats.v1.Measurement.class,
+            io.opencensus.proto.stats.v1.Measurement.Builder.class);
   }
-
-  private int valueCase_ = 0;
-  private java.lang.Object value_;
-  public enum ValueCase
-      implements com.google.protobuf.Internal.EnumLite,
-          com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-    DOUBLE_VALUE(3),
-    INT_VALUE(4),
-    VALUE_NOT_SET(0);
-    private final int value;
-    private ValueCase(int value) {
-      this.value = value;
-    }
-    /**
-     * @param value The number of the enum to look for.
-     * @return The enum associated with the given number.
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
-    public static ValueCase valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static ValueCase forNumber(int value) {
-      switch (value) {
-        case 3: return DOUBLE_VALUE;
-        case 4: return INT_VALUE;
-        case 0: return VALUE_NOT_SET;
-        default: return null;
-      }
-    }
-    public int getNumber() {
-      return this.value;
-    }
-  };
 
   public ValueCase
   getValueCase() {
@@ -169,8 +266,6 @@ private static final long serialVersionUID = 0L;
         valueCase_);
   }
 
-  public static final int TAGS_FIELD_NUMBER = 1;
-  private java.util.List<io.opencensus.proto.stats.v1.Tag> tags_;
   /**
    * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
    */
@@ -178,14 +273,16 @@ private static final long serialVersionUID = 0L;
   public java.util.List<io.opencensus.proto.stats.v1.Tag> getTagsList() {
     return tags_;
   }
+
   /**
    * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
    */
   @java.lang.Override
-  public java.util.List<? extends io.opencensus.proto.stats.v1.TagOrBuilder> 
-      getTagsOrBuilderList() {
+  public java.util.List<? extends io.opencensus.proto.stats.v1.TagOrBuilder>
+  getTagsOrBuilderList() {
     return tags_;
   }
+
   /**
    * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
    */
@@ -193,6 +290,7 @@ private static final long serialVersionUID = 0L;
   public int getTagsCount() {
     return tags_.size();
   }
+
   /**
    * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
    */
@@ -200,6 +298,7 @@ private static final long serialVersionUID = 0L;
   public io.opencensus.proto.stats.v1.Tag getTags(int index) {
     return tags_.get(index);
   }
+
   /**
    * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
    */
@@ -209,14 +308,13 @@ private static final long serialVersionUID = 0L;
     return tags_.get(index);
   }
 
-  public static final int MEASURE_NAME_FIELD_NUMBER = 2;
-  private volatile java.lang.Object measureName_;
   /**
    * <pre>
    * The name of the measure to which the value is applied.
    * </pre>
    *
    * <code>string measure_name = 2;</code>
+   *
    * @return The measureName.
    */
   @java.lang.Override
@@ -225,27 +323,29 @@ private static final long serialVersionUID = 0L;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
-      com.google.protobuf.ByteString bs = 
+      com.google.protobuf.ByteString bs =
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
       measureName_ = s;
       return s;
     }
   }
+
   /**
    * <pre>
    * The name of the measure to which the value is applied.
    * </pre>
    *
    * <code>string measure_name = 2;</code>
+   *
    * @return The bytes for measureName.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getMeasureNameBytes() {
+  getMeasureNameBytes() {
     java.lang.Object ref = measureName_;
     if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
+      com.google.protobuf.ByteString b =
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
       measureName_ = b;
@@ -255,9 +355,9 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int DOUBLE_VALUE_FIELD_NUMBER = 3;
   /**
    * <code>double double_value = 3;</code>
+   *
    * @return The doubleValue.
    */
   @java.lang.Override
@@ -268,9 +368,9 @@ private static final long serialVersionUID = 0L;
     return 0D;
   }
 
-  public static final int INT_VALUE_FIELD_NUMBER = 4;
   /**
    * <code>int64 int_value = 4;</code>
+   *
    * @return The intValue.
    */
   @java.lang.Override
@@ -281,8 +381,6 @@ private static final long serialVersionUID = 0L;
     return 0L;
   }
 
-  public static final int TIME_FIELD_NUMBER = 5;
-  private com.google.protobuf.Timestamp time_;
   /**
    * <pre>
    * The time when this measurement was recorded. If the implementation uses a async buffer to
@@ -290,12 +388,14 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.google.protobuf.Timestamp time = 5;</code>
+   *
    * @return Whether the time field is set.
    */
   @java.lang.Override
   public boolean hasTime() {
     return time_ != null;
   }
+
   /**
    * <pre>
    * The time when this measurement was recorded. If the implementation uses a async buffer to
@@ -303,12 +403,14 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>.google.protobuf.Timestamp time = 5;</code>
+   *
    * @return The time.
    */
   @java.lang.Override
   public com.google.protobuf.Timestamp getTime() {
     return time_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : time_;
   }
+
   /**
    * <pre>
    * The time when this measurement was recorded. If the implementation uses a async buffer to
@@ -322,12 +424,15 @@ private static final long serialVersionUID = 0L;
     return getTime();
   }
 
-  private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
+    if (isInitialized == 1) {
+      return true;
+    }
+    if (isInitialized == 0) {
+      return false;
+    }
 
     memoizedIsInitialized = 1;
     return true;
@@ -335,7 +440,7 @@ private static final long serialVersionUID = 0L;
 
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
+      throws java.io.IOException {
     for (int i = 0; i < tags_.size(); i++) {
       output.writeMessage(1, tags_.get(i));
     }
@@ -344,11 +449,11 @@ private static final long serialVersionUID = 0L;
     }
     if (valueCase_ == 3) {
       output.writeDouble(
-          3, (double)((java.lang.Double) value_));
+          3, (Double) value_);
     }
     if (valueCase_ == 4) {
       output.writeInt64(
-          4, (long)((java.lang.Long) value_));
+          4, (Long) value_);
     }
     if (time_ != null) {
       output.writeMessage(5, getTime());
@@ -359,29 +464,31 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public int getSerializedSize() {
     int size = memoizedSize;
-    if (size != -1) return size;
+    if (size != -1) {
+      return size;
+    }
 
     size = 0;
     for (int i = 0; i < tags_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, tags_.get(i));
+          .computeMessageSize(1, tags_.get(i));
     }
     if (!getMeasureNameBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, measureName_);
     }
     if (valueCase_ == 3) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(
-            3, (double)((java.lang.Double) value_));
+          .computeDoubleSize(
+              3, (Double) value_);
     }
     if (valueCase_ == 4) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt64Size(
-            4, (long)((java.lang.Long) value_));
+          .computeInt64Size(
+              4, (Long) value_);
     }
     if (time_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(5, getTime());
+          .computeMessageSize(5, getTime());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -391,7 +498,7 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-     return true;
+      return true;
     }
     if (!(obj instanceof io.opencensus.proto.stats.v1.Measurement)) {
       return super.equals(obj);
@@ -399,30 +506,43 @@ private static final long serialVersionUID = 0L;
     io.opencensus.proto.stats.v1.Measurement other = (io.opencensus.proto.stats.v1.Measurement) obj;
 
     if (!getTagsList()
-        .equals(other.getTagsList())) return false;
+        .equals(other.getTagsList())) {
+      return false;
+    }
     if (!getMeasureName()
-        .equals(other.getMeasureName())) return false;
-    if (hasTime() != other.hasTime()) return false;
+        .equals(other.getMeasureName())) {
+      return false;
+    }
+    if (hasTime() != other.hasTime()) {
+      return false;
+    }
     if (hasTime()) {
       if (!getTime()
-          .equals(other.getTime())) return false;
+          .equals(other.getTime())) {
+        return false;
+      }
     }
-    if (!getValueCase().equals(other.getValueCase())) return false;
+    if (!getValueCase().equals(other.getValueCase())) {
+      return false;
+    }
     switch (valueCase_) {
       case 3:
         if (java.lang.Double.doubleToLongBits(getDoubleValue())
             != java.lang.Double.doubleToLongBits(
-                other.getDoubleValue())) return false;
+            other.getDoubleValue())) {
+          return false;
+        }
         break;
       case 4:
         if (getIntValue()
-            != other.getIntValue()) return false;
+            != other.getIntValue()) {
+          return false;
+        }
         break;
       case 0:
       default:
     }
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
+    return unknownFields.equals(other.unknownFields);
   }
 
   @java.lang.Override
@@ -461,84 +581,11 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.stats.v1.Measurement parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.stats.v1.Measurement parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
+  @java.lang.Override
+  public Builder newBuilderForType() {
+    return newBuilder();
   }
 
-  @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(io.opencensus.proto.stats.v1.Measurement prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
   @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
@@ -551,29 +598,83 @@ private static final long serialVersionUID = 0L;
     Builder builder = new Builder(parent);
     return builder;
   }
+
+  @java.lang.Override
+  public com.google.protobuf.Parser<Measurement> getParserForType() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public io.opencensus.proto.stats.v1.Measurement getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
+  }
+
+  public enum ValueCase
+      implements com.google.protobuf.Internal.EnumLite,
+      com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+    DOUBLE_VALUE(3),
+    INT_VALUE(4),
+    VALUE_NOT_SET(0);
+    private final int value;
+
+    ValueCase(int value) {
+      this.value = value;
+    }
+
+    /**
+     * @param value The number of the enum to look for.
+     * @return The enum associated with the given number.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static ValueCase valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ValueCase forNumber(int value) {
+      switch (value) {
+        case 3:
+          return DOUBLE_VALUE;
+        case 4:
+          return INT_VALUE;
+        case 0:
+          return VALUE_NOT_SET;
+        default:
+          return null;
+      }
+    }
+
+    public int getNumber() {
+      return this.value;
+    }
+  }
+
   /**
    * <pre>
    * Describes a data point to be collected for a Measure.
    * </pre>
-   *
+   * <p>
    * Protobuf type {@code opencensus.proto.stats.v1.Measurement}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
       // @@protoc_insertion_point(builder_implements:opencensus.proto.stats.v1.Measurement)
       io.opencensus.proto.stats.v1.MeasurementOrBuilder {
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_Measurement_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_Measurement_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.stats.v1.Measurement.class, io.opencensus.proto.stats.v1.Measurement.Builder.class);
-    }
+    private int valueCase_ = 0;
+    private java.lang.Object value_;
+    private int bitField0_;
+    private java.util.List<io.opencensus.proto.stats.v1.Tag> tags_ =
+        java.util.Collections.emptyList();
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        io.opencensus.proto.stats.v1.Tag, io.opencensus.proto.stats.v1.Tag.Builder,
+        io.opencensus.proto.stats.v1.TagOrBuilder>
+        tagsBuilder_;
+    private java.lang.Object measureName_ = "";
+    private com.google.protobuf.Timestamp time_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
+        com.google.protobuf.TimestampOrBuilder>
+        timeBuilder_;
 
     // Construct using io.opencensus.proto.stats.v1.Measurement.newBuilder()
     private Builder() {
@@ -585,12 +686,28 @@ private static final long serialVersionUID = 0L;
       super(parent);
       maybeForceBuilderInitialization();
     }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+      return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_Measurement_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_Measurement_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.opencensus.proto.stats.v1.Measurement.class,
+              io.opencensus.proto.stats.v1.Measurement.Builder.class);
+    }
+
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
+          .alwaysUseFieldBuilders) {
         getTagsFieldBuilder();
       }
     }
+
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -615,7 +732,7 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+    getDescriptorForType() {
       return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_Measurement_descriptor;
     }
 
@@ -635,7 +752,8 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public io.opencensus.proto.stats.v1.Measurement buildPartial() {
-      io.opencensus.proto.stats.v1.Measurement result = new io.opencensus.proto.stats.v1.Measurement(this);
+      io.opencensus.proto.stats.v1.Measurement result =
+          new io.opencensus.proto.stats.v1.Measurement(this);
       int from_bitField0_ = bitField0_;
       if (tagsBuilder_ == null) {
         if (((bitField0_ & 0x00000001) != 0)) {
@@ -667,38 +785,44 @@ private static final long serialVersionUID = 0L;
     public Builder clone() {
       return super.clone();
     }
+
     @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.setField(field, value);
     }
+
     @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
+
     @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
+
     @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
     }
+
     @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.addRepeatedField(field, value);
     }
+
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof io.opencensus.proto.stats.v1.Measurement) {
-        return mergeFrom((io.opencensus.proto.stats.v1.Measurement)other);
+        return mergeFrom((io.opencensus.proto.stats.v1.Measurement) other);
       } else {
         super.mergeFrom(other);
         return this;
@@ -706,7 +830,9 @@ private static final long serialVersionUID = 0L;
     }
 
     public Builder mergeFrom(io.opencensus.proto.stats.v1.Measurement other) {
-      if (other == io.opencensus.proto.stats.v1.Measurement.getDefaultInstance()) return this;
+      if (other == io.opencensus.proto.stats.v1.Measurement.getDefaultInstance()) {
+        return this;
+      }
       if (tagsBuilder_ == null) {
         if (!other.tags_.isEmpty()) {
           if (tags_.isEmpty()) {
@@ -725,9 +851,9 @@ private static final long serialVersionUID = 0L;
             tagsBuilder_ = null;
             tags_ = other.tags_;
             bitField0_ = (bitField0_ & ~0x00000001);
-            tagsBuilder_ = 
-              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                 getTagsFieldBuilder() : null;
+            tagsBuilder_ =
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                    getTagsFieldBuilder() : null;
           } else {
             tagsBuilder_.addAllMessages(other.tags_);
           }
@@ -781,10 +907,9 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
-    private int valueCase_ = 0;
-    private java.lang.Object value_;
+
     public ValueCase
-        getValueCase() {
+    getValueCase() {
       return ValueCase.forNumber(
           valueCase_);
     }
@@ -796,19 +921,12 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int bitField0_;
-
-    private java.util.List<io.opencensus.proto.stats.v1.Tag> tags_ =
-      java.util.Collections.emptyList();
     private void ensureTagsIsMutable() {
       if (!((bitField0_ & 0x00000001) != 0)) {
         tags_ = new java.util.ArrayList<io.opencensus.proto.stats.v1.Tag>(tags_);
         bitField0_ |= 0x00000001;
-       }
+      }
     }
-
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opencensus.proto.stats.v1.Tag, io.opencensus.proto.stats.v1.Tag.Builder, io.opencensus.proto.stats.v1.TagOrBuilder> tagsBuilder_;
 
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
@@ -820,6 +938,7 @@ private static final long serialVersionUID = 0L;
         return tagsBuilder_.getMessageList();
       }
     }
+
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
@@ -830,6 +949,7 @@ private static final long serialVersionUID = 0L;
         return tagsBuilder_.getCount();
       }
     }
+
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
@@ -840,6 +960,7 @@ private static final long serialVersionUID = 0L;
         return tagsBuilder_.getMessage(index);
       }
     }
+
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
@@ -857,6 +978,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
@@ -871,6 +993,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
@@ -887,6 +1010,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
@@ -904,6 +1028,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
@@ -918,6 +1043,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
@@ -932,6 +1058,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
@@ -947,6 +1074,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
@@ -960,6 +1088,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
@@ -973,6 +1102,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
@@ -980,27 +1110,31 @@ private static final long serialVersionUID = 0L;
         int index) {
       return getTagsFieldBuilder().getBuilder(index);
     }
+
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
     public io.opencensus.proto.stats.v1.TagOrBuilder getTagsOrBuilder(
         int index) {
       if (tagsBuilder_ == null) {
-        return tags_.get(index);  } else {
+        return tags_.get(index);
+      } else {
         return tagsBuilder_.getMessageOrBuilder(index);
       }
     }
+
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
-    public java.util.List<? extends io.opencensus.proto.stats.v1.TagOrBuilder> 
-         getTagsOrBuilderList() {
+    public java.util.List<? extends io.opencensus.proto.stats.v1.TagOrBuilder>
+    getTagsOrBuilderList() {
       if (tagsBuilder_ != null) {
         return tagsBuilder_.getMessageOrBuilderList();
       } else {
         return java.util.Collections.unmodifiableList(tags_);
       }
     }
+
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
@@ -1008,6 +1142,7 @@ private static final long serialVersionUID = 0L;
       return getTagsFieldBuilder().addBuilder(
           io.opencensus.proto.stats.v1.Tag.getDefaultInstance());
     }
+
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
@@ -1016,35 +1151,39 @@ private static final long serialVersionUID = 0L;
       return getTagsFieldBuilder().addBuilder(
           index, io.opencensus.proto.stats.v1.Tag.getDefaultInstance());
     }
+
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
-    public java.util.List<io.opencensus.proto.stats.v1.Tag.Builder> 
-         getTagsBuilderList() {
+    public java.util.List<io.opencensus.proto.stats.v1.Tag.Builder>
+    getTagsBuilderList() {
       return getTagsFieldBuilder().getBuilderList();
     }
+
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opencensus.proto.stats.v1.Tag, io.opencensus.proto.stats.v1.Tag.Builder, io.opencensus.proto.stats.v1.TagOrBuilder> 
-        getTagsFieldBuilder() {
+        io.opencensus.proto.stats.v1.Tag, io.opencensus.proto.stats.v1.Tag.Builder,
+        io.opencensus.proto.stats.v1.TagOrBuilder>
+    getTagsFieldBuilder() {
       if (tagsBuilder_ == null) {
         tagsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            io.opencensus.proto.stats.v1.Tag, io.opencensus.proto.stats.v1.Tag.Builder, io.opencensus.proto.stats.v1.TagOrBuilder>(
-                tags_,
-                ((bitField0_ & 0x00000001) != 0),
-                getParentForChildren(),
-                isClean());
+            io.opencensus.proto.stats.v1.Tag, io.opencensus.proto.stats.v1.Tag.Builder,
+            io.opencensus.proto.stats.v1.TagOrBuilder>(
+            tags_,
+            ((bitField0_ & 0x00000001) != 0),
+            getParentForChildren(),
+            isClean());
         tags_ = null;
       }
       return tagsBuilder_;
     }
 
-    private java.lang.Object measureName_ = "";
     /**
      * <pre>
      * The name of the measure to which the value is applied.
      * </pre>
      *
      * <code>string measure_name = 2;</code>
+     *
      * @return The measureName.
      */
     public java.lang.String getMeasureName() {
@@ -1059,19 +1198,42 @@ private static final long serialVersionUID = 0L;
         return (java.lang.String) ref;
       }
     }
+
     /**
      * <pre>
      * The name of the measure to which the value is applied.
      * </pre>
      *
      * <code>string measure_name = 2;</code>
+     *
+     * @param value The measureName to set.
+     * @return This builder for chaining.
+     */
+    public Builder setMeasureName(
+        java.lang.String value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+
+      measureName_ = value;
+      onChanged();
+      return this;
+    }
+
+    /**
+     * <pre>
+     * The name of the measure to which the value is applied.
+     * </pre>
+     *
+     * <code>string measure_name = 2;</code>
+     *
      * @return The bytes for measureName.
      */
     public com.google.protobuf.ByteString
-        getMeasureNameBytes() {
+    getMeasureNameBytes() {
       java.lang.Object ref = measureName_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         measureName_ = b;
@@ -1080,62 +1242,48 @@ private static final long serialVersionUID = 0L;
         return (com.google.protobuf.ByteString) ref;
       }
     }
+
     /**
      * <pre>
      * The name of the measure to which the value is applied.
      * </pre>
      *
      * <code>string measure_name = 2;</code>
-     * @param value The measureName to set.
-     * @return This builder for chaining.
-     */
-    public Builder setMeasureName(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      measureName_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * The name of the measure to which the value is applied.
-     * </pre>
      *
-     * <code>string measure_name = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearMeasureName() {
-      
-      measureName_ = getDefaultInstance().getMeasureName();
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * The name of the measure to which the value is applied.
-     * </pre>
-     *
-     * <code>string measure_name = 2;</code>
      * @param value The bytes for measureName to set.
      * @return This builder for chaining.
      */
     public Builder setMeasureNameBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+        throw new NullPointerException();
+      }
+      checkByteStringIsUtf8(value);
+
       measureName_ = value;
       onChanged();
       return this;
     }
 
     /**
+     * <pre>
+     * The name of the measure to which the value is applied.
+     * </pre>
+     *
+     * <code>string measure_name = 2;</code>
+     *
+     * @return This builder for chaining.
+     */
+    public Builder clearMeasureName() {
+
+      measureName_ = getDefaultInstance().getMeasureName();
+      onChanged();
+      return this;
+    }
+
+    /**
      * <code>double double_value = 3;</code>
+     *
      * @return The doubleValue.
      */
     public double getDoubleValue() {
@@ -1144,8 +1292,10 @@ private static final long serialVersionUID = 0L;
       }
       return 0D;
     }
+
     /**
      * <code>double double_value = 3;</code>
+     *
      * @param value The doubleValue to set.
      * @return This builder for chaining.
      */
@@ -1155,8 +1305,10 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
     /**
      * <code>double double_value = 3;</code>
+     *
      * @return This builder for chaining.
      */
     public Builder clearDoubleValue() {
@@ -1170,6 +1322,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <code>int64 int_value = 4;</code>
+     *
      * @return The intValue.
      */
     public long getIntValue() {
@@ -1178,8 +1331,10 @@ private static final long serialVersionUID = 0L;
       }
       return 0L;
     }
+
     /**
      * <code>int64 int_value = 4;</code>
+     *
      * @param value The intValue to set.
      * @return This builder for chaining.
      */
@@ -1189,8 +1344,10 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
     /**
      * <code>int64 int_value = 4;</code>
+     *
      * @return This builder for chaining.
      */
     public Builder clearIntValue() {
@@ -1202,9 +1359,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private com.google.protobuf.Timestamp time_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> timeBuilder_;
     /**
      * <pre>
      * The time when this measurement was recorded. If the implementation uses a async buffer to
@@ -1212,11 +1366,13 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.google.protobuf.Timestamp time = 5;</code>
+     *
      * @return Whether the time field is set.
      */
     public boolean hasTime() {
       return timeBuilder_ != null || time_ != null;
     }
+
     /**
      * <pre>
      * The time when this measurement was recorded. If the implementation uses a async buffer to
@@ -1224,6 +1380,7 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.google.protobuf.Timestamp time = 5;</code>
+     *
      * @return The time.
      */
     public com.google.protobuf.Timestamp getTime() {
@@ -1233,6 +1390,7 @@ private static final long serialVersionUID = 0L;
         return timeBuilder_.getMessage();
       }
     }
+
     /**
      * <pre>
      * The time when this measurement was recorded. If the implementation uses a async buffer to
@@ -1254,6 +1412,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * The time when this measurement was recorded. If the implementation uses a async buffer to
@@ -1273,6 +1432,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * The time when this measurement was recorded. If the implementation uses a async buffer to
@@ -1285,7 +1445,7 @@ private static final long serialVersionUID = 0L;
       if (timeBuilder_ == null) {
         if (time_ != null) {
           time_ =
-            com.google.protobuf.Timestamp.newBuilder(time_).mergeFrom(value).buildPartial();
+              com.google.protobuf.Timestamp.newBuilder(time_).mergeFrom(value).buildPartial();
         } else {
           time_ = value;
         }
@@ -1296,6 +1456,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * The time when this measurement was recorded. If the implementation uses a async buffer to
@@ -1315,6 +1476,7 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+
     /**
      * <pre>
      * The time when this measurement was recorded. If the implementation uses a async buffer to
@@ -1324,10 +1486,11 @@ private static final long serialVersionUID = 0L;
      * <code>.google.protobuf.Timestamp time = 5;</code>
      */
     public com.google.protobuf.Timestamp.Builder getTimeBuilder() {
-      
+
       onChanged();
       return getTimeFieldBuilder().getBuilder();
     }
+
     /**
      * <pre>
      * The time when this measurement was recorded. If the implementation uses a async buffer to
@@ -1344,6 +1507,7 @@ private static final long serialVersionUID = 0L;
             com.google.protobuf.Timestamp.getDefaultInstance() : time_;
       }
     }
+
     /**
      * <pre>
      * The time when this measurement was recorded. If the implementation uses a async buffer to
@@ -1353,18 +1517,21 @@ private static final long serialVersionUID = 0L;
      * <code>.google.protobuf.Timestamp time = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
-        getTimeFieldBuilder() {
+        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
+        com.google.protobuf.TimestampOrBuilder>
+    getTimeFieldBuilder() {
       if (timeBuilder_ == null) {
         timeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
-                getTime(),
-                getParentForChildren(),
-                isClean());
+            com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
+            com.google.protobuf.TimestampOrBuilder>(
+            getTime(),
+            getParentForChildren(),
+            isClean());
         time_ = null;
       }
       return timeBuilder_;
     }
+
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1379,41 +1546,6 @@ private static final long serialVersionUID = 0L;
 
 
     // @@protoc_insertion_point(builder_scope:opencensus.proto.stats.v1.Measurement)
-  }
-
-  // @@protoc_insertion_point(class_scope:opencensus.proto.stats.v1.Measurement)
-  private static final io.opencensus.proto.stats.v1.Measurement DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.stats.v1.Measurement();
-  }
-
-  public static io.opencensus.proto.stats.v1.Measurement getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<Measurement>
-      PARSER = new com.google.protobuf.AbstractParser<Measurement>() {
-    @java.lang.Override
-    public Measurement parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Measurement(input, extensionRegistry);
-    }
-  };
-
-  public static com.google.protobuf.Parser<Measurement> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<Measurement> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.stats.v1.Measurement getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
   }
 
 }

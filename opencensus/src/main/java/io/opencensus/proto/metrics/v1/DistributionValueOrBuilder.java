@@ -15,6 +15,7 @@ public interface DistributionValueOrBuilder extends
    * </pre>
    *
    * <code>int64 count = 1;</code>
+   *
    * @return The count.
    */
   long getCount();
@@ -26,6 +27,7 @@ public interface DistributionValueOrBuilder extends
    * </pre>
    *
    * <code>double sum = 2;</code>
+   *
    * @return The sum.
    */
   double getSum();
@@ -41,6 +43,7 @@ public interface DistributionValueOrBuilder extends
    * </pre>
    *
    * <code>double sum_of_squared_deviation = 3;</code>
+   *
    * @return The sumOfSquaredDeviation.
    */
   double getSumOfSquaredDeviation();
@@ -54,9 +57,11 @@ public interface DistributionValueOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucket_options = 4;</code>
+   *
    * @return Whether the bucketOptions field is set.
    */
   boolean hasBucketOptions();
+
   /**
    * <pre>
    * Don't change bucket boundaries within a TimeSeries if your backend doesn't
@@ -66,9 +71,11 @@ public interface DistributionValueOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucket_options = 4;</code>
+   *
    * @return The bucketOptions.
    */
   io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions getBucketOptions();
+
   /**
    * <pre>
    * Don't change bucket boundaries within a TimeSeries if your backend doesn't
@@ -90,8 +97,9 @@ public interface DistributionValueOrBuilder extends
    *
    * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
    */
-  java.util.List<io.opencensus.proto.metrics.v1.DistributionValue.Bucket> 
-      getBucketsList();
+  java.util.List<io.opencensus.proto.metrics.v1.DistributionValue.Bucket>
+  getBucketsList();
+
   /**
    * <pre>
    * If the distribution does not have a histogram, then omit this field.
@@ -102,6 +110,7 @@ public interface DistributionValueOrBuilder extends
    * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
    */
   io.opencensus.proto.metrics.v1.DistributionValue.Bucket getBuckets(int index);
+
   /**
    * <pre>
    * If the distribution does not have a histogram, then omit this field.
@@ -112,6 +121,7 @@ public interface DistributionValueOrBuilder extends
    * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
    */
   int getBucketsCount();
+
   /**
    * <pre>
    * If the distribution does not have a histogram, then omit this field.
@@ -121,8 +131,9 @@ public interface DistributionValueOrBuilder extends
    *
    * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
    */
-  java.util.List<? extends io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder> 
-      getBucketsOrBuilderList();
+  java.util.List<? extends io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder>
+  getBucketsOrBuilderList();
+
   /**
    * <pre>
    * If the distribution does not have a histogram, then omit this field.

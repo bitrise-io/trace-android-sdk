@@ -4,7 +4,8 @@
 package io.opencensus.proto.agent.metrics.v1;
 
 public interface ExportMetricsServiceRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:opencensus.proto.agent.metrics.v1.ExportMetricsServiceRequest)
+    // @@protoc_insertion_point(interface_extends:opencensus.proto.agent.metrics.v1
+    // .ExportMetricsServiceRequest)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -15,9 +16,11 @@ public interface ExportMetricsServiceRequestOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
+   *
    * @return Whether the node field is set.
    */
   boolean hasNode();
+
   /**
    * <pre>
    * This is required only in the first message on the stream or if the
@@ -26,9 +29,11 @@ public interface ExportMetricsServiceRequestOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
+   *
    * @return The node.
    */
   io.opencensus.proto.agent.common.v1.Node getNode();
+
   /**
    * <pre>
    * This is required only in the first message on the stream or if the
@@ -47,8 +52,9 @@ public interface ExportMetricsServiceRequestOrBuilder extends
    *
    * <code>repeated .opencensus.proto.metrics.v1.Metric metrics = 2;</code>
    */
-  java.util.List<io.opencensus.proto.metrics.v1.Metric> 
-      getMetricsList();
+  java.util.List<io.opencensus.proto.metrics.v1.Metric>
+  getMetricsList();
+
   /**
    * <pre>
    * A list of metrics that belong to the last received Node.
@@ -57,6 +63,7 @@ public interface ExportMetricsServiceRequestOrBuilder extends
    * <code>repeated .opencensus.proto.metrics.v1.Metric metrics = 2;</code>
    */
   io.opencensus.proto.metrics.v1.Metric getMetrics(int index);
+
   /**
    * <pre>
    * A list of metrics that belong to the last received Node.
@@ -65,6 +72,7 @@ public interface ExportMetricsServiceRequestOrBuilder extends
    * <code>repeated .opencensus.proto.metrics.v1.Metric metrics = 2;</code>
    */
   int getMetricsCount();
+
   /**
    * <pre>
    * A list of metrics that belong to the last received Node.
@@ -72,8 +80,9 @@ public interface ExportMetricsServiceRequestOrBuilder extends
    *
    * <code>repeated .opencensus.proto.metrics.v1.Metric metrics = 2;</code>
    */
-  java.util.List<? extends io.opencensus.proto.metrics.v1.MetricOrBuilder> 
-      getMetricsOrBuilderList();
+  java.util.List<? extends io.opencensus.proto.metrics.v1.MetricOrBuilder>
+  getMetricsOrBuilderList();
+
   /**
    * <pre>
    * A list of metrics that belong to the last received Node.
@@ -94,9 +103,11 @@ public interface ExportMetricsServiceRequestOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
+   *
    * @return Whether the resource field is set.
    */
   boolean hasResource();
+
   /**
    * <pre>
    * The resource for the metrics in this message that do not have an explicit
@@ -107,9 +118,11 @@ public interface ExportMetricsServiceRequestOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
+   *
    * @return The resource.
    */
   io.opencensus.proto.resource.v1.Resource getResource();
+
   /**
    * <pre>
    * The resource for the metrics in this message that do not have an explicit
