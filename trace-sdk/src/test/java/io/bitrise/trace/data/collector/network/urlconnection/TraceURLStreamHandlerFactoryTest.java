@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 /**
  * Tests for {@link TraceURLStreamHandler}.
  */
+@SuppressWarnings("checkstyle:abbreviation")
 public class TraceURLStreamHandlerFactoryTest {
 
   private final TraceURLStreamHandlerFactory traceURLStreamHandlerFactory =

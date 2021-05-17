@@ -105,6 +105,7 @@ public class TraceLog {
   /**
    * Calls the current logger.d method
    */
+  @SuppressWarnings("checkstyle:MethodName")
   public static void d(@NonNull String message) {
     if (logger == null) {
       makeSilentLogger();
@@ -116,6 +117,7 @@ public class TraceLog {
   /**
    * Calls the current logger.e method
    */
+  @SuppressWarnings("checkstyle:MethodName")
   public static void e(@NonNull String message) {
     if (logger == null) {
       makeSilentLogger();
@@ -125,45 +127,12 @@ public class TraceLog {
   }
 
   /**
-   * Calls the current logger.i method
-   */
-  public static void i(@NonNull String message) {
-    if (logger == null) {
-      makeSilentLogger();
-    }
-
-    logger.i(TAG, message);
-  }
-
-  /**
-   * Calls the current logger.v method
-   */
-  public static void v(@NonNull String message) {
-    if (logger == null) {
-      makeSilentLogger();
-    }
-
-    logger.v(TAG, message);
-  }
-
-  /**
-   * Calls the current logger.w method
-   */
-  public static void w(@NonNull String message) {
-    if (logger == null) {
-      makeSilentLogger();
-    }
-
-    logger.w(TAG, message);
-  }
-  //endregion
-
-  /**
    * Creates a TraceLog.e event with location and exception information.
    * e.g. className - methodName() : exceptions localized message.
    *
    * @param exception the exception that should be logged.
    */
+  @SuppressWarnings("checkstyle:MethodName")
   public static void e(@NonNull Exception exception) {
     TraceLog.e(
         getLocationInformationFromStackTraceElement(new Throwable().getStackTrace())
@@ -176,6 +145,7 @@ public class TraceLog {
    *
    * @param exception the exception that should be logged.
    */
+  @SuppressWarnings("checkstyle:MethodName")
   public static void e(@NonNull Exception exception, @NonNull String message) {
     TraceLog.e(
         getLocationInformationFromStackTraceElement(new Throwable().getStackTrace())
@@ -185,11 +155,48 @@ public class TraceLog {
   }
 
   /**
+   * Calls the current logger.i method
+   */
+  @SuppressWarnings("checkstyle:MethodName")
+  public static void i(@NonNull String message) {
+    if (logger == null) {
+      makeSilentLogger();
+    }
+
+    logger.i(TAG, message);
+  }
+
+  /**
+   * Calls the current logger.v method
+   */
+  @SuppressWarnings("checkstyle:MethodName")
+  public static void v(@NonNull String message) {
+    if (logger == null) {
+      makeSilentLogger();
+    }
+
+    logger.v(TAG, message);
+  }
+
+  /**
+   * Calls the current logger.w method
+   */
+  @SuppressWarnings("checkstyle:MethodName")
+  public static void w(@NonNull String message) {
+    if (logger == null) {
+      makeSilentLogger();
+    }
+
+    logger.w(TAG, message);
+  }
+
+  /**
    * Creates a TraceLog.w event with location and exception information.
    * e.g. className - methodName() : exceptions localized message.
    *
    * @param exception the exception that should be logged.
    */
+  @SuppressWarnings("checkstyle:MethodName")
   public static void w(@NonNull Exception exception) {
     TraceLog.w(
         getLocationInformationFromStackTraceElement(new Throwable().getStackTrace())
@@ -204,6 +211,7 @@ public class TraceLog {
    * @param exception the exception that was thrown
    * @param message   additional context with the exception
    */
+  @SuppressWarnings("checkstyle:MethodName")
   public static void w(@NonNull Exception exception,
                        @NonNull String message) {
     TraceLog.w(
@@ -221,6 +229,7 @@ public class TraceLog {
    * @param error   the error that was thrown
    * @param message additional context with the exception
    */
+  @SuppressWarnings("checkstyle:MethodName")
   public static void w(@NonNull Error error,
                        @NonNull String message) {
     TraceLog.w(
@@ -229,6 +238,7 @@ public class TraceLog {
             + " - "
             + message);
   }
+  //endregion
 
   /**
    * Creates a string of the calling class name and method from a stack trace.

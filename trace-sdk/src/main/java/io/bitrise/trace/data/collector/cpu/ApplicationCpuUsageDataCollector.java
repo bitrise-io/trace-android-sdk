@@ -156,7 +156,7 @@ public class ApplicationCpuUsageDataCollector extends CpuUsageDataCollector {
    *
    * @param line the String line to parse.
    * @return the PidCpuStatWithUptime parsed from it, or {@code null} if it could not be read
-   * (e.g. CPU offline).
+   *     (e.g. CPU offline).
    */
   @Nullable
   @VisibleForTesting

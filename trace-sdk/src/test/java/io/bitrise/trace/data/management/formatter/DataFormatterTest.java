@@ -38,11 +38,13 @@ public class DataFormatterTest {
     final Span span1 = TraceTestProvider.getSampleSpan(DUMMY_TRACE_ID, "span1");
     final Span span2 = TraceTestProvider.getSampleSpan(DUMMY_TRACE_ID, "span2");
     final Span span3 = TraceTestProvider.getSampleSpan(DUMMY_TRACE_ID, "span3");
-    final List<Span> spanList = new ArrayList<Span>() {{
-      add(span1);
-      add(span2);
-      add(span3);
-    }};
+    final List<Span> spanList = new ArrayList<Span>() {
+      {
+        add(span1);
+        add(span2);
+        add(span3);
+      }
+    };
     final FormattedData[] formattedDataArray = DataFormatter.toFormattedDataArray(spanList);
     for (int i = 0; i < formattedDataArray.length; i++) {
       assertThat(formattedDataArray[i].getSpan(), is(spanList.get(i)));

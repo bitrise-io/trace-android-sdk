@@ -79,7 +79,7 @@ public class ActivityStateDataFormatter extends DataFormatter {
    *
    * @param activityStates - the list of activity states.
    * @return - the timestamp (in milliseconds) when the activity was started, or null if a
-   * start cannot be found.
+   *     start cannot be found.
    */
   @Nullable
   private Long findStart(Map<ActivityState, Long> activityStates) {
@@ -97,7 +97,7 @@ public class ActivityStateDataFormatter extends DataFormatter {
    *
    * @param activityStates - the list of activity states.
    * @return - the timestamp (in milliseconds) when the activity was ended, or null if an end cannot
-   * be found.
+   *     be found.
    */
   @Nullable
   private Long findEnd(Map<ActivityState, Long> activityStates) {

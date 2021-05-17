@@ -20,6 +20,7 @@ import org.mockito.Mockito;
 /**
  * Utility methods for use in the URLConnection tests.
  */
+@SuppressWarnings("checkstyle:abbreviation")
 public class TraceHttpURLConnectionTestUtils {
 
   private TraceHttpURLConnectionTestUtils() {
@@ -44,7 +45,7 @@ public class TraceHttpURLConnectionTestUtils {
   /**
    * Gets a valid response.
    *
-   * @param url the url
+   * @param url the url.
    * @return the response.
    */
   public static Response getValidResponse(URL url) {
@@ -60,7 +61,7 @@ public class TraceHttpURLConnectionTestUtils {
         .body(ResponseBody.create(
             MediaType.get("application/json; charset=utf-8"),
             "{'hello':'world'}"
-        ));
+                                 ));
     return responseBuilder.build();
   }
 
@@ -102,7 +103,7 @@ public class TraceHttpURLConnectionTestUtils {
         .body(ResponseBody.create(
             MediaType.get("application/json; charset=utf-8"),
             "{'hello':'world'}"
-        ));
+                                 ));
     return responseBuilder.build();
   }
 

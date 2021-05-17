@@ -41,7 +41,7 @@ public abstract class Scheduler {
    * @param scheduledTime the exact time when the callback will be called. If the given time is
    *                      already passed the action will be triggered immediately.
    * @return the ID of if it is a Service, negative number if it is not a Service, or {@code
-   * null}if the action has not been scheduled.
+   *     null}if the action has not been scheduled.
    */
   @Nullable
   public Integer schedule(final long scheduledTime) {
@@ -53,7 +53,7 @@ public abstract class Scheduler {
    * Schedules an action delayed with the default delay.
    *
    * @return the tag of if it is a Service, empty String if it is not a Service,  or {@code null}
-   * if the action has not been scheduled.
+   *     if the action has not been scheduled.
    */
   @Nullable
   public Integer scheduleDelayed() {
@@ -65,7 +65,7 @@ public abstract class Scheduler {
    *
    * @param delay the amount of delay in milliseconds.
    * @return the ID of if it is a Service, negative number if it is not a Service, or {@code null}
-   * if the action has not been scheduled.
+   *     if the action has not been scheduled.
    */
   @Nullable
   public abstract Integer scheduleDelayed(final long delay);
