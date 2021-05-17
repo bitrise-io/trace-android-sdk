@@ -17,11 +17,11 @@ import org.junit.Test;
 public class FragmentUiTest extends BaseUiTest {
 
   /**
-   * Tests Activity lifecycle states in different cases:
+   * Tests Activity lifecycle states in different cases.
    * <ul>
-   *     <li>Cold application start.</li>
-   *     <li>Hot application start.</li>
-   *     <li>Launching up new Activity.</li>
+   *     <li>Cold application start</li>
+   *     <li>Hot application start</li>
+   *     <li>Launching up new Activity</li>
    * </ul>
    */
   @Test
