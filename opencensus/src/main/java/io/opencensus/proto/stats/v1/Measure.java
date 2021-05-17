@@ -46,6 +46,7 @@ public final class Measure extends
   private Measure(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
+
   private Measure() {
     name_ = "";
     description_ = "";

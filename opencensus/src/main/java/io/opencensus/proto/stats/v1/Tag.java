@@ -37,6 +37,7 @@ public final class Tag extends
   private volatile java.lang.Object key_;
   private volatile java.lang.Object value_;
   private byte memoizedIsInitialized = -1;
+
   // Use Tag.newBuilder() to construct.
   private Tag(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);

@@ -33,6 +33,7 @@ public final class LabelValue extends
   private volatile java.lang.Object value_;
   private boolean hasValue_;
   private byte memoizedIsInitialized = -1;
+
   // Use LabelValue.newBuilder() to construct.
   private LabelValue(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
