@@ -192,9 +192,4 @@ public class ActivityStateDataListenerInstrumentedTest {
         activityStateDataListener.startCollecting();
         assertThat(activityStateDataListener.activityMap.size(), is(0));
     }
-
-    @Test
-    public void getPermissions() {
-        assertArrayEquals(new String[0], activityStateDataListener.getPermissions());
-    }
 }
