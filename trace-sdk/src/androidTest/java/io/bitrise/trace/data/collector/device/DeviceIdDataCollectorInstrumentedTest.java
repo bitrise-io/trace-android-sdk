@@ -2,14 +2,12 @@ package io.bitrise.trace.data.collector.device;
 
 import org.junit.Test;
 
-import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.collector.BaseDataCollectorInstrumentedTest;
+import io.bitrise.trace.data.dto.Data;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
 
 /**
  * Instrumented tests for {@link DeviceIdDataCollector}.
@@ -24,7 +22,6 @@ public class DeviceIdDataCollectorInstrumentedTest extends BaseDataCollectorInst
      */
     @Test
     public void collectData_contentShouldBeNotNull() {
-        final DeviceIdDataCollector deviceIdDataCollector = new DeviceIdDataCollector(context);
         final String actualValue = (String) deviceIdDataCollector.collectData().getContent();
         assertThat(actualValue, is(notNullValue()));
     }

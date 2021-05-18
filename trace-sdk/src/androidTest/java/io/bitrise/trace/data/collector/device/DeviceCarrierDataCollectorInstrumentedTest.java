@@ -18,7 +18,7 @@ public class DeviceCarrierDataCollectorInstrumentedTest extends BaseDataCollecto
 
     /**
      * Verifies that when {@link DeviceCarrierDataCollector#collectData()} is called, the content of the returned
-     * {@link Data} should not be {@code null}.
+     * {@link Data} should match the expected data.
      */
     @Test
     public void collectData_contentShouldBeNotNull() {

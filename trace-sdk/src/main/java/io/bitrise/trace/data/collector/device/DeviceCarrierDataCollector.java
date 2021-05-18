@@ -50,6 +50,7 @@ public class DeviceCarrierDataCollector extends DeviceDataCollector {
     /**
      * Gets the carrier of the currently active network.
      *
+     * @param telephonyManager the telephonyManager to use from context.
      * @return the carrier of the currently active network.
      */
     @VisibleForTesting

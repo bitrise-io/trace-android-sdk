@@ -19,14 +19,14 @@ public class DeviceNetworkTypeDataCollectorInstrumentedTest extends BaseDataColl
 
     @Test
     @SdkSuppress(maxSdkVersion = 28)
-    public void collectData_preQ() {
+    public void collectData_pre29() {
         final DeviceNetworkTypeDataCollector collector = new DeviceNetworkTypeDataCollector(context);
         assertNetworkCollectedData(collector.collectData(), "UNKNOWN");
     }
 
     @Test
     @SdkSuppress(minSdkVersion = 29)
-    public void collectData_postQ() {
+    public void collectData_post29() {
         final DeviceNetworkTypeDataCollector collector = new DeviceNetworkTypeDataCollector(context);
         assertNetworkCollectedData(collector.collectData(), "WIFI");
     }
