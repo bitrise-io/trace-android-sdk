@@ -6,6 +6,7 @@ import android.content.Context;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertFalse;
 
 /**
@@ -28,5 +29,10 @@ public class ApplicationForegroundStateDataListenerTest {
     public void onActivityStopped_notActive() {
         listener.onActivityStopped(mockActivity);
         assertFalse(listener.isActive());
+    }
+
+    @Test
+    public void getPermissions() {
+        assertArrayEquals(new String[0], listener.getPermissions());
     }
 }

@@ -15,7 +15,6 @@ import io.bitrise.trace.session.ApplicationSessionManager;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertArrayEquals;
 import static org.mockito.Mockito.mock;
 
 /**
@@ -136,10 +135,5 @@ public class ApplicationForegroundStateDataListenerInstrumentedTest {
         traceActivityLifecycleTracker.onActivityCreated(mockActivity1, new Bundle());
         traceActivityLifecycleTracker.onActivityStarted(mockActivity1);
         assertThat(applicationForegroundStateDataListener.hasApplicationJustComeFromBackground(), is(false));
-    }
-
-    @Test
-    public void getPermissions() {
-        assertArrayEquals(new String[0], applicationForegroundStateDataListener.getPermissions());
     }
 }
