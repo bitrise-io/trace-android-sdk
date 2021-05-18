@@ -1,21 +1,20 @@
-package io.bitrise.trace.data.collector.application;
+package io.bitrise.trace.data.application;
 
-import android.content.res.Resources;
-
-import androidx.test.platform.app.InstrumentationRegistry;
+import android.content.Context;
 
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import io.bitrise.trace.BuildConfig;
 import io.bitrise.trace.configuration.ConfigurationManager;
+import io.bitrise.trace.data.collector.application.ApplicationVersionCodeDataCollector;
 import io.bitrise.trace.data.dto.Data;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 /**
  * Unit tests for {@link ApplicationVersionCodeDataCollector}
@@ -23,8 +22,9 @@ import static org.junit.Assert.assertNotNull;
 public class ApplicationVersionCodeDataCollectorTest {
 
     private final static int versionCode = 123;
+    private final Context mockContext = Mockito.mock(Context.class);
     private final ApplicationVersionCodeDataCollector collector = new ApplicationVersionCodeDataCollector(
-            InstrumentationRegistry.getInstrumentation().getContext());
+            mockContext);
 
     @Test
     public void collectData_configurationManagerInitialised() {
@@ -38,11 +38,6 @@ public class ApplicationVersionCodeDataCollectorTest {
         assertEquals(expectedData, collector.collectData());
 
         ConfigurationManager.reset();
-    }
-
-    @Test(expected = Resources.NotFoundException.class)
-    public void collectData_configurationManagerNotInitialised() {
-       assertNotNull(collector.collectData());
     }
 
     @Test
