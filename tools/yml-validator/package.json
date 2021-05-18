@@ -5,6 +5,9 @@
   "main": "index.js",
   "license": "MIT",
   "private": true,
+  "resolutions": {
+    "underscore": "1.12.1"
+  },
   "dependencies": {
     "yaml-validator": "^3.0.1"
   },
