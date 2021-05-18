@@ -6,6 +6,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Unit tests for {@link SystemCpuUsageDataCollector}.
@@ -48,6 +50,18 @@ public class SystemCpuUsageDataCollectorTest {
     public void getStatPercentages_ShouldBeThePercentage() {
         final CpuUsageData.CpuStat actual = SystemCpuUsageDataCollector.getStatPercentages(DUMMY_CPU_STAT_1, 10);
         assertThat(actual, equalTo(new CpuUsageData.CpuStat(100, 100, 100, 100, 100, 100, 100, 100)));
+    }
+
+    @Test
+    public void getPermissions() {
+        final SystemCpuUsageDataCollector collector = new SystemCpuUsageDataCollector();
+        assertArrayEquals(new String[0], collector.getPermissions());
+    }
+
+    @Test
+    public void getIntervalMs() {
+        final SystemCpuUsageDataCollector collector = new SystemCpuUsageDataCollector();
+        assertEquals(15000, collector.getIntervalMs());
     }
 
 }

@@ -82,14 +82,4 @@ public class ApplicationCpuUsageDataCollectorInstrumentedTest extends BaseDataCo
                 collector.previousAverageApplicationStats);
         assertThat(actual, is(both(greaterThanOrEqualTo(ZERO_PERCENT)).and(lessThanOrEqualTo(HUNDRED_PERCENT))));
     }
-
-    @Test
-    public void getPermissions() {
-        assertArrayEquals(new String[0], collector.getPermissions());
-    }
-
-    @Test
-    public void getIntervalMs() {
-        assertEquals(15000, collector.getIntervalMs());
-    }
 }

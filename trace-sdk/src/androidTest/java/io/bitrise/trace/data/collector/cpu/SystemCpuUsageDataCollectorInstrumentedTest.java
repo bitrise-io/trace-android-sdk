@@ -251,14 +251,4 @@ public class SystemCpuUsageDataCollectorInstrumentedTest extends BaseDataCollect
         InstrumentedTestRequirements.assumeCpuApiLevelFail();
         new RandomAccessFile("/proc/stat", "r");
     }
-
-    @Test
-    public void getPermissions() {
-        assertArrayEquals(new String[0], collector.getPermissions());
-    }
-
-    @Test
-    public void getIntervalMs() {
-        assertEquals(15000, collector.getIntervalMs());
-    }
 }
