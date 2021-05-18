@@ -211,17 +211,4 @@ public class DeviceNetworkTypeDataCollectorInstrumentedTest extends BaseDataColl
 
         assertNetworkCollectedData(collector.collectData(), "UNKNOWN");
     }
-
-    @Test
-    public void getPermissions() {
-        final DeviceNetworkTypeDataCollector collector = new DeviceNetworkTypeDataCollector(context);
-        assertArrayEquals(new String[]{android.Manifest.permission.ACCESS_NETWORK_STATE},
-                collector.getPermissions());
-    }
-
-    @Test
-    public void getIntervalMs() {
-        final DeviceNetworkTypeDataCollector collector = new DeviceNetworkTypeDataCollector(context);
-        assertEquals(0, collector.getIntervalMs());
-    }
 }

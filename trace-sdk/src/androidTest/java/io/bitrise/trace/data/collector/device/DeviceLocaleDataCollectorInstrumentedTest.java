@@ -15,7 +15,6 @@ import io.bitrise.trace.data.dto.Data;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -55,13 +54,4 @@ public class DeviceLocaleDataCollectorInstrumentedTest extends BaseDataCollector
         assertEquals(expectedData, deviceLocaleDataCollector.collectData());
     }
 
-    @Test
-    public void getPermissions() {
-        assertArrayEquals(new String[0], collector.getPermissions());
-    }
-
-    @Test
-    public void getIntervalMs() {
-        assertEquals(0, collector.getIntervalMs());
-    }
 }

@@ -39,14 +39,4 @@ public class DeviceIdDataCollectorInstrumentedTest extends BaseDataCollectorInst
         final String actualValue = (String) deviceIdDataCollector.collectData().getContent();
         assertThat(actualValue, is(expectedValue));
     }
-
-    @Test
-    public void getPermissions() {
-        assertArrayEquals(new String[0], deviceIdDataCollector.getPermissions());
-    }
-
-    @Test
-    public void getIntervalMs() {
-        assertEquals(0, deviceIdDataCollector.getIntervalMs());
-    }
 }
