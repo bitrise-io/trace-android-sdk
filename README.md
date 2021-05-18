@@ -111,6 +111,26 @@ while the Trace SDK applies the plugin.
 Trace is released under the MIT license. See 
 [LICENSE](https://github.com/bitrise-io//trace-android-sdk/blob/main/LICENSE.md) for details.
 
+## Code quality
+
+### Checkstyle
+
+trace-android-sdk uses Checkstyle (<https://checkstyle.sourceforge.io>) to adhere our coding 
+standards. All included builds and subprojects use it, except 'opencensus', because that is a 
+generated module.
+
+Application builds will fail on the CI if there is an issue. The coding standards are 
+based on Google's Java style guide (<https://google.github.io/styleguide/javaguide.html>).
+
+To remove the most of the burden of formatting from the developers shoulders, please use the 
+code formatter in Android Studio, trace-android-sdk has it's own formatter, you can find it in the 
+following path 'trace-android-sdk/config/trace_code_formatter_v3.xml'.
+
+To run Checkstyle on a given module, run 'checkStyle' task. To run it on a specific source set only, 
+postfix the mentioned task with the source sets name (e.g. checkStyleMain). It is also possible to 
+call the task on every affected module, there is an umbrella task in 'trace-android-sdk' named 
+'checkStyle'.
+
 ## Miscellaneous
 
 ### Test kit
