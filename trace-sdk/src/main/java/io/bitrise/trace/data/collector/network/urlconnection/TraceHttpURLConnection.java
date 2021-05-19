@@ -20,8 +20,8 @@ public class TraceHttpURLConnection extends HttpURLConnection {
   Response response;
   @VisibleForTesting
   OkHttpClient okHttpClient;
-  private URL url;
-  private Proxy proxy;
+  private final URL url;
+  private final Proxy proxy;
 
   /**
    * Constructor for class.

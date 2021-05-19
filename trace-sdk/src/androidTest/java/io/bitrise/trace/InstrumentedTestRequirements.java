@@ -8,8 +8,7 @@ import org.junit.AssumptionViolatedException;
 
 /**
  * Provides different requirements for test cases to run in cases. For example: when a test case
- * should not run on a
- * given API level.
+ * should not run on a given API level.
  */
 public class InstrumentedTestRequirements {
 
@@ -41,10 +40,8 @@ public class InstrumentedTestRequirements {
    * <a href="https://developer.android.com/training/articles/security-config#CleartextTrafficPermitted">https://developer.android.com/training/articles/security-config#CleartextTrafficPermitted</a>
    */
   public static void assumeTestKitApiLevel() throws AssumptionViolatedException {
-    assumeTrue(
-        NETWORK_POLICY_CLEARTEXT_LIMITATION_MESSAGE,
-        Build.VERSION.SDK_INT < Build.VERSION_CODES.P
-    );
+    assumeTrue(NETWORK_POLICY_CLEARTEXT_LIMITATION_MESSAGE,
+        Build.VERSION.SDK_INT < Build.VERSION_CODES.P);
   }
 
   /**
@@ -55,10 +52,8 @@ public class InstrumentedTestRequirements {
    * @throws AssumptionViolatedException when the current API level is not proper.
    */
   public static void assumeCpuApiLevel() throws AssumptionViolatedException {
-    assumeTrue(
-        API_LEVEL_CPU_REQUIREMENT_MESSAGE,
-        Build.VERSION.SDK_INT < Build.VERSION_CODES.O
-    );
+    assumeTrue(API_LEVEL_CPU_REQUIREMENT_MESSAGE,
+        Build.VERSION.SDK_INT < Build.VERSION_CODES.O);
   }
 
   /**
@@ -71,8 +66,7 @@ public class InstrumentedTestRequirements {
    */
   public static void assumeCpuApiLevelFail() throws AssumptionViolatedException {
     assumeTrue(API_LEVEL_CPU_REQUIREMENT_FAIL_MESSAGE,
-        Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
-    );
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.O);
   }
 
   /**
@@ -83,7 +77,6 @@ public class InstrumentedTestRequirements {
    */
   public static void assumeDeprecatedFragmentLevel() throws AssumptionViolatedException {
     assumeTrue(API_LEVEL_DEPRECATED_FRAGMENT_MESSAGE,
-        Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
-    );
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.O);
   }
 }

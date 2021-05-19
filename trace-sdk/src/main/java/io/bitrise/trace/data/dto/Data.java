@@ -16,7 +16,7 @@ import java.util.Objects;
 public class Data {
 
   @NonNull
-  private DataSourceType dataSourceType;
+  private final DataSourceType dataSourceType;
 
   @Nullable
   private Object content;

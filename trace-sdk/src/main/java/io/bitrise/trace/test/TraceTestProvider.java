@@ -77,7 +77,6 @@ public class TraceTestProvider {
   public static Span getSampleSpan(@NonNull final String traceId, @NonNull final String spanName) {
     final Span span = ActivityStateDataFormatter.createActivityViewSpan(
         spanName, 1613645681150L, 1613645691150L, "span-id");
-    ;
     return span.toBuilder()
                .setTraceId(ByteString.copyFrom(traceId, Charset.defaultCharset()))
                .build();

@@ -7,13 +7,13 @@ import androidx.annotation.NonNull;
  */
 public class ApplicationStartData {
 
-  private long duration;
+  private final long duration;
 
   /**
    * The {@link ApplicationStartType} of this launch.
    */
   @NonNull
-  private ApplicationStartType applicationStartType;
+  private final ApplicationStartType applicationStartType;
 
   /**
    * Constructor for class.

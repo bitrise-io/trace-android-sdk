@@ -120,8 +120,8 @@ public class FragmentStateDataListener extends FragmentManager.FragmentLifecycle
     }
 
     //noinspection ConstantConditions
-    if ((Object) activity instanceof FragmentActivity) {
-      final FragmentActivity fragmentActivity = (FragmentActivity) (Object) activity;
+    if (activity instanceof FragmentActivity) {
+      final FragmentActivity fragmentActivity = (FragmentActivity) activity;
       fragmentActivity.getSupportFragmentManager().registerFragmentLifecycleCallbacks(this, true);
     } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       activity.getFragmentManager().registerFragmentLifecycleCallbacks(
@@ -155,8 +155,8 @@ public class FragmentStateDataListener extends FragmentManager.FragmentLifecycle
     }
 
     //noinspection ConstantConditions
-    if ((Object) activity instanceof FragmentActivity) {
-      final FragmentActivity fragmentActivity = (FragmentActivity) (Object) activity;
+    if (activity instanceof FragmentActivity) {
+      final FragmentActivity fragmentActivity = (FragmentActivity) activity;
       fragmentActivity.getSupportFragmentManager().unregisterFragmentLifecycleCallbacks(this);
     } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       activity.getFragmentManager()

@@ -45,8 +45,7 @@ public class CpuUsageData {
         final float ioWait,
         final float irq,
         final float softIrq,
-        final float steal
-    ) {
+        final float steal) {
       this.user = user;
       this.nice = nice;
       this.system = system;
@@ -156,8 +155,7 @@ public class CpuUsageData {
         final float stime,
         final float cutime,
         final float cstime,
-        final float starttime
-    ) {
+        final float starttime) {
       this.utime = utime;
       this.stime = stime;
       this.cutime = cutime;

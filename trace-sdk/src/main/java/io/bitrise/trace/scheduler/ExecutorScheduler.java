@@ -31,7 +31,7 @@ public class ExecutorScheduler extends Scheduler {
    * The Runnable to schedule.
    */
   @Nullable
-  private Runnable runnable;
+  private final Runnable runnable;
 
   /**
    * The {@link ScheduledExecutorService} that will schedule the {@link Runnable}s.

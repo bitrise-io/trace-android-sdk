@@ -14,7 +14,7 @@ public enum ApplicationStartType {
   ;
 
   @NonNull
-  private String name;
+  private final String name;
 
   ApplicationStartType(@NonNull final String name) {
     this.name = name;

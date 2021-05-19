@@ -123,11 +123,10 @@ public class MetricUtils {
         metricMap.put(metricName, entryValue);
       } else {
         metricMap.put(metricName, new ArrayList<Metric>() {
-              {
-                add(metric);
-              }
-            }
-        );
+          {
+            add(metric);
+          }
+        });
       }
     }
     return metricMap;
