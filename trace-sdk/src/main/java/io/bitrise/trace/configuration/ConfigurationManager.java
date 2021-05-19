@@ -79,7 +79,7 @@ public class ConfigurationManager {
      * that should be used for the trace addon configuration.
      *
      * @param token  the token that should be used to work with trace.
-     * @param config items to add to the configurationMap e.g. VERSION_CODE
+     * @param config items to add to the configurationMap e.g. VERSION_CODE.
      * @return the ConfigurationManager instance.
      */
     @NonNull

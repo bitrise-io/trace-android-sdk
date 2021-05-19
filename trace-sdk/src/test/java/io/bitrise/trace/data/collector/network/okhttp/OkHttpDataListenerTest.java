@@ -181,12 +181,6 @@ public class OkHttpDataListenerTest {
     }
 
     @Test
-    public void constructor() {
-        final OkHttpDataListener listener = new OkHttpDataListener(mockContext);
-        assertNotNull(listener);
-    }
-
-    @Test
     public void getPermissions() {
         final OkHttpDataListener listener = new OkHttpDataListener(mockContext);
         assertArrayEquals(new String[0], listener.getPermissions());

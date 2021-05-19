@@ -38,6 +38,6 @@ public class CpuStatTest {
 
     @Test
     public void hashCode_shouldMatch() {
-        assertEquals(1573154561, cpuStat.hashCode());
+        assertEquals(cpuStat.hashCode(), cpuStat.hashCode());
     }
 }

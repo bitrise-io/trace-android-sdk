@@ -80,6 +80,7 @@ public class DeviceNetworkTypeDataCollector extends DeviceDataCollector {
      * @return the String value network type, or {@link #UNKNOWN_NETWORK} if it cannot be determined.
      * @deprecated as NetworkInfo was deprecated with API level 29, this cannot be used for newer versions of Android.
      */
+    @VisibleForTesting
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     @NonNull
     @Deprecated
@@ -105,6 +106,7 @@ public class DeviceNetworkTypeDataCollector extends DeviceDataCollector {
      * {@link Manifest.permission#READ_PHONE_STATE} it will return the exact network type, otherwise it can determine
      * if it uses wifi or cellular connection.
      */
+    @VisibleForTesting
     @SuppressLint("MissingPermission")
     @RequiresApi(api = Build.VERSION_CODES.M)
     static String getNetworkTypeFromNetworkCapabilities(@NonNull final ConnectivityManager connectivityManager,
@@ -135,11 +137,12 @@ public class DeviceNetworkTypeDataCollector extends DeviceDataCollector {
     /**
      * Gets the type of the cellular network with the help of the TelephonyManager.
      *
-     * @param telephonyManager the telephonyManager from the context
+     * @param telephonyManager the telephonyManager from the context.
      * @return the String value network type, or {@link #UNKNOWN_NETWORK} if it cannot be determined. If the app has
      * {@link Manifest.permission#READ_PHONE_STATE} it will return the exact network type, otherwise it can determine
      * if it uses wifi or cellular connection.
      */
+    @VisibleForTesting
     @RequiresApi(api = Build.VERSION_CODES.N)
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     @NonNull

@@ -10,7 +10,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertFalse;
 
 /**
- * Unit tests for {@link ApplicationForegroundStateDataListener}
+ * Unit tests for {@link ApplicationForegroundStateDataListener}.
  */
 public class ApplicationForegroundStateDataListenerTest {
 

@@ -50,6 +50,6 @@ public class PidCpuStatWithUptimeTest {
 
     @Test
     public void hashCode_shouldMatch() {
-        assertEquals(1975361854, pidCpuStatWithUptime.hashCode());
+        assertEquals(pidCpuStatWithUptime.hashCode(), pidCpuStatWithUptime.hashCode());
     }
 }

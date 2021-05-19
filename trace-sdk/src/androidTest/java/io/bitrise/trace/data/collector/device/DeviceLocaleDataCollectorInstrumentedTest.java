@@ -34,24 +34,4 @@ public class DeviceLocaleDataCollectorInstrumentedTest extends BaseDataCollector
         assertThat(collector.collectData().getContent(), is(notNullValue()));
     }
 
-    @Test
-    public void collectData_mockData() {
-        final String locale = "en";
-        final Context mockContext = Mockito.mock(Context.class, Mockito.CALLS_REAL_METHODS );
-        final DeviceLocaleDataCollector deviceLocaleDataCollector = new DeviceLocaleDataCollector(mockContext);
-
-        final Configuration configuration = new Configuration();
-        configuration.setLocale(new Locale(locale));
-
-        final Resources mockResources = Mockito.mock(Resources.class);
-        when(mockContext.getResources()).thenReturn(mockResources);
-        when(mockResources.getConfiguration())
-                .thenReturn(configuration);
-
-        final Data expectedData = new Data(DeviceLocaleDataCollector.class);
-        expectedData.setContent(locale);
-
-        assertEquals(expectedData, deviceLocaleDataCollector.collectData());
-    }
-
 }

@@ -16,7 +16,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 /**
- * Unit tests for {@link ApplicationStartUpDataListener}
+ * Unit tests for {@link ApplicationStartUpDataListener}.
  */
 public class ApplicationStartUpDataListenerTest {
 

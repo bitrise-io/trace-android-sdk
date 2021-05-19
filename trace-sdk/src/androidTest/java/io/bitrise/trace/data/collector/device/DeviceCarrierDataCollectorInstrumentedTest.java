@@ -5,9 +5,9 @@ import org.junit.Test;
 import io.bitrise.trace.data.collector.BaseDataCollectorInstrumentedTest;
 import io.bitrise.trace.data.dto.Data;
 
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.notNullValue;
 
 /**
  * Instrumented tests for {@link DeviceCarrierDataCollector}.
@@ -18,12 +18,10 @@ public class DeviceCarrierDataCollectorInstrumentedTest extends BaseDataCollecto
 
     /**
      * Verifies that when {@link DeviceCarrierDataCollector#collectData()} is called, the content of the returned
-     * {@link Data} should match the expected data.
+     * {@link Data} should not be {@code null}.
      */
     @Test
     public void collectData_contentShouldBeNotNull() {
-        final Data expectedData = new Data(DeviceCarrierDataCollector.class);
-        expectedData.setContent("Android");
-        assertThat(collector.collectData(), is(equalTo(expectedData)));
+        assertThat(collector.collectData(),is(notNullValue()));
     }
 }

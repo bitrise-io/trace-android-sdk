@@ -46,6 +46,6 @@ public class PidCpuStatTest {
 
     @Test
     public void hashCode_shouldMatch() {
-        assertEquals(-2120951649, pidCpuStat.hashCode());
+        assertEquals(pidCpuStat.hashCode(), pidCpuStat.hashCode());
     }
 }

@@ -17,7 +17,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Unit tests for {@link ApplicationVersionNameDataCollector}
+ * Unit tests for {@link ApplicationVersionNameDataCollector}.
  */
 public class ApplicationVersionNameDataCollectorTest {
 
