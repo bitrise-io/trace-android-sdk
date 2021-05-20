@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
+import androidx.annotation.VisibleForTesting;
 import io.bitrise.trace.data.collector.DataCollector;
 import io.bitrise.trace.data.dto.Data;
 
@@ -56,9 +57,9 @@ public class DeviceNetworkTypeDataCollector extends DeviceDataCollector {
    * @return the String value network type, or {@link #UNKNOWN_NETWORK} if it cannot be determined.
    */
   @VisibleForTesting
-    @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
-    @NonNull
-    static String getDeviceNetworkType(@NonNull final Context context) {
+  @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
+  @NonNull
+  static String getDeviceNetworkType(@NonNull final Context context) {
     final ConnectivityManager connectivityManager =
         (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
     if (connectivityManager == null) {
@@ -82,10 +83,10 @@ public class DeviceNetworkTypeDataCollector extends DeviceDataCollector {
    *     versions of Android.
    */
   @VisibleForTesting
-    @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
-    @NonNull
-    @Deprecated
-    static String getNetworkTypeDataFromNetworkInfo(
+  @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
+  @NonNull
+  @Deprecated
+  static String getNetworkTypeDataFromNetworkInfo(
       @NonNull final ConnectivityManager connectivityManager) {
     final NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
     if (networkInfo == null || !networkInfo.isConnected()) {
@@ -109,9 +110,9 @@ public class DeviceNetworkTypeDataCollector extends DeviceDataCollector {
    *     exact network type, otherwise it can determine if it uses wifi or cellular connection.
    */
   @VisibleForTesting
-    @SuppressLint("MissingPermission")
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    static String getNetworkTypeFromNetworkCapabilities(
+  @SuppressLint("MissingPermission")
+  @RequiresApi(api = Build.VERSION_CODES.M)
+  static String getNetworkTypeFromNetworkCapabilities(
       @NonNull final ConnectivityManager connectivityManager,
       @NonNull final Context context) {
     final Network activeNetwork = connectivityManager.getActiveNetwork();
@@ -129,8 +130,8 @@ public class DeviceNetworkTypeDataCollector extends DeviceDataCollector {
       if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N && context.checkSelfPermission(
           Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
         final TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(
-                        Context.TELEPHONY_SERVICE);
-                return getCellularNetworkType(telephonyManager);
+            Context.TELEPHONY_SERVICE);
+        return getCellularNetworkType(telephonyManager);
       } else {
         return CELLULAR;
       }
@@ -147,10 +148,10 @@ public class DeviceNetworkTypeDataCollector extends DeviceDataCollector {
    *     exact network type, otherwise it can determine if it uses wifi or cellular connection.
    */
   @VisibleForTesting
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
-    @NonNull
-    static String getCellularNetworkType(@Nullable final TelephonyManager telephonyManager) {
+  @RequiresApi(api = Build.VERSION_CODES.N)
+  @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
+  @NonNull
+  static String getCellularNetworkType(@Nullable final TelephonyManager telephonyManager) {
     if (telephonyManager == null) {
       return NO_NETWORK;
     }
@@ -167,36 +168,36 @@ public class DeviceNetworkTypeDataCollector extends DeviceDataCollector {
    */
   @NonNull
   @VisibleForTesting
-    static String resolveNetworkType(final int networkType) {
-        switch (networkType) {
-            case TelephonyManager.NETWORK_TYPE_GPRS:
-            case TelephonyManager.NETWORK_TYPE_EDGE:
-            case TelephonyManager.NETWORK_TYPE_CDMA:
-            case TelephonyManager.NETWORK_TYPE_1xRTT:
-            case TelephonyManager.NETWORK_TYPE_IDEN:
-            case 16: //TelephonyManager.NETWORK_TYPE_GSM
-                return "2G";
-            case TelephonyManager.NETWORK_TYPE_UMTS:
-            case TelephonyManager.NETWORK_TYPE_EVDO_0:
-            case TelephonyManager.NETWORK_TYPE_EVDO_A:
-            case TelephonyManager.NETWORK_TYPE_HSDPA:
-            case TelephonyManager.NETWORK_TYPE_HSUPA:
-            case TelephonyManager.NETWORK_TYPE_HSPA:
-            case TelephonyManager.NETWORK_TYPE_EVDO_B:
-            case TelephonyManager.NETWORK_TYPE_EHRPD:
-            case TelephonyManager.NETWORK_TYPE_HSPAP:
-            case 17: //TelephonyManager.NETWORK_TYPE_TD_SCDMA
-                return "3G";
-            case TelephonyManager.NETWORK_TYPE_LTE:
-            case 18: // TelephonyManager.NETWORK_TYPE_IWLAN
-            case 19: // LTE_CA
-                return "4G";
-            case 20: // TelephonyManager.NETWORK_TYPE_NR:
-                return "5G";
-            default:
-                return UNKNOWN_NETWORK;
-        }
+  static String resolveNetworkType(final int networkType) {
+    switch (networkType) {
+      case TelephonyManager.NETWORK_TYPE_GPRS:
+      case TelephonyManager.NETWORK_TYPE_EDGE:
+      case TelephonyManager.NETWORK_TYPE_CDMA:
+      case TelephonyManager.NETWORK_TYPE_1xRTT:
+      case TelephonyManager.NETWORK_TYPE_IDEN:
+      case 16: //TelephonyManager.NETWORK_TYPE_GSM
+        return "2G";
+      case TelephonyManager.NETWORK_TYPE_UMTS:
+      case TelephonyManager.NETWORK_TYPE_EVDO_0:
+      case TelephonyManager.NETWORK_TYPE_EVDO_A:
+      case TelephonyManager.NETWORK_TYPE_HSDPA:
+      case TelephonyManager.NETWORK_TYPE_HSUPA:
+      case TelephonyManager.NETWORK_TYPE_HSPA:
+      case TelephonyManager.NETWORK_TYPE_EVDO_B:
+      case TelephonyManager.NETWORK_TYPE_EHRPD:
+      case TelephonyManager.NETWORK_TYPE_HSPAP:
+      case 17: //TelephonyManager.NETWORK_TYPE_TD_SCDMA
+        return "3G";
+      case TelephonyManager.NETWORK_TYPE_LTE:
+      case 18: // TelephonyManager.NETWORK_TYPE_IWLAN
+      case 19: // LTE_CA
+        return "4G";
+      case 20: // TelephonyManager.NETWORK_TYPE_NR:
+        return "5G";
+      default:
+        return UNKNOWN_NETWORK;
     }
+  }
 
   @NonNull
   @Override

@@ -3,6 +3,8 @@ package io.bitrise.trace.data.collector.device;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import io.bitrise.trace.data.collector.DataCollector;
 import io.bitrise.trace.data.dto.Data;
 
@@ -33,7 +35,7 @@ public class DeviceCarrierDataCollector extends DeviceDataCollector {
   public Data collectData() {
     final Data data = new Data(this);
     data.setContent(getDeviceCarrier((TelephonyManager) context.getSystemService(
-                Context.TELEPHONY_SERVICE)));
+        Context.TELEPHONY_SERVICE)));
     return data;
   }
 
@@ -47,11 +49,11 @@ public class DeviceCarrierDataCollector extends DeviceDataCollector {
    * Gets the carrier of the currently active network.
    *
    * @param telephonyManager the telephonyManager to use from context.
-     * @return the carrier of the currently active network.
+   * @return the carrier of the currently active network.
    */
   @VisibleForTesting
-    @NonNull
-    String getDeviceCarrier(@Nullable final TelephonyManager telephonyManager) {
+  @NonNull
+  String getDeviceCarrier(@Nullable final TelephonyManager telephonyManager) {
     if (telephonyManager == null) {
       return NO_NETWORK;
     }

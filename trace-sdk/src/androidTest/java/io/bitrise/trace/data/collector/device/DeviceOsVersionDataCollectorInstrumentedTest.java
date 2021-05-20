@@ -16,8 +16,9 @@ public class DeviceOsVersionDataCollectorInstrumentedTest
 
   private final DeviceOsVersionDataCollector collector = new DeviceOsVersionDataCollector();
 
-    /**
-     * Verifies that when {@link DeviceOsVersionDataCollector#collectData()} is called, the* content of the returned {@link Data} should not be {@code null}.
+  /**
+   * Verifies that when {@link DeviceOsVersionDataCollector#collectData()} is called, the*
+   * content of the returned {@link Data} should not be {@code null}.
    */
   @Test
   public void collectData_contentShouldBeNotNull() {

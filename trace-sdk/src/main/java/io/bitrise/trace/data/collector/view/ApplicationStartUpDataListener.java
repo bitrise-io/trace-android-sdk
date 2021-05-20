@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import io.bitrise.trace.data.TraceActivityLifecycleTracker;
 import io.bitrise.trace.data.collector.BaseDataListener;
 import io.bitrise.trace.data.collector.DataListener;
@@ -36,33 +37,34 @@ public class ApplicationStartUpDataListener extends BaseDataListener
    * launch or not.
    */
   @VisibleForTesting
-    @NonNull
-    final ApplicationForegroundStateDataListener applicationForegroundStateDataListener;
+  @NonNull
+  final ApplicationForegroundStateDataListener applicationForegroundStateDataListener;
   /**
    * Counts the number of onCreate callbacks.
    */
   @VisibleForTesting
-    @NonNull
-    final AtomicInteger onCreateCounter;
+  @NonNull
+  final AtomicInteger onCreateCounter;
   /**
    * Counts the number of onResume callbacks.
    */
   @VisibleForTesting
-    @NonNull
-    final AtomicInteger onResumeCounter;
+  @NonNull
+  final AtomicInteger onResumeCounter;
 
   /**
    * The start time of the Application launch.
    */
   @VisibleForTesting
-    Long start;
-    /**
-     * The end time of the Application launch.
-     */
-    @VisibleForTesting
-    Long end;
-    /**
-     * Indicates that the given lifecycle events are an Application start or not. If the* Application comes from the background, it should be an Application start, otherwise it is
+  Long start;
+  /**
+   * The end time of the Application launch.
+   */
+  @VisibleForTesting
+  Long end;
+  /**
+   * Indicates that the given lifecycle events are an Application start or not. If the*
+   * Application comes from the background, it should be an Application start, otherwise it is
    * just a new Activity launch.
    */
   private boolean isApplicationStart;
@@ -144,16 +146,16 @@ public class ApplicationStartUpDataListener extends BaseDataListener
    * <a href="https://developer.android.com/topic/performance/vitals/launch-time">https://developer.android.com/topic/performance/vitals/launch-time</a>
    */
   @NonNull
-    private synchronized ApplicationStartData getApplicationStartData() {
-        final long duration = end - start;
-        if (onCreateCounter.get() == 1 && onResumeCounter.get() == 1) {
-            TraceLog.d("ApplicationStartUpDataListener COLD");
-            return new ApplicationStartData(duration, ApplicationStartType.COLD);
-        } else {
-            TraceLog.d("ApplicationStartUpDataListener WARM");
-            return new ApplicationStartData(duration, ApplicationStartType.WARM);
-        }
+  private synchronized ApplicationStartData getApplicationStartData() {
+    final long duration = end - start;
+    if (onCreateCounter.get() == 1 && onResumeCounter.get() == 1) {
+      TraceLog.d("ApplicationStartUpDataListener COLD");
+      return new ApplicationStartData(duration, ApplicationStartType.COLD);
+    } else {
+      TraceLog.d("ApplicationStartUpDataListener WARM");
+      return new ApplicationStartData(duration, ApplicationStartType.WARM);
     }
+  }
 
   @Override
   public void onActivityPaused(@NonNull final Activity activity) {

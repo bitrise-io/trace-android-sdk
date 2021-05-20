@@ -15,12 +15,13 @@ public class SystemMemoryDataCollectorInstrumentedTest extends BaseDataCollector
 
   private final SystemMemoryDataCollector collector = new SystemMemoryDataCollector(context);
 
-    /**
-     * Verifies that when {@link SystemMemoryDataCollector#collectData()} is called, the content* of the returned {@link Data} should not be {@code null}.
+  /**
+   * Verifies that when {@link SystemMemoryDataCollector#collectData()} is called, the content*
+   * of the returned {@link Data} should not be {@code null}.
    */
   @Test
   public void collectData_contentShouldBeNotNull() {
     final Long actualValue = (Long) collector.collectData().getContent();
-        assertThat(actualValue, is(notNullValue()));
-    }
+    assertThat(actualValue, is(notNullValue()));
+  }
 }

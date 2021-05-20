@@ -2,6 +2,7 @@ package io.bitrise.trace.data.collector.network;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import io.bitrise.trace.data.collector.DataListener;
 import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.dto.NetworkData;
@@ -52,13 +53,13 @@ public abstract class NetworkDataListener implements DataListener {
     return rootSpanId == null ? "" : rootSpanId;
   }
 
-    /**
-     * Sets the dataManager to a test dataManager instance. Used only for testing.
-     *
-     * @param dataManager the dataManager to use for testing.
-     */
-    @VisibleForTesting
-    public void setDataManager(@NonNull final DataManager dataManager) {
-        this.dataManager = dataManager;
-    }
+  /**
+   * Sets the dataManager to a test dataManager instance. Used only for testing.
+   *
+   * @param dataManager the dataManager to use for testing.
+   */
+  @VisibleForTesting
+  public void setDataManager(@NonNull final DataManager dataManager) {
+    this.dataManager = dataManager;
+  }
 }

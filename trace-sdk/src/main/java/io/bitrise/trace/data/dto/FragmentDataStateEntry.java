@@ -1,7 +1,9 @@
 package io.bitrise.trace.data.dto;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import io.bitrise.trace.utils.TraceClock;
+import java.util.Objects;
 
 /**
  * Data class for a single lifecycle change event for a Fragment.
@@ -53,19 +55,19 @@ public class FragmentDataStateEntry {
   }
 
   @Override
-    public boolean equals(@Nullable final Object obj) {
-        if (! (obj instanceof FragmentDataStateEntry)) {
-            return false;
-        }
-        final FragmentDataStateEntry entry = (FragmentDataStateEntry)obj;
-        return Objects.equals(entry.fragmentState, fragmentState) &&
-                Objects.equals(entry.timeStamp, timeStamp);
+  public boolean equals(@Nullable final Object obj) {
+    if (!(obj instanceof FragmentDataStateEntry)) {
+      return false;
     }
+    final FragmentDataStateEntry entry = (FragmentDataStateEntry) obj;
+    return Objects.equals(entry.fragmentState, fragmentState)
+        && Objects.equals(entry.timeStamp, timeStamp);
+  }
 
-    /**
-     * Comparator for this class, compares them by their {@link #timeStamp}.
-     */
-    public static class Comparator implements java.util.Comparator<FragmentDataStateEntry> {
+  /**
+   * Comparator for this class, compares them by their {@link #timeStamp}.
+   */
+  public static class Comparator implements java.util.Comparator<FragmentDataStateEntry> {
 
     @Override
     public int compare(@NonNull final FragmentDataStateEntry o1,

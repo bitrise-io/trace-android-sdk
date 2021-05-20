@@ -15,34 +15,35 @@ import org.mockito.Mockito;
  */
 @SuppressWarnings("checkstyle:abbreviation")
 public class TraceURLStreamHandlerTest {
-    private final TraceURLStreamHandler traceURLStreamHandler = Mockito
-            .mock(TraceURLStreamHandler.class, Mockito.CALLS_REAL_METHODS );
-    private final Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 3128));
-    private final String httpUrl = "http://example.com";
-    private final String httpsUrl = "https://example.com";
-    @Test
-    public void openConnection() throws IOException {
-        final URLConnection connection = traceURLStreamHandler
-                .openConnection(new URL(httpUrl));
+  private final TraceURLStreamHandler traceURLStreamHandler = Mockito
+      .mock(TraceURLStreamHandler.class, Mockito.CALLS_REAL_METHODS);
+  private final Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 3128));
+  private final String httpUrl = "http://example.com";
+  private final String httpsUrl = "https://example.com";
+
+  @Test
+  public void openConnection() throws IOException {
+    final URLConnection connection = traceURLStreamHandler
+        .openConnection(new URL(httpUrl));
     assertTrue(connection instanceof TraceHttpURLConnection);
   }
 
   @Test
-    public void openConnection_https() throws IOException {
-        final URLConnection connection = traceURLStreamHandler
-                .openConnection(new URL(httpsUrl));
-        assertTrue(connection instanceof TraceHttpsURLConnection);
-    }
+  public void openConnection_https() throws IOException {
+    final URLConnection connection = traceURLStreamHandler
+        .openConnection(new URL(httpsUrl));
+    assertTrue(connection instanceof TraceHttpsURLConnection);
+  }
 
-    @Test
+  @Test
   public void openConnectionWithProxy() throws IOException {
     final URLConnection connection = traceURLStreamHandler
-                .openConnection(new URL(httpUrl), proxy);
-        assertTrue(connection instanceof TraceHttpURLConnection);
-    }
+        .openConnection(new URL(httpUrl), proxy);
+    assertTrue(connection instanceof TraceHttpURLConnection);
+  }
 
-    @Test
-    public void openConnectionWithProxy_https() throws IOException {
+  @Test
+  public void openConnectionWithProxy_https() throws IOException {
     final URLConnection connection = traceURLStreamHandler
         .openConnection(new URL(httpsUrl), proxy);
     assertTrue(connection instanceof TraceHttpsURLConnection);

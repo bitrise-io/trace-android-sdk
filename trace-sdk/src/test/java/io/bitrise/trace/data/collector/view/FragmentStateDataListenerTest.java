@@ -2,7 +2,11 @@ package io.bitrise.trace.data.collector.view;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -14,6 +18,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.view.View;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import io.bitrise.trace.data.TraceActivityLifecycleTracker;
@@ -24,11 +29,14 @@ import io.bitrise.trace.data.dto.FragmentDataStateEntry;
 import io.bitrise.trace.data.dto.FragmentState;
 import io.bitrise.trace.data.management.DataManager;
 import io.bitrise.trace.session.ApplicationSessionManager;
+import java.util.HashMap;
+import java.util.Map;
 import org.hamcrest.core.IsNull;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 /**
  * Tests for the {@link FragmentStateDataListener}.
@@ -46,6 +54,9 @@ public class FragmentStateDataListenerTest {
   private static Application mockApplication;
   private final Fragment mockFragment1 = mock(Fragment.class);
   private final View mockView = mock(View.class);
+  private final android.app.Fragment mockDeprecatedFragment =
+      Mockito.mock(android.app.Fragment.class);
+  private final Context mockContext = Mockito.mock(Context.class);
 
   /**
    * Sets up the initial state for the test class.
@@ -129,8 +140,9 @@ public class FragmentStateDataListenerTest {
         is(true));
   }
 
-    /**
-     * When a {@link Fragment} is paused, it should be in the* {@link FragmentStateDataListener#activityFragmentMap}.
+  /**
+   * When a {@link Fragment} is paused, it should be in the*
+   * {@link FragmentStateDataListener#activityFragmentMap}.
    */
   @Test
   public void fragmentMap_ShouldContainPausedFragment() {
@@ -305,145 +317,147 @@ public class FragmentStateDataListenerTest {
     assertEquals(0, fragmentStateDataListener.activityFragmentMap.size());
   }
 
-    @Test
-    public void createFragmentData_deprecatedFragment() {
-        final FragmentData fragmentData = fragmentStateDataListener.createFragmentData(
-                mockDeprecatedFragment, FragmentState.CREATED);
-        assertNotNull(fragmentData);
-        assertEquals(1, fragmentData.getStates().size());
+  @Test
+  public void createFragmentData_deprecatedFragment() {
+    final FragmentData fragmentData = fragmentStateDataListener.createFragmentData(
+        mockDeprecatedFragment, FragmentState.CREATED);
+    assertNotNull(fragmentData);
+    assertEquals(1, fragmentData.getStates().size());
 
-        assertFragmentDataMatch(fragmentData, mockDeprecatedFragment.getClass().getSimpleName(),
-                FragmentState.CREATED);
-    }
+    assertFragmentDataMatch(fragmentData, mockDeprecatedFragment.getClass().getSimpleName(),
+        FragmentState.CREATED);
+  }
 
-    @Test
-    public void createFragmentData_androidxFragment() {
-        final FragmentData fragmentData = fragmentStateDataListener.createFragmentData(
-                mockFragment1, FragmentState.STOPPED);
+  @Test
+  public void createFragmentData_androidxFragment() {
+    final FragmentData fragmentData = fragmentStateDataListener.createFragmentData(
+        mockFragment1, FragmentState.STOPPED);
 
-        assertNotNull(fragmentData);
-        assertEquals(1, fragmentData.getStates().size());
+    assertNotNull(fragmentData);
+    assertEquals(1, fragmentData.getStates().size());
 
-        assertFragmentDataMatch(fragmentData, mockFragment1.getClass().getSimpleName(),
-                FragmentState.STOPPED);
-    }
+    assertFragmentDataMatch(fragmentData, mockFragment1.getClass().getSimpleName(),
+        FragmentState.STOPPED);
+  }
 
-    /**
-     * Asserts that an actual FragmentData matches an expected FragmentData.
-     * @param fragmentData the created FragmentData to test against (actual).
-     * @param name the name the actual fragmentData should contain.
-     * @param fragmentState the state the actual fragmentData should contain.
-     */
-    private void assertFragmentDataMatch(@NonNull final FragmentData fragmentData,
-                                         @NonNull final String name,
-                                         @NonNull final FragmentState fragmentState) {
-        final String spanId = fragmentData.getSpanId();
-        final long timestamp = fragmentData.getStates().get(0).getTimeStamp();
-        final String parentTimestamp = fragmentData.getParentSpanId();
+  /**
+   * Asserts that an actual FragmentData matches an expected FragmentData.
+   *
+   * @param fragmentData  the created FragmentData to test against (actual).
+   * @param name          the name the actual fragmentData should contain.
+   * @param fragmentState the state the actual fragmentData should contain.
+   */
+  private void assertFragmentDataMatch(@NonNull final FragmentData fragmentData,
+                                       @NonNull final String name,
+                                       @NonNull final FragmentState fragmentState) {
+    final String spanId = fragmentData.getSpanId();
+    final long timestamp = fragmentData.getStates().get(0).getTimeStamp();
+    final String parentTimestamp = fragmentData.getParentSpanId();
 
-        final FragmentData expectedData = new FragmentData(spanId);
-        expectedData.setName(name);
-        expectedData.addState(fragmentState, timestamp);
-        expectedData.setParentSpanId(parentTimestamp);
+    final FragmentData expectedData = new FragmentData(spanId);
+    expectedData.setName(name);
+    expectedData.addState(fragmentState, timestamp);
+    expectedData.setParentSpanId(parentTimestamp);
 
-        assertEquals(expectedData, fragmentData);
-    }
+    assertEquals(expectedData, fragmentData);
+  }
 
 
-    @Test
-    public void getParentSpanIdFromActivityId_found() {
-        final int activityId = 123;
-        final String spanId = "707ccf317d314af1";
-        activityStateDataListener.activityMap.put(activityId, new ActivityData(spanId));
+  @Test
+  public void getParentSpanIdFromActivityId_found() {
+    final int activityId = 123;
+    final String spanId = "707ccf317d314af1";
+    activityStateDataListener.activityMap.put(activityId, new ActivityData(spanId));
 
-        assertEquals(fragmentStateDataListener.getParentSpanIdFromActivityId(activityId), spanId);
-    }
+    assertEquals(fragmentStateDataListener.getParentSpanIdFromActivityId(activityId), spanId);
+  }
 
-    @Test
-    public void getParentSpanIdFromActivityId_notFound() {
-        final int activityId = 123;
-        activityStateDataListener.activityMap.clear();
+  @Test
+  public void getParentSpanIdFromActivityId_notFound() {
+    final int activityId = 123;
+    activityStateDataListener.activityMap.clear();
 
-        assertNull(fragmentStateDataListener.getParentSpanIdFromActivityId(activityId));
-    }
+    assertNull(fragmentStateDataListener.getParentSpanIdFromActivityId(activityId));
+  }
 
-    @Test
-    public void getParentSpanIdFromFragmentId_found() {
-        final int fragmentId = 234;
-        final String fragmentSpanId = "707ccf317d314af2";
-        final int activeActivityId = 345;
-        final Map<Integer, FragmentData> fragmentDataMap = new HashMap<>();
-        fragmentDataMap.put(fragmentId, new FragmentData(fragmentSpanId));
+  @Test
+  public void getParentSpanIdFromFragmentId_found() {
+    final int fragmentId = 234;
+    final String fragmentSpanId = "707ccf317d314af2";
+    final int activeActivityId = 345;
+    final Map<Integer, FragmentData> fragmentDataMap = new HashMap<>();
+    fragmentDataMap.put(fragmentId, new FragmentData(fragmentSpanId));
 
-        fragmentStateDataListener.activityFragmentMap.put(activeActivityId, fragmentDataMap);
-        fragmentStateDataListener.activeActivityHashCode = activeActivityId;
+    fragmentStateDataListener.activityFragmentMap.put(activeActivityId, fragmentDataMap);
+    fragmentStateDataListener.activeActivityHashCode = activeActivityId;
 
-        assertEquals(fragmentStateDataListener.getParentSpanIdFromFragmentId(fragmentId), fragmentSpanId);
-    }
+    assertEquals(fragmentStateDataListener.getParentSpanIdFromFragmentId(fragmentId),
+        fragmentSpanId);
+  }
 
-    @Test
-    public void getParentSpanIdFromFragmentId_noFragmentData() {
-        final int fragmentId = 234;
-        final int activeActivityId = 345;
-        final Map<Integer, FragmentData> fragmentDataMap = new HashMap<>();
-        fragmentDataMap.put(fragmentId, null);
+  @Test
+  public void getParentSpanIdFromFragmentId_noFragmentData() {
+    final int fragmentId = 234;
+    final int activeActivityId = 345;
+    final Map<Integer, FragmentData> fragmentDataMap = new HashMap<>();
+    fragmentDataMap.put(fragmentId, null);
 
-        fragmentStateDataListener.activityFragmentMap.put(activeActivityId, fragmentDataMap);
-        fragmentStateDataListener.activeActivityHashCode = activeActivityId;
+    fragmentStateDataListener.activityFragmentMap.put(activeActivityId, fragmentDataMap);
+    fragmentStateDataListener.activeActivityHashCode = activeActivityId;
 
-        assertNull(fragmentStateDataListener.getParentSpanIdFromFragmentId(fragmentId));
-    }
+    assertNull(fragmentStateDataListener.getParentSpanIdFromFragmentId(fragmentId));
+  }
 
-    @Test
-    public void getParentSpanIdFromFragmentId_noRecords() {
-        final int fragmentId = 234;
-        final int activeActivityId = 345;
+  @Test
+  public void getParentSpanIdFromFragmentId_noRecords() {
+    final int fragmentId = 234;
+    final int activeActivityId = 345;
 
-        fragmentStateDataListener.activityFragmentMap.clear();
-        fragmentStateDataListener.activeActivityHashCode = activeActivityId;
+    fragmentStateDataListener.activityFragmentMap.clear();
+    fragmentStateDataListener.activeActivityHashCode = activeActivityId;
 
-        assertNull(fragmentStateDataListener.getParentSpanIdFromFragmentId(fragmentId));
-    }
+    assertNull(fragmentStateDataListener.getParentSpanIdFromFragmentId(fragmentId));
+  }
 
-    @Test
-    public void getPermissions() {
-        assertArrayEquals(new String[0], fragmentStateDataListener.getPermissions());
-    }
+  @Test
+  public void getPermissions() {
+    assertArrayEquals(new String[0], fragmentStateDataListener.getPermissions());
+  }
 
-    @Test
-    public void onActivityCreated_notActive() {
-        final FragmentStateDataListener listener = new FragmentStateDataListener(
-                mockContext, activityStateDataListener);
-        listener.onActivityCreated(mockActivity, null);
-        assertFalse(listener.isActive());
-        assertEquals(listener.activityFragmentMap.size(), 0);
-    }
+  @Test
+  public void onActivityCreated_notActive() {
+    final FragmentStateDataListener listener = new FragmentStateDataListener(
+        mockContext, activityStateDataListener);
+    listener.onActivityCreated(mockActivity, null);
+    assertFalse(listener.isActive());
+    assertEquals(listener.activityFragmentMap.size(), 0);
+  }
 
-    @Test
-    public void onActivityStopped_notActive() {
-        final FragmentStateDataListener listener = new FragmentStateDataListener(
-                mockContext, activityStateDataListener);
-        listener.onActivityStopped(mockActivity);
-        assertFalse(listener.isActive());
-        assertEquals(listener.activityFragmentMap.size(), 0);
-    }
+  @Test
+  public void onActivityStopped_notActive() {
+    final FragmentStateDataListener listener = new FragmentStateDataListener(
+        mockContext, activityStateDataListener);
+    listener.onActivityStopped(mockActivity);
+    assertFalse(listener.isActive());
+    assertEquals(listener.activityFragmentMap.size(), 0);
+  }
 
-    @Test
-    public void onFragmentViewCreated_notActive() {
-        final FragmentStateDataListener listener = new FragmentStateDataListener(
-                mockContext, activityStateDataListener);
-        listener.onFragmentViewCreated(mockFragmentManager1, mockFragment1,
-                mockView, null);
-        assertFalse(listener.isActive());
-        assertEquals(listener.activityFragmentMap.size(), 0);
-    }
+  @Test
+  public void onFragmentViewCreated_notActive() {
+    final FragmentStateDataListener listener = new FragmentStateDataListener(
+        mockContext, activityStateDataListener);
+    listener.onFragmentViewCreated(mockFragmentManager1, mockFragment1,
+        mockView, null);
+    assertFalse(listener.isActive());
+    assertEquals(listener.activityFragmentMap.size(), 0);
+  }
 
-    @Test
-    public void onFragmentPaused_notActive() {
-        final FragmentStateDataListener listener = new FragmentStateDataListener(
-                mockContext, activityStateDataListener);
-        listener.onFragmentPaused(mockFragmentManager1, mockFragment1);
-        assertFalse(listener.isActive());
-        assertEquals(listener.activityFragmentMap.size(), 0);
-    }
+  @Test
+  public void onFragmentPaused_notActive() {
+    final FragmentStateDataListener listener = new FragmentStateDataListener(
+        mockContext, activityStateDataListener);
+    listener.onFragmentPaused(mockFragmentManager1, mockFragment1);
+    assertFalse(listener.isActive());
+    assertEquals(listener.activityFragmentMap.size(), 0);
+  }
 }

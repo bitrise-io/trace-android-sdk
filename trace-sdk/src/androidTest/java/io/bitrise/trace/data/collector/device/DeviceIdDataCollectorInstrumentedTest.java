@@ -15,11 +15,12 @@ public class DeviceIdDataCollectorInstrumentedTest extends BaseDataCollectorInst
 
   final DeviceIdDataCollector deviceIdDataCollector = new DeviceIdDataCollector(context);
 
-    /**
-     * Verifies that when {@link DeviceIdDataCollector#collectData()} is called, the content of* the returned {@link Data} should not be {@code null}.
-     */
-    @Test
-    public void collectData_contentShouldBeNotNull() {
+  /**
+   * Verifies that when {@link DeviceIdDataCollector#collectData()} is called, the content of*
+   * the returned {@link Data} should not be {@code null}.
+   */
+  @Test
+  public void collectData_contentShouldBeNotNull() {
     final String actualValue = (String) deviceIdDataCollector.collectData().getContent();
     assertThat(actualValue, is(notNullValue()));
   }
@@ -31,7 +32,7 @@ public class DeviceIdDataCollectorInstrumentedTest extends BaseDataCollectorInst
   @Test
   public void collectData_deviceIdShouldNotChange() {
     final String expectedValue = (String) deviceIdDataCollector.collectData().getContent();
-        final String actualValue = (String) deviceIdDataCollector.collectData().getContent();
-        assertThat(actualValue, is(expectedValue));
-    }
+    final String actualValue = (String) deviceIdDataCollector.collectData().getContent();
+    assertThat(actualValue, is(expectedValue));
+  }
 }

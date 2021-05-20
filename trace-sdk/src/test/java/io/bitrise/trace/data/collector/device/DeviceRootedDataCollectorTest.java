@@ -1,5 +1,6 @@
 package io.bitrise.trace.data.collector.device;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -52,8 +53,8 @@ public class DeviceRootedDataCollectorTest {
     assertTrue((boolean) deviceRootedDataCollector.collectData().getContent());
   }
 
-    @Test
-    public void getPermissions() {
-        assertArrayEquals(new String[0], deviceRootedDataCollector.getPermissions());
-    }
+  @Test
+  public void getPermissions() {
+    assertArrayEquals(new String[0], deviceRootedDataCollector.getPermissions());
+  }
 }

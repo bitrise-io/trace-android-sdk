@@ -56,54 +56,34 @@ public class TraceNetworkListener implements OkHttpCallProcessor {
   }
 
   /**
+   * Sets the TraceNetworkListener to a debug instance. Used only for testing.
+   *
+   * @param listener the TraceNetworkListener to use for the getInstance().
+   */
+  @VisibleForTesting
+  public static synchronized void setDebugTraceNetworkListener(
+      @NonNull final TraceNetworkListener listener) {
+    synchronized (traceNetworkListenerLock) {
+      traceNetworkListener = listener;
+    }
+  }
+
+  /**
    * Resets the state of the TraceNetworkListener.
    */
   @VisibleForTesting
   public static synchronized void reset() {
     synchronized (traceNetworkListenerLock) {
-        if (traceNetworkListener == null) {
-            return;
-        }
-    }
-    /**
-     * Sets the TraceNetworkListener to a debug instance. Used only for testing.
-     * @param listener the TraceNetworkListener to use for the getInstance().
-     */
-    @VisibleForTesting
-    public static synchronized void setDebugTraceNetworkListener(
-            @NonNull final TraceNetworkListener listener) {
-        synchronized (traceNetworkListenerLock) {
-            traceNetworkListener = listener;
-        }
-    }
-
-    //region OkHttp related members
-    @NonNull
-    private static final List<OkHttpCallProcessor> OK_HTTP_CALL_PROCESSORS = new ArrayList<>();
-    /**
-     * A lock object for preventing concurrency issues for OkHttp related methods. E.g: when
-     * {@link #processOkHttpCall(Request, Response, long, long)} and
-     * {@link #unregisterOkHttpCallProcessor(OkHttpCallProcessor)} is called parallel.
-     */
-    @NonNull
-    private static final Object okHttpProcessorsLock = new Object();
-
-    /**
-     * Resets the state of the TraceNetworkListener.
-     */
-      @VisibleForTesting
-      public static synchronized void reset() {
-          synchronized (traceNetworkListenerLock) {
-              if (traceNetworkListener == null) {
-                  return;
-              }
-
-              synchronized (okHttpProcessorsLock) {
-                  OK_HTTP_CALL_PROCESSORS.clear();
-              }
-              traceNetworkListener = null;
-          }
+      if (traceNetworkListener == null) {
+        return;
       }
+
+      synchronized (okHttpProcessorsLock) {
+        OK_HTTP_CALL_PROCESSORS.clear();
+      }
+      traceNetworkListener = null;
+    }
+  }
 
   /**
    * Registers the given {@link OkHttpCallProcessor} to start receiving OkHttp calls.

@@ -331,8 +331,8 @@ public class FragmentStateDataListener extends FragmentManager.FragmentLifecycle
    * @return the Span ID of the hosting Activity, or {@code null}, when it cannot be determined.
    */
   @VisibleForTesting
-    @Nullable
-    String getParentSpanIdFromActivityId(final int activityId) {
+  @Nullable
+  String getParentSpanIdFromActivityId(final int activityId) {
     if (activityStateDataListener.activityMap.containsKey(activityId)) {
       return activityStateDataListener.activityMap.get(activityId).getSpanId();
     }
@@ -346,8 +346,8 @@ public class FragmentStateDataListener extends FragmentManager.FragmentLifecycle
    * @return the Span ID of the parent Fragment, or {@code null}, when it cannot be determined.
    */
   @VisibleForTesting
-    @Nullable
-    String getParentSpanIdFromFragmentId(final int fragmentHashCode) {
+  @Nullable
+  String getParentSpanIdFromFragmentId(final int fragmentHashCode) {
     final Map<Integer, FragmentData> fragmentRecords =
         activityFragmentMap.get(activeActivityHashCode);
     if (fragmentRecords != null) {
@@ -367,8 +367,8 @@ public class FragmentStateDataListener extends FragmentManager.FragmentLifecycle
    * @return the created FragmentData.
    */
   @VisibleForTesting
-    @NonNull
-    FragmentData createFragmentData(@NonNull final Fragment fragment,
+  @NonNull
+  FragmentData createFragmentData(@NonNull final Fragment fragment,
                                           @NonNull final FragmentState fragmentState) {
     final FragmentData fragmentData = new FragmentData(traceManager.createSpanId(false));
     fragmentData.setName(fragment.getClass().getSimpleName());
@@ -385,8 +385,8 @@ public class FragmentStateDataListener extends FragmentManager.FragmentLifecycle
    * @return the created FragmentData.
    */
   @VisibleForTesting
-    @NonNull
-    FragmentData createFragmentData(@NonNull final android.app.Fragment fragment,
+  @NonNull
+  FragmentData createFragmentData(@NonNull final android.app.Fragment fragment,
                                           @NonNull final FragmentState fragmentState) {
     final FragmentData fragmentData = new FragmentData(traceManager.createSpanId(false));
     fragmentData.setName(fragment.getClass().getSimpleName());

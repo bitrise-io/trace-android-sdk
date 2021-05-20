@@ -15,11 +15,12 @@ public class DeviceCarrierDataCollectorInstrumentedTest extends BaseDataCollecto
 
   final DeviceCarrierDataCollector collector = new DeviceCarrierDataCollector(context);
 
-    /**
-     * Verifies that when {@link DeviceCarrierDataCollector#collectData()} is called, the content* of the returned {@link Data} should not be {@code null}.
+  /**
+   * Verifies that when {@link DeviceCarrierDataCollector#collectData()} is called, the
+   * content* of the returned {@link Data} should not be {@code null}.
    */
   @Test
   public void collectData_contentShouldBeNotNull() {
-    assertThat(collector.collectData(),is(notNullValue()));
-    }
+    assertThat(collector.collectData(), is(notNullValue()));
+  }
 }

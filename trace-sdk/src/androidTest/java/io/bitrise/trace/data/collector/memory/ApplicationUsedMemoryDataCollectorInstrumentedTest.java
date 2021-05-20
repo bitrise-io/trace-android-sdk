@@ -14,10 +14,12 @@ import org.junit.Test;
 public class ApplicationUsedMemoryDataCollectorInstrumentedTest
     extends BaseDataCollectorInstrumentedTest {
 
-  private final ApplicationUsedMemoryDataCollector collector = new ApplicationUsedMemoryDataCollector(context);
+  private final ApplicationUsedMemoryDataCollector collector =
+      new ApplicationUsedMemoryDataCollector(context);
 
-    /**
-     * Verifies that when {@link ApplicationUsedMemoryDataCollector#collectData()} is called, the* content of the returned {@link Data} should not be {@code null}.
+  /**
+   * Verifies that when {@link ApplicationUsedMemoryDataCollector#collectData()} is called,
+   * the* content of the returned {@link Data} should not be {@code null}.
    */
   @Test
   public void collectData_contentShouldBeNotNull() {

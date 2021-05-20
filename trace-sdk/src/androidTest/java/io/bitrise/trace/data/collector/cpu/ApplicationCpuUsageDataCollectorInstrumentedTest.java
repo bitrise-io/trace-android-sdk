@@ -8,8 +8,6 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
 
 import io.bitrise.trace.data.collector.BaseDataCollectorInstrumentedTest;
 import org.junit.Test;
@@ -22,7 +20,7 @@ public class ApplicationCpuUsageDataCollectorInstrumentedTest
 
   private static final double HUNDRED_PERCENT = 100d;
   private static final double ZERO_PERCENT = 0d;
-    private final ApplicationCpuUsageDataCollector collector = new ApplicationCpuUsageDataCollector();
+  private final ApplicationCpuUsageDataCollector collector = new ApplicationCpuUsageDataCollector();
 
   /**
    * Verifies that when {@link ApplicationCpuUsageDataCollector#collectData()} is called, the

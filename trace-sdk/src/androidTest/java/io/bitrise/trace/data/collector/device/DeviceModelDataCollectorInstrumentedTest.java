@@ -15,12 +15,13 @@ public class DeviceModelDataCollectorInstrumentedTest extends BaseDataCollectorI
 
   final DeviceModelDataCollector collector = new DeviceModelDataCollector();
 
-    /**
-     * Verifies that when {@link DeviceModelDataCollector#collectData()} is called, the content* of the returned {@link Data} should not be {@code null}.
-     */
-    @Test
-    public void collectData_contentShouldBeNotNull() {
+  /**
+   * Verifies that when {@link DeviceModelDataCollector#collectData()} is called, the content*
+   * of the returned {@link Data} should not be {@code null}.
+   */
+  @Test
+  public void collectData_contentShouldBeNotNull() {
     final String actualValue = (String) collector.collectData().getContent();
-        assertThat(actualValue, is(notNullValue()));
-    }
+    assertThat(actualValue, is(notNullValue()));
+  }
 }

@@ -203,10 +203,10 @@ public class TraceHttpsURLConnectionTest {
     assertNull(certificates);
   }
 
-    @Test
-    public void setInstanceFollowRedirects() {
-        final TraceHttpsURLConnection traceHttpsURLConnection = new TraceHttpsURLConnection(dummyUrl);
-        traceHttpsURLConnection.setInstanceFollowRedirects(true);
-        assertTrue(traceHttpsURLConnection.getInstanceFollowRedirects());
-    }
+  @Test
+  public void setInstanceFollowRedirects() {
+    final TraceHttpsURLConnection traceHttpsURLConnection = new TraceHttpsURLConnection(dummyUrl);
+    traceHttpsURLConnection.setInstanceFollowRedirects(true);
+    assertTrue(traceHttpsURLConnection.getInstanceFollowRedirects());
+  }
 }

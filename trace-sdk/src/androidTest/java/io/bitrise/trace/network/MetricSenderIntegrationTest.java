@@ -28,6 +28,7 @@ import io.bitrise.trace.test.DataTestUtils;
 import io.opencensus.proto.metrics.v1.Metric;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

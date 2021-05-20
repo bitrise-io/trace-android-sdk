@@ -1,6 +1,7 @@
 package io.bitrise.trace.data.collector.view;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -97,35 +98,39 @@ public class FragmentStateDataListenerInstrumentedTest {
         is(true));
   }
 
-    /**
-     * Tests if the listener has not been set to active, when a deprecated callback method is called,
-     * the activityFragmentMap should not be changed.
-     */
-    @Test
-    public void fragmentMap_deprecatedFragmentCallback_onFragmentViewCreated_notStarted() {
-        InstrumentedTestRequirements.assumeDeprecatedFragmentLevel();
-        FragmentStateDataListener listener = new FragmentStateDataListener(mockApplication, activityStateDataListener);
+  /**
+   * Tests if the listener has not been set to active, when a deprecated callback method is
+   * called,
+   * the activityFragmentMap should not be changed.
+   */
+  @Test
+  public void fragmentMap_deprecatedFragmentCallback_onFragmentViewCreated_notStarted() {
+    InstrumentedTestRequirements.assumeDeprecatedFragmentLevel();
+    FragmentStateDataListener listener =
+        new FragmentStateDataListener(mockApplication, activityStateDataListener);
 
-        listener.getDeprecatedFragmentCallbackTracker().
-                onFragmentViewCreated(mockFragmentManager2,
-                mockFragment2, mockView, null);
-        assertThat(listener.isActive(), is(false));
-        assertThat(listener.activityFragmentMap.size(), is(equalTo(0)));
-    }
+    listener.getDeprecatedFragmentCallbackTracker()
+            .onFragmentViewCreated(mockFragmentManager2,
+            mockFragment2, mockView, null);
+    assertThat(listener.isActive(), is(false));
+    assertThat(listener.activityFragmentMap.size(), is(equalTo(0)));
+  }
 
-    /**
-     * Tests if the listener has not been set to active, when a deprecated callback method is called,
-     * the activityFragmentMap should not be changed.
-     */
-    @Test
-    public void fragmentMap_deprecatedFragmentCallback_onFragmentPaused_notStarted() {
-        InstrumentedTestRequirements.assumeDeprecatedFragmentLevel();
-        FragmentStateDataListener listener = new FragmentStateDataListener(mockApplication, activityStateDataListener);
+  /**
+   * Tests if the listener has not been set to active, when a deprecated callback method is
+   * called,
+   * the activityFragmentMap should not be changed.
+   */
+  @Test
+  public void fragmentMap_deprecatedFragmentCallback_onFragmentPaused_notStarted() {
+    InstrumentedTestRequirements.assumeDeprecatedFragmentLevel();
+    FragmentStateDataListener listener =
+        new FragmentStateDataListener(mockApplication, activityStateDataListener);
 
-        listener.getDeprecatedFragmentCallbackTracker().
-                onFragmentPaused(mockFragmentManager2, mockFragment2);
-        assertThat(listener.isActive(), is(false));
-        assertThat(listener.activityFragmentMap.size(), is(equalTo(0)));
-    }
+    listener.getDeprecatedFragmentCallbackTracker()
+            .onFragmentPaused(mockFragmentManager2, mockFragment2);
+    assertThat(listener.isActive(), is(false));
+    assertThat(listener.activityFragmentMap.size(), is(equalTo(0)));
+  }
 
 }
