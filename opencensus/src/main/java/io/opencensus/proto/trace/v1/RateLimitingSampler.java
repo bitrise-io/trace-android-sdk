@@ -7,33 +7,43 @@ package io.opencensus.proto.trace.v1;
  * <pre>
  * Sampler that tries to sample with a rate per time window.
  * </pre>
- *
+ * <p>
  * Protobuf type {@code opencensus.proto.trace.v1.RateLimitingSampler}
  */
 public final class RateLimitingSampler extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.RateLimitingSampler)
     RateLimitingSamplerOrBuilder {
-private static final long serialVersionUID = 0L;
+  public static final int QPS_FIELD_NUMBER = 1;
+  private static final long serialVersionUID = 0L;
+  // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.RateLimitingSampler)
+  private static final io.opencensus.proto.trace.v1.RateLimitingSampler DEFAULT_INSTANCE;
+  private static final com.google.protobuf.Parser<RateLimitingSampler>
+      PARSER = new com.google.protobuf.AbstractParser<RateLimitingSampler>() {
+    @java.lang.Override
+    public RateLimitingSampler parsePartialFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return new RateLimitingSampler(input, extensionRegistry);
+    }
+  };
+
+  static {
+    DEFAULT_INSTANCE = new io.opencensus.proto.trace.v1.RateLimitingSampler();
+  }
+
+  private long qps_;
+  private byte memoizedIsInitialized = -1;
+
   // Use RateLimitingSampler.newBuilder() to construct.
   private RateLimitingSampler(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
+
   private RateLimitingSampler() {
   }
 
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new RateLimitingSampler();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
   private RateLimitingSampler(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -76,27 +86,140 @@ private static final long serialVersionUID = 0L;
       makeExtensionsImmutable();
     }
   }
+
   public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
+  getDescriptor() {
     return io.opencensus.proto.trace.v1.TraceConfigProto.internal_static_opencensus_proto_trace_v1_RateLimitingSampler_descriptor;
+  }
+
+  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(
+      java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseDelimitedFrom(
+      java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(io.opencensus.proto.trace.v1.RateLimitingSampler prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
+  public static io.opencensus.proto.trace.v1.RateLimitingSampler getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  public static com.google.protobuf.Parser<RateLimitingSampler> parser() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new RateLimitingSampler();
+  }
+
+  @java.lang.Override
+  public final com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
+  internalGetFieldAccessorTable() {
     return io.opencensus.proto.trace.v1.TraceConfigProto.internal_static_opencensus_proto_trace_v1_RateLimitingSampler_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.trace.v1.RateLimitingSampler.class, io.opencensus.proto.trace.v1.RateLimitingSampler.Builder.class);
+            io.opencensus.proto.trace.v1.RateLimitingSampler.class,
+            io.opencensus.proto.trace.v1.RateLimitingSampler.Builder.class);
   }
 
-  public static final int QPS_FIELD_NUMBER = 1;
-  private long qps_;
   /**
    * <pre>
    * Rate per second.
    * </pre>
    *
    * <code>int64 qps = 1;</code>
+   *
    * @return The qps.
    */
   @java.lang.Override
@@ -104,12 +227,15 @@ private static final long serialVersionUID = 0L;
     return qps_;
   }
 
-  private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
+    if (isInitialized == 1) {
+      return true;
+    }
+    if (isInitialized == 0) {
+      return false;
+    }
 
     memoizedIsInitialized = 1;
     return true;
@@ -117,7 +243,7 @@ private static final long serialVersionUID = 0L;
 
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
+      throws java.io.IOException {
     if (qps_ != 0L) {
       output.writeInt64(1, qps_);
     }
@@ -127,12 +253,14 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public int getSerializedSize() {
     int size = memoizedSize;
-    if (size != -1) return size;
+    if (size != -1) {
+      return size;
+    }
 
     size = 0;
     if (qps_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt64Size(1, qps_);
+          .computeInt64Size(1, qps_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -142,17 +270,19 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-     return true;
+      return true;
     }
     if (!(obj instanceof io.opencensus.proto.trace.v1.RateLimitingSampler)) {
       return super.equals(obj);
     }
-    io.opencensus.proto.trace.v1.RateLimitingSampler other = (io.opencensus.proto.trace.v1.RateLimitingSampler) obj;
+    io.opencensus.proto.trace.v1.RateLimitingSampler other =
+        (io.opencensus.proto.trace.v1.RateLimitingSampler) obj;
 
     if (getQps()
-        != other.getQps()) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
+        != other.getQps()) {
+      return false;
+    }
+    return unknownFields.equals(other.unknownFields);
   }
 
   @java.lang.Override
@@ -170,84 +300,11 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.trace.v1.RateLimitingSampler parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
+  @java.lang.Override
+  public Builder newBuilderForType() {
+    return newBuilder();
   }
 
-  @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(io.opencensus.proto.trace.v1.RateLimitingSampler prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
   @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
@@ -260,29 +317,29 @@ private static final long serialVersionUID = 0L;
     Builder builder = new Builder(parent);
     return builder;
   }
+
+  @java.lang.Override
+  public com.google.protobuf.Parser<RateLimitingSampler> getParserForType() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public io.opencensus.proto.trace.v1.RateLimitingSampler getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
+  }
+
   /**
    * <pre>
    * Sampler that tries to sample with a rate per time window.
    * </pre>
-   *
+   * <p>
    * Protobuf type {@code opencensus.proto.trace.v1.RateLimitingSampler}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
       // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.RateLimitingSampler)
       io.opencensus.proto.trace.v1.RateLimitingSamplerOrBuilder {
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return io.opencensus.proto.trace.v1.TraceConfigProto.internal_static_opencensus_proto_trace_v1_RateLimitingSampler_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return io.opencensus.proto.trace.v1.TraceConfigProto.internal_static_opencensus_proto_trace_v1_RateLimitingSampler_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.trace.v1.RateLimitingSampler.class, io.opencensus.proto.trace.v1.RateLimitingSampler.Builder.class);
-    }
+    private long qps_;
 
     // Construct using io.opencensus.proto.trace.v1.RateLimitingSampler.newBuilder()
     private Builder() {
@@ -294,11 +351,27 @@ private static final long serialVersionUID = 0L;
       super(parent);
       maybeForceBuilderInitialization();
     }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+      return io.opencensus.proto.trace.v1.TraceConfigProto.internal_static_opencensus_proto_trace_v1_RateLimitingSampler_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return io.opencensus.proto.trace.v1.TraceConfigProto.internal_static_opencensus_proto_trace_v1_RateLimitingSampler_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.opencensus.proto.trace.v1.RateLimitingSampler.class,
+              io.opencensus.proto.trace.v1.RateLimitingSampler.Builder.class);
+    }
+
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
+          .alwaysUseFieldBuilders) {
       }
     }
+
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -309,7 +382,7 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+    getDescriptorForType() {
       return io.opencensus.proto.trace.v1.TraceConfigProto.internal_static_opencensus_proto_trace_v1_RateLimitingSampler_descriptor;
     }
 
@@ -329,7 +402,8 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public io.opencensus.proto.trace.v1.RateLimitingSampler buildPartial() {
-      io.opencensus.proto.trace.v1.RateLimitingSampler result = new io.opencensus.proto.trace.v1.RateLimitingSampler(this);
+      io.opencensus.proto.trace.v1.RateLimitingSampler result =
+          new io.opencensus.proto.trace.v1.RateLimitingSampler(this);
       result.qps_ = qps_;
       onBuilt();
       return result;
@@ -339,38 +413,44 @@ private static final long serialVersionUID = 0L;
     public Builder clone() {
       return super.clone();
     }
+
     @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.setField(field, value);
     }
+
     @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
+
     @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
+
     @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
     }
+
     @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.addRepeatedField(field, value);
     }
+
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof io.opencensus.proto.trace.v1.RateLimitingSampler) {
-        return mergeFrom((io.opencensus.proto.trace.v1.RateLimitingSampler)other);
+        return mergeFrom((io.opencensus.proto.trace.v1.RateLimitingSampler) other);
       } else {
         super.mergeFrom(other);
         return this;
@@ -378,7 +458,9 @@ private static final long serialVersionUID = 0L;
     }
 
     public Builder mergeFrom(io.opencensus.proto.trace.v1.RateLimitingSampler other) {
-      if (other == io.opencensus.proto.trace.v1.RateLimitingSampler.getDefaultInstance()) return this;
+      if (other == io.opencensus.proto.trace.v1.RateLimitingSampler.getDefaultInstance()) {
+        return this;
+      }
       if (other.getQps() != 0L) {
         setQps(other.getQps());
       }
@@ -411,48 +493,53 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private long qps_ ;
     /**
      * <pre>
      * Rate per second.
      * </pre>
      *
      * <code>int64 qps = 1;</code>
+     *
      * @return The qps.
      */
     @java.lang.Override
     public long getQps() {
       return qps_;
     }
+
     /**
      * <pre>
      * Rate per second.
      * </pre>
      *
      * <code>int64 qps = 1;</code>
+     *
      * @param value The qps to set.
      * @return This builder for chaining.
      */
     public Builder setQps(long value) {
-      
+
       qps_ = value;
       onChanged();
       return this;
     }
+
     /**
      * <pre>
      * Rate per second.
      * </pre>
      *
      * <code>int64 qps = 1;</code>
+     *
      * @return This builder for chaining.
      */
     public Builder clearQps() {
-      
+
       qps_ = 0L;
       onChanged();
       return this;
     }
+
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -467,41 +554,6 @@ private static final long serialVersionUID = 0L;
 
 
     // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.RateLimitingSampler)
-  }
-
-  // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.RateLimitingSampler)
-  private static final io.opencensus.proto.trace.v1.RateLimitingSampler DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.trace.v1.RateLimitingSampler();
-  }
-
-  public static io.opencensus.proto.trace.v1.RateLimitingSampler getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<RateLimitingSampler>
-      PARSER = new com.google.protobuf.AbstractParser<RateLimitingSampler>() {
-    @java.lang.Override
-    public RateLimitingSampler parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new RateLimitingSampler(input, extensionRegistry);
-    }
-  };
-
-  public static com.google.protobuf.Parser<RateLimitingSampler> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<RateLimitingSampler> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.RateLimitingSampler getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
   }
 
 }

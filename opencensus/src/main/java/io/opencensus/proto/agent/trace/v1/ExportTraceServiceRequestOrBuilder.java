@@ -4,7 +4,8 @@
 package io.opencensus.proto.agent.trace.v1;
 
 public interface ExportTraceServiceRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:opencensus.proto.agent.trace.v1.ExportTraceServiceRequest)
+    // @@protoc_insertion_point(interface_extends:opencensus.proto.agent.trace.v1
+    // .ExportTraceServiceRequest)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -15,9 +16,11 @@ public interface ExportTraceServiceRequestOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
+   *
    * @return Whether the node field is set.
    */
   boolean hasNode();
+
   /**
    * <pre>
    * This is required only in the first message on the stream or if the
@@ -26,9 +29,11 @@ public interface ExportTraceServiceRequestOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
+   *
    * @return The node.
    */
   io.opencensus.proto.agent.common.v1.Node getNode();
+
   /**
    * <pre>
    * This is required only in the first message on the stream or if the
@@ -47,8 +52,9 @@ public interface ExportTraceServiceRequestOrBuilder extends
    *
    * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
    */
-  java.util.List<io.opencensus.proto.trace.v1.Span> 
-      getSpansList();
+  java.util.List<io.opencensus.proto.trace.v1.Span>
+  getSpansList();
+
   /**
    * <pre>
    * A list of Spans that belong to the last received Node.
@@ -57,6 +63,7 @@ public interface ExportTraceServiceRequestOrBuilder extends
    * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
    */
   io.opencensus.proto.trace.v1.Span getSpans(int index);
+
   /**
    * <pre>
    * A list of Spans that belong to the last received Node.
@@ -65,6 +72,7 @@ public interface ExportTraceServiceRequestOrBuilder extends
    * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
    */
   int getSpansCount();
+
   /**
    * <pre>
    * A list of Spans that belong to the last received Node.
@@ -72,8 +80,9 @@ public interface ExportTraceServiceRequestOrBuilder extends
    *
    * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
    */
-  java.util.List<? extends io.opencensus.proto.trace.v1.SpanOrBuilder> 
-      getSpansOrBuilderList();
+  java.util.List<? extends io.opencensus.proto.trace.v1.SpanOrBuilder>
+  getSpansOrBuilderList();
+
   /**
    * <pre>
    * A list of Spans that belong to the last received Node.
@@ -93,9 +102,11 @@ public interface ExportTraceServiceRequestOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
+   *
    * @return Whether the resource field is set.
    */
   boolean hasResource();
+
   /**
    * <pre>
    * The resource for the spans in this message that do not have an explicit
@@ -105,9 +116,11 @@ public interface ExportTraceServiceRequestOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
+   *
    * @return The resource.
    */
   io.opencensus.proto.resource.v1.Resource getResource();
+
   /**
    * <pre>
    * The resource for the spans in this message that do not have an explicit

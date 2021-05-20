@@ -14,9 +14,11 @@ public interface MeasureOrBuilder extends
    * </pre>
    *
    * <code>string name = 1;</code>
+   *
    * @return The name.
    */
   java.lang.String getName();
+
   /**
    * <pre>
    * A string by which the measure will be referred to, e.g. "rpc_server_latency". Names MUST be
@@ -24,10 +26,11 @@ public interface MeasureOrBuilder extends
    * </pre>
    *
    * <code>string name = 1;</code>
+   *
    * @return The bytes for name.
    */
   com.google.protobuf.ByteString
-      getNameBytes();
+  getNameBytes();
 
   /**
    * <pre>
@@ -35,19 +38,22 @@ public interface MeasureOrBuilder extends
    * </pre>
    *
    * <code>string description = 2;</code>
+   *
    * @return The description.
    */
   java.lang.String getDescription();
+
   /**
    * <pre>
    * Describes the measure, e.g. "RPC latency in seconds".
    * </pre>
    *
    * <code>string description = 2;</code>
+   *
    * @return The bytes for description.
    */
   com.google.protobuf.ByteString
-      getDescriptionBytes();
+  getDescriptionBytes();
 
   /**
    * <pre>
@@ -56,9 +62,11 @@ public interface MeasureOrBuilder extends
    * </pre>
    *
    * <code>string unit = 3;</code>
+   *
    * @return The unit.
    */
   java.lang.String getUnit();
+
   /**
    * <pre>
    * Describes the unit used for the Measure. Follows the format described by
@@ -66,10 +74,11 @@ public interface MeasureOrBuilder extends
    * </pre>
    *
    * <code>string unit = 3;</code>
+   *
    * @return The bytes for unit.
    */
   com.google.protobuf.ByteString
-      getUnitBytes();
+  getUnitBytes();
 
   /**
    * <pre>
@@ -77,15 +86,18 @@ public interface MeasureOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.Measure.Type type = 4;</code>
+   *
    * @return The enum numeric value on the wire for type.
    */
   int getTypeValue();
+
   /**
    * <pre>
    * The type used for this Measure.
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.Measure.Type type = 4;</code>
+   *
    * @return The type.
    */
   io.opencensus.proto.stats.v1.Measure.Type getType();

@@ -14,9 +14,11 @@ public interface PointOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.Timestamp timestamp = 1;</code>
+   *
    * @return Whether the timestamp field is set.
    */
   boolean hasTimestamp();
+
   /**
    * <pre>
    * The moment when this point was recorded. Inclusive.
@@ -24,9 +26,11 @@ public interface PointOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.Timestamp timestamp = 1;</code>
+   *
    * @return The timestamp.
    */
   com.google.protobuf.Timestamp getTimestamp();
+
   /**
    * <pre>
    * The moment when this point was recorded. Inclusive.
@@ -43,6 +47,7 @@ public interface PointOrBuilder extends
    * </pre>
    *
    * <code>int64 int64_value = 2;</code>
+   *
    * @return The int64Value.
    */
   long getInt64Value();
@@ -53,6 +58,7 @@ public interface PointOrBuilder extends
    * </pre>
    *
    * <code>double double_value = 3;</code>
+   *
    * @return The doubleValue.
    */
   double getDoubleValue();
@@ -63,18 +69,22 @@ public interface PointOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.metrics.v1.DistributionValue distribution_value = 4;</code>
+   *
    * @return Whether the distributionValue field is set.
    */
   boolean hasDistributionValue();
+
   /**
    * <pre>
    * A distribution value.
    * </pre>
    *
    * <code>.opencensus.proto.metrics.v1.DistributionValue distribution_value = 4;</code>
+   *
    * @return The distributionValue.
    */
   io.opencensus.proto.metrics.v1.DistributionValue getDistributionValue();
+
   /**
    * <pre>
    * A distribution value.
@@ -90,18 +100,22 @@ public interface PointOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.metrics.v1.SummaryValue summary_value = 5;</code>
+   *
    * @return Whether the summaryValue field is set.
    */
   boolean hasSummaryValue();
+
   /**
    * <pre>
    * A summary value. This is not recommended, since it cannot be aggregated.
    * </pre>
    *
    * <code>.opencensus.proto.metrics.v1.SummaryValue summary_value = 5;</code>
+   *
    * @return The summaryValue.
    */
   io.opencensus.proto.metrics.v1.SummaryValue getSummaryValue();
+
   /**
    * <pre>
    * A summary value. This is not recommended, since it cannot be aggregated.
@@ -111,5 +125,5 @@ public interface PointOrBuilder extends
    */
   io.opencensus.proto.metrics.v1.SummaryValueOrBuilder getSummaryValueOrBuilder();
 
-  public io.opencensus.proto.metrics.v1.Point.ValueCase getValueCase();
+  io.opencensus.proto.metrics.v1.Point.ValueCase getValueCase();
 }
