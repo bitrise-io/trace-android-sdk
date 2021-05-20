@@ -137,8 +137,8 @@ public class TraceDataStorageInstrumentedTest {
         assertEquals(0, dataStorage.getAllTraces().size());
     }
 
-    /**
-     * Asserts that if we add a {@link Metric} to the {@link TraceDatabase} via the* {@link TraceDataStorage} it will be returned when we query it.
+  /**
+   * Asserts that if we add a {@link Metric} to the {@link TraceDatabase} via the* {@link TraceDataStorage} it will be returned when we query it.
    */
   @Test
   public void saveMetric_shouldContainInsertedValue() {
