@@ -1,19 +1,19 @@
 package io.bitrise.trace.data.collector.network.urlconnection;
 
-import org.junit.Test;
-import org.mockito.Mockito;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
 import java.net.URLConnection;
-
-import static org.junit.Assert.assertTrue;
+import org.junit.Test;
+import org.mockito.Mockito;
 
 /**
  * Tests for {@link TraceURLStreamHandler}.
  */
+@SuppressWarnings("checkstyle:abbreviation")
 public class TraceURLStreamHandlerTest {
     private final TraceURLStreamHandler traceURLStreamHandler = Mockito
             .mock(TraceURLStreamHandler.class, Mockito.CALLS_REAL_METHODS );
@@ -24,10 +24,10 @@ public class TraceURLStreamHandlerTest {
     public void openConnection() throws IOException {
         final URLConnection connection = traceURLStreamHandler
                 .openConnection(new URL(httpUrl));
-        assertTrue(connection instanceof TraceHttpURLConnection);
-    }
+    assertTrue(connection instanceof TraceHttpURLConnection);
+  }
 
-    @Test
+  @Test
     public void openConnection_https() throws IOException {
         final URLConnection connection = traceURLStreamHandler
                 .openConnection(new URL(httpsUrl));
@@ -35,17 +35,16 @@ public class TraceURLStreamHandlerTest {
     }
 
     @Test
-    public void openConnectionWithProxy() throws IOException {
-        final URLConnection connection = traceURLStreamHandler
+  public void openConnectionWithProxy() throws IOException {
+    final URLConnection connection = traceURLStreamHandler
                 .openConnection(new URL(httpUrl), proxy);
         assertTrue(connection instanceof TraceHttpURLConnection);
     }
 
     @Test
     public void openConnectionWithProxy_https() throws IOException {
-        final URLConnection connection = traceURLStreamHandler
-                .openConnection(new URL(httpsUrl), proxy);
-        assertTrue(connection instanceof TraceHttpsURLConnection);
-    }
-
+    final URLConnection connection = traceURLStreamHandler
+        .openConnection(new URL(httpsUrl), proxy);
+    assertTrue(connection instanceof TraceHttpsURLConnection);
+  }
 }

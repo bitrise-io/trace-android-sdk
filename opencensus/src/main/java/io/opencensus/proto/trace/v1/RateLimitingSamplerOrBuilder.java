@@ -13,6 +13,7 @@ public interface RateLimitingSamplerOrBuilder extends
    * </pre>
    *
    * <code>int64 qps = 1;</code>
+   *
    * @return The qps.
    */
   long getQps();

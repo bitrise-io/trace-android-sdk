@@ -1,14 +1,5 @@
 package io.bitrise.trace.data.collector.cpu;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.util.List;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -16,12 +7,14 @@ import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Test;
+
 /**
  * Unit tests for {@link SystemCpuUsageDataCollector}.
  */
 public class SystemCpuUsageDataCollectorTest {
 
-    @Rule
+  @Rule
     public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
     private static final CpuUsageData.CpuStat DUMMY_CPU_STAT_1 = new CpuUsageData.CpuStat(10, 10, 10, 10, 10, 10, 10,
@@ -33,39 +26,43 @@ public class SystemCpuUsageDataCollectorTest {
             new CpuUsageData.CpuStat(100, 200, 300, 400, 500, 600, 700, 800);
     private final SystemCpuUsageDataCollector collector = new SystemCpuUsageDataCollector();
 
-    @Test
-    public void parseSystemCpuStat_ValidInput() {
-        final CpuUsageData.CpuStat actual = SystemCpuUsageDataCollector.parseSystemCpuStat(3, " cpu2 23456 2345 2345 " +
-                "2345 234 0 0 0 0 0");
-        assertThat(actual, equalTo(new CpuUsageData.CpuStat(2345f, 2345f, 2345f, 234f, 0f, 0f, 0f, 0f)));
-    }
+  @Test
+  public void parseSystemCpuStat_ValidInput() {
+    final CpuUsageData.CpuStat actual =
+        SystemCpuUsageDataCollector.parseSystemCpuStat(3, " cpu2 23456 2345 2345 "
+            + "2345 234 0 0 0 0 0");
+    assertThat(actual,
+        equalTo(new CpuUsageData.CpuStat(2345f, 2345f, 2345f, 234f, 0f, 0f, 0f, 0f)));
+  }
 
-    @Test
-    public void parseSystemCpuStat_InvalidInput() {
-        final CpuUsageData.CpuStat actual = SystemCpuUsageDataCollector.parseSystemCpuStat(0, " cpu2 23456 2345 2345 " +
-                "2345 234 0 0 0 0 0");
-        assertThat(actual, is(nullValue()));
-    }
+  @Test
+  public void parseSystemCpuStat_InvalidInput() {
+    final CpuUsageData.CpuStat actual =
+        SystemCpuUsageDataCollector.parseSystemCpuStat(0, " cpu2 23456 2345 2345 "
+            + "2345 234 0 0 0 0 0");
+    assertThat(actual, is(nullValue()));
+  }
 
-    @Test
-    public void calculateDiff_ShouldBeTheDifference() {
-        final CpuUsageData.CpuStat actual = SystemCpuUsageDataCollector.calculateDiff(DUMMY_CPU_STAT_1,
-                DUMMY_CPU_STAT_2);
-        final CpuUsageData.CpuStat expected = new CpuUsageData.CpuStat(7, 7, 7, 7, 7, 7, 7, 7);
+  @Test
+  public void calculateDiff_ShouldBeTheDifference() {
+    final CpuUsageData.CpuStat actual = SystemCpuUsageDataCollector.calculateDiff(DUMMY_CPU_STAT_1,
+        DUMMY_CPU_STAT_2);
+    final CpuUsageData.CpuStat expected = new CpuUsageData.CpuStat(7, 7, 7, 7, 7, 7, 7, 7);
 
-        assertThat(actual, equalTo(expected));
-    }
+    assertThat(actual, equalTo(expected));
+  }
 
-    @Test
-    public void getTotalUsage_ShouldBeTheTotal() {
-        assertThat(SystemCpuUsageDataCollector.getTotalUsage(DUMMY_CPU_STAT_1), equalTo(80f));
-    }
+  @Test
+  public void getTotalUsage_ShouldBeTheTotal() {
+    assertThat(SystemCpuUsageDataCollector.getTotalUsage(DUMMY_CPU_STAT_1), equalTo(80f));
+  }
 
-    @Test
-    public void getStatPercentages_ShouldBeThePercentage() {
-        final CpuUsageData.CpuStat actual = SystemCpuUsageDataCollector.getStatPercentages(DUMMY_CPU_STAT_1, 10);
-        assertThat(actual, equalTo(new CpuUsageData.CpuStat(100, 100, 100, 100, 100, 100, 100, 100)));
-    }
+  @Test
+  public void getStatPercentages_ShouldBeThePercentage() {
+    final CpuUsageData.CpuStat actual =
+        SystemCpuUsageDataCollector.getStatPercentages(DUMMY_CPU_STAT_1, 10);
+    assertThat(actual, equalTo(new CpuUsageData.CpuStat(100, 100, 100, 100, 100, 100, 100, 100)));
+  }
 
     @Test
     public void getPermissions() {

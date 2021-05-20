@@ -1,7 +1,6 @@
 package io.bitrise.trace.session;
 
 import androidx.annotation.Nullable;
-
 import javax.inject.Singleton;
 
 /**
@@ -10,21 +9,21 @@ import javax.inject.Singleton;
 @Singleton
 public interface SessionManager {
 
-    /**
-     * Starts the Session.
-     */
-    void startSession();
+  /**
+   * Starts the Session.
+   */
+  void startSession();
 
-    /**
-     * Stops the Session.
-     */
-    void stopSession();
+  /**
+   * Stops the Session.
+   */
+  void stopSession();
 
-    /**
-     * Returns the active Session or {@code null} when there is no active Session.
-     *
-     * @return the active Session.
-     */
-    @Nullable
-    Session getActiveSession();
+  /**
+   * Returns the active Session or {@code null} when there is no active Session.
+   *
+   * @return the active Session.
+   */
+  @Nullable
+  Session getActiveSession();
 }

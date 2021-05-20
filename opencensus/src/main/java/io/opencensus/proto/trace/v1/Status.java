@@ -11,34 +11,46 @@ package io.opencensus.proto.trace.v1;
  * [google.rpc.Status](https://github.com/googleapis/googleapis/blob/master/google/rpc/status.proto),
  * which is used by [gRPC](https://github.com/grpc).
  * </pre>
- *
+ * <p>
  * Protobuf type {@code opencensus.proto.trace.v1.Status}
  */
 public final class Status extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.Status)
     StatusOrBuilder {
-private static final long serialVersionUID = 0L;
+  public static final int CODE_FIELD_NUMBER = 1;
+  public static final int MESSAGE_FIELD_NUMBER = 2;
+  private static final long serialVersionUID = 0L;
+  // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Status)
+  private static final io.opencensus.proto.trace.v1.Status DEFAULT_INSTANCE;
+  private static final com.google.protobuf.Parser<Status>
+      PARSER = new com.google.protobuf.AbstractParser<Status>() {
+    @java.lang.Override
+    public Status parsePartialFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return new Status(input, extensionRegistry);
+    }
+  };
+
+  static {
+    DEFAULT_INSTANCE = new io.opencensus.proto.trace.v1.Status();
+  }
+
+  private int code_;
+  private volatile java.lang.Object message_;
+  private byte memoizedIsInitialized = -1;
+
   // Use Status.newBuilder() to construct.
   private Status(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
+
   private Status() {
     message_ = "";
   }
 
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new Status();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
   private Status(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -87,21 +99,131 @@ private static final long serialVersionUID = 0L;
       makeExtensionsImmutable();
     }
   }
+
   public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
+  getDescriptor() {
     return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Status_descriptor;
+  }
+
+  public static io.opencensus.proto.trace.v1.Status parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.trace.v1.Status parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.Status parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.trace.v1.Status parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.Status parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static io.opencensus.proto.trace.v1.Status parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.Status parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.trace.v1.Status parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.Status parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.trace.v1.Status parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static io.opencensus.proto.trace.v1.Status parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static io.opencensus.proto.trace.v1.Status parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(io.opencensus.proto.trace.v1.Status prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
+  public static io.opencensus.proto.trace.v1.Status getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  public static com.google.protobuf.Parser<Status> parser() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new Status();
+  }
+
+  @java.lang.Override
+  public final com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
+  internalGetFieldAccessorTable() {
     return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Status_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.trace.v1.Status.class, io.opencensus.proto.trace.v1.Status.Builder.class);
+            io.opencensus.proto.trace.v1.Status.class,
+            io.opencensus.proto.trace.v1.Status.Builder.class);
   }
 
-  public static final int CODE_FIELD_NUMBER = 1;
-  private int code_;
   /**
    * <pre>
    * The status code. This is optional field. It is safe to assume 0 (OK)
@@ -109,6 +231,7 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>int32 code = 1;</code>
+   *
    * @return The code.
    */
   @java.lang.Override
@@ -116,14 +239,13 @@ private static final long serialVersionUID = 0L;
     return code_;
   }
 
-  public static final int MESSAGE_FIELD_NUMBER = 2;
-  private volatile java.lang.Object message_;
   /**
    * <pre>
    * A developer-facing error message, which should be in English.
    * </pre>
    *
    * <code>string message = 2;</code>
+   *
    * @return The message.
    */
   @java.lang.Override
@@ -132,27 +254,29 @@ private static final long serialVersionUID = 0L;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
-      com.google.protobuf.ByteString bs = 
+      com.google.protobuf.ByteString bs =
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
       message_ = s;
       return s;
     }
   }
+
   /**
    * <pre>
    * A developer-facing error message, which should be in English.
    * </pre>
    *
    * <code>string message = 2;</code>
+   *
    * @return The bytes for message.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getMessageBytes() {
+  getMessageBytes() {
     java.lang.Object ref = message_;
     if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
+      com.google.protobuf.ByteString b =
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
       message_ = b;
@@ -162,12 +286,15 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
+    if (isInitialized == 1) {
+      return true;
+    }
+    if (isInitialized == 0) {
+      return false;
+    }
 
     memoizedIsInitialized = 1;
     return true;
@@ -175,7 +302,7 @@ private static final long serialVersionUID = 0L;
 
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
+      throws java.io.IOException {
     if (code_ != 0) {
       output.writeInt32(1, code_);
     }
@@ -188,12 +315,14 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public int getSerializedSize() {
     int size = memoizedSize;
-    if (size != -1) return size;
+    if (size != -1) {
+      return size;
+    }
 
     size = 0;
     if (code_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, code_);
+          .computeInt32Size(1, code_);
     }
     if (!getMessageBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, message_);
@@ -206,7 +335,7 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-     return true;
+      return true;
     }
     if (!(obj instanceof io.opencensus.proto.trace.v1.Status)) {
       return super.equals(obj);
@@ -214,11 +343,14 @@ private static final long serialVersionUID = 0L;
     io.opencensus.proto.trace.v1.Status other = (io.opencensus.proto.trace.v1.Status) obj;
 
     if (getCode()
-        != other.getCode()) return false;
+        != other.getCode()) {
+      return false;
+    }
     if (!getMessage()
-        .equals(other.getMessage())) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
+        .equals(other.getMessage())) {
+      return false;
+    }
+    return unknownFields.equals(other.unknownFields);
   }
 
   @java.lang.Override
@@ -237,84 +369,11 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static io.opencensus.proto.trace.v1.Status parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.trace.v1.Status parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.Status parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.trace.v1.Status parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.Status parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static io.opencensus.proto.trace.v1.Status parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.Status parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.trace.v1.Status parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.Status parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.trace.v1.Status parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static io.opencensus.proto.trace.v1.Status parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static io.opencensus.proto.trace.v1.Status parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
+  @java.lang.Override
+  public Builder newBuilderForType() {
+    return newBuilder();
   }
 
-  @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(io.opencensus.proto.trace.v1.Status prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
   @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
@@ -327,6 +386,17 @@ private static final long serialVersionUID = 0L;
     Builder builder = new Builder(parent);
     return builder;
   }
+
+  @java.lang.Override
+  public com.google.protobuf.Parser<Status> getParserForType() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public io.opencensus.proto.trace.v1.Status getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
+  }
+
   /**
    * <pre>
    * The `Status` type defines a logical error model that is suitable for different
@@ -335,25 +405,15 @@ private static final long serialVersionUID = 0L;
    * [google.rpc.Status](https://github.com/googleapis/googleapis/blob/master/google/rpc/status.proto),
    * which is used by [gRPC](https://github.com/grpc).
    * </pre>
-   *
+   * <p>
    * Protobuf type {@code opencensus.proto.trace.v1.Status}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
       // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.Status)
       io.opencensus.proto.trace.v1.StatusOrBuilder {
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Status_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Status_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.trace.v1.Status.class, io.opencensus.proto.trace.v1.Status.Builder.class);
-    }
+    private int code_;
+    private java.lang.Object message_ = "";
 
     // Construct using io.opencensus.proto.trace.v1.Status.newBuilder()
     private Builder() {
@@ -365,11 +425,27 @@ private static final long serialVersionUID = 0L;
       super(parent);
       maybeForceBuilderInitialization();
     }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Status_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Status_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.opencensus.proto.trace.v1.Status.class,
+              io.opencensus.proto.trace.v1.Status.Builder.class);
+    }
+
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
+          .alwaysUseFieldBuilders) {
       }
     }
+
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -382,7 +458,7 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+    getDescriptorForType() {
       return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Status_descriptor;
     }
 
@@ -413,38 +489,44 @@ private static final long serialVersionUID = 0L;
     public Builder clone() {
       return super.clone();
     }
+
     @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.setField(field, value);
     }
+
     @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
+
     @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
+
     @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
     }
+
     @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.addRepeatedField(field, value);
     }
+
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof io.opencensus.proto.trace.v1.Status) {
-        return mergeFrom((io.opencensus.proto.trace.v1.Status)other);
+        return mergeFrom((io.opencensus.proto.trace.v1.Status) other);
       } else {
         super.mergeFrom(other);
         return this;
@@ -452,7 +534,9 @@ private static final long serialVersionUID = 0L;
     }
 
     public Builder mergeFrom(io.opencensus.proto.trace.v1.Status other) {
-      if (other == io.opencensus.proto.trace.v1.Status.getDefaultInstance()) return this;
+      if (other == io.opencensus.proto.trace.v1.Status.getDefaultInstance()) {
+        return this;
+      }
       if (other.getCode() != 0) {
         setCode(other.getCode());
       }
@@ -489,7 +573,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int code_ ;
     /**
      * <pre>
      * The status code. This is optional field. It is safe to assume 0 (OK)
@@ -497,12 +580,14 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int32 code = 1;</code>
+     *
      * @return The code.
      */
     @java.lang.Override
     public int getCode() {
       return code_;
     }
+
     /**
      * <pre>
      * The status code. This is optional field. It is safe to assume 0 (OK)
@@ -510,15 +595,17 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int32 code = 1;</code>
+     *
      * @param value The code to set.
      * @return This builder for chaining.
      */
     public Builder setCode(int value) {
-      
+
       code_ = value;
       onChanged();
       return this;
     }
+
     /**
      * <pre>
      * The status code. This is optional field. It is safe to assume 0 (OK)
@@ -526,22 +613,23 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>int32 code = 1;</code>
+     *
      * @return This builder for chaining.
      */
     public Builder clearCode() {
-      
+
       code_ = 0;
       onChanged();
       return this;
     }
 
-    private java.lang.Object message_ = "";
     /**
      * <pre>
      * A developer-facing error message, which should be in English.
      * </pre>
      *
      * <code>string message = 2;</code>
+     *
      * @return The message.
      */
     public java.lang.String getMessage() {
@@ -556,19 +644,42 @@ private static final long serialVersionUID = 0L;
         return (java.lang.String) ref;
       }
     }
+
     /**
      * <pre>
      * A developer-facing error message, which should be in English.
      * </pre>
      *
      * <code>string message = 2;</code>
+     *
+     * @param value The message to set.
+     * @return This builder for chaining.
+     */
+    public Builder setMessage(
+        java.lang.String value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+
+      message_ = value;
+      onChanged();
+      return this;
+    }
+
+    /**
+     * <pre>
+     * A developer-facing error message, which should be in English.
+     * </pre>
+     *
+     * <code>string message = 2;</code>
+     *
      * @return The bytes for message.
      */
     public com.google.protobuf.ByteString
-        getMessageBytes() {
+    getMessageBytes() {
       java.lang.Object ref = message_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         message_ = b;
@@ -577,59 +688,45 @@ private static final long serialVersionUID = 0L;
         return (com.google.protobuf.ByteString) ref;
       }
     }
+
     /**
      * <pre>
      * A developer-facing error message, which should be in English.
      * </pre>
      *
      * <code>string message = 2;</code>
-     * @param value The message to set.
-     * @return This builder for chaining.
-     */
-    public Builder setMessage(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      message_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * A developer-facing error message, which should be in English.
-     * </pre>
      *
-     * <code>string message = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearMessage() {
-      
-      message_ = getDefaultInstance().getMessage();
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * A developer-facing error message, which should be in English.
-     * </pre>
-     *
-     * <code>string message = 2;</code>
      * @param value The bytes for message to set.
      * @return This builder for chaining.
      */
     public Builder setMessageBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+        throw new NullPointerException();
+      }
+      checkByteStringIsUtf8(value);
+
       message_ = value;
       onChanged();
       return this;
     }
+
+    /**
+     * <pre>
+     * A developer-facing error message, which should be in English.
+     * </pre>
+     *
+     * <code>string message = 2;</code>
+     *
+     * @return This builder for chaining.
+     */
+    public Builder clearMessage() {
+
+      message_ = getDefaultInstance().getMessage();
+      onChanged();
+      return this;
+    }
+
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -644,41 +741,6 @@ private static final long serialVersionUID = 0L;
 
 
     // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.Status)
-  }
-
-  // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Status)
-  private static final io.opencensus.proto.trace.v1.Status DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.trace.v1.Status();
-  }
-
-  public static io.opencensus.proto.trace.v1.Status getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<Status>
-      PARSER = new com.google.protobuf.AbstractParser<Status>() {
-    @java.lang.Override
-    public Status parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Status(input, extensionRegistry);
-    }
-  };
-
-  public static com.google.protobuf.Parser<Status> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<Status> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.Status getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
   }
 
 }

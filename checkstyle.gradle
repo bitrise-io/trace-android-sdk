@@ -1,0 +1,68 @@
+checkstyle {
+    configFile file("../checkstyle.xml")
+    ignoreFailures false
+    showViolations false
+    toolVersion = "8.42"
+}
+
+if (project.hasProperty("android")) {
+    createTasksForSourceSets(project.android.sourceSets)
+} else {
+    createTasksForSourceSets(project.sourceSets)
+}
+
+/**
+ * Creates the required checkStyle tasks for the given project. The task names will be
+ * checkStyle<SourceSet>.
+ *
+ * @param srcSets the Iterable Source Sets.
+ */
+def createTasksForSourceSets(final Iterable<SourceSet> srcSets) {
+    final Set<Task> checkStyleTasks = new HashSet<>()
+    srcSets.forEach {
+        def srcDir = it.getJava().getSrcDirs().stream().filter { it.exists() }.findFirst()
+
+        if (srcDir.isPresent()) {
+            final String sourceSetName = it.name
+
+            final Task csTask = tasks.create(name: "checkStyle${sourceSetName.capitalize()}", type: Checkstyle) {
+                group = getCheckStyleTaskGroupName()
+                description = getCheckStyleDesTaskDescription(sourceSetName)
+
+                configFile file("../checkstyle.xml")
+                source projectDir.relativePath(srcDir.get())
+                ignoreFailures false
+                showViolations false
+                include '**/*.java'
+                classpath = files()
+                reports {
+                    xml.enabled false
+                    html.enabled true
+                }
+            }
+            checkStyleTasks.add(csTask)
+        }
+    }
+
+    if (!checkStyleTasks.isEmpty()) {
+        final Task checkStyleAll = tasks.create(name: "checkStyle") {
+            group = getCheckStyleTaskGroupName()
+            description = getCheckStyleDesTaskDescription("every")
+        }
+
+        checkStyleTasks.forEach {
+            checkStyleAll.dependsOn(it)
+        }
+    }
+}
+
+static String getCheckStyleTaskGroupName() {
+    return "Verification"
+}
+
+static String getCheckStyleDesTaskDescription(final String srcSetName) {
+    return "Generate CheckStyle reports for ${srcSetName} source set"
+}
+
+
+

@@ -107,3 +107,24 @@ sonarqube {
         }
     }
 }
+
+/**
+ * Task that will call the checkStyle task for all subprojects and included builds.
+ */
+task checkStyle() {
+    def excludes = Arrays.asList("opencensus")
+
+    gradle.includedBuilds.forEach {
+        if (!excludes.contains(it.name)) {
+            dependsOn it.task(':checkStyle')
+        }
+    }
+
+    project.getSubprojects().forEach {
+        if (!excludes.contains(it.name)) {
+            it.afterEvaluate {
+                dependsOn it.tasks.findByName('checkStyle')
+            }
+        }
+    }
+}

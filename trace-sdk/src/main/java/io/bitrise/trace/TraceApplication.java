@@ -1,7 +1,6 @@
 package io.bitrise.trace;
 
 import android.app.Application;
-
 import javax.inject.Singleton;
 
 /**
@@ -10,9 +9,9 @@ import javax.inject.Singleton;
 @Singleton
 public class TraceApplication extends Application {
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        TraceSdk.init(getApplicationContext());
-    }
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    TraceSdk.init(getApplicationContext());
+  }
 }

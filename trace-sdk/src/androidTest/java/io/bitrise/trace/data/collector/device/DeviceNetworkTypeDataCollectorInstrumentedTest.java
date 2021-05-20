@@ -1,21 +1,17 @@
 package io.bitrise.trace.data.collector.device;
 
-import androidx.annotation.NonNull;
-import androidx.test.filters.SdkSuppress;
-
-import org.junit.Test;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import io.bitrise.trace.data.collector.BaseDataCollectorInstrumentedTest;
 import io.bitrise.trace.data.dto.Data;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import org.junit.Test;
 
 /**
  * Instrumented tests for {@link DeviceNetworkTypeDataCollector}.
  */
-public class DeviceNetworkTypeDataCollectorInstrumentedTest extends BaseDataCollectorInstrumentedTest {
+public class DeviceNetworkTypeDataCollectorInstrumentedTest
+    extends BaseDataCollectorInstrumentedTest {
 
     @Test
     @SdkSuppress(maxSdkVersion = 28)
