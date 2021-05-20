@@ -10,11 +10,14 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
+import io.bitrise.trace.data.dto.FormattedData;
 import io.bitrise.trace.data.management.formatter.view.ActivityStateDataFormatter;
 import io.bitrise.trace.data.metric.MetricEntity;
 import io.bitrise.trace.data.resource.ResourceEntity;
@@ -26,6 +29,7 @@ import io.bitrise.trace.test.MetricTestProvider;
 import io.bitrise.trace.test.TraceTestProvider;
 import io.bitrise.trace.utils.TraceClock;
 import io.opencensus.proto.metrics.v1.Metric;
+import io.opencensus.proto.resource.v1.Resource;
 import io.opencensus.proto.trace.v1.Span;
 
 import static org.hamcrest.CoreMatchers.hasItem;
@@ -35,6 +39,8 @@ import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -254,20 +260,6 @@ public class TraceDataStorageInstrumentedTest {
         assertEquals(2, dataStorage.getAllTraces().size());
         assertEquals(trace1, dataStorage.getTraceById(traceId1));
         assertEquals(trace2, dataStorage.getTraceById(traceId2));
-    }
-
-    /**
-     * Asserts that if we add multiple {@link Trace}s to the {@link TraceDatabase} via the {@link TraceDataStorage} they
-     * will be returned when we query them.
-     */
-    @Test
-    public void getTraces_shouldContainAllInsertedValue() {
-        final Trace emptyTrace = TraceTestProvider.getEmptyTrace();
-        dataStorage.saveTraces(emptyTrace);
-        final Trace sampleTrace = TraceTestProvider.getSampleTrace();
-        dataStorage.saveTraces(sampleTrace);
-        final List<Trace> actualValue = dataStorage.getAllTraces();
-        assertThat(actualValue, containsInAnyOrder(emptyTrace, sampleTrace));
     }
 
   /**
