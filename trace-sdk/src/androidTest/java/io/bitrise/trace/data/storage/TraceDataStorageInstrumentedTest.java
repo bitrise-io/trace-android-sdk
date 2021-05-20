@@ -421,5 +421,10 @@ public class TraceDataStorageInstrumentedTest {
     final TraceDatabase mockDatabase = Mockito.mock(TraceDatabase.class);
     dataStorage.setTraceDatabase(mockDatabase);
     assertEquals(mockDatabase, dataStorage.traceDatabase);
+
+    // reset the database back for the remaining tests
+    dataStorage.setTraceDatabase(
+        Room.inMemoryDatabaseBuilder(ApplicationProvider.getApplicationContext(),
+            TraceDatabase.class).build());
   }
 }
