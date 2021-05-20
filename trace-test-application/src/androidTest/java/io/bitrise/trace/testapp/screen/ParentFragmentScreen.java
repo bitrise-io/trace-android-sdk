@@ -5,7 +5,6 @@ import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.BySelector;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.Until;
-
 import io.bitrise.trace.testapp.ui.ChildFragment;
 import io.bitrise.trace.testapp.ui.ParentDeprecatedFragment;
 import io.bitrise.trace.testapp.ui.ParentFragment;
@@ -15,30 +14,30 @@ import io.bitrise.trace.testapp.ui.ParentFragment;
  */
 public class ParentFragmentScreen extends BaseScreen {
 
-    private static final BySelector childFragmentButton = By.res(id + "show_child_button");
+  private static final BySelector childFragmentButton = By.res(id + "show_child_button");
 
-    /**
-     * Constructor for class. Waits till the view is displayed.
-     *
-     * @param uiDevice the UiDevice that launches the test cases.
-     */
-    public ParentFragmentScreen(@NonNull final UiDevice uiDevice) {
-        super(uiDevice);
-    }
+  /**
+   * Constructor for class. Waits till the view is displayed.
+   *
+   * @param uiDevice the UiDevice that launches the test cases.
+   */
+  public ParentFragmentScreen(@NonNull final UiDevice uiDevice) {
+    super(uiDevice);
+  }
 
-    @Override
-    public void waitTillLoad() {
-        uiDevice.wait(Until.findObject(childFragmentButton), DEFAULT_TIMEOUT);
-    }
+  @Override
+  public void waitTillLoad() {
+    uiDevice.wait(Until.findObject(childFragmentButton), DEFAULT_TIMEOUT);
+  }
 
-    /**
-     * Clicks on the parent fragment button and shows the {@link ChildFragment}.
-     *
-     * @return the created {@link ChildFragmentScreen}.
-     */
-    @NonNull
-    public ChildFragmentScreen showChildFragment() {
-        click(childFragmentButton);
-        return new ChildFragmentScreen(uiDevice);
-    }
+  /**
+   * Clicks on the parent fragment button and shows the {@link ChildFragment}.
+   *
+   * @return the created {@link ChildFragmentScreen}.
+   */
+  @NonNull
+  public ChildFragmentScreen showChildFragment() {
+    click(childFragmentButton);
+    return new ChildFragmentScreen(uiDevice);
+  }
 }

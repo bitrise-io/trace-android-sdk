@@ -13,15 +13,18 @@ public interface LibraryInfoOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.LibraryInfo.Language language = 1;</code>
+   *
    * @return The enum numeric value on the wire for language.
    */
   int getLanguageValue();
+
   /**
    * <pre>
    * Language of OpenCensus Library.
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.LibraryInfo.Language language = 1;</code>
+   *
    * @return The language.
    */
   io.opencensus.proto.agent.common.v1.LibraryInfo.Language getLanguage();
@@ -32,19 +35,22 @@ public interface LibraryInfoOrBuilder extends
    * </pre>
    *
    * <code>string exporter_version = 2;</code>
+   *
    * @return The exporterVersion.
    */
   java.lang.String getExporterVersion();
+
   /**
    * <pre>
    * Version of Agent exporter of Library.
    * </pre>
    *
    * <code>string exporter_version = 2;</code>
+   *
    * @return The bytes for exporterVersion.
    */
   com.google.protobuf.ByteString
-      getExporterVersionBytes();
+  getExporterVersionBytes();
 
   /**
    * <pre>
@@ -52,17 +58,20 @@ public interface LibraryInfoOrBuilder extends
    * </pre>
    *
    * <code>string core_library_version = 3;</code>
+   *
    * @return The coreLibraryVersion.
    */
   java.lang.String getCoreLibraryVersion();
+
   /**
    * <pre>
    * Version of OpenCensus Library.
    * </pre>
    *
    * <code>string core_library_version = 3;</code>
+   *
    * @return The bytes for coreLibraryVersion.
    */
   com.google.protobuf.ByteString
-      getCoreLibraryVersionBytes();
+  getCoreLibraryVersionBytes();
 }

@@ -4,7 +4,8 @@
 package io.opencensus.proto.agent.trace.v1;
 
 public interface CurrentLibraryConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:opencensus.proto.agent.trace.v1.CurrentLibraryConfig)
+    // @@protoc_insertion_point(interface_extends:opencensus.proto.agent.trace.v1
+    // .CurrentLibraryConfig)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -15,9 +16,11 @@ public interface CurrentLibraryConfigOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
+   *
    * @return Whether the node field is set.
    */
   boolean hasNode();
+
   /**
    * <pre>
    * This is required only in the first message on the stream or if the
@@ -26,9 +29,11 @@ public interface CurrentLibraryConfigOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
+   *
    * @return The node.
    */
   io.opencensus.proto.agent.common.v1.Node getNode();
+
   /**
    * <pre>
    * This is required only in the first message on the stream or if the
@@ -46,18 +51,22 @@ public interface CurrentLibraryConfigOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TraceConfig config = 2;</code>
+   *
    * @return Whether the config field is set.
    */
   boolean hasConfig();
+
   /**
    * <pre>
    * Current configuration.
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TraceConfig config = 2;</code>
+   *
    * @return The config.
    */
   io.opencensus.proto.trace.v1.TraceConfig getConfig();
+
   /**
    * <pre>
    * Current configuration.

@@ -13,19 +13,22 @@ public interface MetricDescriptorOrBuilder extends
    * </pre>
    *
    * <code>string name = 1;</code>
+   *
    * @return The name.
    */
   java.lang.String getName();
+
   /**
    * <pre>
    * The metric type, including its DNS name prefix. It must be unique.
    * </pre>
    *
    * <code>string name = 1;</code>
+   *
    * @return The bytes for name.
    */
   com.google.protobuf.ByteString
-      getNameBytes();
+  getNameBytes();
 
   /**
    * <pre>
@@ -33,19 +36,22 @@ public interface MetricDescriptorOrBuilder extends
    * </pre>
    *
    * <code>string description = 2;</code>
+   *
    * @return The description.
    */
   java.lang.String getDescription();
+
   /**
    * <pre>
    * A detailed description of the metric, which can be used in documentation.
    * </pre>
    *
    * <code>string description = 2;</code>
+   *
    * @return The bytes for description.
    */
   com.google.protobuf.ByteString
-      getDescriptionBytes();
+  getDescriptionBytes();
 
   /**
    * <pre>
@@ -54,9 +60,11 @@ public interface MetricDescriptorOrBuilder extends
    * </pre>
    *
    * <code>string unit = 3;</code>
+   *
    * @return The unit.
    */
   java.lang.String getUnit();
+
   /**
    * <pre>
    * The unit in which the metric value is reported. Follows the format
@@ -64,18 +72,22 @@ public interface MetricDescriptorOrBuilder extends
    * </pre>
    *
    * <code>string unit = 3;</code>
+   *
    * @return The bytes for unit.
    */
   com.google.protobuf.ByteString
-      getUnitBytes();
+  getUnitBytes();
 
   /**
    * <code>.opencensus.proto.metrics.v1.MetricDescriptor.Type type = 4;</code>
+   *
    * @return The enum numeric value on the wire for type.
    */
   int getTypeValue();
+
   /**
    * <code>.opencensus.proto.metrics.v1.MetricDescriptor.Type type = 4;</code>
+   *
    * @return The type.
    */
   io.opencensus.proto.metrics.v1.MetricDescriptor.Type getType();
@@ -87,8 +99,9 @@ public interface MetricDescriptorOrBuilder extends
    *
    * <code>repeated .opencensus.proto.metrics.v1.LabelKey label_keys = 5;</code>
    */
-  java.util.List<io.opencensus.proto.metrics.v1.LabelKey> 
-      getLabelKeysList();
+  java.util.List<io.opencensus.proto.metrics.v1.LabelKey>
+  getLabelKeysList();
+
   /**
    * <pre>
    * The label keys associated with the metric descriptor.
@@ -97,6 +110,7 @@ public interface MetricDescriptorOrBuilder extends
    * <code>repeated .opencensus.proto.metrics.v1.LabelKey label_keys = 5;</code>
    */
   io.opencensus.proto.metrics.v1.LabelKey getLabelKeys(int index);
+
   /**
    * <pre>
    * The label keys associated with the metric descriptor.
@@ -105,6 +119,7 @@ public interface MetricDescriptorOrBuilder extends
    * <code>repeated .opencensus.proto.metrics.v1.LabelKey label_keys = 5;</code>
    */
   int getLabelKeysCount();
+
   /**
    * <pre>
    * The label keys associated with the metric descriptor.
@@ -112,8 +127,9 @@ public interface MetricDescriptorOrBuilder extends
    *
    * <code>repeated .opencensus.proto.metrics.v1.LabelKey label_keys = 5;</code>
    */
-  java.util.List<? extends io.opencensus.proto.metrics.v1.LabelKeyOrBuilder> 
-      getLabelKeysOrBuilderList();
+  java.util.List<? extends io.opencensus.proto.metrics.v1.LabelKeyOrBuilder>
+  getLabelKeysOrBuilderList();
+
   /**
    * <pre>
    * The label keys associated with the metric descriptor.

@@ -10,14 +10,11 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-import io.bitrise.trace.data.dto.FormattedData;
 import io.bitrise.trace.data.management.formatter.view.ActivityStateDataFormatter;
 import io.bitrise.trace.data.metric.MetricEntity;
 import io.bitrise.trace.data.resource.ResourceEntity;
@@ -29,7 +26,6 @@ import io.bitrise.trace.test.MetricTestProvider;
 import io.bitrise.trace.test.TraceTestProvider;
 import io.bitrise.trace.utils.TraceClock;
 import io.opencensus.proto.metrics.v1.Metric;
-import io.opencensus.proto.resource.v1.Resource;
 import io.opencensus.proto.trace.v1.Span;
 
 import static org.hamcrest.CoreMatchers.hasItem;
@@ -39,8 +35,6 @@ import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -49,37 +43,37 @@ import static org.junit.Assert.assertTrue;
  */
 public class TraceDataStorageInstrumentedTest {
 
-    private static DataStorage dataStorage;
+  private static DataStorage dataStorage;
 
-    /**
-     * Sets up the initial state for the test class.
-     */
-    @BeforeClass
-    public static void setUp() {
-        final Context context = ApplicationProvider.getApplicationContext();
-        dataStorage = TraceDataStorage.getInstance(context);
-        dataStorage.traceDatabase = Room.inMemoryDatabaseBuilder(context, TraceDatabase.class).build();
-        ApplicationSessionManager.getInstance().startSession();
-    }
+  /**
+   * Sets up the initial state for the test class.
+   */
+  @BeforeClass
+  public static void setUp() {
+    final Context context = ApplicationProvider.getApplicationContext();
+    dataStorage = TraceDataStorage.getInstance(context);
+    dataStorage.traceDatabase = Room.inMemoryDatabaseBuilder(context, TraceDatabase.class).build();
+    ApplicationSessionManager.getInstance().startSession();
+  }
 
-    /**
-     * Tears down the required objects after all the tests run.
-     */
-    @AfterClass
-    public static void tearDown() {
-        ApplicationSessionManager.getInstance().stopSession();
-        dataStorage.traceDatabase.close();
-    }
+  /**
+   * Tears down the required objects after all the tests run.
+   */
+  @AfterClass
+  public static void tearDown() {
+    ApplicationSessionManager.getInstance().stopSession();
+    dataStorage.traceDatabase.close();
+  }
 
-    /**
-     * Set up the database with the required state before each test.
-     */
-    @Before
-    public void setUpForEach() {
-        dataStorage.traceDatabase.clearAllTables();
-    }
+  /**
+   * Set up the database with the required state before each test.
+   */
+  @Before
+  public void setUpForEach() {
+    dataStorage.traceDatabase.clearAllTables();
+  }
 
-    @Test
+  @Test
     public void isInitialised() {
         assertTrue(DataStorage.isInitialised());
     }
@@ -95,7 +89,7 @@ public class TraceDataStorageInstrumentedTest {
         MatcherAssert.assertThat(actualValue, sameInstance(expectedValue));
     }
 
-    @Test
+  @Test
     public void saveFormattedData_null() {
         dataStorage.saveFormattedData(null);
         assertEquals(0, dataStorage.getAllMetrics().size());
@@ -138,99 +132,111 @@ public class TraceDataStorageInstrumentedTest {
     }
 
     /**
-     * Asserts that if we add a {@link Metric} to the {@link TraceDatabase} via the {@link TraceDataStorage} it will be
-     * returned when we query it.
-     */
-    @Test
-    public void saveMetric_shouldContainInsertedValue() {
-        final MetricEntity expectedValue = new MetricEntity(MetricTestProvider.getEmptyMetric());
-        dataStorage.saveMetric(expectedValue);
-        final MetricEntity actualValue = dataStorage.getMetricById(expectedValue.getMetricId());
-        assertThat(actualValue, is(expectedValue));
-    }
+     * Asserts that if we add a {@link Metric} to the {@link TraceDatabase} via the* {@link TraceDataStorage} it will be returned when we query it.
+   */
+  @Test
+  public void saveMetric_shouldContainInsertedValue() {
+    final MetricEntity expectedValue = new MetricEntity(MetricTestProvider.getEmptyMetric());
+    dataStorage.saveMetric(expectedValue);
+    final MetricEntity actualValue = dataStorage.getMetricById(expectedValue.getMetricId());
+    assertThat(actualValue, is(expectedValue));
+  }
 
-    /**
-     * Asserts that if we add multiple {@link Metric}s to the {@link TraceDatabase} via the {@link TraceDataStorage}
-     * they will be returned when we query them.
-     */
-    @Test
-    public void getMetrics_shouldContainAllInsertedValue() {
-        final MetricEntity emptyEntity = new MetricEntity(MetricTestProvider.getEmptyMetric());
-        dataStorage.saveMetric(emptyEntity);
-        final MetricEntity sampleEntity = new MetricEntity(MetricTestProvider.getSampleMetric());
-        dataStorage.saveMetric(sampleEntity);
-        final List<MetricEntity> actualValue = dataStorage.getAllMetrics();
-        assertThat(actualValue, containsInAnyOrder(emptyEntity, sampleEntity));
-    }
+  /**
+   * Asserts that if we add multiple {@link Metric}s to the {@link TraceDatabase} via the
+   * {@link TraceDataStorage} they will be returned when we query them.
+   */
+  @Test
+  public void getMetrics_shouldContainAllInsertedValue() {
+    final MetricEntity emptyEntity = new MetricEntity(MetricTestProvider.getEmptyMetric());
+    dataStorage.saveMetric(emptyEntity);
+    final MetricEntity sampleEntity = new MetricEntity(MetricTestProvider.getSampleMetric());
+    dataStorage.saveMetric(sampleEntity);
+    final List<MetricEntity> actualValue = dataStorage.getAllMetrics();
+    assertThat(actualValue, containsInAnyOrder(emptyEntity, sampleEntity));
+  }
 
-    /**
-     * Asserts that if we add a {@link Metric} to the {@link TraceDatabase} via the {@link TraceDataStorage}, then
-     * delete it, it will return a {@code null} value when queried.
-     */
-    @Test
-    public void deleteMetric_shouldDeleteValue() {
-        final MetricEntity metricEntity = new MetricEntity(MetricTestProvider.getSampleMetric());
-        dataStorage.saveMetric(metricEntity);
-        dataStorage.deleteMetric(metricEntity);
-        final MetricEntity actualValue = dataStorage.getMetricById(metricEntity.getMetricId());
-        assertThat(actualValue, is(nullValue()));
-    }
+  /**
+   * Asserts that if we add a {@link Metric} to the {@link TraceDatabase} via the
+   * {@link TraceDataStorage}, then delete it, it will return a {@code null} value when queried.
+   */
+  @Test
+  public void deleteMetric_shouldDeleteValue() {
+    final MetricEntity metricEntity = new MetricEntity(MetricTestProvider.getSampleMetric());
+    dataStorage.saveMetric(metricEntity);
+    dataStorage.deleteMetric(metricEntity);
+    final MetricEntity actualValue = dataStorage.getMetricById(metricEntity.getMetricId());
+    assertThat(actualValue, is(nullValue()));
+  }
 
-    /**
-     * Asserts that if we add multiple {@link MetricEntity}s to the {@link TraceDatabase} via the
-     * {@link TraceDataStorage}, then delete them, they won't be found when queried.
-     */
-    @Test
-    public void deleteMetrics_shouldDeleteMultipleValue() {
-        final MetricEntity emptyEntity = new MetricEntity(MetricTestProvider.getEmptyMetric());
-        dataStorage.saveMetric(emptyEntity);
-        final MetricEntity sampleEntity = new MetricEntity(MetricTestProvider.getSampleMetric());
-        dataStorage.saveMetric(sampleEntity);
+  /**
+   * Asserts that if we add multiple {@link MetricEntity}s to the {@link TraceDatabase} via the
+   * {@link TraceDataStorage}, then delete them, they won't be found when queried.
+   */
+  @Test
+  public void deleteMetrics_shouldDeleteMultipleValue() {
+    final MetricEntity emptyEntity = new MetricEntity(MetricTestProvider.getEmptyMetric());
+    dataStorage.saveMetric(emptyEntity);
+    final MetricEntity sampleEntity = new MetricEntity(MetricTestProvider.getSampleMetric());
+    dataStorage.saveMetric(sampleEntity);
 
-        dataStorage.deleteMetrics(Arrays.asList(emptyEntity, sampleEntity));
+    dataStorage.deleteMetrics(Arrays.asList(emptyEntity, sampleEntity));
 
-        final List<MetricEntity> actualValue = dataStorage.getAllMetrics();
-        assertThat(actualValue, not(containsInAnyOrder(emptyEntity, sampleEntity)));
-    }
+    final List<MetricEntity> actualValue = dataStorage.getAllMetrics();
+    assertThat(actualValue, not(containsInAnyOrder(emptyEntity, sampleEntity)));
+  }
 
-    /**
-     * Asserts that if we add a {@link TraceEntity} to the {@link TraceDatabase} via the {@link TraceDataStorage} it
-     * will be returned when we query it.
-     */
-    @Test
-    public void saveTrace_shouldContainInsertedValue() {
-        final Trace expectedValue = TraceTestProvider.getSampleTrace();
-        dataStorage.saveTraces(expectedValue);
-        final Trace actualValue = dataStorage.getTraceById(expectedValue.getTraceId());
-        assertThat(actualValue, equalTo(expectedValue));
-    }
+  /**
+   * Asserts that if we add a {@link TraceEntity} to the {@link TraceDatabase} via the
+   * {@link TraceDataStorage} it will be returned when we query it.
+   */
+  @Test
+  public void saveTrace_shouldContainInsertedValue() {
+    final Trace expectedValue = TraceTestProvider.getSampleTrace();
+    dataStorage.saveTraces(expectedValue);
+    final Trace actualValue = dataStorage.getTraceById(expectedValue.getTraceId());
+    assertThat(actualValue, equalTo(expectedValue));
+  }
 
-    @Test
-    public void saveTrace_realData() {
-        final List<Span> spans = new ArrayList<>();
-        long timestamp = TraceClock.getCurrentTimeMillis();
-        spans.add(ActivityStateDataFormatter.createActivityViewSpan("IndexActivity", timestamp,
-                timestamp + 100,"77d25914-1801-4"));
-        final Trace trace = new Trace("36e817c7-8614-41", spans);
+  @Test
+  public void saveTrace_realData() {
+    final List<Span> spans = new ArrayList<>();
+    long timestamp = TraceClock.getCurrentTimeMillis();
+    spans.add(ActivityStateDataFormatter.createActivityViewSpan("IndexActivity", timestamp,
+        timestamp + 100, "77d25914-1801-4"));
+    final Trace trace = new Trace("36e817c7-8614-41", spans);
 
-        dataStorage.saveTraces(trace);
-       final Trace savedTrace =  dataStorage.getTraceById("36e817c7-8614-41");
+    dataStorage.saveTraces(trace);
+    final Trace savedTrace = dataStorage.getTraceById("36e817c7-8614-41");
 
-        assertThat(savedTrace, equalTo(trace));
-    }
+    assertThat(savedTrace, equalTo(trace));
+  }
 
-    @Test
-    public void saveTrace_networkData() {
-        final List<Span> spans = new ArrayList<>();
-        spans.add(TraceTestProvider.createNetworkSpan());
-        final Trace trace = new Trace("36e817c7-8614-41", spans);
+  @Test
+  public void saveTrace_networkData() {
+    final List<Span> spans = new ArrayList<>();
+    spans.add(TraceTestProvider.createNetworkSpan());
+    final Trace trace = new Trace("36e817c7-8614-41", spans);
 
-        dataStorage.saveTraces(trace);
-        final Trace savedTrace =  dataStorage.getTraceById("36e817c7-8614-41");
+    dataStorage.saveTraces(trace);
+    final Trace savedTrace = dataStorage.getTraceById("36e817c7-8614-41");
 
-        assertThat(savedTrace, equalTo(trace));
-    }
+    assertThat(savedTrace, equalTo(trace));
+  }
 
+  /**
+   * Asserts that if we add multiple {@link Trace}s to the {@link TraceDatabase} via the
+   * {@link TraceDataStorage} they will be returned when we query them.
+   */
+  @Test
+  public void getTraces_shouldContainAllInsertedValue() {
+    final Trace emptyTrace = TraceTestProvider.getEmptyTrace();
+    dataStorage.saveTraces(emptyTrace);
+    final Trace sampleTrace = TraceTestProvider.getSampleTrace();
+    dataStorage.saveTraces(sampleTrace);
+    final List<Trace> actualValue = dataStorage.getAllTraces();
+    assertThat(actualValue, containsInAnyOrder(emptyTrace, sampleTrace));
+  }
     @Test
     public void saveTrace_multipleItems() {
         final String traceId1 = "36e817c7-8614-41";
@@ -264,91 +270,93 @@ public class TraceDataStorageInstrumentedTest {
         assertThat(actualValue, containsInAnyOrder(emptyTrace, sampleTrace));
     }
 
-    /**
-     * Asserts that if we add a {@link Trace} to the {@link TraceDatabase} via the {@link TraceDataStorage}, then
-     * delete it, it will return a {@code null} value when queried.
-     */
-    @Test
-    public void deleteTrace_shouldDeleteValue() {
-        final Trace trace = TraceTestProvider.getSampleTrace();
-        dataStorage.saveTraces(trace);
-        dataStorage.deleteTrace(trace);
-        final Trace actualValue = dataStorage.getTraceById(trace.getTraceId());
-        assertThat(actualValue, is(nullValue()));
-    }
+  /**
+   * Asserts that if we add a {@link Trace} to the {@link TraceDatabase} via the
+   * {@link TraceDataStorage}, then delete it, it will return a {@code null} value when queried.
+   */
+  @Test
+  public void deleteTrace_shouldDeleteValue() {
+    final Trace trace = TraceTestProvider.getSampleTrace();
+    dataStorage.saveTraces(trace);
+    dataStorage.deleteTrace(trace);
+    final Trace actualValue = dataStorage.getTraceById(trace.getTraceId());
+    assertThat(actualValue, is(nullValue()));
+  }
 
-    /**
-     * Asserts that if we add multiple {@link Trace}s to the {@link TraceDatabase} via the {@link TraceDataStorage},
-     * then delete them, they won't be found when queried.
-     */
-    @Test
-    public void deleteTraces_shouldDeleteMultipleValue() {
-        final Trace emptyTrace = TraceTestProvider.getSampleTrace();
-        dataStorage.saveTraces(emptyTrace);
-        final Trace sampleTrace = TraceTestProvider.getSampleTrace();
-        dataStorage.saveTraces(sampleTrace);
+  /**
+   * Asserts that if we add multiple {@link Trace}s to the {@link TraceDatabase} via the
+   * {@link TraceDataStorage}, then delete them, they won't be found when queried.
+   */
+  @Test
+  public void deleteTraces_shouldDeleteMultipleValue() {
+    final Trace emptyTrace = TraceTestProvider.getSampleTrace();
+    dataStorage.saveTraces(emptyTrace);
+    final Trace sampleTrace = TraceTestProvider.getSampleTrace();
+    dataStorage.saveTraces(sampleTrace);
 
-        dataStorage.deleteTraces(Arrays.asList(emptyTrace, sampleTrace));
+    dataStorage.deleteTraces(Arrays.asList(emptyTrace, sampleTrace));
 
-        final List<Trace> actualValue = dataStorage.getAllTraces();
-        assertThat(actualValue, not(containsInAnyOrder(emptyTrace, sampleTrace)));
-    }
+    final List<Trace> actualValue = dataStorage.getAllTraces();
+    assertThat(actualValue, not(containsInAnyOrder(emptyTrace, sampleTrace)));
+  }
 
-    /**
-     * Asserts that if we add a {@link ResourceEntity} to the {@link TraceDatabase} via the {@link TraceDataStorage}
-     * it will be returned when we query it.
-     */
-    @Test
-    public void saveResource_shouldContainInsertedValue() {
-        final ResourceEntity expectedValue = DataTestUtils.getSampleResourceEntity();
-        dataStorage.saveResourceEntity(expectedValue);
-        final List<ResourceEntity> actualValues = dataStorage.getResourcesWithSessionId(expectedValue.getSessionId());
-        assertThat(actualValues, hasItem(expectedValue));
-    }
+  /**
+   * Asserts that if we add a {@link ResourceEntity} to the {@link TraceDatabase} via the
+   * {@link TraceDataStorage} it will be returned when we query it.
+   */
+  @Test
+  public void saveResource_shouldContainInsertedValue() {
+    final ResourceEntity expectedValue = DataTestUtils.getSampleResourceEntity();
+    dataStorage.saveResourceEntity(expectedValue);
+    final List<ResourceEntity> actualValues =
+        dataStorage.getResourcesWithSessionId(expectedValue.getSessionId());
+    assertThat(actualValues, hasItem(expectedValue));
+  }
 
-    /**
-     * Asserts that if we add multiple {@link ResourceEntity}s to the {@link TraceDatabase} via the
-     * {@link TraceDataStorage} they will be returned when we query them.
-     */
-    @Test
-    public void getResources_shouldContainAllInsertedValue() {
-        final ResourceEntity sampleResourceEntity = DataTestUtils.getSampleResourceEntity();
-        dataStorage.saveResourceEntity(sampleResourceEntity);
-        final ResourceEntity otherResourceEntity = DataTestUtils.getOtherResourceEntity();
-        dataStorage.saveResourceEntity(otherResourceEntity);
-        final List<ResourceEntity> actualValue = dataStorage.getAllResources();
-        assertThat(actualValue, containsInAnyOrder(sampleResourceEntity, otherResourceEntity));
-    }
+  /**
+   * Asserts that if we add multiple {@link ResourceEntity}s to the {@link TraceDatabase} via the
+   * {@link TraceDataStorage} they will be returned when we query them.
+   */
+  @Test
+  public void getResources_shouldContainAllInsertedValue() {
+    final ResourceEntity sampleResourceEntity = DataTestUtils.getSampleResourceEntity();
+    dataStorage.saveResourceEntity(sampleResourceEntity);
+    final ResourceEntity otherResourceEntity = DataTestUtils.getOtherResourceEntity();
+    dataStorage.saveResourceEntity(otherResourceEntity);
+    final List<ResourceEntity> actualValue = dataStorage.getAllResources();
+    assertThat(actualValue, containsInAnyOrder(sampleResourceEntity, otherResourceEntity));
+  }
 
-    /**
-     * Asserts that if we add a {@link ResourceEntity} to the {@link TraceDatabase} via the {@link TraceDataStorage},
-     * then delete it, it will return a {@code null} value when queried.
-     */
-    @Test
-    public void deleteResource_shouldDeleteValue() {
-        final ResourceEntity resourceEntity = DataTestUtils.getSampleResourceEntity();
-        dataStorage.saveResourceEntity(resourceEntity);
-        dataStorage.deleteResourcesWithSessionId(resourceEntity.getSessionId());
-        final int actualValue = dataStorage.getResourcesWithSessionId(resourceEntity.getSessionId()).size();
-        assertThat(actualValue, is(0));
-    }
+  /**
+   * Asserts that if we add a {@link ResourceEntity} to the {@link TraceDatabase} via the
+   * {@link TraceDataStorage}, then delete it, it will return a {@code null} value when queried.
+   */
+  @Test
+  public void deleteResource_shouldDeleteValue() {
+    final ResourceEntity resourceEntity = DataTestUtils.getSampleResourceEntity();
+    dataStorage.saveResourceEntity(resourceEntity);
+    dataStorage.deleteResourcesWithSessionId(resourceEntity.getSessionId());
+    final int actualValue =
+        dataStorage.getResourcesWithSessionId(resourceEntity.getSessionId()).size();
+    assertThat(actualValue, is(0));
+  }
 
-    /**
-     * Asserts that if we add multiple {@link ResourceEntity}s to the {@link TraceDatabase} via the
-     * {@link TraceDataStorage}, then delete them, they won't be found when queried.
-     */
-    @Test
-    public void deleteResource_shouldDeleteMultipleValue() {
-        final ResourceEntity sampleResourceEntity = DataTestUtils.getSampleResourceEntity();
-        dataStorage.saveResourceEntity(sampleResourceEntity);
-        final ResourceEntity otherResourceEntity = DataTestUtils.getOtherResourceEntity();
-        dataStorage.saveResourceEntity(otherResourceEntity);
+  /**
+   * Asserts that if we add multiple {@link ResourceEntity}s to the {@link TraceDatabase} via the
+   * {@link TraceDataStorage}, then delete them, they won't be found when queried.
+   */
+  @Test
+  public void deleteResource_shouldDeleteMultipleValue() {
+    final ResourceEntity sampleResourceEntity = DataTestUtils.getSampleResourceEntity();
+    dataStorage.saveResourceEntity(sampleResourceEntity);
+    final ResourceEntity otherResourceEntity = DataTestUtils.getOtherResourceEntity();
+    dataStorage.saveResourceEntity(otherResourceEntity);
 
-        dataStorage.deleteResources(Arrays.asList(sampleResourceEntity, otherResourceEntity));
+    dataStorage.deleteResources(Arrays.asList(sampleResourceEntity, otherResourceEntity));
 
-        final List<ResourceEntity> actualValue = dataStorage.getAllResources();
-        assertThat(actualValue, not(containsInAnyOrder(sampleResourceEntity, otherResourceEntity)));
-    }
+    final List<ResourceEntity> actualValue = dataStorage.getAllResources();
+    assertThat(actualValue, not(containsInAnyOrder(sampleResourceEntity, otherResourceEntity)));
+  }
 
     @Test
     public void getFirstTraceGroup_noSessions() {

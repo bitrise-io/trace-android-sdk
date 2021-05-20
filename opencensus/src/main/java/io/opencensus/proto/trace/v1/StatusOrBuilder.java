@@ -14,6 +14,7 @@ public interface StatusOrBuilder extends
    * </pre>
    *
    * <code>int32 code = 1;</code>
+   *
    * @return The code.
    */
   int getCode();
@@ -24,17 +25,20 @@ public interface StatusOrBuilder extends
    * </pre>
    *
    * <code>string message = 2;</code>
+   *
    * @return The message.
    */
   java.lang.String getMessage();
+
   /**
    * <pre>
    * A developer-facing error message, which should be in English.
    * </pre>
    *
    * <code>string message = 2;</code>
+   *
    * @return The bytes for message.
    */
   com.google.protobuf.ByteString
-      getMessageBytes();
+  getMessageBytes();
 }

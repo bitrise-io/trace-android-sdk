@@ -17,61 +17,66 @@ import androidx.annotation.NonNull;
  */
 public final class TraceLogCollector {
 
-    /**
-     * Constructor for class. Should not be instantiated as it has only static members. Throws
-     * UnsupportedOperationException if instantiated with reflection.
-     */
-    private TraceLogCollector() {
-        throw new UnsupportedOperationException("Private constructor for class");
-    }
+  /**
+   * Constructor for class. Should not be instantiated as it has only static members. Throws
+   * UnsupportedOperationException if instantiated with reflection.
+   */
+  private TraceLogCollector() {
+    throw new UnsupportedOperationException("Private constructor for class");
+  }
 
-    /**
-     * Creates a Log message at VERBOSE level.
-     *
-     * @param tag     the Tag for the message.
-     * @param message the message.
-     */
-    public static void v(@NonNull final String tag, @NonNull final String message) {
-        // TODO add implementation.
-    }
+  /**
+   * Creates a Log message at VERBOSE level.
+   *
+   * @param tag     the Tag for the message.
+   * @param message the message.
+   */
+  @SuppressWarnings("checkstyle:MethodName")
+  public static void v(@NonNull final String tag, @NonNull final String message) {
+    // TODO add implementation.
+  }
 
-    /**
-     * Creates a Log message at DEBUG level.
-     *
-     * @param tag     the Tag for the message.
-     * @param message the message.
-     */
-    public static void d(@NonNull final String tag, @NonNull final String message) {
-        // TODO add implementation.
-    }
+  /**
+   * Creates a Log message at DEBUG level.
+   *
+   * @param tag     the Tag for the message.
+   * @param message the message.
+   */
+  @SuppressWarnings("checkstyle:MethodName")
+  public static void d(@NonNull final String tag, @NonNull final String message) {
+    // TODO add implementation.
+  }
 
-    /**
-     * Creates a Log message at INFORMATION level.
-     *
-     * @param tag     the Tag for the message.
-     * @param message the message.
-     */
-    public static void i(@NonNull final String tag, @NonNull final String message) {
-        // TODO add implementation.
-    }
+  /**
+   * Creates a Log message at INFORMATION level.
+   *
+   * @param tag     the Tag for the message.
+   * @param message the message.
+   */
+  @SuppressWarnings("checkstyle:MethodName")
+  public static void i(@NonNull final String tag, @NonNull final String message) {
+    // TODO add implementation.
+  }
 
-    /**
-     * Creates a Log message at WARNING level.
-     *
-     * @param tag     the Tag for the message.
-     * @param message the message.
-     */
-    public static void w(@NonNull final String tag, @NonNull final String message) {
-        // TODO add implementation.
-    }
+  /**
+   * Creates a Log message at WARNING level.
+   *
+   * @param tag     the Tag for the message.
+   * @param message the message.
+   */
+  @SuppressWarnings("checkstyle:MethodName")
+  public static void w(@NonNull final String tag, @NonNull final String message) {
+    // TODO add implementation.
+  }
 
-    /**
-     * Creates a Log message at ERROR level.
-     *
-     * @param tag     the Tag for the message.
-     * @param message the message.
-     */
-    public static void e(@NonNull final String tag, @NonNull final String message) {
-        // TODO add implementation.
-    }
+  /**
+   * Creates a Log message at ERROR level.
+   *
+   * @param tag     the Tag for the message.
+   * @param message the message.
+   */
+  @SuppressWarnings("checkstyle:MethodName")
+  public static void e(@NonNull final String tag, @NonNull final String message) {
+    // TODO add implementation.
+  }
 }

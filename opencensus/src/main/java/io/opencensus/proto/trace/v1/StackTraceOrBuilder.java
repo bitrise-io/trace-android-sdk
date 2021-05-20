@@ -13,18 +13,22 @@ public interface StackTraceOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.StackTrace.StackFrames stack_frames = 1;</code>
+   *
    * @return Whether the stackFrames field is set.
    */
   boolean hasStackFrames();
+
   /**
    * <pre>
    * Stack frames in this stack trace.
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.StackTrace.StackFrames stack_frames = 1;</code>
+   *
    * @return The stackFrames.
    */
   io.opencensus.proto.trace.v1.StackTrace.StackFrames getStackFrames();
+
   /**
    * <pre>
    * Stack frames in this stack trace.
@@ -48,6 +52,7 @@ public interface StackTraceOrBuilder extends
    * </pre>
    *
    * <code>uint64 stack_trace_hash_id = 2;</code>
+   *
    * @return The stackTraceHashId.
    */
   long getStackTraceHashId();

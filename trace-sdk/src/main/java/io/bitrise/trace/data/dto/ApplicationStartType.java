@@ -9,19 +9,19 @@ import androidx.annotation.NonNull;
  * <a href="https://developer.android.com/topic/performance/vitals/launch-time">https://developer.android.com/topic/performance/vitals/launch-time</a>
  */
 public enum ApplicationStartType {
-    COLD("cold"),
-    WARM("warm"),
-    ;
+  COLD("cold"),
+  WARM("warm"),
+  ;
 
-    @NonNull
-    private String name;
+  @NonNull
+  private final String name;
 
-    ApplicationStartType(@NonNull final String name) {
-        this.name = name;
-    }
+  ApplicationStartType(@NonNull final String name) {
+    this.name = name;
+  }
 
-    @NonNull
-    public String getName() {
-        return name;
-    }
+  @NonNull
+  public String getName() {
+    return name;
+  }
 }

@@ -4,6 +4,7 @@
 package io.opencensus.proto.agent.metrics.v1;
 
 public interface ExportMetricsServiceResponseOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:opencensus.proto.agent.metrics.v1.ExportMetricsServiceResponse)
+    // @@protoc_insertion_point(interface_extends:opencensus.proto.agent.metrics.v1
+    // .ExportMetricsServiceResponse)
     com.google.protobuf.MessageOrBuilder {
 }
