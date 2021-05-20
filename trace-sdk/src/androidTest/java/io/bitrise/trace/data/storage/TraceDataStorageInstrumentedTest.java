@@ -1,22 +1,20 @@
 package io.bitrise.trace.data.storage;
 
-import android.content.Context;
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.sameInstance;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
+import android.content.Context;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
-
-import org.hamcrest.MatcherAssert;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.mockito.Mockito;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import io.bitrise.trace.data.dto.FormattedData;
 import io.bitrise.trace.data.management.formatter.view.ActivityStateDataFormatter;
 import io.bitrise.trace.data.metric.MetricEntity;
@@ -31,18 +29,16 @@ import io.bitrise.trace.utils.TraceClock;
 import io.opencensus.proto.metrics.v1.Metric;
 import io.opencensus.proto.resource.v1.Resource;
 import io.opencensus.proto.trace.v1.Span;
-
-import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.sameInstance;
-import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import org.hamcrest.MatcherAssert;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.mockito.Mockito;
 
 /**
  * Contains the instrumented tests for {@link TraceDataStorage} class.
@@ -80,65 +76,66 @@ public class TraceDataStorageInstrumentedTest {
   }
 
   @Test
-    public void isInitialised() {
-        assertTrue(DataStorage.isInitialised());
-    }
-
-    /**
-     * Checks that the {@link TraceDataStorage#getInstance(Context)} returns a Singleton value.
-     */
-    @Test
-    public void getInstance_assertIsSingleton() {
-        final Context context = ApplicationProvider.getApplicationContext();
-        final DataStorage expectedValue = TraceDataStorage.getInstance(context);
-        final DataStorage actualValue = TraceDataStorage.getInstance(context);
-        MatcherAssert.assertThat(actualValue, sameInstance(expectedValue));
-    }
-
-  @Test
-    public void saveFormattedData_null() {
-        dataStorage.saveFormattedData(null);
-        assertEquals(0, dataStorage.getAllMetrics().size());
-        assertEquals(0, dataStorage.getAllResources().size());
-        assertEquals(0, dataStorage.getAllTraces().size());
-    }
-
-    @Test
-    public void saveFormattedData_metric() {
-        final FormattedData formattedData = new FormattedData(
-                MetricTestProvider.getApplicationStartUpMetric());
-        dataStorage.saveFormattedData(formattedData);
-        assertEquals(1, dataStorage.getAllMetrics().size());
-        assertEquals(MetricTestProvider.getApplicationStartUpMetric(),
-                dataStorage.getAllMetrics().get(0).getMetric());
-        assertEquals(0, dataStorage.getAllResources().size());
-        assertEquals(0, dataStorage.getAllTraces().size());
-    }
-
-    @Test
-    public void saveFormattedData_resource() {
-        final FormattedData formattedData = new FormattedData(
-                DataTestUtils.getSampleResourceEntity());
-        dataStorage.saveFormattedData(formattedData);
-        assertEquals(0, dataStorage.getAllMetrics().size());
-        assertEquals(1, dataStorage.getAllResources().size());
-        assertEquals(DataTestUtils.getSampleResourceEntity(),
-                dataStorage.getAllResources().get(0));
-        assertEquals(0, dataStorage.getAllTraces().size());
-    }
-
-    @Test
-    public void saveFormattedData_span() {
-        final FormattedData formattedData = new FormattedData(
-                TraceTestProvider.createNetworkSpan());
-        dataStorage.saveFormattedData(formattedData);
-        assertEquals(0, dataStorage.getAllMetrics().size());
-        assertEquals(0, dataStorage.getAllResources().size());
-        assertEquals(0, dataStorage.getAllTraces().size());
-    }
+  public void isInitialised() {
+    assertTrue(DataStorage.isInitialised());
+  }
 
   /**
-   * Asserts that if we add a {@link Metric} to the {@link TraceDatabase} via the* {@link TraceDataStorage} it will be returned when we query it.
+   * Checks that the {@link TraceDataStorage#getInstance(Context)} returns a Singleton value.
+   */
+  @Test
+  public void getInstance_assertIsSingleton() {
+    final Context context = ApplicationProvider.getApplicationContext();
+    final DataStorage expectedValue = TraceDataStorage.getInstance(context);
+    final DataStorage actualValue = TraceDataStorage.getInstance(context);
+    MatcherAssert.assertThat(actualValue, sameInstance(expectedValue));
+  }
+
+  @Test
+  public void saveFormattedData_null() {
+    dataStorage.saveFormattedData(null);
+    assertEquals(0, dataStorage.getAllMetrics().size());
+    assertEquals(0, dataStorage.getAllResources().size());
+    assertEquals(0, dataStorage.getAllTraces().size());
+  }
+
+  @Test
+  public void saveFormattedData_metric() {
+    final FormattedData formattedData = new FormattedData(
+        MetricTestProvider.getApplicationStartUpMetric());
+    dataStorage.saveFormattedData(formattedData);
+    assertEquals(1, dataStorage.getAllMetrics().size());
+    assertEquals(MetricTestProvider.getApplicationStartUpMetric(),
+        dataStorage.getAllMetrics().get(0).getMetric());
+    assertEquals(0, dataStorage.getAllResources().size());
+    assertEquals(0, dataStorage.getAllTraces().size());
+  }
+
+  @Test
+  public void saveFormattedData_resource() {
+    final FormattedData formattedData = new FormattedData(
+        DataTestUtils.getSampleResourceEntity());
+    dataStorage.saveFormattedData(formattedData);
+    assertEquals(0, dataStorage.getAllMetrics().size());
+    assertEquals(1, dataStorage.getAllResources().size());
+    assertEquals(DataTestUtils.getSampleResourceEntity(),
+        dataStorage.getAllResources().get(0));
+    assertEquals(0, dataStorage.getAllTraces().size());
+  }
+
+  @Test
+  public void saveFormattedData_span() {
+    final FormattedData formattedData = new FormattedData(
+        TraceTestProvider.createNetworkSpan());
+    dataStorage.saveFormattedData(formattedData);
+    assertEquals(0, dataStorage.getAllMetrics().size());
+    assertEquals(0, dataStorage.getAllResources().size());
+    assertEquals(0, dataStorage.getAllTraces().size());
+  }
+
+  /**
+   * Asserts that if we add a {@link Metric} to the {@link TraceDatabase} via the*
+   * {@link TraceDataStorage} it will be returned when we query it.
    */
   @Test
   public void saveMetric_shouldContainInsertedValue() {
@@ -243,24 +240,25 @@ public class TraceDataStorageInstrumentedTest {
     final List<Trace> actualValue = dataStorage.getAllTraces();
     assertThat(actualValue, containsInAnyOrder(emptyTrace, sampleTrace));
   }
-    @Test
-    public void saveTrace_multipleItems() {
-        final String traceId1 = "36e817c7-8614-41";
-        final String traceId2 = "36e817c7-8614-42";
-        final List<Span> spans1 = new ArrayList<>();
-        spans1.add(TraceTestProvider.createNetworkSpan());
-        final Trace trace1 = new Trace(traceId1, spans1);
 
-        final List<Span> spans2 = new ArrayList<>();
-        spans2.add(TraceTestProvider.createActivityViewSpan());
-        final Trace trace2 = new Trace(traceId2, spans2);
+  @Test
+  public void saveTrace_multipleItems() {
+    final String traceId1 = "36e817c7-8614-41";
+    final String traceId2 = "36e817c7-8614-42";
+    final List<Span> spans1 = new ArrayList<>();
+    spans1.add(TraceTestProvider.createNetworkSpan());
+    final Trace trace1 = new Trace(traceId1, spans1);
 
-        dataStorage.saveTraces(trace1, trace2);
+    final List<Span> spans2 = new ArrayList<>();
+    spans2.add(TraceTestProvider.createActivityViewSpan());
+    final Trace trace2 = new Trace(traceId2, spans2);
 
-        assertEquals(2, dataStorage.getAllTraces().size());
-        assertEquals(trace1, dataStorage.getTraceById(traceId1));
-        assertEquals(trace2, dataStorage.getTraceById(traceId2));
-    }
+    dataStorage.saveTraces(trace1, trace2);
+
+    assertEquals(2, dataStorage.getAllTraces().size());
+    assertEquals(trace1, dataStorage.getTraceById(traceId1));
+    assertEquals(trace2, dataStorage.getTraceById(traceId2));
+  }
 
   /**
    * Asserts that if we add a {@link Trace} to the {@link TraceDatabase} via the
@@ -350,78 +348,78 @@ public class TraceDataStorageInstrumentedTest {
     assertThat(actualValue, not(containsInAnyOrder(sampleResourceEntity, otherResourceEntity)));
   }
 
-    @Test
-    public void getFirstTraceGroup_noSessions() {
-        assertEquals(Collections.emptyList(), dataStorage.getFirstTraceGroup());
-    }
+  @Test
+  public void getFirstTraceGroup_noSessions() {
+    assertEquals(Collections.emptyList(), dataStorage.getFirstTraceGroup());
+  }
 
-    @Test
-    public void getFirstMetricGroup_noSessions() {
-        assertEquals(Collections.emptyList(), dataStorage.getFirstMetricGroup());
-    }
+  @Test
+  public void getFirstMetricGroup_noSessions() {
+    assertEquals(Collections.emptyList(), dataStorage.getFirstMetricGroup());
+  }
 
-    @Test
-    public void hasReference_metricAndTraces() {
-        final String sessionId = "01F0VDZZJQKVKX01A2XQR91F49";
+  @Test
+  public void hasReference_metricAndTraces() {
+    final String sessionId = "01F0VDZZJQKVKX01A2XQR91F49";
 
-        final MetricEntity metricEntity = new MetricEntity("metricId");
-        metricEntity.setMetric(MetricTestProvider.getSystemCpuMetric());
-        metricEntity.setSessionId(sessionId);
-        dataStorage.saveMetric(metricEntity);
+    final MetricEntity metricEntity = new MetricEntity("metricId");
+    metricEntity.setMetric(MetricTestProvider.getSystemCpuMetric());
+    metricEntity.setSessionId(sessionId);
+    dataStorage.saveMetric(metricEntity);
 
-        final List<Span> spans = new ArrayList<>();
-        spans.add(TraceTestProvider.createNetworkSpan());
-        final Trace trace = new Trace("36e817c7-8614-41", spans);
-        trace.setSessionId(sessionId);
-        dataStorage.saveTraces(trace);
+    final List<Span> spans = new ArrayList<>();
+    spans.add(TraceTestProvider.createNetworkSpan());
+    final Trace trace = new Trace("36e817c7-8614-41", spans);
+    trace.setSessionId(sessionId);
+    dataStorage.saveTraces(trace);
 
-        assertTrue(dataStorage.hasReference(sessionId));
-    }
+    assertTrue(dataStorage.hasReference(sessionId));
+  }
 
-    @Test
-    public void hasReference_metricOnly() {
-        final String sessionId = "01F0VDZZJQKVKX01A2XQR91F49";
+  @Test
+  public void hasReference_metricOnly() {
+    final String sessionId = "01F0VDZZJQKVKX01A2XQR91F49";
 
-        final MetricEntity metricEntity = new MetricEntity("metricId");
-        metricEntity.setMetric(MetricTestProvider.getSystemCpuMetric());
-        metricEntity.setSessionId(sessionId);
-        dataStorage.saveMetric(metricEntity);
+    final MetricEntity metricEntity = new MetricEntity("metricId");
+    metricEntity.setMetric(MetricTestProvider.getSystemCpuMetric());
+    metricEntity.setSessionId(sessionId);
+    dataStorage.saveMetric(metricEntity);
 
-        assertTrue(dataStorage.hasReference(sessionId));
-    }
+    assertTrue(dataStorage.hasReference(sessionId));
+  }
 
-    @Test
-    public void hasReference_tracesOnly() {
-        final String sessionId = "01F0VDZZJQKVKX01A2XQR91F49";
+  @Test
+  public void hasReference_tracesOnly() {
+    final String sessionId = "01F0VDZZJQKVKX01A2XQR91F49";
 
-        final List<Span> spans = new ArrayList<>();
-        spans.add(TraceTestProvider.createNetworkSpan());
-        final Trace trace = new Trace("36e817c7-8614-41", spans);
-        trace.setSessionId(sessionId);
-        dataStorage.saveTraces(trace);
+    final List<Span> spans = new ArrayList<>();
+    spans.add(TraceTestProvider.createNetworkSpan());
+    final Trace trace = new Trace("36e817c7-8614-41", spans);
+    trace.setSessionId(sessionId);
+    dataStorage.saveTraces(trace);
 
-        assertTrue(dataStorage.hasReference(sessionId));
-    }
+    assertTrue(dataStorage.hasReference(sessionId));
+  }
 
-    @Test
-    public void hasReference_noReferences() {
-        final String sessionId = "01F0VDZZJQKVKX01A2XQR91F49";
-        assertFalse(dataStorage.hasReference(sessionId));
-    }
+  @Test
+  public void hasReference_noReferences() {
+    final String sessionId = "01F0VDZZJQKVKX01A2XQR91F49";
+    assertFalse(dataStorage.hasReference(sessionId));
+  }
 
-    @Test
-    public void deleteAllResources() {
-        final Resource resource = DataTestUtils.getSampleResource("sessionId");
-        dataStorage.saveResource(resource);
-        assertEquals(resource.getLabelsCount(), dataStorage.getAllResources().size());
-        dataStorage.deleteAllResources();
-        assertEquals(0, dataStorage.getAllResources().size());
-    }
+  @Test
+  public void deleteAllResources() {
+    final Resource resource = DataTestUtils.getSampleResource("sessionId");
+    dataStorage.saveResource(resource);
+    assertEquals(resource.getLabelsCount(), dataStorage.getAllResources().size());
+    dataStorage.deleteAllResources();
+    assertEquals(0, dataStorage.getAllResources().size());
+  }
 
-    @Test
-    public void setTraceDatabase() {
-        final TraceDatabase mockDatabase = Mockito.mock(TraceDatabase.class);
-        dataStorage.setTraceDatabase(mockDatabase);
-        assertEquals(mockDatabase, dataStorage.traceDatabase);
-    }
+  @Test
+  public void setTraceDatabase() {
+    final TraceDatabase mockDatabase = Mockito.mock(TraceDatabase.class);
+    dataStorage.setTraceDatabase(mockDatabase);
+    assertEquals(mockDatabase, dataStorage.traceDatabase);
+  }
 }
