@@ -10,6 +10,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -415,5 +416,12 @@ public class TraceDataStorageInstrumentedTest {
         assertEquals(resource.getLabelsCount(), dataStorage.getAllResources().size());
         dataStorage.deleteAllResources();
         assertEquals(0, dataStorage.getAllResources().size());
+    }
+
+    @Test
+    public void setTraceDatabase() {
+        final TraceDatabase mockDatabase = Mockito.mock(TraceDatabase.class);
+        dataStorage.setTraceDatabase(mockDatabase);
+        assertEquals(mockDatabase, dataStorage.traceDatabase);
     }
 }
