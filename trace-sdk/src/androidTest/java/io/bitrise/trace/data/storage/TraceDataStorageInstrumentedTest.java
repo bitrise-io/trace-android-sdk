@@ -134,7 +134,7 @@ public class TraceDataStorageInstrumentedTest {
   }
 
   /**
-   * Asserts that if we add a {@link Metric} to the {@link TraceDatabase} via the*
+   * Asserts that if we add a {@link Metric} to the {@link TraceDatabase} via the
    * {@link TraceDataStorage} it will be returned when we query it.
    */
   @Test
@@ -378,7 +378,7 @@ public class TraceDataStorageInstrumentedTest {
 
   @Test
   public void hasReference_metricOnly() {
-    final String sessionId = "01F0VDZZJQKVKX01A2XQR91F49";
+    final String sessionId = "01F0VDZZJQKVKX01A2XQR91F48";
 
     final MetricEntity metricEntity = new MetricEntity("metricId");
     metricEntity.setMetric(MetricTestProvider.getSystemCpuMetric());
@@ -390,7 +390,7 @@ public class TraceDataStorageInstrumentedTest {
 
   @Test
   public void hasReference_tracesOnly() {
-    final String sessionId = "01F0VDZZJQKVKX01A2XQR91F49";
+    final String sessionId = "01F0VDZZJQKVKX01A2XQR91F47";
 
     final List<Span> spans = new ArrayList<>();
     spans.add(TraceTestProvider.createNetworkSpan());
@@ -403,7 +403,7 @@ public class TraceDataStorageInstrumentedTest {
 
   @Test
   public void hasReference_noReferences() {
-    final String sessionId = "01F0VDZZJQKVKX01A2XQR91F49";
+    final String sessionId = "01F0VDZZJQKVKX01A2XQR91F46";
     assertFalse(dataStorage.hasReference(sessionId));
   }
 
