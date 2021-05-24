@@ -22,7 +22,7 @@ public class ExecutorScheduler extends Scheduler {
   /**
    * The default interval for scheduling.
    */
-  public static final long DEFAULT_SCHEDULE_INTERVAL_MS = 1000 * 60 * 5;
+  public static final long DEFAULT_SCHEDULE_INTERVAL_MS = 300000; //1000 * 60 * 5
 
   /**
    * The interval for scheduling in milliseconds.
