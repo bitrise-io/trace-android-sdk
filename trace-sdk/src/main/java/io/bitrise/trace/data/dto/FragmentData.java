@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -116,5 +117,17 @@ public class FragmentData {
         + ", parentSpanId='" + parentSpanId + '\''
         + ", spanId='" + spanId + '\''
         + '}';
+  }
+
+  @Override
+  public boolean equals(@Nullable final Object obj) {
+    if (!(obj instanceof FragmentData)) {
+      return false;
+    }
+    final FragmentData fragmentData = (FragmentData) obj;
+    return Objects.equals(fragmentData.name, name)
+        && Objects.equals(fragmentData.spanId, spanId)
+        && Objects.equals(fragmentData.parentSpanId, parentSpanId)
+        && Objects.equals(fragmentData.states, states);
   }
 }

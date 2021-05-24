@@ -16,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
+import java.util.List;
 import org.junit.Test;
 
 /**
@@ -25,6 +26,7 @@ public class SystemCpuUsageDataCollectorInstrumentedTest extends BaseDataCollect
 
   private static final double HUNDRED_PERCENT = 100d;
   private static final double ZERO_PERCENT = 0d;
+  private final SystemCpuUsageDataCollector collector = new SystemCpuUsageDataCollector();
 
   /**
    * Verifies that when we have access to the proc/stat files,
@@ -35,10 +37,8 @@ public class SystemCpuUsageDataCollectorInstrumentedTest extends BaseDataCollect
   public void collectData_contentShouldBeNotNull() {
     InstrumentedTestRequirements.assumeCpuApiLevel();
 
-    final SystemCpuUsageDataCollector systemCpuUsageDataCollector =
-        new SystemCpuUsageDataCollector();
     final CpuUsageData.CpuStat actualValue =
-        (CpuUsageData.CpuStat) systemCpuUsageDataCollector.collectData().getContent();
+        (CpuUsageData.CpuStat) collector.collectData().getContent();
     assertThat(actualValue, is(notNullValue()));
   }
 
@@ -51,10 +51,8 @@ public class SystemCpuUsageDataCollectorInstrumentedTest extends BaseDataCollect
   public void collectData_systemUsageShouldBeNotNull() {
     InstrumentedTestRequirements.assumeCpuApiLevel();
 
-    final SystemCpuUsageDataCollector systemCpuUsageDataCollector =
-        new SystemCpuUsageDataCollector();
     final CpuUsageData.CpuStat actualValue =
-        (CpuUsageData.CpuStat) systemCpuUsageDataCollector.collectData().getContent();
+        (CpuUsageData.CpuStat) collector.collectData().getContent();
     assertThat(actualValue, is(notNullValue()));
   }
 
@@ -67,10 +65,8 @@ public class SystemCpuUsageDataCollectorInstrumentedTest extends BaseDataCollect
   public void collectData_systemUserUsageShouldBePositive() {
     InstrumentedTestRequirements.assumeCpuApiLevel();
 
-    final SystemCpuUsageDataCollector systemCpuUsageDataCollector =
-        new SystemCpuUsageDataCollector();
     final CpuUsageData.CpuStat actualValue =
-        (CpuUsageData.CpuStat) systemCpuUsageDataCollector.collectData().getContent();
+        (CpuUsageData.CpuStat) collector.collectData().getContent();
     assertThat(actualValue.getUser(), is(greaterThanOrEqualTo(0f)));
   }
 
@@ -83,10 +79,8 @@ public class SystemCpuUsageDataCollectorInstrumentedTest extends BaseDataCollect
   public void collectData_systemSystemUsageShouldBePositive() {
     InstrumentedTestRequirements.assumeCpuApiLevel();
 
-    final SystemCpuUsageDataCollector systemCpuUsageDataCollector =
-        new SystemCpuUsageDataCollector();
     final CpuUsageData.CpuStat actualValue =
-        (CpuUsageData.CpuStat) systemCpuUsageDataCollector.collectData().getContent();
+        (CpuUsageData.CpuStat) collector.collectData().getContent();
     assertThat(actualValue.getSystem(), is(greaterThanOrEqualTo(0f)));
   }
 
@@ -99,10 +93,8 @@ public class SystemCpuUsageDataCollectorInstrumentedTest extends BaseDataCollect
   public void collectData_systemNiceUsageShouldBePositive() {
     InstrumentedTestRequirements.assumeCpuApiLevel();
 
-    final SystemCpuUsageDataCollector systemCpuUsageDataCollector =
-        new SystemCpuUsageDataCollector();
     final CpuUsageData.CpuStat actualValue =
-        (CpuUsageData.CpuStat) systemCpuUsageDataCollector.collectData().getContent();
+        (CpuUsageData.CpuStat) collector.collectData().getContent();
     assertThat(actualValue.getNice(), is(greaterThanOrEqualTo(0f)));
   }
 
@@ -115,10 +107,8 @@ public class SystemCpuUsageDataCollectorInstrumentedTest extends BaseDataCollect
   public void collectData_systemIdleUsageShouldBePositive() {
     InstrumentedTestRequirements.assumeCpuApiLevel();
 
-    final SystemCpuUsageDataCollector systemCpuUsageDataCollector =
-        new SystemCpuUsageDataCollector();
     final CpuUsageData.CpuStat actualValue =
-        (CpuUsageData.CpuStat) systemCpuUsageDataCollector.collectData().getContent();
+        (CpuUsageData.CpuStat) collector.collectData().getContent();
     assertThat(actualValue.getIdle(), is(greaterThanOrEqualTo(0f)));
   }
 
@@ -131,10 +121,8 @@ public class SystemCpuUsageDataCollectorInstrumentedTest extends BaseDataCollect
   public void collectData_systemIoWaitUsageShouldBePositive() {
     InstrumentedTestRequirements.assumeCpuApiLevel();
 
-    final SystemCpuUsageDataCollector systemCpuUsageDataCollector =
-        new SystemCpuUsageDataCollector();
     final CpuUsageData.CpuStat actualValue =
-        (CpuUsageData.CpuStat) systemCpuUsageDataCollector.collectData().getContent();
+        (CpuUsageData.CpuStat) collector.collectData().getContent();
     assertThat(actualValue.getIoWait(), is(greaterThanOrEqualTo(0f)));
   }
 
@@ -147,10 +135,8 @@ public class SystemCpuUsageDataCollectorInstrumentedTest extends BaseDataCollect
   public void collectData_systemIrqUsageShouldBePositive() {
     InstrumentedTestRequirements.assumeCpuApiLevel();
 
-    final SystemCpuUsageDataCollector systemCpuUsageDataCollector =
-        new SystemCpuUsageDataCollector();
     final CpuUsageData.CpuStat actualValue =
-        (CpuUsageData.CpuStat) systemCpuUsageDataCollector.collectData().getContent();
+        (CpuUsageData.CpuStat) collector.collectData().getContent();
     assertThat(actualValue.getSystem(), is(greaterThanOrEqualTo(0f)));
   }
 
@@ -163,10 +149,7 @@ public class SystemCpuUsageDataCollectorInstrumentedTest extends BaseDataCollect
   public void collectData_resultShouldBeNullWithoutRootAccess() {
     InstrumentedTestRequirements.assumeCpuApiLevelFail();
 
-    final SystemCpuUsageDataCollector systemCpuUsageDataCollector =
-        new SystemCpuUsageDataCollector();
-    final CpuUsageData actualValue =
-        (CpuUsageData) systemCpuUsageDataCollector.collectData().getContent();
+    final CpuUsageData actualValue = (CpuUsageData) collector.collectData().getContent();
     assertThat(actualValue, is(nullValue()));
   }
 
@@ -179,9 +162,7 @@ public class SystemCpuUsageDataCollectorInstrumentedTest extends BaseDataCollect
   public void getSystemCpuUsage_resultShouldNotBeNull() {
     InstrumentedTestRequirements.assumeCpuApiLevel();
 
-    final SystemCpuUsageDataCollector systemCpuUsageDataCollector =
-        new SystemCpuUsageDataCollector();
-    final CpuUsageData.CpuStat actualValue = systemCpuUsageDataCollector.getSystemCpuUsage();
+    final CpuUsageData.CpuStat actualValue = collector.getSystemCpuUsage();
     assertThat(actualValue, is(notNullValue()));
   }
 
@@ -194,9 +175,7 @@ public class SystemCpuUsageDataCollectorInstrumentedTest extends BaseDataCollect
   public void getSystemCpuUsage_resultShouldBeNullWithoutRootAccess() {
     InstrumentedTestRequirements.assumeCpuApiLevelFail();
 
-    final SystemCpuUsageDataCollector systemCpuUsageDataCollector =
-        new SystemCpuUsageDataCollector();
-    final CpuUsageData.CpuStat actualValue = systemCpuUsageDataCollector.getSystemCpuUsage();
+    final CpuUsageData.CpuStat actualValue = collector.getSystemCpuUsage();
     assertThat(actualValue, is(nullValue()));
   }
 
@@ -210,9 +189,7 @@ public class SystemCpuUsageDataCollectorInstrumentedTest extends BaseDataCollect
   public void getCpuUsage_resultShouldBeValid() {
     InstrumentedTestRequirements.assumeCpuApiLevel();
 
-    final SystemCpuUsageDataCollector systemCpuUsageDataCollector =
-        new SystemCpuUsageDataCollector();
-    final CpuUsageData.CpuStat actualValue = systemCpuUsageDataCollector.getCpuUsage();
+    final CpuUsageData.CpuStat actualValue = collector.getCpuUsage();
 
     assertThat(actualValue, is(notNullValue()));
     assertThat((double) actualValue.getUser(),
@@ -240,9 +217,7 @@ public class SystemCpuUsageDataCollectorInstrumentedTest extends BaseDataCollect
   public void getCpuUsage_resultShouldBeNullWithoutRootAccess() {
     InstrumentedTestRequirements.assumeCpuApiLevelFail();
 
-    final SystemCpuUsageDataCollector systemCpuUsageDataCollector =
-        new SystemCpuUsageDataCollector();
-    final CpuUsageData.CpuStat actualValue = systemCpuUsageDataCollector.getCpuUsage();
+    final CpuUsageData.CpuStat actualValue = collector.getCpuUsage();
     assertThat(actualValue, is(nullValue()));
   }
 
@@ -258,11 +233,8 @@ public class SystemCpuUsageDataCollectorInstrumentedTest extends BaseDataCollect
     InstrumentedTestRequirements.assumeCpuApiLevel();
 
     final RandomAccessFile randomAccessFile = new RandomAccessFile("/proc/stat", "r");
-    final SystemCpuUsageDataCollector systemCpuUsageDataCollector =
-        new SystemCpuUsageDataCollector();
-    final ArrayList<CpuUsageData.CpuStat> actualValue =
-        systemCpuUsageDataCollector.getCoresUsage(randomAccessFile,
-            SystemCpuUsageDataCollector.getNumberOfCores());
+    final List<CpuUsageData.CpuStat> actualValue = collector.getCoresUsage(randomAccessFile,
+        SystemCpuUsageDataCollector.getNumberOfCores());
     assertThat(actualValue, is(notNullValue()));
     assertThat(actualValue.size(), greaterThan(0));
   }
@@ -277,7 +249,6 @@ public class SystemCpuUsageDataCollectorInstrumentedTest extends BaseDataCollect
   @Test(expected = FileNotFoundException.class)
   public void getCoresUsage_resultShouldBeException() throws FileNotFoundException {
     InstrumentedTestRequirements.assumeCpuApiLevelFail();
-
     new RandomAccessFile("/proc/stat", "r");
   }
 }

@@ -13,14 +13,14 @@ import org.junit.Test;
  */
 public class DeviceLocaleDataCollectorInstrumentedTest extends BaseDataCollectorInstrumentedTest {
 
+  final DeviceLocaleDataCollector collector = new DeviceLocaleDataCollector(context);
+
   /**
-   * Verifies that when {@link DeviceLocaleDataCollector#collectData()} is called, the content
+   * Verifies that when {@link DeviceLocaleDataCollector#collectData()} is called, the content*
    * of the returned {@link Data} should not be {@code null}.
    */
   @Test
   public void collectData_contentShouldBeNotNull() {
-    final DeviceLocaleDataCollector deviceLocaleDataCollector =
-        new DeviceLocaleDataCollector(context);
-    assertThat(deviceLocaleDataCollector.collectData().getContent(), is(notNullValue()));
+    assertThat(collector.collectData().getContent(), is(notNullValue()));
   }
 }

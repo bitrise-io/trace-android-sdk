@@ -14,15 +14,15 @@ import org.junit.Test;
 public class DeviceOsVersionDataCollectorInstrumentedTest
     extends BaseDataCollectorInstrumentedTest {
 
+  private final DeviceOsVersionDataCollector collector = new DeviceOsVersionDataCollector();
+
   /**
-   * Verifies that when {@link DeviceOsVersionDataCollector#collectData()} is called, the
+   * Verifies that when {@link DeviceOsVersionDataCollector#collectData()} is called, the*
    * content of the returned {@link Data} should not be {@code null}.
    */
   @Test
   public void collectData_contentShouldBeNotNull() {
-    final DeviceOsVersionDataCollector deviceOsVersionDataCollector =
-        new DeviceOsVersionDataCollector();
-    final String actualValue = (String) deviceOsVersionDataCollector.collectData().getContent();
+    final String actualValue = (String) collector.collectData().getContent();
     assertThat(actualValue, is(notNullValue()));
   }
 }

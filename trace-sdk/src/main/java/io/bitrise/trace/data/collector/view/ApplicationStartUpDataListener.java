@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import io.bitrise.trace.data.TraceActivityLifecycleTracker;
 import io.bitrise.trace.data.collector.BaseDataListener;
 import io.bitrise.trace.data.collector.DataListener;
@@ -35,29 +36,34 @@ public class ApplicationStartUpDataListener extends BaseDataListener
    * The {@link ApplicationForegroundStateDataListener} to determine if it is an Application
    * launch or not.
    */
+  @VisibleForTesting
   @NonNull
-  private final ApplicationForegroundStateDataListener applicationForegroundStateDataListener;
+  final ApplicationForegroundStateDataListener applicationForegroundStateDataListener;
   /**
    * Counts the number of onCreate callbacks.
    */
+  @VisibleForTesting
   @NonNull
-  private final AtomicInteger onCreateCounter;
+  final AtomicInteger onCreateCounter;
   /**
    * Counts the number of onResume callbacks.
    */
+  @VisibleForTesting
   @NonNull
-  private final AtomicInteger onResumeCounter;
+  final AtomicInteger onResumeCounter;
 
   /**
    * The start time of the Application launch.
    */
-  private Long start;
+  @VisibleForTesting
+  Long start;
   /**
    * The end time of the Application launch.
    */
-  private Long end;
+  @VisibleForTesting
+  Long end;
   /**
-   * Indicates that the given lifecycle events are an Application start or not. If the
+   * Indicates that the given lifecycle events are an Application start or not. If the*
    * Application comes from the background, it should be an Application start, otherwise it is
    * just a new Activity launch.
    */
@@ -139,12 +145,8 @@ public class ApplicationStartUpDataListener extends BaseDataListener
    * @see
    * <a href="https://developer.android.com/topic/performance/vitals/launch-time">https://developer.android.com/topic/performance/vitals/launch-time</a>
    */
-  @Nullable
+  @NonNull
   private synchronized ApplicationStartData getApplicationStartData() {
-    if (!isApplicationStart) {
-      return null;
-    }
-
     final long duration = end - start;
     if (onCreateCounter.get() == 1 && onResumeCounter.get() == 1) {
       TraceLog.d("ApplicationStartUpDataListener COLD");

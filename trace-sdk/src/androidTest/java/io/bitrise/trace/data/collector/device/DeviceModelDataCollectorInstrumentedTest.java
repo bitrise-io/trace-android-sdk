@@ -13,14 +13,15 @@ import org.junit.Test;
  */
 public class DeviceModelDataCollectorInstrumentedTest extends BaseDataCollectorInstrumentedTest {
 
+  final DeviceModelDataCollector collector = new DeviceModelDataCollector();
+
   /**
-   * Verifies that when {@link DeviceModelDataCollector#collectData()} is called, the content
+   * Verifies that when {@link DeviceModelDataCollector#collectData()} is called, the content*
    * of the returned {@link Data} should not be {@code null}.
    */
   @Test
   public void collectData_contentShouldBeNotNull() {
-    final DeviceModelDataCollector deviceModelDataCollector = new DeviceModelDataCollector();
-    final String actualValue = (String) deviceModelDataCollector.collectData().getContent();
+    final String actualValue = (String) collector.collectData().getContent();
     assertThat(actualValue, is(notNullValue()));
   }
 }

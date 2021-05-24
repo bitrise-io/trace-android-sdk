@@ -13,15 +13,15 @@ import org.junit.Test;
  */
 public class SystemMemoryDataCollectorInstrumentedTest extends BaseDataCollectorInstrumentedTest {
 
+  private final SystemMemoryDataCollector collector = new SystemMemoryDataCollector(context);
+
   /**
-   * Verifies that when {@link SystemMemoryDataCollector#collectData()} is called, the content
+   * Verifies that when {@link SystemMemoryDataCollector#collectData()} is called, the content*
    * of the returned {@link Data} should not be {@code null}.
    */
   @Test
   public void collectData_contentShouldBeNotNull() {
-    final SystemMemoryDataCollector systemMemoryDataCollector =
-        new SystemMemoryDataCollector(context);
-    final Long actualValue = (Long) systemMemoryDataCollector.collectData().getContent();
+    final Long actualValue = (Long) collector.collectData().getContent();
     assertThat(actualValue, is(notNullValue()));
   }
 }

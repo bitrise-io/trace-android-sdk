@@ -11,8 +11,10 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.telephony.TelephonyManager;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
+import androidx.annotation.VisibleForTesting;
 import io.bitrise.trace.data.collector.DataCollector;
 import io.bitrise.trace.data.dto.Data;
 
@@ -54,9 +56,10 @@ public class DeviceNetworkTypeDataCollector extends DeviceDataCollector {
    * @param context the Android Context.
    * @return the String value network type, or {@link #UNKNOWN_NETWORK} if it cannot be determined.
    */
+  @VisibleForTesting
   @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
   @NonNull
-  private static String getDeviceNetworkType(@NonNull final Context context) {
+  static String getDeviceNetworkType(@NonNull final Context context) {
     final ConnectivityManager connectivityManager =
         (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
     if (connectivityManager == null) {
@@ -79,10 +82,11 @@ public class DeviceNetworkTypeDataCollector extends DeviceDataCollector {
    * @deprecated as NetworkInfo was deprecated with API level 29, this cannot be used for newer
    *     versions of Android.
    */
+  @VisibleForTesting
   @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
   @NonNull
   @Deprecated
-  private static String getNetworkTypeDataFromNetworkInfo(
+  static String getNetworkTypeDataFromNetworkInfo(
       @NonNull final ConnectivityManager connectivityManager) {
     final NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
     if (networkInfo == null || !networkInfo.isConnected()) {
@@ -105,9 +109,10 @@ public class DeviceNetworkTypeDataCollector extends DeviceDataCollector {
    *     determined. If the app has {@link Manifest.permission#READ_PHONE_STATE} it will return the
    *     exact network type, otherwise it can determine if it uses wifi or cellular connection.
    */
+  @VisibleForTesting
   @SuppressLint("MissingPermission")
   @RequiresApi(api = Build.VERSION_CODES.M)
-  private static String getNetworkTypeFromNetworkCapabilities(
+  static String getNetworkTypeFromNetworkCapabilities(
       @NonNull final ConnectivityManager connectivityManager,
       @NonNull final Context context) {
     final Network activeNetwork = connectivityManager.getActiveNetwork();
@@ -124,7 +129,9 @@ public class DeviceNetworkTypeDataCollector extends DeviceDataCollector {
     } else if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
       if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N && context.checkSelfPermission(
           Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
-        return getCellularNetworkType(context);
+        final TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(
+            Context.TELEPHONY_SERVICE);
+        return getCellularNetworkType(telephonyManager);
       } else {
         return CELLULAR;
       }
@@ -135,17 +142,16 @@ public class DeviceNetworkTypeDataCollector extends DeviceDataCollector {
   /**
    * Gets the type of the cellular network with the help of the TelephonyManager.
    *
-   * @param context the Android Context.
+   * @param telephonyManager the telephonyManager from the context.
    * @return the String value network type, or {@link #UNKNOWN_NETWORK} if it cannot be
    *     determined. If the app has {@link Manifest.permission#READ_PHONE_STATE} it will return the
    *     exact network type, otherwise it can determine if it uses wifi or cellular connection.
    */
+  @VisibleForTesting
   @RequiresApi(api = Build.VERSION_CODES.N)
   @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
   @NonNull
-  private static String getCellularNetworkType(@NonNull final Context context) {
-    final TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(
-        Context.TELEPHONY_SERVICE);
+  static String getCellularNetworkType(@Nullable final TelephonyManager telephonyManager) {
     if (telephonyManager == null) {
       return NO_NETWORK;
     }
@@ -161,7 +167,8 @@ public class DeviceNetworkTypeDataCollector extends DeviceDataCollector {
    * @return the String value network type, or {@link #UNKNOWN_NETWORK} if it cannot be determined.
    */
   @NonNull
-  private static String resolveNetworkType(final int networkType) {
+  @VisibleForTesting
+  static String resolveNetworkType(final int networkType) {
     switch (networkType) {
       case TelephonyManager.NETWORK_TYPE_GPRS:
       case TelephonyManager.NETWORK_TYPE_EDGE:

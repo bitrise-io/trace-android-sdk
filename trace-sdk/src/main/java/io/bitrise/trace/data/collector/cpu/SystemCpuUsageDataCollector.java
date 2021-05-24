@@ -11,6 +11,7 @@ import io.bitrise.trace.utils.log.TraceLog;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * {@link DataCollector} type, that collects the usage of the CPU. For information about how CPUs
@@ -34,7 +35,9 @@ public class SystemCpuUsageDataCollector extends CpuUsageDataCollector {
   private static final int PROC_STAT_IRQ = 6;
   private static final int PROC_STAT_SOFT_IRQ = 7;
   private static final int PROC_STAT_STEAL = 8;
-  private CpuUsageData.CpuStat previousAverageSystemStats = new CpuUsageData.CpuStat();
+
+  @VisibleForTesting
+  CpuUsageData.CpuStat previousAverageSystemStats = new CpuUsageData.CpuStat();
   // endregion
 
   /**
@@ -179,8 +182,9 @@ public class SystemCpuUsageDataCollector extends CpuUsageDataCollector {
    * @param totalUsageStat the CpuStat of the total system CPU usage.
    * @return the CPU usage percentages for the different components.
    */
+  @VisibleForTesting
   @NonNull
-  private CpuUsageData.CpuStat getSystemCpuUsagePercentage(
+  CpuUsageData.CpuStat getSystemCpuUsagePercentage(
       @NonNull final CpuUsageData.CpuStat totalUsageStat) {
     final CpuUsageData.CpuStat diff = calculateDiff(totalUsageStat, previousAverageSystemStats);
     previousAverageSystemStats = totalUsageStat;
@@ -203,7 +207,7 @@ public class SystemCpuUsageDataCollector extends CpuUsageDataCollector {
   @VisibleForTesting
   CpuUsageData.CpuStat getSystemCpuUsage() {
     final int numberOfCores = getNumberOfCores();
-    final ArrayList<CpuUsageData.CpuStat> currentUsage;
+    final List<CpuUsageData.CpuStat> currentUsage;
     try {
       currentUsage = getCoresUsage(new RandomAccessFile("/proc/stat", "r"), numberOfCores);
       return currentUsage.get(PROC_STAT_TOTAL_USAGE_INDEX);
@@ -231,18 +235,18 @@ public class SystemCpuUsageDataCollector extends CpuUsageDataCollector {
    */
   @NonNull
   @VisibleForTesting
-  ArrayList<CpuUsageData.CpuStat> getCoresUsage(@NonNull final RandomAccessFile randomAccessFile,
-                                                final int numberOfCores) throws IOException {
-    final ArrayList<CpuUsageData.CpuStat> cpuStats = new ArrayList<>();
+  List<CpuUsageData.CpuStat> getCoresUsage(@NonNull final RandomAccessFile randomAccessFile,
+                                           final int numberOfCores) throws IOException {
+    final List<CpuUsageData.CpuStat> cpuStats = new ArrayList<>();
     String line = randomAccessFile.readLine();
 
     for (int i = 0; i <= numberOfCores + 1; i++) {
-      if (!line.contains("cpu")) {
+      if (line == null || !line.contains("cpu")) {
         break;
       }
       final CpuUsageData.CpuStat currentCpuStat = parseSystemCpuStat(i, line);
       if (currentCpuStat != null) {
-        cpuStats.add(i, currentCpuStat);
+        cpuStats.add(currentCpuStat);
         line = randomAccessFile.readLine();
       }
     }

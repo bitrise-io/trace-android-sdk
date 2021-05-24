@@ -330,8 +330,9 @@ public class FragmentStateDataListener extends FragmentManager.FragmentLifecycle
    * @param activityId the ID of the hosting Activity.
    * @return the Span ID of the hosting Activity, or {@code null}, when it cannot be determined.
    */
+  @VisibleForTesting
   @Nullable
-  private String getParentSpanIdFromActivityId(final int activityId) {
+  String getParentSpanIdFromActivityId(final int activityId) {
     if (activityStateDataListener.activityMap.containsKey(activityId)) {
       return activityStateDataListener.activityMap.get(activityId).getSpanId();
     }
@@ -344,8 +345,9 @@ public class FragmentStateDataListener extends FragmentManager.FragmentLifecycle
    * @param fragmentHashCode the hashcode of the parent Fragment.
    * @return the Span ID of the parent Fragment, or {@code null}, when it cannot be determined.
    */
+  @VisibleForTesting
   @Nullable
-  private String getParentSpanIdFromFragmentId(final int fragmentHashCode) {
+  String getParentSpanIdFromFragmentId(final int fragmentHashCode) {
     final Map<Integer, FragmentData> fragmentRecords =
         activityFragmentMap.get(activeActivityHashCode);
     if (fragmentRecords != null) {
@@ -364,8 +366,9 @@ public class FragmentStateDataListener extends FragmentManager.FragmentLifecycle
    * @param fragmentState the given {@link FragmentState}
    * @return the created FragmentData.
    */
+  @VisibleForTesting
   @NonNull
-  private FragmentData createFragmentData(@NonNull final Fragment fragment,
+  FragmentData createFragmentData(@NonNull final Fragment fragment,
                                           @NonNull final FragmentState fragmentState) {
     final FragmentData fragmentData = new FragmentData(traceManager.createSpanId(false));
     fragmentData.setName(fragment.getClass().getSimpleName());
@@ -381,8 +384,9 @@ public class FragmentStateDataListener extends FragmentManager.FragmentLifecycle
    * @param fragmentState the given {@link FragmentState}
    * @return the created FragmentData.
    */
+  @VisibleForTesting
   @NonNull
-  private FragmentData createFragmentData(@NonNull final android.app.Fragment fragment,
+  FragmentData createFragmentData(@NonNull final android.app.Fragment fragment,
                                           @NonNull final FragmentState fragmentState) {
     final FragmentData fragmentData = new FragmentData(traceManager.createSpanId(false));
     fragmentData.setName(fragment.getClass().getSimpleName());

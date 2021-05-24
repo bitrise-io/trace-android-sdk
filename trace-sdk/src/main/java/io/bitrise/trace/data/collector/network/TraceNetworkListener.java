@@ -56,6 +56,19 @@ public class TraceNetworkListener implements OkHttpCallProcessor {
   }
 
   /**
+   * Sets the TraceNetworkListener to a debug instance. Used only for testing.
+   *
+   * @param listener the TraceNetworkListener to use for the getInstance().
+   */
+  @VisibleForTesting
+  public static synchronized void setDebugTraceNetworkListener(
+      @NonNull final TraceNetworkListener listener) {
+    synchronized (traceNetworkListenerLock) {
+      traceNetworkListener = listener;
+    }
+  }
+
+  /**
    * Resets the state of the TraceNetworkListener.
    */
   @VisibleForTesting

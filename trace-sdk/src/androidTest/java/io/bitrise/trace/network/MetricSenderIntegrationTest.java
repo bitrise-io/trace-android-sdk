@@ -28,6 +28,7 @@ import io.bitrise.trace.test.DataTestUtils;
 import io.opencensus.proto.metrics.v1.Metric;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -45,7 +46,7 @@ public class MetricSenderIntegrationTest {
 
   @BeforeClass
   public static void setUp() {
-    ConfigurationManager.getDebugInstance(BuildConfig.TRACE_TOKEN);
+    ConfigurationManager.getDebugInstance(BuildConfig.TRACE_TOKEN, new HashMap<>());
     ApplicationSessionManager.getInstance().startSession();
   }
 

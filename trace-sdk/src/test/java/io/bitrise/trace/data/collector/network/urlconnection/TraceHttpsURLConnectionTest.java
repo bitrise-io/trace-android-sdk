@@ -202,4 +202,11 @@ public class TraceHttpsURLConnectionTest {
     final Certificate[] certificates = traceHttpsURLConnection.getServerCertificates();
     assertNull(certificates);
   }
+
+  @Test
+  public void setInstanceFollowRedirects() {
+    final TraceHttpsURLConnection traceHttpsURLConnection = new TraceHttpsURLConnection(dummyUrl);
+    traceHttpsURLConnection.setInstanceFollowRedirects(true);
+    assertTrue(traceHttpsURLConnection.getInstanceFollowRedirects());
+  }
 }

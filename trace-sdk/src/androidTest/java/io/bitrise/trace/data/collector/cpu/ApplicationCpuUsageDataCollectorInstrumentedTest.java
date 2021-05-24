@@ -20,6 +20,7 @@ public class ApplicationCpuUsageDataCollectorInstrumentedTest
 
   private static final double HUNDRED_PERCENT = 100d;
   private static final double ZERO_PERCENT = 0d;
+  private final ApplicationCpuUsageDataCollector collector = new ApplicationCpuUsageDataCollector();
 
   /**
    * Verifies that when {@link ApplicationCpuUsageDataCollector#collectData()} is called, the
@@ -27,9 +28,7 @@ public class ApplicationCpuUsageDataCollectorInstrumentedTest
    */
   @Test
   public void collectData_applicationUsageShouldBeValid() {
-    final ApplicationCpuUsageDataCollector applicationCpuUsageDataCollector =
-        new ApplicationCpuUsageDataCollector();
-    final Double actual = (Double) applicationCpuUsageDataCollector.collectData().getContent();
+    final Double actual = (Double) collector.collectData().getContent();
     assertThat(actual,
         is(both(greaterThanOrEqualTo(ZERO_PERCENT)).and(lessThanOrEqualTo(HUNDRED_PERCENT))));
   }
@@ -40,9 +39,7 @@ public class ApplicationCpuUsageDataCollectorInstrumentedTest
    */
   @Test
   public void collectData_applicationUserUsageShouldBePositive() {
-    final ApplicationCpuUsageDataCollector applicationCpuUsageDataCollector =
-        new ApplicationCpuUsageDataCollector();
-    final Double actualValue = (Double) applicationCpuUsageDataCollector.collectData().getContent();
+    final Double actualValue = (Double) collector.collectData().getContent();
     assertThat(actualValue, is(greaterThanOrEqualTo(0d)));
   }
 
@@ -52,11 +49,9 @@ public class ApplicationCpuUsageDataCollectorInstrumentedTest
         "10267 (e.trace.testapp) R 1863 1863 0 0 -1 4211008 7678 0 85 0 49 10 0 0 10 -10 34 0 "
             + "118182231 1516228608 20270 18446744073709551615 1661407232 1661423840 4286766912 "
             + "4286744272 4033760474 0 4612";
-    final ApplicationCpuUsageDataCollector applicationCpuUsageDataCollector =
-        new ApplicationCpuUsageDataCollector();
 
     final CpuUsageData.PidCpuStat actual =
-        applicationCpuUsageDataCollector.parsePidCpuStat(line).getPidCpuStat();
+        collector.parsePidCpuStat(line).getPidCpuStat();
     final CpuUsageData.PidCpuStat expected =
         new CpuUsageData.PidCpuStat(49f, 10f, 0f, 0f, 1.18182232E8f);
 
@@ -66,40 +61,27 @@ public class ApplicationCpuUsageDataCollectorInstrumentedTest
   @Test
   public void parsePidCpuStat_InvalidInput() {
     final String line = "something that is not cool";
-    final ApplicationCpuUsageDataCollector applicationCpuUsageDataCollector =
-        new ApplicationCpuUsageDataCollector();
-
-    final CpuUsageData.PidCpuStatWithUptime actual =
-        applicationCpuUsageDataCollector.parsePidCpuStat(line);
+    final CpuUsageData.PidCpuStatWithUptime actual = collector.parsePidCpuStat(line);
     assertThat(actual, is(nullValue()));
   }
 
   @Test
   public void parsePidCpuStat_NullInput() {
     final String line = null;
-    final ApplicationCpuUsageDataCollector applicationCpuUsageDataCollector =
-        new ApplicationCpuUsageDataCollector();
-
-    final CpuUsageData.PidCpuStatWithUptime actual =
-        applicationCpuUsageDataCollector.parsePidCpuStat(line);
+    final CpuUsageData.PidCpuStatWithUptime actual = collector.parsePidCpuStat(line);
     assertThat(actual, is(nullValue()));
   }
 
   @Test
   public void getApplicationCpuUsage_ShouldBeNotNull() {
-    final ApplicationCpuUsageDataCollector applicationCpuUsageDataCollector =
-        new ApplicationCpuUsageDataCollector();
-    final CpuUsageData.PidCpuStatWithUptime actual =
-        applicationCpuUsageDataCollector.getApplicationCpuUsage();
+    final CpuUsageData.PidCpuStatWithUptime actual = collector.getApplicationCpuUsage();
     assertThat(actual, is(notNullValue()));
   }
 
   @Test
   public void getApplicationCpuUsagePercentage_ShouldBeValid() {
-    final ApplicationCpuUsageDataCollector applicationCpuUsageDataCollector =
-        new ApplicationCpuUsageDataCollector();
-    final Double actual = applicationCpuUsageDataCollector.getApplicationCpuUsagePercentage(
-        applicationCpuUsageDataCollector.previousAverageApplicationStats);
+    final Double actual = collector.getApplicationCpuUsagePercentage(
+        collector.previousAverageApplicationStats);
     assertThat(actual,
         is(both(greaterThanOrEqualTo(ZERO_PERCENT)).and(lessThanOrEqualTo(HUNDRED_PERCENT))));
   }
