@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -31,13 +33,22 @@ public class ExecutorScheduler extends Scheduler {
    * The Runnable to schedule.
    */
   @Nullable
-  private final Runnable runnable;
+  @VisibleForTesting
+  final Runnable runnable;
 
   /**
    * The {@link ScheduledExecutorService} that will schedule the {@link Runnable}s.
    */
   @Nullable
-  private ScheduledExecutorService scheduledExecutorService;
+  @VisibleForTesting
+  ScheduledExecutorService scheduledExecutorService;
+
+  /**
+   * The ScheduledFuture that is created when a task is scheduled on the executor.
+   */
+  @VisibleForTesting
+  @Nullable
+  ScheduledFuture<?> scheduledFuture;
 
   /**
    * Constructor for class. {@link #DEFAULT_SCHEDULE_INITIAL_DELAY_MS} will be used as delay
@@ -80,10 +91,11 @@ public class ExecutorScheduler extends Scheduler {
       scheduledExecutorService = Executors.newScheduledThreadPool(1);
     }
     if (interval > 0) {
-      scheduledExecutorService
+      scheduledFuture = scheduledExecutorService
           .scheduleAtFixedRate(runnable, initialDelay, interval, TimeUnit.MILLISECONDS);
     } else {
-      scheduledExecutorService.schedule(runnable, initialDelay, TimeUnit.MILLISECONDS);
+      scheduledFuture = scheduledExecutorService.schedule(runnable, initialDelay,
+          TimeUnit.MILLISECONDS);
     }
 
     return -1;
