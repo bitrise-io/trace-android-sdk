@@ -7,6 +7,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import io.bitrise.trace.network.MetricSender;
 import io.bitrise.trace.network.TraceSender;
 import io.bitrise.trace.utils.log.LogMessageConstants;
@@ -29,6 +30,10 @@ public class ServiceScheduler extends Scheduler {
   @NonNull
   private final Class<? extends JobService> jobService;
 
+  @VisibleForTesting
+  @NonNull
+  ComponentName componentName;
+
   /**
    * Constructor for class. {@link #DEFAULT_SCHEDULE_INITIAL_DELAY_MS} will be used as delay
    * for the scheduling.
@@ -38,9 +43,7 @@ public class ServiceScheduler extends Scheduler {
    */
   public ServiceScheduler(@NonNull final Context context,
                           @NonNull final Class<? extends JobService> jobService) {
-    this.context = context;
-    this.jobService = jobService;
-    this.initialDelay = DEFAULT_SCHEDULE_INITIAL_DELAY_MS;
+    this(context, jobService, DEFAULT_SCHEDULE_INITIAL_DELAY_MS);
   }
 
   /**
@@ -56,13 +59,14 @@ public class ServiceScheduler extends Scheduler {
     this.context = context;
     this.jobService = jobService;
     this.initialDelay = delay;
+    this.componentName = new ComponentName(context, jobService);
   }
 
   @Override
   @Nullable
   public Integer scheduleDelayed(final long initialDelay) {
     final JobInfo jobInfo = new JobInfo.Builder(getJobIdForService(jobService),
-        new ComponentName(context, jobService))
+        this.componentName)
         .setBackoffCriteria(18000, JobInfo.BACKOFF_POLICY_LINEAR)
         .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
         .setMinimumLatency(initialDelay)
@@ -97,7 +101,8 @@ public class ServiceScheduler extends Scheduler {
    *     {@link MetricSender} or
    *     {@link TraceSender}.
    */
-  private int getJobIdForService(@NonNull final Class<? extends JobService> jobService) {
+  @VisibleForTesting
+  int getJobIdForService(@NonNull final Class<? extends JobService> jobService) {
     if (jobService == MetricSender.class) {
       return 0;
     } else if (jobService == TraceSender.class) {
