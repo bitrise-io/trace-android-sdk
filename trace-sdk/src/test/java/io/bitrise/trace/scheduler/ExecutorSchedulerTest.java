@@ -54,7 +54,7 @@ public class ExecutorSchedulerTest {
 
     assertNotNull(executorScheduler.scheduledFuture);
     assertTrue(executorScheduler.scheduledFuture.getDelay(TimeUnit.MILLISECONDS)
-        > (initialDelay - 10));
+        > (initialDelay - 100));
     // we cannot get the delay immediately, several milliseconds will have passed.
 
     final ScheduledThreadPoolExecutor executor = getScheduledThreadPoolExecutorFromService(
@@ -71,7 +71,7 @@ public class ExecutorSchedulerTest {
 
     assertNotNull(executorScheduler.scheduledFuture);
     assertTrue(executorScheduler.scheduledFuture.getDelay(TimeUnit.MILLISECONDS)
-        > (initialDelay - 10));
+        > (initialDelay - 100));
     // we cannot get the delay immediately, several milliseconds will have passed.
 
     final ScheduledThreadPoolExecutor executor = getScheduledThreadPoolExecutorFromService(

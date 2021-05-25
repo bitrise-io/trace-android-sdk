@@ -33,7 +33,7 @@ public class SchedulerTest {
     assertEquals(new Integer(-1), id);
     assertNotNull(scheduler.scheduledFuture);
     assertTrue(scheduler.scheduledFuture.getDelay(TimeUnit.MILLISECONDS)
-        > (Scheduler.DEFAULT_SCHEDULE_INITIAL_DELAY_MS - 10));
+        > (Scheduler.DEFAULT_SCHEDULE_INITIAL_DELAY_MS - 100));
     // we cannot get the delay immediately, several milliseconds may have passed.
   }
 
