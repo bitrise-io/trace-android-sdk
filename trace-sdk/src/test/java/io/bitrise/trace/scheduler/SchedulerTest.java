@@ -20,11 +20,11 @@ public class SchedulerTest {
 
   @Test
   public void schedule() {
-     final Integer id = scheduler.schedule();
-     assertEquals(new Integer(-1), id);
-     assertNotNull(scheduler.scheduledFuture);
-     assertTrue(scheduler.scheduledFuture.getDelay(TimeUnit.MILLISECONDS) <= 0);
-     // delay might have already elapsed, which makes the delay negative
+    final Integer id = scheduler.schedule();
+    assertEquals(new Integer(-1), id);
+    assertNotNull(scheduler.scheduledFuture);
+    assertTrue(scheduler.scheduledFuture.getDelay(TimeUnit.MILLISECONDS) <= 0);
+    // delay might have already elapsed, which makes the delay negative
   }
 
   @Test
@@ -32,8 +32,8 @@ public class SchedulerTest {
     final Integer id = scheduler.scheduleDelayed();
     assertEquals(new Integer(-1), id);
     assertNotNull(scheduler.scheduledFuture);
-    assertTrue(scheduler.scheduledFuture.getDelay(TimeUnit.MILLISECONDS) >
-        (Scheduler.DEFAULT_SCHEDULE_INITIAL_DELAY_MS -10));
+    assertTrue(scheduler.scheduledFuture.getDelay(TimeUnit.MILLISECONDS)
+        > (Scheduler.DEFAULT_SCHEDULE_INITIAL_DELAY_MS - 10));
     // we cannot get the delay immediately, several milliseconds may have passed.
   }
 
@@ -48,5 +48,5 @@ public class SchedulerTest {
     final long delay = scheduler.calculateDelay(System.currentTimeMillis() - 100);
     assertEquals(0, delay);
   }
-  
+
 }

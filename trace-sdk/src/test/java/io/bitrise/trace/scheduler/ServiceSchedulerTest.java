@@ -22,7 +22,7 @@ import org.mockito.Mockito;
 public class ServiceSchedulerTest {
 
   private final Context mockContext = Mockito.mock(Context.class);
-  final JobScheduler mockJobScheduler = Mockito.mock(JobScheduler.class, Mockito.CALLS_REAL_METHODS);
+  final JobScheduler mockJobScheduler = Mockito.mock(JobScheduler.class);
 
   @Test
   public void cancelAll() {

@@ -53,8 +53,8 @@ public class ExecutorSchedulerTest {
     executorScheduler.scheduleDelayed(initialDelay);
 
     assertNotNull(executorScheduler.scheduledFuture);
-    assertTrue(executorScheduler.scheduledFuture.getDelay(TimeUnit.MILLISECONDS) >
-        (initialDelay - 10));
+    assertTrue(executorScheduler.scheduledFuture.getDelay(TimeUnit.MILLISECONDS)
+        > (initialDelay - 10));
     // we cannot get the delay immediately, several milliseconds will have passed.
 
     final ScheduledThreadPoolExecutor executor = getScheduledThreadPoolExecutorFromService(
@@ -70,8 +70,8 @@ public class ExecutorSchedulerTest {
     executorScheduler.scheduleDelayed(initialDelay);
 
     assertNotNull(executorScheduler.scheduledFuture);
-    assertTrue(executorScheduler.scheduledFuture.getDelay(TimeUnit.MILLISECONDS) >
-        (initialDelay - 10));
+    assertTrue(executorScheduler.scheduledFuture.getDelay(TimeUnit.MILLISECONDS)
+        > (initialDelay - 10));
     // we cannot get the delay immediately, several milliseconds will have passed.
 
     final ScheduledThreadPoolExecutor executor = getScheduledThreadPoolExecutorFromService(
@@ -80,7 +80,9 @@ public class ExecutorSchedulerTest {
   }
 
   /**
-   * @Return a {@link ScheduledThreadPoolExecutor} for a given {@link ScheduledExecutorService}
+   * Creates a {@link ScheduledThreadPoolExecutor} from a given {@link ScheduledExecutorService}.
+   *
+   * @Return a {@link ScheduledThreadPoolExecutor} from a given {@link ScheduledExecutorService}.
    */
   private ScheduledThreadPoolExecutor getScheduledThreadPoolExecutorFromService(
       @Nullable final ScheduledExecutorService scheduledExecutorService) {
