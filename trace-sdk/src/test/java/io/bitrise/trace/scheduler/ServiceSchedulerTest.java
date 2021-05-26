@@ -64,8 +64,7 @@ public class ServiceSchedulerTest {
   }
 
   /**
-   * An instance of a class that extends a {@link JobService}
-   * - used only in tests in this class.
+   * An instance of a class that extends a {@link JobService} - used only in tests in this class.
    */
   private static class TestSender extends JobService {
 

@@ -33,8 +33,7 @@ public class ServiceSchedulerInstrumentedTest {
     scheduler.scheduleDelayed(initialDelay);
 
     ArgumentCaptor<JobInfo> jobInfoCaptor = ArgumentCaptor.forClass(JobInfo.class);
-    verify(mockJobScheduler, times(1))
-        .schedule(jobInfoCaptor.capture());
+    verify(mockJobScheduler, times(1)).schedule(jobInfoCaptor.capture());
     assertEquals(initialDelay, jobInfoCaptor.getValue().getMinLatencyMillis());
   }
 

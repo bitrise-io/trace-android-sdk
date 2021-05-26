@@ -25,8 +25,7 @@ public class ExecutorSchedulerTest {
 
   @Test
   public void scheduleDelayed_noRunnable() {
-    final ExecutorScheduler executorScheduler =
-        new ExecutorScheduler(mockContext, null);
+    final ExecutorScheduler executorScheduler = new ExecutorScheduler(mockContext, null);
 
     assertNull(executorScheduler.runnable);
     assertNull(executorScheduler.scheduleDelayed(initialDelay));
@@ -34,8 +33,7 @@ public class ExecutorSchedulerTest {
 
   @Test
   public void scheduleDelayed_noExecutiveService() {
-    final ExecutorScheduler executorScheduler =
-        new ExecutorScheduler(mockContext, mockRunnable);
+    final ExecutorScheduler executorScheduler = new ExecutorScheduler(mockContext, mockRunnable);
     assertNull(executorScheduler.scheduledExecutorService);
 
     executorScheduler.scheduleDelayed(initialDelay);
@@ -80,17 +78,6 @@ public class ExecutorSchedulerTest {
   }
 
   /**
-   * Creates a {@link ScheduledThreadPoolExecutor} from a given {@link ScheduledExecutorService}.
-   *
-   * @Return a {@link ScheduledThreadPoolExecutor} from a given {@link ScheduledExecutorService}.
-   */
-  private ScheduledThreadPoolExecutor getScheduledThreadPoolExecutorFromService(
-      @Nullable final ScheduledExecutorService scheduledExecutorService) {
-    assert scheduledExecutorService instanceof ScheduledThreadPoolExecutor;
-    return (ScheduledThreadPoolExecutor) scheduledExecutorService;
-  }
-
-  /**
    * When there are scheduled tasks, assert when they are cancelled the scheduler is shut down
    * and there are zero tasks in the queue.
    */
@@ -109,6 +96,17 @@ public class ExecutorSchedulerTest {
     final ScheduledThreadPoolExecutor executor = getScheduledThreadPoolExecutorFromService(
         executorScheduler.scheduledExecutorService);
     assertEquals(0, executor.getQueue().size());
+  }
+
+  /**
+   * Creates a {@link ScheduledThreadPoolExecutor} from a given {@link ScheduledExecutorService}.
+   *
+   * @Return a {@link ScheduledThreadPoolExecutor} from a given {@link ScheduledExecutorService}.
+   */
+  private ScheduledThreadPoolExecutor getScheduledThreadPoolExecutorFromService(
+      @Nullable final ScheduledExecutorService scheduledExecutorService) {
+    assert scheduledExecutorService instanceof ScheduledThreadPoolExecutor;
+    return (ScheduledThreadPoolExecutor) scheduledExecutorService;
   }
 
 }
