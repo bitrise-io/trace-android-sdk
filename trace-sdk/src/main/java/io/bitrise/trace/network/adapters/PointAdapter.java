@@ -37,29 +37,31 @@ public class PointAdapter implements JsonSerializer<Point>, JsonDeserializer<Poi
     if (srcValueCase != null) {
       final Point.ValueCase valueCase = Point.ValueCase.forNumber(srcValueCase.getAsInt());
 
-      switch (valueCase) {
-        case INT64_VALUE:
-          pointBuilder.setInt64Value(srcPoint.get(PROPERTY_VALUE).getAsInt());
-          break;
-        case DOUBLE_VALUE:
-          pointBuilder.setDoubleValue(srcPoint.get(PROPERTY_VALUE).getAsDouble());
-          break;
-        case DISTRIBUTION_VALUE:
-          final DistributionValue distributionValue = NetworkClient.getGson().fromJson(
-              srcPoint.get(PROPERTY_VALUE), DistributionValue.class);
-          pointBuilder.setDistributionValue(distributionValue);
-          break;
-        case SUMMARY_VALUE:
-          final SummaryValue summaryValue = NetworkClient.getGson().fromJson(
-              srcPoint.get(PROPERTY_VALUE), SummaryValue.class);
-          pointBuilder.setSummaryValue(summaryValue);
-          break;
-        case VALUE_NOT_SET:
-          // we deliberately do not deserialize values that were not set.
-          break;
-        default:
-          // nop.
-          break;
+      if (valueCase != null) {
+        switch (valueCase) {
+          case INT64_VALUE:
+            pointBuilder.setInt64Value(srcPoint.get(PROPERTY_VALUE).getAsInt());
+            break;
+          case DOUBLE_VALUE:
+            pointBuilder.setDoubleValue(srcPoint.get(PROPERTY_VALUE).getAsDouble());
+            break;
+          case DISTRIBUTION_VALUE:
+            final DistributionValue distributionValue = NetworkClient.getGson().fromJson(
+                srcPoint.get(PROPERTY_VALUE), DistributionValue.class);
+            pointBuilder.setDistributionValue(distributionValue);
+            break;
+          case SUMMARY_VALUE:
+            final SummaryValue summaryValue = NetworkClient.getGson().fromJson(
+                srcPoint.get(PROPERTY_VALUE), SummaryValue.class);
+            pointBuilder.setSummaryValue(summaryValue);
+            break;
+          case VALUE_NOT_SET:
+            // we deliberately do not deserialize values that were not set.
+            break;
+          default:
+            // nop.
+            break;
+        }
       }
     }
 
