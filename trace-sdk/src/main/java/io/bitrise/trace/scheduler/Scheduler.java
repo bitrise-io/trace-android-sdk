@@ -3,6 +3,7 @@ package io.bitrise.trace.scheduler;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 
 /**
  * Base abstract class for scheduling actions.
@@ -12,7 +13,7 @@ public abstract class Scheduler {
   /**
    * The default initial delay for scheduling in milliseconds.
    */
-  public static final long DEFAULT_SCHEDULE_INITIAL_DELAY_MS = 60 * 1000;
+  public static final long DEFAULT_SCHEDULE_INITIAL_DELAY_MS = 60000; //60 * 1000
 
   /**
    * The Android context.
@@ -52,7 +53,7 @@ public abstract class Scheduler {
   /**
    * Schedules an action delayed with the default delay.
    *
-   * @return the tag of if it is a Service, empty String if it is not a Service,  or {@code null}
+   * @return the tag of if it is a Service, empty String if it is not a Service, or {@code null}
    *     if the action has not been scheduled.
    */
   @Nullable
@@ -81,7 +82,8 @@ public abstract class Scheduler {
    * @param scheduledTimeMillis the timestamp in unix-time milliseconds.
    * @return the delay in milliseconds.
    */
-  private long calculateDelay(final long scheduledTimeMillis) {
+  @VisibleForTesting
+  long calculateDelay(final long scheduledTimeMillis) {
     final long currentTime = System.currentTimeMillis();
     final long diff = scheduledTimeMillis - currentTime;
     return diff > 0 ? diff : 0;
