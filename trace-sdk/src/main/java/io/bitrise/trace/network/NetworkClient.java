@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.LocaleList;
 import androidx.annotation.NonNull;
 import com.google.common.base.CaseFormat;
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.protobuf.ProtoTypeAdapter;
@@ -116,7 +117,7 @@ public final class NetworkClient {
   @NonNull
   public static Gson getGson() {
     return new GsonBuilder()
-        .setFieldNamingStrategy(new SnakeCaseStrategy())
+        .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
         .registerTypeHierarchyAdapter(ByteString.class, new ByteStringAdapter())
         .registerTypeAdapter(Point.class, new PointAdapter())
         .registerTypeAdapter(Span.Attributes.class, new SpanAttributeAdapter())
@@ -133,8 +134,8 @@ public final class NetworkClient {
 
   /**
    * Builds a {@link Retrofit} with the given {@link OkHttpClient}. Uses a
-   * {@link SnakeCaseStrategy} to convert JSON field names using snake case. This is required as
-   * backend does the same.
+   * {@link FieldNamingPolicy} to convert JSON field names using LOWER_CASE_WITH_UNDERSCORES.
+   * This is required as backend expects this format.
    *
    * @param client the given client.
    * @return the Retrofit.
