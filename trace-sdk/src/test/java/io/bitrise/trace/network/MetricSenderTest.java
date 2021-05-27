@@ -2,10 +2,16 @@ package io.bitrise.trace.network;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import android.app.job.JobInfo;
+import android.app.job.JobParameters;
+import android.content.ComponentName;
 import io.bitrise.trace.data.collector.device.DeviceOsVersionDataCollector;
 import io.bitrise.trace.data.collector.network.okhttp.OkHttpDataListener;
 import io.bitrise.trace.data.management.DataManager;
@@ -21,6 +27,7 @@ import java.util.List;
 import okhttp3.Headers;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockito.Mockito;
 import retrofit2.Response;
 
 /**
@@ -172,5 +179,39 @@ public class MetricSenderTest {
         MetricSender.METRIC_HEADER_ACCEPTED_LABELS, ""));
 
     assertEquals(0, MetricSender.countHeaderComparisonDifference(request, response));
+  }
+
+  @Test
+  public void onStartJob() {
+    final MetricSender mockMetricSender = Mockito.mock(MetricSender.class,
+        Mockito.CALLS_REAL_METHODS);
+    final JobParameters mockJobParameters = Mockito.mock(JobParameters.class);
+    boolean serviceShouldContinue = mockMetricSender.onStartJob(mockJobParameters);
+
+    assertTrue(serviceShouldContinue);
+    verify(mockMetricSender, times(1)).send(mockJobParameters);
+  }
+
+  @Test
+  public void getNetworkRequest_noItems() {
+    when(mockDataStorage.getFirstMetricGroup())
+        .thenReturn(new ArrayList<>());
+
+    assertNull(metricSender.getNetworkRequest());
+  }
+
+  @Test
+  public void getMetricEntityList_hasNoItems() {
+    metricSender.setMetricEntityList(null);
+    assertEquals(new ArrayList<MetricEntity>(), metricSender.getMetricEntityList());
+  }
+
+  @Test
+  public void getMetricEntityList_hasItems() {
+    final List<MetricEntity> metricList = new ArrayList<>();
+    metricList.add(new MetricEntity(MetricTestProvider.getSystemMemoryUsage()));
+    metricSender.setMetricEntityList(metricList);
+
+    assertEquals(metricList, metricSender.getMetricEntityList());
   }
 }
