@@ -42,4 +42,25 @@ public class TraceRequestTest {
     assertEquals(expectedJson, requestJson);
   }
 
+  @Test
+  public void getSpans() {
+    final List<Span> spanList = new ArrayList<>();
+    spanList.add(TraceTestProvider.createActivityViewSpan());
+    spanList.add(TraceTestProvider.createNetworkSpan());
+
+    final TraceRequest traceRequest = new TraceRequest(
+        DataTestUtils.getSampleResource("session-id"), spanList);
+
+    assertEquals(spanList, traceRequest.getSpans());
+  }
+
+  @Test
+  public void setResources() {
+    final TraceRequest traceRequest = new TraceRequest(null, new ArrayList<>());
+    traceRequest.setResource(DataTestUtils.getSampleResource("session-id"));
+
+    assertEquals(DataTestUtils.getSampleResource("session-id"),
+        traceRequest.getResource());
+  }
+
 }
