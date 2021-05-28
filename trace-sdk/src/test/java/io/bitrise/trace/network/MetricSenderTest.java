@@ -4,6 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyBoolean;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -11,7 +14,9 @@ import static org.mockito.Mockito.when;
 
 import android.app.job.JobInfo;
 import android.app.job.JobParameters;
+import android.app.job.JobService;
 import android.content.ComponentName;
+import com.google.common.util.concurrent.SettableFuture;
 import io.bitrise.trace.data.collector.device.DeviceOsVersionDataCollector;
 import io.bitrise.trace.data.collector.network.okhttp.OkHttpDataListener;
 import io.bitrise.trace.data.management.DataManager;
@@ -24,6 +29,8 @@ import io.opencensus.proto.metrics.v1.Metric;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import okhttp3.Headers;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -38,6 +45,8 @@ public class MetricSenderTest {
   private static final DataManager mockDataManager = mock(DataManager.class);
   private static final DataStorage mockDataStorage = mock(DataStorage.class);
   private static final MetricSender metricSender = new MetricSender();
+  final MetricSender mockMetricSender = Mockito.mock(MetricSender.class);
+  final JobParameters mockJobParameters = Mockito.mock(JobParameters.class);
 
   /**
    * Sets up the initial state for the test class.
@@ -182,10 +191,28 @@ public class MetricSenderTest {
   }
 
   @Test
+  public void send_hasStopped() throws ExecutionException, InterruptedException {
+    mockMetricSender.setStopped(true);
+
+    final Future<DataSender.Result> settableFuture = metricSender.send(mockJobParameters);
+
+    assertEquals(DataSender.Result.FAILURE, settableFuture.get());
+  }
+
+  @Test
+  public void send_invalidNetworkRequest() throws ExecutionException, InterruptedException {
+    mockMetricSender.setStopped(false);
+    when(mockMetricSender.getNetworkRequest()).thenReturn(null);
+
+    final Future<DataSender.Result> settableFuture = metricSender.send(mockJobParameters);
+
+    assertEquals(DataSender.Result.FAILURE, settableFuture.get());
+  }
+
+  @Test
   public void onStartJob() {
     final MetricSender mockMetricSender = Mockito.mock(MetricSender.class,
         Mockito.CALLS_REAL_METHODS);
-    final JobParameters mockJobParameters = Mockito.mock(JobParameters.class);
     boolean serviceShouldContinue = mockMetricSender.onStartJob(mockJobParameters);
 
     assertTrue(serviceShouldContinue);
