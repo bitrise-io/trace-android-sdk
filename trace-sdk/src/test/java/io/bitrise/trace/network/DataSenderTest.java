@@ -38,6 +38,7 @@ public class DataSenderTest {
   public static void beforeClass() {
     ApplicationSessionManager.setTestInstance(mockSessionManager);
   }
+  
   @AfterClass
   public static void afterClass() {
     ApplicationSessionManager.reset();
