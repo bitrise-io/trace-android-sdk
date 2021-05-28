@@ -94,7 +94,7 @@ public class MetricSender extends DataSender {
         }
 
         final MetricRequest metricRequest = getNetworkRequest();
-        if (!validateTraceRequest(metricRequest)) {
+        if (!validateNetworkRequest(metricRequest)) {
           settableFuture.set(Result.FAILURE);
           onSendingFinished(params, isRescheduleNeeded());
           return;

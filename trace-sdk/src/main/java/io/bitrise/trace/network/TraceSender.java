@@ -47,7 +47,7 @@ public class TraceSender extends DataSender {
         }
 
         final TraceRequest traceRequest = getNetworkRequest();
-        if (!validateTraceRequest(traceRequest)) {
+        if (!validateNetworkRequest(traceRequest)) {
           settableFuture.set(Result.FAILURE);
           onSendingFinished(params, isRescheduleNeeded());
           return;

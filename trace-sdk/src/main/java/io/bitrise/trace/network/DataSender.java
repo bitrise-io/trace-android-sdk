@@ -39,8 +39,9 @@ public abstract class DataSender extends JobService {
   /**
    * The future of the {@link Result} of this service.
    */
+  @VisibleForTesting
   @Nullable
-  private SettableFuture<Result> resultSettableFuture;
+  SettableFuture<Result> resultSettableFuture;
 
   /**
    * The {@link DataStorage} to get the data to send.
@@ -51,14 +52,16 @@ public abstract class DataSender extends JobService {
   /**
    * The {@link NetworkCommunicator} for the networking interface.
    */
+  @VisibleForTesting
   @Nullable
-  private NetworkCommunicator networkCommunicator;
+  NetworkCommunicator networkCommunicator;
 
   /**
    * The {@link ExecutorService} for asynchronous operations.
    */
+  @VisibleForTesting
   @Nullable
-  private ExecutorService executor;
+  ExecutorService executor;
 
   /**
    * The {@link DataManager} for checking the active data collectors.
@@ -74,8 +77,9 @@ public abstract class DataSender extends JobService {
   /**
    * The Android Context.
    */
-  @NonNull
-  private Context context;
+  @VisibleForTesting
+  @Nullable
+  Context context;
 
   /**
    * Validates the given {@link NetworkRequest} if it contains all the required
@@ -84,7 +88,7 @@ public abstract class DataSender extends JobService {
    * @param networkRequest the given NetworkRequest.
    * @return {@code true} if it is valid, {@code false} otherwise.
    */
-  static boolean validateTraceRequest(@Nullable final NetworkRequest networkRequest) {
+  static boolean validateNetworkRequest(@Nullable final NetworkRequest networkRequest) {
     if (networkRequest == null) {
       return false;
     }
@@ -297,8 +301,9 @@ public abstract class DataSender extends JobService {
     this.executor = executor;
   }
 
+  @VisibleForTesting
   @NonNull
-  private Context getContext() {
+  Context getContext() {
     if (context == null) {
       context = this;
     }
