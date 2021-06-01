@@ -45,7 +45,6 @@ public class MetricSenderTest {
   private static final DataManager mockDataManager = mock(DataManager.class);
   private static final DataStorage mockDataStorage = mock(DataStorage.class);
   private static final MetricSender metricSender = new MetricSender();
-  final MetricSender mockMetricSender = Mockito.mock(MetricSender.class);
   final JobParameters mockJobParameters = Mockito.mock(JobParameters.class);
 
   /**
@@ -192,8 +191,7 @@ public class MetricSenderTest {
 
   @Test
   public void send_hasStopped() throws ExecutionException, InterruptedException {
-    mockMetricSender.setStopped(true);
-
+    metricSender.setStopped(true);
     final Future<DataSender.Result> settableFuture = metricSender.send(mockJobParameters);
 
     assertEquals(DataSender.Result.FAILURE, settableFuture.get());
@@ -201,9 +199,8 @@ public class MetricSenderTest {
 
   @Test
   public void send_invalidNetworkRequest() throws ExecutionException, InterruptedException {
-    mockMetricSender.setStopped(false);
-    when(mockMetricSender.getNetworkRequest()).thenReturn(null);
-
+    metricSender.setStopped(false);
+    metricSender.setMetricEntityList(null);
     final Future<DataSender.Result> settableFuture = metricSender.send(mockJobParameters);
 
     assertEquals(DataSender.Result.FAILURE, settableFuture.get());

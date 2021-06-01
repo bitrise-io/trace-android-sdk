@@ -158,15 +158,17 @@ public class TraceSender extends DataSender {
     return getDataStorage().getAllTraces().size() > 0;
   }
 
+  @VisibleForTesting
   @NonNull
-  private List<Trace> getTraceList() {
+  List<Trace> getTraceList() {
     if (traceList == null) {
       traceList = new ArrayList<>();
     }
     return traceList;
   }
 
-  private void setTraceList(@NonNull final List<Trace> traceList) {
+  @VisibleForTesting
+  void setTraceList(@NonNull final List<Trace> traceList) {
     this.traceList = traceList;
   }
 
