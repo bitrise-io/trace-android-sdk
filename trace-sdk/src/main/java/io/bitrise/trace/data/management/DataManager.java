@@ -61,13 +61,15 @@ public class DataManager {
   /**
    * The Set of active {@link DataListener}s.
    */
+  @VisibleForTesting
   @NonNull
-  private final Set<DataListener> activeDataListeners = new HashSet<>();
+  final Set<DataListener> activeDataListeners = new HashSet<>();
   /**
    * The Set of active {@link DataCollector}s.
    */
+  @VisibleForTesting
   @NonNull
-  private final Set<DataCollector> activeDataCollectors = new HashSet<>();
+  final Set<DataCollector> activeDataCollectors = new HashSet<>();
   /**
    * The {@link DataFormatterDelegator} that is responsible for converting the Data to the
    * required format and push it to the {@link DataStorage}.
@@ -77,8 +79,9 @@ public class DataManager {
   /**
    * The {@link TraceManager} that will handle the received Spans.
    */
+  @VisibleForTesting
   @NonNull
-  private final TraceManager traceManager;
+  final TraceManager traceManager;
   /**
    * The {@link ServiceScheduler} to schedule Service runs for sending {@link Metric}s.
    */
@@ -99,13 +102,15 @@ public class DataManager {
   /**
    * The {@link ExecutorScheduler} to be able to schedule recurring events.
    */
+  @VisibleForTesting
   @Nullable
-  private ExecutorScheduler executorScheduler;
+  ExecutorScheduler executorScheduler;
   /**
    * The {@link DataStorage} for the formatter.
    */
+  @VisibleForTesting
   @NonNull
-  private DataStorage dataStorage;
+  DataStorage dataStorage;
 
   /**
    * Constructor to prevent instantiation outside of the class.
@@ -133,6 +138,18 @@ public class DataManager {
         TraceLog.d(LogMessageConstants.DATA_MANAGER_INITIALISED);
       }
       return dataManager;
+    }
+  }
+
+  /**
+   * Configures the current instance to a specific DataManager - used only for testing.
+   *
+   * @param manager the DataManager to use.
+   */
+  @VisibleForTesting
+  public static synchronized void setTestInstance(@NonNull final DataManager manager) {
+    synchronized (dataManagerLock) {
+      dataManager = manager;
     }
   }
 
@@ -204,7 +221,8 @@ public class DataManager {
    *
    * @param context the Android Context.
    */
-  private void startRecurringDataCollection(@NonNull final Context context) {
+  @VisibleForTesting
+  void startRecurringDataCollection(@NonNull final Context context) {
     synchronized (activeDataCollectorLock) {
       if (!activeDataCollectors.isEmpty()) {
         return;
@@ -225,7 +243,8 @@ public class DataManager {
    *
    * @param context the Android Context.
    */
-  private void startEventDrivenDataCollection(@NonNull final Context context) {
+  @VisibleForTesting
+  void startEventDrivenDataCollection(@NonNull final Context context) {
     synchronized (activeDataListenerLock) {
       if (!activeDataListeners.isEmpty()) {
         return;
@@ -268,7 +287,7 @@ public class DataManager {
    * @param context the Android Context.
    */
   public void startSending(@NonNull final Context context) {
-    stopSending(context);
+    stopSending();
     TraceLog.d(LogMessageConstants.DATA_MANAGER_START_SENDING);
     if (metricServiceScheduler == null) {
       metricServiceScheduler = new ServiceScheduler(context, MetricSender.class,
@@ -286,20 +305,21 @@ public class DataManager {
   /**
    * Stops the sending of any pending requests to the server. These request will be dismissed and
    * will not be sent. No future requests will be sent unless {@link #startSending} is called again.
-   *
-   * @param context the Android Context.
    */
-  public void stopSending(@NonNull final Context context) {
-    TraceLog.d(LogMessageConstants.DATA_MANAGER_STOP_SENDING);
-    if (metricServiceScheduler == null) {
-      metricServiceScheduler = new ServiceScheduler(context, MetricSender.class);
-    }
-    metricServiceScheduler.cancelAll();
+  public void stopSending() {
 
-    if (traceServiceScheduler == null) {
-      traceServiceScheduler = new ServiceScheduler(context, TraceSender.class);
+    if (metricServiceScheduler != null || traceServiceScheduler != null) {
+      TraceLog.d(LogMessageConstants.DATA_MANAGER_STOP_SENDING);
     }
-    traceServiceScheduler.cancelAll();
+
+    if (metricServiceScheduler != null) {
+      metricServiceScheduler.cancelAll();
+    }
+
+    if (traceServiceScheduler != null) {
+      traceServiceScheduler.cancelAll();
+    }
+
   }
 
   /**
@@ -333,15 +353,16 @@ public class DataManager {
    */
   public void handleReceivedData(@NonNull final Data data) {
     final FormattedData[] formattedDataArray = dataFormatterDelegator.formatData(data);
-    for (@Nullable final FormattedData formattedData : formattedDataArray) {
-      if (formattedData == null) {
-        TraceLog.d("Formatted data, but result content was null: " + data);
-        return;
-      }
 
+    if (formattedDataArray.length == 0) {
+      TraceLog.d("Formatted data, but result content was null: " + data);
+      return;
+    }
+
+    for (@NonNull final FormattedData formattedData : formattedDataArray) {
       if (formattedData.getSpan() != null) {
         traceManager.addSpanToActiveTrace(formattedData.getSpan());
-      } else {
+      } else if (formattedData.getMetricEntity() != null) {
         Executors.newSingleThreadExecutor()
                  .execute(() -> dataStorage.saveFormattedData(formattedData));
       }

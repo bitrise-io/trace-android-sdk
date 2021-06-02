@@ -7,15 +7,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import android.content.Context;
 import android.os.AsyncTask;
 import androidx.test.annotation.UiThreadTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import io.bitrise.trace.configuration.ConfigurationManager;
-import io.bitrise.trace.data.collector.DataCollector;
-import io.bitrise.trace.data.collector.DataListener;
 import io.bitrise.trace.data.collector.DataSourceType;
 import io.bitrise.trace.data.collector.DummyDataCollector;
 import io.bitrise.trace.data.collector.DummyDataListener;
@@ -24,10 +21,6 @@ import io.bitrise.trace.data.storage.DataStorage;
 import io.bitrise.trace.data.storage.TestDataStorage;
 import io.bitrise.trace.scheduler.ServiceScheduler;
 import io.bitrise.trace.session.ApplicationSessionManager;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -54,17 +47,6 @@ public class DataManagerInstrumentedTest {
                                      .getTargetContext()
                                      .getApplicationContext();
     mockConfigurationManager = mock(ConfigurationManager.class);
-    final Set<DataCollector> dummyDataCollectors =
-        new HashSet<>(Arrays.asList(
-            new DummyDataCollector("dummyCollector1"),
-            new DummyDataCollector("dummyCollector2")));
-    when(mockConfigurationManager.getDataCollectors(context)).thenReturn(dummyDataCollectors);
-    final LinkedHashSet<DataListener> dummyDataListeners = new LinkedHashSet<>(
-        Arrays.asList(
-            new DummyDataListener("dummyListener1"),
-            new DummyDataListener("dummyListener2"),
-            new DummyDataListener("dummyListener3")));
-    when(mockConfigurationManager.getDataListeners(context)).thenReturn(dummyDataListeners);
   }
 
   /**
@@ -83,80 +65,24 @@ public class DataManagerInstrumentedTest {
   }
 
   /**
-   * When the sending is stopped with {@link DataManager#stopSending(android.content.Context)} the
+   * When the sending is stopped with {@link DataManager#stopSending()} the
    * {@link ServiceScheduler#cancelAll()} should be called.
    */
   @Test
   public void stopSending_shouldCallCancelAll() {
-    dataManager.stopSending(context);
+    dataManager.stopSending();
 
     verify(dataManager.metricServiceScheduler, times(1)).cancelAll();
     verify(dataManager.traceServiceScheduler, times(1)).cancelAll();
   }
 
   /**
-   * Test when the Data collection in started in the DataManager, the number of active
-   * DataCollectors should be 2 based on {@link #setUp()}.
-   */
-  @Test
-  public void startCollection_shouldActiveCollectorsBeNotEmptyAfterStart() {
-    dataManager.startCollection(context);
-
-    final int expectedValue = 2;
-    final int actualValue = dataManager.getActiveDataCollectors().size();
-
-    assertThat(actualValue, is(expectedValue));
-  }
-
-  /**
-   * Test when the Data collection in stopped in the DataManager, the number of active
-   * DataCollectors should be zero.
-   */
-  @Test
-  public void stopCollection_shouldHaveZeroActiveCollectors_AfterStop() {
-    dataManager.stopCollection();
-
-    final int expectedValue = 0;
-    final int actualValue = dataManager.getActiveDataCollectors().size();
-
-    assertThat(actualValue, is(expectedValue));
-  }
-
-  /**
-   * Test when the Data collection in started in the DataManager, the number of active
-   * DataListeners should be 3 based on {@link #setUp()}.
-   */
-  @Test
-  public void startCollection_shouldActiveListenersBeNotEmptyAfterStart() {
-    dataManager.startCollection(context);
-
-    final int expectedValue = 3;
-    final int actualValue = dataManager.getActiveDataListeners().size();
-
-    assertThat(actualValue, is(expectedValue));
-  }
-
-  /**
-   * Test when the Data collection in stopped in the DataManager, the number of active
-   * DataListeners should be zero.
-   */
-  @Test
-  public void stopCollection_shouldHaveZeroActiveListeners_AfterStop() {
-    dataManager.stopCollection();
-
-    final int expectedValue = 0;
-    final int actualValue = dataManager.getActiveDataListeners().size();
-
-    assertThat(actualValue, is(expectedValue));
-  }
-
-  /**
-   * When the sending is started the {@link DataManager#stopSending(Context)} should be called.
+   * When the sending is started the {@link DataManager#stopSending()} should be called.
    */
   @Test
   public void startSending_shouldCallStop() {
     mockDataManager.startSending(context);
-    verify(mockDataManager, times(1)).stopSending(context);
+    verify(mockDataManager, times(1)).stopSending();
   }
 
   /**
@@ -178,29 +104,6 @@ public class DataManagerInstrumentedTest {
     final DataManager expectedValue = DataManager.getInstance(context);
     final DataManager actualValue = DataManager.getInstance(context);
     assertThat(actualValue, sameInstance(expectedValue));
-  }
-
-  /**
-   * Checks that a call to {@link DataManager#isInitialised()} should return {@code true} after
-   * a call made to {@link DataManager#getInstance(Context)}.
-   */
-  @Test
-  public void getInstance_shouldInitialise() {
-    DataManager.getInstance(context);
-    final boolean actualValue = DataManager.isInitialised();
-    assertThat(actualValue, is(true));
-  }
-
-  /**
-   * Checks that a call to {@link DataManager#isInitialised()} should return {@code false} after
-   * a call made to {@link DataManager#reset()}.
-   */
-  @Test
-  public void reset_shouldNotBeInitialised() {
-    DataManager.getInstance(context);
-    DataManager.reset();
-    final boolean actualValue = DataManager.isInitialised();
-    assertThat(actualValue, is(false));
   }
 
   /**
