@@ -2,6 +2,7 @@ package io.bitrise.trace.session;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import io.bitrise.trace.utils.log.LogMessageConstants;
 import io.bitrise.trace.utils.log.TraceLog;
 import javax.inject.Singleton;
@@ -75,5 +76,15 @@ public class ApplicationSessionManager implements SessionManager {
   @Override
   public Session getActiveSession() {
     return session;
+  }
+
+  @VisibleForTesting
+  static synchronized boolean isSessionManagerActive() {
+    return sessionManager != null;
+  }
+
+  @VisibleForTesting
+  static synchronized boolean isSessionActive() {
+    return session != null;
   }
 }
