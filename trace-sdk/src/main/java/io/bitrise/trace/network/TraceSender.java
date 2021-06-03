@@ -42,14 +42,12 @@ public class TraceSender extends DataSender {
       try {
         if (isStopped()) {
           settableFuture.set(Result.FAILURE);
-          onSendingFinished(params, false);
           return;
         }
 
         final TraceRequest traceRequest = getNetworkRequest();
         if (!validateNetworkRequest(traceRequest)) {
           settableFuture.set(Result.FAILURE);
-          onSendingFinished(params, isRescheduleNeeded());
           return;
         }
 

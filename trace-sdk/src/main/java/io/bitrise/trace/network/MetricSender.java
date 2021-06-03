@@ -89,14 +89,12 @@ public class MetricSender extends DataSender {
       try {
         if (isStopped()) {
           settableFuture.set(Result.FAILURE);
-          onSendingFinished(params, false);
           return;
         }
 
         final MetricRequest metricRequest = getNetworkRequest();
         if (!validateNetworkRequest(metricRequest)) {
           settableFuture.set(Result.FAILURE);
-          onSendingFinished(params, isRescheduleNeeded());
           return;
         }
 
