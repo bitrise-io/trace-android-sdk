@@ -2,6 +2,7 @@ package io.bitrise.trace.session;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import io.bitrise.trace.utils.log.LogMessageConstants;
 import io.bitrise.trace.utils.log.TraceLog;
 import javax.inject.Singleton;
@@ -43,6 +44,16 @@ public class ApplicationSessionManager implements SessionManager {
       sessionManager = new ApplicationSessionManager();
     }
     return sessionManager;
+  }
+
+  /**
+   * Configures the current instance to a test instance which can be mocked.
+   *
+   * @param manager the SessionManager instance to use.
+   */
+  @VisibleForTesting
+  public static synchronized void setTestInstance(@NonNull final SessionManager manager) {
+    sessionManager = manager;
   }
 
   /**

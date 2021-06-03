@@ -16,7 +16,7 @@ public abstract class NetworkRequest {
     return resource;
   }
 
-  public void setResource(Resource resource) {
+  public void setResource(@NonNull final Resource resource) {
     this.resource = resource;
   }
 }

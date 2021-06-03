@@ -32,6 +32,7 @@ public class MetricSender extends DataSender {
   /**
    * The List of Metrics that will be sent.
    */
+  @VisibleForTesting
   @Nullable
   private List<MetricEntity> metricEntityList;
 
@@ -88,14 +89,12 @@ public class MetricSender extends DataSender {
       try {
         if (isStopped()) {
           settableFuture.set(Result.FAILURE);
-          onSendingFinished(params, false);
           return;
         }
 
         final MetricRequest metricRequest = getNetworkRequest();
-        if (!validateTraceRequest(metricRequest)) {
+        if (!validateNetworkRequest(metricRequest)) {
           settableFuture.set(Result.FAILURE);
-          onSendingFinished(params, isRescheduleNeeded());
           return;
         }
 
@@ -129,11 +128,8 @@ public class MetricSender extends DataSender {
   public void onSuccess() {
     TraceLog.i(LogMessageConstants.METRIC_SENT_SUCCESSFULLY);
     getExecutor().execute(() -> {
-      if (!getMetricEntityList().isEmpty()) {
-        getDataStorage().deleteMetrics(getMetricEntityList());
-        removeResources(getMetricEntityList().get(0).getSessionId());
-      }
-
+      getDataStorage().deleteMetrics(getMetricEntityList());
+      removeResources(getMetricEntityList().get(0).getSessionId());
       getResultSettableFuture().set(Result.SUCCESS);
     });
   }
@@ -166,15 +162,17 @@ public class MetricSender extends DataSender {
     return true;
   }
 
+  @VisibleForTesting
   @NonNull
-  private List<MetricEntity> getMetricEntityList() {
+  List<MetricEntity> getMetricEntityList() {
     if (metricEntityList == null) {
       metricEntityList = new ArrayList<>();
     }
     return metricEntityList;
   }
 
-  private void setMetricEntityList(@NonNull List<MetricEntity> metricEntityList) {
+  @VisibleForTesting
+  void setMetricEntityList(@NonNull List<MetricEntity> metricEntityList) {
     this.metricEntityList = metricEntityList;
   }
 }

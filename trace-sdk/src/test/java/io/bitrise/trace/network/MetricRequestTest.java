@@ -45,4 +45,25 @@ public class MetricRequestTest {
     assertEquals(expectedJson, requestJson);
   }
 
+  @Test
+  public void getMetrics() {
+    final List<Metric> metricList = new ArrayList<>();
+    metricList.add(MetricTestProvider.getApplicationStartUpMetric());
+    metricList.add(MetricTestProvider.getApplicationCpuMetric());
+
+    final MetricRequest metricRequest = new MetricRequest(
+        DataTestUtils.getSampleResource("session-id"), metricList);
+
+    assertEquals(metricList, metricRequest.getMetrics());
+  }
+
+  @Test
+  public void setResources() {
+    final MetricRequest metricRequest = new MetricRequest(null, new ArrayList<>());
+    metricRequest.setResource(DataTestUtils.getSampleResource("session-id"));
+
+    assertEquals(DataTestUtils.getSampleResource("session-id"),
+        metricRequest.getResource());
+  }
+
 }

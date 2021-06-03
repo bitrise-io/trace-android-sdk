@@ -22,6 +22,10 @@ public class PointAdapterTest {
       "{\"value\":{},\"value_case\":4,\"timestamp\":{\"seconds\":500,\"nanos\":600}}";
   private final String jsonSummaryValuePoint =
       "{\"value\":{},\"value_case\":5,\"timestamp\":{\"seconds\":700,\"nanos\":800}}";
+  private final String jsonValueNotSetPoint =
+      "{\"value_case\":0,\"timestamp\":{\"seconds\":700,\"nanos\":800}}";
+  private final String jsonValueUnknownValueCasePoint =
+      "{\"value_case\":1000,\"timestamp\":{\"seconds\":700,\"nanos\":800}}";
 
   private Point getIntPoint() {
     return Point.newBuilder()
@@ -51,6 +55,12 @@ public class PointAdapterTest {
                 .build();
   }
 
+  private Point getValueNotSetPoint() {
+    return Point.newBuilder()
+                  .setTimestamp(Timestamp.newBuilder().setSeconds(700).setNanos(800).build())
+                  .build();
+  }
+
   @Test
   public void serialize_intValue() {
     final String json = NetworkClient.getGson().toJson(getIntPoint());
@@ -67,6 +77,12 @@ public class PointAdapterTest {
   public void serialize_doubleValue() {
     final String json = NetworkClient.getGson().toJson(getDoublePoint());
     assertEquals(jsonDoublePoint, json);
+  }
+
+  @Test
+  public void serialize_valueNotSet() {
+    final String json = NetworkClient.getGson().toJson(getValueNotSetPoint());
+    assertEquals(jsonValueNotSetPoint, json);
   }
 
   @Test
@@ -97,5 +113,18 @@ public class PointAdapterTest {
   public void deserialize_summaryValue() {
     final Point point = NetworkClient.getGson().fromJson(jsonSummaryValuePoint, Point.class);
     assertEquals(getSummaryValuePoint(), point);
+  }
+
+  @Test
+  public void deserialize_valueNotSet() {
+    final Point point = NetworkClient.getGson().fromJson(jsonValueNotSetPoint, Point.class);
+    assertEquals(getValueNotSetPoint(), point);
+  }
+
+  @Test
+  public void deserialize_unknownValueCase() {
+    final Point point = NetworkClient.getGson().fromJson(
+        jsonValueUnknownValueCasePoint, Point.class);
+    assertEquals(getValueNotSetPoint(), point);
   }
 }

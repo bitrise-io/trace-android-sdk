@@ -1,6 +1,7 @@
 package io.bitrise.trace.session;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import io.azam.ulidj.ULID;
 import java.security.SecureRandom;
 
@@ -24,6 +25,16 @@ public class Session {
   }
 
   /**
+   * Constructor with the sessionId to use - used only for testing purposes.
+   *
+   * @param sessionId a ulid to use for the session id.
+   */
+  @VisibleForTesting
+  public Session(@NonNull final String sessionId) {
+    this.ulid = sessionId;
+  }
+
+  /**
    * Gets the ULID of the Session.
    *
    * @return the ULID.
@@ -32,4 +43,6 @@ public class Session {
   public String getUlid() {
     return ulid;
   }
+
+
 }

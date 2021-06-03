@@ -42,14 +42,12 @@ public class TraceSender extends DataSender {
       try {
         if (isStopped()) {
           settableFuture.set(Result.FAILURE);
-          onSendingFinished(params, false);
           return;
         }
 
         final TraceRequest traceRequest = getNetworkRequest();
-        if (!validateTraceRequest(traceRequest)) {
+        if (!validateNetworkRequest(traceRequest)) {
           settableFuture.set(Result.FAILURE);
-          onSendingFinished(params, isRescheduleNeeded());
           return;
         }
 
@@ -158,15 +156,17 @@ public class TraceSender extends DataSender {
     return getDataStorage().getAllTraces().size() > 0;
   }
 
+  @VisibleForTesting
   @NonNull
-  private List<Trace> getTraceList() {
+  List<Trace> getTraceList() {
     if (traceList == null) {
       traceList = new ArrayList<>();
     }
     return traceList;
   }
 
-  private void setTraceList(@NonNull final List<Trace> traceList) {
+  @VisibleForTesting
+  void setTraceList(@NonNull final List<Trace> traceList) {
     this.traceList = traceList;
   }
 
