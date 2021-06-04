@@ -36,4 +36,9 @@ buildscript {
             'okhttp'  : 'we need at least version 3.14.9 to avoid runtime exceptions due to missing method calls.',
             'rootBeer': 'we want to use a third party root detection library'
     ]
+    ext.traceVersions = [
+            'opencensus'        : '1.0.1',
+            'traceSdk'          : '0.2.0',
+            'traceGradlePlugin' : '0.1.0'
+    ]
 }
