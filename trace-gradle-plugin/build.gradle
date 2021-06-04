@@ -59,7 +59,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:${versions.okhttp}"){
         because "${constraintReasons.okhttp}"
     }
-    implementation "io.bitrise.trace.internal:opencensus:${versions.opencensus}"
+    implementation "io.bitrise.trace.internal:opencensus:${traceVersions.opencensus}"
     testCompileOnly "androidx.annotation:annotation:${versions.androidxAnnotation}"
     testImplementation "junit:junit:${versions.junit}"
     testImplementation "org.mockito:mockito-core:${versions.mockitoCore}"

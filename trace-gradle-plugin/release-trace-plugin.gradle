@@ -20,6 +20,8 @@ project.afterEvaluate {
     publishing {
         publications {
             pluginMaven(MavenPublication) {
+
+                version traceVersions.traceGradlePlugin
                 
                 pom {
                     name = 'Trace Android Gradle Plugin'
