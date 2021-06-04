@@ -2,13 +2,7 @@
 // 1. not contain dependency on trace-sdk
 // 2. use the lowest supported version of com.android.tools:gradle
 buildscript {
-    // These property files are copied during the setup of TraceGradlePluginFunctionalTest
-    final Properties traceGradlePluginProperties = new Properties()
-    final File traceGradlePluginPropertiesFile = new File(getProject().getProjectDir().getAbsolutePath() + ("/traceGradlePlugin.properties"))
-    traceGradlePluginPropertiesFile.withInputStream {
-        traceGradlePluginProperties.load(it)
-    }
-    def tgpVersion = traceGradlePluginProperties.get("version")
+    apply from: "versions.gradle"
 
     repositories {
         mavenLocal()
@@ -17,7 +11,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.3'
-        classpath "io.bitrise.trace.plugin:trace-gradle-plugin:$tgpVersion"
+        classpath "io.bitrise.trace.plugin:trace-gradle-plugin:$traceVersions.traceGradlePlugin"
     }
 }
 
