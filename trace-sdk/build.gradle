@@ -9,8 +9,7 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode = "$project.versionCode" as int
-        versionName "$project.version"
+        versionName "$traceVersions.traceSdk"
         buildConfigField('String', 'VERSION_NAME', "\"${project.version}\"")
         buildConfigField('String', 'TRACE_TOKEN', getTraceToken())
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -52,7 +51,7 @@ dependencies {
         version { require versions.okhttp }
         because constraintReasons.okhttp
     }
-    implementation "io.bitrise.trace.internal:opencensus:${versions.opencensus}"
+    implementation "io.bitrise.trace.internal:opencensus:${traceVersions.opencensus}"
     implementation("com.google.guava:listenablefuture:${versions.listenableFuture}"){
         because constraintReasons.guava
     }
