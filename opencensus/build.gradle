@@ -52,7 +52,7 @@ project.afterEvaluate {
             library(MavenPublication) {
                 from components.java
 
-                version versions.opencensus
+                version traceVersions.opencensus
 
                 pom {
                     name = 'Trace SDK internal OpenCensus module'
