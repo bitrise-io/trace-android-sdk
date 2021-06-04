@@ -76,5 +76,8 @@ public final class LogMessageConstants {
   public static final String URL_CONNECTION_REQUESTS_SUCCESS =
       "UrlConnection listening has successfully been configured, all requests using UrlConnection"
           + " will be reported by the Trace SDK.";
+
+  public static final String CONFIGURATION_MANAGER_COULD_NOT_FIND_RESOURCES = "Trace could not "
+      + "find the required token. Please ensure you have followed the setup instructions.";
 }
 

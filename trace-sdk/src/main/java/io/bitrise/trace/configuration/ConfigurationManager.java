@@ -27,6 +27,8 @@ import io.bitrise.trace.data.collector.view.ApplicationForegroundStateDataListen
 import io.bitrise.trace.data.collector.view.ApplicationStartUpDataListener;
 import io.bitrise.trace.data.collector.view.FragmentStateDataListener;
 import io.bitrise.trace.data.resource.ResourceLabel;
+import io.bitrise.trace.utils.log.LogMessageConstants;
+import io.bitrise.trace.utils.log.TraceLog;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -112,8 +114,14 @@ public class ConfigurationManager {
     getInstance();
     initialised = true;
     configurationMap = new HashMap<>();
-    importConfigurationFromBuildConfig(context);
-    importConfigurationFromResValues(context);
+
+    try {
+      importConfigurationFromBuildConfig(context);
+      importConfigurationFromResValues(context);
+    } catch (Resources.NotFoundException exception) {
+      TraceLog.e(LogMessageConstants.CONFIGURATION_MANAGER_COULD_NOT_FIND_RESOURCES);
+    }
+
   }
 
   /**

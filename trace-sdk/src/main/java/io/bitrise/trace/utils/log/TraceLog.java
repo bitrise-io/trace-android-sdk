@@ -31,10 +31,6 @@ public class TraceLog {
    */
   public static synchronized Logger makeAndroidLogger() {
     synchronized (lock) {
-      if (logger != null) {
-        return logger;
-      }
-
       logger = new AndroidLogger();
       return logger;
     }
@@ -47,10 +43,6 @@ public class TraceLog {
    */
   public static synchronized Logger makeSilentLogger() {
     synchronized (lock) {
-      if (logger != null) {
-        return logger;
-      }
-
       logger = new SilentLogger();
       return logger;
     }
@@ -63,10 +55,6 @@ public class TraceLog {
    */
   public static synchronized Logger makeErrorOnlyLogger() {
     synchronized (lock) {
-      if (logger != null) {
-        return logger;
-      }
-
       logger = new ErrorOnlyLogger();
       return logger;
     }
@@ -92,7 +80,7 @@ public class TraceLog {
    * Resets the current logger - required only for testing purposes.
    */
   @VisibleForTesting
-  static synchronized void reset() {
+  public static synchronized void reset() {
     synchronized (lock) {
       logger = null;
     }

@@ -43,10 +43,10 @@ public class TraceLogTest {
   }
 
   @Test
-  public void makeSilentLogger_alreadyAndroidLogger() {
+  public void makeSilentLogger_butAlreadyAndroidLoggerShouldChange() {
     TraceLog.makeAndroidLogger();
     TraceLog.makeSilentLogger();
-    assertTrue(TraceLog.getLogger() instanceof AndroidLogger);
+    assertTrue(TraceLog.getLogger() instanceof SilentLogger);
   }
 
   @Test

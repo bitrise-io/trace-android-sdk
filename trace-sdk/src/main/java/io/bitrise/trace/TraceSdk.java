@@ -32,8 +32,10 @@ public class TraceSdk {
    * The name for the product.
    */
   public static final String NAME = "Trace Android";
+
+  @VisibleForTesting
   @Nullable
-  private static volatile TraceSdk traceSdk;
+  static volatile TraceSdk traceSdk;
   /**
    * The TraceSdk has a debug mode - currently this will mean more debug level log messages.
    *
@@ -42,6 +44,9 @@ public class TraceSdk {
    * ensure that the TraceSdk has been initialised before setting the debug enabled mode.
    */
   private static boolean DEBUG_ENABLED = false;
+
+
+  static boolean isNetworkTracingEnabled = false;
 
   private TraceSdk() {
     // nop
@@ -104,7 +109,8 @@ public class TraceSdk {
    * Initialises the custom trace logger based on the current build type. Note: In future we
    * would like a way for this to be customisable by developers.
    */
-  private static void initLogger() {
+  @VisibleForTesting
+  static void initLogger() {
     if (ConfigurationManager.getInstance().isAppDebugBuild()) {
       TraceLog.makeAndroidLogger();
     } else {
@@ -198,10 +204,12 @@ public class TraceSdk {
    * Initialises the network tracing, currently initialising {@link java.net.URLConnection}
    * type network requests to use our {@link TraceURLStreamHandlerFactory} instead.
    */
-  private static void initNetworkTracing() {
+  @VisibleForTesting
+  static void initNetworkTracing() {
     try {
       URL.setURLStreamHandlerFactory(new TraceURLStreamHandlerFactory());
       TraceLog.d(LogMessageConstants.URL_CONNECTION_REQUESTS_SUCCESS);
+      isNetworkTracingEnabled = true;
     } catch (final Error e) {
       // this will catch the java.lang.Error: factory already defined error which should
       // only be caused from the integration tests calling init multiple times.
