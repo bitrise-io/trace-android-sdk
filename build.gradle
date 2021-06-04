@@ -1,16 +1,6 @@
 import io.bitrise.trace.internal.UpdateChangeLogTask
 
 buildscript {
-    final Properties traceGradlePluginProperties = new Properties()
-    final File traceGradlePluginPropertiesFile = new File(getProject().getRootDir().getAbsolutePath() + ("/trace-gradle-plugin/gradle.properties"))
-    traceGradlePluginPropertiesFile.withInputStream {
-        traceGradlePluginProperties.load(it)
-    }
-
-    ext.traceVersions = [
-            'traceGradlePlugin': traceGradlePluginProperties.get("version"),
-            'traceSdk'         : project(':trace-sdk').property('version')
-    ]
 
     repositories {
         mavenLocal() // To check for locally published trace-gradle-plugin artifact
