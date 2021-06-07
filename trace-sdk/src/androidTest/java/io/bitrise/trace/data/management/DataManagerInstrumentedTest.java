@@ -1,29 +1,28 @@
 package io.bitrise.trace.data.management;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
+import static java.lang.Thread.sleep;
 import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import android.content.Context;
-import android.os.AsyncTask;
-import androidx.test.annotation.UiThreadTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import io.bitrise.trace.configuration.ConfigurationManager;
 import io.bitrise.trace.data.collector.DataSourceType;
 import io.bitrise.trace.data.collector.DummyDataCollector;
 import io.bitrise.trace.data.collector.DummyDataListener;
 import io.bitrise.trace.data.dto.Data;
+import io.bitrise.trace.data.dto.FormattedData;
 import io.bitrise.trace.data.storage.DataStorage;
-import io.bitrise.trace.data.storage.TestDataStorage;
 import io.bitrise.trace.scheduler.ServiceScheduler;
 import io.bitrise.trace.session.ApplicationSessionManager;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 /**
@@ -109,27 +108,27 @@ public class DataManagerInstrumentedTest {
   /**
    * When the {@link DataManager#handleReceivedData(Data)} is called with a valid {@link Data}
    * that will be converted to a {@link io.opencensus.proto.metrics.v1.Metric} it should not
-   * throw an exception and be saved to the database correctly.
-   *
-   * <p>Note: We use the @UiThreadTest annotation to ensure this test runs synchronously on it's
-   * own. However, as we also use Room for our db, we must do that off the main thread, hence the
-   * AsyncTask.
+   * throw an exception and call the relevant database save method.
    */
   @Test
-  @UiThreadTest
-  public void handleReceivedData_shouldHandleMetricWithoutException() {
-    AsyncTask.execute(() -> {
-      DataManager.getInstance(context);
-      ApplicationSessionManager.getInstance().startSession();
-      final DataStorage traceDataStorage = TestDataStorage.getInstance(context);
-      dataManager.setDataStorage(traceDataStorage);
+  public void handleReceivedData_shouldHandleMetricWithoutException() throws InterruptedException {
+    DataManager.getInstance(context);
+    ApplicationSessionManager.getInstance().startSession();
+    final DataStorage mockDataStorage = Mockito.mock(DataStorage.class);
+    dataManager.setDataStorage(mockDataStorage);
 
-      final Data data = new Data(DataSourceType.SYSTEM_USED_MEMORY);
-      final long dummyValue = 500L;
-      data.setContent(dummyValue);
-      dataManager.handleReceivedData(data);
+    final Data data = new Data(DataSourceType.SYSTEM_USED_MEMORY);
+    final long dummyValue = 500L;
+    data.setContent(dummyValue);
+    dataManager.handleReceivedData(data);
 
-      assertThat(traceDataStorage.getAllMetrics().size(), is(equalTo(1)));
-    });
+    sleep(100);
+    // this happens asynchronously, and can take a few milliseconds to actually get called.
+
+    final ArgumentCaptor<FormattedData> formattedDataArgumentCaptor =
+        ArgumentCaptor.forClass(FormattedData.class);
+    verify(mockDataStorage, times(1))
+        .saveFormattedData(formattedDataArgumentCaptor.capture());
+    assertNotNull(formattedDataArgumentCaptor.getValue().getMetricEntity());
   }
 }
