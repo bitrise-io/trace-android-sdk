@@ -5,11 +5,9 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import io.bitrise.trace.data.collector.BaseDataListener;
 import io.bitrise.trace.data.dto.CrashData;
-import io.bitrise.trace.data.management.formatter.crash.ExceptionDataFormatter;
 
 /**
- * Listens for any unhandled exceptions that get thrown and passes them to the
- * {@link ExceptionDataFormatter}.
+ * Listens for any unhandled exceptions that get thrown.
  */
 public class TraceExceptionDataListener extends BaseDataListener
     implements Thread.UncaughtExceptionHandler {

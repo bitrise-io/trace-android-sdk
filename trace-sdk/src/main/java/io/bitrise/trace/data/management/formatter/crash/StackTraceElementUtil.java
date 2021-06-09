@@ -21,11 +21,9 @@ public class StackTraceElementUtil {
     final Map<String, String> map = new HashMap<>();
 
     for (Map.Entry<Thread, StackTraceElement[]> entry : allStackTraces.entrySet()) {
-
       final String stringifiedStackTrace = createStringifiedStackTrace(entry.getValue());
       final String threadId = Long.toString(entry.getKey().getId());
       map.put(threadId, stringifiedStackTrace);
-
     }
 
     return map;
@@ -35,11 +33,10 @@ public class StackTraceElementUtil {
    * Creates a String from a list of {@link StackTraceElement}.
    *
    * @param stackTraceElements the StackTraceElements to convert to String.
-   * @return the stringied representation of the stackTraceElements.
+   * @return the stringified representation of the stackTraceElements.
    */
   public static String createStringifiedStackTrace(
       @NonNull StackTraceElement[] stackTraceElements) {
-
     final StringBuilder sb = new StringBuilder();
 
     for (int i = 0; i < stackTraceElements.length; i++) {
