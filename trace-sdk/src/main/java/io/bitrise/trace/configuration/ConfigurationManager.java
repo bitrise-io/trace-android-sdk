@@ -12,6 +12,7 @@ import io.bitrise.trace.data.collector.application.ApplicationVersionCodeDataCol
 import io.bitrise.trace.data.collector.application.ApplicationVersionNameDataCollector;
 import io.bitrise.trace.data.collector.cpu.ApplicationCpuUsageDataCollector;
 import io.bitrise.trace.data.collector.cpu.SystemCpuUsageDataCollector;
+import io.bitrise.trace.data.collector.crash.TraceExceptionDataListener;
 import io.bitrise.trace.data.collector.device.DeviceCarrierDataCollector;
 import io.bitrise.trace.data.collector.device.DeviceIdDataCollector;
 import io.bitrise.trace.data.collector.device.DeviceLocaleDataCollector;
@@ -299,6 +300,7 @@ public class ConfigurationManager {
     dataListeners.add(applicationForegroundStateDataListener);
     dataListeners.add(new FragmentStateDataListener(context, activityStateDataListener));
     dataListeners.add(new OkHttpDataListener(context));
+    dataListeners.add(new TraceExceptionDataListener());
     return dataListeners;
   }
 
