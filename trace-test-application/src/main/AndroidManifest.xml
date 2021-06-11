@@ -29,6 +29,7 @@
         </activity>
         <activity android:name=".ui.SecondActivity" />
         <activity android:name=".ui.ThirdActivity" />
+        <activity android:name=".exception.ExceptionActivity" />
     </application>
 
 </manifest>
