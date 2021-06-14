@@ -8,8 +8,11 @@ import io.bitrise.trace.configuration.ConfigurationManager;
 import io.bitrise.trace.data.collector.DataCollector;
 import io.bitrise.trace.data.collector.DataListener;
 import io.bitrise.trace.data.collector.DataSource;
+import io.bitrise.trace.data.dto.CrashData;
+import io.bitrise.trace.data.dto.CrashReport;
 import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.dto.FormattedData;
+import io.bitrise.trace.data.management.formatter.crash.ExceptionDataFormatter;
 import io.bitrise.trace.data.storage.DataStorage;
 import io.bitrise.trace.data.storage.TraceDataStorage;
 import io.bitrise.trace.data.trace.ApplicationTraceManager;
@@ -367,5 +370,10 @@ public class DataManager {
                  .execute(() -> dataStorage.saveFormattedData(formattedData));
       }
     }
+  }
+
+  public void handleReceivedCrash(final @NonNull CrashData crashData) {
+    final CrashReport crashReport = ExceptionDataFormatter.formatCrashData(crashData);
+    // todo: APM-1843 send the crash report.
   }
 }
