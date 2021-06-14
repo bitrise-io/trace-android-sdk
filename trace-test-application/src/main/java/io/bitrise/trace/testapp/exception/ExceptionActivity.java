@@ -47,7 +47,7 @@ public class ExceptionActivity extends AppCompatActivity {
     exceptionInDependencyButton.setOnClickListener(v -> throwExceptionInDependency());
     exceptionInDependencyRethrownButton.setOnClickListener(v -> rethrowExceptionFromDependency());
     exceptionInMainThreadButton.setOnClickListener(v -> throwExceptionInMainThread());
-    exceptionInThreadButton.setOnClickListener(v -> throwExceptionInThread());
+    exceptionInThreadButton.setOnClickListener(v -> throwExceptionInNewThread());
   }
 
   /**
@@ -98,12 +98,12 @@ public class ExceptionActivity extends AppCompatActivity {
   /**
    * Creates a new thread and throws an exception.
    */
-  private void throwExceptionInThread() {
+  private void throwExceptionInNewThread() {
     new Thread() {
       @Override
       public void run() {
         super.run();
-        throwException(String.format("Thread with name %s is not happy",
+        throwException(String.format("Thread with name %s is not happy!",
             Thread.currentThread().getName()));
       }
     }.start();
