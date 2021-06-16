@@ -29,4 +29,11 @@ public class UniqueIdGenerator {
                .replace("-", "")
                .substring(0, TRACE_ID_LENGTH);
   }
+
+  /**
+   * Creates a standard 36 character uuid for crash reports.
+   */
+  public static String makeCrashReportId() {
+    return UUID.randomUUID().toString();
+  }
 }

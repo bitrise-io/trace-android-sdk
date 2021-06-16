@@ -1,7 +1,10 @@
 package io.bitrise.trace.network;
 
+import static io.bitrise.trace.utils.log.TraceLog.TAG;
+
 import android.os.Build;
 import android.os.LocaleList;
+import android.util.Log;
 import androidx.annotation.NonNull;
 import com.google.common.base.CaseFormat;
 import com.google.gson.FieldNamingPolicy;
@@ -163,7 +166,7 @@ public final class NetworkClient {
   @NonNull
   private static HttpLoggingInterceptor getLoggingInterceptor() {
     final HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-    interceptor.setLevel(HttpLoggingInterceptor.Level.NONE);
+    interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
     return interceptor;
   }
 

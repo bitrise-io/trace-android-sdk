@@ -300,7 +300,7 @@ public class ConfigurationManager {
     dataListeners.add(applicationForegroundStateDataListener);
     dataListeners.add(new FragmentStateDataListener(context, activityStateDataListener));
     dataListeners.add(new OkHttpDataListener(context));
-    dataListeners.add(new TraceExceptionDataListener());
+    dataListeners.add(new TraceExceptionDataListener(context));
     return dataListeners;
   }
 

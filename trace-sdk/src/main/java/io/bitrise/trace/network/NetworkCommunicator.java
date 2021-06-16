@@ -3,11 +3,19 @@ package io.bitrise.trace.network;
 import androidx.annotation.NonNull;
 import io.bitrise.trace.data.trace.Trace;
 import io.opencensus.proto.metrics.v1.Metric;
+import java.io.File;
+import java.util.Map;
 import javax.inject.Singleton;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.FieldMap;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 
 /**
  * Holds the list of network calls.
@@ -47,6 +55,8 @@ public interface NetworkCommunicator {
   @POST("/api/v1/trace")
   Call<Void> sendTraces(@Body @NonNull final TraceRequest traceRequest);
 
-  @POST("/api/v1/crashes/android")
-  Call<Void> sendCrashes();
+  @Multipart
+  @POST("/api/v1.0.1/crashes/android")
+  Call<Void> sendCrashes(@PartMap Map<String, RequestBody> fields,
+                         @Part("report") RequestBody file);
 }

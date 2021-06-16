@@ -18,6 +18,7 @@ import io.bitrise.trace.data.storage.TraceDataStorage;
 import io.bitrise.trace.data.trace.ApplicationTraceManager;
 import io.bitrise.trace.data.trace.Trace;
 import io.bitrise.trace.data.trace.TraceManager;
+import io.bitrise.trace.network.CrashSender;
 import io.bitrise.trace.network.DataSender;
 import io.bitrise.trace.network.MetricSender;
 import io.bitrise.trace.network.TraceSender;
@@ -115,6 +116,9 @@ public class DataManager {
   @NonNull
   DataStorage dataStorage;
 
+  @NonNull
+  Context context;
+
   /**
    * Constructor to prevent instantiation outside of the class.
    *
@@ -125,6 +129,7 @@ public class DataManager {
     this.dataStorage = TraceDataStorage.getInstance(context);
     this.dataFormatterDelegator = DataFormatterDelegator.getInstance();
     this.traceManager = ApplicationTraceManager.getInstance(context);
+    this.context = context;
   }
 
   /**
@@ -373,7 +378,12 @@ public class DataManager {
   }
 
   public void handleReceivedCrash(final @NonNull CrashData crashData) {
+    TraceLog.d("handle received crash.");
     final CrashReport crashReport = ExceptionDataFormatter.formatCrashData(crashData);
-    // todo: APM-1843 send the crash report.
+
+    final DataStorage traceDataStorage = TraceDataStorage.getInstance(context);
+    final CrashSender crashSender = new CrashSender(crashReport, context.getCacheDir(), traceDataStorage);
+
+    crashSender.send();
   }
 }

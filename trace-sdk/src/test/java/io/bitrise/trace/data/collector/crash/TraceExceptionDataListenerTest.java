@@ -7,6 +7,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+import android.content.Context;
 import io.bitrise.trace.data.dto.CrashData;
 import io.bitrise.trace.data.management.DataManager;
 import org.junit.Test;
@@ -20,7 +21,8 @@ public class TraceExceptionDataListenerTest {
   final Thread mockThread = Mockito.mock(Thread.class);
   final Throwable throwable = new Throwable();
   final DataManager mockDataManager = Mockito.mock(DataManager.class);
-  final TraceExceptionDataListener listener = new TraceExceptionDataListener();
+  final Context mockContext = Mockito.mock(Context.class);
+  final TraceExceptionDataListener listener = new TraceExceptionDataListener(mockContext);
 
 
   @Test
