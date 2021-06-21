@@ -138,7 +138,7 @@ public class DataManagerTest {
     final LinkedHashSet<DataListener> listeners = new LinkedHashSet<>();
     listeners.add(dataListener);
 
-    when(mockConfigurationManager.getDataCollectors(any())).thenReturn(collectors);
+    when(mockConfigurationManager.getRecurringDataCollectors(any())).thenReturn(collectors);
     when(mockConfigurationManager.getDataListeners(any())).thenReturn(listeners);
 
     final DataManager dataManager = createRealDataManager();
