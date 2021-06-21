@@ -363,7 +363,7 @@ public class DataManager {
     final FormattedData[] formattedDataArray = dataFormatterDelegator.formatData(data);
 
     if (formattedDataArray.length == 0) {
-      TraceLog.d("Formatted data, but result content was null: " + data);
+      TraceLog.d("Formatted data, but result content was null: " + data.getDataSourceType().toString());
       return;
     }
 
@@ -372,7 +372,10 @@ public class DataManager {
         traceManager.addSpanToActiveTrace(formattedData.getSpan());
       } else if (formattedData.getMetricEntity() != null) {
         Executors.newSingleThreadExecutor()
-                 .execute(() -> dataStorage.saveFormattedData(formattedData));
+                 .execute(() -> dataStorage.saveMetric(formattedData.getMetricEntity()));
+      } else if (formattedData.getResourceEntity() != null) {
+        Executors.newSingleThreadExecutor()
+                 .execute(() -> dataStorage.saveResourceEntity(formattedData.getResourceEntity()));
       }
     }
   }
