@@ -213,6 +213,8 @@ public class DataManager {
     TraceLog.d(LogMessageConstants.DATA_MANAGER_START_COLLECTING);
     startEventDrivenDataCollection(context);
     startRecurringDataCollection(context);
+
+    collectDataFromSingleCollectors(context);
   }
 
   /**
@@ -236,13 +238,26 @@ public class DataManager {
         return;
       }
 
-      activeDataCollectors.addAll(configurationManager.getDataCollectors(context));
+      activeDataCollectors.addAll(configurationManager.getRecurringDataCollectors(context));
       for (@NonNull final DataCollector dataCollector : activeDataCollectors) {
         final Runnable collectDataRunnable = () -> handleReceivedData(dataCollector.collectData());
         executorScheduler = new ExecutorScheduler(context, collectDataRunnable, 0,
             dataCollector.getIntervalMs());
         executorScheduler.schedule();
       }
+    }
+  }
+
+  /**
+   * Collects data from the single collectors, these are data that do not change during the
+   * application lifecycle e.g. Application version code.
+   *
+   * @param context the Android Context.
+   */
+  void collectDataFromSingleCollectors(@NonNull final Context context) {
+    final Set<DataCollector> collectors = configurationManager.getSingleDataCollectors(context);
+    for (DataCollector collector : collectors) {
+      handleReceivedData(collector.collectData());
     }
   }
 
