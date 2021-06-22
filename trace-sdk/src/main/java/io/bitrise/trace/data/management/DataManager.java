@@ -370,7 +370,8 @@ public class DataManager {
     final FormattedData[] formattedDataArray = dataFormatterDelegator.formatData(data);
 
     if (formattedDataArray.length == 0) {
-      TraceLog.d("Formatted data, but result content was null: " + data.getDataSourceType().toString());
+      TraceLog.d("Formatted data, but result content was null: "
+          + data.getDataSourceType().toString());
       return;
     }
 
