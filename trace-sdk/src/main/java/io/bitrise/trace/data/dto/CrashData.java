@@ -16,6 +16,13 @@ public class CrashData {
   @NonNull
   private final Map<Thread, StackTraceElement[]> allStackTraces;
 
+  /**
+   * Creates a {@link CrashData} object.
+   *
+   * @param throwable the throwable that got raised.
+   * @param crashedThreadId the thread id that the throwable got thrown on.
+   * @param allStackTraces a copy of all the threads and stacktraces currently in memory.
+   */
   public CrashData(@NonNull Throwable throwable,
                    long crashedThreadId,
                    @NonNull Map<Thread, StackTraceElement[]> allStackTraces) {

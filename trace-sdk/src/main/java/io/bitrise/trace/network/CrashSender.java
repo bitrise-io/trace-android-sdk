@@ -19,6 +19,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Responsible for sending a {@link CrashRequest} to the server.
+ */
 public class CrashSender {
 
   @NonNull final CrashReport crashReport;
@@ -26,7 +29,13 @@ public class CrashSender {
   @NonNull final String uuid;
   @NonNull final DataStorage dataStorage;
   @Nullable final String sessionId;
-  
+
+  /**
+   * Creates an object that can send crash reports.
+   *
+   * @param crashReport the {@link CrashReport} to send.
+   * @param dataStorage a reference to the {@link DataStorage} to get the current {@link Resource}.
+   */
   public CrashSender(@NonNull final CrashReport crashReport,
                      @NonNull final DataStorage dataStorage) {
 
@@ -68,6 +77,9 @@ public class CrashSender {
 
   private final ExecutorService executorService = Executors.newFixedThreadPool(1);
 
+  /**
+   * Send the {@link CrashRequest} to the backend server.
+   */
   public void send() {
 
     if (sessionId == null) {
@@ -96,7 +108,8 @@ public class CrashSender {
 
       NetworkClient.getCommunicator().sendCrash(request).enqueue(new Callback<Void>() {
         @Override
-        public void onResponse(@NonNull final Call<Void> call, @NonNull final Response<Void> response) {
+        public void onResponse(@NonNull final Call<Void> call,
+                               @NonNull final Response<Void> response) {
 
           if (response.isSuccessful()) {
             TraceLog.d("Crash report sent successfully: "

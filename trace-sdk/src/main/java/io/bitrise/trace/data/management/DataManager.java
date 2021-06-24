@@ -8,6 +8,7 @@ import io.bitrise.trace.configuration.ConfigurationManager;
 import io.bitrise.trace.data.collector.DataCollector;
 import io.bitrise.trace.data.collector.DataListener;
 import io.bitrise.trace.data.collector.DataSource;
+import io.bitrise.trace.data.collector.crash.TraceExceptionDataListener;
 import io.bitrise.trace.data.dto.CrashData;
 import io.bitrise.trace.data.dto.CrashReport;
 import io.bitrise.trace.data.dto.Data;
@@ -378,7 +379,8 @@ public class DataManager {
     final FormattedData[] formattedDataArray = dataFormatterDelegator.formatData(data);
 
     if (formattedDataArray.length == 0) {
-      TraceLog.d("Formatted data, but result content was null: " + data.getDataSourceType().toString());
+      TraceLog.d("Formatted data, but result content was null: "
+          + data.getDataSourceType().toString());
       return;
     }
 
@@ -395,6 +397,12 @@ public class DataManager {
     }
   }
 
+  /**
+   * Handles a received {@link CrashData} from the {@link TraceExceptionDataListener} and ensures
+   * it's sent to the server asap.
+   *
+   * @param crashData the {@link CrashData} object captured.
+   */
   public void handleReceivedCrash(final @NonNull CrashData crashData) {
     TraceLog.d("handle received crash.");
     final CrashReport crashReport = ExceptionDataFormatter.formatCrashData(crashData);

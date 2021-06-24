@@ -32,7 +32,6 @@ public class ExceptionDataFormatterTest {
     assertNull(ExceptionDataFormatter.getCrashTitle(null));
   }
 
-
   @Test
   public void convertStackTraceElementsToCrashReportFrame() {
     final List<CrashReport.Frame> frames = ExceptionDataFormatter

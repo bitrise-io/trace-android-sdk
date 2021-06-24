@@ -30,7 +30,7 @@ public class ExceptionDataFormatter {
         convertStackTraceElementsToCrashReportFrame(crashData.getThrowable().getStackTrace()));
     threads.add(initialThread);
 
-     // add all the other threads
+    // add all the other threads
     for (Map.Entry<Thread, StackTraceElement[]> entry : crashData.getAllStackTraces().entrySet()) {
       threads.add(new CrashReport.Thread(entry.getKey().getId(), false,
           convertStackTraceElementsToCrashReportFrame(entry.getValue())));
@@ -72,7 +72,7 @@ public class ExceptionDataFormatter {
           element.getFileName() == null ? "" : element.getFileName(),
           element.getLineNumber(),
           sequenceNumber));
-      sequenceNumber ++;
+      sequenceNumber++;
     }
     return frames;
   }

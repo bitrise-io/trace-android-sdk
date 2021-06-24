@@ -98,7 +98,7 @@ public class TraceClock {
         .format(new Date(milliseconds));
 
     // we need to add a colon in between to make +0100 into +01:00
-    return date.substring(0, date.length() -2) + ":" + "" +
-        date.substring(date.length() -2);
+    return date.substring(0, date.length() - 2) + ":" + ""
+        + date.substring(date.length() - 2);
   }
 }

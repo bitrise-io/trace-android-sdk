@@ -126,7 +126,7 @@ public class DataManagerInstrumentedTest {
     sleep(100);
     // this happens asynchronously, and can take a few milliseconds to actually get called.
 
-    final ArgumentCaptor<MetricEntity>  metricEntityArgumentCaptor=
+    final ArgumentCaptor<MetricEntity> metricEntityArgumentCaptor =
         ArgumentCaptor.forClass(MetricEntity.class);
     verify(mockDataStorage, times(1))
         .saveMetric(metricEntityArgumentCaptor.capture());

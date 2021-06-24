@@ -38,7 +38,7 @@ public class ExceptionActivity extends AppCompatActivity {
    */
   private void setupView() {
     final SwitchCompat sessionSwitch = findViewById(R.id.switch_session);
-//    setSessionState(sessionManager.getActiveSession() != null);
+    setSessionState(sessionManager.getActiveSession() != null);
     sessionSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> setSessionState(isChecked));
 
     final Button exceptionInAppButton = findViewById(R.id.btn_exception_app);
@@ -61,20 +61,18 @@ public class ExceptionActivity extends AppCompatActivity {
    * @param started {@code true} to start the session, {@code false} to stop.
    */
   private void setSessionState(final boolean started) {
-//    if (started) {
-//      sessionManager.startSession();
-//    } else {
-//      sessionManager.stopSession();
-//    }
+    if (started) {
+      sessionManager.startSession();
+    } else {
+      sessionManager.stopSession();
+    }
   }
 
   /**
    * Method for throwing and exception in the applications code.
    */
   private void throwExceptionInApp() {
-    ConfigurationManager.getDebugInstance(BuildConfig.TRACE_TOKEN, new HashMap<>());
-    TraceExceptionDataListener listener = new TraceExceptionDataListener(this);
-    listener.onDataCollected(new CrashData(new RuntimeException(), Thread.getAllStackTraces()));
+    throwException("App is not happy!");
   }
 
   /**
