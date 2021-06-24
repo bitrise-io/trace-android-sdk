@@ -86,7 +86,7 @@ public class TraceClockTest {
 
   @Test
   public void createCrashRequestFormat() {
-    assertEquals("2020-10-22 14:53:44+01:00",
+    assertEquals("2020-10-22T14:53:44+01:00",
         TraceClock.createCrashRequestFormat(dummyMilliseconds3));
   }
 }
