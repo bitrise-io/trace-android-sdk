@@ -26,19 +26,17 @@ public class TraceExceptionDataListener extends BaseDataListener
   @Override
   public void uncaughtException(@NonNull Thread t,
                                 @NonNull Throwable e) {
-    TraceLog.d("found a crash!");
-
-    onDataCollected(new CrashData(e, Thread.getAllStackTraces()));
+    // todo: can we get the thread id that crashed
+    //  calling t.getId returns this thread id, as does Thread.currentThread.getId
+    onDataCollected(new CrashData(e, 0, Thread.getAllStackTraces()));
 
     // if there is another handler - we should be good citizens and pass it down to them too.
     if (previousHandler != null) {
       previousHandler.uncaughtException(t, e);
-      TraceLog.d("passed the crash down to the next handler");
     }
   }
 
   public void onDataCollected(final @NonNull CrashData crashData) {
-    TraceLog.d("collected crash");
     dataManager.handleReceivedCrash(crashData);
   }
 
@@ -46,14 +44,12 @@ public class TraceExceptionDataListener extends BaseDataListener
   public void startCollecting() {
     previousHandler = Thread.getDefaultUncaughtExceptionHandler();
     Thread.setDefaultUncaughtExceptionHandler(this);
-    TraceLog.d("start listening for crashes");
     setActive(true);
   }
 
   @Override
   public void stopCollecting() {
     Thread.setDefaultUncaughtExceptionHandler(previousHandler);
-    TraceLog.d("stop listening for crashes");
     setActive(false);
   }
 

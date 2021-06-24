@@ -38,7 +38,7 @@ public class TraceExceptionDataListenerTest {
     mockListener.uncaughtException(mockThread, throwable);
 
     verify(mockListener, times(1))
-        .onDataCollected(new CrashData(throwable, any()));
+        .onDataCollected(any(CrashData.class));
     verify(previousHandler, times(1))
         .uncaughtException(any(), any());
   }
@@ -54,7 +54,7 @@ public class TraceExceptionDataListenerTest {
     mockListener.uncaughtException(mockThread, throwable);
 
     verify(mockListener, times(1))
-        .onDataCollected(new CrashData(throwable, any()));
+        .onDataCollected(any(CrashData.class));
   }
 
   @Test

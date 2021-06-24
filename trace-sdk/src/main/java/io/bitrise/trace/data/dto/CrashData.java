@@ -11,12 +11,16 @@ public class CrashData {
   @NonNull
   private final Throwable throwable;
 
+  private final long crashedThreadId;
+
   @NonNull
   private final Map<Thread, StackTraceElement[]> allStackTraces;
 
-  public CrashData(@NonNull Throwable throwable, @NonNull
-      Map<Thread, StackTraceElement[]> allStackTraces) {
+  public CrashData(@NonNull Throwable throwable,
+                   long crashedThreadId,
+                   @NonNull Map<Thread, StackTraceElement[]> allStackTraces) {
     this.throwable = throwable;
+    this.crashedThreadId = crashedThreadId;
     this.allStackTraces = allStackTraces;
   }
 
@@ -28,5 +32,9 @@ public class CrashData {
   @NonNull
   public Map<Thread, StackTraceElement[]> getAllStackTraces() {
     return allStackTraces;
+  }
+
+  public long getCrashedThreadId() {
+    return crashedThreadId;
   }
 }
