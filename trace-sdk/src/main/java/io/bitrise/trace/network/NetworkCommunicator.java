@@ -1,6 +1,7 @@
 package io.bitrise.trace.network;
 
 import androidx.annotation.NonNull;
+import io.bitrise.trace.data.dto.CrashReport;
 import io.bitrise.trace.data.trace.Trace;
 import io.opencensus.proto.metrics.v1.Metric;
 import java.io.File;
@@ -55,8 +56,10 @@ public interface NetworkCommunicator {
   @POST("/api/v1/trace")
   Call<Void> sendTraces(@Body @NonNull final TraceRequest traceRequest);
 
-  @Multipart
-  @POST("/api/v1.0.1/crashes/android")
-  Call<Void> sendCrashes(@PartMap Map<String, RequestBody> fields,
-                         @Part("report") RequestBody file);
+  @Headers({
+      "Accept: application/vnd.bitrise.trace-v1+json",
+      "Content-Type: application/vnd.bitrise.trace-v1+json"
+  })
+  @POST("/api/crashes")
+  Call<Void> sendCrash(@Body @NonNull final CrashRequest crashRequest);
 }

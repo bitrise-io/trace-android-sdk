@@ -400,7 +400,7 @@ public class DataManager {
     final CrashReport crashReport = ExceptionDataFormatter.formatCrashData(crashData);
 
     final DataStorage traceDataStorage = TraceDataStorage.getInstance(context);
-    final CrashSender crashSender = new CrashSender(crashReport, context.getCacheDir(), traceDataStorage);
+    final CrashSender crashSender = new CrashSender(crashReport, traceDataStorage);
 
     crashSender.send();
   }

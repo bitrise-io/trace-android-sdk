@@ -41,4 +41,12 @@ public class CrashFormatterTestProvider {
     return frames;
   }
 
+  public static CrashReport createCrashReport() {
+    final List<CrashReport.Thread> threads = new ArrayList<>();
+    threads.add(new CrashReport.Thread(1L, true, createStackTraceFrames()));
+    threads.add(new CrashReport.Thread(12345L, false, createStackTraceFramesWithNulls()));
+
+    return new CrashReport(threads, "title", "description");
+  }
+
 }
