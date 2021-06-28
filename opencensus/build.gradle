@@ -16,8 +16,7 @@ java {
 }
 
 dependencies {
-    api "com.google.protobuf:protobuf-java:${versions.protobufJava}"
-    api "io.grpc:grpc-protobuf:${versions.grpcProtobuf}"
+    implementation "com.google.protobuf:protobuf-javalite:${versions.protobufJava}"
 }
 
 def signingKey = findProperty("signingKey")
