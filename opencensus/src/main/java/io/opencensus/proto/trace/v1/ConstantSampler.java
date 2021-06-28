@@ -7,338 +7,16 @@ package io.opencensus.proto.trace.v1;
  * <pre>
  * Sampler that always makes a constant decision on span sampling.
  * </pre>
- * <p>
+ *
  * Protobuf type {@code opencensus.proto.trace.v1.ConstantSampler}
  */
-public final class ConstantSampler extends
-    com.google.protobuf.GeneratedMessageV3 implements
+public  final class ConstantSampler extends
+    com.google.protobuf.GeneratedMessageLite<
+        ConstantSampler, ConstantSampler.Builder> implements
     // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.ConstantSampler)
     ConstantSamplerOrBuilder {
-  public static final int DECISION_FIELD_NUMBER = 1;
-  private static final long serialVersionUID = 0L;
-  // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.ConstantSampler)
-  private static final io.opencensus.proto.trace.v1.ConstantSampler DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<ConstantSampler>
-      PARSER = new com.google.protobuf.AbstractParser<ConstantSampler>() {
-    @java.lang.Override
-    public ConstantSampler parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new ConstantSampler(input, extensionRegistry);
-    }
-  };
-
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.trace.v1.ConstantSampler();
-  }
-
-  private int decision_;
-  private byte memoizedIsInitialized = -1;
-
-  // Use ConstantSampler.newBuilder() to construct.
-  private ConstantSampler(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
   private ConstantSampler() {
-    decision_ = 0;
   }
-
-  private ConstantSampler(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 8: {
-            int rawValue = input.readEnum();
-
-            decision_ = rawValue;
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
-
-  public static final com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
-    return io.opencensus.proto.trace.v1.TraceConfigProto.internal_static_opencensus_proto_trace_v1_ConstantSampler_descriptor;
-  }
-
-  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.trace.v1.ConstantSampler parseDelimitedFrom(
-      java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.trace.v1.ConstantSampler parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(io.opencensus.proto.trace.v1.ConstantSampler prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
-  public static io.opencensus.proto.trace.v1.ConstantSampler getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public static com.google.protobuf.Parser<ConstantSampler> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new ConstantSampler();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
-    return io.opencensus.proto.trace.v1.TraceConfigProto.internal_static_opencensus_proto_trace_v1_ConstantSampler_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.trace.v1.ConstantSampler.class,
-            io.opencensus.proto.trace.v1.ConstantSampler.Builder.class);
-  }
-
-  /**
-   * <code>.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision decision = 1;</code>
-   *
-   * @return The enum numeric value on the wire for decision.
-   */
-  @java.lang.Override
-  public int getDecisionValue() {
-    return decision_;
-  }
-
-  /**
-   * <code>.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision decision = 1;</code>
-   *
-   * @return The decision.
-   */
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision getDecision() {
-    @SuppressWarnings("deprecation")
-    io.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision result =
-        io.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision.valueOf(decision_);
-    return result == null ?
-        io.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision.UNRECOGNIZED : result;
-  }
-
-  @java.lang.Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) {
-      return true;
-    }
-    if (isInitialized == 0) {
-      return false;
-    }
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-      throws java.io.IOException {
-    if (decision_ !=
-        io.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision.ALWAYS_OFF.getNumber()) {
-      output.writeEnum(1, decision_);
-    }
-    unknownFields.writeTo(output);
-  }
-
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) {
-      return size;
-    }
-
-    size = 0;
-    if (decision_ !=
-        io.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision.ALWAYS_OFF.getNumber()) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, decision_);
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-      return true;
-    }
-    if (!(obj instanceof io.opencensus.proto.trace.v1.ConstantSampler)) {
-      return super.equals(obj);
-    }
-    io.opencensus.proto.trace.v1.ConstantSampler other =
-        (io.opencensus.proto.trace.v1.ConstantSampler) obj;
-
-    if (decision_ != other.decision_) {
-      return false;
-    }
-    return unknownFields.equals(other.unknownFields);
-  }
-
-  @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + DECISION_FIELD_NUMBER;
-    hash = (53 * hash) + decision_;
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
-
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<ConstantSampler> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.ConstantSampler getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
-
   /**
    * <pre>
    * How spans should be sampled:
@@ -346,11 +24,11 @@ public final class ConstantSampler extends
    * - Always on
    * - Always follow the parent Span's decision (off if no parent).
    * </pre>
-   * <p>
+   *
    * Protobuf enum {@code opencensus.proto.trace.v1.ConstantSampler.ConstantDecision}
    */
   public enum ConstantDecision
-      implements com.google.protobuf.ProtocolMessageEnum {
+      implements com.google.protobuf.Internal.EnumLite {
     /**
      * <code>ALWAYS_OFF = 0;</code>
      */
@@ -378,69 +56,9 @@ public final class ConstantSampler extends
      * <code>ALWAYS_PARENT = 2;</code>
      */
     public static final int ALWAYS_PARENT_VALUE = 2;
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        ConstantDecision> internalValueMap =
-        new com.google.protobuf.Internal.EnumLiteMap<ConstantDecision>() {
-          public ConstantDecision findValueByNumber(int number) {
-            return ConstantDecision.forNumber(number);
-          }
-        };
-    private static final ConstantDecision[] VALUES = values();
-    private final int value;
 
-    ConstantDecision(int value) {
-      this.value = value;
-    }
 
-    /**
-     * @param value The numeric wire value of the corresponding enum entry.
-     * @return The enum associated with the given numeric wire value.
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
-    public static ConstantDecision valueOf(int value) {
-      return forNumber(value);
-    }
-
-    /**
-     * @param value The numeric wire value of the corresponding enum entry.
-     * @return The enum associated with the given numeric wire value.
-     */
-    public static ConstantDecision forNumber(int value) {
-      switch (value) {
-        case 0:
-          return ALWAYS_OFF;
-        case 1:
-          return ALWAYS_ON;
-        case 2:
-          return ALWAYS_PARENT;
-        default:
-          return null;
-      }
-    }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<ConstantDecision>
-    internalGetValueMap() {
-      return internalValueMap;
-    }
-
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
-    getDescriptor() {
-      return io.opencensus.proto.trace.v1.ConstantSampler.getDescriptor().getEnumTypes().get(0);
-    }
-
-    public static ConstantDecision valueOf(
-        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-      if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
-      }
-      if (desc.getIndex() == -1) {
-        return UNRECOGNIZED;
-      }
-      return VALUES[desc.getIndex()];
-    }
-
+    @java.lang.Override
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
         throw new java.lang.IllegalArgumentException(
@@ -449,270 +67,319 @@ public final class ConstantSampler extends
       return value;
     }
 
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-    getValueDescriptor() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalStateException(
-            "Can't get the descriptor of an unrecognized enum value.");
+    /**
+     * @param value The number of the enum to look for.
+     * @return The enum associated with the given number.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static ConstantDecision valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ConstantDecision forNumber(int value) {
+      switch (value) {
+        case 0: return ALWAYS_OFF;
+        case 1: return ALWAYS_ON;
+        case 2: return ALWAYS_PARENT;
+        default: return null;
       }
-      return getDescriptor().getValues().get(ordinal());
     }
 
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-    getDescriptorForType() {
-      return getDescriptor();
+    public static com.google.protobuf.Internal.EnumLiteMap<ConstantDecision>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ConstantDecision> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<ConstantDecision>() {
+            @java.lang.Override
+            public ConstantDecision findValueByNumber(int number) {
+              return ConstantDecision.forNumber(number);
+            }
+          };
+
+    public static com.google.protobuf.Internal.EnumVerifier 
+        internalGetVerifier() {
+      return ConstantDecisionVerifier.INSTANCE;
     }
 
-    // @@protoc_insertion_point(enum_scope:opencensus.proto.trace.v1.ConstantSampler
-    // .ConstantDecision)
+    private static final class ConstantDecisionVerifier implements 
+         com.google.protobuf.Internal.EnumVerifier { 
+            static final com.google.protobuf.Internal.EnumVerifier           INSTANCE = new ConstantDecisionVerifier();
+            @java.lang.Override
+            public boolean isInRange(int number) {
+              return ConstantDecision.forNumber(number) != null;
+            }
+          };
+
+    private final int value;
+
+    private ConstantDecision(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:opencensus.proto.trace.v1.ConstantSampler.ConstantDecision)
+  }
+
+  public static final int DECISION_FIELD_NUMBER = 1;
+  private int decision_;
+  /**
+   * <code>.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision decision = 1;</code>
+   * @return The enum numeric value on the wire for decision.
+   */
+  @java.lang.Override
+  public int getDecisionValue() {
+    return decision_;
+  }
+  /**
+   * <code>.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision decision = 1;</code>
+   * @return The decision.
+   */
+  @java.lang.Override
+  public io.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision getDecision() {
+    io.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision result = io.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision.forNumber(decision_);
+    return result == null ? io.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision.UNRECOGNIZED : result;
+  }
+  /**
+   * <code>.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision decision = 1;</code>
+   * @param value The enum numeric value on the wire for decision to set.
+   */
+  private void setDecisionValue(int value) {
+      decision_ = value;
+  }
+  /**
+   * <code>.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision decision = 1;</code>
+   * @param value The decision to set.
+   */
+  private void setDecision(io.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision value) {
+    decision_ = value.getNumber();
+    
+  }
+  /**
+   * <code>.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision decision = 1;</code>
+   */
+  private void clearDecision() {
+    
+    decision_ = 0;
+  }
+
+  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.trace.v1.ConstantSampler parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.trace.v1.ConstantSampler parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.trace.v1.ConstantSampler parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+
+  public static Builder newBuilder() {
+    return (Builder) DEFAULT_INSTANCE.createBuilder();
+  }
+  public static Builder newBuilder(io.opencensus.proto.trace.v1.ConstantSampler prototype) {
+    return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
   }
 
   /**
    * <pre>
    * Sampler that always makes a constant decision on span sampling.
    * </pre>
-   * <p>
+   *
    * Protobuf type {@code opencensus.proto.trace.v1.ConstantSampler}
    */
   public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+      com.google.protobuf.GeneratedMessageLite.Builder<
+        io.opencensus.proto.trace.v1.ConstantSampler, Builder> implements
       // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.ConstantSampler)
       io.opencensus.proto.trace.v1.ConstantSamplerOrBuilder {
-    private int decision_ = 0;
-
     // Construct using io.opencensus.proto.trace.v1.ConstantSampler.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+      super(DEFAULT_INSTANCE);
     }
 
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.trace.v1.TraceConfigProto.internal_static_opencensus_proto_trace_v1_ConstantSampler_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.trace.v1.TraceConfigProto.internal_static_opencensus_proto_trace_v1_ConstantSampler_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.trace.v1.ConstantSampler.class,
-              io.opencensus.proto.trace.v1.ConstantSampler.Builder.class);
-    }
-
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-          .alwaysUseFieldBuilders) {
-      }
-    }
-
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      decision_ = 0;
-
-      return this;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return io.opencensus.proto.trace.v1.TraceConfigProto.internal_static_opencensus_proto_trace_v1_ConstantSampler_descriptor;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.ConstantSampler getDefaultInstanceForType() {
-      return io.opencensus.proto.trace.v1.ConstantSampler.getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.ConstantSampler build() {
-      io.opencensus.proto.trace.v1.ConstantSampler result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.ConstantSampler buildPartial() {
-      io.opencensus.proto.trace.v1.ConstantSampler result =
-          new io.opencensus.proto.trace.v1.ConstantSampler(this);
-      result.decision_ = decision_;
-      onBuilt();
-      return result;
-    }
-
-    @java.lang.Override
-    public Builder clone() {
-      return super.clone();
-    }
-
-    @java.lang.Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.setField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-
-    @java.lang.Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-
-    @java.lang.Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-
-    @java.lang.Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof io.opencensus.proto.trace.v1.ConstantSampler) {
-        return mergeFrom((io.opencensus.proto.trace.v1.ConstantSampler) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(io.opencensus.proto.trace.v1.ConstantSampler other) {
-      if (other == io.opencensus.proto.trace.v1.ConstantSampler.getDefaultInstance()) {
-        return this;
-      }
-      if (other.decision_ != 0) {
-        setDecisionValue(other.getDecisionValue());
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      io.opencensus.proto.trace.v1.ConstantSampler parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.opencensus.proto.trace.v1.ConstantSampler) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
-      return this;
-    }
 
     /**
      * <code>.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision decision = 1;</code>
-     *
      * @return The enum numeric value on the wire for decision.
      */
     @java.lang.Override
     public int getDecisionValue() {
-      return decision_;
+      return instance.getDecisionValue();
     }
-
     /**
      * <code>.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision decision = 1;</code>
-     *
-     * @param value The enum numeric value on the wire for decision to set.
+     * @param value The decision to set.
      * @return This builder for chaining.
      */
     public Builder setDecisionValue(int value) {
-
-      decision_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setDecisionValue(value);
       return this;
     }
-
     /**
      * <code>.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision decision = 1;</code>
-     *
      * @return The decision.
      */
     @java.lang.Override
     public io.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision getDecision() {
-      @SuppressWarnings("deprecation")
-      io.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision result =
-          io.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision.valueOf(decision_);
-      return result == null ?
-          io.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision.UNRECOGNIZED : result;
+      return instance.getDecision();
     }
-
     /**
      * <code>.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision decision = 1;</code>
-     *
-     * @param value The decision to set.
+     * @param value The enum numeric value on the wire for decision to set.
      * @return This builder for chaining.
      */
-    public Builder setDecision(
-        io.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-
-      decision_ = value.getNumber();
-      onChanged();
+    public Builder setDecision(io.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision value) {
+      copyOnWrite();
+      instance.setDecision(value);
       return this;
     }
-
     /**
      * <code>.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision decision = 1;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearDecision() {
-
-      decision_ = 0;
-      onChanged();
+      copyOnWrite();
+      instance.clearDecision();
       return this;
     }
 
-    @java.lang.Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
-    }
-
-    @java.lang.Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
-    }
-
-
     // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.ConstantSampler)
   }
+  @java.lang.Override
+  @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+  protected final java.lang.Object dynamicMethod(
+      com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+      java.lang.Object arg0, java.lang.Object arg1) {
+    switch (method) {
+      case NEW_MUTABLE_INSTANCE: {
+        return new io.opencensus.proto.trace.v1.ConstantSampler();
+      }
+      case NEW_BUILDER: {
+        return new Builder();
+      }
+      case BUILD_MESSAGE_INFO: {
+          java.lang.Object[] objects = new java.lang.Object[] {
+            "decision_",
+          };
+          java.lang.String info =
+              "\u0000\u0001\u0000\u0000\u0001\u0001\u0001\u0000\u0000\u0000\u0001\f";
+          return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+      }
+      // fall through
+      case GET_DEFAULT_INSTANCE: {
+        return DEFAULT_INSTANCE;
+      }
+      case GET_PARSER: {
+        com.google.protobuf.Parser<io.opencensus.proto.trace.v1.ConstantSampler> parser = PARSER;
+        if (parser == null) {
+          synchronized (io.opencensus.proto.trace.v1.ConstantSampler.class) {
+            parser = PARSER;
+            if (parser == null) {
+              parser =
+                  new DefaultInstanceBasedParser<io.opencensus.proto.trace.v1.ConstantSampler>(
+                      DEFAULT_INSTANCE);
+              PARSER = parser;
+            }
+          }
+        }
+        return parser;
+    }
+    case GET_MEMOIZED_IS_INITIALIZED: {
+      return (byte) 1;
+    }
+    case SET_MEMOIZED_IS_INITIALIZED: {
+      return null;
+    }
+    }
+    throw new UnsupportedOperationException();
+  }
 
+
+  // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.ConstantSampler)
+  private static final io.opencensus.proto.trace.v1.ConstantSampler DEFAULT_INSTANCE;
+  static {
+    ConstantSampler defaultInstance = new ConstantSampler();
+    // New instances are implicitly immutable so no need to make
+    // immutable.
+    DEFAULT_INSTANCE = defaultInstance;
+    com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+      ConstantSampler.class, defaultInstance);
+  }
+
+  public static io.opencensus.proto.trace.v1.ConstantSampler getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  private static volatile com.google.protobuf.Parser<ConstantSampler> PARSER;
+
+  public static com.google.protobuf.Parser<ConstantSampler> parser() {
+    return DEFAULT_INSTANCE.getParserForType();
+  }
 }
 

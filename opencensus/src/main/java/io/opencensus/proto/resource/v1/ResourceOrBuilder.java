@@ -5,7 +5,7 @@ package io.opencensus.proto.resource.v1;
 
 public interface ResourceOrBuilder extends
     // @@protoc_insertion_point(interface_extends:opencensus.proto.resource.v1.Resource)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.MessageLiteOrBuilder {
 
   /**
    * <pre>
@@ -13,22 +13,19 @@ public interface ResourceOrBuilder extends
    * </pre>
    *
    * <code>string type = 1;</code>
-   *
    * @return The type.
    */
   java.lang.String getType();
-
   /**
    * <pre>
    * Type identifier for the resource.
    * </pre>
    *
    * <code>string type = 1;</code>
-   *
    * @return The bytes for type.
    */
   com.google.protobuf.ByteString
-  getTypeBytes();
+      getTypeBytes();
 
   /**
    * <pre>
@@ -38,7 +35,6 @@ public interface ResourceOrBuilder extends
    * <code>map&lt;string, string&gt; labels = 2;</code>
    */
   int getLabelsCount();
-
   /**
    * <pre>
    * Set of labels that describe the resource.
@@ -48,14 +44,12 @@ public interface ResourceOrBuilder extends
    */
   boolean containsLabels(
       java.lang.String key);
-
   /**
    * Use {@link #getLabelsMap()} instead.
    */
   @java.lang.Deprecated
   java.util.Map<java.lang.String, java.lang.String>
   getLabels();
-
   /**
    * <pre>
    * Set of labels that describe the resource.
@@ -65,7 +59,6 @@ public interface ResourceOrBuilder extends
    */
   java.util.Map<java.lang.String, java.lang.String>
   getLabelsMap();
-
   /**
    * <pre>
    * Set of labels that describe the resource.
@@ -77,7 +70,6 @@ public interface ResourceOrBuilder extends
   java.lang.String getLabelsOrDefault(
       java.lang.String key,
       java.lang.String defaultValue);
-
   /**
    * <pre>
    * Set of labels that describe the resource.

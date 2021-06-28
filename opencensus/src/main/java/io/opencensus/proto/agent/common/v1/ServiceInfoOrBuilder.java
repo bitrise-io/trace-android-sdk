@@ -5,7 +5,7 @@ package io.opencensus.proto.agent.common.v1;
 
 public interface ServiceInfoOrBuilder extends
     // @@protoc_insertion_point(interface_extends:opencensus.proto.agent.common.v1.ServiceInfo)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.MessageLiteOrBuilder {
 
   /**
    * <pre>
@@ -13,20 +13,17 @@ public interface ServiceInfoOrBuilder extends
    * </pre>
    *
    * <code>string name = 1;</code>
-   *
    * @return The name.
    */
   java.lang.String getName();
-
   /**
    * <pre>
    * Name of the service.
    * </pre>
    *
    * <code>string name = 1;</code>
-   *
    * @return The bytes for name.
    */
   com.google.protobuf.ByteString
-  getNameBytes();
+      getNameBytes();
 }

@@ -5,5 +5,5 @@ package io.opencensus.proto.stats.v1;
 
 public interface SumAggregationOrBuilder extends
     // @@protoc_insertion_point(interface_extends:opencensus.proto.stats.v1.SumAggregation)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.MessageLiteOrBuilder {
 }

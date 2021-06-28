@@ -6,253 +6,16 @@ package io.opencensus.proto.agent.trace.v1;
 /**
  * Protobuf type {@code opencensus.proto.agent.trace.v1.ExportTraceServiceRequest}
  */
-public final class ExportTraceServiceRequest extends
-    com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:opencensus.proto.agent.trace.v1
-    // .ExportTraceServiceRequest)
+public  final class ExportTraceServiceRequest extends
+    com.google.protobuf.GeneratedMessageLite<
+        ExportTraceServiceRequest, ExportTraceServiceRequest.Builder> implements
+    // @@protoc_insertion_point(message_implements:opencensus.proto.agent.trace.v1.ExportTraceServiceRequest)
     ExportTraceServiceRequestOrBuilder {
-  public static final int NODE_FIELD_NUMBER = 1;
-  public static final int SPANS_FIELD_NUMBER = 2;
-  public static final int RESOURCE_FIELD_NUMBER = 3;
-  private static final long serialVersionUID = 0L;
-  // @@protoc_insertion_point(class_scope:opencensus.proto.agent.trace.v1.ExportTraceServiceRequest)
-  private static final io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest
-      DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<ExportTraceServiceRequest>
-      PARSER = new com.google.protobuf.AbstractParser<ExportTraceServiceRequest>() {
-    @java.lang.Override
-    public ExportTraceServiceRequest parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new ExportTraceServiceRequest(input, extensionRegistry);
-    }
-  };
-
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest();
-  }
-
-  private io.opencensus.proto.agent.common.v1.Node node_;
-  private java.util.List<io.opencensus.proto.trace.v1.Span> spans_;
-  private io.opencensus.proto.resource.v1.Resource resource_;
-  private byte memoizedIsInitialized = -1;
-
-  // Use ExportTraceServiceRequest.newBuilder() to construct.
-  private ExportTraceServiceRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
   private ExportTraceServiceRequest() {
-    spans_ = java.util.Collections.emptyList();
+    spans_ = emptyProtobufList();
   }
-
-  private ExportTraceServiceRequest(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            io.opencensus.proto.agent.common.v1.Node.Builder subBuilder = null;
-            if (node_ != null) {
-              subBuilder = node_.toBuilder();
-            }
-            node_ = input
-                .readMessage(io.opencensus.proto.agent.common.v1.Node.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(node_);
-              node_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 18: {
-            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-              spans_ = new java.util.ArrayList<io.opencensus.proto.trace.v1.Span>();
-              mutable_bitField0_ |= 0x00000001;
-            }
-            spans_.add(
-                input.readMessage(io.opencensus.proto.trace.v1.Span.parser(), extensionRegistry));
-            break;
-          }
-          case 26: {
-            io.opencensus.proto.resource.v1.Resource.Builder subBuilder = null;
-            if (resource_ != null) {
-              subBuilder = resource_.toBuilder();
-            }
-            resource_ = input
-                .readMessage(io.opencensus.proto.resource.v1.Resource.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(resource_);
-              resource_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      if (((mutable_bitField0_ & 0x00000001) != 0)) {
-        spans_ = java.util.Collections.unmodifiableList(spans_);
-      }
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
-
-  public static final com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
-    return io.opencensus.proto.agent.trace.v1.TraceServiceProto.internal_static_opencensus_proto_agent_trace_v1_ExportTraceServiceRequest_descriptor;
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(
-      java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseDelimitedFrom(
-      java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(
-      io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public static com.google.protobuf.Parser<ExportTraceServiceRequest> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new ExportTraceServiceRequest();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
-    return io.opencensus.proto.agent.trace.v1.TraceServiceProto.internal_static_opencensus_proto_agent_trace_v1_ExportTraceServiceRequest_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest.class,
-            io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest.Builder.class);
-  }
-
+  public static final int NODE_FIELD_NUMBER = 1;
+  private io.opencensus.proto.agent.common.v1.Node node_;
   /**
    * <pre>
    * This is required only in the first message on the stream or if the
@@ -261,14 +24,11 @@ public final class ExportTraceServiceRequest extends
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
-   *
-   * @return Whether the node field is set.
    */
   @java.lang.Override
   public boolean hasNode() {
     return node_ != null;
   }
-
   /**
    * <pre>
    * This is required only in the first message on the stream or if the
@@ -277,14 +37,11 @@ public final class ExportTraceServiceRequest extends
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
-   *
-   * @return The node.
    */
   @java.lang.Override
   public io.opencensus.proto.agent.common.v1.Node getNode() {
     return node_ == null ? io.opencensus.proto.agent.common.v1.Node.getDefaultInstance() : node_;
   }
-
   /**
    * <pre>
    * This is required only in the first message on the stream or if the
@@ -294,11 +51,47 @@ public final class ExportTraceServiceRequest extends
    *
    * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
    */
-  @java.lang.Override
-  public io.opencensus.proto.agent.common.v1.NodeOrBuilder getNodeOrBuilder() {
-    return getNode();
+  private void setNode(io.opencensus.proto.agent.common.v1.Node value) {
+    value.getClass();
+  node_ = value;
+    
+    }
+  /**
+   * <pre>
+   * This is required only in the first message on the stream or if the
+   * previous sent ExportTraceServiceRequest message has a different Node (e.g.
+   * when the same RPC is used to send Spans from multiple Applications).
+   * </pre>
+   *
+   * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeNode(io.opencensus.proto.agent.common.v1.Node value) {
+    value.getClass();
+  if (node_ != null &&
+        node_ != io.opencensus.proto.agent.common.v1.Node.getDefaultInstance()) {
+      node_ =
+        io.opencensus.proto.agent.common.v1.Node.newBuilder(node_).mergeFrom(value).buildPartial();
+    } else {
+      node_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * This is required only in the first message on the stream or if the
+   * previous sent ExportTraceServiceRequest message has a different Node (e.g.
+   * when the same RPC is used to send Spans from multiple Applications).
+   * </pre>
+   *
+   * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
+   */
+  private void clearNode() {  node_ = null;
+    
   }
 
+  public static final int SPANS_FIELD_NUMBER = 2;
+  private com.google.protobuf.Internal.ProtobufList<io.opencensus.proto.trace.v1.Span> spans_;
   /**
    * <pre>
    * A list of Spans that belong to the last received Node.
@@ -310,7 +103,6 @@ public final class ExportTraceServiceRequest extends
   public java.util.List<io.opencensus.proto.trace.v1.Span> getSpansList() {
     return spans_;
   }
-
   /**
    * <pre>
    * A list of Spans that belong to the last received Node.
@@ -318,12 +110,10 @@ public final class ExportTraceServiceRequest extends
    *
    * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
    */
-  @java.lang.Override
-  public java.util.List<? extends io.opencensus.proto.trace.v1.SpanOrBuilder>
-  getSpansOrBuilderList() {
+  public java.util.List<? extends io.opencensus.proto.trace.v1.SpanOrBuilder> 
+      getSpansOrBuilderList() {
     return spans_;
   }
-
   /**
    * <pre>
    * A list of Spans that belong to the last received Node.
@@ -335,7 +125,6 @@ public final class ExportTraceServiceRequest extends
   public int getSpansCount() {
     return spans_.size();
   }
-
   /**
    * <pre>
    * A list of Spans that belong to the last received Node.
@@ -347,6 +136,24 @@ public final class ExportTraceServiceRequest extends
   public io.opencensus.proto.trace.v1.Span getSpans(int index) {
     return spans_.get(index);
   }
+  /**
+   * <pre>
+   * A list of Spans that belong to the last received Node.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
+   */
+  public io.opencensus.proto.trace.v1.SpanOrBuilder getSpansOrBuilder(
+      int index) {
+    return spans_.get(index);
+  }
+  private void ensureSpansIsMutable() {
+    com.google.protobuf.Internal.ProtobufList<io.opencensus.proto.trace.v1.Span> tmp = spans_;
+    if (!tmp.isModifiable()) {
+      spans_ =
+          com.google.protobuf.GeneratedMessageLite.mutableCopy(tmp);
+     }
+  }
 
   /**
    * <pre>
@@ -355,12 +162,74 @@ public final class ExportTraceServiceRequest extends
    *
    * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
    */
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.SpanOrBuilder getSpansOrBuilder(
-      int index) {
-    return spans_.get(index);
+  private void setSpans(
+      int index, io.opencensus.proto.trace.v1.Span value) {
+    value.getClass();
+  ensureSpansIsMutable();
+    spans_.set(index, value);
+  }
+  /**
+   * <pre>
+   * A list of Spans that belong to the last received Node.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
+   */
+  private void addSpans(io.opencensus.proto.trace.v1.Span value) {
+    value.getClass();
+  ensureSpansIsMutable();
+    spans_.add(value);
+  }
+  /**
+   * <pre>
+   * A list of Spans that belong to the last received Node.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
+   */
+  private void addSpans(
+      int index, io.opencensus.proto.trace.v1.Span value) {
+    value.getClass();
+  ensureSpansIsMutable();
+    spans_.add(index, value);
+  }
+  /**
+   * <pre>
+   * A list of Spans that belong to the last received Node.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
+   */
+  private void addAllSpans(
+      java.lang.Iterable<? extends io.opencensus.proto.trace.v1.Span> values) {
+    ensureSpansIsMutable();
+    com.google.protobuf.AbstractMessageLite.addAll(
+        values, spans_);
+  }
+  /**
+   * <pre>
+   * A list of Spans that belong to the last received Node.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
+   */
+  private void clearSpans() {
+    spans_ = emptyProtobufList();
+  }
+  /**
+   * <pre>
+   * A list of Spans that belong to the last received Node.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
+   */
+  private void removeSpans(int index) {
+    ensureSpansIsMutable();
+    spans_.remove(index);
   }
 
+  public static final int RESOURCE_FIELD_NUMBER = 3;
+  private io.opencensus.proto.resource.v1.Resource resource_;
   /**
    * <pre>
    * The resource for the spans in this message that do not have an explicit
@@ -370,14 +239,11 @@ public final class ExportTraceServiceRequest extends
    * </pre>
    *
    * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
-   *
-   * @return Whether the resource field is set.
    */
   @java.lang.Override
   public boolean hasResource() {
     return resource_ != null;
   }
-
   /**
    * <pre>
    * The resource for the spans in this message that do not have an explicit
@@ -387,15 +253,11 @@ public final class ExportTraceServiceRequest extends
    * </pre>
    *
    * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
-   *
-   * @return The resource.
    */
   @java.lang.Override
   public io.opencensus.proto.resource.v1.Resource getResource() {
-    return resource_ == null ? io.opencensus.proto.resource.v1.Resource.getDefaultInstance() :
-        resource_;
+    return resource_ == null ? io.opencensus.proto.resource.v1.Resource.getDefaultInstance() : resource_;
   }
-
   /**
    * <pre>
    * The resource for the spans in this message that do not have an explicit
@@ -406,399 +268,141 @@ public final class ExportTraceServiceRequest extends
    *
    * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
    */
-  @java.lang.Override
-  public io.opencensus.proto.resource.v1.ResourceOrBuilder getResourceOrBuilder() {
-    return getResource();
+  private void setResource(io.opencensus.proto.resource.v1.Resource value) {
+    value.getClass();
+  resource_ = value;
+    
+    }
+  /**
+   * <pre>
+   * The resource for the spans in this message that do not have an explicit
+   * resource set.
+   * If unset, the most recently set resource in the RPC stream applies. It is
+   * valid to never be set within a stream, e.g. when no resource info is known.
+   * </pre>
+   *
+   * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeResource(io.opencensus.proto.resource.v1.Resource value) {
+    value.getClass();
+  if (resource_ != null &&
+        resource_ != io.opencensus.proto.resource.v1.Resource.getDefaultInstance()) {
+      resource_ =
+        io.opencensus.proto.resource.v1.Resource.newBuilder(resource_).mergeFrom(value).buildPartial();
+    } else {
+      resource_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * The resource for the spans in this message that do not have an explicit
+   * resource set.
+   * If unset, the most recently set resource in the RPC stream applies. It is
+   * valid to never be set within a stream, e.g. when no resource info is known.
+   * </pre>
+   *
+   * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
+   */
+  private void clearResource() {  resource_ = null;
+    
   }
 
-  @java.lang.Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) {
-      return true;
-    }
-    if (isInitialized == 0) {
-      return false;
-    }
-
-    memoizedIsInitialized = 1;
-    return true;
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
   }
-
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
-    if (node_ != null) {
-      output.writeMessage(1, getNode());
-    }
-    for (int i = 0; i < spans_.size(); i++) {
-      output.writeMessage(2, spans_.get(i));
-    }
-    if (resource_ != null) {
-      output.writeMessage(3, getResource());
-    }
-    unknownFields.writeTo(output);
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
   }
 
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) {
-      return size;
-    }
-
-    size = 0;
-    if (node_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getNode());
-    }
-    for (int i = 0; i < spans_.size(); i++) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, spans_.get(i));
-    }
-    if (resource_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getResource());
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
+  public static Builder newBuilder() {
+    return (Builder) DEFAULT_INSTANCE.createBuilder();
   }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-      return true;
-    }
-    if (!(obj instanceof io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest)) {
-      return super.equals(obj);
-    }
-    io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest other =
-        (io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest) obj;
-
-    if (hasNode() != other.hasNode()) {
-      return false;
-    }
-    if (hasNode()) {
-      if (!getNode()
-          .equals(other.getNode())) {
-        return false;
-      }
-    }
-    if (!getSpansList()
-        .equals(other.getSpansList())) {
-      return false;
-    }
-    if (hasResource() != other.hasResource()) {
-      return false;
-    }
-    if (hasResource()) {
-      if (!getResource()
-          .equals(other.getResource())) {
-        return false;
-      }
-    }
-    return unknownFields.equals(other.unknownFields);
-  }
-
-  @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasNode()) {
-      hash = (37 * hash) + NODE_FIELD_NUMBER;
-      hash = (53 * hash) + getNode().hashCode();
-    }
-    if (getSpansCount() > 0) {
-      hash = (37 * hash) + SPANS_FIELD_NUMBER;
-      hash = (53 * hash) + getSpansList().hashCode();
-    }
-    if (hasResource()) {
-      hash = (37 * hash) + RESOURCE_FIELD_NUMBER;
-      hash = (53 * hash) + getResource().hashCode();
-    }
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
-
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<ExportTraceServiceRequest> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
+  public static Builder newBuilder(io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest prototype) {
+    return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
   }
 
   /**
    * Protobuf type {@code opencensus.proto.agent.trace.v1.ExportTraceServiceRequest}
    */
   public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:opencensus.proto.agent.trace.v1
-      // .ExportTraceServiceRequest)
+      com.google.protobuf.GeneratedMessageLite.Builder<
+        io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest, Builder> implements
+      // @@protoc_insertion_point(builder_implements:opencensus.proto.agent.trace.v1.ExportTraceServiceRequest)
       io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequestOrBuilder {
-    private int bitField0_;
-    private io.opencensus.proto.agent.common.v1.Node node_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.agent.common.v1.Node,
-        io.opencensus.proto.agent.common.v1.Node.Builder,
-        io.opencensus.proto.agent.common.v1.NodeOrBuilder>
-        nodeBuilder_;
-    private java.util.List<io.opencensus.proto.trace.v1.Span> spans_ =
-        java.util.Collections.emptyList();
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opencensus.proto.trace.v1.Span, io.opencensus.proto.trace.v1.Span.Builder,
-        io.opencensus.proto.trace.v1.SpanOrBuilder>
-        spansBuilder_;
-    private io.opencensus.proto.resource.v1.Resource resource_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.resource.v1.Resource,
-        io.opencensus.proto.resource.v1.Resource.Builder,
-        io.opencensus.proto.resource.v1.ResourceOrBuilder>
-        resourceBuilder_;
-
     // Construct using io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+      super(DEFAULT_INSTANCE);
     }
 
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.agent.trace.v1.TraceServiceProto.internal_static_opencensus_proto_agent_trace_v1_ExportTraceServiceRequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.agent.trace.v1.TraceServiceProto.internal_static_opencensus_proto_agent_trace_v1_ExportTraceServiceRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest.class,
-              io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest.Builder.class);
-    }
-
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-          .alwaysUseFieldBuilders) {
-        getSpansFieldBuilder();
-      }
-    }
-
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      if (nodeBuilder_ == null) {
-        node_ = null;
-      } else {
-        node_ = null;
-        nodeBuilder_ = null;
-      }
-      if (spansBuilder_ == null) {
-        spans_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-      } else {
-        spansBuilder_.clear();
-      }
-      if (resourceBuilder_ == null) {
-        resource_ = null;
-      } else {
-        resource_ = null;
-        resourceBuilder_ = null;
-      }
-      return this;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return io.opencensus.proto.agent.trace.v1.TraceServiceProto.internal_static_opencensus_proto_agent_trace_v1_ExportTraceServiceRequest_descriptor;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest getDefaultInstanceForType() {
-      return io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest.getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest build() {
-      io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest buildPartial() {
-      io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest result =
-          new io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest(this);
-      int from_bitField0_ = bitField0_;
-      if (nodeBuilder_ == null) {
-        result.node_ = node_;
-      } else {
-        result.node_ = nodeBuilder_.build();
-      }
-      if (spansBuilder_ == null) {
-        if (((bitField0_ & 0x00000001) != 0)) {
-          spans_ = java.util.Collections.unmodifiableList(spans_);
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.spans_ = spans_;
-      } else {
-        result.spans_ = spansBuilder_.build();
-      }
-      if (resourceBuilder_ == null) {
-        result.resource_ = resource_;
-      } else {
-        result.resource_ = resourceBuilder_.build();
-      }
-      onBuilt();
-      return result;
-    }
-
-    @java.lang.Override
-    public Builder clone() {
-      return super.clone();
-    }
-
-    @java.lang.Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.setField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-
-    @java.lang.Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-
-    @java.lang.Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-
-    @java.lang.Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest) {
-        return mergeFrom((io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest other) {
-      if (other ==
-          io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest.getDefaultInstance()) {
-        return this;
-      }
-      if (other.hasNode()) {
-        mergeNode(other.getNode());
-      }
-      if (spansBuilder_ == null) {
-        if (!other.spans_.isEmpty()) {
-          if (spans_.isEmpty()) {
-            spans_ = other.spans_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-          } else {
-            ensureSpansIsMutable();
-            spans_.addAll(other.spans_);
-          }
-          onChanged();
-        }
-      } else {
-        if (!other.spans_.isEmpty()) {
-          if (spansBuilder_.isEmpty()) {
-            spansBuilder_.dispose();
-            spansBuilder_ = null;
-            spans_ = other.spans_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-            spansBuilder_ =
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                    getSpansFieldBuilder() : null;
-          } else {
-            spansBuilder_.addAllMessages(other.spans_);
-          }
-        }
-      }
-      if (other.hasResource()) {
-        mergeResource(other.getResource());
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage =
-            (io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
-      return this;
-    }
 
     /**
      * <pre>
@@ -808,13 +412,11 @@ public final class ExportTraceServiceRequest extends
      * </pre>
      *
      * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
-     *
-     * @return Whether the node field is set.
      */
+    @java.lang.Override
     public boolean hasNode() {
-      return nodeBuilder_ != null || node_ != null;
+      return instance.hasNode();
     }
-
     /**
      * <pre>
      * This is required only in the first message on the stream or if the
@@ -823,18 +425,11 @@ public final class ExportTraceServiceRequest extends
      * </pre>
      *
      * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
-     *
-     * @return The node.
      */
+    @java.lang.Override
     public io.opencensus.proto.agent.common.v1.Node getNode() {
-      if (nodeBuilder_ == null) {
-        return node_ == null ? io.opencensus.proto.agent.common.v1.Node.getDefaultInstance() :
-            node_;
-      } else {
-        return nodeBuilder_.getMessage();
-      }
+      return instance.getNode();
     }
-
     /**
      * <pre>
      * This is required only in the first message on the stream or if the
@@ -845,19 +440,10 @@ public final class ExportTraceServiceRequest extends
      * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
      */
     public Builder setNode(io.opencensus.proto.agent.common.v1.Node value) {
-      if (nodeBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        node_ = value;
-        onChanged();
-      } else {
-        nodeBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setNode(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * This is required only in the first message on the stream or if the
@@ -869,16 +455,10 @@ public final class ExportTraceServiceRequest extends
      */
     public Builder setNode(
         io.opencensus.proto.agent.common.v1.Node.Builder builderForValue) {
-      if (nodeBuilder_ == null) {
-        node_ = builderForValue.build();
-        onChanged();
-      } else {
-        nodeBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setNode(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * This is required only in the first message on the stream or if the
@@ -889,22 +469,10 @@ public final class ExportTraceServiceRequest extends
      * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
      */
     public Builder mergeNode(io.opencensus.proto.agent.common.v1.Node value) {
-      if (nodeBuilder_ == null) {
-        if (node_ != null) {
-          node_ =
-              io.opencensus.proto.agent.common.v1.Node.newBuilder(node_).mergeFrom(value)
-                                                      .buildPartial();
-        } else {
-          node_ = value;
-        }
-        onChanged();
-      } else {
-        nodeBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeNode(value);
       return this;
     }
-
     /**
      * <pre>
      * This is required only in the first message on the stream or if the
@@ -914,83 +482,9 @@ public final class ExportTraceServiceRequest extends
      *
      * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
      */
-    public Builder clearNode() {
-      if (nodeBuilder_ == null) {
-        node_ = null;
-        onChanged();
-      } else {
-        node_ = null;
-        nodeBuilder_ = null;
-      }
-
+    public Builder clearNode() {  copyOnWrite();
+      instance.clearNode();
       return this;
-    }
-
-    /**
-     * <pre>
-     * This is required only in the first message on the stream or if the
-     * previous sent ExportTraceServiceRequest message has a different Node (e.g.
-     * when the same RPC is used to send Spans from multiple Applications).
-     * </pre>
-     *
-     * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
-     */
-    public io.opencensus.proto.agent.common.v1.Node.Builder getNodeBuilder() {
-
-      onChanged();
-      return getNodeFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * This is required only in the first message on the stream or if the
-     * previous sent ExportTraceServiceRequest message has a different Node (e.g.
-     * when the same RPC is used to send Spans from multiple Applications).
-     * </pre>
-     *
-     * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
-     */
-    public io.opencensus.proto.agent.common.v1.NodeOrBuilder getNodeOrBuilder() {
-      if (nodeBuilder_ != null) {
-        return nodeBuilder_.getMessageOrBuilder();
-      } else {
-        return node_ == null ?
-            io.opencensus.proto.agent.common.v1.Node.getDefaultInstance() : node_;
-      }
-    }
-
-    /**
-     * <pre>
-     * This is required only in the first message on the stream or if the
-     * previous sent ExportTraceServiceRequest message has a different Node (e.g.
-     * when the same RPC is used to send Spans from multiple Applications).
-     * </pre>
-     *
-     * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.agent.common.v1.Node,
-        io.opencensus.proto.agent.common.v1.Node.Builder,
-        io.opencensus.proto.agent.common.v1.NodeOrBuilder>
-    getNodeFieldBuilder() {
-      if (nodeBuilder_ == null) {
-        nodeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.agent.common.v1.Node,
-            io.opencensus.proto.agent.common.v1.Node.Builder,
-            io.opencensus.proto.agent.common.v1.NodeOrBuilder>(
-            getNode(),
-            getParentForChildren(),
-            isClean());
-        node_ = null;
-      }
-      return nodeBuilder_;
-    }
-
-    private void ensureSpansIsMutable() {
-      if (!((bitField0_ & 0x00000001) != 0)) {
-        spans_ = new java.util.ArrayList<io.opencensus.proto.trace.v1.Span>(spans_);
-        bitField0_ |= 0x00000001;
-      }
     }
 
     /**
@@ -1000,14 +494,11 @@ public final class ExportTraceServiceRequest extends
      *
      * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<io.opencensus.proto.trace.v1.Span> getSpansList() {
-      if (spansBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(spans_);
-      } else {
-        return spansBuilder_.getMessageList();
-      }
+      return java.util.Collections.unmodifiableList(
+          instance.getSpansList());
     }
-
     /**
      * <pre>
      * A list of Spans that belong to the last received Node.
@@ -1015,29 +506,20 @@ public final class ExportTraceServiceRequest extends
      *
      * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
      */
+    @java.lang.Override
     public int getSpansCount() {
-      if (spansBuilder_ == null) {
-        return spans_.size();
-      } else {
-        return spansBuilder_.getCount();
-      }
-    }
-
-    /**
+      return instance.getSpansCount();
+    }/**
      * <pre>
      * A list of Spans that belong to the last received Node.
      * </pre>
      *
      * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
      */
+    @java.lang.Override
     public io.opencensus.proto.trace.v1.Span getSpans(int index) {
-      if (spansBuilder_ == null) {
-        return spans_.get(index);
-      } else {
-        return spansBuilder_.getMessage(index);
-      }
+      return instance.getSpans(index);
     }
-
     /**
      * <pre>
      * A list of Spans that belong to the last received Node.
@@ -1047,19 +529,10 @@ public final class ExportTraceServiceRequest extends
      */
     public Builder setSpans(
         int index, io.opencensus.proto.trace.v1.Span value) {
-      if (spansBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureSpansIsMutable();
-        spans_.set(index, value);
-        onChanged();
-      } else {
-        spansBuilder_.setMessage(index, value);
-      }
+      copyOnWrite();
+      instance.setSpans(index, value);
       return this;
     }
-
     /**
      * <pre>
      * A list of Spans that belong to the last received Node.
@@ -1069,16 +542,11 @@ public final class ExportTraceServiceRequest extends
      */
     public Builder setSpans(
         int index, io.opencensus.proto.trace.v1.Span.Builder builderForValue) {
-      if (spansBuilder_ == null) {
-        ensureSpansIsMutable();
-        spans_.set(index, builderForValue.build());
-        onChanged();
-      } else {
-        spansBuilder_.setMessage(index, builderForValue.build());
-      }
+      copyOnWrite();
+      instance.setSpans(index,
+          builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * A list of Spans that belong to the last received Node.
@@ -1087,19 +555,10 @@ public final class ExportTraceServiceRequest extends
      * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
      */
     public Builder addSpans(io.opencensus.proto.trace.v1.Span value) {
-      if (spansBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureSpansIsMutable();
-        spans_.add(value);
-        onChanged();
-      } else {
-        spansBuilder_.addMessage(value);
-      }
+      copyOnWrite();
+      instance.addSpans(value);
       return this;
     }
-
     /**
      * <pre>
      * A list of Spans that belong to the last received Node.
@@ -1109,19 +568,10 @@ public final class ExportTraceServiceRequest extends
      */
     public Builder addSpans(
         int index, io.opencensus.proto.trace.v1.Span value) {
-      if (spansBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureSpansIsMutable();
-        spans_.add(index, value);
-        onChanged();
-      } else {
-        spansBuilder_.addMessage(index, value);
-      }
+      copyOnWrite();
+      instance.addSpans(index, value);
       return this;
     }
-
     /**
      * <pre>
      * A list of Spans that belong to the last received Node.
@@ -1131,16 +581,10 @@ public final class ExportTraceServiceRequest extends
      */
     public Builder addSpans(
         io.opencensus.proto.trace.v1.Span.Builder builderForValue) {
-      if (spansBuilder_ == null) {
-        ensureSpansIsMutable();
-        spans_.add(builderForValue.build());
-        onChanged();
-      } else {
-        spansBuilder_.addMessage(builderForValue.build());
-      }
+      copyOnWrite();
+      instance.addSpans(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * A list of Spans that belong to the last received Node.
@@ -1150,16 +594,11 @@ public final class ExportTraceServiceRequest extends
      */
     public Builder addSpans(
         int index, io.opencensus.proto.trace.v1.Span.Builder builderForValue) {
-      if (spansBuilder_ == null) {
-        ensureSpansIsMutable();
-        spans_.add(index, builderForValue.build());
-        onChanged();
-      } else {
-        spansBuilder_.addMessage(index, builderForValue.build());
-      }
+      copyOnWrite();
+      instance.addSpans(index,
+          builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * A list of Spans that belong to the last received Node.
@@ -1169,17 +608,10 @@ public final class ExportTraceServiceRequest extends
      */
     public Builder addAllSpans(
         java.lang.Iterable<? extends io.opencensus.proto.trace.v1.Span> values) {
-      if (spansBuilder_ == null) {
-        ensureSpansIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, spans_);
-        onChanged();
-      } else {
-        spansBuilder_.addAllMessages(values);
-      }
+      copyOnWrite();
+      instance.addAllSpans(values);
       return this;
     }
-
     /**
      * <pre>
      * A list of Spans that belong to the last received Node.
@@ -1188,16 +620,10 @@ public final class ExportTraceServiceRequest extends
      * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
      */
     public Builder clearSpans() {
-      if (spansBuilder_ == null) {
-        spans_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        onChanged();
-      } else {
-        spansBuilder_.clear();
-      }
+      copyOnWrite();
+      instance.clearSpans();
       return this;
     }
-
     /**
      * <pre>
      * A list of Spans that belong to the last received Node.
@@ -1206,116 +632,13 @@ public final class ExportTraceServiceRequest extends
      * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
      */
     public Builder removeSpans(int index) {
-      if (spansBuilder_ == null) {
-        ensureSpansIsMutable();
-        spans_.remove(index);
-        onChanged();
-      } else {
-        spansBuilder_.remove(index);
-      }
+      copyOnWrite();
+      instance.removeSpans(index);
       return this;
     }
 
     /**
      * <pre>
-     * A list of Spans that belong to the last received Node.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
-     */
-    public io.opencensus.proto.trace.v1.Span.Builder getSpansBuilder(
-        int index) {
-      return getSpansFieldBuilder().getBuilder(index);
-    }
-
-    /**
-     * <pre>
-     * A list of Spans that belong to the last received Node.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
-     */
-    public io.opencensus.proto.trace.v1.SpanOrBuilder getSpansOrBuilder(
-        int index) {
-      if (spansBuilder_ == null) {
-        return spans_.get(index);
-      } else {
-        return spansBuilder_.getMessageOrBuilder(index);
-      }
-    }
-
-    /**
-     * <pre>
-     * A list of Spans that belong to the last received Node.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
-     */
-    public java.util.List<? extends io.opencensus.proto.trace.v1.SpanOrBuilder>
-    getSpansOrBuilderList() {
-      if (spansBuilder_ != null) {
-        return spansBuilder_.getMessageOrBuilderList();
-      } else {
-        return java.util.Collections.unmodifiableList(spans_);
-      }
-    }
-
-    /**
-     * <pre>
-     * A list of Spans that belong to the last received Node.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
-     */
-    public io.opencensus.proto.trace.v1.Span.Builder addSpansBuilder() {
-      return getSpansFieldBuilder().addBuilder(
-          io.opencensus.proto.trace.v1.Span.getDefaultInstance());
-    }
-
-    /**
-     * <pre>
-     * A list of Spans that belong to the last received Node.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
-     */
-    public io.opencensus.proto.trace.v1.Span.Builder addSpansBuilder(
-        int index) {
-      return getSpansFieldBuilder().addBuilder(
-          index, io.opencensus.proto.trace.v1.Span.getDefaultInstance());
-    }
-
-    /**
-     * <pre>
-     * A list of Spans that belong to the last received Node.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
-     */
-    public java.util.List<io.opencensus.proto.trace.v1.Span.Builder>
-    getSpansBuilderList() {
-      return getSpansFieldBuilder().getBuilderList();
-    }
-
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opencensus.proto.trace.v1.Span, io.opencensus.proto.trace.v1.Span.Builder,
-        io.opencensus.proto.trace.v1.SpanOrBuilder>
-    getSpansFieldBuilder() {
-      if (spansBuilder_ == null) {
-        spansBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            io.opencensus.proto.trace.v1.Span, io.opencensus.proto.trace.v1.Span.Builder,
-            io.opencensus.proto.trace.v1.SpanOrBuilder>(
-            spans_,
-            ((bitField0_ & 0x00000001) != 0),
-            getParentForChildren(),
-            isClean());
-        spans_ = null;
-      }
-      return spansBuilder_;
-    }
-
-    /**
-     * <pre>
      * The resource for the spans in this message that do not have an explicit
      * resource set.
      * If unset, the most recently set resource in the RPC stream applies. It is
@@ -1323,13 +646,11 @@ public final class ExportTraceServiceRequest extends
      * </pre>
      *
      * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
-     *
-     * @return Whether the resource field is set.
      */
+    @java.lang.Override
     public boolean hasResource() {
-      return resourceBuilder_ != null || resource_ != null;
+      return instance.hasResource();
     }
-
     /**
      * <pre>
      * The resource for the spans in this message that do not have an explicit
@@ -1339,18 +660,11 @@ public final class ExportTraceServiceRequest extends
      * </pre>
      *
      * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
-     *
-     * @return The resource.
      */
+    @java.lang.Override
     public io.opencensus.proto.resource.v1.Resource getResource() {
-      if (resourceBuilder_ == null) {
-        return resource_ == null ? io.opencensus.proto.resource.v1.Resource.getDefaultInstance() :
-            resource_;
-      } else {
-        return resourceBuilder_.getMessage();
-      }
+      return instance.getResource();
     }
-
     /**
      * <pre>
      * The resource for the spans in this message that do not have an explicit
@@ -1362,19 +676,10 @@ public final class ExportTraceServiceRequest extends
      * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
      */
     public Builder setResource(io.opencensus.proto.resource.v1.Resource value) {
-      if (resourceBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        resource_ = value;
-        onChanged();
-      } else {
-        resourceBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setResource(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * The resource for the spans in this message that do not have an explicit
@@ -1387,16 +692,10 @@ public final class ExportTraceServiceRequest extends
      */
     public Builder setResource(
         io.opencensus.proto.resource.v1.Resource.Builder builderForValue) {
-      if (resourceBuilder_ == null) {
-        resource_ = builderForValue.build();
-        onChanged();
-      } else {
-        resourceBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setResource(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * The resource for the spans in this message that do not have an explicit
@@ -1408,123 +707,100 @@ public final class ExportTraceServiceRequest extends
      * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
      */
     public Builder mergeResource(io.opencensus.proto.resource.v1.Resource value) {
-      if (resourceBuilder_ == null) {
-        if (resource_ != null) {
-          resource_ =
-              io.opencensus.proto.resource.v1.Resource.newBuilder(resource_).mergeFrom(value)
-                                                      .buildPartial();
-        } else {
-          resource_ = value;
+      copyOnWrite();
+      instance.mergeResource(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * The resource for the spans in this message that do not have an explicit
+     * resource set.
+     * If unset, the most recently set resource in the RPC stream applies. It is
+     * valid to never be set within a stream, e.g. when no resource info is known.
+     * </pre>
+     *
+     * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
+     */
+    public Builder clearResource() {  copyOnWrite();
+      instance.clearResource();
+      return this;
+    }
+
+    // @@protoc_insertion_point(builder_scope:opencensus.proto.agent.trace.v1.ExportTraceServiceRequest)
+  }
+  @java.lang.Override
+  @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+  protected final java.lang.Object dynamicMethod(
+      com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+      java.lang.Object arg0, java.lang.Object arg1) {
+    switch (method) {
+      case NEW_MUTABLE_INSTANCE: {
+        return new io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest();
+      }
+      case NEW_BUILDER: {
+        return new Builder();
+      }
+      case BUILD_MESSAGE_INFO: {
+          java.lang.Object[] objects = new java.lang.Object[] {
+            "node_",
+            "spans_",
+            io.opencensus.proto.trace.v1.Span.class,
+            "resource_",
+          };
+          java.lang.String info =
+              "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0001\u0000\u0001\t\u0002\u001b" +
+              "\u0003\t";
+          return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+      }
+      // fall through
+      case GET_DEFAULT_INSTANCE: {
+        return DEFAULT_INSTANCE;
+      }
+      case GET_PARSER: {
+        com.google.protobuf.Parser<io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest> parser = PARSER;
+        if (parser == null) {
+          synchronized (io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest.class) {
+            parser = PARSER;
+            if (parser == null) {
+              parser =
+                  new DefaultInstanceBasedParser<io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest>(
+                      DEFAULT_INSTANCE);
+              PARSER = parser;
+            }
+          }
         }
-        onChanged();
-      } else {
-        resourceBuilder_.mergeFrom(value);
-      }
-
-      return this;
+        return parser;
     }
-
-    /**
-     * <pre>
-     * The resource for the spans in this message that do not have an explicit
-     * resource set.
-     * If unset, the most recently set resource in the RPC stream applies. It is
-     * valid to never be set within a stream, e.g. when no resource info is known.
-     * </pre>
-     *
-     * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
-     */
-    public Builder clearResource() {
-      if (resourceBuilder_ == null) {
-        resource_ = null;
-        onChanged();
-      } else {
-        resource_ = null;
-        resourceBuilder_ = null;
-      }
-
-      return this;
+    case GET_MEMOIZED_IS_INITIALIZED: {
+      return (byte) 1;
     }
-
-    /**
-     * <pre>
-     * The resource for the spans in this message that do not have an explicit
-     * resource set.
-     * If unset, the most recently set resource in the RPC stream applies. It is
-     * valid to never be set within a stream, e.g. when no resource info is known.
-     * </pre>
-     *
-     * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
-     */
-    public io.opencensus.proto.resource.v1.Resource.Builder getResourceBuilder() {
-
-      onChanged();
-      return getResourceFieldBuilder().getBuilder();
+    case SET_MEMOIZED_IS_INITIALIZED: {
+      return null;
     }
-
-    /**
-     * <pre>
-     * The resource for the spans in this message that do not have an explicit
-     * resource set.
-     * If unset, the most recently set resource in the RPC stream applies. It is
-     * valid to never be set within a stream, e.g. when no resource info is known.
-     * </pre>
-     *
-     * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
-     */
-    public io.opencensus.proto.resource.v1.ResourceOrBuilder getResourceOrBuilder() {
-      if (resourceBuilder_ != null) {
-        return resourceBuilder_.getMessageOrBuilder();
-      } else {
-        return resource_ == null ?
-            io.opencensus.proto.resource.v1.Resource.getDefaultInstance() : resource_;
-      }
     }
-
-    /**
-     * <pre>
-     * The resource for the spans in this message that do not have an explicit
-     * resource set.
-     * If unset, the most recently set resource in the RPC stream applies. It is
-     * valid to never be set within a stream, e.g. when no resource info is known.
-     * </pre>
-     *
-     * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.resource.v1.Resource,
-        io.opencensus.proto.resource.v1.Resource.Builder,
-        io.opencensus.proto.resource.v1.ResourceOrBuilder>
-    getResourceFieldBuilder() {
-      if (resourceBuilder_ == null) {
-        resourceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.resource.v1.Resource,
-            io.opencensus.proto.resource.v1.Resource.Builder,
-            io.opencensus.proto.resource.v1.ResourceOrBuilder>(
-            getResource(),
-            getParentForChildren(),
-            isClean());
-        resource_ = null;
-      }
-      return resourceBuilder_;
-    }
-
-    @java.lang.Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
-    }
-
-    @java.lang.Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
-    }
-
-
-    // @@protoc_insertion_point(builder_scope:opencensus.proto.agent.trace.v1
-    // .ExportTraceServiceRequest)
+    throw new UnsupportedOperationException();
   }
 
+
+  // @@protoc_insertion_point(class_scope:opencensus.proto.agent.trace.v1.ExportTraceServiceRequest)
+  private static final io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest DEFAULT_INSTANCE;
+  static {
+    ExportTraceServiceRequest defaultInstance = new ExportTraceServiceRequest();
+    // New instances are implicitly immutable so no need to make
+    // immutable.
+    DEFAULT_INSTANCE = defaultInstance;
+    com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+      ExportTraceServiceRequest.class, defaultInstance);
+  }
+
+  public static io.opencensus.proto.agent.trace.v1.ExportTraceServiceRequest getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  private static volatile com.google.protobuf.Parser<ExportTraceServiceRequest> PARSER;
+
+  public static com.google.protobuf.Parser<ExportTraceServiceRequest> parser() {
+    return DEFAULT_INSTANCE.getParserForType();
+  }
 }
 

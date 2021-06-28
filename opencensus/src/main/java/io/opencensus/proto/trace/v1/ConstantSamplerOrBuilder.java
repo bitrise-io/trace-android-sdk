@@ -5,18 +5,15 @@ package io.opencensus.proto.trace.v1;
 
 public interface ConstantSamplerOrBuilder extends
     // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.ConstantSampler)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.MessageLiteOrBuilder {
 
   /**
    * <code>.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision decision = 1;</code>
-   *
    * @return The enum numeric value on the wire for decision.
    */
   int getDecisionValue();
-
   /**
    * <code>.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision decision = 1;</code>
-   *
    * @return The decision.
    */
   io.opencensus.proto.trace.v1.ConstantSampler.ConstantDecision getDecision();

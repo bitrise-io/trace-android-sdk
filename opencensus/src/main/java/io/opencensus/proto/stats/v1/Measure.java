@@ -7,554 +7,24 @@ package io.opencensus.proto.stats.v1;
  * <pre>
  * Measure .
  * </pre>
- * <p>
+ *
  * Protobuf type {@code opencensus.proto.stats.v1.Measure}
  */
-public final class Measure extends
-    com.google.protobuf.GeneratedMessageV3 implements
+public  final class Measure extends
+    com.google.protobuf.GeneratedMessageLite<
+        Measure, Measure.Builder> implements
     // @@protoc_insertion_point(message_implements:opencensus.proto.stats.v1.Measure)
     MeasureOrBuilder {
-  public static final int NAME_FIELD_NUMBER = 1;
-  public static final int DESCRIPTION_FIELD_NUMBER = 2;
-  public static final int UNIT_FIELD_NUMBER = 3;
-  public static final int TYPE_FIELD_NUMBER = 4;
-  private static final long serialVersionUID = 0L;
-  // @@protoc_insertion_point(class_scope:opencensus.proto.stats.v1.Measure)
-  private static final io.opencensus.proto.stats.v1.Measure DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<Measure>
-      PARSER = new com.google.protobuf.AbstractParser<Measure>() {
-    @java.lang.Override
-    public Measure parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Measure(input, extensionRegistry);
-    }
-  };
-
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.stats.v1.Measure();
-  }
-
-  private volatile java.lang.Object name_;
-  private volatile java.lang.Object description_;
-  private volatile java.lang.Object unit_;
-  private int type_;
-  private byte memoizedIsInitialized = -1;
-
-  // Use Measure.newBuilder() to construct.
-  private Measure(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
   private Measure() {
     name_ = "";
     description_ = "";
     unit_ = "";
-    type_ = 0;
   }
-
-  private Measure(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            name_ = s;
-            break;
-          }
-          case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            description_ = s;
-            break;
-          }
-          case 26: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            unit_ = s;
-            break;
-          }
-          case 32: {
-            int rawValue = input.readEnum();
-
-            type_ = rawValue;
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
-
-  public static final com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
-    return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_Measure_descriptor;
-  }
-
-  public static io.opencensus.proto.stats.v1.Measure parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measure parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measure parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measure parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measure parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measure parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measure parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measure parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measure parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measure parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measure parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measure parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(io.opencensus.proto.stats.v1.Measure prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measure getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public static com.google.protobuf.Parser<Measure> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new Measure();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
-    return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_Measure_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.stats.v1.Measure.class,
-            io.opencensus.proto.stats.v1.Measure.Builder.class);
-  }
-
-  /**
-   * <pre>
-   * A string by which the measure will be referred to, e.g. "rpc_server_latency". Names MUST be
-   * unique within the library.
-   * </pre>
-   *
-   * <code>string name = 1;</code>
-   *
-   * @return The name.
-   */
-  @java.lang.Override
-  public java.lang.String getName() {
-    java.lang.Object ref = name_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs =
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      name_ = s;
-      return s;
-    }
-  }
-
-  /**
-   * <pre>
-   * A string by which the measure will be referred to, e.g. "rpc_server_latency". Names MUST be
-   * unique within the library.
-   * </pre>
-   *
-   * <code>string name = 1;</code>
-   *
-   * @return The bytes for name.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-  getNameBytes() {
-    java.lang.Object ref = name_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      name_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  /**
-   * <pre>
-   * Describes the measure, e.g. "RPC latency in seconds".
-   * </pre>
-   *
-   * <code>string description = 2;</code>
-   *
-   * @return The description.
-   */
-  @java.lang.Override
-  public java.lang.String getDescription() {
-    java.lang.Object ref = description_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs =
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      description_ = s;
-      return s;
-    }
-  }
-
-  /**
-   * <pre>
-   * Describes the measure, e.g. "RPC latency in seconds".
-   * </pre>
-   *
-   * <code>string description = 2;</code>
-   *
-   * @return The bytes for description.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-  getDescriptionBytes() {
-    java.lang.Object ref = description_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      description_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  /**
-   * <pre>
-   * Describes the unit used for the Measure. Follows the format described by
-   * http://unitsofmeasure.org/ucum.html.
-   * </pre>
-   *
-   * <code>string unit = 3;</code>
-   *
-   * @return The unit.
-   */
-  @java.lang.Override
-  public java.lang.String getUnit() {
-    java.lang.Object ref = unit_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs =
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      unit_ = s;
-      return s;
-    }
-  }
-
-  /**
-   * <pre>
-   * Describes the unit used for the Measure. Follows the format described by
-   * http://unitsofmeasure.org/ucum.html.
-   * </pre>
-   *
-   * <code>string unit = 3;</code>
-   *
-   * @return The bytes for unit.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-  getUnitBytes() {
-    java.lang.Object ref = unit_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      unit_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  /**
-   * <pre>
-   * The type used for this Measure.
-   * </pre>
-   *
-   * <code>.opencensus.proto.stats.v1.Measure.Type type = 4;</code>
-   *
-   * @return The enum numeric value on the wire for type.
-   */
-  @java.lang.Override
-  public int getTypeValue() {
-    return type_;
-  }
-
-  /**
-   * <pre>
-   * The type used for this Measure.
-   * </pre>
-   *
-   * <code>.opencensus.proto.stats.v1.Measure.Type type = 4;</code>
-   *
-   * @return The type.
-   */
-  @java.lang.Override
-  public io.opencensus.proto.stats.v1.Measure.Type getType() {
-    @SuppressWarnings("deprecation")
-    io.opencensus.proto.stats.v1.Measure.Type result =
-        io.opencensus.proto.stats.v1.Measure.Type.valueOf(type_);
-    return result == null ? io.opencensus.proto.stats.v1.Measure.Type.UNRECOGNIZED : result;
-  }
-
-  @java.lang.Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) {
-      return true;
-    }
-    if (isInitialized == 0) {
-      return false;
-    }
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-      throws java.io.IOException {
-    if (!getNameBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
-    }
-    if (!getDescriptionBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, description_);
-    }
-    if (!getUnitBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, unit_);
-    }
-    if (type_ != io.opencensus.proto.stats.v1.Measure.Type.TYPE_UNSPECIFIED.getNumber()) {
-      output.writeEnum(4, type_);
-    }
-    unknownFields.writeTo(output);
-  }
-
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) {
-      return size;
-    }
-
-    size = 0;
-    if (!getNameBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
-    }
-    if (!getDescriptionBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, description_);
-    }
-    if (!getUnitBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, unit_);
-    }
-    if (type_ != io.opencensus.proto.stats.v1.Measure.Type.TYPE_UNSPECIFIED.getNumber()) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(4, type_);
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-      return true;
-    }
-    if (!(obj instanceof io.opencensus.proto.stats.v1.Measure)) {
-      return super.equals(obj);
-    }
-    io.opencensus.proto.stats.v1.Measure other = (io.opencensus.proto.stats.v1.Measure) obj;
-
-    if (!getName()
-        .equals(other.getName())) {
-      return false;
-    }
-    if (!getDescription()
-        .equals(other.getDescription())) {
-      return false;
-    }
-    if (!getUnit()
-        .equals(other.getUnit())) {
-      return false;
-    }
-    if (type_ != other.type_) {
-      return false;
-    }
-    return unknownFields.equals(other.unknownFields);
-  }
-
-  @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + NAME_FIELD_NUMBER;
-    hash = (53 * hash) + getName().hashCode();
-    hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
-    hash = (53 * hash) + getDescription().hashCode();
-    hash = (37 * hash) + UNIT_FIELD_NUMBER;
-    hash = (53 * hash) + getUnit().hashCode();
-    hash = (37 * hash) + TYPE_FIELD_NUMBER;
-    hash = (53 * hash) + type_;
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
-
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<Measure> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.stats.v1.Measure getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
-
   /**
    * Protobuf enum {@code opencensus.proto.stats.v1.Measure.Type}
    */
   public enum Type
-      implements com.google.protobuf.ProtocolMessageEnum {
+      implements com.google.protobuf.Internal.EnumLite {
     /**
      * <pre>
      * Unknown type.
@@ -606,69 +76,9 @@ public final class Measure extends
      * <code>DOUBLE = 2;</code>
      */
     public static final int DOUBLE_VALUE = 2;
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        Type> internalValueMap =
-        new com.google.protobuf.Internal.EnumLiteMap<Type>() {
-          public Type findValueByNumber(int number) {
-            return Type.forNumber(number);
-          }
-        };
-    private static final Type[] VALUES = values();
-    private final int value;
 
-    Type(int value) {
-      this.value = value;
-    }
 
-    /**
-     * @param value The numeric wire value of the corresponding enum entry.
-     * @return The enum associated with the given numeric wire value.
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
-    public static Type valueOf(int value) {
-      return forNumber(value);
-    }
-
-    /**
-     * @param value The numeric wire value of the corresponding enum entry.
-     * @return The enum associated with the given numeric wire value.
-     */
-    public static Type forNumber(int value) {
-      switch (value) {
-        case 0:
-          return TYPE_UNSPECIFIED;
-        case 1:
-          return INT64;
-        case 2:
-          return DOUBLE;
-        default:
-          return null;
-      }
-    }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<Type>
-    internalGetValueMap() {
-      return internalValueMap;
-    }
-
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
-    getDescriptor() {
-      return io.opencensus.proto.stats.v1.Measure.getDescriptor().getEnumTypes().get(0);
-    }
-
-    public static Type valueOf(
-        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-      if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
-      }
-      if (desc.getIndex() == -1) {
-        return UNRECOGNIZED;
-      }
-      return VALUES[desc.getIndex()];
-    }
-
+    @java.lang.Override
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
         throw new java.lang.IllegalArgumentException(
@@ -677,210 +87,432 @@ public final class Measure extends
       return value;
     }
 
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-    getValueDescriptor() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalStateException(
-            "Can't get the descriptor of an unrecognized enum value.");
-      }
-      return getDescriptor().getValues().get(ordinal());
+    /**
+     * @param value The number of the enum to look for.
+     * @return The enum associated with the given number.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static Type valueOf(int value) {
+      return forNumber(value);
     }
 
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-    getDescriptorForType() {
-      return getDescriptor();
+    public static Type forNumber(int value) {
+      switch (value) {
+        case 0: return TYPE_UNSPECIFIED;
+        case 1: return INT64;
+        case 2: return DOUBLE;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<Type>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        Type> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<Type>() {
+            @java.lang.Override
+            public Type findValueByNumber(int number) {
+              return Type.forNumber(number);
+            }
+          };
+
+    public static com.google.protobuf.Internal.EnumVerifier 
+        internalGetVerifier() {
+      return TypeVerifier.INSTANCE;
+    }
+
+    private static final class TypeVerifier implements 
+         com.google.protobuf.Internal.EnumVerifier { 
+            static final com.google.protobuf.Internal.EnumVerifier           INSTANCE = new TypeVerifier();
+            @java.lang.Override
+            public boolean isInRange(int number) {
+              return Type.forNumber(number) != null;
+            }
+          };
+
+    private final int value;
+
+    private Type(int value) {
+      this.value = value;
     }
 
     // @@protoc_insertion_point(enum_scope:opencensus.proto.stats.v1.Measure.Type)
+  }
+
+  public static final int NAME_FIELD_NUMBER = 1;
+  private java.lang.String name_;
+  /**
+   * <pre>
+   * A string by which the measure will be referred to, e.g. "rpc_server_latency". Names MUST be
+   * unique within the library.
+   * </pre>
+   *
+   * <code>string name = 1;</code>
+   * @return The name.
+   */
+  @java.lang.Override
+  public java.lang.String getName() {
+    return name_;
+  }
+  /**
+   * <pre>
+   * A string by which the measure will be referred to, e.g. "rpc_server_latency". Names MUST be
+   * unique within the library.
+   * </pre>
+   *
+   * <code>string name = 1;</code>
+   * @return The bytes for name.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getNameBytes() {
+    return com.google.protobuf.ByteString.copyFromUtf8(name_);
+  }
+  /**
+   * <pre>
+   * A string by which the measure will be referred to, e.g. "rpc_server_latency". Names MUST be
+   * unique within the library.
+   * </pre>
+   *
+   * <code>string name = 1;</code>
+   * @param value The name to set.
+   */
+  private void setName(
+      java.lang.String value) {
+    value.getClass();
+  
+    name_ = value;
+  }
+  /**
+   * <pre>
+   * A string by which the measure will be referred to, e.g. "rpc_server_latency". Names MUST be
+   * unique within the library.
+   * </pre>
+   *
+   * <code>string name = 1;</code>
+   */
+  private void clearName() {
+    
+    name_ = getDefaultInstance().getName();
+  }
+  /**
+   * <pre>
+   * A string by which the measure will be referred to, e.g. "rpc_server_latency". Names MUST be
+   * unique within the library.
+   * </pre>
+   *
+   * <code>string name = 1;</code>
+   * @param value The bytes for name to set.
+   */
+  private void setNameBytes(
+      com.google.protobuf.ByteString value) {
+    checkByteStringIsUtf8(value);
+    name_ = value.toStringUtf8();
+    
+  }
+
+  public static final int DESCRIPTION_FIELD_NUMBER = 2;
+  private java.lang.String description_;
+  /**
+   * <pre>
+   * Describes the measure, e.g. "RPC latency in seconds".
+   * </pre>
+   *
+   * <code>string description = 2;</code>
+   * @return The description.
+   */
+  @java.lang.Override
+  public java.lang.String getDescription() {
+    return description_;
+  }
+  /**
+   * <pre>
+   * Describes the measure, e.g. "RPC latency in seconds".
+   * </pre>
+   *
+   * <code>string description = 2;</code>
+   * @return The bytes for description.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getDescriptionBytes() {
+    return com.google.protobuf.ByteString.copyFromUtf8(description_);
+  }
+  /**
+   * <pre>
+   * Describes the measure, e.g. "RPC latency in seconds".
+   * </pre>
+   *
+   * <code>string description = 2;</code>
+   * @param value The description to set.
+   */
+  private void setDescription(
+      java.lang.String value) {
+    value.getClass();
+  
+    description_ = value;
+  }
+  /**
+   * <pre>
+   * Describes the measure, e.g. "RPC latency in seconds".
+   * </pre>
+   *
+   * <code>string description = 2;</code>
+   */
+  private void clearDescription() {
+    
+    description_ = getDefaultInstance().getDescription();
+  }
+  /**
+   * <pre>
+   * Describes the measure, e.g. "RPC latency in seconds".
+   * </pre>
+   *
+   * <code>string description = 2;</code>
+   * @param value The bytes for description to set.
+   */
+  private void setDescriptionBytes(
+      com.google.protobuf.ByteString value) {
+    checkByteStringIsUtf8(value);
+    description_ = value.toStringUtf8();
+    
+  }
+
+  public static final int UNIT_FIELD_NUMBER = 3;
+  private java.lang.String unit_;
+  /**
+   * <pre>
+   * Describes the unit used for the Measure. Follows the format described by
+   * http://unitsofmeasure.org/ucum.html.
+   * </pre>
+   *
+   * <code>string unit = 3;</code>
+   * @return The unit.
+   */
+  @java.lang.Override
+  public java.lang.String getUnit() {
+    return unit_;
+  }
+  /**
+   * <pre>
+   * Describes the unit used for the Measure. Follows the format described by
+   * http://unitsofmeasure.org/ucum.html.
+   * </pre>
+   *
+   * <code>string unit = 3;</code>
+   * @return The bytes for unit.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getUnitBytes() {
+    return com.google.protobuf.ByteString.copyFromUtf8(unit_);
+  }
+  /**
+   * <pre>
+   * Describes the unit used for the Measure. Follows the format described by
+   * http://unitsofmeasure.org/ucum.html.
+   * </pre>
+   *
+   * <code>string unit = 3;</code>
+   * @param value The unit to set.
+   */
+  private void setUnit(
+      java.lang.String value) {
+    value.getClass();
+  
+    unit_ = value;
+  }
+  /**
+   * <pre>
+   * Describes the unit used for the Measure. Follows the format described by
+   * http://unitsofmeasure.org/ucum.html.
+   * </pre>
+   *
+   * <code>string unit = 3;</code>
+   */
+  private void clearUnit() {
+    
+    unit_ = getDefaultInstance().getUnit();
+  }
+  /**
+   * <pre>
+   * Describes the unit used for the Measure. Follows the format described by
+   * http://unitsofmeasure.org/ucum.html.
+   * </pre>
+   *
+   * <code>string unit = 3;</code>
+   * @param value The bytes for unit to set.
+   */
+  private void setUnitBytes(
+      com.google.protobuf.ByteString value) {
+    checkByteStringIsUtf8(value);
+    unit_ = value.toStringUtf8();
+    
+  }
+
+  public static final int TYPE_FIELD_NUMBER = 4;
+  private int type_;
+  /**
+   * <pre>
+   * The type used for this Measure.
+   * </pre>
+   *
+   * <code>.opencensus.proto.stats.v1.Measure.Type type = 4;</code>
+   * @return The enum numeric value on the wire for type.
+   */
+  @java.lang.Override
+  public int getTypeValue() {
+    return type_;
+  }
+  /**
+   * <pre>
+   * The type used for this Measure.
+   * </pre>
+   *
+   * <code>.opencensus.proto.stats.v1.Measure.Type type = 4;</code>
+   * @return The type.
+   */
+  @java.lang.Override
+  public io.opencensus.proto.stats.v1.Measure.Type getType() {
+    io.opencensus.proto.stats.v1.Measure.Type result = io.opencensus.proto.stats.v1.Measure.Type.forNumber(type_);
+    return result == null ? io.opencensus.proto.stats.v1.Measure.Type.UNRECOGNIZED : result;
+  }
+  /**
+   * <pre>
+   * The type used for this Measure.
+   * </pre>
+   *
+   * <code>.opencensus.proto.stats.v1.Measure.Type type = 4;</code>
+   * @param value The enum numeric value on the wire for type to set.
+   */
+  private void setTypeValue(int value) {
+      type_ = value;
+  }
+  /**
+   * <pre>
+   * The type used for this Measure.
+   * </pre>
+   *
+   * <code>.opencensus.proto.stats.v1.Measure.Type type = 4;</code>
+   * @param value The type to set.
+   */
+  private void setType(io.opencensus.proto.stats.v1.Measure.Type value) {
+    type_ = value.getNumber();
+    
+  }
+  /**
+   * <pre>
+   * The type used for this Measure.
+   * </pre>
+   *
+   * <code>.opencensus.proto.stats.v1.Measure.Type type = 4;</code>
+   */
+  private void clearType() {
+    
+    type_ = 0;
+  }
+
+  public static io.opencensus.proto.stats.v1.Measure parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.stats.v1.Measure parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.stats.v1.Measure parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.stats.v1.Measure parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.stats.v1.Measure parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.stats.v1.Measure parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.stats.v1.Measure parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.stats.v1.Measure parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.stats.v1.Measure parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.stats.v1.Measure parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.stats.v1.Measure parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.stats.v1.Measure parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+
+  public static Builder newBuilder() {
+    return (Builder) DEFAULT_INSTANCE.createBuilder();
+  }
+  public static Builder newBuilder(io.opencensus.proto.stats.v1.Measure prototype) {
+    return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
   }
 
   /**
    * <pre>
    * Measure .
    * </pre>
-   * <p>
+   *
    * Protobuf type {@code opencensus.proto.stats.v1.Measure}
    */
   public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+      com.google.protobuf.GeneratedMessageLite.Builder<
+        io.opencensus.proto.stats.v1.Measure, Builder> implements
       // @@protoc_insertion_point(builder_implements:opencensus.proto.stats.v1.Measure)
       io.opencensus.proto.stats.v1.MeasureOrBuilder {
-    private java.lang.Object name_ = "";
-    private java.lang.Object description_ = "";
-    private java.lang.Object unit_ = "";
-    private int type_ = 0;
-
     // Construct using io.opencensus.proto.stats.v1.Measure.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+      super(DEFAULT_INSTANCE);
     }
 
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_Measure_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_Measure_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.stats.v1.Measure.class,
-              io.opencensus.proto.stats.v1.Measure.Builder.class);
-    }
-
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-          .alwaysUseFieldBuilders) {
-      }
-    }
-
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      name_ = "";
-
-      description_ = "";
-
-      unit_ = "";
-
-      type_ = 0;
-
-      return this;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_Measure_descriptor;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.stats.v1.Measure getDefaultInstanceForType() {
-      return io.opencensus.proto.stats.v1.Measure.getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.stats.v1.Measure build() {
-      io.opencensus.proto.stats.v1.Measure result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.stats.v1.Measure buildPartial() {
-      io.opencensus.proto.stats.v1.Measure result = new io.opencensus.proto.stats.v1.Measure(this);
-      result.name_ = name_;
-      result.description_ = description_;
-      result.unit_ = unit_;
-      result.type_ = type_;
-      onBuilt();
-      return result;
-    }
-
-    @java.lang.Override
-    public Builder clone() {
-      return super.clone();
-    }
-
-    @java.lang.Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.setField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-
-    @java.lang.Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-
-    @java.lang.Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-
-    @java.lang.Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof io.opencensus.proto.stats.v1.Measure) {
-        return mergeFrom((io.opencensus.proto.stats.v1.Measure) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(io.opencensus.proto.stats.v1.Measure other) {
-      if (other == io.opencensus.proto.stats.v1.Measure.getDefaultInstance()) {
-        return this;
-      }
-      if (!other.getName().isEmpty()) {
-        name_ = other.name_;
-        onChanged();
-      }
-      if (!other.getDescription().isEmpty()) {
-        description_ = other.description_;
-        onChanged();
-      }
-      if (!other.getUnit().isEmpty()) {
-        unit_ = other.unit_;
-        onChanged();
-      }
-      if (other.type_ != 0) {
-        setTypeValue(other.getTypeValue());
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      io.opencensus.proto.stats.v1.Measure parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.opencensus.proto.stats.v1.Measure) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
-      return this;
-    }
 
     /**
      * <pre>
@@ -889,22 +521,12 @@ public final class Measure extends
      * </pre>
      *
      * <code>string name = 1;</code>
-     *
      * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        name_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+      return instance.getName();
     }
-
     /**
      * <pre>
      * A string by which the measure will be referred to, e.g. "rpc_server_latency". Names MUST be
@@ -912,21 +534,29 @@ public final class Measure extends
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @return The bytes for name.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      return instance.getNameBytes();
+    }
+    /**
+     * <pre>
+     * A string by which the measure will be referred to, e.g. "rpc_server_latency". Names MUST be
+     * unique within the library.
+     * </pre>
      *
+     * <code>string name = 1;</code>
      * @param value The name to set.
      * @return This builder for chaining.
      */
     public Builder setName(
         java.lang.String value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-
-      name_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setName(value);
       return this;
     }
-
     /**
      * <pre>
      * A string by which the measure will be referred to, e.g. "rpc_server_latency". Names MUST be
@@ -934,23 +564,13 @@ public final class Measure extends
      * </pre>
      *
      * <code>string name = 1;</code>
-     *
-     * @return The bytes for name.
+     * @return This builder for chaining.
      */
-    public com.google.protobuf.ByteString
-    getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public Builder clearName() {
+      copyOnWrite();
+      instance.clearName();
+      return this;
     }
-
     /**
      * <pre>
      * A string by which the measure will be referred to, e.g. "rpc_server_latency". Names MUST be
@@ -958,36 +578,13 @@ public final class Measure extends
      * </pre>
      *
      * <code>string name = 1;</code>
-     *
      * @param value The bytes for name to set.
      * @return This builder for chaining.
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      checkByteStringIsUtf8(value);
-
-      name_ = value;
-      onChanged();
-      return this;
-    }
-
-    /**
-     * <pre>
-     * A string by which the measure will be referred to, e.g. "rpc_server_latency". Names MUST be
-     * unique within the library.
-     * </pre>
-     *
-     * <code>string name = 1;</code>
-     *
-     * @return This builder for chaining.
-     */
-    public Builder clearName() {
-
-      name_ = getDefaultInstance().getName();
-      onChanged();
+      copyOnWrite();
+      instance.setNameBytes(value);
       return this;
     }
 
@@ -997,101 +594,66 @@ public final class Measure extends
      * </pre>
      *
      * <code>string description = 2;</code>
-     *
      * @return The description.
      */
+    @java.lang.Override
     public java.lang.String getDescription() {
-      java.lang.Object ref = description_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        description_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+      return instance.getDescription();
     }
-
     /**
      * <pre>
      * Describes the measure, e.g. "RPC latency in seconds".
      * </pre>
      *
      * <code>string description = 2;</code>
+     * @return The bytes for description.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getDescriptionBytes() {
+      return instance.getDescriptionBytes();
+    }
+    /**
+     * <pre>
+     * Describes the measure, e.g. "RPC latency in seconds".
+     * </pre>
      *
+     * <code>string description = 2;</code>
      * @param value The description to set.
      * @return This builder for chaining.
      */
     public Builder setDescription(
         java.lang.String value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-
-      description_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setDescription(value);
       return this;
     }
-
     /**
      * <pre>
      * Describes the measure, e.g. "RPC latency in seconds".
      * </pre>
      *
      * <code>string description = 2;</code>
-     *
-     * @return The bytes for description.
+     * @return This builder for chaining.
      */
-    public com.google.protobuf.ByteString
-    getDescriptionBytes() {
-      java.lang.Object ref = description_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        description_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public Builder clearDescription() {
+      copyOnWrite();
+      instance.clearDescription();
+      return this;
     }
-
     /**
      * <pre>
      * Describes the measure, e.g. "RPC latency in seconds".
      * </pre>
      *
      * <code>string description = 2;</code>
-     *
      * @param value The bytes for description to set.
      * @return This builder for chaining.
      */
     public Builder setDescriptionBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      checkByteStringIsUtf8(value);
-
-      description_ = value;
-      onChanged();
-      return this;
-    }
-
-    /**
-     * <pre>
-     * Describes the measure, e.g. "RPC latency in seconds".
-     * </pre>
-     *
-     * <code>string description = 2;</code>
-     *
-     * @return This builder for chaining.
-     */
-    public Builder clearDescription() {
-
-      description_ = getDefaultInstance().getDescription();
-      onChanged();
+      copyOnWrite();
+      instance.setDescriptionBytes(value);
       return this;
     }
 
@@ -1102,22 +664,12 @@ public final class Measure extends
      * </pre>
      *
      * <code>string unit = 3;</code>
-     *
      * @return The unit.
      */
+    @java.lang.Override
     public java.lang.String getUnit() {
-      java.lang.Object ref = unit_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        unit_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+      return instance.getUnit();
     }
-
     /**
      * <pre>
      * Describes the unit used for the Measure. Follows the format described by
@@ -1125,21 +677,29 @@ public final class Measure extends
      * </pre>
      *
      * <code>string unit = 3;</code>
+     * @return The bytes for unit.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getUnitBytes() {
+      return instance.getUnitBytes();
+    }
+    /**
+     * <pre>
+     * Describes the unit used for the Measure. Follows the format described by
+     * http://unitsofmeasure.org/ucum.html.
+     * </pre>
      *
+     * <code>string unit = 3;</code>
      * @param value The unit to set.
      * @return This builder for chaining.
      */
     public Builder setUnit(
         java.lang.String value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-
-      unit_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setUnit(value);
       return this;
     }
-
     /**
      * <pre>
      * Describes the unit used for the Measure. Follows the format described by
@@ -1147,23 +707,13 @@ public final class Measure extends
      * </pre>
      *
      * <code>string unit = 3;</code>
-     *
-     * @return The bytes for unit.
+     * @return This builder for chaining.
      */
-    public com.google.protobuf.ByteString
-    getUnitBytes() {
-      java.lang.Object ref = unit_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        unit_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public Builder clearUnit() {
+      copyOnWrite();
+      instance.clearUnit();
+      return this;
     }
-
     /**
      * <pre>
      * Describes the unit used for the Measure. Follows the format described by
@@ -1171,36 +721,13 @@ public final class Measure extends
      * </pre>
      *
      * <code>string unit = 3;</code>
-     *
      * @param value The bytes for unit to set.
      * @return This builder for chaining.
      */
     public Builder setUnitBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      checkByteStringIsUtf8(value);
-
-      unit_ = value;
-      onChanged();
-      return this;
-    }
-
-    /**
-     * <pre>
-     * Describes the unit used for the Measure. Follows the format described by
-     * http://unitsofmeasure.org/ucum.html.
-     * </pre>
-     *
-     * <code>string unit = 3;</code>
-     *
-     * @return This builder for chaining.
-     */
-    public Builder clearUnit() {
-
-      unit_ = getDefaultInstance().getUnit();
-      onChanged();
+      copyOnWrite();
+      instance.setUnitBytes(value);
       return this;
     }
 
@@ -1210,99 +737,141 @@ public final class Measure extends
      * </pre>
      *
      * <code>.opencensus.proto.stats.v1.Measure.Type type = 4;</code>
-     *
      * @return The enum numeric value on the wire for type.
      */
     @java.lang.Override
     public int getTypeValue() {
-      return type_;
+      return instance.getTypeValue();
     }
-
     /**
      * <pre>
      * The type used for this Measure.
      * </pre>
      *
      * <code>.opencensus.proto.stats.v1.Measure.Type type = 4;</code>
-     *
-     * @param value The enum numeric value on the wire for type to set.
+     * @param value The type to set.
      * @return This builder for chaining.
      */
     public Builder setTypeValue(int value) {
-
-      type_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setTypeValue(value);
       return this;
     }
-
     /**
      * <pre>
      * The type used for this Measure.
      * </pre>
      *
      * <code>.opencensus.proto.stats.v1.Measure.Type type = 4;</code>
-     *
      * @return The type.
      */
     @java.lang.Override
     public io.opencensus.proto.stats.v1.Measure.Type getType() {
-      @SuppressWarnings("deprecation")
-      io.opencensus.proto.stats.v1.Measure.Type result =
-          io.opencensus.proto.stats.v1.Measure.Type.valueOf(type_);
-      return result == null ? io.opencensus.proto.stats.v1.Measure.Type.UNRECOGNIZED : result;
+      return instance.getType();
     }
-
     /**
      * <pre>
      * The type used for this Measure.
      * </pre>
      *
      * <code>.opencensus.proto.stats.v1.Measure.Type type = 4;</code>
-     *
-     * @param value The type to set.
+     * @param value The enum numeric value on the wire for type to set.
      * @return This builder for chaining.
      */
     public Builder setType(io.opencensus.proto.stats.v1.Measure.Type value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-
-      type_ = value.getNumber();
-      onChanged();
+      copyOnWrite();
+      instance.setType(value);
       return this;
     }
-
     /**
      * <pre>
      * The type used for this Measure.
      * </pre>
      *
      * <code>.opencensus.proto.stats.v1.Measure.Type type = 4;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearType() {
-
-      type_ = 0;
-      onChanged();
+      copyOnWrite();
+      instance.clearType();
       return this;
     }
 
-    @java.lang.Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
-    }
-
-    @java.lang.Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
-    }
-
-
     // @@protoc_insertion_point(builder_scope:opencensus.proto.stats.v1.Measure)
   }
+  @java.lang.Override
+  @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+  protected final java.lang.Object dynamicMethod(
+      com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+      java.lang.Object arg0, java.lang.Object arg1) {
+    switch (method) {
+      case NEW_MUTABLE_INSTANCE: {
+        return new io.opencensus.proto.stats.v1.Measure();
+      }
+      case NEW_BUILDER: {
+        return new Builder();
+      }
+      case BUILD_MESSAGE_INFO: {
+          java.lang.Object[] objects = new java.lang.Object[] {
+            "name_",
+            "description_",
+            "unit_",
+            "type_",
+          };
+          java.lang.String info =
+              "\u0000\u0004\u0000\u0000\u0001\u0004\u0004\u0000\u0000\u0000\u0001\u0208\u0002\u0208" +
+              "\u0003\u0208\u0004\f";
+          return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+      }
+      // fall through
+      case GET_DEFAULT_INSTANCE: {
+        return DEFAULT_INSTANCE;
+      }
+      case GET_PARSER: {
+        com.google.protobuf.Parser<io.opencensus.proto.stats.v1.Measure> parser = PARSER;
+        if (parser == null) {
+          synchronized (io.opencensus.proto.stats.v1.Measure.class) {
+            parser = PARSER;
+            if (parser == null) {
+              parser =
+                  new DefaultInstanceBasedParser<io.opencensus.proto.stats.v1.Measure>(
+                      DEFAULT_INSTANCE);
+              PARSER = parser;
+            }
+          }
+        }
+        return parser;
+    }
+    case GET_MEMOIZED_IS_INITIALIZED: {
+      return (byte) 1;
+    }
+    case SET_MEMOIZED_IS_INITIALIZED: {
+      return null;
+    }
+    }
+    throw new UnsupportedOperationException();
+  }
 
+
+  // @@protoc_insertion_point(class_scope:opencensus.proto.stats.v1.Measure)
+  private static final io.opencensus.proto.stats.v1.Measure DEFAULT_INSTANCE;
+  static {
+    Measure defaultInstance = new Measure();
+    // New instances are implicitly immutable so no need to make
+    // immutable.
+    DEFAULT_INSTANCE = defaultInstance;
+    com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+      Measure.class, defaultInstance);
+  }
+
+  public static io.opencensus.proto.stats.v1.Measure getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  private static volatile com.google.protobuf.Parser<Measure> PARSER;
+
+  public static com.google.protobuf.Parser<Measure> parser() {
+    return DEFAULT_INSTANCE.getParserForType();
+  }
 }
 

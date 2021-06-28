@@ -5,7 +5,7 @@ package io.opencensus.proto.trace.v1;
 
 public interface RateLimitingSamplerOrBuilder extends
     // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.RateLimitingSampler)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.MessageLiteOrBuilder {
 
   /**
    * <pre>
@@ -13,7 +13,6 @@ public interface RateLimitingSamplerOrBuilder extends
    * </pre>
    *
    * <code>int64 qps = 1;</code>
-   *
    * @return The qps.
    */
   long getQps();
