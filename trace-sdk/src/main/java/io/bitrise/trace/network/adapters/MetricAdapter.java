@@ -31,8 +31,10 @@ public class MetricAdapter implements JsonSerializer<Metric>, JsonDeserializer<M
     final JsonObject srcMetric = json.getAsJsonObject();
     final Metric.Builder builder = Metric.newBuilder();
 
-    builder.setMetricDescriptor(NetworkClient.getGson().fromJson(
-        srcMetric.get(PROPERTY_METRIC_DESCRIPTOR), MetricDescriptor.class));
+    if (srcMetric.has(PROPERTY_METRIC_DESCRIPTOR)) {
+      builder.setMetricDescriptor(NetworkClient.getGson().fromJson(
+          srcMetric.get(PROPERTY_METRIC_DESCRIPTOR), MetricDescriptor.class));
+    }
 
     if (srcMetric.has(PROPERTY_TIMESERIES)
         && srcMetric.get(PROPERTY_TIMESERIES).isJsonArray()) {
@@ -51,8 +53,10 @@ public class MetricAdapter implements JsonSerializer<Metric>, JsonDeserializer<M
                                @NonNull final JsonSerializationContext context) {
     final JsonObject jsonObject = new JsonObject();
 
-    jsonObject.add(PROPERTY_METRIC_DESCRIPTOR,
-        NetworkClient.getGson().toJsonTree(src.getMetricDescriptor()));
+    if (src.getMetricDescriptor() != MetricDescriptor.getDefaultInstance()) {
+      jsonObject.add(PROPERTY_METRIC_DESCRIPTOR,
+          NetworkClient.getGson().toJsonTree(src.getMetricDescriptor()));
+    }
 
     if (src.getTimeseriesCount() > 0) {
       final JsonArray jsonTimeSeries = new JsonArray();

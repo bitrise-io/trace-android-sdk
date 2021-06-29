@@ -47,6 +47,11 @@ public class MetricDescriptorAdapter implements JsonSerializer<MetricDescriptor>
         final JsonObject jsonKey = jsonElement.getAsJsonObject();
         final LabelKey.Builder labelKeyBuilder = LabelKey.newBuilder();
         labelKeyBuilder.setKey(jsonKey.get(PROPERTY_KEY).getAsString());
+
+        if (jsonKey.has(PROPERTY_DESCRIPTION)) {
+          labelKeyBuilder.setDescription(jsonKey.get(PROPERTY_DESCRIPTION).getAsString());
+        }
+
         builder.addLabelKeys(labelKeyBuilder);
       }
     }
@@ -70,6 +75,11 @@ public class MetricDescriptorAdapter implements JsonSerializer<MetricDescriptor>
       for (LabelKey key : src.getLabelKeysList()) {
         final JsonObject jsonKey = new JsonObject();
         jsonKey.addProperty(PROPERTY_KEY, key.getKey());
+
+        if (key.getDescription().length() > 0) {
+          jsonKey.addProperty(PROPERTY_DESCRIPTION, key.getDescription());
+        }
+
         jsonKeys.add(jsonKey);
       }
       jsonObject.add(PROPERTY_LABEL_KEYS, jsonKeys);
