@@ -39,7 +39,8 @@ public class MetricDescriptorAdapter implements JsonSerializer<MetricDescriptor>
     builder.setUnit(srcMetric.get(PROPERTY_UNIT).getAsString());
     builder.setTypeValue(srcMetric.get(PROPERTY_TYPE).getAsInt());
 
-    if (srcMetric.get(PROPERTY_LABEL_KEYS).isJsonArray()) {
+    if (srcMetric.has(PROPERTY_LABEL_KEYS)
+        && srcMetric.get(PROPERTY_LABEL_KEYS).isJsonArray()) {
       final JsonArray srcLabels = srcMetric.get(PROPERTY_LABEL_KEYS).getAsJsonArray();
 
       for (JsonElement jsonElement : srcLabels) {

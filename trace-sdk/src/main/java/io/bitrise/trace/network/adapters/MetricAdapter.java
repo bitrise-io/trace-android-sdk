@@ -34,7 +34,8 @@ public class MetricAdapter implements JsonSerializer<Metric>, JsonDeserializer<M
     builder.setMetricDescriptor(NetworkClient.getGson().fromJson(
         srcMetric.get(PROPERTY_METRIC_DESCRIPTOR), MetricDescriptor.class));
 
-    if (srcMetric.get(PROPERTY_TIMESERIES).isJsonArray()) {
+    if (srcMetric.has(PROPERTY_TIMESERIES)
+        && srcMetric.get(PROPERTY_TIMESERIES).isJsonArray()) {
       final JsonArray jsonArray = srcMetric.get(PROPERTY_TIMESERIES).getAsJsonArray();
       for (JsonElement jsonElement : jsonArray) {
         builder.addTimeseries(NetworkClient.getGson().fromJson(

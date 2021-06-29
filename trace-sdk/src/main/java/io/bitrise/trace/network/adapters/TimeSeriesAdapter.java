@@ -34,7 +34,8 @@ public class TimeSeriesAdapter implements JsonSerializer<TimeSeries>,
     final TimeSeries.Builder builder = TimeSeries.newBuilder();
 
     // add labels
-    if (srcTimeSeries.get(PROPERTY_LABEL_VALUES).isJsonArray()) {
+    if (srcTimeSeries.has(PROPERTY_LABEL_VALUES)
+                     && srcTimeSeries.get(PROPERTY_LABEL_VALUES).isJsonArray()) {
       final JsonArray jsonLabelVales = srcTimeSeries.get(PROPERTY_LABEL_VALUES).getAsJsonArray();
 
       for (JsonElement jsonElement : jsonLabelVales) {
@@ -46,7 +47,8 @@ public class TimeSeriesAdapter implements JsonSerializer<TimeSeries>,
     }
 
     // add points
-    if (srcTimeSeries.get(PROPERTY_POINTS).isJsonArray()) {
+    if (srcTimeSeries.has(PROPERTY_POINTS)
+          && srcTimeSeries.get(PROPERTY_POINTS).isJsonArray()) {
       final JsonArray jsonPoints = srcTimeSeries.get(PROPERTY_POINTS).getAsJsonArray();
 
       for (JsonElement jsonElement : jsonPoints) {
