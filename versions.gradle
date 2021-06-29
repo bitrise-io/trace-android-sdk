@@ -25,6 +25,7 @@ buildscript {
             'okhttp'            : '3.14.9',
             'opencensus'        : '1.0.1',
             'protobufJava'      : '3.14.0',
+            'protobufJavaLite'  : '3.17.3',
             'retrofit'          : '2.7.1',
             'room'              : '2.2.5',
             'rootbeer'          : '0.0.8',
