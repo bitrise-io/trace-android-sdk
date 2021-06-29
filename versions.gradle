@@ -23,7 +23,7 @@ buildscript {
             'mockitoCore'       : '3.2.4',
             'navigation'        : '2.3.5',
             'okhttp'            : '3.14.9',
-            'opencensus'        : '1.0.1',
+            'opencensus'        : '1.0.2',
             'protobufJava'      : '3.14.0',
             'protobufJavaLite'  : '3.17.3',
             'retrofit'          : '2.7.1',
