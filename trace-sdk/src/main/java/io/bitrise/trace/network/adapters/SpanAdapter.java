@@ -1,5 +1,6 @@
 package io.bitrise.trace.network.adapters;
 
+import androidx.annotation.NonNull;
 import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -15,6 +16,9 @@ import io.opencensus.proto.trace.v1.Span;
 import io.opencensus.proto.trace.v1.TruncatableString;
 import java.lang.reflect.Type;
 
+/**
+ * This adapter serializes and deserializes {@link Span} objects.
+ */
 public class SpanAdapter implements JsonSerializer<Span>, JsonDeserializer<Span> {
 
   private static final String PROPERTY_TRACE_ID = "trace_id";
@@ -28,7 +32,9 @@ public class SpanAdapter implements JsonSerializer<Span>, JsonDeserializer<Span>
 
 
   @Override
-  public Span deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+  public Span deserialize(@NonNull final JsonElement json,
+                          @NonNull final Type typeOfT,
+                          @NonNull final JsonDeserializationContext context)
       throws JsonParseException {
     final JsonObject srcSpan = json.getAsJsonObject();
     final Span.Builder builder = Span.newBuilder();
@@ -61,7 +67,9 @@ public class SpanAdapter implements JsonSerializer<Span>, JsonDeserializer<Span>
   }
 
   @Override
-  public JsonElement serialize(Span src, Type typeOfSrc, JsonSerializationContext context) {
+  public JsonElement serialize(@NonNull final Span src,
+                               @NonNull final Type typeOfSrc,
+                               @NonNull final JsonSerializationContext context) {
     final JsonObject jsonObject = new JsonObject();
     final Gson gson = NetworkClient.getGson();
     jsonObject.add(PROPERTY_TRACE_ID, gson.toJsonTree(src.getTraceId()));

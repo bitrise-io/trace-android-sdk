@@ -1,5 +1,6 @@
 package io.bitrise.trace.network.adapters;
 
+import androidx.annotation.NonNull;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -8,13 +9,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import com.google.protobuf.Timestamp;
 import io.bitrise.trace.network.NetworkClient;
 import io.opencensus.proto.metrics.v1.LabelValue;
 import io.opencensus.proto.metrics.v1.Point;
 import io.opencensus.proto.metrics.v1.TimeSeries;
 import java.lang.reflect.Type;
 
+/**
+ * This adapter serializes and deserializes {@link TimeSeries} objects.
+ */
 public class TimeSeriesAdapter implements JsonSerializer<TimeSeries>,
     JsonDeserializer<TimeSeries> {
 
@@ -23,7 +26,9 @@ public class TimeSeriesAdapter implements JsonSerializer<TimeSeries>,
   private static final String PROPERTY_POINTS = "points";
 
   @Override
-  public TimeSeries deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+  public TimeSeries deserialize(@NonNull final JsonElement json,
+                                @NonNull final Type typeOfT,
+                                @NonNull final JsonDeserializationContext context)
       throws JsonParseException {
     final JsonObject srcTimeSeries = json.getAsJsonObject();
     final TimeSeries.Builder builder = TimeSeries.newBuilder();
@@ -55,7 +60,9 @@ public class TimeSeriesAdapter implements JsonSerializer<TimeSeries>,
   }
 
   @Override
-  public JsonElement serialize(TimeSeries src, Type typeOfSrc, JsonSerializationContext context) {
+  public JsonElement serialize(@NonNull final TimeSeries src,
+                               @NonNull final Type typeOfSrc,
+                               @NonNull final JsonSerializationContext context) {
     final JsonObject jsonObject = new JsonObject();
 
     // add label values

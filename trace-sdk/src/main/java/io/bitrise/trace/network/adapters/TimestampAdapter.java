@@ -1,5 +1,6 @@
 package io.bitrise.trace.network.adapters;
 
+import androidx.annotation.NonNull;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -10,13 +11,18 @@ import com.google.gson.JsonSerializer;
 import com.google.protobuf.Timestamp;
 import java.lang.reflect.Type;
 
+/**
+ * This adapter serializes and deserializes {@link Timestamp} objects.
+ */
 public class TimestampAdapter implements JsonSerializer<Timestamp>, JsonDeserializer<Timestamp> {
 
   private static final String PROPERTY_SECONDS = "seconds";
   private static final String PROPERTY_NANOS = "nanos";
 
   @Override
-  public Timestamp deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+  public Timestamp deserialize(@NonNull final JsonElement json,
+                               @NonNull final Type typeOfT,
+                               @NonNull final JsonDeserializationContext context)
       throws JsonParseException {
     final JsonObject srcTimestamp = json.getAsJsonObject();
 
@@ -27,7 +33,9 @@ public class TimestampAdapter implements JsonSerializer<Timestamp>, JsonDeserial
   }
 
   @Override
-  public JsonElement serialize(Timestamp src, Type typeOfSrc, JsonSerializationContext context) {
+  public JsonElement serialize(@NonNull final Timestamp src,
+                               @NonNull final Type typeOfSrc,
+                               @NonNull final JsonSerializationContext context) {
     final JsonObject jsonObject = new JsonObject();
     jsonObject.addProperty(PROPERTY_SECONDS, src.getSeconds());
     jsonObject.addProperty(PROPERTY_NANOS, src.getNanos());

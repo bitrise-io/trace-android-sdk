@@ -1,5 +1,6 @@
 package io.bitrise.trace.network.adapters;
 
+import androidx.annotation.NonNull;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -8,20 +9,24 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import com.google.protobuf.Timestamp;
 import io.bitrise.trace.network.NetworkClient;
 import io.opencensus.proto.metrics.v1.Metric;
 import io.opencensus.proto.metrics.v1.MetricDescriptor;
 import io.opencensus.proto.metrics.v1.TimeSeries;
 import java.lang.reflect.Type;
 
+/**
+ * This adapter serializes and deserializes {@link Metric} objects.
+ */
 public class MetricAdapter implements JsonSerializer<Metric>, JsonDeserializer<Metric> {
 
   private static final String PROPERTY_METRIC_DESCRIPTOR = "metric_descriptor";
   private static final String PROPERTY_TIMESERIES = "timeseries";
 
   @Override
-  public Metric deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+  public Metric deserialize(@NonNull final JsonElement json,
+                            @NonNull final Type typeOfT,
+                            @NonNull final JsonDeserializationContext context)
       throws JsonParseException {
     final JsonObject srcMetric = json.getAsJsonObject();
     final Metric.Builder builder = Metric.newBuilder();
@@ -40,7 +45,9 @@ public class MetricAdapter implements JsonSerializer<Metric>, JsonDeserializer<M
   }
 
   @Override
-  public JsonElement serialize(Metric src, Type typeOfSrc, JsonSerializationContext context) {
+  public JsonElement serialize(@NonNull final Metric src,
+                               @NonNull final Type typeOfSrc,
+                               @NonNull final JsonSerializationContext context) {
     final JsonObject jsonObject = new JsonObject();
 
     jsonObject.add(PROPERTY_METRIC_DESCRIPTOR,

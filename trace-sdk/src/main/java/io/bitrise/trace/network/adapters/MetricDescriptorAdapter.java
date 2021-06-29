@@ -1,5 +1,6 @@
 package io.bitrise.trace.network.adapters;
 
+import androidx.annotation.NonNull;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -12,7 +13,11 @@ import io.opencensus.proto.metrics.v1.LabelKey;
 import io.opencensus.proto.metrics.v1.MetricDescriptor;
 import java.lang.reflect.Type;
 
-public class MetricDescriptorAdapter implements JsonSerializer<MetricDescriptor>, JsonDeserializer<MetricDescriptor> {
+/**
+ * This adapter serializes and deserializes {@link MetricDescriptor} objects.
+ */
+public class MetricDescriptorAdapter implements JsonSerializer<MetricDescriptor>,
+    JsonDeserializer<MetricDescriptor> {
 
   private static final String PROPERTY_NAME = "name";
   private static final String PROPERTY_DESCRIPTION = "description";
@@ -22,7 +27,9 @@ public class MetricDescriptorAdapter implements JsonSerializer<MetricDescriptor>
   private static final String PROPERTY_KEY = "key";
 
   @Override
-  public MetricDescriptor deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+  public MetricDescriptor deserialize(@NonNull final JsonElement json,
+                                      @NonNull final Type typeOfT,
+                                      @NonNull final JsonDeserializationContext context)
       throws JsonParseException {
     final JsonObject srcMetric = json.getAsJsonObject();
 
@@ -47,7 +54,9 @@ public class MetricDescriptorAdapter implements JsonSerializer<MetricDescriptor>
   }
 
   @Override
-  public JsonElement serialize(MetricDescriptor src, Type typeOfSrc, JsonSerializationContext context) {
+  public JsonElement serialize(@NonNull final MetricDescriptor src,
+                               @NonNull final Type typeOfSrc,
+                               @NonNull final JsonSerializationContext context) {
 
     final JsonObject jsonObject = new JsonObject();
     jsonObject.addProperty(PROPERTY_NAME, src.getName());
