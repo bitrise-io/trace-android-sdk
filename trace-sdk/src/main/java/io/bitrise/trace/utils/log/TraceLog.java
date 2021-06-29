@@ -3,7 +3,6 @@ package io.bitrise.trace.utils.log;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 import io.bitrise.trace.TraceSdk;
-import javax.annotation.Nonnull;
 import javax.inject.Singleton;
 
 /**
@@ -234,7 +233,7 @@ public class TraceLog {
    * @param stackTraceElements provided from the location where the log was called.
    * @return "className - methodName() :" or "location unknown: " if the stack trace was empty.
    */
-  @Nonnull
+  @NonNull
   private static String getLocationInformationFromStackTraceElement(
       @NonNull StackTraceElement[] stackTraceElements) {
 
