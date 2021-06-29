@@ -30,7 +30,15 @@ public class MetricConverter {
   @TypeConverter
   public static Metric toMetric(@NonNull final String value) {
     try {
-      return gson.fromJson(value, Metric.class);
+
+      final Metric metric = gson.fromJson(value, Metric.class);
+
+      if (metric != null) {
+        return metric;
+      } else {
+        return Metric.newBuilder().build();
+      }
+
     } catch (Exception e) {
       TraceLog.w(e);
       TraceLog.d(String.format(LogMessageConstants.CONVERTER_FAILED_WITH_VALUE, value));

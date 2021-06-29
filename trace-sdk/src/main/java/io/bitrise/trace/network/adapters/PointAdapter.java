@@ -84,11 +84,8 @@ public class PointAdapter implements JsonSerializer<Point>, JsonDeserializer<Poi
         jsonObject.addProperty(PROPERTY_VALUE, src.getDoubleValue());
         break;
       case DISTRIBUTION_VALUE:
-        jsonObject
-            .add(PROPERTY_VALUE, NetworkClient.getGson().toJsonTree(src.getDistributionValue()));
-        break;
       case SUMMARY_VALUE:
-        jsonObject.add(PROPERTY_VALUE, NetworkClient.getGson().toJsonTree(src.getSummaryValue()));
+        jsonObject .add(PROPERTY_VALUE, new JsonObject());
         break;
       case VALUE_NOT_SET:
         // we deliberately do not serialize values that are not set.
