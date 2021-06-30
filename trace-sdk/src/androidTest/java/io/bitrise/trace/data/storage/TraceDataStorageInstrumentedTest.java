@@ -91,48 +91,6 @@ public class TraceDataStorageInstrumentedTest {
     MatcherAssert.assertThat(actualValue, sameInstance(expectedValue));
   }
 
-  @Test
-  public void saveFormattedData_null() {
-    dataStorage.saveFormattedData(null);
-    assertEquals(0, dataStorage.getAllMetrics().size());
-    assertEquals(0, dataStorage.getAllResources().size());
-    assertEquals(0, dataStorage.getAllTraces().size());
-  }
-
-  @Test
-  public void saveFormattedData_metric() {
-    final FormattedData formattedData = new FormattedData(
-        MetricTestProvider.getApplicationStartUpMetric());
-    dataStorage.saveFormattedData(formattedData);
-    assertEquals(1, dataStorage.getAllMetrics().size());
-    assertEquals(MetricTestProvider.getApplicationStartUpMetric(),
-        dataStorage.getAllMetrics().get(0).getMetric());
-    assertEquals(0, dataStorage.getAllResources().size());
-    assertEquals(0, dataStorage.getAllTraces().size());
-  }
-
-  @Test
-  public void saveFormattedData_resource() {
-    final FormattedData formattedData = new FormattedData(
-        DataTestUtils.getSampleResourceEntity());
-    dataStorage.saveFormattedData(formattedData);
-    assertEquals(0, dataStorage.getAllMetrics().size());
-    assertEquals(1, dataStorage.getAllResources().size());
-    assertEquals(DataTestUtils.getSampleResourceEntity(),
-        dataStorage.getAllResources().get(0));
-    assertEquals(0, dataStorage.getAllTraces().size());
-  }
-
-  @Test
-  public void saveFormattedData_span() {
-    final FormattedData formattedData = new FormattedData(
-        TraceTestProvider.createNetworkSpan());
-    dataStorage.saveFormattedData(formattedData);
-    assertEquals(0, dataStorage.getAllMetrics().size());
-    assertEquals(0, dataStorage.getAllResources().size());
-    assertEquals(0, dataStorage.getAllTraces().size());
-  }
-
   /**
    * Asserts that if we add a {@link Metric} to the {@link TraceDatabase} via the
    * {@link TraceDataStorage} it will be returned when we query it.
