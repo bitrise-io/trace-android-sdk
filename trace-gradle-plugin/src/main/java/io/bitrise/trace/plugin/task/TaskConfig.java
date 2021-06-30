@@ -28,6 +28,15 @@ public class TaskConfig {
   public static final String TASK_DESCRIPTION_GENERATE_BUILD_ID =
       "Creates a unique build ID for the given build.";
   /**
+   * The task name for {@link UploadMappingFileTask}.
+   */
+  public static final String TASK_NAME_UPLOAD_MAPPING_FILE = "uploadMappingFile";
+  /**
+   * The description for {@link UploadMappingFileTask}.
+   */
+  public static final String TASK_DESCRIPTION_UPLOAD_MAPPING_FILE =
+      "Creates a unique build ID for the given build.";
+  /**
    * The task name for {@link VerifyTraceTask}.
    */
   public static final String TASK_NAME_VERIFY_TRACE = "verifyTrace";

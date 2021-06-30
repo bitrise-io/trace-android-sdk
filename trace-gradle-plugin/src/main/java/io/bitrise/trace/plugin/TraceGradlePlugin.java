@@ -13,6 +13,7 @@ import io.bitrise.trace.plugin.modifier.TraceTransform;
 import io.bitrise.trace.plugin.task.GenerateBuildIdTask;
 import io.bitrise.trace.plugin.task.ManifestModifierTask;
 import io.bitrise.trace.plugin.task.TaskConfig;
+import io.bitrise.trace.plugin.task.UploadMappingFileTask;
 import io.bitrise.trace.plugin.task.VerifyTraceTask;
 import io.bitrise.trace.plugin.util.TaskUtils;
 import io.bitrise.trace.plugin.util.TraceTaskBuilder;
@@ -154,6 +155,7 @@ public class TraceGradlePlugin implements Plugin<Project> {
     // because different outputs will have a different AndroidManifest.xml file.
     variant.getOutputs().forEach(
         variantOutput -> addTraceTasksToVariantOutput(project, variant, variantOutput));
+    registerUploadMappingFileTask(project, variant);
   }
 
   /**
@@ -234,7 +236,32 @@ public class TraceGradlePlugin implements Plugin<Project> {
     if (assembleTask != null) {
       assembleTask.finalizedBy(generateBuildIdTask);
       generateBuildIdTask.dependsOn(assembleTask);
-      assembleTask.finalizedBy(generateBuildIdTask);
+    }
+  }
+
+  /**
+   * Registers the {@link UploadMappingFileTask} for the builds. Runs after the assemble task.
+   *
+   * @param project the {@link Project}.
+   * @param variant the {@link BaseVariant}.
+   */
+  private void registerUploadMappingFileTask(@NonNull final Project project,
+                                             @NonNull final BaseVariant variant) {
+    final TaskContainer taskContainer = project.getTasks();
+    final UploadMappingFileTask uploadMappingFileTask =
+        (UploadMappingFileTask) new TraceVariantTaskBuilder(
+            taskContainer,
+            TaskConfig.TASK_NAME_UPLOAD_MAPPING_FILE,
+            UploadMappingFileTask.class,
+            variant)
+            .setGroup(TaskConfig.TRACE_PLUGIN_TASK_GROUP)
+            .setDescription(TaskConfig.TASK_DESCRIPTION_UPLOAD_MAPPING_FILE)
+            .build();
+
+    final Task assembleTask = TaskUtils.getAssembleTask(variant);
+    if (assembleTask != null) {
+      assembleTask.finalizedBy(uploadMappingFileTask);
+      uploadMappingFileTask.dependsOn(assembleTask);
     }
   }
 }
