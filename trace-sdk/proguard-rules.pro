@@ -22,3 +22,5 @@
 
 # To avoid obfuscation of the TraceSdk class that would lead to issues in byte code modification.
 -keep public class io.bitrise.trace.TraceSdk
+-keep public class io.opencensus.proto.** { *; }
+-keep public class com.google.protobuf.** { *; }
