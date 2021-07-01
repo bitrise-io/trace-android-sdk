@@ -1,6 +1,7 @@
 package io.bitrise.trace.network;
 
 import androidx.annotation.NonNull;
+import com.google.gson.annotations.SerializedName;
 import io.bitrise.trace.data.trace.Trace;
 import io.opencensus.proto.resource.v1.Resource;
 import io.opencensus.proto.trace.v1.Span;
@@ -11,6 +12,7 @@ import java.util.List;
  */
 public class TraceRequest extends NetworkRequest {
 
+  @SerializedName("spans")
   @NonNull
   private final List<Span> spans;
 
