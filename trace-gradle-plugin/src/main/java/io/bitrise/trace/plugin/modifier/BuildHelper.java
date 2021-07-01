@@ -30,6 +30,11 @@ public class BuildHelper {
    */
   public static final String ANDROID_MANIFEST_FILE_NAME = "AndroidManifest.xml";
 
+  /**
+   * The name for the proguard-rules.pro files.
+   */
+  public static final String PROGUARD_RULES_FILE_NAME = "proguard-rules.pro";
+
   // region Helper methods
   private final Logger logger;
 

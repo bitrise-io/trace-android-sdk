@@ -247,6 +247,9 @@ public class TraceGradlePlugin implements Plugin<Project> {
    */
   private void registerUploadMappingFileTask(@NonNull final Project project,
                                              @NonNull final BaseVariant variant) {
+    if (!variant.getBuildType().isMinifyEnabled()) {
+      return;
+    }
     final TaskContainer taskContainer = project.getTasks();
     final UploadMappingFileTask uploadMappingFileTask =
         (UploadMappingFileTask) new TraceVariantTaskBuilder(

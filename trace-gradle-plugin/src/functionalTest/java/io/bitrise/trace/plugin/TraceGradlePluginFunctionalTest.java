@@ -105,6 +105,7 @@ public class TraceGradlePluginFunctionalTest {
     functionalTestHelper.setupGradleProperties(testName, 0);
     functionalTestHelper.setupBitriseAddons(testName, 0);
     functionalTestHelper.setupAndroidManifest(testName, 0);
+    functionalTestHelper.setupProguardRulesFile(testName, 0);
   }
 
   /**
@@ -130,6 +131,7 @@ public class TraceGradlePluginFunctionalTest {
     verifyDebugManifestTasks(buildResult);
     verifyDebugGenerateBuildIdTasks(buildResult);
     verifyGenerateBuildIdTasksForAssembleDebug();
+    assertTaskHasNotRun(buildResult, "debugUploadMappingFile");
   }
 
   /**
@@ -144,6 +146,7 @@ public class TraceGradlePluginFunctionalTest {
     verifyDebugManifestTasks(buildResult);
     verifyDebugGenerateBuildIdTasks(buildResult);
     verifyGenerateBuildIdTasksForAssembleDebug();
+    assertTaskHasNotRun(buildResult, "debugUploadMappingFile");
   }
 
   /**
@@ -338,7 +341,7 @@ public class TraceGradlePluginFunctionalTest {
   }
 
   /**
-   * Checks the given {@link BuildResult} if the given task has run or not. Runs an assert on it.
+   * Checks the given {@link BuildResult} if the given task has run. Runs an assert on it.
    *
    * @param buildResult the BuildResult of Gradle task execution.
    * @param taskName    the name of the task we are looking for.
@@ -346,12 +349,35 @@ public class TraceGradlePluginFunctionalTest {
    */
   private BuildTask assertTaskHasRun(@NonNull final BuildResult buildResult,
                                      @NonNull final String taskName) {
-    final List<BuildTask> buildTasks = buildResult.getTasks();
-    final Optional<BuildTask> buildTaskOptional =
-        buildTasks.stream()
-                  .filter(buildTask -> buildTask.getPath().equals(":" + taskName))
-                  .findFirst();
+    final Optional<BuildTask> buildTaskOptional = getOptionalOfTask(buildResult, taskName);
     assertThat(buildTaskOptional.isPresent(), is(true));
     return buildTaskOptional.get();
+  }
+
+  /**
+   * Checks the given {@link BuildResult} if the given task has NOT run. Runs an assert on it.
+   *
+   * @param buildResult the BuildResult of Gradle task execution.
+   * @param taskName    the name of the task we are looking for.
+   */
+  private void assertTaskHasNotRun(@NonNull final BuildResult buildResult,
+                                   @NonNull final String taskName) {
+    final Optional<BuildTask> buildTaskOptional = getOptionalOfTask(buildResult, taskName);
+    assertThat(buildTaskOptional.isPresent(), is(false));
+  }
+
+  /**
+   * Checks the given {@link BuildResult} if the given task has run or not.
+   *
+   * @param buildResult the BuildResult of Gradle task execution.
+   * @param taskName    the name of the task we are looking for.
+   * @return the Optional of the given task.
+   */
+  private Optional<BuildTask> getOptionalOfTask(@NonNull final BuildResult buildResult,
+                                                @NonNull final String taskName) {
+    final List<BuildTask> buildTasks = buildResult.getTasks();
+    return buildTasks.stream()
+                     .filter(buildTask -> buildTask.getPath().equals(":" + taskName))
+                     .findFirst();
   }
 }
