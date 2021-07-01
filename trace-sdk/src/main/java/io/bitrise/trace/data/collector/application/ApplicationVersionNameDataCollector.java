@@ -21,8 +21,8 @@ public class ApplicationVersionNameDataCollector extends ApplicationDataCollecto
    */
   public ApplicationVersionNameDataCollector(@NonNull final PackageManager packageManager,
                                              @NonNull final String packageName) {
-   this.packageManager = packageManager;
-   this.packageName = packageName;
+    this.packageManager = packageManager;
+    this.packageName = packageName;
   }
 
   @NonNull
