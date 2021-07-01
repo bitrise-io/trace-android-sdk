@@ -24,3 +24,4 @@
 -keep public class io.bitrise.trace.TraceSdk
 -keep public class io.opencensus.proto.** { *; }
 -keep public class com.google.protobuf.** { *; }
+-keep public class io.bitrise.trace.network.** { *; }
