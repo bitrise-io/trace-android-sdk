@@ -7,253 +7,19 @@ package io.opencensus.proto.metrics.v1;
  * <pre>
  * Defines a Metric which has one or more timeseries.
  * </pre>
- * <p>
+ *
  * Protobuf type {@code opencensus.proto.metrics.v1.Metric}
  */
-public final class Metric extends
-    com.google.protobuf.GeneratedMessageV3 implements
+public  final class Metric extends
+    com.google.protobuf.GeneratedMessageLite<
+        Metric, Metric.Builder> implements
     // @@protoc_insertion_point(message_implements:opencensus.proto.metrics.v1.Metric)
     MetricOrBuilder {
-  public static final int METRIC_DESCRIPTOR_FIELD_NUMBER = 1;
-  public static final int TIMESERIES_FIELD_NUMBER = 2;
-  public static final int RESOURCE_FIELD_NUMBER = 3;
-  private static final long serialVersionUID = 0L;
-  // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.Metric)
-  private static final io.opencensus.proto.metrics.v1.Metric DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<Metric>
-      PARSER = new com.google.protobuf.AbstractParser<Metric>() {
-    @java.lang.Override
-    public Metric parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Metric(input, extensionRegistry);
-    }
-  };
-
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.metrics.v1.Metric();
-  }
-
-  private io.opencensus.proto.metrics.v1.MetricDescriptor metricDescriptor_;
-  private java.util.List<io.opencensus.proto.metrics.v1.TimeSeries> timeseries_;
-  private io.opencensus.proto.resource.v1.Resource resource_;
-  private byte memoizedIsInitialized = -1;
-
-  // Use Metric.newBuilder() to construct.
-  private Metric(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
   private Metric() {
-    timeseries_ = java.util.Collections.emptyList();
+    timeseries_ = emptyProtobufList();
   }
-
-  private Metric(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            io.opencensus.proto.metrics.v1.MetricDescriptor.Builder subBuilder = null;
-            if (metricDescriptor_ != null) {
-              subBuilder = metricDescriptor_.toBuilder();
-            }
-            metricDescriptor_ = input
-                .readMessage(io.opencensus.proto.metrics.v1.MetricDescriptor.parser(),
-                    extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(metricDescriptor_);
-              metricDescriptor_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 18: {
-            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-              timeseries_ = new java.util.ArrayList<io.opencensus.proto.metrics.v1.TimeSeries>();
-              mutable_bitField0_ |= 0x00000001;
-            }
-            timeseries_.add(
-                input.readMessage(io.opencensus.proto.metrics.v1.TimeSeries.parser(),
-                    extensionRegistry));
-            break;
-          }
-          case 26: {
-            io.opencensus.proto.resource.v1.Resource.Builder subBuilder = null;
-            if (resource_ != null) {
-              subBuilder = resource_.toBuilder();
-            }
-            resource_ = input
-                .readMessage(io.opencensus.proto.resource.v1.Resource.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(resource_);
-              resource_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      if (((mutable_bitField0_ & 0x00000001) != 0)) {
-        timeseries_ = java.util.Collections.unmodifiableList(timeseries_);
-      }
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
-
-  public static final com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
-    return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_Metric_descriptor;
-  }
-
-  public static io.opencensus.proto.metrics.v1.Metric parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Metric parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Metric parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Metric parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Metric parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Metric parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Metric parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Metric parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Metric parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Metric parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Metric parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Metric parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(io.opencensus.proto.metrics.v1.Metric prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Metric getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public static com.google.protobuf.Parser<Metric> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new Metric();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
-    return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_Metric_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.metrics.v1.Metric.class,
-            io.opencensus.proto.metrics.v1.Metric.Builder.class);
-  }
-
+  public static final int METRIC_DESCRIPTOR_FIELD_NUMBER = 1;
+  private io.opencensus.proto.metrics.v1.MetricDescriptor metricDescriptor_;
   /**
    * <pre>
    * The descriptor of the Metric.
@@ -262,14 +28,11 @@ public final class Metric extends
    * </pre>
    *
    * <code>.opencensus.proto.metrics.v1.MetricDescriptor metric_descriptor = 1;</code>
-   *
-   * @return Whether the metricDescriptor field is set.
    */
   @java.lang.Override
   public boolean hasMetricDescriptor() {
     return metricDescriptor_ != null;
   }
-
   /**
    * <pre>
    * The descriptor of the Metric.
@@ -278,15 +41,11 @@ public final class Metric extends
    * </pre>
    *
    * <code>.opencensus.proto.metrics.v1.MetricDescriptor metric_descriptor = 1;</code>
-   *
-   * @return The metricDescriptor.
    */
   @java.lang.Override
   public io.opencensus.proto.metrics.v1.MetricDescriptor getMetricDescriptor() {
-    return metricDescriptor_ == null ?
-        io.opencensus.proto.metrics.v1.MetricDescriptor.getDefaultInstance() : metricDescriptor_;
+    return metricDescriptor_ == null ? io.opencensus.proto.metrics.v1.MetricDescriptor.getDefaultInstance() : metricDescriptor_;
   }
-
   /**
    * <pre>
    * The descriptor of the Metric.
@@ -296,11 +55,47 @@ public final class Metric extends
    *
    * <code>.opencensus.proto.metrics.v1.MetricDescriptor metric_descriptor = 1;</code>
    */
-  @java.lang.Override
-  public io.opencensus.proto.metrics.v1.MetricDescriptorOrBuilder getMetricDescriptorOrBuilder() {
-    return getMetricDescriptor();
+  private void setMetricDescriptor(io.opencensus.proto.metrics.v1.MetricDescriptor value) {
+    value.getClass();
+  metricDescriptor_ = value;
+    
+    }
+  /**
+   * <pre>
+   * The descriptor of the Metric.
+   * TODO(issue #152): consider only sending the name of descriptor for
+   * optimization.
+   * </pre>
+   *
+   * <code>.opencensus.proto.metrics.v1.MetricDescriptor metric_descriptor = 1;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeMetricDescriptor(io.opencensus.proto.metrics.v1.MetricDescriptor value) {
+    value.getClass();
+  if (metricDescriptor_ != null &&
+        metricDescriptor_ != io.opencensus.proto.metrics.v1.MetricDescriptor.getDefaultInstance()) {
+      metricDescriptor_ =
+        io.opencensus.proto.metrics.v1.MetricDescriptor.newBuilder(metricDescriptor_).mergeFrom(value).buildPartial();
+    } else {
+      metricDescriptor_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * The descriptor of the Metric.
+   * TODO(issue #152): consider only sending the name of descriptor for
+   * optimization.
+   * </pre>
+   *
+   * <code>.opencensus.proto.metrics.v1.MetricDescriptor metric_descriptor = 1;</code>
+   */
+  private void clearMetricDescriptor() {  metricDescriptor_ = null;
+    
   }
 
+  public static final int TIMESERIES_FIELD_NUMBER = 2;
+  private com.google.protobuf.Internal.ProtobufList<io.opencensus.proto.metrics.v1.TimeSeries> timeseries_;
   /**
    * <pre>
    * One or more timeseries for a single metric, where each timeseries has
@@ -313,7 +108,6 @@ public final class Metric extends
   public java.util.List<io.opencensus.proto.metrics.v1.TimeSeries> getTimeseriesList() {
     return timeseries_;
   }
-
   /**
    * <pre>
    * One or more timeseries for a single metric, where each timeseries has
@@ -322,12 +116,10 @@ public final class Metric extends
    *
    * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
    */
-  @java.lang.Override
-  public java.util.List<? extends io.opencensus.proto.metrics.v1.TimeSeriesOrBuilder>
-  getTimeseriesOrBuilderList() {
+  public java.util.List<? extends io.opencensus.proto.metrics.v1.TimeSeriesOrBuilder> 
+      getTimeseriesOrBuilderList() {
     return timeseries_;
   }
-
   /**
    * <pre>
    * One or more timeseries for a single metric, where each timeseries has
@@ -340,7 +132,6 @@ public final class Metric extends
   public int getTimeseriesCount() {
     return timeseries_.size();
   }
-
   /**
    * <pre>
    * One or more timeseries for a single metric, where each timeseries has
@@ -353,6 +144,25 @@ public final class Metric extends
   public io.opencensus.proto.metrics.v1.TimeSeries getTimeseries(int index) {
     return timeseries_.get(index);
   }
+  /**
+   * <pre>
+   * One or more timeseries for a single metric, where each timeseries has
+   * one or more points.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
+   */
+  public io.opencensus.proto.metrics.v1.TimeSeriesOrBuilder getTimeseriesOrBuilder(
+      int index) {
+    return timeseries_.get(index);
+  }
+  private void ensureTimeseriesIsMutable() {
+    com.google.protobuf.Internal.ProtobufList<io.opencensus.proto.metrics.v1.TimeSeries> tmp = timeseries_;
+    if (!tmp.isModifiable()) {
+      timeseries_ =
+          com.google.protobuf.GeneratedMessageLite.mutableCopy(tmp);
+     }
+  }
 
   /**
    * <pre>
@@ -362,12 +172,79 @@ public final class Metric extends
    *
    * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
    */
-  @java.lang.Override
-  public io.opencensus.proto.metrics.v1.TimeSeriesOrBuilder getTimeseriesOrBuilder(
-      int index) {
-    return timeseries_.get(index);
+  private void setTimeseries(
+      int index, io.opencensus.proto.metrics.v1.TimeSeries value) {
+    value.getClass();
+  ensureTimeseriesIsMutable();
+    timeseries_.set(index, value);
+  }
+  /**
+   * <pre>
+   * One or more timeseries for a single metric, where each timeseries has
+   * one or more points.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
+   */
+  private void addTimeseries(io.opencensus.proto.metrics.v1.TimeSeries value) {
+    value.getClass();
+  ensureTimeseriesIsMutable();
+    timeseries_.add(value);
+  }
+  /**
+   * <pre>
+   * One or more timeseries for a single metric, where each timeseries has
+   * one or more points.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
+   */
+  private void addTimeseries(
+      int index, io.opencensus.proto.metrics.v1.TimeSeries value) {
+    value.getClass();
+  ensureTimeseriesIsMutable();
+    timeseries_.add(index, value);
+  }
+  /**
+   * <pre>
+   * One or more timeseries for a single metric, where each timeseries has
+   * one or more points.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
+   */
+  private void addAllTimeseries(
+      java.lang.Iterable<? extends io.opencensus.proto.metrics.v1.TimeSeries> values) {
+    ensureTimeseriesIsMutable();
+    com.google.protobuf.AbstractMessageLite.addAll(
+        values, timeseries_);
+  }
+  /**
+   * <pre>
+   * One or more timeseries for a single metric, where each timeseries has
+   * one or more points.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
+   */
+  private void clearTimeseries() {
+    timeseries_ = emptyProtobufList();
+  }
+  /**
+   * <pre>
+   * One or more timeseries for a single metric, where each timeseries has
+   * one or more points.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
+   */
+  private void removeTimeseries(int index) {
+    ensureTimeseriesIsMutable();
+    timeseries_.remove(index);
   }
 
+  public static final int RESOURCE_FIELD_NUMBER = 3;
+  private io.opencensus.proto.resource.v1.Resource resource_;
   /**
    * <pre>
    * The resource for the metric. If unset, it may be set to a default value
@@ -375,14 +252,11 @@ public final class Metric extends
    * </pre>
    *
    * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
-   *
-   * @return Whether the resource field is set.
    */
   @java.lang.Override
   public boolean hasResource() {
     return resource_ != null;
   }
-
   /**
    * <pre>
    * The resource for the metric. If unset, it may be set to a default value
@@ -390,15 +264,11 @@ public final class Metric extends
    * </pre>
    *
    * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
-   *
-   * @return The resource.
    */
   @java.lang.Override
   public io.opencensus.proto.resource.v1.Resource getResource() {
-    return resource_ == null ? io.opencensus.proto.resource.v1.Resource.getDefaultInstance() :
-        resource_;
+    return resource_ == null ? io.opencensus.proto.resource.v1.Resource.getDefaultInstance() : resource_;
   }
-
   /**
    * <pre>
    * The resource for the metric. If unset, it may be set to a default value
@@ -407,400 +277,141 @@ public final class Metric extends
    *
    * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
    */
-  @java.lang.Override
-  public io.opencensus.proto.resource.v1.ResourceOrBuilder getResourceOrBuilder() {
-    return getResource();
+  private void setResource(io.opencensus.proto.resource.v1.Resource value) {
+    value.getClass();
+  resource_ = value;
+    
+    }
+  /**
+   * <pre>
+   * The resource for the metric. If unset, it may be set to a default value
+   * provided for a sequence of messages in an RPC stream.
+   * </pre>
+   *
+   * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeResource(io.opencensus.proto.resource.v1.Resource value) {
+    value.getClass();
+  if (resource_ != null &&
+        resource_ != io.opencensus.proto.resource.v1.Resource.getDefaultInstance()) {
+      resource_ =
+        io.opencensus.proto.resource.v1.Resource.newBuilder(resource_).mergeFrom(value).buildPartial();
+    } else {
+      resource_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * The resource for the metric. If unset, it may be set to a default value
+   * provided for a sequence of messages in an RPC stream.
+   * </pre>
+   *
+   * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
+   */
+  private void clearResource() {  resource_ = null;
+    
   }
 
-  @java.lang.Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) {
-      return true;
-    }
-    if (isInitialized == 0) {
-      return false;
-    }
-
-    memoizedIsInitialized = 1;
-    return true;
+  public static io.opencensus.proto.metrics.v1.Metric parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
   }
-
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
+  public static io.opencensus.proto.metrics.v1.Metric parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.Metric parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.metrics.v1.Metric parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.Metric parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.metrics.v1.Metric parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.Metric parseFrom(java.io.InputStream input)
       throws java.io.IOException {
-    if (metricDescriptor_ != null) {
-      output.writeMessage(1, getMetricDescriptor());
-    }
-    for (int i = 0; i < timeseries_.size(); i++) {
-      output.writeMessage(2, timeseries_.get(i));
-    }
-    if (resource_ != null) {
-      output.writeMessage(3, getResource());
-    }
-    unknownFields.writeTo(output);
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.metrics.v1.Metric parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.Metric parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.metrics.v1.Metric parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.Metric parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.metrics.v1.Metric parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
   }
 
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) {
-      return size;
-    }
-
-    size = 0;
-    if (metricDescriptor_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getMetricDescriptor());
-    }
-    for (int i = 0; i < timeseries_.size(); i++) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, timeseries_.get(i));
-    }
-    if (resource_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getResource());
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
+  public static Builder newBuilder() {
+    return (Builder) DEFAULT_INSTANCE.createBuilder();
   }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-      return true;
-    }
-    if (!(obj instanceof io.opencensus.proto.metrics.v1.Metric)) {
-      return super.equals(obj);
-    }
-    io.opencensus.proto.metrics.v1.Metric other = (io.opencensus.proto.metrics.v1.Metric) obj;
-
-    if (hasMetricDescriptor() != other.hasMetricDescriptor()) {
-      return false;
-    }
-    if (hasMetricDescriptor()) {
-      if (!getMetricDescriptor()
-          .equals(other.getMetricDescriptor())) {
-        return false;
-      }
-    }
-    if (!getTimeseriesList()
-        .equals(other.getTimeseriesList())) {
-      return false;
-    }
-    if (hasResource() != other.hasResource()) {
-      return false;
-    }
-    if (hasResource()) {
-      if (!getResource()
-          .equals(other.getResource())) {
-        return false;
-      }
-    }
-    return unknownFields.equals(other.unknownFields);
-  }
-
-  @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasMetricDescriptor()) {
-      hash = (37 * hash) + METRIC_DESCRIPTOR_FIELD_NUMBER;
-      hash = (53 * hash) + getMetricDescriptor().hashCode();
-    }
-    if (getTimeseriesCount() > 0) {
-      hash = (37 * hash) + TIMESERIES_FIELD_NUMBER;
-      hash = (53 * hash) + getTimeseriesList().hashCode();
-    }
-    if (hasResource()) {
-      hash = (37 * hash) + RESOURCE_FIELD_NUMBER;
-      hash = (53 * hash) + getResource().hashCode();
-    }
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
-
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<Metric> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.metrics.v1.Metric getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
+  public static Builder newBuilder(io.opencensus.proto.metrics.v1.Metric prototype) {
+    return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
   }
 
   /**
    * <pre>
    * Defines a Metric which has one or more timeseries.
    * </pre>
-   * <p>
+   *
    * Protobuf type {@code opencensus.proto.metrics.v1.Metric}
    */
   public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+      com.google.protobuf.GeneratedMessageLite.Builder<
+        io.opencensus.proto.metrics.v1.Metric, Builder> implements
       // @@protoc_insertion_point(builder_implements:opencensus.proto.metrics.v1.Metric)
       io.opencensus.proto.metrics.v1.MetricOrBuilder {
-    private int bitField0_;
-    private io.opencensus.proto.metrics.v1.MetricDescriptor metricDescriptor_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.MetricDescriptor,
-        io.opencensus.proto.metrics.v1.MetricDescriptor.Builder,
-        io.opencensus.proto.metrics.v1.MetricDescriptorOrBuilder>
-        metricDescriptorBuilder_;
-    private java.util.List<io.opencensus.proto.metrics.v1.TimeSeries> timeseries_ =
-        java.util.Collections.emptyList();
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.TimeSeries,
-        io.opencensus.proto.metrics.v1.TimeSeries.Builder,
-        io.opencensus.proto.metrics.v1.TimeSeriesOrBuilder>
-        timeseriesBuilder_;
-    private io.opencensus.proto.resource.v1.Resource resource_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.resource.v1.Resource,
-        io.opencensus.proto.resource.v1.Resource.Builder,
-        io.opencensus.proto.resource.v1.ResourceOrBuilder>
-        resourceBuilder_;
-
     // Construct using io.opencensus.proto.metrics.v1.Metric.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+      super(DEFAULT_INSTANCE);
     }
 
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_Metric_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_Metric_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.metrics.v1.Metric.class,
-              io.opencensus.proto.metrics.v1.Metric.Builder.class);
-    }
-
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-          .alwaysUseFieldBuilders) {
-        getTimeseriesFieldBuilder();
-      }
-    }
-
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      if (metricDescriptorBuilder_ == null) {
-        metricDescriptor_ = null;
-      } else {
-        metricDescriptor_ = null;
-        metricDescriptorBuilder_ = null;
-      }
-      if (timeseriesBuilder_ == null) {
-        timeseries_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-      } else {
-        timeseriesBuilder_.clear();
-      }
-      if (resourceBuilder_ == null) {
-        resource_ = null;
-      } else {
-        resource_ = null;
-        resourceBuilder_ = null;
-      }
-      return this;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_Metric_descriptor;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.Metric getDefaultInstanceForType() {
-      return io.opencensus.proto.metrics.v1.Metric.getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.Metric build() {
-      io.opencensus.proto.metrics.v1.Metric result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.Metric buildPartial() {
-      io.opencensus.proto.metrics.v1.Metric result =
-          new io.opencensus.proto.metrics.v1.Metric(this);
-      int from_bitField0_ = bitField0_;
-      if (metricDescriptorBuilder_ == null) {
-        result.metricDescriptor_ = metricDescriptor_;
-      } else {
-        result.metricDescriptor_ = metricDescriptorBuilder_.build();
-      }
-      if (timeseriesBuilder_ == null) {
-        if (((bitField0_ & 0x00000001) != 0)) {
-          timeseries_ = java.util.Collections.unmodifiableList(timeseries_);
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.timeseries_ = timeseries_;
-      } else {
-        result.timeseries_ = timeseriesBuilder_.build();
-      }
-      if (resourceBuilder_ == null) {
-        result.resource_ = resource_;
-      } else {
-        result.resource_ = resourceBuilder_.build();
-      }
-      onBuilt();
-      return result;
-    }
-
-    @java.lang.Override
-    public Builder clone() {
-      return super.clone();
-    }
-
-    @java.lang.Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.setField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-
-    @java.lang.Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-
-    @java.lang.Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-
-    @java.lang.Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof io.opencensus.proto.metrics.v1.Metric) {
-        return mergeFrom((io.opencensus.proto.metrics.v1.Metric) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(io.opencensus.proto.metrics.v1.Metric other) {
-      if (other == io.opencensus.proto.metrics.v1.Metric.getDefaultInstance()) {
-        return this;
-      }
-      if (other.hasMetricDescriptor()) {
-        mergeMetricDescriptor(other.getMetricDescriptor());
-      }
-      if (timeseriesBuilder_ == null) {
-        if (!other.timeseries_.isEmpty()) {
-          if (timeseries_.isEmpty()) {
-            timeseries_ = other.timeseries_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-          } else {
-            ensureTimeseriesIsMutable();
-            timeseries_.addAll(other.timeseries_);
-          }
-          onChanged();
-        }
-      } else {
-        if (!other.timeseries_.isEmpty()) {
-          if (timeseriesBuilder_.isEmpty()) {
-            timeseriesBuilder_.dispose();
-            timeseriesBuilder_ = null;
-            timeseries_ = other.timeseries_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-            timeseriesBuilder_ =
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                    getTimeseriesFieldBuilder() : null;
-          } else {
-            timeseriesBuilder_.addAllMessages(other.timeseries_);
-          }
-        }
-      }
-      if (other.hasResource()) {
-        mergeResource(other.getResource());
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      io.opencensus.proto.metrics.v1.Metric parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.opencensus.proto.metrics.v1.Metric) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
-      return this;
-    }
 
     /**
      * <pre>
@@ -810,13 +421,11 @@ public final class Metric extends
      * </pre>
      *
      * <code>.opencensus.proto.metrics.v1.MetricDescriptor metric_descriptor = 1;</code>
-     *
-     * @return Whether the metricDescriptor field is set.
      */
+    @java.lang.Override
     public boolean hasMetricDescriptor() {
-      return metricDescriptorBuilder_ != null || metricDescriptor_ != null;
+      return instance.hasMetricDescriptor();
     }
-
     /**
      * <pre>
      * The descriptor of the Metric.
@@ -825,19 +434,11 @@ public final class Metric extends
      * </pre>
      *
      * <code>.opencensus.proto.metrics.v1.MetricDescriptor metric_descriptor = 1;</code>
-     *
-     * @return The metricDescriptor.
      */
+    @java.lang.Override
     public io.opencensus.proto.metrics.v1.MetricDescriptor getMetricDescriptor() {
-      if (metricDescriptorBuilder_ == null) {
-        return metricDescriptor_ == null ?
-            io.opencensus.proto.metrics.v1.MetricDescriptor.getDefaultInstance() :
-            metricDescriptor_;
-      } else {
-        return metricDescriptorBuilder_.getMessage();
-      }
+      return instance.getMetricDescriptor();
     }
-
     /**
      * <pre>
      * The descriptor of the Metric.
@@ -848,19 +449,10 @@ public final class Metric extends
      * <code>.opencensus.proto.metrics.v1.MetricDescriptor metric_descriptor = 1;</code>
      */
     public Builder setMetricDescriptor(io.opencensus.proto.metrics.v1.MetricDescriptor value) {
-      if (metricDescriptorBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        metricDescriptor_ = value;
-        onChanged();
-      } else {
-        metricDescriptorBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setMetricDescriptor(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * The descriptor of the Metric.
@@ -872,16 +464,10 @@ public final class Metric extends
      */
     public Builder setMetricDescriptor(
         io.opencensus.proto.metrics.v1.MetricDescriptor.Builder builderForValue) {
-      if (metricDescriptorBuilder_ == null) {
-        metricDescriptor_ = builderForValue.build();
-        onChanged();
-      } else {
-        metricDescriptorBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setMetricDescriptor(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * The descriptor of the Metric.
@@ -892,22 +478,10 @@ public final class Metric extends
      * <code>.opencensus.proto.metrics.v1.MetricDescriptor metric_descriptor = 1;</code>
      */
     public Builder mergeMetricDescriptor(io.opencensus.proto.metrics.v1.MetricDescriptor value) {
-      if (metricDescriptorBuilder_ == null) {
-        if (metricDescriptor_ != null) {
-          metricDescriptor_ =
-              io.opencensus.proto.metrics.v1.MetricDescriptor.newBuilder(metricDescriptor_)
-                                                             .mergeFrom(value).buildPartial();
-        } else {
-          metricDescriptor_ = value;
-        }
-        onChanged();
-      } else {
-        metricDescriptorBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeMetricDescriptor(value);
       return this;
     }
-
     /**
      * <pre>
      * The descriptor of the Metric.
@@ -917,85 +491,9 @@ public final class Metric extends
      *
      * <code>.opencensus.proto.metrics.v1.MetricDescriptor metric_descriptor = 1;</code>
      */
-    public Builder clearMetricDescriptor() {
-      if (metricDescriptorBuilder_ == null) {
-        metricDescriptor_ = null;
-        onChanged();
-      } else {
-        metricDescriptor_ = null;
-        metricDescriptorBuilder_ = null;
-      }
-
+    public Builder clearMetricDescriptor() {  copyOnWrite();
+      instance.clearMetricDescriptor();
       return this;
-    }
-
-    /**
-     * <pre>
-     * The descriptor of the Metric.
-     * TODO(issue #152): consider only sending the name of descriptor for
-     * optimization.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.MetricDescriptor metric_descriptor = 1;</code>
-     */
-    public io.opencensus.proto.metrics.v1.MetricDescriptor.Builder getMetricDescriptorBuilder() {
-
-      onChanged();
-      return getMetricDescriptorFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * The descriptor of the Metric.
-     * TODO(issue #152): consider only sending the name of descriptor for
-     * optimization.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.MetricDescriptor metric_descriptor = 1;</code>
-     */
-    public io.opencensus.proto.metrics.v1.MetricDescriptorOrBuilder getMetricDescriptorOrBuilder() {
-      if (metricDescriptorBuilder_ != null) {
-        return metricDescriptorBuilder_.getMessageOrBuilder();
-      } else {
-        return metricDescriptor_ == null ?
-            io.opencensus.proto.metrics.v1.MetricDescriptor.getDefaultInstance() :
-            metricDescriptor_;
-      }
-    }
-
-    /**
-     * <pre>
-     * The descriptor of the Metric.
-     * TODO(issue #152): consider only sending the name of descriptor for
-     * optimization.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.MetricDescriptor metric_descriptor = 1;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.MetricDescriptor,
-        io.opencensus.proto.metrics.v1.MetricDescriptor.Builder,
-        io.opencensus.proto.metrics.v1.MetricDescriptorOrBuilder>
-    getMetricDescriptorFieldBuilder() {
-      if (metricDescriptorBuilder_ == null) {
-        metricDescriptorBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.metrics.v1.MetricDescriptor,
-            io.opencensus.proto.metrics.v1.MetricDescriptor.Builder,
-            io.opencensus.proto.metrics.v1.MetricDescriptorOrBuilder>(
-            getMetricDescriptor(),
-            getParentForChildren(),
-            isClean());
-        metricDescriptor_ = null;
-      }
-      return metricDescriptorBuilder_;
-    }
-
-    private void ensureTimeseriesIsMutable() {
-      if (!((bitField0_ & 0x00000001) != 0)) {
-        timeseries_ =
-            new java.util.ArrayList<io.opencensus.proto.metrics.v1.TimeSeries>(timeseries_);
-        bitField0_ |= 0x00000001;
-      }
     }
 
     /**
@@ -1006,14 +504,11 @@ public final class Metric extends
      *
      * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<io.opencensus.proto.metrics.v1.TimeSeries> getTimeseriesList() {
-      if (timeseriesBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(timeseries_);
-      } else {
-        return timeseriesBuilder_.getMessageList();
-      }
+      return java.util.Collections.unmodifiableList(
+          instance.getTimeseriesList());
     }
-
     /**
      * <pre>
      * One or more timeseries for a single metric, where each timeseries has
@@ -1022,15 +517,10 @@ public final class Metric extends
      *
      * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
      */
+    @java.lang.Override
     public int getTimeseriesCount() {
-      if (timeseriesBuilder_ == null) {
-        return timeseries_.size();
-      } else {
-        return timeseriesBuilder_.getCount();
-      }
-    }
-
-    /**
+      return instance.getTimeseriesCount();
+    }/**
      * <pre>
      * One or more timeseries for a single metric, where each timeseries has
      * one or more points.
@@ -1038,14 +528,10 @@ public final class Metric extends
      *
      * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
      */
+    @java.lang.Override
     public io.opencensus.proto.metrics.v1.TimeSeries getTimeseries(int index) {
-      if (timeseriesBuilder_ == null) {
-        return timeseries_.get(index);
-      } else {
-        return timeseriesBuilder_.getMessage(index);
-      }
+      return instance.getTimeseries(index);
     }
-
     /**
      * <pre>
      * One or more timeseries for a single metric, where each timeseries has
@@ -1056,19 +542,10 @@ public final class Metric extends
      */
     public Builder setTimeseries(
         int index, io.opencensus.proto.metrics.v1.TimeSeries value) {
-      if (timeseriesBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureTimeseriesIsMutable();
-        timeseries_.set(index, value);
-        onChanged();
-      } else {
-        timeseriesBuilder_.setMessage(index, value);
-      }
+      copyOnWrite();
+      instance.setTimeseries(index, value);
       return this;
     }
-
     /**
      * <pre>
      * One or more timeseries for a single metric, where each timeseries has
@@ -1079,16 +556,11 @@ public final class Metric extends
      */
     public Builder setTimeseries(
         int index, io.opencensus.proto.metrics.v1.TimeSeries.Builder builderForValue) {
-      if (timeseriesBuilder_ == null) {
-        ensureTimeseriesIsMutable();
-        timeseries_.set(index, builderForValue.build());
-        onChanged();
-      } else {
-        timeseriesBuilder_.setMessage(index, builderForValue.build());
-      }
+      copyOnWrite();
+      instance.setTimeseries(index,
+          builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * One or more timeseries for a single metric, where each timeseries has
@@ -1098,19 +570,10 @@ public final class Metric extends
      * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
      */
     public Builder addTimeseries(io.opencensus.proto.metrics.v1.TimeSeries value) {
-      if (timeseriesBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureTimeseriesIsMutable();
-        timeseries_.add(value);
-        onChanged();
-      } else {
-        timeseriesBuilder_.addMessage(value);
-      }
+      copyOnWrite();
+      instance.addTimeseries(value);
       return this;
     }
-
     /**
      * <pre>
      * One or more timeseries for a single metric, where each timeseries has
@@ -1121,19 +584,10 @@ public final class Metric extends
      */
     public Builder addTimeseries(
         int index, io.opencensus.proto.metrics.v1.TimeSeries value) {
-      if (timeseriesBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureTimeseriesIsMutable();
-        timeseries_.add(index, value);
-        onChanged();
-      } else {
-        timeseriesBuilder_.addMessage(index, value);
-      }
+      copyOnWrite();
+      instance.addTimeseries(index, value);
       return this;
     }
-
     /**
      * <pre>
      * One or more timeseries for a single metric, where each timeseries has
@@ -1144,16 +598,10 @@ public final class Metric extends
      */
     public Builder addTimeseries(
         io.opencensus.proto.metrics.v1.TimeSeries.Builder builderForValue) {
-      if (timeseriesBuilder_ == null) {
-        ensureTimeseriesIsMutable();
-        timeseries_.add(builderForValue.build());
-        onChanged();
-      } else {
-        timeseriesBuilder_.addMessage(builderForValue.build());
-      }
+      copyOnWrite();
+      instance.addTimeseries(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * One or more timeseries for a single metric, where each timeseries has
@@ -1164,16 +612,11 @@ public final class Metric extends
      */
     public Builder addTimeseries(
         int index, io.opencensus.proto.metrics.v1.TimeSeries.Builder builderForValue) {
-      if (timeseriesBuilder_ == null) {
-        ensureTimeseriesIsMutable();
-        timeseries_.add(index, builderForValue.build());
-        onChanged();
-      } else {
-        timeseriesBuilder_.addMessage(index, builderForValue.build());
-      }
+      copyOnWrite();
+      instance.addTimeseries(index,
+          builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * One or more timeseries for a single metric, where each timeseries has
@@ -1184,17 +627,10 @@ public final class Metric extends
      */
     public Builder addAllTimeseries(
         java.lang.Iterable<? extends io.opencensus.proto.metrics.v1.TimeSeries> values) {
-      if (timeseriesBuilder_ == null) {
-        ensureTimeseriesIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, timeseries_);
-        onChanged();
-      } else {
-        timeseriesBuilder_.addAllMessages(values);
-      }
+      copyOnWrite();
+      instance.addAllTimeseries(values);
       return this;
     }
-
     /**
      * <pre>
      * One or more timeseries for a single metric, where each timeseries has
@@ -1204,16 +640,10 @@ public final class Metric extends
      * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
      */
     public Builder clearTimeseries() {
-      if (timeseriesBuilder_ == null) {
-        timeseries_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        onChanged();
-      } else {
-        timeseriesBuilder_.clear();
-      }
+      copyOnWrite();
+      instance.clearTimeseries();
       return this;
     }
-
     /**
      * <pre>
      * One or more timeseries for a single metric, where each timeseries has
@@ -1223,136 +653,23 @@ public final class Metric extends
      * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
      */
     public Builder removeTimeseries(int index) {
-      if (timeseriesBuilder_ == null) {
-        ensureTimeseriesIsMutable();
-        timeseries_.remove(index);
-        onChanged();
-      } else {
-        timeseriesBuilder_.remove(index);
-      }
+      copyOnWrite();
+      instance.removeTimeseries(index);
       return this;
     }
 
     /**
      * <pre>
-     * One or more timeseries for a single metric, where each timeseries has
-     * one or more points.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
-     */
-    public io.opencensus.proto.metrics.v1.TimeSeries.Builder getTimeseriesBuilder(
-        int index) {
-      return getTimeseriesFieldBuilder().getBuilder(index);
-    }
-
-    /**
-     * <pre>
-     * One or more timeseries for a single metric, where each timeseries has
-     * one or more points.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
-     */
-    public io.opencensus.proto.metrics.v1.TimeSeriesOrBuilder getTimeseriesOrBuilder(
-        int index) {
-      if (timeseriesBuilder_ == null) {
-        return timeseries_.get(index);
-      } else {
-        return timeseriesBuilder_.getMessageOrBuilder(index);
-      }
-    }
-
-    /**
-     * <pre>
-     * One or more timeseries for a single metric, where each timeseries has
-     * one or more points.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
-     */
-    public java.util.List<? extends io.opencensus.proto.metrics.v1.TimeSeriesOrBuilder>
-    getTimeseriesOrBuilderList() {
-      if (timeseriesBuilder_ != null) {
-        return timeseriesBuilder_.getMessageOrBuilderList();
-      } else {
-        return java.util.Collections.unmodifiableList(timeseries_);
-      }
-    }
-
-    /**
-     * <pre>
-     * One or more timeseries for a single metric, where each timeseries has
-     * one or more points.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
-     */
-    public io.opencensus.proto.metrics.v1.TimeSeries.Builder addTimeseriesBuilder() {
-      return getTimeseriesFieldBuilder().addBuilder(
-          io.opencensus.proto.metrics.v1.TimeSeries.getDefaultInstance());
-    }
-
-    /**
-     * <pre>
-     * One or more timeseries for a single metric, where each timeseries has
-     * one or more points.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
-     */
-    public io.opencensus.proto.metrics.v1.TimeSeries.Builder addTimeseriesBuilder(
-        int index) {
-      return getTimeseriesFieldBuilder().addBuilder(
-          index, io.opencensus.proto.metrics.v1.TimeSeries.getDefaultInstance());
-    }
-
-    /**
-     * <pre>
-     * One or more timeseries for a single metric, where each timeseries has
-     * one or more points.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.metrics.v1.TimeSeries timeseries = 2;</code>
-     */
-    public java.util.List<io.opencensus.proto.metrics.v1.TimeSeries.Builder>
-    getTimeseriesBuilderList() {
-      return getTimeseriesFieldBuilder().getBuilderList();
-    }
-
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.TimeSeries,
-        io.opencensus.proto.metrics.v1.TimeSeries.Builder,
-        io.opencensus.proto.metrics.v1.TimeSeriesOrBuilder>
-    getTimeseriesFieldBuilder() {
-      if (timeseriesBuilder_ == null) {
-        timeseriesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            io.opencensus.proto.metrics.v1.TimeSeries,
-            io.opencensus.proto.metrics.v1.TimeSeries.Builder,
-            io.opencensus.proto.metrics.v1.TimeSeriesOrBuilder>(
-            timeseries_,
-            ((bitField0_ & 0x00000001) != 0),
-            getParentForChildren(),
-            isClean());
-        timeseries_ = null;
-      }
-      return timeseriesBuilder_;
-    }
-
-    /**
-     * <pre>
      * The resource for the metric. If unset, it may be set to a default value
      * provided for a sequence of messages in an RPC stream.
      * </pre>
      *
      * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
-     *
-     * @return Whether the resource field is set.
      */
+    @java.lang.Override
     public boolean hasResource() {
-      return resourceBuilder_ != null || resource_ != null;
+      return instance.hasResource();
     }
-
     /**
      * <pre>
      * The resource for the metric. If unset, it may be set to a default value
@@ -1360,18 +677,11 @@ public final class Metric extends
      * </pre>
      *
      * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
-     *
-     * @return The resource.
      */
+    @java.lang.Override
     public io.opencensus.proto.resource.v1.Resource getResource() {
-      if (resourceBuilder_ == null) {
-        return resource_ == null ? io.opencensus.proto.resource.v1.Resource.getDefaultInstance() :
-            resource_;
-      } else {
-        return resourceBuilder_.getMessage();
-      }
+      return instance.getResource();
     }
-
     /**
      * <pre>
      * The resource for the metric. If unset, it may be set to a default value
@@ -1381,19 +691,10 @@ public final class Metric extends
      * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
      */
     public Builder setResource(io.opencensus.proto.resource.v1.Resource value) {
-      if (resourceBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        resource_ = value;
-        onChanged();
-      } else {
-        resourceBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setResource(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * The resource for the metric. If unset, it may be set to a default value
@@ -1404,16 +705,10 @@ public final class Metric extends
      */
     public Builder setResource(
         io.opencensus.proto.resource.v1.Resource.Builder builderForValue) {
-      if (resourceBuilder_ == null) {
-        resource_ = builderForValue.build();
-        onChanged();
-      } else {
-        resourceBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setResource(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * The resource for the metric. If unset, it may be set to a default value
@@ -1423,22 +718,10 @@ public final class Metric extends
      * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
      */
     public Builder mergeResource(io.opencensus.proto.resource.v1.Resource value) {
-      if (resourceBuilder_ == null) {
-        if (resource_ != null) {
-          resource_ =
-              io.opencensus.proto.resource.v1.Resource.newBuilder(resource_).mergeFrom(value)
-                                                      .buildPartial();
-        } else {
-          resource_ = value;
-        }
-        onChanged();
-      } else {
-        resourceBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeResource(value);
       return this;
     }
-
     /**
      * <pre>
      * The resource for the metric. If unset, it may be set to a default value
@@ -1447,90 +730,86 @@ public final class Metric extends
      *
      * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
      */
-    public Builder clearResource() {
-      if (resourceBuilder_ == null) {
-        resource_ = null;
-        onChanged();
-      } else {
-        resource_ = null;
-        resourceBuilder_ = null;
-      }
-
+    public Builder clearResource() {  copyOnWrite();
+      instance.clearResource();
       return this;
     }
-
-    /**
-     * <pre>
-     * The resource for the metric. If unset, it may be set to a default value
-     * provided for a sequence of messages in an RPC stream.
-     * </pre>
-     *
-     * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
-     */
-    public io.opencensus.proto.resource.v1.Resource.Builder getResourceBuilder() {
-
-      onChanged();
-      return getResourceFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * The resource for the metric. If unset, it may be set to a default value
-     * provided for a sequence of messages in an RPC stream.
-     * </pre>
-     *
-     * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
-     */
-    public io.opencensus.proto.resource.v1.ResourceOrBuilder getResourceOrBuilder() {
-      if (resourceBuilder_ != null) {
-        return resourceBuilder_.getMessageOrBuilder();
-      } else {
-        return resource_ == null ?
-            io.opencensus.proto.resource.v1.Resource.getDefaultInstance() : resource_;
-      }
-    }
-
-    /**
-     * <pre>
-     * The resource for the metric. If unset, it may be set to a default value
-     * provided for a sequence of messages in an RPC stream.
-     * </pre>
-     *
-     * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.resource.v1.Resource,
-        io.opencensus.proto.resource.v1.Resource.Builder,
-        io.opencensus.proto.resource.v1.ResourceOrBuilder>
-    getResourceFieldBuilder() {
-      if (resourceBuilder_ == null) {
-        resourceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.resource.v1.Resource,
-            io.opencensus.proto.resource.v1.Resource.Builder,
-            io.opencensus.proto.resource.v1.ResourceOrBuilder>(
-            getResource(),
-            getParentForChildren(),
-            isClean());
-        resource_ = null;
-      }
-      return resourceBuilder_;
-    }
-
-    @java.lang.Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
-    }
-
-    @java.lang.Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
-    }
-
 
     // @@protoc_insertion_point(builder_scope:opencensus.proto.metrics.v1.Metric)
   }
+  @java.lang.Override
+  @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+  protected final java.lang.Object dynamicMethod(
+      com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+      java.lang.Object arg0, java.lang.Object arg1) {
+    switch (method) {
+      case NEW_MUTABLE_INSTANCE: {
+        return new io.opencensus.proto.metrics.v1.Metric();
+      }
+      case NEW_BUILDER: {
+        return new Builder();
+      }
+      case BUILD_MESSAGE_INFO: {
+          java.lang.Object[] objects = new java.lang.Object[] {
+            "metricDescriptor_",
+            "timeseries_",
+            io.opencensus.proto.metrics.v1.TimeSeries.class,
+            "resource_",
+          };
+          java.lang.String info =
+              "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0001\u0000\u0001\t\u0002\u001b" +
+              "\u0003\t";
+          return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+      }
+      // fall through
+      case GET_DEFAULT_INSTANCE: {
+        return DEFAULT_INSTANCE;
+      }
+      case GET_PARSER: {
+        com.google.protobuf.Parser<io.opencensus.proto.metrics.v1.Metric> parser = PARSER;
+        if (parser == null) {
+          synchronized (io.opencensus.proto.metrics.v1.Metric.class) {
+            parser = PARSER;
+            if (parser == null) {
+              parser =
+                  new DefaultInstanceBasedParser<io.opencensus.proto.metrics.v1.Metric>(
+                      DEFAULT_INSTANCE);
+              PARSER = parser;
+            }
+          }
+        }
+        return parser;
+    }
+    case GET_MEMOIZED_IS_INITIALIZED: {
+      return (byte) 1;
+    }
+    case SET_MEMOIZED_IS_INITIALIZED: {
+      return null;
+    }
+    }
+    throw new UnsupportedOperationException();
+  }
 
+
+  // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.Metric)
+  private static final io.opencensus.proto.metrics.v1.Metric DEFAULT_INSTANCE;
+  static {
+    Metric defaultInstance = new Metric();
+    // New instances are implicitly immutable so no need to make
+    // immutable.
+    DEFAULT_INSTANCE = defaultInstance;
+    com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+      Metric.class, defaultInstance);
+  }
+
+  public static io.opencensus.proto.metrics.v1.Metric getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  private static volatile com.google.protobuf.Parser<Metric> PARSER;
+
+  public static com.google.protobuf.Parser<Metric> parser() {
+    return DEFAULT_INSTANCE.getParserForType();
+  }
 }
 

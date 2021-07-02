@@ -5,7 +5,7 @@ package io.opencensus.proto.stats.v1;
 
 public interface DistributionAggregationOrBuilder extends
     // @@protoc_insertion_point(interface_extends:opencensus.proto.stats.v1.DistributionAggregation)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.MessageLiteOrBuilder {
 
   /**
    * <pre>
@@ -27,11 +27,9 @@ public interface DistributionAggregationOrBuilder extends
    * </pre>
    *
    * <code>repeated double bucket_bounds = 1;</code>
-   *
    * @return A list containing the bucketBounds.
    */
   java.util.List<java.lang.Double> getBucketBoundsList();
-
   /**
    * <pre>
    * A Distribution may optionally contain a histogram of the values in the
@@ -52,11 +50,9 @@ public interface DistributionAggregationOrBuilder extends
    * </pre>
    *
    * <code>repeated double bucket_bounds = 1;</code>
-   *
    * @return The count of bucketBounds.
    */
   int getBucketBoundsCount();
-
   /**
    * <pre>
    * A Distribution may optionally contain a histogram of the values in the
@@ -77,7 +73,6 @@ public interface DistributionAggregationOrBuilder extends
    * </pre>
    *
    * <code>repeated double bucket_bounds = 1;</code>
-   *
    * @param index The index of the element to return.
    * @return The bucketBounds at the given index.
    */

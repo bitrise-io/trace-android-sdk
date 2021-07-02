@@ -5,7 +5,7 @@ package io.opencensus.proto.trace.v1;
 
 public interface StatusOrBuilder extends
     // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.Status)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.MessageLiteOrBuilder {
 
   /**
    * <pre>
@@ -14,7 +14,6 @@ public interface StatusOrBuilder extends
    * </pre>
    *
    * <code>int32 code = 1;</code>
-   *
    * @return The code.
    */
   int getCode();
@@ -25,20 +24,17 @@ public interface StatusOrBuilder extends
    * </pre>
    *
    * <code>string message = 2;</code>
-   *
    * @return The message.
    */
   java.lang.String getMessage();
-
   /**
    * <pre>
    * A developer-facing error message, which should be in English.
    * </pre>
    *
    * <code>string message = 2;</code>
-   *
    * @return The bytes for message.
    */
   com.google.protobuf.ByteString
-  getMessageBytes();
+      getMessageBytes();
 }

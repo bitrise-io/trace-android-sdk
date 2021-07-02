@@ -4,7 +4,6 @@
 package io.opencensus.proto.agent.trace.v1;
 
 public interface ExportTraceServiceResponseOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:opencensus.proto.agent.trace.v1
-    // .ExportTraceServiceResponse)
-    com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:opencensus.proto.agent.trace.v1.ExportTraceServiceResponse)
+    com.google.protobuf.MessageLiteOrBuilder {
 }

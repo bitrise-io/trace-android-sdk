@@ -4,9 +4,8 @@
 package io.opencensus.proto.agent.trace.v1;
 
 public interface ExportTraceServiceRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:opencensus.proto.agent.trace.v1
-    // .ExportTraceServiceRequest)
-    com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:opencensus.proto.agent.trace.v1.ExportTraceServiceRequest)
+    com.google.protobuf.MessageLiteOrBuilder {
 
   /**
    * <pre>
@@ -16,11 +15,9 @@ public interface ExportTraceServiceRequestOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
-   *
    * @return Whether the node field is set.
    */
   boolean hasNode();
-
   /**
    * <pre>
    * This is required only in the first message on the stream or if the
@@ -29,21 +26,9 @@ public interface ExportTraceServiceRequestOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
-   *
    * @return The node.
    */
   io.opencensus.proto.agent.common.v1.Node getNode();
-
-  /**
-   * <pre>
-   * This is required only in the first message on the stream or if the
-   * previous sent ExportTraceServiceRequest message has a different Node (e.g.
-   * when the same RPC is used to send Spans from multiple Applications).
-   * </pre>
-   *
-   * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
-   */
-  io.opencensus.proto.agent.common.v1.NodeOrBuilder getNodeOrBuilder();
 
   /**
    * <pre>
@@ -52,9 +37,8 @@ public interface ExportTraceServiceRequestOrBuilder extends
    *
    * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
    */
-  java.util.List<io.opencensus.proto.trace.v1.Span>
-  getSpansList();
-
+  java.util.List<io.opencensus.proto.trace.v1.Span> 
+      getSpansList();
   /**
    * <pre>
    * A list of Spans that belong to the last received Node.
@@ -63,7 +47,6 @@ public interface ExportTraceServiceRequestOrBuilder extends
    * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
    */
   io.opencensus.proto.trace.v1.Span getSpans(int index);
-
   /**
    * <pre>
    * A list of Spans that belong to the last received Node.
@@ -75,26 +58,6 @@ public interface ExportTraceServiceRequestOrBuilder extends
 
   /**
    * <pre>
-   * A list of Spans that belong to the last received Node.
-   * </pre>
-   *
-   * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
-   */
-  java.util.List<? extends io.opencensus.proto.trace.v1.SpanOrBuilder>
-  getSpansOrBuilderList();
-
-  /**
-   * <pre>
-   * A list of Spans that belong to the last received Node.
-   * </pre>
-   *
-   * <code>repeated .opencensus.proto.trace.v1.Span spans = 2;</code>
-   */
-  io.opencensus.proto.trace.v1.SpanOrBuilder getSpansOrBuilder(
-      int index);
-
-  /**
-   * <pre>
    * The resource for the spans in this message that do not have an explicit
    * resource set.
    * If unset, the most recently set resource in the RPC stream applies. It is
@@ -102,11 +65,9 @@ public interface ExportTraceServiceRequestOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
-   *
    * @return Whether the resource field is set.
    */
   boolean hasResource();
-
   /**
    * <pre>
    * The resource for the spans in this message that do not have an explicit
@@ -116,20 +77,7 @@ public interface ExportTraceServiceRequestOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
-   *
    * @return The resource.
    */
   io.opencensus.proto.resource.v1.Resource getResource();
-
-  /**
-   * <pre>
-   * The resource for the spans in this message that do not have an explicit
-   * resource set.
-   * If unset, the most recently set resource in the RPC stream applies. It is
-   * valid to never be set within a stream, e.g. when no resource info is known.
-   * </pre>
-   *
-   * <code>.opencensus.proto.resource.v1.Resource resource = 3;</code>
-   */
-  io.opencensus.proto.resource.v1.ResourceOrBuilder getResourceOrBuilder();
 }

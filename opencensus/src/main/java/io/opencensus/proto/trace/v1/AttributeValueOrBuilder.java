@@ -5,7 +5,7 @@ package io.opencensus.proto.trace.v1;
 
 public interface AttributeValueOrBuilder extends
     // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.AttributeValue)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.MessageLiteOrBuilder {
 
   /**
    * <pre>
@@ -13,30 +13,18 @@ public interface AttributeValueOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TruncatableString string_value = 1;</code>
-   *
    * @return Whether the stringValue field is set.
    */
   boolean hasStringValue();
-
   /**
    * <pre>
    * A string up to 256 bytes long.
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TruncatableString string_value = 1;</code>
-   *
    * @return The stringValue.
    */
   io.opencensus.proto.trace.v1.TruncatableString getStringValue();
-
-  /**
-   * <pre>
-   * A string up to 256 bytes long.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.TruncatableString string_value = 1;</code>
-   */
-  io.opencensus.proto.trace.v1.TruncatableStringOrBuilder getStringValueOrBuilder();
 
   /**
    * <pre>
@@ -44,7 +32,6 @@ public interface AttributeValueOrBuilder extends
    * </pre>
    *
    * <code>int64 int_value = 2;</code>
-   *
    * @return The intValue.
    */
   long getIntValue();
@@ -55,7 +42,6 @@ public interface AttributeValueOrBuilder extends
    * </pre>
    *
    * <code>bool bool_value = 3;</code>
-   *
    * @return The boolValue.
    */
   boolean getBoolValue();
@@ -66,10 +52,9 @@ public interface AttributeValueOrBuilder extends
    * </pre>
    *
    * <code>double double_value = 4;</code>
-   *
    * @return The doubleValue.
    */
   double getDoubleValue();
 
-  io.opencensus.proto.trace.v1.AttributeValue.ValueCase getValueCase();
+  public io.opencensus.proto.trace.v1.AttributeValue.ValueCase getValueCase();
 }

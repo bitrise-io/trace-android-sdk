@@ -27,10 +27,11 @@ public class PointAdapter implements JsonSerializer<Point>, JsonDeserializer<Poi
   private static final String PROPERTY_VALUE_CASE = "value_case";
 
   @Override
-  public Point deserialize(@NonNull final JsonElement json, @NonNull final Type typeOfT,
+  public Point deserialize(@NonNull final JsonElement json,
+                           @NonNull final Type typeOfT,
                            @NonNull final JsonDeserializationContext context)
       throws JsonParseException {
-    JsonObject srcPoint = json.getAsJsonObject();
+    final JsonObject srcPoint = json.getAsJsonObject();
     final JsonElement srcValueCase = srcPoint.get(PROPERTY_VALUE_CASE);
     final Point.Builder pointBuilder = Point.newBuilder();
 
@@ -72,7 +73,8 @@ public class PointAdapter implements JsonSerializer<Point>, JsonDeserializer<Poi
   }
 
   @Override
-  public JsonElement serialize(@NonNull final Point src, @NonNull final Type typeOfSrc,
+  public JsonElement serialize(@NonNull final Point src,
+                               @NonNull final Type typeOfSrc,
                                @NonNull final JsonSerializationContext context) {
     final JsonObject jsonObject = new JsonObject();
 
@@ -84,11 +86,8 @@ public class PointAdapter implements JsonSerializer<Point>, JsonDeserializer<Poi
         jsonObject.addProperty(PROPERTY_VALUE, src.getDoubleValue());
         break;
       case DISTRIBUTION_VALUE:
-        jsonObject
-            .add(PROPERTY_VALUE, NetworkClient.getGson().toJsonTree(src.getDistributionValue()));
-        break;
       case SUMMARY_VALUE:
-        jsonObject.add(PROPERTY_VALUE, NetworkClient.getGson().toJsonTree(src.getSummaryValue()));
+        jsonObject.add(PROPERTY_VALUE, new JsonObject());
         break;
       case VALUE_NOT_SET:
         // we deliberately do not serialize values that are not set.
