@@ -23,7 +23,7 @@ public final class SymbolCollectorNetworkClient {
   /**
    * The base Url for the communication.
    */
-  private static final String BASE_URL = "https://symbolcollector.apm.bitrise.io";
+  private static final String BASE_URL = "https://symbolcollector.apm.bitrise.io/api/v1";
   /**
    * {@link Retrofit} instance for network calls.
    */
