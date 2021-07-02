@@ -56,8 +56,12 @@ dependencies {
     implementation "com.android.tools.build:gradle:${versions.androidGradle}"
     implementation "com.google.code.gson:gson:${versions.gson}"
     implementation "org.javassist:javassist:${versions.javassist}"
-    implementation("com.squareup.okhttp3:okhttp:${versions.okhttp}"){
-        because "${constraintReasons.okhttp}"
+    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
+    implementation "com.squareup.retrofit2:converter-gson:${versions.converterGson}"
+    implementation("com.squareup.okhttp3:okhttp"){
+        version { require versions.okhttp }
+        because constraintReasons.okhttp
     }
     implementation "io.bitrise.trace.internal:opencensus:${versions.opencensus}"
     testCompileOnly "androidx.annotation:annotation:${versions.androidxAnnotation}"
