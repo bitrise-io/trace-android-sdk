@@ -69,11 +69,11 @@ public class UploadMappingFileTask extends BaseTraceVariantTask {
                           @NonNull final MultipartBody.Part body, @NonNull final String name,
                           @NonNull final String buildId) throws IOException {
     final SymbolCollectorCommunicator symbolCollectorCommunicator =
-        SymbolCollectorNetworkClient.getCommunicator(
-            BuildConfigurationManager.getInstance(project.getRootDir().getAbsolutePath()));
+        SymbolCollectorNetworkClient.getCommunicator();
+    final String token = String.format("Bearer %1$s",
+        BuildConfigurationManager.getInstance(project.getRootDir().getAbsolutePath()).getToken());
     final Call<ResponseBody> mappingFileUploadCall =
-        symbolCollectorCommunicator.uploadMappingFile(requestFile, body);
-    mappingFileUploadCall.request().newBuilder().addHeader("build_version", buildId).build();
+        symbolCollectorCommunicator.uploadMappingFile(token, buildId, requestFile, body);
     logger.info("Starting to upload mapping file {} for variant {}.", name, getVariant());
     final Response<ResponseBody> response = mappingFileUploadCall.execute();
     if (response.isSuccessful()) {

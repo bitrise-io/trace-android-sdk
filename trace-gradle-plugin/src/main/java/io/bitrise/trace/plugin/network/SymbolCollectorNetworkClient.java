@@ -32,10 +32,6 @@ public final class SymbolCollectorNetworkClient {
    * The {@link SymbolCollectorCommunicator} interface of this client.
    */
   private static volatile SymbolCollectorCommunicator symbolCollectorCommunicator;
-  /**
-   * The {@link BuildConfigurationManager}.
-   */
-  private static BuildConfigurationManager buildConfigurationManager;
 
   /**
    * Gets the client for the {@link SymbolCollectorCommunicator}.
@@ -60,7 +56,6 @@ public final class SymbolCollectorNetworkClient {
   @NonNull
   static OkHttpClient.Builder getBaseClientBuilder() {
     return new OkHttpClient.Builder().addInterceptor(getLoggingInterceptor())
-                                     .addInterceptor(getCallInterceptor())
                                      .connectTimeout(15, TimeUnit.SECONDS)
                                      .readTimeout(15, TimeUnit.SECONDS);
   }
@@ -68,13 +63,10 @@ public final class SymbolCollectorNetworkClient {
   /**
    * Gets the NetworkCommunicator for performing network calls.
    *
-   * @param bcm the BuildConfigurationManager.
    * @return the NetworkCommunicator.
    */
   @NonNull
-  public static synchronized SymbolCollectorCommunicator getCommunicator(
-      @NonNull final BuildConfigurationManager bcm) {
-    buildConfigurationManager = bcm;
+  public static synchronized SymbolCollectorCommunicator getCommunicator() {
     if (symbolCollectorCommunicator == null) {
       symbolCollectorCommunicator = getClient().create(SymbolCollectorCommunicator.class);
     }
@@ -111,34 +103,8 @@ public final class SymbolCollectorNetworkClient {
   @NonNull
   private static HttpLoggingInterceptor getLoggingInterceptor() {
     final HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-    interceptor.setLevel(HttpLoggingInterceptor.Level.NONE);
+    interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
     return interceptor;
-  }
-
-  /**
-   * Gets the Interceptor fot the network calls. This is used to add the header to every request.
-   *
-   * @return the Interceptor.
-   */
-  @NonNull
-  private static Interceptor getCallInterceptor() {
-    return chain -> {
-      final Request request =
-          chain.request().newBuilder()
-               .addHeader("Authorization", getAuthorizationBearer())
-               .build();
-      return chain.proceed(request);
-    };
-  }
-
-  /**
-   * Gets the authorization bearer token for the header.
-   *
-   * @return the token.
-   */
-  @NonNull
-  private static String getAuthorizationBearer() {
-    return String.format("Bearer %1$s", buildConfigurationManager.getToken());
   }
 
   /**
