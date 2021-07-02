@@ -74,14 +74,15 @@ public class UploadMappingFileTask extends BaseTraceVariantTask {
         BuildConfigurationManager.getInstance(project.getRootDir().getAbsolutePath()).getToken());
     final Call<ResponseBody> mappingFileUploadCall =
         symbolCollectorCommunicator.uploadMappingFile(token, buildId, requestFile, body);
-    logger.info("Starting to upload mapping file {} for variant {}.", name, getVariant());
+    logger.info("Starting to upload mapping file {} for variant {}.", name, getVariant().getName());
     final Response<ResponseBody> response = mappingFileUploadCall.execute();
     if (response.isSuccessful()) {
       logger.info("Successfully finished uploading mapping file {} for variant {}.",
-          name, getVariant());
+          name, getVariant().getName());
     } else {
       throw new GradleException(
-          String.format("Failed to upload mapping file %s for variant %s.", name, getVariant()));
+          String.format("Failed to upload mapping file %s for variant %s.", name,
+              getVariant().getName()));
     }
   }
 }
