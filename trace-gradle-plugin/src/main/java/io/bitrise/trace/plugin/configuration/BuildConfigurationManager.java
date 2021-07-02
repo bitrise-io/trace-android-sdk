@@ -120,6 +120,16 @@ public class BuildConfigurationManager {
   }
 
   /**
+   * Gets the token from the build configuration.
+   *
+   * @return the token.
+   */
+  @NonNull
+  public String getToken() {
+    return buildConfiguration.getToken();
+  }
+
+  /**
    * Checks if the version of the config file is supported by the plugin or not. Throws
    * UnsupportedOperation if not.
    *

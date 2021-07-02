@@ -155,7 +155,9 @@ public class TraceGradlePlugin implements Plugin<Project> {
     // because different outputs will have a different AndroidManifest.xml file.
     variant.getOutputs().forEach(
         variantOutput -> addTraceTasksToVariantOutput(project, variant, variantOutput));
-    registerUploadMappingFileTask(project, variant);
+    final GenerateBuildIdTask generateBuildIdTask =
+        registerGenerateBuildIdTask(project, variant);
+    registerUploadMappingFileTask(project, variant, generateBuildIdTask);
   }
 
   /**
@@ -170,7 +172,6 @@ public class TraceGradlePlugin implements Plugin<Project> {
                                             @NonNull final BaseVariant variant,
                                             @NonNull final BaseVariantOutput variantOutput) {
     registerManifestModifierTask(project, variant, variantOutput);
-    registerGenerateBuildIdTask(project, variant, variantOutput);
   }
 
   /**
@@ -213,13 +214,12 @@ public class TraceGradlePlugin implements Plugin<Project> {
   /**
    * Registers the {@link GenerateBuildIdTask} for the builds. Runs after the assemble task.
    *
-   * @param project       the {@link Project}.
-   * @param variant       the {@link BaseVariant}.
-   * @param variantOutput the {@link BaseVariantOutput}.
+   * @param project the {@link Project}.
+   * @param variant the {@link BaseVariant}.
+   * @return the task itself.
    */
-  private void registerGenerateBuildIdTask(@NonNull final Project project,
-                                           @NonNull final BaseVariant variant,
-                                           @NonNull final BaseVariantOutput variantOutput) {
+  private GenerateBuildIdTask registerGenerateBuildIdTask(@NonNull final Project project,
+                                                          @NonNull final BaseVariant variant) {
     final TaskContainer taskContainer = project.getTasks();
     final GenerateBuildIdTask generateBuildIdTask =
         (GenerateBuildIdTask) new TraceVariantTaskBuilder(
@@ -227,7 +227,6 @@ public class TraceGradlePlugin implements Plugin<Project> {
             TaskConfig.TASK_NAME_GENERATE_BUILD_ID,
             GenerateBuildIdTask.class,
             variant)
-            .setVariantOutput(variantOutput)
             .setGroup(TaskConfig.TRACE_PLUGIN_TASK_GROUP)
             .setDescription(TaskConfig.TASK_DESCRIPTION_GENERATE_BUILD_ID)
             .build();
@@ -237,16 +236,20 @@ public class TraceGradlePlugin implements Plugin<Project> {
       assembleTask.finalizedBy(generateBuildIdTask);
       generateBuildIdTask.dependsOn(assembleTask);
     }
+    return generateBuildIdTask;
   }
 
   /**
    * Registers the {@link UploadMappingFileTask} for the builds. Runs after the assemble task.
    *
-   * @param project the {@link Project}.
-   * @param variant the {@link BaseVariant}.
+   * @param project             the {@link Project}.
+   * @param variant             the {@link BaseVariant}.
+   * @param generateBuildIdTask the {@link GenerateBuildIdTask} that this task will depend on.
    */
   private void registerUploadMappingFileTask(@NonNull final Project project,
-                                             @NonNull final BaseVariant variant) {
+                                             @NonNull final BaseVariant variant,
+                                             @NonNull
+                                             final GenerateBuildIdTask generateBuildIdTask) {
     if (!variant.getBuildType().isMinifyEnabled()) {
       return;
     }
@@ -266,5 +269,6 @@ public class TraceGradlePlugin implements Plugin<Project> {
       assembleTask.finalizedBy(uploadMappingFileTask);
       uploadMappingFileTask.dependsOn(assembleTask);
     }
+    uploadMappingFileTask.dependsOn(generateBuildIdTask);
   }
 }

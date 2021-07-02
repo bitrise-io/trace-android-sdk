@@ -59,7 +59,7 @@ public class TraceGradlePluginFunctionalTest {
    * build variant.
    */
   private static final String buildIdFileRelativePathFormat =
-      "/build/outputs/apk/%s/bitriseBuildId.txt";
+      "/build/outputs/trace/%s/bitriseBuildId.txt";
   /**
    * An instance of {@link FunctionalTestWriter} that will write the output of each test case
    * to the console with * AQUA4 color from the Bitkit.

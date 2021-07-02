@@ -1,12 +1,15 @@
 package io.bitrise.trace.plugin.task;
 
 import androidx.annotation.NonNull;
-import com.android.build.gradle.api.BaseVariantOutput;
+import io.bitrise.trace.plugin.util.TaskUtils;
 import io.bitrise.trace.plugin.util.TimeFormattingUtils;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.TimeZone;
 import org.gradle.api.tasks.TaskAction;
@@ -21,13 +24,43 @@ public class GenerateBuildIdTask extends BaseTraceVariantTask {
   private static final String BITRISE_BUILD_ID_TXT = "bitriseBuildId.txt";
 
   /**
+   * Gets the path for the file that stores the build ID.
+   *
+   * @param buildDir    the root build directory for the application.
+   * @param variantName the name of the variant.
+   * @return the path.
+   */
+  @NonNull
+  public static String getBuildIdFilePath(@NonNull final File buildDir,
+                                          @NonNull final String variantName) {
+    return TaskUtils.getTraceOutputDirPath(buildDir, variantName) + "/" + BITRISE_BUILD_ID_TXT;
+  }
+
+  /**
+   * Reads the build IO file and returns the build ID.
+   *
+   * @param buildDir    the build directory of the app.
+   * @param variantName the name of the variant.
+   * @return the build ID.
+   * @throws IOException if any I/O error occurs.
+   */
+  @NonNull
+  public static String readBuildIdFromFile(@NonNull final File buildDir,
+                                           @NonNull final String variantName) throws IOException {
+    final String buildIdFilePath = GenerateBuildIdTask.getBuildIdFilePath(buildDir, variantName);
+    final Path path = Paths.get(buildIdFilePath);
+    return Files.readAllLines(path).get(0);
+  }
+
+  /**
    * The action that will be performed when the task is run. Will create a build ID an place it
    * in a file.
    */
   @TaskAction
   public void generateBuildId() {
     final String buildId = createBuildId();
-    final String folderPath = getBuildOutputFolder();
+    final String folderPath =
+        TaskUtils.getTraceOutputDirPath(project.getBuildDir(), getVariant().getName());
     writeBuildIdToFile(buildId, folderPath);
   }
 
@@ -48,25 +81,6 @@ public class GenerateBuildIdTask extends BaseTraceVariantTask {
   }
 
   /**
-   * Use the Android Gradle Plugin APIs to find the output folder path of the built Android APK
-   * file. This path will be different for Debug and Release builds.
-   *
-   * @return The full folder path of the currently built APK file (parent folder).
-   */
-  @NonNull
-  private String getBuildOutputFolder() {
-    final BaseVariantOutput baseVariantOutput = getVariantOutput();
-    if (baseVariantOutput == null) {
-      throw new IllegalStateException(
-          "Variant output should not be null, task initialised wrongly!");
-    }
-    final String apkFolderPath =
-        baseVariantOutput.getOutputFile().getParentFile().getAbsolutePath();
-    logger.debug("APK output folder = " + apkFolderPath);
-    return apkFolderPath + "/";
-  }
-
-  /**
    * Writes the given build ID to the {@link #BITRISE_BUILD_ID_TXT} build file with the given
    * parent folder.
    *
@@ -78,7 +92,7 @@ public class GenerateBuildIdTask extends BaseTraceVariantTask {
     if (!parentDir.exists()) {
       parentDir.mkdirs();
     }
-    final File outputTextFile = new File(folderPath + BITRISE_BUILD_ID_TXT);
+    final File outputTextFile = new File(folderPath, BITRISE_BUILD_ID_TXT);
     try {
       final BufferedWriter writer = new BufferedWriter(new FileWriter(outputTextFile));
       writer.write(buildId);

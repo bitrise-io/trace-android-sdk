@@ -1,11 +1,22 @@
 package io.bitrise.trace.plugin.task;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.android.build.gradle.api.BaseVariantOutput;
 import io.bitrise.trace.plugin.TraceGradlePlugin;
+import io.bitrise.trace.plugin.configuration.BuildConfigurationManager;
 import io.bitrise.trace.plugin.modifier.BuildHelper;
+import io.bitrise.trace.plugin.network.SymbolCollectorCommunicator;
+import io.bitrise.trace.plugin.network.SymbolCollectorNetworkClient;
 import java.io.File;
+import java.io.IOException;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import org.gradle.api.GradleException;
 import org.gradle.api.tasks.TaskAction;
+import retrofit2.Call;
+import retrofit2.Response;
 
 /**
  * Task for uploading a given variant's mapping file (if it exists).
@@ -15,14 +26,11 @@ public class UploadMappingFileTask extends BaseTraceVariantTask {
   /**
    * Task action that will be called when run. Uploads the mapping file of the given variant to
    * the server.
+   *
+   * @throws IOException if any I/O error occurs.
    */
   @TaskAction
-  public void uploadMappingFile() {
-    final BaseVariantOutput baseVariantOutput = getVariantOutput();
-    if (baseVariantOutput == null) {
-      return;
-    }
-
+  public void uploadMappingFile() throws IOException {
     final File mappingFile = new BuildHelper(logger).getMappingFiletPath(getVariant());
     uploadFile(mappingFile);
   }
@@ -31,14 +39,49 @@ public class UploadMappingFileTask extends BaseTraceVariantTask {
    * Uploads the given File to the backend, so later an obfuscated crash report can be retraced.
    *
    * @param file the given File.
+   * @throws IOException if any I/O error occurs.
    */
-  private void uploadFile(@Nullable final File file) {
+  private void uploadFile(@Nullable final File file) throws IOException {
     if (file == null) {
       logger.info(TraceGradlePlugin.LOGGER_TAG, "No mapping file found for variant {}, nothing to"
           + " upload.", getVariant().getName());
       return;
     }
-    logger.info("Uploading mapping file {} for variant {}.", file.getName(), getVariant());
-    // TODO upload code
+
+    final RequestBody requestFile = RequestBody.create(MediaType.parse("text/plain"), file);
+    final MultipartBody.Part body =
+        MultipartBody.Part.createFormData("mapping file", file.getName(), requestFile);
+    final String buildId = GenerateBuildIdTask.readBuildIdFromFile(project.getBuildDir(),
+        getVariant().getName());
+    uploadFile(requestFile, body, file.getName(), buildId);
+  }
+
+  /**
+   * Uploads the given File to the backend, so later an obfuscated crash report can be retraced.
+   *
+   * @param requestFile the file itself as a multipart body.
+   * @param body        the body of he request.
+   * @param name        the name of the file.
+   * @param buildId     the build ID for the file.
+   * @throws IOException if any I/O exception occurs.
+   */
+  private void uploadFile(@NonNull final RequestBody requestFile,
+                          @NonNull final MultipartBody.Part body, @NonNull final String name,
+                          @NonNull final String buildId) throws IOException {
+    final SymbolCollectorCommunicator symbolCollectorCommunicator =
+        SymbolCollectorNetworkClient.getCommunicator(
+            BuildConfigurationManager.getInstance(project.getRootDir().getAbsolutePath()));
+    final Call<ResponseBody> mappingFileUploadCall =
+        symbolCollectorCommunicator.uploadMappingFile(requestFile, body);
+    mappingFileUploadCall.request().newBuilder().addHeader("build_version", buildId).build();
+    logger.info("Starting to upload mapping file {} for variant {}.", name, getVariant());
+    final Response<ResponseBody> response = mappingFileUploadCall.execute();
+    if (response.isSuccessful()) {
+      logger.info("Successfully finished uploading mapping file {} for variant {}.",
+          name, getVariant());
+    } else {
+      throw new GradleException(
+          String.format("Failed to upload mapping file %s for variant %s.", name, getVariant()));
+    }
   }
 }
