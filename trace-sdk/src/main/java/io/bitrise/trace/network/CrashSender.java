@@ -7,6 +7,7 @@ import io.bitrise.trace.utils.TraceClock;
 import io.bitrise.trace.utils.UniqueIdGenerator;
 import io.bitrise.trace.utils.log.TraceLog;
 import io.opencensus.proto.resource.v1.Resource;
+import java.util.TimeZone;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -43,7 +44,7 @@ public class CrashSender {
     final CrashRequest.Metadata metadata = new CrashRequest.Metadata(
         crashReport.getTitle(),
         crashReport.getDescription(),
-        TraceClock.createCrashRequestFormat(millisecondTimestamp),
+        TraceClock.createCrashRequestFormat(millisecondTimestamp, TimeZone.getDefault()),
         this.uuid,
         "",
         ""

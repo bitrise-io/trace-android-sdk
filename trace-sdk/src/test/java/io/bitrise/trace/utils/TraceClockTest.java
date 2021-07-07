@@ -6,6 +6,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 
 import com.google.protobuf.Timestamp;
+import java.util.TimeZone;
 import org.junit.Test;
 
 /**
@@ -87,6 +88,6 @@ public class TraceClockTest {
   @Test
   public void createCrashRequestFormat() {
     assertEquals("2020-10-22T14:53:44+01:00",
-        TraceClock.createCrashRequestFormat(dummyMilliseconds3));
+        TraceClock.createCrashRequestFormat(dummyMilliseconds3, TimeZone.getTimeZone("Europe/London")));
   }
 }

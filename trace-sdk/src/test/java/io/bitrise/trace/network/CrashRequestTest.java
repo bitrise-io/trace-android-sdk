@@ -9,6 +9,7 @@ import io.bitrise.trace.test.DataTestUtils;
 import io.bitrise.trace.utils.TraceClock;
 import io.opencensus.proto.resource.v1.Resource;
 import java.io.IOException;
+import java.util.TimeZone;
 import org.junit.Test;
 
 /**
@@ -24,7 +25,7 @@ public class CrashRequestTest {
     final CrashRequest.Metadata metadata = new CrashRequest.Metadata(
         crashReport.getTitle(),
         crashReport.getDescription(),
-        TraceClock.createCrashRequestFormat(1624544328342L),
+        TraceClock.createCrashRequestFormat(1624544328342L, TimeZone.getTimeZone("Europe/London")),
         "d519fb6e-0edf-42de-8d90-5a59fc41b9a1",
         "6d010d9eb5624242990dac11a048dac4",
         "707ccf317d314af1"

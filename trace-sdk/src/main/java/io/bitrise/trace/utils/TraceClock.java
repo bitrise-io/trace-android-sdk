@@ -9,6 +9,7 @@ import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Provides the time for different components of Trace SDK.
@@ -93,9 +94,13 @@ public class TraceClock {
    * @param milliseconds the current timestamp in milliseconds.
    * @return the String representation of the timestamp for crash reports.
    */
-  public static String createCrashRequestFormat(final long milliseconds) {
-    final String date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.getDefault())
-        .format(new Date(milliseconds));
+  public static String createCrashRequestFormat(final long milliseconds,
+                                                final TimeZone timeZone) {
+    final SimpleDateFormat sdf =
+        new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.getDefault());
+    sdf.setTimeZone(timeZone);
+
+    final String date = sdf.format(new Date(milliseconds));
 
     // we need to add a colon in between to make +0100 into +01:00
     return date.substring(0, date.length() - 2) + ":" + ""
