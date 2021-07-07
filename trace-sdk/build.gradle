@@ -93,5 +93,18 @@ def getTraceToken() {
     return properties.getProperty("traceToken");
 }
 
+allprojects {
+    tasks.withType(Test) {
+        testLogging {
+            exceptionFormat "full"
+            showCauses true
+            showExceptions true
+            showStackTraces true
+            showStandardStreams true
+            events = ["skipped", "failed", "standardOut", "standardError"]
+        }
+    }
+}
+
 apply from: "release-trace-sdk.gradle"
 apply from: "../checkstyle.gradle"
