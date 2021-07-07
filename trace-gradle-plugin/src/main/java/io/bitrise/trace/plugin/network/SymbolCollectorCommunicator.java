@@ -18,6 +18,7 @@ public interface SymbolCollectorCommunicator {
   @Multipart
   @POST("symbols/android")
   Call<ResponseBody> uploadMappingFile(
+      @Header("app_version") String appVersion,
       @Header("Authorization") String token,
       @Header("build_version") String buildId,
       @Part("body") RequestBody body,

@@ -60,7 +60,7 @@ public class UploadMappingFileTask extends BaseTraceVariantTask {
    * Uploads the given File to the backend, so later an obfuscated crash report can be retraced.
    *
    * @param requestFile the file itself as a multipart body.
-   * @param body        the body of he request.
+   * @param body        the body of the request.
    * @param name        the name of the file.
    * @param buildId     the build ID for the file.
    * @throws IOException if any I/O exception occurs.
@@ -73,7 +73,9 @@ public class UploadMappingFileTask extends BaseTraceVariantTask {
     final String token = String.format("Bearer %1$s",
         BuildConfigurationManager.getInstance(project.getRootDir().getAbsolutePath()).getToken());
     final Call<ResponseBody> mappingFileUploadCall =
-        symbolCollectorCommunicator.uploadMappingFile(token, buildId, requestFile, body);
+        symbolCollectorCommunicator
+            .uploadMappingFile(project.getVersion().toString(), token, buildId,
+                requestFile, body);
     logger.info("Starting to upload mapping file {} for variant {}.", name, getVariant().getName());
     final Response<ResponseBody> response = mappingFileUploadCall.execute();
     if (response.isSuccessful()) {
