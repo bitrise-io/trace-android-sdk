@@ -82,12 +82,17 @@ public class Session {
     return resource.build();
   }
 
+  /**
+   * Adds a {@link ResourceEntity} to the current sessions stores resources.
+   *
+   * @param resourceEntity the resource entity to add.
+   */
   public void addResourceEntity(@NonNull final ResourceEntity resourceEntity) {
 
     // do we already have this label in our list - we should update it
     boolean labelAlreadyExists = false;
     int index = -1;
-    for(ResourceEntity entity : this.storedResources) {
+    for (ResourceEntity entity : this.storedResources) {
       if (entity.getLabel().equals(resourceEntity.getLabel())) {
         labelAlreadyExists = true;
         index = this.storedResources.indexOf(entity);
