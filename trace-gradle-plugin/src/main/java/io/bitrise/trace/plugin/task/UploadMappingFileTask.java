@@ -49,24 +49,21 @@ public class UploadMappingFileTask extends BaseTraceVariantTask {
     }
 
     final RequestBody requestFile = RequestBody.create(MediaType.parse("text/plain"), file);
-    final MultipartBody.Part body =
-        MultipartBody.Part.createFormData("mapping file", file.getName(), requestFile);
     final String buildId = GenerateBuildIdTask.readBuildIdFromFile(project.getBuildDir(),
         getVariant().getName());
-    uploadFile(requestFile, body, file.getName(), buildId);
+    uploadFile(requestFile, file.getName(), buildId);
   }
 
   /**
    * Uploads the given File to the backend, so later an obfuscated crash report can be retraced.
    *
    * @param requestFile the file itself as a multipart body.
-   * @param body        the body of the request.
    * @param name        the name of the file.
    * @param buildId     the build ID for the file.
    * @throws IOException if any I/O exception occurs.
    */
   private void uploadFile(@NonNull final RequestBody requestFile,
-                          @NonNull final MultipartBody.Part body, @NonNull final String name,
+                          @NonNull final String name,
                           @NonNull final String buildId) throws IOException {
     final SymbolCollectorCommunicator symbolCollectorCommunicator =
         SymbolCollectorNetworkClient.getCommunicator();
@@ -75,7 +72,7 @@ public class UploadMappingFileTask extends BaseTraceVariantTask {
     final Call<ResponseBody> mappingFileUploadCall =
         symbolCollectorCommunicator
             .uploadMappingFile(project.getVersion().toString(), token, buildId,
-                requestFile, body);
+                requestFile);
     logger.info("Starting to upload mapping file {} for variant {}.", name, getVariant().getName());
     final Response<ResponseBody> response = mappingFileUploadCall.execute();
     if (response.isSuccessful()) {
