@@ -25,6 +25,8 @@ import io.bitrise.trace.network.MetricSender;
 import io.bitrise.trace.network.TraceSender;
 import io.bitrise.trace.scheduler.ExecutorScheduler;
 import io.bitrise.trace.scheduler.ServiceScheduler;
+import io.bitrise.trace.session.ApplicationSessionManager;
+import io.bitrise.trace.session.Session;
 import io.bitrise.trace.utils.log.LogMessageConstants;
 import io.bitrise.trace.utils.log.TraceLog;
 import io.opencensus.proto.metrics.v1.Metric;
@@ -393,6 +395,11 @@ public class DataManager {
       } else if (formattedData.getResourceEntity() != null) {
         Executors.newSingleThreadExecutor()
                  .execute(() -> dataStorage.saveResourceEntity(formattedData.getResourceEntity()));
+
+        final Session session = ApplicationSessionManager.getInstance().getActiveSession();
+        if (session != null) {
+          session.addResourceEntity(formattedData.getResourceEntity());
+        }
       }
     }
   }
@@ -404,12 +411,21 @@ public class DataManager {
    * @param crashData the {@link CrashData} object captured.
    */
   public void handleReceivedCrash(final @NonNull CrashData crashData) {
-    TraceLog.d("handle received crash.");
     final CrashReport crashReport = ExceptionDataFormatter.formatCrashData(crashData);
 
-    final DataStorage traceDataStorage = TraceDataStorage.getInstance(context);
-    final CrashSender crashSender = new CrashSender(crashReport, traceDataStorage);
+    final Session session = ApplicationSessionManager.getInstance().getActiveSession();
+    if (session == null) {
+      TraceLog.d("Data manager: active session was null.");
+      return;
+    }
 
+    final Resource resource = session.getResources();
+    if (resource == null) {
+      TraceLog.d("Data manager: session resources were null.");
+      return;
+    }
+
+    final CrashSender crashSender = new CrashSender(crashReport, resource);
     crashSender.send();
   }
 }
