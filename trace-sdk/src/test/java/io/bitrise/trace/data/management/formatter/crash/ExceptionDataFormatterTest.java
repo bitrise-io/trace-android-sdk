@@ -1,8 +1,6 @@
 package io.bitrise.trace.data.management.formatter.crash;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.when;
 
 import io.bitrise.trace.data.dto.CrashData;
@@ -19,17 +17,21 @@ import org.mockito.Mockito;
  */
 public class ExceptionDataFormatterTest {
 
+  private static final String exceptionClassName = "ExceptionClassName";
+
   @Test
   public void getCrashTitle() {
     final CrashReport.Frame frame = new CrashReport.Frame(
         "package", "function", "file", 123, 0);
 
-    assertEquals("package.function(file:123)", ExceptionDataFormatter.getCrashTitle(frame));
+    assertEquals("ExceptionClassName package.function(file:123)",
+        ExceptionDataFormatter.getCrashTitle(frame, exceptionClassName));
   }
 
   @Test
   public void getCrashTitle_frameIsNull() {
-    assertNull(ExceptionDataFormatter.getCrashTitle(null));
+    assertEquals(exceptionClassName,
+        ExceptionDataFormatter.getCrashTitle(null, exceptionClassName));
   }
 
   @Test
@@ -53,13 +55,12 @@ public class ExceptionDataFormatterTest {
     final Map<Thread, StackTraceElement[]> allStackTraces = new HashMap<>();
     final Thread mockThread = Mockito.mock(Thread.class);
     allStackTraces.put(mockThread, CrashFormatterTestProvider.createStackTraceElements());
-    final Throwable mockThrowable = Mockito.mock(Throwable.class);
+    final RuntimeException runtimeException = new RuntimeException();
+    runtimeException.setStackTrace(CrashFormatterTestProvider.createStackTraceElements());
 
-    final CrashData input = new CrashData(mockThrowable, 0, allStackTraces);
+    final CrashData input = new CrashData(runtimeException, 0, allStackTraces);
 
     when(mockThread.getId()).thenReturn(12345L);
-    when(mockThrowable.getStackTrace())
-        .thenReturn(CrashFormatterTestProvider.createStackTraceElements());
 
     final CrashReport result = ExceptionDataFormatter.formatCrashData(input);
 
@@ -71,7 +72,7 @@ public class ExceptionDataFormatterTest {
 
     assertEquals(expectedThreads, result.getThreads());
     assertEquals("", result.getDescription());
-    assertEquals("class1.method1(file1:1)", result.getTitle());
+    assertEquals("java.lang.RuntimeException class1.method1(file1:1)", result.getTitle());
   }
 
 }

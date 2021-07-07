@@ -36,21 +36,21 @@ public class ExceptionDataFormatter {
           convertStackTraceElementsToCrashReportFrame(entry.getValue())));
     }
 
-    final String title = getCrashTitle(initialThread.getFirstFrame());
+    final String title = getCrashTitle(initialThread.getFirstFrame(),
+        crashData.getThrowable().getClass().getName());
     final String description = crashData.getThrowable().getMessage();
 
-    return new CrashReport(threads,
-        title == null ? "" : title,
+    return new CrashReport(threads, title,
         description == null ? "" : description);
   }
 
   @VisibleForTesting
   @Nullable
-  static String getCrashTitle(final CrashReport.Frame initialFrame) {
+  static String getCrashTitle(final CrashReport.Frame initialFrame, final String crashType) {
     if (initialFrame == null) {
-      return null;
+      return crashType;
     }
-    return initialFrame.getPackageName() + "." + initialFrame.getFunctionName() + "("
+    return crashType + " " + initialFrame.getPackageName() + "." + initialFrame.getFunctionName() + "("
         + initialFrame.getFileName() + ":" + initialFrame.getLineNo() + ")";
   }
 
