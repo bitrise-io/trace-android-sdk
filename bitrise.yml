@@ -1037,6 +1037,182 @@ workflows:
           inputs:
             - api_level: "$AVD_API_LEVEL"
           title: launch_avd_30
+  test_trace-android-sdk_api_29:
+    description: |-
+      test_trace-android-sdk workflow usage for API level 29.
+    before_run: []
+    after_run:
+      - test_trace-android-sdk
+    steps:
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key AVD_API_LEVEL --value 29
+          title: add_avd_api_level
+      - avd-manager@1:
+          inputs:
+            - api_level: "$AVD_API_LEVEL"
+          title: launch_avd_29
+  test_trace-android-sdk_api_28:
+    description: |-
+      test_trace-android-sdk workflow usage for API level 28.
+    before_run: []
+    after_run:
+      - test_trace-android-sdk
+    steps:
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key AVD_API_LEVEL --value 28
+          title: add_avd_api_level
+      - avd-manager@1:
+          inputs:
+            - api_level: "$AVD_API_LEVEL"
+          title: launch_avd_28
+  test_trace-android-sdk_api_27:
+    description: |-
+      test_trace-android-sdk workflow usage for API level 27.
+    before_run: []
+    after_run:
+      - test_trace-android-sdk
+    steps:
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key AVD_API_LEVEL --value 27
+          title: add_avd_api_level
+      - avd-manager@1:
+          inputs:
+            - api_level: "$AVD_API_LEVEL"
+          title: launch_avd_27
+  test_trace-android-sdk_api_26:
+    description: |-
+      test_trace-android-sdk workflow usage for API level 26.
+    before_run: []
+    after_run:
+      - test_trace-android-sdk
+    steps:
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key AVD_API_LEVEL --value 26
+          title: add_avd_api_level
+      - avd-manager@1:
+          inputs:
+            - api_level: "$AVD_API_LEVEL"
+          title: launch_avd_26
+  test_trace-android-sdk_api_25:
+    description: |-
+      test_trace-android-sdk workflow usage for API level 25.
+    before_run: []
+    after_run:
+      - test_trace-android-sdk
+    steps:
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key AVD_API_LEVEL --value 25
+          title: add_avd_api_level
+      - avd-manager@1:
+          inputs:
+            - api_level: "$AVD_API_LEVEL"
+          title: launch_avd_25
+  test_trace-android-sdk_api_24:
+    description: |-
+      test_trace-android-sdk workflow usage for API level 24.
+    before_run: []
+    after_run:
+      - test_trace-android-sdk
+    steps:
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key AVD_API_LEVEL --value 24
+          title: add_avd_api_level
+      - avd-manager@1:
+          inputs:
+            - api_level: "$AVD_API_LEVEL"
+          title: launch_avd_24
+  test_trace-android-sdk_api_23:
+    description: |-
+      test_trace-android-sdk workflow usage for API level 23.
+    before_run: []
+    after_run:
+      - test_trace-android-sdk
+    steps:
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key AVD_API_LEVEL --value 23
+          title: add_avd_api_level
+      - avd-manager@1:
+          inputs:
+            - api_level: "$AVD_API_LEVEL"
+          title: launch_avd_23
+  test_trace-android-sdk_api_22:
+    description: |-
+      test_trace-android-sdk workflow usage for API level 22.
+    before_run: []
+    after_run:
+      - test_trace-android-sdk
+    steps:
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key AVD_API_LEVEL --value 22
+          title: add_avd_api_level
+      - avd-manager@1:
+          inputs:
+            - api_level: "$AVD_API_LEVEL"
+          title: launch_avd_22
   test_trace-android-sdk_api_21:
     description: |-
       test_trace-android-sdk workflow usage for API level 21.
