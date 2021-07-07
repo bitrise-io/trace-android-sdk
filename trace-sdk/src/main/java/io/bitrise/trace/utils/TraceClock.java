@@ -90,6 +90,7 @@ public class TraceClock {
    * Formats a given millisecond into the format expected by the backend for a crash report.
    *
    * @param milliseconds the current timestamp in milliseconds.
+   * @param timeZone the timezone that should be used, probably should be TimeZone.getDefault().
    * @return the String representation of the timestamp for crash reports.
    */
   public static String createCrashRequestFormat(final long milliseconds,
