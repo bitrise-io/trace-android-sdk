@@ -277,8 +277,12 @@ public class ConfigurationManager {
   @NonNull
   public Set<DataCollector> getSingleDataCollectors(@NonNull final Context context) {
     final Set<DataCollector> dataCollectors = new HashSet<>();
-    dataCollectors.add(new ApplicationVersionNameDataCollector(context));
-    dataCollectors.add(new ApplicationVersionCodeDataCollector(context));
+    dataCollectors.add(new ApplicationVersionNameDataCollector(
+        context.getPackageManager(),
+        context.getPackageName()));
+    dataCollectors.add(new ApplicationVersionCodeDataCollector(
+        context.getPackageManager(),
+        context.getPackageName()));
     dataCollectors.add(new DeviceModelDataCollector());
     dataCollectors.add(new DeviceOsVersionDataCollector());
     dataCollectors.add(new DeviceNetworkTypeDataCollector(context));

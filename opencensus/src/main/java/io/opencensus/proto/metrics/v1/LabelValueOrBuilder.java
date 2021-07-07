@@ -5,7 +5,7 @@ package io.opencensus.proto.metrics.v1;
 
 public interface LabelValueOrBuilder extends
     // @@protoc_insertion_point(interface_extends:opencensus.proto.metrics.v1.LabelValue)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.MessageLiteOrBuilder {
 
   /**
    * <pre>
@@ -13,22 +13,19 @@ public interface LabelValueOrBuilder extends
    * </pre>
    *
    * <code>string value = 1;</code>
-   *
    * @return The value.
    */
   java.lang.String getValue();
-
   /**
    * <pre>
    * The value for the label.
    * </pre>
    *
    * <code>string value = 1;</code>
-   *
    * @return The bytes for value.
    */
   com.google.protobuf.ByteString
-  getValueBytes();
+      getValueBytes();
 
   /**
    * <pre>
@@ -37,7 +34,6 @@ public interface LabelValueOrBuilder extends
    * </pre>
    *
    * <code>bool has_value = 2;</code>
-   *
    * @return The hasValue.
    */
   boolean getHasValue();

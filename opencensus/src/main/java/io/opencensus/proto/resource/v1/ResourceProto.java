@@ -4,66 +4,12 @@
 package io.opencensus.proto.resource.v1;
 
 public final class ResourceProto {
-  static final com.google.protobuf.Descriptors.Descriptor
-      internal_static_opencensus_proto_resource_v1_Resource_descriptor;
-  static final
-  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_opencensus_proto_resource_v1_Resource_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-      internal_static_opencensus_proto_resource_v1_Resource_LabelsEntry_descriptor;
-  static final
-  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_opencensus_proto_resource_v1_Resource_LabelsEntry_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.FileDescriptor
-      descriptor;
-
-  static {
-    java.lang.String[] descriptorData = {
-        "\n+opencensus/proto/resource/v1/resource." +
-            "proto\022\034opencensus.proto.resource.v1\"\213\001\n\010" +
-            "Resource\022\014\n\004type\030\001 \001(\t\022B\n\006labels\030\002 \003(\01322" +
-            ".opencensus.proto.resource.v1.Resource.L" +
-            "abelsEntry\032-\n\013LabelsEntry\022\013\n\003key\030\001 \001(\t\022\r" +
-            "\n\005value\030\002 \001(\t:\0028\001B\230\001\n\037io.opencensus.prot" +
-            "o.resource.v1B\rResourceProtoP\001ZEgithub.c" +
-            "om/census-instrumentation/opencensus-pro" +
-            "to/gen-go/resource/v1\352\002\034OpenCensus.Proto" +
-            ".Resource.V1b\006proto3"
-    };
-    descriptor = com.google.protobuf.Descriptors.FileDescriptor
-        .internalBuildGeneratedFileFrom(descriptorData,
-            new com.google.protobuf.Descriptors.FileDescriptor[] {
-            });
-    internal_static_opencensus_proto_resource_v1_Resource_descriptor =
-        getDescriptor().getMessageTypes().get(0);
-    internal_static_opencensus_proto_resource_v1_Resource_fieldAccessorTable = new
-        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_opencensus_proto_resource_v1_Resource_descriptor,
-        new java.lang.String[] {"Type", "Labels",});
-    internal_static_opencensus_proto_resource_v1_Resource_LabelsEntry_descriptor =
-        internal_static_opencensus_proto_resource_v1_Resource_descriptor.getNestedTypes().get(0);
-    internal_static_opencensus_proto_resource_v1_Resource_LabelsEntry_fieldAccessorTable = new
-        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_opencensus_proto_resource_v1_Resource_LabelsEntry_descriptor,
-        new java.lang.String[] {"Key", "Value",});
-  }
-
-  private ResourceProto() {
-  }
-
+  private ResourceProto() {}
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
 
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
-  }
-
-  public static com.google.protobuf.Descriptors.FileDescriptor
-  getDescriptor() {
-    return descriptor;
+  static {
   }
 
   // @@protoc_insertion_point(outer_class_scope)

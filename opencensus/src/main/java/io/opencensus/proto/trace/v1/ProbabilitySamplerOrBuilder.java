@@ -5,7 +5,7 @@ package io.opencensus.proto.trace.v1;
 
 public interface ProbabilitySamplerOrBuilder extends
     // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.ProbabilitySampler)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.MessageLiteOrBuilder {
 
   /**
    * <pre>
@@ -13,7 +13,6 @@ public interface ProbabilitySamplerOrBuilder extends
    * </pre>
    *
    * <code>double samplingProbability = 1;</code>
-   *
    * @return The samplingProbability.
    */
   double getSamplingProbability();

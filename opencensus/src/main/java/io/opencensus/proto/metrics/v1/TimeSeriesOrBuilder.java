@@ -5,7 +5,7 @@ package io.opencensus.proto.metrics.v1;
 
 public interface TimeSeriesOrBuilder extends
     // @@protoc_insertion_point(interface_extends:opencensus.proto.metrics.v1.TimeSeries)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.MessageLiteOrBuilder {
 
   /**
    * <pre>
@@ -16,11 +16,9 @@ public interface TimeSeriesOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.Timestamp start_timestamp = 1;</code>
-   *
    * @return Whether the startTimestamp field is set.
    */
   boolean hasStartTimestamp();
-
   /**
    * <pre>
    * Must be present for cumulative metrics. The time when the cumulative value
@@ -30,22 +28,9 @@ public interface TimeSeriesOrBuilder extends
    * </pre>
    *
    * <code>.google.protobuf.Timestamp start_timestamp = 1;</code>
-   *
    * @return The startTimestamp.
    */
   com.google.protobuf.Timestamp getStartTimestamp();
-
-  /**
-   * <pre>
-   * Must be present for cumulative metrics. The time when the cumulative value
-   * was reset to zero. Exclusive. The cumulative value is over the time interval
-   * (start_timestamp, timestamp]. If not specified, the backend can use the
-   * previous recorded value.
-   * </pre>
-   *
-   * <code>.google.protobuf.Timestamp start_timestamp = 1;</code>
-   */
-  com.google.protobuf.TimestampOrBuilder getStartTimestampOrBuilder();
 
   /**
    * <pre>
@@ -56,9 +41,8 @@ public interface TimeSeriesOrBuilder extends
    *
    * <code>repeated .opencensus.proto.metrics.v1.LabelValue label_values = 2;</code>
    */
-  java.util.List<io.opencensus.proto.metrics.v1.LabelValue>
-  getLabelValuesList();
-
+  java.util.List<io.opencensus.proto.metrics.v1.LabelValue> 
+      getLabelValuesList();
   /**
    * <pre>
    * The set of label values that uniquely identify this timeseries. Applies to
@@ -69,7 +53,6 @@ public interface TimeSeriesOrBuilder extends
    * <code>repeated .opencensus.proto.metrics.v1.LabelValue label_values = 2;</code>
    */
   io.opencensus.proto.metrics.v1.LabelValue getLabelValues(int index);
-
   /**
    * <pre>
    * The set of label values that uniquely identify this timeseries. Applies to
@@ -83,39 +66,14 @@ public interface TimeSeriesOrBuilder extends
 
   /**
    * <pre>
-   * The set of label values that uniquely identify this timeseries. Applies to
-   * all points. The order of label values must match that of label keys in the
-   * metric descriptor.
-   * </pre>
-   *
-   * <code>repeated .opencensus.proto.metrics.v1.LabelValue label_values = 2;</code>
-   */
-  java.util.List<? extends io.opencensus.proto.metrics.v1.LabelValueOrBuilder>
-  getLabelValuesOrBuilderList();
-
-  /**
-   * <pre>
-   * The set of label values that uniquely identify this timeseries. Applies to
-   * all points. The order of label values must match that of label keys in the
-   * metric descriptor.
-   * </pre>
-   *
-   * <code>repeated .opencensus.proto.metrics.v1.LabelValue label_values = 2;</code>
-   */
-  io.opencensus.proto.metrics.v1.LabelValueOrBuilder getLabelValuesOrBuilder(
-      int index);
-
-  /**
-   * <pre>
    * The data points of this timeseries. Point.value type MUST match the
    * MetricDescriptor.type.
    * </pre>
    *
    * <code>repeated .opencensus.proto.metrics.v1.Point points = 3;</code>
    */
-  java.util.List<io.opencensus.proto.metrics.v1.Point>
-  getPointsList();
-
+  java.util.List<io.opencensus.proto.metrics.v1.Point> 
+      getPointsList();
   /**
    * <pre>
    * The data points of this timeseries. Point.value type MUST match the
@@ -125,7 +83,6 @@ public interface TimeSeriesOrBuilder extends
    * <code>repeated .opencensus.proto.metrics.v1.Point points = 3;</code>
    */
   io.opencensus.proto.metrics.v1.Point getPoints(int index);
-
   /**
    * <pre>
    * The data points of this timeseries. Point.value type MUST match the
@@ -135,26 +92,4 @@ public interface TimeSeriesOrBuilder extends
    * <code>repeated .opencensus.proto.metrics.v1.Point points = 3;</code>
    */
   int getPointsCount();
-
-  /**
-   * <pre>
-   * The data points of this timeseries. Point.value type MUST match the
-   * MetricDescriptor.type.
-   * </pre>
-   *
-   * <code>repeated .opencensus.proto.metrics.v1.Point points = 3;</code>
-   */
-  java.util.List<? extends io.opencensus.proto.metrics.v1.PointOrBuilder>
-  getPointsOrBuilderList();
-
-  /**
-   * <pre>
-   * The data points of this timeseries. Point.value type MUST match the
-   * MetricDescriptor.type.
-   * </pre>
-   *
-   * <code>repeated .opencensus.proto.metrics.v1.Point points = 3;</code>
-   */
-  io.opencensus.proto.metrics.v1.PointOrBuilder getPointsOrBuilder(
-      int index);
 }
