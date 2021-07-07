@@ -1,10 +1,7 @@
 package io.bitrise.trace.network;
 
-import static io.bitrise.trace.utils.log.TraceLog.TAG;
-
 import android.os.Build;
 import android.os.LocaleList;
-import android.util.Log;
 import androidx.annotation.NonNull;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;

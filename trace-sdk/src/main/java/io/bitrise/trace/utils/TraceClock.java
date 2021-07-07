@@ -5,8 +5,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 import com.google.protobuf.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
