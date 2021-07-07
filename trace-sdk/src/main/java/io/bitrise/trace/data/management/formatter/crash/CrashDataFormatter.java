@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Formats {@link CrashData} objects into {@link CrashReport} objects.
  */
-public class ExceptionDataFormatter {
+public class CrashDataFormatter {
 
   /**
    * Formats a {@link CrashData} object into a {@link CrashReport} object.

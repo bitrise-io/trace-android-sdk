@@ -13,9 +13,9 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 /**
- * Unit tests for {@link ExceptionDataFormatter}.
+ * Unit tests for {@link CrashDataFormatter}.
  */
-public class ExceptionDataFormatterTest {
+public class CrashDataFormatterTest {
 
   private static final String exceptionClassName = "ExceptionClassName";
 
@@ -25,18 +25,18 @@ public class ExceptionDataFormatterTest {
         "package", "function", "file", 123, 0);
 
     assertEquals("ExceptionClassName package.function(file:123)",
-        ExceptionDataFormatter.getCrashTitle(frame, exceptionClassName));
+        CrashDataFormatter.getCrashTitle(frame, exceptionClassName));
   }
 
   @Test
   public void getCrashTitle_frameIsNull() {
     assertEquals(exceptionClassName,
-        ExceptionDataFormatter.getCrashTitle(null, exceptionClassName));
+        CrashDataFormatter.getCrashTitle(null, exceptionClassName));
   }
 
   @Test
   public void convertStackTraceElementsToCrashReportFrame() {
-    final List<CrashReport.Frame> frames = ExceptionDataFormatter
+    final List<CrashReport.Frame> frames = CrashDataFormatter
         .convertStackTraceElementsToCrashReportFrame(
             CrashFormatterTestProvider.createStackTraceElements());
     assertEquals(CrashFormatterTestProvider.createStackTraceFrames(), frames);
@@ -44,7 +44,7 @@ public class ExceptionDataFormatterTest {
 
   @Test
   public void convertStackTraceElementsToCrashReportFrame_withNulls() {
-    final List<CrashReport.Frame> frames = ExceptionDataFormatter
+    final List<CrashReport.Frame> frames = CrashDataFormatter
         .convertStackTraceElementsToCrashReportFrame(
             CrashFormatterTestProvider.createStackTraceElementsWithNulls());
     assertEquals(CrashFormatterTestProvider.createStackTraceFramesWithNulls(), frames);
@@ -62,7 +62,7 @@ public class ExceptionDataFormatterTest {
 
     when(mockThread.getId()).thenReturn(12345L);
 
-    final CrashReport result = ExceptionDataFormatter.formatCrashData(input);
+    final CrashReport result = CrashDataFormatter.formatCrashData(input);
 
     final List<CrashReport.Thread> expectedThreads = new ArrayList<>();
     expectedThreads.add(new CrashReport.Thread(0L, true,

@@ -13,7 +13,7 @@ import io.bitrise.trace.data.dto.CrashData;
 import io.bitrise.trace.data.dto.CrashReport;
 import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.dto.FormattedData;
-import io.bitrise.trace.data.management.formatter.crash.ExceptionDataFormatter;
+import io.bitrise.trace.data.management.formatter.crash.CrashDataFormatter;
 import io.bitrise.trace.data.storage.DataStorage;
 import io.bitrise.trace.data.storage.TraceDataStorage;
 import io.bitrise.trace.data.trace.ApplicationTraceManager;
@@ -411,7 +411,7 @@ public class DataManager {
    * @param crashData the {@link CrashData} object captured.
    */
   public void handleReceivedCrash(final @NonNull CrashData crashData) {
-    final CrashReport crashReport = ExceptionDataFormatter.formatCrashData(crashData);
+    final CrashReport crashReport = CrashDataFormatter.formatCrashData(crashData);
 
     final Session session = ApplicationSessionManager.getInstance().getActiveSession();
     if (session == null) {
