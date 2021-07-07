@@ -12,14 +12,14 @@ import io.bitrise.trace.utils.log.TraceLog;
 /**
  * Listens for any unhandled exceptions that get thrown.
  */
-public class TraceExceptionDataListener extends BaseDataListener
+public class TraceCrashDataListener extends BaseDataListener
     implements Thread.UncaughtExceptionHandler {
 
   @VisibleForTesting
   @Nullable
   Thread.UncaughtExceptionHandler previousHandler;
 
-  public TraceExceptionDataListener(@NonNull final Context context) {
+  public TraceCrashDataListener(@NonNull final Context context) {
     this.dataManager = DataManager.getInstance(context);
   }
 

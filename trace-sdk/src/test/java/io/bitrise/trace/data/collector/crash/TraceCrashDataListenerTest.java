@@ -14,20 +14,20 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 /**
- * Unit tests for {@link TraceExceptionDataListener}.
+ * Unit tests for {@link TraceCrashDataListener}.
  */
-public class TraceExceptionDataListenerTest {
+public class TraceCrashDataListenerTest {
 
   final Thread mockThread = Mockito.mock(Thread.class);
   final Throwable throwable = new Throwable();
   final DataManager mockDataManager = Mockito.mock(DataManager.class);
   final Context mockContext = Mockito.mock(Context.class);
-  final TraceExceptionDataListener listener = new TraceExceptionDataListener(mockContext);
+  final TraceCrashDataListener listener = new TraceCrashDataListener(mockContext);
 
 
   @Test
   public void uncaughtException_withPreviousHandler() {
-    final TraceExceptionDataListener mockListener = Mockito.mock(TraceExceptionDataListener.class,
+    final TraceCrashDataListener mockListener = Mockito.mock(TraceCrashDataListener.class,
         Mockito.CALLS_REAL_METHODS);
 
     final Thread.UncaughtExceptionHandler previousHandler =
@@ -45,7 +45,7 @@ public class TraceExceptionDataListenerTest {
 
   @Test
   public void uncaughtException_noPreviousHandler() {
-    final TraceExceptionDataListener mockListener = Mockito.mock(TraceExceptionDataListener.class,
+    final TraceCrashDataListener mockListener = Mockito.mock(TraceCrashDataListener.class,
         Mockito.CALLS_REAL_METHODS);
 
     mockListener.setDataManager(mockDataManager);
@@ -59,7 +59,7 @@ public class TraceExceptionDataListenerTest {
 
   @Test
   public void startAndStopCollecting() {
-    final TraceExceptionDataListener mockListener = Mockito.mock(TraceExceptionDataListener.class,
+    final TraceCrashDataListener mockListener = Mockito.mock(TraceCrashDataListener.class,
         Mockito.CALLS_REAL_METHODS);
 
     assertFalse(mockListener.isActive());

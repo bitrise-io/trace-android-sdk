@@ -6,14 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
-import io.bitrise.trace.BuildConfig;
-import io.bitrise.trace.configuration.ConfigurationManager;
-import io.bitrise.trace.data.collector.crash.TraceExceptionDataListener;
-import io.bitrise.trace.data.dto.CrashData;
 import io.bitrise.trace.session.ApplicationSessionManager;
 import io.bitrise.trace.session.SessionManager;
 import io.bitrise.trace.testapp.R;
-import java.util.HashMap;
 import okhttp3.OkHttpClient;
 
 /**

@@ -8,7 +8,7 @@ import io.bitrise.trace.configuration.ConfigurationManager;
 import io.bitrise.trace.data.collector.DataCollector;
 import io.bitrise.trace.data.collector.DataListener;
 import io.bitrise.trace.data.collector.DataSource;
-import io.bitrise.trace.data.collector.crash.TraceExceptionDataListener;
+import io.bitrise.trace.data.collector.crash.TraceCrashDataListener;
 import io.bitrise.trace.data.dto.CrashData;
 import io.bitrise.trace.data.dto.CrashReport;
 import io.bitrise.trace.data.dto.Data;
@@ -405,7 +405,7 @@ public class DataManager {
   }
 
   /**
-   * Handles a received {@link CrashData} from the {@link TraceExceptionDataListener} and ensures
+   * Handles a received {@link CrashData} from the {@link TraceCrashDataListener} and ensures
    * it's sent to the server asap.
    *
    * @param crashData the {@link CrashData} object captured.
