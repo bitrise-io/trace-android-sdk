@@ -65,7 +65,7 @@ public class Session {
   public Resource getResources() {
     // not a valid set of resources, we should fail
     if (storedResources.size() == 0) {
-      TraceLog.d("session manager - stored resources size is 0");
+      TraceLog.d("session manager: stored resources size is 0");
       return null;
     }
 
