@@ -23,7 +23,15 @@ public class TraceConverter {
   @TypeConverter
   public static Trace toTrace(@NonNull final String value) {
     try {
-      return gson.fromJson(value, Trace.class);
+
+      final Trace trace = gson.fromJson(value, Trace.class);
+
+      if (trace != null) {
+        return trace;
+      } else {
+        return new Trace();
+      }
+
     } catch (Exception e) {
       TraceLog.w(e);
       TraceLog.d(String.format(LogMessageConstants.CONVERTER_FAILED_WITH_VALUE, value));

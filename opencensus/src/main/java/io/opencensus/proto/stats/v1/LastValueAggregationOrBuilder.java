@@ -5,5 +5,5 @@ package io.opencensus.proto.stats.v1;
 
 public interface LastValueAggregationOrBuilder extends
     // @@protoc_insertion_point(interface_extends:opencensus.proto.stats.v1.LastValueAggregation)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.MessageLiteOrBuilder {
 }

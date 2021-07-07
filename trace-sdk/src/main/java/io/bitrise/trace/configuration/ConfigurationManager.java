@@ -258,17 +258,31 @@ public class ConfigurationManager {
    * @return the DataCollectors.
    */
   @NonNull
-  public Set<DataCollector> getDataCollectors(@NonNull final Context context) {
+  public Set<DataCollector> getRecurringDataCollectors(@NonNull final Context context) {
     final Set<DataCollector> dataCollectors = new HashSet<>();
     dataCollectors.add(new ApplicationUsedMemoryDataCollector(context));
     dataCollectors.add(new SystemMemoryDataCollector(context));
-
     dataCollectors.add(new SystemCpuUsageDataCollector());
     dataCollectors.add(new ApplicationCpuUsageDataCollector());
+    return dataCollectors;
+  }
 
-    dataCollectors.add(new ApplicationVersionNameDataCollector(context));
-    dataCollectors.add(new ApplicationVersionCodeDataCollector(context));
-
+  /**
+   * Creates a new set of {@link DataCollector}s that only need to collect their data once during
+   * the lifecycle of the application e.g. Application version codes.
+   *
+   * @param context the Android Context.
+   * @return the DataCollectors.
+   */
+  @NonNull
+  public Set<DataCollector> getSingleDataCollectors(@NonNull final Context context) {
+    final Set<DataCollector> dataCollectors = new HashSet<>();
+    dataCollectors.add(new ApplicationVersionNameDataCollector(
+        context.getPackageManager(),
+        context.getPackageName()));
+    dataCollectors.add(new ApplicationVersionCodeDataCollector(
+        context.getPackageManager(),
+        context.getPackageName()));
     dataCollectors.add(new DeviceModelDataCollector());
     dataCollectors.add(new DeviceOsVersionDataCollector());
     dataCollectors.add(new DeviceNetworkTypeDataCollector(context));

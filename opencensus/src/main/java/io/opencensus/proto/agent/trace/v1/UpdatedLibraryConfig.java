@@ -6,236 +6,15 @@ package io.opencensus.proto.agent.trace.v1;
 /**
  * Protobuf type {@code opencensus.proto.agent.trace.v1.UpdatedLibraryConfig}
  */
-public final class UpdatedLibraryConfig extends
-    com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:opencensus.proto.agent.trace.v1
-    // .UpdatedLibraryConfig)
+public  final class UpdatedLibraryConfig extends
+    com.google.protobuf.GeneratedMessageLite<
+        UpdatedLibraryConfig, UpdatedLibraryConfig.Builder> implements
+    // @@protoc_insertion_point(message_implements:opencensus.proto.agent.trace.v1.UpdatedLibraryConfig)
     UpdatedLibraryConfigOrBuilder {
-  public static final int NODE_FIELD_NUMBER = 1;
-  public static final int CONFIG_FIELD_NUMBER = 2;
-  private static final long serialVersionUID = 0L;
-  // @@protoc_insertion_point(class_scope:opencensus.proto.agent.trace.v1.UpdatedLibraryConfig)
-  private static final io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<UpdatedLibraryConfig>
-      PARSER = new com.google.protobuf.AbstractParser<UpdatedLibraryConfig>() {
-    @java.lang.Override
-    public UpdatedLibraryConfig parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new UpdatedLibraryConfig(input, extensionRegistry);
-    }
-  };
-
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig();
-  }
-
-  private io.opencensus.proto.agent.common.v1.Node node_;
-  private io.opencensus.proto.trace.v1.TraceConfig config_;
-  private byte memoizedIsInitialized = -1;
-
-  // Use UpdatedLibraryConfig.newBuilder() to construct.
-  private UpdatedLibraryConfig(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
   private UpdatedLibraryConfig() {
   }
-
-  private UpdatedLibraryConfig(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            io.opencensus.proto.agent.common.v1.Node.Builder subBuilder = null;
-            if (node_ != null) {
-              subBuilder = node_.toBuilder();
-            }
-            node_ = input
-                .readMessage(io.opencensus.proto.agent.common.v1.Node.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(node_);
-              node_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 18: {
-            io.opencensus.proto.trace.v1.TraceConfig.Builder subBuilder = null;
-            if (config_ != null) {
-              subBuilder = config_.toBuilder();
-            }
-            config_ = input
-                .readMessage(io.opencensus.proto.trace.v1.TraceConfig.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(config_);
-              config_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
-
-  public static final com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
-    return io.opencensus.proto.agent.trace.v1.TraceServiceProto.internal_static_opencensus_proto_agent_trace_v1_UpdatedLibraryConfig_descriptor;
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(
-      java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseDelimitedFrom(
-      java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(
-      io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
-  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public static com.google.protobuf.Parser<UpdatedLibraryConfig> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new UpdatedLibraryConfig();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
-    return io.opencensus.proto.agent.trace.v1.TraceServiceProto.internal_static_opencensus_proto_agent_trace_v1_UpdatedLibraryConfig_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig.class,
-            io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig.Builder.class);
-  }
-
+  public static final int NODE_FIELD_NUMBER = 1;
+  private io.opencensus.proto.agent.common.v1.Node node_;
   /**
    * <pre>
    * This field is ignored when the RPC is used to configure only one Application.
@@ -244,14 +23,11 @@ public final class UpdatedLibraryConfig extends
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
-   *
-   * @return Whether the node field is set.
    */
   @java.lang.Override
   public boolean hasNode() {
     return node_ != null;
   }
-
   /**
    * <pre>
    * This field is ignored when the RPC is used to configure only one Application.
@@ -260,14 +36,11 @@ public final class UpdatedLibraryConfig extends
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
-   *
-   * @return The node.
    */
   @java.lang.Override
   public io.opencensus.proto.agent.common.v1.Node getNode() {
     return node_ == null ? io.opencensus.proto.agent.common.v1.Node.getDefaultInstance() : node_;
   }
-
   /**
    * <pre>
    * This field is ignored when the RPC is used to configure only one Application.
@@ -277,40 +50,69 @@ public final class UpdatedLibraryConfig extends
    *
    * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
    */
-  @java.lang.Override
-  public io.opencensus.proto.agent.common.v1.NodeOrBuilder getNodeOrBuilder() {
-    return getNode();
+  private void setNode(io.opencensus.proto.agent.common.v1.Node value) {
+    value.getClass();
+  node_ = value;
+    
+    }
+  /**
+   * <pre>
+   * This field is ignored when the RPC is used to configure only one Application.
+   * This is required only in the first message on the stream or if the
+   * previous sent UpdatedLibraryConfig message has a different Node.
+   * </pre>
+   *
+   * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeNode(io.opencensus.proto.agent.common.v1.Node value) {
+    value.getClass();
+  if (node_ != null &&
+        node_ != io.opencensus.proto.agent.common.v1.Node.getDefaultInstance()) {
+      node_ =
+        io.opencensus.proto.agent.common.v1.Node.newBuilder(node_).mergeFrom(value).buildPartial();
+    } else {
+      node_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * This field is ignored when the RPC is used to configure only one Application.
+   * This is required only in the first message on the stream or if the
+   * previous sent UpdatedLibraryConfig message has a different Node.
+   * </pre>
+   *
+   * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
+   */
+  private void clearNode() {  node_ = null;
+    
   }
 
+  public static final int CONFIG_FIELD_NUMBER = 2;
+  private io.opencensus.proto.trace.v1.TraceConfig config_;
   /**
    * <pre>
    * Requested updated configuration.
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TraceConfig config = 2;</code>
-   *
-   * @return Whether the config field is set.
    */
   @java.lang.Override
   public boolean hasConfig() {
     return config_ != null;
   }
-
   /**
    * <pre>
    * Requested updated configuration.
    * </pre>
    *
    * <code>.opencensus.proto.trace.v1.TraceConfig config = 2;</code>
-   *
-   * @return The config.
    */
   @java.lang.Override
   public io.opencensus.proto.trace.v1.TraceConfig getConfig() {
-    return config_ == null ? io.opencensus.proto.trace.v1.TraceConfig.getDefaultInstance() :
-        config_;
+    return config_ == null ? io.opencensus.proto.trace.v1.TraceConfig.getDefaultInstance() : config_;
   }
-
   /**
    * <pre>
    * Requested updated configuration.
@@ -318,333 +120,135 @@ public final class UpdatedLibraryConfig extends
    *
    * <code>.opencensus.proto.trace.v1.TraceConfig config = 2;</code>
    */
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.TraceConfigOrBuilder getConfigOrBuilder() {
-    return getConfig();
+  private void setConfig(io.opencensus.proto.trace.v1.TraceConfig value) {
+    value.getClass();
+  config_ = value;
+    
+    }
+  /**
+   * <pre>
+   * Requested updated configuration.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.TraceConfig config = 2;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeConfig(io.opencensus.proto.trace.v1.TraceConfig value) {
+    value.getClass();
+  if (config_ != null &&
+        config_ != io.opencensus.proto.trace.v1.TraceConfig.getDefaultInstance()) {
+      config_ =
+        io.opencensus.proto.trace.v1.TraceConfig.newBuilder(config_).mergeFrom(value).buildPartial();
+    } else {
+      config_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * Requested updated configuration.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.TraceConfig config = 2;</code>
+   */
+  private void clearConfig() {  config_ = null;
+    
   }
 
-  @java.lang.Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) {
-      return true;
-    }
-    if (isInitialized == 0) {
-      return false;
-    }
-
-    memoizedIsInitialized = 1;
-    return true;
+  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
   }
-
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
+  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(java.io.InputStream input)
       throws java.io.IOException {
-    if (node_ != null) {
-      output.writeMessage(1, getNode());
-    }
-    if (config_ != null) {
-      output.writeMessage(2, getConfig());
-    }
-    unknownFields.writeTo(output);
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
   }
 
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) {
-      return size;
-    }
-
-    size = 0;
-    if (node_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getNode());
-    }
-    if (config_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getConfig());
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
+  public static Builder newBuilder() {
+    return (Builder) DEFAULT_INSTANCE.createBuilder();
   }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-      return true;
-    }
-    if (!(obj instanceof io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig)) {
-      return super.equals(obj);
-    }
-    io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig other =
-        (io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig) obj;
-
-    if (hasNode() != other.hasNode()) {
-      return false;
-    }
-    if (hasNode()) {
-      if (!getNode()
-          .equals(other.getNode())) {
-        return false;
-      }
-    }
-    if (hasConfig() != other.hasConfig()) {
-      return false;
-    }
-    if (hasConfig()) {
-      if (!getConfig()
-          .equals(other.getConfig())) {
-        return false;
-      }
-    }
-    return unknownFields.equals(other.unknownFields);
-  }
-
-  @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasNode()) {
-      hash = (37 * hash) + NODE_FIELD_NUMBER;
-      hash = (53 * hash) + getNode().hashCode();
-    }
-    if (hasConfig()) {
-      hash = (37 * hash) + CONFIG_FIELD_NUMBER;
-      hash = (53 * hash) + getConfig().hashCode();
-    }
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
-
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<UpdatedLibraryConfig> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
+  public static Builder newBuilder(io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig prototype) {
+    return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
   }
 
   /**
    * Protobuf type {@code opencensus.proto.agent.trace.v1.UpdatedLibraryConfig}
    */
   public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:opencensus.proto.agent.trace.v1
-      // .UpdatedLibraryConfig)
+      com.google.protobuf.GeneratedMessageLite.Builder<
+        io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig, Builder> implements
+      // @@protoc_insertion_point(builder_implements:opencensus.proto.agent.trace.v1.UpdatedLibraryConfig)
       io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfigOrBuilder {
-    private io.opencensus.proto.agent.common.v1.Node node_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.agent.common.v1.Node,
-        io.opencensus.proto.agent.common.v1.Node.Builder,
-        io.opencensus.proto.agent.common.v1.NodeOrBuilder>
-        nodeBuilder_;
-    private io.opencensus.proto.trace.v1.TraceConfig config_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.TraceConfig,
-        io.opencensus.proto.trace.v1.TraceConfig.Builder,
-        io.opencensus.proto.trace.v1.TraceConfigOrBuilder>
-        configBuilder_;
-
     // Construct using io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+      super(DEFAULT_INSTANCE);
     }
 
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.agent.trace.v1.TraceServiceProto.internal_static_opencensus_proto_agent_trace_v1_UpdatedLibraryConfig_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.agent.trace.v1.TraceServiceProto.internal_static_opencensus_proto_agent_trace_v1_UpdatedLibraryConfig_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig.class,
-              io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig.Builder.class);
-    }
-
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-          .alwaysUseFieldBuilders) {
-      }
-    }
-
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      if (nodeBuilder_ == null) {
-        node_ = null;
-      } else {
-        node_ = null;
-        nodeBuilder_ = null;
-      }
-      if (configBuilder_ == null) {
-        config_ = null;
-      } else {
-        config_ = null;
-        configBuilder_ = null;
-      }
-      return this;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return io.opencensus.proto.agent.trace.v1.TraceServiceProto.internal_static_opencensus_proto_agent_trace_v1_UpdatedLibraryConfig_descriptor;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig getDefaultInstanceForType() {
-      return io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig.getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig build() {
-      io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig buildPartial() {
-      io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig result =
-          new io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig(this);
-      if (nodeBuilder_ == null) {
-        result.node_ = node_;
-      } else {
-        result.node_ = nodeBuilder_.build();
-      }
-      if (configBuilder_ == null) {
-        result.config_ = config_;
-      } else {
-        result.config_ = configBuilder_.build();
-      }
-      onBuilt();
-      return result;
-    }
-
-    @java.lang.Override
-    public Builder clone() {
-      return super.clone();
-    }
-
-    @java.lang.Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.setField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-
-    @java.lang.Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-
-    @java.lang.Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-
-    @java.lang.Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig) {
-        return mergeFrom((io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig other) {
-      if (other == io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig.getDefaultInstance()) {
-        return this;
-      }
-      if (other.hasNode()) {
-        mergeNode(other.getNode());
-      }
-      if (other.hasConfig()) {
-        mergeConfig(other.getConfig());
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage =
-            (io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
-      return this;
-    }
 
     /**
      * <pre>
@@ -654,13 +258,11 @@ public final class UpdatedLibraryConfig extends
      * </pre>
      *
      * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
-     *
-     * @return Whether the node field is set.
      */
+    @java.lang.Override
     public boolean hasNode() {
-      return nodeBuilder_ != null || node_ != null;
+      return instance.hasNode();
     }
-
     /**
      * <pre>
      * This field is ignored when the RPC is used to configure only one Application.
@@ -669,18 +271,11 @@ public final class UpdatedLibraryConfig extends
      * </pre>
      *
      * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
-     *
-     * @return The node.
      */
+    @java.lang.Override
     public io.opencensus.proto.agent.common.v1.Node getNode() {
-      if (nodeBuilder_ == null) {
-        return node_ == null ? io.opencensus.proto.agent.common.v1.Node.getDefaultInstance() :
-            node_;
-      } else {
-        return nodeBuilder_.getMessage();
-      }
+      return instance.getNode();
     }
-
     /**
      * <pre>
      * This field is ignored when the RPC is used to configure only one Application.
@@ -691,19 +286,10 @@ public final class UpdatedLibraryConfig extends
      * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
      */
     public Builder setNode(io.opencensus.proto.agent.common.v1.Node value) {
-      if (nodeBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        node_ = value;
-        onChanged();
-      } else {
-        nodeBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setNode(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * This field is ignored when the RPC is used to configure only one Application.
@@ -715,16 +301,10 @@ public final class UpdatedLibraryConfig extends
      */
     public Builder setNode(
         io.opencensus.proto.agent.common.v1.Node.Builder builderForValue) {
-      if (nodeBuilder_ == null) {
-        node_ = builderForValue.build();
-        onChanged();
-      } else {
-        nodeBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setNode(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * This field is ignored when the RPC is used to configure only one Application.
@@ -735,22 +315,10 @@ public final class UpdatedLibraryConfig extends
      * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
      */
     public Builder mergeNode(io.opencensus.proto.agent.common.v1.Node value) {
-      if (nodeBuilder_ == null) {
-        if (node_ != null) {
-          node_ =
-              io.opencensus.proto.agent.common.v1.Node.newBuilder(node_).mergeFrom(value)
-                                                      .buildPartial();
-        } else {
-          node_ = value;
-        }
-        onChanged();
-      } else {
-        nodeBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeNode(value);
       return this;
     }
-
     /**
      * <pre>
      * This field is ignored when the RPC is used to configure only one Application.
@@ -760,76 +328,9 @@ public final class UpdatedLibraryConfig extends
      *
      * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
      */
-    public Builder clearNode() {
-      if (nodeBuilder_ == null) {
-        node_ = null;
-        onChanged();
-      } else {
-        node_ = null;
-        nodeBuilder_ = null;
-      }
-
+    public Builder clearNode() {  copyOnWrite();
+      instance.clearNode();
       return this;
-    }
-
-    /**
-     * <pre>
-     * This field is ignored when the RPC is used to configure only one Application.
-     * This is required only in the first message on the stream or if the
-     * previous sent UpdatedLibraryConfig message has a different Node.
-     * </pre>
-     *
-     * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
-     */
-    public io.opencensus.proto.agent.common.v1.Node.Builder getNodeBuilder() {
-
-      onChanged();
-      return getNodeFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * This field is ignored when the RPC is used to configure only one Application.
-     * This is required only in the first message on the stream or if the
-     * previous sent UpdatedLibraryConfig message has a different Node.
-     * </pre>
-     *
-     * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
-     */
-    public io.opencensus.proto.agent.common.v1.NodeOrBuilder getNodeOrBuilder() {
-      if (nodeBuilder_ != null) {
-        return nodeBuilder_.getMessageOrBuilder();
-      } else {
-        return node_ == null ?
-            io.opencensus.proto.agent.common.v1.Node.getDefaultInstance() : node_;
-      }
-    }
-
-    /**
-     * <pre>
-     * This field is ignored when the RPC is used to configure only one Application.
-     * This is required only in the first message on the stream or if the
-     * previous sent UpdatedLibraryConfig message has a different Node.
-     * </pre>
-     *
-     * <code>.opencensus.proto.agent.common.v1.Node node = 1;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.agent.common.v1.Node,
-        io.opencensus.proto.agent.common.v1.Node.Builder,
-        io.opencensus.proto.agent.common.v1.NodeOrBuilder>
-    getNodeFieldBuilder() {
-      if (nodeBuilder_ == null) {
-        nodeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.agent.common.v1.Node,
-            io.opencensus.proto.agent.common.v1.Node.Builder,
-            io.opencensus.proto.agent.common.v1.NodeOrBuilder>(
-            getNode(),
-            getParentForChildren(),
-            isClean());
-        node_ = null;
-      }
-      return nodeBuilder_;
     }
 
     /**
@@ -838,31 +339,22 @@ public final class UpdatedLibraryConfig extends
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.TraceConfig config = 2;</code>
-     *
-     * @return Whether the config field is set.
      */
+    @java.lang.Override
     public boolean hasConfig() {
-      return configBuilder_ != null || config_ != null;
+      return instance.hasConfig();
     }
-
     /**
      * <pre>
      * Requested updated configuration.
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.TraceConfig config = 2;</code>
-     *
-     * @return The config.
      */
+    @java.lang.Override
     public io.opencensus.proto.trace.v1.TraceConfig getConfig() {
-      if (configBuilder_ == null) {
-        return config_ == null ? io.opencensus.proto.trace.v1.TraceConfig.getDefaultInstance() :
-            config_;
-      } else {
-        return configBuilder_.getMessage();
-      }
+      return instance.getConfig();
     }
-
     /**
      * <pre>
      * Requested updated configuration.
@@ -871,19 +363,10 @@ public final class UpdatedLibraryConfig extends
      * <code>.opencensus.proto.trace.v1.TraceConfig config = 2;</code>
      */
     public Builder setConfig(io.opencensus.proto.trace.v1.TraceConfig value) {
-      if (configBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        config_ = value;
-        onChanged();
-      } else {
-        configBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setConfig(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * Requested updated configuration.
@@ -893,16 +376,10 @@ public final class UpdatedLibraryConfig extends
      */
     public Builder setConfig(
         io.opencensus.proto.trace.v1.TraceConfig.Builder builderForValue) {
-      if (configBuilder_ == null) {
-        config_ = builderForValue.build();
-        onChanged();
-      } else {
-        configBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setConfig(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * Requested updated configuration.
@@ -911,22 +388,10 @@ public final class UpdatedLibraryConfig extends
      * <code>.opencensus.proto.trace.v1.TraceConfig config = 2;</code>
      */
     public Builder mergeConfig(io.opencensus.proto.trace.v1.TraceConfig value) {
-      if (configBuilder_ == null) {
-        if (config_ != null) {
-          config_ =
-              io.opencensus.proto.trace.v1.TraceConfig.newBuilder(config_).mergeFrom(value)
-                                                      .buildPartial();
-        } else {
-          config_ = value;
-        }
-        onChanged();
-      } else {
-        configBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeConfig(value);
       return this;
     }
-
     /**
      * <pre>
      * Requested updated configuration.
@@ -934,87 +399,83 @@ public final class UpdatedLibraryConfig extends
      *
      * <code>.opencensus.proto.trace.v1.TraceConfig config = 2;</code>
      */
-    public Builder clearConfig() {
-      if (configBuilder_ == null) {
-        config_ = null;
-        onChanged();
-      } else {
-        config_ = null;
-        configBuilder_ = null;
-      }
-
+    public Builder clearConfig() {  copyOnWrite();
+      instance.clearConfig();
       return this;
     }
-
-    /**
-     * <pre>
-     * Requested updated configuration.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.TraceConfig config = 2;</code>
-     */
-    public io.opencensus.proto.trace.v1.TraceConfig.Builder getConfigBuilder() {
-
-      onChanged();
-      return getConfigFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * Requested updated configuration.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.TraceConfig config = 2;</code>
-     */
-    public io.opencensus.proto.trace.v1.TraceConfigOrBuilder getConfigOrBuilder() {
-      if (configBuilder_ != null) {
-        return configBuilder_.getMessageOrBuilder();
-      } else {
-        return config_ == null ?
-            io.opencensus.proto.trace.v1.TraceConfig.getDefaultInstance() : config_;
-      }
-    }
-
-    /**
-     * <pre>
-     * Requested updated configuration.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.TraceConfig config = 2;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.TraceConfig,
-        io.opencensus.proto.trace.v1.TraceConfig.Builder,
-        io.opencensus.proto.trace.v1.TraceConfigOrBuilder>
-    getConfigFieldBuilder() {
-      if (configBuilder_ == null) {
-        configBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.trace.v1.TraceConfig,
-            io.opencensus.proto.trace.v1.TraceConfig.Builder,
-            io.opencensus.proto.trace.v1.TraceConfigOrBuilder>(
-            getConfig(),
-            getParentForChildren(),
-            isClean());
-        config_ = null;
-      }
-      return configBuilder_;
-    }
-
-    @java.lang.Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
-    }
-
-    @java.lang.Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
-    }
-
 
     // @@protoc_insertion_point(builder_scope:opencensus.proto.agent.trace.v1.UpdatedLibraryConfig)
   }
+  @java.lang.Override
+  @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+  protected final java.lang.Object dynamicMethod(
+      com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+      java.lang.Object arg0, java.lang.Object arg1) {
+    switch (method) {
+      case NEW_MUTABLE_INSTANCE: {
+        return new io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig();
+      }
+      case NEW_BUILDER: {
+        return new Builder();
+      }
+      case BUILD_MESSAGE_INFO: {
+          java.lang.Object[] objects = new java.lang.Object[] {
+            "node_",
+            "config_",
+          };
+          java.lang.String info =
+              "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001\t\u0002\t";
+          return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+      }
+      // fall through
+      case GET_DEFAULT_INSTANCE: {
+        return DEFAULT_INSTANCE;
+      }
+      case GET_PARSER: {
+        com.google.protobuf.Parser<io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig> parser = PARSER;
+        if (parser == null) {
+          synchronized (io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig.class) {
+            parser = PARSER;
+            if (parser == null) {
+              parser =
+                  new DefaultInstanceBasedParser<io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig>(
+                      DEFAULT_INSTANCE);
+              PARSER = parser;
+            }
+          }
+        }
+        return parser;
+    }
+    case GET_MEMOIZED_IS_INITIALIZED: {
+      return (byte) 1;
+    }
+    case SET_MEMOIZED_IS_INITIALIZED: {
+      return null;
+    }
+    }
+    throw new UnsupportedOperationException();
+  }
 
+
+  // @@protoc_insertion_point(class_scope:opencensus.proto.agent.trace.v1.UpdatedLibraryConfig)
+  private static final io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig DEFAULT_INSTANCE;
+  static {
+    UpdatedLibraryConfig defaultInstance = new UpdatedLibraryConfig();
+    // New instances are implicitly immutable so no need to make
+    // immutable.
+    DEFAULT_INSTANCE = defaultInstance;
+    com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+      UpdatedLibraryConfig.class, defaultInstance);
+  }
+
+  public static io.opencensus.proto.agent.trace.v1.UpdatedLibraryConfig getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  private static volatile com.google.protobuf.Parser<UpdatedLibraryConfig> PARSER;
+
+  public static com.google.protobuf.Parser<UpdatedLibraryConfig> parser() {
+    return DEFAULT_INSTANCE.getParserForType();
+  }
 }
 

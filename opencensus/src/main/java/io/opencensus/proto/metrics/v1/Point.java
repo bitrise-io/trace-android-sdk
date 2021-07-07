@@ -7,650 +7,29 @@ package io.opencensus.proto.metrics.v1;
  * <pre>
  * A timestamped measurement.
  * </pre>
- * <p>
+ *
  * Protobuf type {@code opencensus.proto.metrics.v1.Point}
  */
-public final class Point extends
-    com.google.protobuf.GeneratedMessageV3 implements
+public  final class Point extends
+    com.google.protobuf.GeneratedMessageLite<
+        Point, Point.Builder> implements
     // @@protoc_insertion_point(message_implements:opencensus.proto.metrics.v1.Point)
     PointOrBuilder {
-  public static final int TIMESTAMP_FIELD_NUMBER = 1;
-  public static final int INT64_VALUE_FIELD_NUMBER = 2;
-  public static final int DOUBLE_VALUE_FIELD_NUMBER = 3;
-  public static final int DISTRIBUTION_VALUE_FIELD_NUMBER = 4;
-  public static final int SUMMARY_VALUE_FIELD_NUMBER = 5;
-  private static final long serialVersionUID = 0L;
-  // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.Point)
-  private static final io.opencensus.proto.metrics.v1.Point DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<Point>
-      PARSER = new com.google.protobuf.AbstractParser<Point>() {
-    @java.lang.Override
-    public Point parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Point(input, extensionRegistry);
-    }
-  };
-
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.metrics.v1.Point();
-  }
-
-  private int valueCase_ = 0;
-  private java.lang.Object value_;
-
-  private com.google.protobuf.Timestamp timestamp_;
-  private byte memoizedIsInitialized = -1;
-
-  // Use Point.newBuilder() to construct.
-  private Point(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
   private Point() {
   }
-
-  private Point(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            com.google.protobuf.Timestamp.Builder subBuilder = null;
-            if (timestamp_ != null) {
-              subBuilder = timestamp_.toBuilder();
-            }
-            timestamp_ =
-                input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(timestamp_);
-              timestamp_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 16: {
-            valueCase_ = 2;
-            value_ = input.readInt64();
-            break;
-          }
-          case 25: {
-            valueCase_ = 3;
-            value_ = input.readDouble();
-            break;
-          }
-          case 34: {
-            io.opencensus.proto.metrics.v1.DistributionValue.Builder subBuilder = null;
-            if (valueCase_ == 4) {
-              subBuilder = ((io.opencensus.proto.metrics.v1.DistributionValue) value_).toBuilder();
-            }
-            value_ =
-                input.readMessage(io.opencensus.proto.metrics.v1.DistributionValue.parser(),
-                    extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom((io.opencensus.proto.metrics.v1.DistributionValue) value_);
-              value_ = subBuilder.buildPartial();
-            }
-            valueCase_ = 4;
-            break;
-          }
-          case 42: {
-            io.opencensus.proto.metrics.v1.SummaryValue.Builder subBuilder = null;
-            if (valueCase_ == 5) {
-              subBuilder = ((io.opencensus.proto.metrics.v1.SummaryValue) value_).toBuilder();
-            }
-            value_ =
-                input.readMessage(io.opencensus.proto.metrics.v1.SummaryValue.parser(),
-                    extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom((io.opencensus.proto.metrics.v1.SummaryValue) value_);
-              value_ = subBuilder.buildPartial();
-            }
-            valueCase_ = 5;
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
-
-  public static final com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
-    return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_Point_descriptor;
-  }
-
-  public static io.opencensus.proto.metrics.v1.Point parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Point parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Point parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Point parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Point parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Point parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Point parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Point parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Point parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Point parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Point parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Point parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(io.opencensus.proto.metrics.v1.Point prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
-  public static io.opencensus.proto.metrics.v1.Point getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public static com.google.protobuf.Parser<Point> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new Point();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
-    return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_Point_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.metrics.v1.Point.class,
-            io.opencensus.proto.metrics.v1.Point.Builder.class);
-  }
-
-  public ValueCase
-  getValueCase() {
-    return ValueCase.forNumber(
-        valueCase_);
-  }
-
-  /**
-   * <pre>
-   * The moment when this point was recorded. Inclusive.
-   * If not specified, the timestamp will be decided by the backend.
-   * </pre>
-   *
-   * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-   *
-   * @return Whether the timestamp field is set.
-   */
-  @java.lang.Override
-  public boolean hasTimestamp() {
-    return timestamp_ != null;
-  }
-
-  /**
-   * <pre>
-   * The moment when this point was recorded. Inclusive.
-   * If not specified, the timestamp will be decided by the backend.
-   * </pre>
-   *
-   * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-   *
-   * @return The timestamp.
-   */
-  @java.lang.Override
-  public com.google.protobuf.Timestamp getTimestamp() {
-    return timestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
-  }
-
-  /**
-   * <pre>
-   * The moment when this point was recorded. Inclusive.
-   * If not specified, the timestamp will be decided by the backend.
-   * </pre>
-   *
-   * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-   */
-  @java.lang.Override
-  public com.google.protobuf.TimestampOrBuilder getTimestampOrBuilder() {
-    return getTimestamp();
-  }
-
-  /**
-   * <pre>
-   * A 64-bit integer.
-   * </pre>
-   *
-   * <code>int64 int64_value = 2;</code>
-   *
-   * @return The int64Value.
-   */
-  @java.lang.Override
-  public long getInt64Value() {
-    if (valueCase_ == 2) {
-      return (java.lang.Long) value_;
-    }
-    return 0L;
-  }
-
-  /**
-   * <pre>
-   * A 64-bit double-precision floating-point number.
-   * </pre>
-   *
-   * <code>double double_value = 3;</code>
-   *
-   * @return The doubleValue.
-   */
-  @java.lang.Override
-  public double getDoubleValue() {
-    if (valueCase_ == 3) {
-      return (java.lang.Double) value_;
-    }
-    return 0D;
-  }
-
-  /**
-   * <pre>
-   * A distribution value.
-   * </pre>
-   *
-   * <code>.opencensus.proto.metrics.v1.DistributionValue distribution_value = 4;</code>
-   *
-   * @return Whether the distributionValue field is set.
-   */
-  @java.lang.Override
-  public boolean hasDistributionValue() {
-    return valueCase_ == 4;
-  }
-
-  /**
-   * <pre>
-   * A distribution value.
-   * </pre>
-   *
-   * <code>.opencensus.proto.metrics.v1.DistributionValue distribution_value = 4;</code>
-   *
-   * @return The distributionValue.
-   */
-  @java.lang.Override
-  public io.opencensus.proto.metrics.v1.DistributionValue getDistributionValue() {
-    if (valueCase_ == 4) {
-      return (io.opencensus.proto.metrics.v1.DistributionValue) value_;
-    }
-    return io.opencensus.proto.metrics.v1.DistributionValue.getDefaultInstance();
-  }
-
-  /**
-   * <pre>
-   * A distribution value.
-   * </pre>
-   *
-   * <code>.opencensus.proto.metrics.v1.DistributionValue distribution_value = 4;</code>
-   */
-  @java.lang.Override
-  public io.opencensus.proto.metrics.v1.DistributionValueOrBuilder getDistributionValueOrBuilder() {
-    if (valueCase_ == 4) {
-      return (io.opencensus.proto.metrics.v1.DistributionValue) value_;
-    }
-    return io.opencensus.proto.metrics.v1.DistributionValue.getDefaultInstance();
-  }
-
-  /**
-   * <pre>
-   * A summary value. This is not recommended, since it cannot be aggregated.
-   * </pre>
-   *
-   * <code>.opencensus.proto.metrics.v1.SummaryValue summary_value = 5;</code>
-   *
-   * @return Whether the summaryValue field is set.
-   */
-  @java.lang.Override
-  public boolean hasSummaryValue() {
-    return valueCase_ == 5;
-  }
-
-  /**
-   * <pre>
-   * A summary value. This is not recommended, since it cannot be aggregated.
-   * </pre>
-   *
-   * <code>.opencensus.proto.metrics.v1.SummaryValue summary_value = 5;</code>
-   *
-   * @return The summaryValue.
-   */
-  @java.lang.Override
-  public io.opencensus.proto.metrics.v1.SummaryValue getSummaryValue() {
-    if (valueCase_ == 5) {
-      return (io.opencensus.proto.metrics.v1.SummaryValue) value_;
-    }
-    return io.opencensus.proto.metrics.v1.SummaryValue.getDefaultInstance();
-  }
-
-  /**
-   * <pre>
-   * A summary value. This is not recommended, since it cannot be aggregated.
-   * </pre>
-   *
-   * <code>.opencensus.proto.metrics.v1.SummaryValue summary_value = 5;</code>
-   */
-  @java.lang.Override
-  public io.opencensus.proto.metrics.v1.SummaryValueOrBuilder getSummaryValueOrBuilder() {
-    if (valueCase_ == 5) {
-      return (io.opencensus.proto.metrics.v1.SummaryValue) value_;
-    }
-    return io.opencensus.proto.metrics.v1.SummaryValue.getDefaultInstance();
-  }
-
-  @java.lang.Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) {
-      return true;
-    }
-    if (isInitialized == 0) {
-      return false;
-    }
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-      throws java.io.IOException {
-    if (timestamp_ != null) {
-      output.writeMessage(1, getTimestamp());
-    }
-    if (valueCase_ == 2) {
-      output.writeInt64(
-          2, (Long) value_);
-    }
-    if (valueCase_ == 3) {
-      output.writeDouble(
-          3, (Double) value_);
-    }
-    if (valueCase_ == 4) {
-      output.writeMessage(4, (io.opencensus.proto.metrics.v1.DistributionValue) value_);
-    }
-    if (valueCase_ == 5) {
-      output.writeMessage(5, (io.opencensus.proto.metrics.v1.SummaryValue) value_);
-    }
-    unknownFields.writeTo(output);
-  }
-
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) {
-      return size;
-    }
-
-    size = 0;
-    if (timestamp_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getTimestamp());
-    }
-    if (valueCase_ == 2) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(
-              2, (Long) value_);
-    }
-    if (valueCase_ == 3) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(
-              3, (Double) value_);
-    }
-    if (valueCase_ == 4) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, (io.opencensus.proto.metrics.v1.DistributionValue) value_);
-    }
-    if (valueCase_ == 5) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, (io.opencensus.proto.metrics.v1.SummaryValue) value_);
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-      return true;
-    }
-    if (!(obj instanceof io.opencensus.proto.metrics.v1.Point)) {
-      return super.equals(obj);
-    }
-    io.opencensus.proto.metrics.v1.Point other = (io.opencensus.proto.metrics.v1.Point) obj;
-
-    if (hasTimestamp() != other.hasTimestamp()) {
-      return false;
-    }
-    if (hasTimestamp()) {
-      if (!getTimestamp()
-          .equals(other.getTimestamp())) {
-        return false;
-      }
-    }
-    if (!getValueCase().equals(other.getValueCase())) {
-      return false;
-    }
-    switch (valueCase_) {
-      case 2:
-        if (getInt64Value()
-            != other.getInt64Value()) {
-          return false;
-        }
-        break;
-      case 3:
-        if (java.lang.Double.doubleToLongBits(getDoubleValue())
-            != java.lang.Double.doubleToLongBits(
-            other.getDoubleValue())) {
-          return false;
-        }
-        break;
-      case 4:
-        if (!getDistributionValue()
-            .equals(other.getDistributionValue())) {
-          return false;
-        }
-        break;
-      case 5:
-        if (!getSummaryValue()
-            .equals(other.getSummaryValue())) {
-          return false;
-        }
-        break;
-      case 0:
-      default:
-    }
-    return unknownFields.equals(other.unknownFields);
-  }
-
-  @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasTimestamp()) {
-      hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
-      hash = (53 * hash) + getTimestamp().hashCode();
-    }
-    switch (valueCase_) {
-      case 2:
-        hash = (37 * hash) + INT64_VALUE_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getInt64Value());
-        break;
-      case 3:
-        hash = (37 * hash) + DOUBLE_VALUE_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            java.lang.Double.doubleToLongBits(getDoubleValue()));
-        break;
-      case 4:
-        hash = (37 * hash) + DISTRIBUTION_VALUE_FIELD_NUMBER;
-        hash = (53 * hash) + getDistributionValue().hashCode();
-        break;
-      case 5:
-        hash = (37 * hash) + SUMMARY_VALUE_FIELD_NUMBER;
-        hash = (53 * hash) + getSummaryValue().hashCode();
-        break;
-      case 0:
-      default:
-    }
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
-
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<Point> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.metrics.v1.Point getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public enum ValueCase
-      implements com.google.protobuf.Internal.EnumLite,
-      com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+  private int valueCase_ = 0;
+  private java.lang.Object value_;
+  public enum ValueCase {
     INT64_VALUE(2),
     DOUBLE_VALUE(3),
     DISTRIBUTION_VALUE(4),
     SUMMARY_VALUE(5),
     VALUE_NOT_SET(0);
     private final int value;
-
-    ValueCase(int value) {
+    private ValueCase(int value) {
       this.value = value;
     }
-
     /**
-     * @param value The number of the enum to look for.
-     * @return The enum associated with the given number.
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @java.lang.Deprecated
@@ -660,271 +39,437 @@ public final class Point extends
 
     public static ValueCase forNumber(int value) {
       switch (value) {
-        case 2:
-          return INT64_VALUE;
-        case 3:
-          return DOUBLE_VALUE;
-        case 4:
-          return DISTRIBUTION_VALUE;
-        case 5:
-          return SUMMARY_VALUE;
-        case 0:
-          return VALUE_NOT_SET;
-        default:
-          return null;
+        case 2: return INT64_VALUE;
+        case 3: return DOUBLE_VALUE;
+        case 4: return DISTRIBUTION_VALUE;
+        case 5: return SUMMARY_VALUE;
+        case 0: return VALUE_NOT_SET;
+        default: return null;
       }
     }
-
     public int getNumber() {
       return this.value;
     }
+  };
+
+  @java.lang.Override
+  public ValueCase
+  getValueCase() {
+    return ValueCase.forNumber(
+        valueCase_);
+  }
+
+  private void clearValue() {
+    valueCase_ = 0;
+    value_ = null;
+  }
+
+  public static final int TIMESTAMP_FIELD_NUMBER = 1;
+  private com.google.protobuf.Timestamp timestamp_;
+  /**
+   * <pre>
+   * The moment when this point was recorded. Inclusive.
+   * If not specified, the timestamp will be decided by the backend.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp timestamp = 1;</code>
+   */
+  @java.lang.Override
+  public boolean hasTimestamp() {
+    return timestamp_ != null;
+  }
+  /**
+   * <pre>
+   * The moment when this point was recorded. Inclusive.
+   * If not specified, the timestamp will be decided by the backend.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp timestamp = 1;</code>
+   */
+  @java.lang.Override
+  public com.google.protobuf.Timestamp getTimestamp() {
+    return timestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
+  }
+  /**
+   * <pre>
+   * The moment when this point was recorded. Inclusive.
+   * If not specified, the timestamp will be decided by the backend.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp timestamp = 1;</code>
+   */
+  private void setTimestamp(com.google.protobuf.Timestamp value) {
+    value.getClass();
+  timestamp_ = value;
+    
+    }
+  /**
+   * <pre>
+   * The moment when this point was recorded. Inclusive.
+   * If not specified, the timestamp will be decided by the backend.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp timestamp = 1;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeTimestamp(com.google.protobuf.Timestamp value) {
+    value.getClass();
+  if (timestamp_ != null &&
+        timestamp_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
+      timestamp_ =
+        com.google.protobuf.Timestamp.newBuilder(timestamp_).mergeFrom(value).buildPartial();
+    } else {
+      timestamp_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * The moment when this point was recorded. Inclusive.
+   * If not specified, the timestamp will be decided by the backend.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp timestamp = 1;</code>
+   */
+  private void clearTimestamp() {  timestamp_ = null;
+    
+  }
+
+  public static final int INT64_VALUE_FIELD_NUMBER = 2;
+  /**
+   * <pre>
+   * A 64-bit integer.
+   * </pre>
+   *
+   * <code>int64 int64_value = 2;</code>
+   * @return The int64Value.
+   */
+  @java.lang.Override
+  public long getInt64Value() {
+    if (valueCase_ == 2) {
+      return (java.lang.Long) value_;
+    }
+    return 0L;
+  }
+  /**
+   * <pre>
+   * A 64-bit integer.
+   * </pre>
+   *
+   * <code>int64 int64_value = 2;</code>
+   * @param value The int64Value to set.
+   */
+  private void setInt64Value(long value) {
+    valueCase_ = 2;
+    value_ = value;
+  }
+  /**
+   * <pre>
+   * A 64-bit integer.
+   * </pre>
+   *
+   * <code>int64 int64_value = 2;</code>
+   */
+  private void clearInt64Value() {
+    if (valueCase_ == 2) {
+      valueCase_ = 0;
+      value_ = null;
+    }
+  }
+
+  public static final int DOUBLE_VALUE_FIELD_NUMBER = 3;
+  /**
+   * <pre>
+   * A 64-bit double-precision floating-point number.
+   * </pre>
+   *
+   * <code>double double_value = 3;</code>
+   * @return The doubleValue.
+   */
+  @java.lang.Override
+  public double getDoubleValue() {
+    if (valueCase_ == 3) {
+      return (java.lang.Double) value_;
+    }
+    return 0D;
+  }
+  /**
+   * <pre>
+   * A 64-bit double-precision floating-point number.
+   * </pre>
+   *
+   * <code>double double_value = 3;</code>
+   * @param value The doubleValue to set.
+   */
+  private void setDoubleValue(double value) {
+    valueCase_ = 3;
+    value_ = value;
+  }
+  /**
+   * <pre>
+   * A 64-bit double-precision floating-point number.
+   * </pre>
+   *
+   * <code>double double_value = 3;</code>
+   */
+  private void clearDoubleValue() {
+    if (valueCase_ == 3) {
+      valueCase_ = 0;
+      value_ = null;
+    }
+  }
+
+  public static final int DISTRIBUTION_VALUE_FIELD_NUMBER = 4;
+  /**
+   * <pre>
+   * A distribution value.
+   * </pre>
+   *
+   * <code>.opencensus.proto.metrics.v1.DistributionValue distribution_value = 4;</code>
+   */
+  @java.lang.Override
+  public boolean hasDistributionValue() {
+    return valueCase_ == 4;
+  }
+  /**
+   * <pre>
+   * A distribution value.
+   * </pre>
+   *
+   * <code>.opencensus.proto.metrics.v1.DistributionValue distribution_value = 4;</code>
+   */
+  @java.lang.Override
+  public io.opencensus.proto.metrics.v1.DistributionValue getDistributionValue() {
+    if (valueCase_ == 4) {
+       return (io.opencensus.proto.metrics.v1.DistributionValue) value_;
+    }
+    return io.opencensus.proto.metrics.v1.DistributionValue.getDefaultInstance();
+  }
+  /**
+   * <pre>
+   * A distribution value.
+   * </pre>
+   *
+   * <code>.opencensus.proto.metrics.v1.DistributionValue distribution_value = 4;</code>
+   */
+  private void setDistributionValue(io.opencensus.proto.metrics.v1.DistributionValue value) {
+    value.getClass();
+  value_ = value;
+    valueCase_ = 4;
+  }
+  /**
+   * <pre>
+   * A distribution value.
+   * </pre>
+   *
+   * <code>.opencensus.proto.metrics.v1.DistributionValue distribution_value = 4;</code>
+   */
+  private void mergeDistributionValue(io.opencensus.proto.metrics.v1.DistributionValue value) {
+    value.getClass();
+  if (valueCase_ == 4 &&
+        value_ != io.opencensus.proto.metrics.v1.DistributionValue.getDefaultInstance()) {
+      value_ = io.opencensus.proto.metrics.v1.DistributionValue.newBuilder((io.opencensus.proto.metrics.v1.DistributionValue) value_)
+          .mergeFrom(value).buildPartial();
+    } else {
+      value_ = value;
+    }
+    valueCase_ = 4;
+  }
+  /**
+   * <pre>
+   * A distribution value.
+   * </pre>
+   *
+   * <code>.opencensus.proto.metrics.v1.DistributionValue distribution_value = 4;</code>
+   */
+  private void clearDistributionValue() {
+    if (valueCase_ == 4) {
+      valueCase_ = 0;
+      value_ = null;
+    }
+  }
+
+  public static final int SUMMARY_VALUE_FIELD_NUMBER = 5;
+  /**
+   * <pre>
+   * A summary value. This is not recommended, since it cannot be aggregated.
+   * </pre>
+   *
+   * <code>.opencensus.proto.metrics.v1.SummaryValue summary_value = 5;</code>
+   */
+  @java.lang.Override
+  public boolean hasSummaryValue() {
+    return valueCase_ == 5;
+  }
+  /**
+   * <pre>
+   * A summary value. This is not recommended, since it cannot be aggregated.
+   * </pre>
+   *
+   * <code>.opencensus.proto.metrics.v1.SummaryValue summary_value = 5;</code>
+   */
+  @java.lang.Override
+  public io.opencensus.proto.metrics.v1.SummaryValue getSummaryValue() {
+    if (valueCase_ == 5) {
+       return (io.opencensus.proto.metrics.v1.SummaryValue) value_;
+    }
+    return io.opencensus.proto.metrics.v1.SummaryValue.getDefaultInstance();
+  }
+  /**
+   * <pre>
+   * A summary value. This is not recommended, since it cannot be aggregated.
+   * </pre>
+   *
+   * <code>.opencensus.proto.metrics.v1.SummaryValue summary_value = 5;</code>
+   */
+  private void setSummaryValue(io.opencensus.proto.metrics.v1.SummaryValue value) {
+    value.getClass();
+  value_ = value;
+    valueCase_ = 5;
+  }
+  /**
+   * <pre>
+   * A summary value. This is not recommended, since it cannot be aggregated.
+   * </pre>
+   *
+   * <code>.opencensus.proto.metrics.v1.SummaryValue summary_value = 5;</code>
+   */
+  private void mergeSummaryValue(io.opencensus.proto.metrics.v1.SummaryValue value) {
+    value.getClass();
+  if (valueCase_ == 5 &&
+        value_ != io.opencensus.proto.metrics.v1.SummaryValue.getDefaultInstance()) {
+      value_ = io.opencensus.proto.metrics.v1.SummaryValue.newBuilder((io.opencensus.proto.metrics.v1.SummaryValue) value_)
+          .mergeFrom(value).buildPartial();
+    } else {
+      value_ = value;
+    }
+    valueCase_ = 5;
+  }
+  /**
+   * <pre>
+   * A summary value. This is not recommended, since it cannot be aggregated.
+   * </pre>
+   *
+   * <code>.opencensus.proto.metrics.v1.SummaryValue summary_value = 5;</code>
+   */
+  private void clearSummaryValue() {
+    if (valueCase_ == 5) {
+      valueCase_ = 0;
+      value_ = null;
+    }
+  }
+
+  public static io.opencensus.proto.metrics.v1.Point parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.metrics.v1.Point parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.Point parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.metrics.v1.Point parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.Point parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.metrics.v1.Point parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.Point parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.metrics.v1.Point parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.Point parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.metrics.v1.Point parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.Point parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.metrics.v1.Point parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+
+  public static Builder newBuilder() {
+    return (Builder) DEFAULT_INSTANCE.createBuilder();
+  }
+  public static Builder newBuilder(io.opencensus.proto.metrics.v1.Point prototype) {
+    return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
   }
 
   /**
    * <pre>
    * A timestamped measurement.
    * </pre>
-   * <p>
+   *
    * Protobuf type {@code opencensus.proto.metrics.v1.Point}
    */
   public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+      com.google.protobuf.GeneratedMessageLite.Builder<
+        io.opencensus.proto.metrics.v1.Point, Builder> implements
       // @@protoc_insertion_point(builder_implements:opencensus.proto.metrics.v1.Point)
       io.opencensus.proto.metrics.v1.PointOrBuilder {
-    private int valueCase_ = 0;
-    private java.lang.Object value_;
-    private com.google.protobuf.Timestamp timestamp_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-        com.google.protobuf.TimestampOrBuilder>
-        timestampBuilder_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.DistributionValue,
-        io.opencensus.proto.metrics.v1.DistributionValue.Builder,
-        io.opencensus.proto.metrics.v1.DistributionValueOrBuilder>
-        distributionValueBuilder_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.SummaryValue,
-        io.opencensus.proto.metrics.v1.SummaryValue.Builder,
-        io.opencensus.proto.metrics.v1.SummaryValueOrBuilder>
-        summaryValueBuilder_;
-
     // Construct using io.opencensus.proto.metrics.v1.Point.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
-    }
-
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_Point_descriptor;
+      super(DEFAULT_INSTANCE);
     }
 
     @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_Point_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.metrics.v1.Point.class,
-              io.opencensus.proto.metrics.v1.Point.Builder.class);
-    }
-
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-          .alwaysUseFieldBuilders) {
-      }
-    }
-
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      if (timestampBuilder_ == null) {
-        timestamp_ = null;
-      } else {
-        timestamp_ = null;
-        timestampBuilder_ = null;
-      }
-      valueCase_ = 0;
-      value_ = null;
-      return this;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_Point_descriptor;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.Point getDefaultInstanceForType() {
-      return io.opencensus.proto.metrics.v1.Point.getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.Point build() {
-      io.opencensus.proto.metrics.v1.Point result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.Point buildPartial() {
-      io.opencensus.proto.metrics.v1.Point result = new io.opencensus.proto.metrics.v1.Point(this);
-      if (timestampBuilder_ == null) {
-        result.timestamp_ = timestamp_;
-      } else {
-        result.timestamp_ = timestampBuilder_.build();
-      }
-      if (valueCase_ == 2) {
-        result.value_ = value_;
-      }
-      if (valueCase_ == 3) {
-        result.value_ = value_;
-      }
-      if (valueCase_ == 4) {
-        if (distributionValueBuilder_ == null) {
-          result.value_ = value_;
-        } else {
-          result.value_ = distributionValueBuilder_.build();
-        }
-      }
-      if (valueCase_ == 5) {
-        if (summaryValueBuilder_ == null) {
-          result.value_ = value_;
-        } else {
-          result.value_ = summaryValueBuilder_.build();
-        }
-      }
-      result.valueCase_ = valueCase_;
-      onBuilt();
-      return result;
-    }
-
-    @java.lang.Override
-    public Builder clone() {
-      return super.clone();
-    }
-
-    @java.lang.Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.setField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-
-    @java.lang.Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-
-    @java.lang.Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-
-    @java.lang.Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof io.opencensus.proto.metrics.v1.Point) {
-        return mergeFrom((io.opencensus.proto.metrics.v1.Point) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(io.opencensus.proto.metrics.v1.Point other) {
-      if (other == io.opencensus.proto.metrics.v1.Point.getDefaultInstance()) {
-        return this;
-      }
-      if (other.hasTimestamp()) {
-        mergeTimestamp(other.getTimestamp());
-      }
-      switch (other.getValueCase()) {
-        case INT64_VALUE: {
-          setInt64Value(other.getInt64Value());
-          break;
-        }
-        case DOUBLE_VALUE: {
-          setDoubleValue(other.getDoubleValue());
-          break;
-        }
-        case DISTRIBUTION_VALUE: {
-          mergeDistributionValue(other.getDistributionValue());
-          break;
-        }
-        case SUMMARY_VALUE: {
-          mergeSummaryValue(other.getSummaryValue());
-          break;
-        }
-        case VALUE_NOT_SET: {
-          break;
-        }
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      io.opencensus.proto.metrics.v1.Point parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.opencensus.proto.metrics.v1.Point) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
-      return this;
-    }
-
     public ValueCase
-    getValueCase() {
-      return ValueCase.forNumber(
-          valueCase_);
+        getValueCase() {
+      return instance.getValueCase();
     }
 
     public Builder clearValue() {
-      valueCase_ = 0;
-      value_ = null;
-      onChanged();
+      copyOnWrite();
+      instance.clearValue();
       return this;
     }
 
+
     /**
      * <pre>
      * The moment when this point was recorded. Inclusive.
@@ -932,13 +477,11 @@ public final class Point extends
      * </pre>
      *
      * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-     *
-     * @return Whether the timestamp field is set.
      */
+    @java.lang.Override
     public boolean hasTimestamp() {
-      return timestampBuilder_ != null || timestamp_ != null;
+      return instance.hasTimestamp();
     }
-
     /**
      * <pre>
      * The moment when this point was recorded. Inclusive.
@@ -946,17 +489,11 @@ public final class Point extends
      * </pre>
      *
      * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-     *
-     * @return The timestamp.
      */
+    @java.lang.Override
     public com.google.protobuf.Timestamp getTimestamp() {
-      if (timestampBuilder_ == null) {
-        return timestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
-      } else {
-        return timestampBuilder_.getMessage();
-      }
+      return instance.getTimestamp();
     }
-
     /**
      * <pre>
      * The moment when this point was recorded. Inclusive.
@@ -966,19 +503,10 @@ public final class Point extends
      * <code>.google.protobuf.Timestamp timestamp = 1;</code>
      */
     public Builder setTimestamp(com.google.protobuf.Timestamp value) {
-      if (timestampBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        timestamp_ = value;
-        onChanged();
-      } else {
-        timestampBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setTimestamp(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * The moment when this point was recorded. Inclusive.
@@ -989,16 +517,10 @@ public final class Point extends
      */
     public Builder setTimestamp(
         com.google.protobuf.Timestamp.Builder builderForValue) {
-      if (timestampBuilder_ == null) {
-        timestamp_ = builderForValue.build();
-        onChanged();
-      } else {
-        timestampBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setTimestamp(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * The moment when this point was recorded. Inclusive.
@@ -1008,21 +530,10 @@ public final class Point extends
      * <code>.google.protobuf.Timestamp timestamp = 1;</code>
      */
     public Builder mergeTimestamp(com.google.protobuf.Timestamp value) {
-      if (timestampBuilder_ == null) {
-        if (timestamp_ != null) {
-          timestamp_ =
-              com.google.protobuf.Timestamp.newBuilder(timestamp_).mergeFrom(value).buildPartial();
-        } else {
-          timestamp_ = value;
-        }
-        onChanged();
-      } else {
-        timestampBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeTimestamp(value);
       return this;
     }
-
     /**
      * <pre>
      * The moment when this point was recorded. Inclusive.
@@ -1031,71 +542,9 @@ public final class Point extends
      *
      * <code>.google.protobuf.Timestamp timestamp = 1;</code>
      */
-    public Builder clearTimestamp() {
-      if (timestampBuilder_ == null) {
-        timestamp_ = null;
-        onChanged();
-      } else {
-        timestamp_ = null;
-        timestampBuilder_ = null;
-      }
-
+    public Builder clearTimestamp() {  copyOnWrite();
+      instance.clearTimestamp();
       return this;
-    }
-
-    /**
-     * <pre>
-     * The moment when this point was recorded. Inclusive.
-     * If not specified, the timestamp will be decided by the backend.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-     */
-    public com.google.protobuf.Timestamp.Builder getTimestampBuilder() {
-
-      onChanged();
-      return getTimestampFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * The moment when this point was recorded. Inclusive.
-     * If not specified, the timestamp will be decided by the backend.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-     */
-    public com.google.protobuf.TimestampOrBuilder getTimestampOrBuilder() {
-      if (timestampBuilder_ != null) {
-        return timestampBuilder_.getMessageOrBuilder();
-      } else {
-        return timestamp_ == null ?
-            com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
-      }
-    }
-
-    /**
-     * <pre>
-     * The moment when this point was recorded. Inclusive.
-     * If not specified, the timestamp will be decided by the backend.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-        com.google.protobuf.TimestampOrBuilder>
-    getTimestampFieldBuilder() {
-      if (timestampBuilder_ == null) {
-        timestampBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-            com.google.protobuf.TimestampOrBuilder>(
-            getTimestamp(),
-            getParentForChildren(),
-            isClean());
-        timestamp_ = null;
-      }
-      return timestampBuilder_;
     }
 
     /**
@@ -1104,48 +553,37 @@ public final class Point extends
      * </pre>
      *
      * <code>int64 int64_value = 2;</code>
-     *
      * @return The int64Value.
      */
+    @java.lang.Override
     public long getInt64Value() {
-      if (valueCase_ == 2) {
-        return (java.lang.Long) value_;
-      }
-      return 0L;
+      return instance.getInt64Value();
     }
-
     /**
      * <pre>
      * A 64-bit integer.
      * </pre>
      *
      * <code>int64 int64_value = 2;</code>
-     *
      * @param value The int64Value to set.
      * @return This builder for chaining.
      */
     public Builder setInt64Value(long value) {
-      valueCase_ = 2;
-      value_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setInt64Value(value);
       return this;
     }
-
     /**
      * <pre>
      * A 64-bit integer.
      * </pre>
      *
      * <code>int64 int64_value = 2;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearInt64Value() {
-      if (valueCase_ == 2) {
-        valueCase_ = 0;
-        value_ = null;
-        onChanged();
-      }
+      copyOnWrite();
+      instance.clearInt64Value();
       return this;
     }
 
@@ -1155,48 +593,37 @@ public final class Point extends
      * </pre>
      *
      * <code>double double_value = 3;</code>
-     *
      * @return The doubleValue.
      */
+    @java.lang.Override
     public double getDoubleValue() {
-      if (valueCase_ == 3) {
-        return (java.lang.Double) value_;
-      }
-      return 0D;
+      return instance.getDoubleValue();
     }
-
     /**
      * <pre>
      * A 64-bit double-precision floating-point number.
      * </pre>
      *
      * <code>double double_value = 3;</code>
-     *
      * @param value The doubleValue to set.
      * @return This builder for chaining.
      */
     public Builder setDoubleValue(double value) {
-      valueCase_ = 3;
-      value_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setDoubleValue(value);
       return this;
     }
-
     /**
      * <pre>
      * A 64-bit double-precision floating-point number.
      * </pre>
      *
      * <code>double double_value = 3;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearDoubleValue() {
-      if (valueCase_ == 3) {
-        valueCase_ = 0;
-        value_ = null;
-        onChanged();
-      }
+      copyOnWrite();
+      instance.clearDoubleValue();
       return this;
     }
 
@@ -1206,38 +633,22 @@ public final class Point extends
      * </pre>
      *
      * <code>.opencensus.proto.metrics.v1.DistributionValue distribution_value = 4;</code>
-     *
-     * @return Whether the distributionValue field is set.
      */
     @java.lang.Override
     public boolean hasDistributionValue() {
-      return valueCase_ == 4;
+      return instance.hasDistributionValue();
     }
-
     /**
      * <pre>
      * A distribution value.
      * </pre>
      *
      * <code>.opencensus.proto.metrics.v1.DistributionValue distribution_value = 4;</code>
-     *
-     * @return The distributionValue.
      */
     @java.lang.Override
     public io.opencensus.proto.metrics.v1.DistributionValue getDistributionValue() {
-      if (distributionValueBuilder_ == null) {
-        if (valueCase_ == 4) {
-          return (io.opencensus.proto.metrics.v1.DistributionValue) value_;
-        }
-        return io.opencensus.proto.metrics.v1.DistributionValue.getDefaultInstance();
-      } else {
-        if (valueCase_ == 4) {
-          return distributionValueBuilder_.getMessage();
-        }
-        return io.opencensus.proto.metrics.v1.DistributionValue.getDefaultInstance();
-      }
+      return instance.getDistributionValue();
     }
-
     /**
      * <pre>
      * A distribution value.
@@ -1246,19 +657,10 @@ public final class Point extends
      * <code>.opencensus.proto.metrics.v1.DistributionValue distribution_value = 4;</code>
      */
     public Builder setDistributionValue(io.opencensus.proto.metrics.v1.DistributionValue value) {
-      if (distributionValueBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        value_ = value;
-        onChanged();
-      } else {
-        distributionValueBuilder_.setMessage(value);
-      }
-      valueCase_ = 4;
+      copyOnWrite();
+      instance.setDistributionValue(value);
       return this;
     }
-
     /**
      * <pre>
      * A distribution value.
@@ -1268,16 +670,10 @@ public final class Point extends
      */
     public Builder setDistributionValue(
         io.opencensus.proto.metrics.v1.DistributionValue.Builder builderForValue) {
-      if (distributionValueBuilder_ == null) {
-        value_ = builderForValue.build();
-        onChanged();
-      } else {
-        distributionValueBuilder_.setMessage(builderForValue.build());
-      }
-      valueCase_ = 4;
+      copyOnWrite();
+      instance.setDistributionValue(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * A distribution value.
@@ -1286,26 +682,10 @@ public final class Point extends
      * <code>.opencensus.proto.metrics.v1.DistributionValue distribution_value = 4;</code>
      */
     public Builder mergeDistributionValue(io.opencensus.proto.metrics.v1.DistributionValue value) {
-      if (distributionValueBuilder_ == null) {
-        if (valueCase_ == 4 &&
-            value_ != io.opencensus.proto.metrics.v1.DistributionValue.getDefaultInstance()) {
-          value_ = io.opencensus.proto.metrics.v1.DistributionValue
-              .newBuilder((io.opencensus.proto.metrics.v1.DistributionValue) value_)
-              .mergeFrom(value).buildPartial();
-        } else {
-          value_ = value;
-        }
-        onChanged();
-      } else {
-        if (valueCase_ == 4) {
-          distributionValueBuilder_.mergeFrom(value);
-        }
-        distributionValueBuilder_.setMessage(value);
-      }
-      valueCase_ = 4;
+      copyOnWrite();
+      instance.mergeDistributionValue(value);
       return this;
     }
-
     /**
      * <pre>
      * A distribution value.
@@ -1314,120 +694,33 @@ public final class Point extends
      * <code>.opencensus.proto.metrics.v1.DistributionValue distribution_value = 4;</code>
      */
     public Builder clearDistributionValue() {
-      if (distributionValueBuilder_ == null) {
-        if (valueCase_ == 4) {
-          valueCase_ = 0;
-          value_ = null;
-          onChanged();
-        }
-      } else {
-        if (valueCase_ == 4) {
-          valueCase_ = 0;
-          value_ = null;
-        }
-        distributionValueBuilder_.clear();
-      }
+      copyOnWrite();
+      instance.clearDistributionValue();
       return this;
     }
 
     /**
      * <pre>
-     * A distribution value.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.DistributionValue distribution_value = 4;</code>
-     */
-    public io.opencensus.proto.metrics.v1.DistributionValue.Builder getDistributionValueBuilder() {
-      return getDistributionValueFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * A distribution value.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.DistributionValue distribution_value = 4;</code>
-     */
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.DistributionValueOrBuilder getDistributionValueOrBuilder() {
-      if ((valueCase_ == 4) && (distributionValueBuilder_ != null)) {
-        return distributionValueBuilder_.getMessageOrBuilder();
-      } else {
-        if (valueCase_ == 4) {
-          return (io.opencensus.proto.metrics.v1.DistributionValue) value_;
-        }
-        return io.opencensus.proto.metrics.v1.DistributionValue.getDefaultInstance();
-      }
-    }
-
-    /**
-     * <pre>
-     * A distribution value.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.DistributionValue distribution_value = 4;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.DistributionValue,
-        io.opencensus.proto.metrics.v1.DistributionValue.Builder,
-        io.opencensus.proto.metrics.v1.DistributionValueOrBuilder>
-    getDistributionValueFieldBuilder() {
-      if (distributionValueBuilder_ == null) {
-        if (!(valueCase_ == 4)) {
-          value_ = io.opencensus.proto.metrics.v1.DistributionValue.getDefaultInstance();
-        }
-        distributionValueBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.metrics.v1.DistributionValue,
-            io.opencensus.proto.metrics.v1.DistributionValue.Builder,
-            io.opencensus.proto.metrics.v1.DistributionValueOrBuilder>(
-            (io.opencensus.proto.metrics.v1.DistributionValue) value_,
-            getParentForChildren(),
-            isClean());
-        value_ = null;
-      }
-      valueCase_ = 4;
-      onChanged();
-      return distributionValueBuilder_;
-    }
-
-    /**
-     * <pre>
      * A summary value. This is not recommended, since it cannot be aggregated.
      * </pre>
      *
      * <code>.opencensus.proto.metrics.v1.SummaryValue summary_value = 5;</code>
-     *
-     * @return Whether the summaryValue field is set.
      */
     @java.lang.Override
     public boolean hasSummaryValue() {
-      return valueCase_ == 5;
+      return instance.hasSummaryValue();
     }
-
     /**
      * <pre>
      * A summary value. This is not recommended, since it cannot be aggregated.
      * </pre>
      *
      * <code>.opencensus.proto.metrics.v1.SummaryValue summary_value = 5;</code>
-     *
-     * @return The summaryValue.
      */
     @java.lang.Override
     public io.opencensus.proto.metrics.v1.SummaryValue getSummaryValue() {
-      if (summaryValueBuilder_ == null) {
-        if (valueCase_ == 5) {
-          return (io.opencensus.proto.metrics.v1.SummaryValue) value_;
-        }
-        return io.opencensus.proto.metrics.v1.SummaryValue.getDefaultInstance();
-      } else {
-        if (valueCase_ == 5) {
-          return summaryValueBuilder_.getMessage();
-        }
-        return io.opencensus.proto.metrics.v1.SummaryValue.getDefaultInstance();
-      }
+      return instance.getSummaryValue();
     }
-
     /**
      * <pre>
      * A summary value. This is not recommended, since it cannot be aggregated.
@@ -1436,19 +729,10 @@ public final class Point extends
      * <code>.opencensus.proto.metrics.v1.SummaryValue summary_value = 5;</code>
      */
     public Builder setSummaryValue(io.opencensus.proto.metrics.v1.SummaryValue value) {
-      if (summaryValueBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        value_ = value;
-        onChanged();
-      } else {
-        summaryValueBuilder_.setMessage(value);
-      }
-      valueCase_ = 5;
+      copyOnWrite();
+      instance.setSummaryValue(value);
       return this;
     }
-
     /**
      * <pre>
      * A summary value. This is not recommended, since it cannot be aggregated.
@@ -1458,16 +742,10 @@ public final class Point extends
      */
     public Builder setSummaryValue(
         io.opencensus.proto.metrics.v1.SummaryValue.Builder builderForValue) {
-      if (summaryValueBuilder_ == null) {
-        value_ = builderForValue.build();
-        onChanged();
-      } else {
-        summaryValueBuilder_.setMessage(builderForValue.build());
-      }
-      valueCase_ = 5;
+      copyOnWrite();
+      instance.setSummaryValue(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * A summary value. This is not recommended, since it cannot be aggregated.
@@ -1476,26 +754,10 @@ public final class Point extends
      * <code>.opencensus.proto.metrics.v1.SummaryValue summary_value = 5;</code>
      */
     public Builder mergeSummaryValue(io.opencensus.proto.metrics.v1.SummaryValue value) {
-      if (summaryValueBuilder_ == null) {
-        if (valueCase_ == 5 &&
-            value_ != io.opencensus.proto.metrics.v1.SummaryValue.getDefaultInstance()) {
-          value_ = io.opencensus.proto.metrics.v1.SummaryValue
-              .newBuilder((io.opencensus.proto.metrics.v1.SummaryValue) value_)
-              .mergeFrom(value).buildPartial();
-        } else {
-          value_ = value;
-        }
-        onChanged();
-      } else {
-        if (valueCase_ == 5) {
-          summaryValueBuilder_.mergeFrom(value);
-        }
-        summaryValueBuilder_.setMessage(value);
-      }
-      valueCase_ = 5;
+      copyOnWrite();
+      instance.mergeSummaryValue(value);
       return this;
     }
-
     /**
      * <pre>
      * A summary value. This is not recommended, since it cannot be aggregated.
@@ -1504,97 +766,87 @@ public final class Point extends
      * <code>.opencensus.proto.metrics.v1.SummaryValue summary_value = 5;</code>
      */
     public Builder clearSummaryValue() {
-      if (summaryValueBuilder_ == null) {
-        if (valueCase_ == 5) {
-          valueCase_ = 0;
-          value_ = null;
-          onChanged();
-        }
-      } else {
-        if (valueCase_ == 5) {
-          valueCase_ = 0;
-          value_ = null;
-        }
-        summaryValueBuilder_.clear();
-      }
+      copyOnWrite();
+      instance.clearSummaryValue();
       return this;
     }
 
-    /**
-     * <pre>
-     * A summary value. This is not recommended, since it cannot be aggregated.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.SummaryValue summary_value = 5;</code>
-     */
-    public io.opencensus.proto.metrics.v1.SummaryValue.Builder getSummaryValueBuilder() {
-      return getSummaryValueFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * A summary value. This is not recommended, since it cannot be aggregated.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.SummaryValue summary_value = 5;</code>
-     */
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.SummaryValueOrBuilder getSummaryValueOrBuilder() {
-      if ((valueCase_ == 5) && (summaryValueBuilder_ != null)) {
-        return summaryValueBuilder_.getMessageOrBuilder();
-      } else {
-        if (valueCase_ == 5) {
-          return (io.opencensus.proto.metrics.v1.SummaryValue) value_;
-        }
-        return io.opencensus.proto.metrics.v1.SummaryValue.getDefaultInstance();
-      }
-    }
-
-    /**
-     * <pre>
-     * A summary value. This is not recommended, since it cannot be aggregated.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.SummaryValue summary_value = 5;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.SummaryValue,
-        io.opencensus.proto.metrics.v1.SummaryValue.Builder,
-        io.opencensus.proto.metrics.v1.SummaryValueOrBuilder>
-    getSummaryValueFieldBuilder() {
-      if (summaryValueBuilder_ == null) {
-        if (!(valueCase_ == 5)) {
-          value_ = io.opencensus.proto.metrics.v1.SummaryValue.getDefaultInstance();
-        }
-        summaryValueBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.metrics.v1.SummaryValue,
-            io.opencensus.proto.metrics.v1.SummaryValue.Builder,
-            io.opencensus.proto.metrics.v1.SummaryValueOrBuilder>(
-            (io.opencensus.proto.metrics.v1.SummaryValue) value_,
-            getParentForChildren(),
-            isClean());
-        value_ = null;
-      }
-      valueCase_ = 5;
-      onChanged();
-      return summaryValueBuilder_;
-    }
-
-    @java.lang.Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
-    }
-
-    @java.lang.Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
-    }
-
-
     // @@protoc_insertion_point(builder_scope:opencensus.proto.metrics.v1.Point)
   }
+  @java.lang.Override
+  @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+  protected final java.lang.Object dynamicMethod(
+      com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+      java.lang.Object arg0, java.lang.Object arg1) {
+    switch (method) {
+      case NEW_MUTABLE_INSTANCE: {
+        return new io.opencensus.proto.metrics.v1.Point();
+      }
+      case NEW_BUILDER: {
+        return new Builder();
+      }
+      case BUILD_MESSAGE_INFO: {
+          java.lang.Object[] objects = new java.lang.Object[] {
+            "value_",
+            "valueCase_",
+            "timestamp_",
+            io.opencensus.proto.metrics.v1.DistributionValue.class,
+            io.opencensus.proto.metrics.v1.SummaryValue.class,
+          };
+          java.lang.String info =
+              "\u0000\u0005\u0001\u0000\u0001\u0005\u0005\u0000\u0000\u0000\u0001\t\u00025\u0000" +
+              "\u00033\u0000\u0004<\u0000\u0005<\u0000";
+          return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+      }
+      // fall through
+      case GET_DEFAULT_INSTANCE: {
+        return DEFAULT_INSTANCE;
+      }
+      case GET_PARSER: {
+        com.google.protobuf.Parser<io.opencensus.proto.metrics.v1.Point> parser = PARSER;
+        if (parser == null) {
+          synchronized (io.opencensus.proto.metrics.v1.Point.class) {
+            parser = PARSER;
+            if (parser == null) {
+              parser =
+                  new DefaultInstanceBasedParser<io.opencensus.proto.metrics.v1.Point>(
+                      DEFAULT_INSTANCE);
+              PARSER = parser;
+            }
+          }
+        }
+        return parser;
+    }
+    case GET_MEMOIZED_IS_INITIALIZED: {
+      return (byte) 1;
+    }
+    case SET_MEMOIZED_IS_INITIALIZED: {
+      return null;
+    }
+    }
+    throw new UnsupportedOperationException();
+  }
 
+
+  // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.Point)
+  private static final io.opencensus.proto.metrics.v1.Point DEFAULT_INSTANCE;
+  static {
+    Point defaultInstance = new Point();
+    // New instances are implicitly immutable so no need to make
+    // immutable.
+    DEFAULT_INSTANCE = defaultInstance;
+    com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+      Point.class, defaultInstance);
+  }
+
+  public static io.opencensus.proto.metrics.v1.Point getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  private static volatile com.google.protobuf.Parser<Point> PARSER;
+
+  public static com.google.protobuf.Parser<Point> parser() {
+    return DEFAULT_INSTANCE.getParserForType();
+  }
 }
 

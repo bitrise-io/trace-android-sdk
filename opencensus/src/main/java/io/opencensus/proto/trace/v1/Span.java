@@ -15,1483 +15,29 @@ package io.opencensus.proto.trace.v1;
  * The next id is 17.
  * TODO(bdrutu): Add an example.
  * </pre>
- * <p>
+ *
  * Protobuf type {@code opencensus.proto.trace.v1.Span}
  */
-public final class Span extends
-    com.google.protobuf.GeneratedMessageV3 implements
+public  final class Span extends
+    com.google.protobuf.GeneratedMessageLite<
+        Span, Span.Builder> implements
     // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.Span)
     SpanOrBuilder {
-  public static final int TRACE_ID_FIELD_NUMBER = 1;
-  public static final int SPAN_ID_FIELD_NUMBER = 2;
-  public static final int TRACESTATE_FIELD_NUMBER = 15;
-  public static final int PARENT_SPAN_ID_FIELD_NUMBER = 3;
-  public static final int NAME_FIELD_NUMBER = 4;
-  public static final int KIND_FIELD_NUMBER = 14;
-  public static final int START_TIME_FIELD_NUMBER = 5;
-  public static final int END_TIME_FIELD_NUMBER = 6;
-  public static final int ATTRIBUTES_FIELD_NUMBER = 7;
-  public static final int STACK_TRACE_FIELD_NUMBER = 8;
-  public static final int TIME_EVENTS_FIELD_NUMBER = 9;
-  public static final int LINKS_FIELD_NUMBER = 10;
-  public static final int STATUS_FIELD_NUMBER = 11;
-  public static final int RESOURCE_FIELD_NUMBER = 16;
-  public static final int SAME_PROCESS_AS_PARENT_SPAN_FIELD_NUMBER = 12;
-  public static final int CHILD_SPAN_COUNT_FIELD_NUMBER = 13;
-  private static final long serialVersionUID = 0L;
-  // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span)
-  private static final io.opencensus.proto.trace.v1.Span DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<Span>
-      PARSER = new com.google.protobuf.AbstractParser<Span>() {
-    @java.lang.Override
-    public Span parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Span(input, extensionRegistry);
-    }
-  };
-
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.trace.v1.Span();
-  }
-
-  private com.google.protobuf.ByteString traceId_;
-  private com.google.protobuf.ByteString spanId_;
-  private io.opencensus.proto.trace.v1.Span.Tracestate tracestate_;
-  private com.google.protobuf.ByteString parentSpanId_;
-  private io.opencensus.proto.trace.v1.TruncatableString name_;
-  private int kind_;
-  private com.google.protobuf.Timestamp startTime_;
-  private com.google.protobuf.Timestamp endTime_;
-  private io.opencensus.proto.trace.v1.Span.Attributes attributes_;
-  private io.opencensus.proto.trace.v1.StackTrace stackTrace_;
-  private io.opencensus.proto.trace.v1.Span.TimeEvents timeEvents_;
-  private io.opencensus.proto.trace.v1.Span.Links links_;
-  private io.opencensus.proto.trace.v1.Status status_;
-  private io.opencensus.proto.resource.v1.Resource resource_;
-  private com.google.protobuf.BoolValue sameProcessAsParentSpan_;
-  private com.google.protobuf.UInt32Value childSpanCount_;
-  private byte memoizedIsInitialized = -1;
-
-  // Use Span.newBuilder() to construct.
-  private Span(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
   private Span() {
     traceId_ = com.google.protobuf.ByteString.EMPTY;
     spanId_ = com.google.protobuf.ByteString.EMPTY;
     parentSpanId_ = com.google.protobuf.ByteString.EMPTY;
-    kind_ = 0;
   }
-
-  private Span(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-
-            traceId_ = input.readBytes();
-            break;
-          }
-          case 18: {
-
-            spanId_ = input.readBytes();
-            break;
-          }
-          case 26: {
-
-            parentSpanId_ = input.readBytes();
-            break;
-          }
-          case 34: {
-            io.opencensus.proto.trace.v1.TruncatableString.Builder subBuilder = null;
-            if (name_ != null) {
-              subBuilder = name_.toBuilder();
-            }
-            name_ = input.readMessage(io.opencensus.proto.trace.v1.TruncatableString.parser(),
-                extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(name_);
-              name_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 42: {
-            com.google.protobuf.Timestamp.Builder subBuilder = null;
-            if (startTime_ != null) {
-              subBuilder = startTime_.toBuilder();
-            }
-            startTime_ =
-                input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(startTime_);
-              startTime_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 50: {
-            com.google.protobuf.Timestamp.Builder subBuilder = null;
-            if (endTime_ != null) {
-              subBuilder = endTime_.toBuilder();
-            }
-            endTime_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(endTime_);
-              endTime_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 58: {
-            io.opencensus.proto.trace.v1.Span.Attributes.Builder subBuilder = null;
-            if (attributes_ != null) {
-              subBuilder = attributes_.toBuilder();
-            }
-            attributes_ = input.readMessage(io.opencensus.proto.trace.v1.Span.Attributes.parser(),
-                extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(attributes_);
-              attributes_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 66: {
-            io.opencensus.proto.trace.v1.StackTrace.Builder subBuilder = null;
-            if (stackTrace_ != null) {
-              subBuilder = stackTrace_.toBuilder();
-            }
-            stackTrace_ = input
-                .readMessage(io.opencensus.proto.trace.v1.StackTrace.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(stackTrace_);
-              stackTrace_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 74: {
-            io.opencensus.proto.trace.v1.Span.TimeEvents.Builder subBuilder = null;
-            if (timeEvents_ != null) {
-              subBuilder = timeEvents_.toBuilder();
-            }
-            timeEvents_ = input.readMessage(io.opencensus.proto.trace.v1.Span.TimeEvents.parser(),
-                extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(timeEvents_);
-              timeEvents_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 82: {
-            io.opencensus.proto.trace.v1.Span.Links.Builder subBuilder = null;
-            if (links_ != null) {
-              subBuilder = links_.toBuilder();
-            }
-            links_ = input
-                .readMessage(io.opencensus.proto.trace.v1.Span.Links.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(links_);
-              links_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 90: {
-            io.opencensus.proto.trace.v1.Status.Builder subBuilder = null;
-            if (status_ != null) {
-              subBuilder = status_.toBuilder();
-            }
-            status_ =
-                input.readMessage(io.opencensus.proto.trace.v1.Status.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(status_);
-              status_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 98: {
-            com.google.protobuf.BoolValue.Builder subBuilder = null;
-            if (sameProcessAsParentSpan_ != null) {
-              subBuilder = sameProcessAsParentSpan_.toBuilder();
-            }
-            sameProcessAsParentSpan_ =
-                input.readMessage(com.google.protobuf.BoolValue.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(sameProcessAsParentSpan_);
-              sameProcessAsParentSpan_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 106: {
-            com.google.protobuf.UInt32Value.Builder subBuilder = null;
-            if (childSpanCount_ != null) {
-              subBuilder = childSpanCount_.toBuilder();
-            }
-            childSpanCount_ =
-                input.readMessage(com.google.protobuf.UInt32Value.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(childSpanCount_);
-              childSpanCount_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 112: {
-            int rawValue = input.readEnum();
-
-            kind_ = rawValue;
-            break;
-          }
-          case 122: {
-            io.opencensus.proto.trace.v1.Span.Tracestate.Builder subBuilder = null;
-            if (tracestate_ != null) {
-              subBuilder = tracestate_.toBuilder();
-            }
-            tracestate_ = input.readMessage(io.opencensus.proto.trace.v1.Span.Tracestate.parser(),
-                extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(tracestate_);
-              tracestate_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 130: {
-            io.opencensus.proto.resource.v1.Resource.Builder subBuilder = null;
-            if (resource_ != null) {
-              subBuilder = resource_.toBuilder();
-            }
-            resource_ = input
-                .readMessage(io.opencensus.proto.resource.v1.Resource.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(resource_);
-              resource_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
-
-  public static final com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
-    return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_descriptor;
-  }
-
-  public static io.opencensus.proto.trace.v1.Span parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.trace.v1.Span parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.trace.v1.Span parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.trace.v1.Span parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.trace.v1.Span parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.trace.v1.Span parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.trace.v1.Span parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.trace.v1.Span parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.trace.v1.Span parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.trace.v1.Span parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.trace.v1.Span parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.trace.v1.Span parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(io.opencensus.proto.trace.v1.Span prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
-  public static io.opencensus.proto.trace.v1.Span getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public static com.google.protobuf.Parser<Span> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new Span();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
-    return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.trace.v1.Span.class,
-            io.opencensus.proto.trace.v1.Span.Builder.class);
-  }
-
-  /**
-   * <pre>
-   * A unique identifier for a trace. All spans from the same trace share
-   * the same `trace_id`. The ID is a 16-byte array. An ID with all zeroes
-   * is considered invalid.
-   * This field is semantically required. Receiver should generate new
-   * random trace_id if empty or invalid trace_id was received.
-   * This field is required.
-   * </pre>
-   *
-   * <code>bytes trace_id = 1;</code>
-   *
-   * @return The traceId.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString getTraceId() {
-    return traceId_;
-  }
-
-  /**
-   * <pre>
-   * A unique identifier for a span within a trace, assigned when the span
-   * is created. The ID is an 8-byte array. An ID with all zeroes is considered
-   * invalid.
-   * This field is semantically required. Receiver should generate new
-   * random span_id if empty or invalid span_id was received.
-   * This field is required.
-   * </pre>
-   *
-   * <code>bytes span_id = 2;</code>
-   *
-   * @return The spanId.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString getSpanId() {
-    return spanId_;
-  }
-
-  /**
-   * <pre>
-   * The Tracestate on the span.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 15;</code>
-   *
-   * @return Whether the tracestate field is set.
-   */
-  @java.lang.Override
-  public boolean hasTracestate() {
-    return tracestate_ != null;
-  }
-
-  /**
-   * <pre>
-   * The Tracestate on the span.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 15;</code>
-   *
-   * @return The tracestate.
-   */
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.Span.Tracestate getTracestate() {
-    return tracestate_ == null ? io.opencensus.proto.trace.v1.Span.Tracestate.getDefaultInstance() :
-        tracestate_;
-  }
-
-  /**
-   * <pre>
-   * The Tracestate on the span.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 15;</code>
-   */
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.Span.TracestateOrBuilder getTracestateOrBuilder() {
-    return getTracestate();
-  }
-
-  /**
-   * <pre>
-   * The `span_id` of this span's parent span. If this is a root span, then this
-   * field must be empty. The ID is an 8-byte array.
-   * </pre>
-   *
-   * <code>bytes parent_span_id = 3;</code>
-   *
-   * @return The parentSpanId.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString getParentSpanId() {
-    return parentSpanId_;
-  }
-
-  /**
-   * <pre>
-   * A description of the span's operation.
-   * For example, the name can be a qualified method name or a file name
-   * and a line number where the operation is called. A best practice is to use
-   * the same display name at the same call point in an application.
-   * This makes it easier to correlate spans in different traces.
-   * This field is semantically required to be set to non-empty string.
-   * When null or empty string received - receiver may use string "name"
-   * as a replacement. There might be smarted algorithms implemented by
-   * receiver to fix the empty span name.
-   * This field is required.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.TruncatableString name = 4;</code>
-   *
-   * @return Whether the name field is set.
-   */
-  @java.lang.Override
-  public boolean hasName() {
-    return name_ != null;
-  }
-
-  /**
-   * <pre>
-   * A description of the span's operation.
-   * For example, the name can be a qualified method name or a file name
-   * and a line number where the operation is called. A best practice is to use
-   * the same display name at the same call point in an application.
-   * This makes it easier to correlate spans in different traces.
-   * This field is semantically required to be set to non-empty string.
-   * When null or empty string received - receiver may use string "name"
-   * as a replacement. There might be smarted algorithms implemented by
-   * receiver to fix the empty span name.
-   * This field is required.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.TruncatableString name = 4;</code>
-   *
-   * @return The name.
-   */
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.TruncatableString getName() {
-    return name_ == null ? io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance() :
-        name_;
-  }
-
-  /**
-   * <pre>
-   * A description of the span's operation.
-   * For example, the name can be a qualified method name or a file name
-   * and a line number where the operation is called. A best practice is to use
-   * the same display name at the same call point in an application.
-   * This makes it easier to correlate spans in different traces.
-   * This field is semantically required to be set to non-empty string.
-   * When null or empty string received - receiver may use string "name"
-   * as a replacement. There might be smarted algorithms implemented by
-   * receiver to fix the empty span name.
-   * This field is required.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.TruncatableString name = 4;</code>
-   */
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.TruncatableStringOrBuilder getNameOrBuilder() {
-    return getName();
-  }
-
-  /**
-   * <pre>
-   * Distinguishes between spans generated in a particular context. For example,
-   * two spans with the same name may be distinguished using `CLIENT` (caller)
-   * and `SERVER` (callee) to identify queueing latency associated with the span.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.Span.SpanKind kind = 14;</code>
-   *
-   * @return The enum numeric value on the wire for kind.
-   */
-  @java.lang.Override
-  public int getKindValue() {
-    return kind_;
-  }
-
-  /**
-   * <pre>
-   * Distinguishes between spans generated in a particular context. For example,
-   * two spans with the same name may be distinguished using `CLIENT` (caller)
-   * and `SERVER` (callee) to identify queueing latency associated with the span.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.Span.SpanKind kind = 14;</code>
-   *
-   * @return The kind.
-   */
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.Span.SpanKind getKind() {
-    @SuppressWarnings("deprecation")
-    io.opencensus.proto.trace.v1.Span.SpanKind result =
-        io.opencensus.proto.trace.v1.Span.SpanKind.valueOf(kind_);
-    return result == null ? io.opencensus.proto.trace.v1.Span.SpanKind.UNRECOGNIZED : result;
-  }
-
-  /**
-   * <pre>
-   * The start time of the span. On the client side, this is the time kept by
-   * the local machine where the span execution starts. On the server side, this
-   * is the time when the server's application handler starts running.
-   * This field is semantically required. When not set on receive -
-   * receiver should set it to the value of end_time field if it was
-   * set. Or to the current time if neither was set. It is important to
-   * keep end_time &gt; start_time for consistency.
-   * This field is required.
-   * </pre>
-   *
-   * <code>.google.protobuf.Timestamp start_time = 5;</code>
-   *
-   * @return Whether the startTime field is set.
-   */
-  @java.lang.Override
-  public boolean hasStartTime() {
-    return startTime_ != null;
-  }
-
-  /**
-   * <pre>
-   * The start time of the span. On the client side, this is the time kept by
-   * the local machine where the span execution starts. On the server side, this
-   * is the time when the server's application handler starts running.
-   * This field is semantically required. When not set on receive -
-   * receiver should set it to the value of end_time field if it was
-   * set. Or to the current time if neither was set. It is important to
-   * keep end_time &gt; start_time for consistency.
-   * This field is required.
-   * </pre>
-   *
-   * <code>.google.protobuf.Timestamp start_time = 5;</code>
-   *
-   * @return The startTime.
-   */
-  @java.lang.Override
-  public com.google.protobuf.Timestamp getStartTime() {
-    return startTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : startTime_;
-  }
-
-  /**
-   * <pre>
-   * The start time of the span. On the client side, this is the time kept by
-   * the local machine where the span execution starts. On the server side, this
-   * is the time when the server's application handler starts running.
-   * This field is semantically required. When not set on receive -
-   * receiver should set it to the value of end_time field if it was
-   * set. Or to the current time if neither was set. It is important to
-   * keep end_time &gt; start_time for consistency.
-   * This field is required.
-   * </pre>
-   *
-   * <code>.google.protobuf.Timestamp start_time = 5;</code>
-   */
-  @java.lang.Override
-  public com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder() {
-    return getStartTime();
-  }
-
-  /**
-   * <pre>
-   * The end time of the span. On the client side, this is the time kept by
-   * the local machine where the span execution ends. On the server side, this
-   * is the time when the server application handler stops running.
-   * This field is semantically required. When not set on receive -
-   * receiver should set it to start_time value. It is important to
-   * keep end_time &gt; start_time for consistency.
-   * This field is required.
-   * </pre>
-   *
-   * <code>.google.protobuf.Timestamp end_time = 6;</code>
-   *
-   * @return Whether the endTime field is set.
-   */
-  @java.lang.Override
-  public boolean hasEndTime() {
-    return endTime_ != null;
-  }
-
-  /**
-   * <pre>
-   * The end time of the span. On the client side, this is the time kept by
-   * the local machine where the span execution ends. On the server side, this
-   * is the time when the server application handler stops running.
-   * This field is semantically required. When not set on receive -
-   * receiver should set it to start_time value. It is important to
-   * keep end_time &gt; start_time for consistency.
-   * This field is required.
-   * </pre>
-   *
-   * <code>.google.protobuf.Timestamp end_time = 6;</code>
-   *
-   * @return The endTime.
-   */
-  @java.lang.Override
-  public com.google.protobuf.Timestamp getEndTime() {
-    return endTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : endTime_;
-  }
-
-  /**
-   * <pre>
-   * The end time of the span. On the client side, this is the time kept by
-   * the local machine where the span execution ends. On the server side, this
-   * is the time when the server application handler stops running.
-   * This field is semantically required. When not set on receive -
-   * receiver should set it to start_time value. It is important to
-   * keep end_time &gt; start_time for consistency.
-   * This field is required.
-   * </pre>
-   *
-   * <code>.google.protobuf.Timestamp end_time = 6;</code>
-   */
-  @java.lang.Override
-  public com.google.protobuf.TimestampOrBuilder getEndTimeOrBuilder() {
-    return getEndTime();
-  }
-
-  /**
-   * <pre>
-   * A set of attributes on the span.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 7;</code>
-   *
-   * @return Whether the attributes field is set.
-   */
-  @java.lang.Override
-  public boolean hasAttributes() {
-    return attributes_ != null;
-  }
-
-  /**
-   * <pre>
-   * A set of attributes on the span.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 7;</code>
-   *
-   * @return The attributes.
-   */
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.Span.Attributes getAttributes() {
-    return attributes_ == null ? io.opencensus.proto.trace.v1.Span.Attributes.getDefaultInstance() :
-        attributes_;
-  }
-
-  /**
-   * <pre>
-   * A set of attributes on the span.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 7;</code>
-   */
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.Span.AttributesOrBuilder getAttributesOrBuilder() {
-    return getAttributes();
-  }
-
-  /**
-   * <pre>
-   * A stack trace captured at the start of the span.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.StackTrace stack_trace = 8;</code>
-   *
-   * @return Whether the stackTrace field is set.
-   */
-  @java.lang.Override
-  public boolean hasStackTrace() {
-    return stackTrace_ != null;
-  }
-
-  /**
-   * <pre>
-   * A stack trace captured at the start of the span.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.StackTrace stack_trace = 8;</code>
-   *
-   * @return The stackTrace.
-   */
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.StackTrace getStackTrace() {
-    return stackTrace_ == null ? io.opencensus.proto.trace.v1.StackTrace.getDefaultInstance() :
-        stackTrace_;
-  }
-
-  /**
-   * <pre>
-   * A stack trace captured at the start of the span.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.StackTrace stack_trace = 8;</code>
-   */
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.StackTraceOrBuilder getStackTraceOrBuilder() {
-    return getStackTrace();
-  }
-
-  /**
-   * <pre>
-   * The included time events.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.Span.TimeEvents time_events = 9;</code>
-   *
-   * @return Whether the timeEvents field is set.
-   */
-  @java.lang.Override
-  public boolean hasTimeEvents() {
-    return timeEvents_ != null;
-  }
-
-  /**
-   * <pre>
-   * The included time events.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.Span.TimeEvents time_events = 9;</code>
-   *
-   * @return The timeEvents.
-   */
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.Span.TimeEvents getTimeEvents() {
-    return timeEvents_ == null ? io.opencensus.proto.trace.v1.Span.TimeEvents.getDefaultInstance() :
-        timeEvents_;
-  }
-
-  /**
-   * <pre>
-   * The included time events.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.Span.TimeEvents time_events = 9;</code>
-   */
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.Span.TimeEventsOrBuilder getTimeEventsOrBuilder() {
-    return getTimeEvents();
-  }
-
-  /**
-   * <pre>
-   * The included links.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.Span.Links links = 10;</code>
-   *
-   * @return Whether the links field is set.
-   */
-  @java.lang.Override
-  public boolean hasLinks() {
-    return links_ != null;
-  }
-
-  /**
-   * <pre>
-   * The included links.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.Span.Links links = 10;</code>
-   *
-   * @return The links.
-   */
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.Span.Links getLinks() {
-    return links_ == null ? io.opencensus.proto.trace.v1.Span.Links.getDefaultInstance() : links_;
-  }
-
-  /**
-   * <pre>
-   * The included links.
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.Span.Links links = 10;</code>
-   */
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.Span.LinksOrBuilder getLinksOrBuilder() {
-    return getLinks();
-  }
-
-  /**
-   * <pre>
-   * An optional final status for this span. Semantically when Status
-   * wasn't set it is means span ended without errors and assume
-   * Status.Ok (code = 0).
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.Status status = 11;</code>
-   *
-   * @return Whether the status field is set.
-   */
-  @java.lang.Override
-  public boolean hasStatus() {
-    return status_ != null;
-  }
-
-  /**
-   * <pre>
-   * An optional final status for this span. Semantically when Status
-   * wasn't set it is means span ended without errors and assume
-   * Status.Ok (code = 0).
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.Status status = 11;</code>
-   *
-   * @return The status.
-   */
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.Status getStatus() {
-    return status_ == null ? io.opencensus.proto.trace.v1.Status.getDefaultInstance() : status_;
-  }
-
-  /**
-   * <pre>
-   * An optional final status for this span. Semantically when Status
-   * wasn't set it is means span ended without errors and assume
-   * Status.Ok (code = 0).
-   * </pre>
-   *
-   * <code>.opencensus.proto.trace.v1.Status status = 11;</code>
-   */
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.StatusOrBuilder getStatusOrBuilder() {
-    return getStatus();
-  }
-
-  /**
-   * <pre>
-   * An optional resource that is associated with this span. If not set, this span
-   * should be part of a batch that does include the resource information, unless resource
-   * information is unknown.
-   * </pre>
-   *
-   * <code>.opencensus.proto.resource.v1.Resource resource = 16;</code>
-   *
-   * @return Whether the resource field is set.
-   */
-  @java.lang.Override
-  public boolean hasResource() {
-    return resource_ != null;
-  }
-
-  /**
-   * <pre>
-   * An optional resource that is associated with this span. If not set, this span
-   * should be part of a batch that does include the resource information, unless resource
-   * information is unknown.
-   * </pre>
-   *
-   * <code>.opencensus.proto.resource.v1.Resource resource = 16;</code>
-   *
-   * @return The resource.
-   */
-  @java.lang.Override
-  public io.opencensus.proto.resource.v1.Resource getResource() {
-    return resource_ == null ? io.opencensus.proto.resource.v1.Resource.getDefaultInstance() :
-        resource_;
-  }
-
-  /**
-   * <pre>
-   * An optional resource that is associated with this span. If not set, this span
-   * should be part of a batch that does include the resource information, unless resource
-   * information is unknown.
-   * </pre>
-   *
-   * <code>.opencensus.proto.resource.v1.Resource resource = 16;</code>
-   */
-  @java.lang.Override
-  public io.opencensus.proto.resource.v1.ResourceOrBuilder getResourceOrBuilder() {
-    return getResource();
-  }
-
-  /**
-   * <pre>
-   * A highly recommended but not required flag that identifies when a
-   * trace crosses a process boundary. True when the parent_span belongs
-   * to the same process as the current span. This flag is most commonly
-   * used to indicate the need to adjust time as clocks in different
-   * processes may not be synchronized.
-   * </pre>
-   *
-   * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
-   *
-   * @return Whether the sameProcessAsParentSpan field is set.
-   */
-  @java.lang.Override
-  public boolean hasSameProcessAsParentSpan() {
-    return sameProcessAsParentSpan_ != null;
-  }
-
-  /**
-   * <pre>
-   * A highly recommended but not required flag that identifies when a
-   * trace crosses a process boundary. True when the parent_span belongs
-   * to the same process as the current span. This flag is most commonly
-   * used to indicate the need to adjust time as clocks in different
-   * processes may not be synchronized.
-   * </pre>
-   *
-   * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
-   *
-   * @return The sameProcessAsParentSpan.
-   */
-  @java.lang.Override
-  public com.google.protobuf.BoolValue getSameProcessAsParentSpan() {
-    return sameProcessAsParentSpan_ == null ? com.google.protobuf.BoolValue.getDefaultInstance() :
-        sameProcessAsParentSpan_;
-  }
-
-  /**
-   * <pre>
-   * A highly recommended but not required flag that identifies when a
-   * trace crosses a process boundary. True when the parent_span belongs
-   * to the same process as the current span. This flag is most commonly
-   * used to indicate the need to adjust time as clocks in different
-   * processes may not be synchronized.
-   * </pre>
-   *
-   * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
-   */
-  @java.lang.Override
-  public com.google.protobuf.BoolValueOrBuilder getSameProcessAsParentSpanOrBuilder() {
-    return getSameProcessAsParentSpan();
-  }
-
-  /**
-   * <pre>
-   * An optional number of child spans that were generated while this span
-   * was active. If set, allows an implementation to detect missing child spans.
-   * </pre>
-   *
-   * <code>.google.protobuf.UInt32Value child_span_count = 13;</code>
-   *
-   * @return Whether the childSpanCount field is set.
-   */
-  @java.lang.Override
-  public boolean hasChildSpanCount() {
-    return childSpanCount_ != null;
-  }
-
-  /**
-   * <pre>
-   * An optional number of child spans that were generated while this span
-   * was active. If set, allows an implementation to detect missing child spans.
-   * </pre>
-   *
-   * <code>.google.protobuf.UInt32Value child_span_count = 13;</code>
-   *
-   * @return The childSpanCount.
-   */
-  @java.lang.Override
-  public com.google.protobuf.UInt32Value getChildSpanCount() {
-    return childSpanCount_ == null ? com.google.protobuf.UInt32Value.getDefaultInstance() :
-        childSpanCount_;
-  }
-
-  /**
-   * <pre>
-   * An optional number of child spans that were generated while this span
-   * was active. If set, allows an implementation to detect missing child spans.
-   * </pre>
-   *
-   * <code>.google.protobuf.UInt32Value child_span_count = 13;</code>
-   */
-  @java.lang.Override
-  public com.google.protobuf.UInt32ValueOrBuilder getChildSpanCountOrBuilder() {
-    return getChildSpanCount();
-  }
-
-  @java.lang.Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) {
-      return true;
-    }
-    if (isInitialized == 0) {
-      return false;
-    }
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-      throws java.io.IOException {
-    if (!traceId_.isEmpty()) {
-      output.writeBytes(1, traceId_);
-    }
-    if (!spanId_.isEmpty()) {
-      output.writeBytes(2, spanId_);
-    }
-    if (!parentSpanId_.isEmpty()) {
-      output.writeBytes(3, parentSpanId_);
-    }
-    if (name_ != null) {
-      output.writeMessage(4, getName());
-    }
-    if (startTime_ != null) {
-      output.writeMessage(5, getStartTime());
-    }
-    if (endTime_ != null) {
-      output.writeMessage(6, getEndTime());
-    }
-    if (attributes_ != null) {
-      output.writeMessage(7, getAttributes());
-    }
-    if (stackTrace_ != null) {
-      output.writeMessage(8, getStackTrace());
-    }
-    if (timeEvents_ != null) {
-      output.writeMessage(9, getTimeEvents());
-    }
-    if (links_ != null) {
-      output.writeMessage(10, getLinks());
-    }
-    if (status_ != null) {
-      output.writeMessage(11, getStatus());
-    }
-    if (sameProcessAsParentSpan_ != null) {
-      output.writeMessage(12, getSameProcessAsParentSpan());
-    }
-    if (childSpanCount_ != null) {
-      output.writeMessage(13, getChildSpanCount());
-    }
-    if (kind_ != io.opencensus.proto.trace.v1.Span.SpanKind.SPAN_KIND_UNSPECIFIED.getNumber()) {
-      output.writeEnum(14, kind_);
-    }
-    if (tracestate_ != null) {
-      output.writeMessage(15, getTracestate());
-    }
-    if (resource_ != null) {
-      output.writeMessage(16, getResource());
-    }
-    unknownFields.writeTo(output);
-  }
-
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) {
-      return size;
-    }
-
-    size = 0;
-    if (!traceId_.isEmpty()) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, traceId_);
-    }
-    if (!spanId_.isEmpty()) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, spanId_);
-    }
-    if (!parentSpanId_.isEmpty()) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, parentSpanId_);
-    }
-    if (name_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, getName());
-    }
-    if (startTime_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, getStartTime());
-    }
-    if (endTime_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, getEndTime());
-    }
-    if (attributes_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(7, getAttributes());
-    }
-    if (stackTrace_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, getStackTrace());
-    }
-    if (timeEvents_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(9, getTimeEvents());
-    }
-    if (links_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(10, getLinks());
-    }
-    if (status_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(11, getStatus());
-    }
-    if (sameProcessAsParentSpan_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(12, getSameProcessAsParentSpan());
-    }
-    if (childSpanCount_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(13, getChildSpanCount());
-    }
-    if (kind_ != io.opencensus.proto.trace.v1.Span.SpanKind.SPAN_KIND_UNSPECIFIED.getNumber()) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(14, kind_);
-    }
-    if (tracestate_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(15, getTracestate());
-    }
-    if (resource_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(16, getResource());
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-      return true;
-    }
-    if (!(obj instanceof io.opencensus.proto.trace.v1.Span)) {
-      return super.equals(obj);
-    }
-    io.opencensus.proto.trace.v1.Span other = (io.opencensus.proto.trace.v1.Span) obj;
-
-    if (!getTraceId()
-        .equals(other.getTraceId())) {
-      return false;
-    }
-    if (!getSpanId()
-        .equals(other.getSpanId())) {
-      return false;
-    }
-    if (hasTracestate() != other.hasTracestate()) {
-      return false;
-    }
-    if (hasTracestate()) {
-      if (!getTracestate()
-          .equals(other.getTracestate())) {
-        return false;
-      }
-    }
-    if (!getParentSpanId()
-        .equals(other.getParentSpanId())) {
-      return false;
-    }
-    if (hasName() != other.hasName()) {
-      return false;
-    }
-    if (hasName()) {
-      if (!getName()
-          .equals(other.getName())) {
-        return false;
-      }
-    }
-    if (kind_ != other.kind_) {
-      return false;
-    }
-    if (hasStartTime() != other.hasStartTime()) {
-      return false;
-    }
-    if (hasStartTime()) {
-      if (!getStartTime()
-          .equals(other.getStartTime())) {
-        return false;
-      }
-    }
-    if (hasEndTime() != other.hasEndTime()) {
-      return false;
-    }
-    if (hasEndTime()) {
-      if (!getEndTime()
-          .equals(other.getEndTime())) {
-        return false;
-      }
-    }
-    if (hasAttributes() != other.hasAttributes()) {
-      return false;
-    }
-    if (hasAttributes()) {
-      if (!getAttributes()
-          .equals(other.getAttributes())) {
-        return false;
-      }
-    }
-    if (hasStackTrace() != other.hasStackTrace()) {
-      return false;
-    }
-    if (hasStackTrace()) {
-      if (!getStackTrace()
-          .equals(other.getStackTrace())) {
-        return false;
-      }
-    }
-    if (hasTimeEvents() != other.hasTimeEvents()) {
-      return false;
-    }
-    if (hasTimeEvents()) {
-      if (!getTimeEvents()
-          .equals(other.getTimeEvents())) {
-        return false;
-      }
-    }
-    if (hasLinks() != other.hasLinks()) {
-      return false;
-    }
-    if (hasLinks()) {
-      if (!getLinks()
-          .equals(other.getLinks())) {
-        return false;
-      }
-    }
-    if (hasStatus() != other.hasStatus()) {
-      return false;
-    }
-    if (hasStatus()) {
-      if (!getStatus()
-          .equals(other.getStatus())) {
-        return false;
-      }
-    }
-    if (hasResource() != other.hasResource()) {
-      return false;
-    }
-    if (hasResource()) {
-      if (!getResource()
-          .equals(other.getResource())) {
-        return false;
-      }
-    }
-    if (hasSameProcessAsParentSpan() != other.hasSameProcessAsParentSpan()) {
-      return false;
-    }
-    if (hasSameProcessAsParentSpan()) {
-      if (!getSameProcessAsParentSpan()
-          .equals(other.getSameProcessAsParentSpan())) {
-        return false;
-      }
-    }
-    if (hasChildSpanCount() != other.hasChildSpanCount()) {
-      return false;
-    }
-    if (hasChildSpanCount()) {
-      if (!getChildSpanCount()
-          .equals(other.getChildSpanCount())) {
-        return false;
-      }
-    }
-    return unknownFields.equals(other.unknownFields);
-  }
-
-  @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + TRACE_ID_FIELD_NUMBER;
-    hash = (53 * hash) + getTraceId().hashCode();
-    hash = (37 * hash) + SPAN_ID_FIELD_NUMBER;
-    hash = (53 * hash) + getSpanId().hashCode();
-    if (hasTracestate()) {
-      hash = (37 * hash) + TRACESTATE_FIELD_NUMBER;
-      hash = (53 * hash) + getTracestate().hashCode();
-    }
-    hash = (37 * hash) + PARENT_SPAN_ID_FIELD_NUMBER;
-    hash = (53 * hash) + getParentSpanId().hashCode();
-    if (hasName()) {
-      hash = (37 * hash) + NAME_FIELD_NUMBER;
-      hash = (53 * hash) + getName().hashCode();
-    }
-    hash = (37 * hash) + KIND_FIELD_NUMBER;
-    hash = (53 * hash) + kind_;
-    if (hasStartTime()) {
-      hash = (37 * hash) + START_TIME_FIELD_NUMBER;
-      hash = (53 * hash) + getStartTime().hashCode();
-    }
-    if (hasEndTime()) {
-      hash = (37 * hash) + END_TIME_FIELD_NUMBER;
-      hash = (53 * hash) + getEndTime().hashCode();
-    }
-    if (hasAttributes()) {
-      hash = (37 * hash) + ATTRIBUTES_FIELD_NUMBER;
-      hash = (53 * hash) + getAttributes().hashCode();
-    }
-    if (hasStackTrace()) {
-      hash = (37 * hash) + STACK_TRACE_FIELD_NUMBER;
-      hash = (53 * hash) + getStackTrace().hashCode();
-    }
-    if (hasTimeEvents()) {
-      hash = (37 * hash) + TIME_EVENTS_FIELD_NUMBER;
-      hash = (53 * hash) + getTimeEvents().hashCode();
-    }
-    if (hasLinks()) {
-      hash = (37 * hash) + LINKS_FIELD_NUMBER;
-      hash = (53 * hash) + getLinks().hashCode();
-    }
-    if (hasStatus()) {
-      hash = (37 * hash) + STATUS_FIELD_NUMBER;
-      hash = (53 * hash) + getStatus().hashCode();
-    }
-    if (hasResource()) {
-      hash = (37 * hash) + RESOURCE_FIELD_NUMBER;
-      hash = (53 * hash) + getResource().hashCode();
-    }
-    if (hasSameProcessAsParentSpan()) {
-      hash = (37 * hash) + SAME_PROCESS_AS_PARENT_SPAN_FIELD_NUMBER;
-      hash = (53 * hash) + getSameProcessAsParentSpan().hashCode();
-    }
-    if (hasChildSpanCount()) {
-      hash = (37 * hash) + CHILD_SPAN_COUNT_FIELD_NUMBER;
-      hash = (53 * hash) + getChildSpanCount().hashCode();
-    }
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
-
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<Span> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.trace.v1.Span getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
-
   /**
    * <pre>
    * Type of span. Can be used to specify additional relationships between spans
    * in addition to a parent/child relationship.
    * </pre>
-   * <p>
+   *
    * Protobuf enum {@code opencensus.proto.trace.v1.Span.SpanKind}
    */
   public enum SpanKind
-      implements com.google.protobuf.ProtocolMessageEnum {
+      implements com.google.protobuf.Internal.EnumLite {
     /**
      * <pre>
      * Unspecified.
@@ -1547,69 +93,9 @@ public final class Span extends
      * <code>CLIENT = 2;</code>
      */
     public static final int CLIENT_VALUE = 2;
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        SpanKind> internalValueMap =
-        new com.google.protobuf.Internal.EnumLiteMap<SpanKind>() {
-          public SpanKind findValueByNumber(int number) {
-            return SpanKind.forNumber(number);
-          }
-        };
-    private static final SpanKind[] VALUES = values();
-    private final int value;
 
-    SpanKind(int value) {
-      this.value = value;
-    }
 
-    /**
-     * @param value The numeric wire value of the corresponding enum entry.
-     * @return The enum associated with the given numeric wire value.
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
-    public static SpanKind valueOf(int value) {
-      return forNumber(value);
-    }
-
-    /**
-     * @param value The numeric wire value of the corresponding enum entry.
-     * @return The enum associated with the given numeric wire value.
-     */
-    public static SpanKind forNumber(int value) {
-      switch (value) {
-        case 0:
-          return SPAN_KIND_UNSPECIFIED;
-        case 1:
-          return SERVER;
-        case 2:
-          return CLIENT;
-        default:
-          return null;
-      }
-    }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<SpanKind>
-    internalGetValueMap() {
-      return internalValueMap;
-    }
-
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
-    getDescriptor() {
-      return io.opencensus.proto.trace.v1.Span.getDescriptor().getEnumTypes().get(0);
-    }
-
-    public static SpanKind valueOf(
-        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-      if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
-      }
-      if (desc.getIndex() == -1) {
-        return UNRECOGNIZED;
-      }
-      return VALUES[desc.getIndex()];
-    }
-
+    @java.lang.Override
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
         throw new java.lang.IllegalArgumentException(
@@ -1618,18 +104,56 @@ public final class Span extends
       return value;
     }
 
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-    getValueDescriptor() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalStateException(
-            "Can't get the descriptor of an unrecognized enum value.");
-      }
-      return getDescriptor().getValues().get(ordinal());
+    /**
+     * @param value The number of the enum to look for.
+     * @return The enum associated with the given number.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static SpanKind valueOf(int value) {
+      return forNumber(value);
     }
 
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-    getDescriptorForType() {
-      return getDescriptor();
+    public static SpanKind forNumber(int value) {
+      switch (value) {
+        case 0: return SPAN_KIND_UNSPECIFIED;
+        case 1: return SERVER;
+        case 2: return CLIENT;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<SpanKind>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        SpanKind> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<SpanKind>() {
+            @java.lang.Override
+            public SpanKind findValueByNumber(int number) {
+              return SpanKind.forNumber(number);
+            }
+          };
+
+    public static com.google.protobuf.Internal.EnumVerifier 
+        internalGetVerifier() {
+      return SpanKindVerifier.INSTANCE;
+    }
+
+    private static final class SpanKindVerifier implements 
+         com.google.protobuf.Internal.EnumVerifier { 
+            static final com.google.protobuf.Internal.EnumVerifier           INSTANCE = new SpanKindVerifier();
+            @java.lang.Override
+            public boolean isInRange(int number) {
+              return SpanKind.forNumber(number) != null;
+            }
+          };
+
+    private final int value;
+
+    private SpanKind(int value) {
+      this.value = value;
     }
 
     // @@protoc_insertion_point(enum_scope:opencensus.proto.trace.v1.Span.SpanKind)
@@ -1637,7 +161,7 @@ public final class Span extends
 
   public interface TracestateOrBuilder extends
       // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.Span.Tracestate)
-      com.google.protobuf.MessageOrBuilder {
+      com.google.protobuf.MessageLiteOrBuilder {
 
     /**
      * <pre>
@@ -1646,9 +170,8 @@ public final class Span extends
      *
      * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
      */
-    java.util.List<io.opencensus.proto.trace.v1.Span.Tracestate.Entry>
-    getEntriesList();
-
+    java.util.List<io.opencensus.proto.trace.v1.Span.Tracestate.Entry> 
+        getEntriesList();
     /**
      * <pre>
      * A list of entries that represent the Tracestate.
@@ -1657,7 +180,6 @@ public final class Span extends
      * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
      */
     io.opencensus.proto.trace.v1.Span.Tracestate.Entry getEntries(int index);
-
     /**
      * <pre>
      * A list of entries that represent the Tracestate.
@@ -1666,6 +188,635 @@ public final class Span extends
      * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
      */
     int getEntriesCount();
+  }
+  /**
+   * <pre>
+   * This field conveys information about request position in multiple distributed tracing graphs.
+   * It is a list of Tracestate.Entry with a maximum of 32 members in the list.
+   * See the https://github.com/w3c/distributed-tracing for more details about this field.
+   * </pre>
+   *
+   * Protobuf type {@code opencensus.proto.trace.v1.Span.Tracestate}
+   */
+  public  static final class Tracestate extends
+      com.google.protobuf.GeneratedMessageLite<
+          Tracestate, Tracestate.Builder> implements
+      // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.Span.Tracestate)
+      TracestateOrBuilder {
+    private Tracestate() {
+      entries_ = emptyProtobufList();
+    }
+    public interface EntryOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.Span.Tracestate.Entry)
+        com.google.protobuf.MessageLiteOrBuilder {
+
+      /**
+       * <pre>
+       * The key must begin with a lowercase letter, and can only contain
+       * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
+       * '-', asterisks '*', and forward slashes '/'.
+       * </pre>
+       *
+       * <code>string key = 1;</code>
+       * @return The key.
+       */
+      java.lang.String getKey();
+      /**
+       * <pre>
+       * The key must begin with a lowercase letter, and can only contain
+       * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
+       * '-', asterisks '*', and forward slashes '/'.
+       * </pre>
+       *
+       * <code>string key = 1;</code>
+       * @return The bytes for key.
+       */
+      com.google.protobuf.ByteString
+          getKeyBytes();
+
+      /**
+       * <pre>
+       * The value is opaque string up to 256 characters printable ASCII
+       * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
+       * Note that this also excludes tabs, newlines, carriage returns, etc.
+       * </pre>
+       *
+       * <code>string value = 2;</code>
+       * @return The value.
+       */
+      java.lang.String getValue();
+      /**
+       * <pre>
+       * The value is opaque string up to 256 characters printable ASCII
+       * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
+       * Note that this also excludes tabs, newlines, carriage returns, etc.
+       * </pre>
+       *
+       * <code>string value = 2;</code>
+       * @return The bytes for value.
+       */
+      com.google.protobuf.ByteString
+          getValueBytes();
+    }
+    /**
+     * Protobuf type {@code opencensus.proto.trace.v1.Span.Tracestate.Entry}
+     */
+    public  static final class Entry extends
+        com.google.protobuf.GeneratedMessageLite<
+            Entry, Entry.Builder> implements
+        // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.Span.Tracestate.Entry)
+        EntryOrBuilder {
+      private Entry() {
+        key_ = "";
+        value_ = "";
+      }
+      public static final int KEY_FIELD_NUMBER = 1;
+      private java.lang.String key_;
+      /**
+       * <pre>
+       * The key must begin with a lowercase letter, and can only contain
+       * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
+       * '-', asterisks '*', and forward slashes '/'.
+       * </pre>
+       *
+       * <code>string key = 1;</code>
+       * @return The key.
+       */
+      @java.lang.Override
+      public java.lang.String getKey() {
+        return key_;
+      }
+      /**
+       * <pre>
+       * The key must begin with a lowercase letter, and can only contain
+       * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
+       * '-', asterisks '*', and forward slashes '/'.
+       * </pre>
+       *
+       * <code>string key = 1;</code>
+       * @return The bytes for key.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString
+          getKeyBytes() {
+        return com.google.protobuf.ByteString.copyFromUtf8(key_);
+      }
+      /**
+       * <pre>
+       * The key must begin with a lowercase letter, and can only contain
+       * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
+       * '-', asterisks '*', and forward slashes '/'.
+       * </pre>
+       *
+       * <code>string key = 1;</code>
+       * @param value The key to set.
+       */
+      private void setKey(
+          java.lang.String value) {
+        value.getClass();
+  
+        key_ = value;
+      }
+      /**
+       * <pre>
+       * The key must begin with a lowercase letter, and can only contain
+       * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
+       * '-', asterisks '*', and forward slashes '/'.
+       * </pre>
+       *
+       * <code>string key = 1;</code>
+       */
+      private void clearKey() {
+        
+        key_ = getDefaultInstance().getKey();
+      }
+      /**
+       * <pre>
+       * The key must begin with a lowercase letter, and can only contain
+       * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
+       * '-', asterisks '*', and forward slashes '/'.
+       * </pre>
+       *
+       * <code>string key = 1;</code>
+       * @param value The bytes for key to set.
+       */
+      private void setKeyBytes(
+          com.google.protobuf.ByteString value) {
+        checkByteStringIsUtf8(value);
+        key_ = value.toStringUtf8();
+        
+      }
+
+      public static final int VALUE_FIELD_NUMBER = 2;
+      private java.lang.String value_;
+      /**
+       * <pre>
+       * The value is opaque string up to 256 characters printable ASCII
+       * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
+       * Note that this also excludes tabs, newlines, carriage returns, etc.
+       * </pre>
+       *
+       * <code>string value = 2;</code>
+       * @return The value.
+       */
+      @java.lang.Override
+      public java.lang.String getValue() {
+        return value_;
+      }
+      /**
+       * <pre>
+       * The value is opaque string up to 256 characters printable ASCII
+       * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
+       * Note that this also excludes tabs, newlines, carriage returns, etc.
+       * </pre>
+       *
+       * <code>string value = 2;</code>
+       * @return The bytes for value.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString
+          getValueBytes() {
+        return com.google.protobuf.ByteString.copyFromUtf8(value_);
+      }
+      /**
+       * <pre>
+       * The value is opaque string up to 256 characters printable ASCII
+       * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
+       * Note that this also excludes tabs, newlines, carriage returns, etc.
+       * </pre>
+       *
+       * <code>string value = 2;</code>
+       * @param value The value to set.
+       */
+      private void setValue(
+          java.lang.String value) {
+        value.getClass();
+  
+        value_ = value;
+      }
+      /**
+       * <pre>
+       * The value is opaque string up to 256 characters printable ASCII
+       * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
+       * Note that this also excludes tabs, newlines, carriage returns, etc.
+       * </pre>
+       *
+       * <code>string value = 2;</code>
+       */
+      private void clearValue() {
+        
+        value_ = getDefaultInstance().getValue();
+      }
+      /**
+       * <pre>
+       * The value is opaque string up to 256 characters printable ASCII
+       * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
+       * Note that this also excludes tabs, newlines, carriage returns, etc.
+       * </pre>
+       *
+       * <code>string value = 2;</code>
+       * @param value The bytes for value to set.
+       */
+      private void setValueBytes(
+          com.google.protobuf.ByteString value) {
+        checkByteStringIsUtf8(value);
+        value_ = value.toStringUtf8();
+        
+      }
+
+      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input);
+      }
+      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      }
+      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input);
+      }
+      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+
+      public static Builder newBuilder() {
+        return (Builder) DEFAULT_INSTANCE.createBuilder();
+      }
+      public static Builder newBuilder(io.opencensus.proto.trace.v1.Span.Tracestate.Entry prototype) {
+        return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      }
+
+      /**
+       * Protobuf type {@code opencensus.proto.trace.v1.Span.Tracestate.Entry}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageLite.Builder<
+            io.opencensus.proto.trace.v1.Span.Tracestate.Entry, Builder> implements
+          // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.Span.Tracestate.Entry)
+          io.opencensus.proto.trace.v1.Span.Tracestate.EntryOrBuilder {
+        // Construct using io.opencensus.proto.trace.v1.Span.Tracestate.Entry.newBuilder()
+        private Builder() {
+          super(DEFAULT_INSTANCE);
+        }
+
+
+        /**
+         * <pre>
+         * The key must begin with a lowercase letter, and can only contain
+         * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
+         * '-', asterisks '*', and forward slashes '/'.
+         * </pre>
+         *
+         * <code>string key = 1;</code>
+         * @return The key.
+         */
+        @java.lang.Override
+        public java.lang.String getKey() {
+          return instance.getKey();
+        }
+        /**
+         * <pre>
+         * The key must begin with a lowercase letter, and can only contain
+         * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
+         * '-', asterisks '*', and forward slashes '/'.
+         * </pre>
+         *
+         * <code>string key = 1;</code>
+         * @return The bytes for key.
+         */
+        @java.lang.Override
+        public com.google.protobuf.ByteString
+            getKeyBytes() {
+          return instance.getKeyBytes();
+        }
+        /**
+         * <pre>
+         * The key must begin with a lowercase letter, and can only contain
+         * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
+         * '-', asterisks '*', and forward slashes '/'.
+         * </pre>
+         *
+         * <code>string key = 1;</code>
+         * @param value The key to set.
+         * @return This builder for chaining.
+         */
+        public Builder setKey(
+            java.lang.String value) {
+          copyOnWrite();
+          instance.setKey(value);
+          return this;
+        }
+        /**
+         * <pre>
+         * The key must begin with a lowercase letter, and can only contain
+         * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
+         * '-', asterisks '*', and forward slashes '/'.
+         * </pre>
+         *
+         * <code>string key = 1;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearKey() {
+          copyOnWrite();
+          instance.clearKey();
+          return this;
+        }
+        /**
+         * <pre>
+         * The key must begin with a lowercase letter, and can only contain
+         * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
+         * '-', asterisks '*', and forward slashes '/'.
+         * </pre>
+         *
+         * <code>string key = 1;</code>
+         * @param value The bytes for key to set.
+         * @return This builder for chaining.
+         */
+        public Builder setKeyBytes(
+            com.google.protobuf.ByteString value) {
+          copyOnWrite();
+          instance.setKeyBytes(value);
+          return this;
+        }
+
+        /**
+         * <pre>
+         * The value is opaque string up to 256 characters printable ASCII
+         * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
+         * Note that this also excludes tabs, newlines, carriage returns, etc.
+         * </pre>
+         *
+         * <code>string value = 2;</code>
+         * @return The value.
+         */
+        @java.lang.Override
+        public java.lang.String getValue() {
+          return instance.getValue();
+        }
+        /**
+         * <pre>
+         * The value is opaque string up to 256 characters printable ASCII
+         * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
+         * Note that this also excludes tabs, newlines, carriage returns, etc.
+         * </pre>
+         *
+         * <code>string value = 2;</code>
+         * @return The bytes for value.
+         */
+        @java.lang.Override
+        public com.google.protobuf.ByteString
+            getValueBytes() {
+          return instance.getValueBytes();
+        }
+        /**
+         * <pre>
+         * The value is opaque string up to 256 characters printable ASCII
+         * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
+         * Note that this also excludes tabs, newlines, carriage returns, etc.
+         * </pre>
+         *
+         * <code>string value = 2;</code>
+         * @param value The value to set.
+         * @return This builder for chaining.
+         */
+        public Builder setValue(
+            java.lang.String value) {
+          copyOnWrite();
+          instance.setValue(value);
+          return this;
+        }
+        /**
+         * <pre>
+         * The value is opaque string up to 256 characters printable ASCII
+         * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
+         * Note that this also excludes tabs, newlines, carriage returns, etc.
+         * </pre>
+         *
+         * <code>string value = 2;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearValue() {
+          copyOnWrite();
+          instance.clearValue();
+          return this;
+        }
+        /**
+         * <pre>
+         * The value is opaque string up to 256 characters printable ASCII
+         * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
+         * Note that this also excludes tabs, newlines, carriage returns, etc.
+         * </pre>
+         *
+         * <code>string value = 2;</code>
+         * @param value The bytes for value to set.
+         * @return This builder for chaining.
+         */
+        public Builder setValueBytes(
+            com.google.protobuf.ByteString value) {
+          copyOnWrite();
+          instance.setValueBytes(value);
+          return this;
+        }
+
+        // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.Span.Tracestate.Entry)
+      }
+      @java.lang.Override
+      @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+      protected final java.lang.Object dynamicMethod(
+          com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+          java.lang.Object arg0, java.lang.Object arg1) {
+        switch (method) {
+          case NEW_MUTABLE_INSTANCE: {
+            return new io.opencensus.proto.trace.v1.Span.Tracestate.Entry();
+          }
+          case NEW_BUILDER: {
+            return new Builder();
+          }
+          case BUILD_MESSAGE_INFO: {
+              java.lang.Object[] objects = new java.lang.Object[] {
+                "key_",
+                "value_",
+              };
+              java.lang.String info =
+                  "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001\u0208\u0002\u0208" +
+                  "";
+              return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+          }
+          // fall through
+          case GET_DEFAULT_INSTANCE: {
+            return DEFAULT_INSTANCE;
+          }
+          case GET_PARSER: {
+            com.google.protobuf.Parser<io.opencensus.proto.trace.v1.Span.Tracestate.Entry> parser = PARSER;
+            if (parser == null) {
+              synchronized (io.opencensus.proto.trace.v1.Span.Tracestate.Entry.class) {
+                parser = PARSER;
+                if (parser == null) {
+                  parser =
+                      new DefaultInstanceBasedParser<io.opencensus.proto.trace.v1.Span.Tracestate.Entry>(
+                          DEFAULT_INSTANCE);
+                  PARSER = parser;
+                }
+              }
+            }
+            return parser;
+        }
+        case GET_MEMOIZED_IS_INITIALIZED: {
+          return (byte) 1;
+        }
+        case SET_MEMOIZED_IS_INITIALIZED: {
+          return null;
+        }
+        }
+        throw new UnsupportedOperationException();
+      }
+
+
+      // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span.Tracestate.Entry)
+      private static final io.opencensus.proto.trace.v1.Span.Tracestate.Entry DEFAULT_INSTANCE;
+      static {
+        Entry defaultInstance = new Entry();
+        // New instances are implicitly immutable so no need to make
+        // immutable.
+        DEFAULT_INSTANCE = defaultInstance;
+        com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+          Entry.class, defaultInstance);
+      }
+
+      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static volatile com.google.protobuf.Parser<Entry> PARSER;
+
+      public static com.google.protobuf.Parser<Entry> parser() {
+        return DEFAULT_INSTANCE.getParserForType();
+      }
+    }
+
+    public static final int ENTRIES_FIELD_NUMBER = 1;
+    private com.google.protobuf.Internal.ProtobufList<io.opencensus.proto.trace.v1.Span.Tracestate.Entry> entries_;
+    /**
+     * <pre>
+     * A list of entries that represent the Tracestate.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<io.opencensus.proto.trace.v1.Span.Tracestate.Entry> getEntriesList() {
+      return entries_;
+    }
+    /**
+     * <pre>
+     * A list of entries that represent the Tracestate.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+     */
+    public java.util.List<? extends io.opencensus.proto.trace.v1.Span.Tracestate.EntryOrBuilder> 
+        getEntriesOrBuilderList() {
+      return entries_;
+    }
+    /**
+     * <pre>
+     * A list of entries that represent the Tracestate.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+     */
+    @java.lang.Override
+    public int getEntriesCount() {
+      return entries_.size();
+    }
+    /**
+     * <pre>
+     * A list of entries that represent the Tracestate.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+     */
+    @java.lang.Override
+    public io.opencensus.proto.trace.v1.Span.Tracestate.Entry getEntries(int index) {
+      return entries_.get(index);
+    }
+    /**
+     * <pre>
+     * A list of entries that represent the Tracestate.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+     */
+    public io.opencensus.proto.trace.v1.Span.Tracestate.EntryOrBuilder getEntriesOrBuilder(
+        int index) {
+      return entries_.get(index);
+    }
+    private void ensureEntriesIsMutable() {
+      com.google.protobuf.Internal.ProtobufList<io.opencensus.proto.trace.v1.Span.Tracestate.Entry> tmp = entries_;
+      if (!tmp.isModifiable()) {
+        entries_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(tmp);
+       }
+    }
 
     /**
      * <pre>
@@ -1674,9 +825,12 @@ public final class Span extends
      *
      * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
      */
-    java.util.List<? extends io.opencensus.proto.trace.v1.Span.Tracestate.EntryOrBuilder>
-    getEntriesOrBuilderList();
-
+    private void setEntries(
+        int index, io.opencensus.proto.trace.v1.Span.Tracestate.Entry value) {
+      value.getClass();
+  ensureEntriesIsMutable();
+      entries_.set(index, value);
+    }
     /**
      * <pre>
      * A list of entries that represent the Tracestate.
@@ -1684,18 +838,393 @@ public final class Span extends
      *
      * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
      */
-    io.opencensus.proto.trace.v1.Span.Tracestate.EntryOrBuilder getEntriesOrBuilder(
-        int index);
+    private void addEntries(io.opencensus.proto.trace.v1.Span.Tracestate.Entry value) {
+      value.getClass();
+  ensureEntriesIsMutable();
+      entries_.add(value);
+    }
+    /**
+     * <pre>
+     * A list of entries that represent the Tracestate.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+     */
+    private void addEntries(
+        int index, io.opencensus.proto.trace.v1.Span.Tracestate.Entry value) {
+      value.getClass();
+  ensureEntriesIsMutable();
+      entries_.add(index, value);
+    }
+    /**
+     * <pre>
+     * A list of entries that represent the Tracestate.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+     */
+    private void addAllEntries(
+        java.lang.Iterable<? extends io.opencensus.proto.trace.v1.Span.Tracestate.Entry> values) {
+      ensureEntriesIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, entries_);
+    }
+    /**
+     * <pre>
+     * A list of entries that represent the Tracestate.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+     */
+    private void clearEntries() {
+      entries_ = emptyProtobufList();
+    }
+    /**
+     * <pre>
+     * A list of entries that represent the Tracestate.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+     */
+    private void removeEntries(int index) {
+      ensureEntriesIsMutable();
+      entries_.remove(index);
+    }
+
+    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Tracestate parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Tracestate parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
+    }
+    public static Builder newBuilder(io.opencensus.proto.trace.v1.Span.Tracestate prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+    }
+
+    /**
+     * <pre>
+     * This field conveys information about request position in multiple distributed tracing graphs.
+     * It is a list of Tracestate.Entry with a maximum of 32 members in the list.
+     * See the https://github.com/w3c/distributed-tracing for more details about this field.
+     * </pre>
+     *
+     * Protobuf type {@code opencensus.proto.trace.v1.Span.Tracestate}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          io.opencensus.proto.trace.v1.Span.Tracestate, Builder> implements
+        // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.Span.Tracestate)
+        io.opencensus.proto.trace.v1.Span.TracestateOrBuilder {
+      // Construct using io.opencensus.proto.trace.v1.Span.Tracestate.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <pre>
+       * A list of entries that represent the Tracestate.
+       * </pre>
+       *
+       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+       */
+      @java.lang.Override
+      public java.util.List<io.opencensus.proto.trace.v1.Span.Tracestate.Entry> getEntriesList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getEntriesList());
+      }
+      /**
+       * <pre>
+       * A list of entries that represent the Tracestate.
+       * </pre>
+       *
+       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+       */
+      @java.lang.Override
+      public int getEntriesCount() {
+        return instance.getEntriesCount();
+      }/**
+       * <pre>
+       * A list of entries that represent the Tracestate.
+       * </pre>
+       *
+       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+       */
+      @java.lang.Override
+      public io.opencensus.proto.trace.v1.Span.Tracestate.Entry getEntries(int index) {
+        return instance.getEntries(index);
+      }
+      /**
+       * <pre>
+       * A list of entries that represent the Tracestate.
+       * </pre>
+       *
+       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+       */
+      public Builder setEntries(
+          int index, io.opencensus.proto.trace.v1.Span.Tracestate.Entry value) {
+        copyOnWrite();
+        instance.setEntries(index, value);
+        return this;
+      }
+      /**
+       * <pre>
+       * A list of entries that represent the Tracestate.
+       * </pre>
+       *
+       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+       */
+      public Builder setEntries(
+          int index, io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder builderForValue) {
+        copyOnWrite();
+        instance.setEntries(index,
+            builderForValue.build());
+        return this;
+      }
+      /**
+       * <pre>
+       * A list of entries that represent the Tracestate.
+       * </pre>
+       *
+       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+       */
+      public Builder addEntries(io.opencensus.proto.trace.v1.Span.Tracestate.Entry value) {
+        copyOnWrite();
+        instance.addEntries(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * A list of entries that represent the Tracestate.
+       * </pre>
+       *
+       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+       */
+      public Builder addEntries(
+          int index, io.opencensus.proto.trace.v1.Span.Tracestate.Entry value) {
+        copyOnWrite();
+        instance.addEntries(index, value);
+        return this;
+      }
+      /**
+       * <pre>
+       * A list of entries that represent the Tracestate.
+       * </pre>
+       *
+       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+       */
+      public Builder addEntries(
+          io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder builderForValue) {
+        copyOnWrite();
+        instance.addEntries(builderForValue.build());
+        return this;
+      }
+      /**
+       * <pre>
+       * A list of entries that represent the Tracestate.
+       * </pre>
+       *
+       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+       */
+      public Builder addEntries(
+          int index, io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder builderForValue) {
+        copyOnWrite();
+        instance.addEntries(index,
+            builderForValue.build());
+        return this;
+      }
+      /**
+       * <pre>
+       * A list of entries that represent the Tracestate.
+       * </pre>
+       *
+       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+       */
+      public Builder addAllEntries(
+          java.lang.Iterable<? extends io.opencensus.proto.trace.v1.Span.Tracestate.Entry> values) {
+        copyOnWrite();
+        instance.addAllEntries(values);
+        return this;
+      }
+      /**
+       * <pre>
+       * A list of entries that represent the Tracestate.
+       * </pre>
+       *
+       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+       */
+      public Builder clearEntries() {
+        copyOnWrite();
+        instance.clearEntries();
+        return this;
+      }
+      /**
+       * <pre>
+       * A list of entries that represent the Tracestate.
+       * </pre>
+       *
+       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
+       */
+      public Builder removeEntries(int index) {
+        copyOnWrite();
+        instance.removeEntries(index);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.Span.Tracestate)
+    }
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new io.opencensus.proto.trace.v1.Span.Tracestate();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case BUILD_MESSAGE_INFO: {
+            java.lang.Object[] objects = new java.lang.Object[] {
+              "entries_",
+              io.opencensus.proto.trace.v1.Span.Tracestate.Entry.class,
+            };
+            java.lang.String info =
+                "\u0000\u0001\u0000\u0000\u0001\u0001\u0001\u0000\u0001\u0000\u0001\u001b";
+            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          com.google.protobuf.Parser<io.opencensus.proto.trace.v1.Span.Tracestate> parser = PARSER;
+          if (parser == null) {
+            synchronized (io.opencensus.proto.trace.v1.Span.Tracestate.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser =
+                    new DefaultInstanceBasedParser<io.opencensus.proto.trace.v1.Span.Tracestate>(
+                        DEFAULT_INSTANCE);
+                PARSER = parser;
+              }
+            }
+          }
+          return parser;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span.Tracestate)
+    private static final io.opencensus.proto.trace.v1.Span.Tracestate DEFAULT_INSTANCE;
+    static {
+      Tracestate defaultInstance = new Tracestate();
+      // New instances are implicitly immutable so no need to make
+      // immutable.
+      DEFAULT_INSTANCE = defaultInstance;
+      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+        Tracestate.class, defaultInstance);
+    }
+
+    public static io.opencensus.proto.trace.v1.Span.Tracestate getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<Tracestate> PARSER;
+
+    public static com.google.protobuf.Parser<Tracestate> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
   public interface AttributesOrBuilder extends
       // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.Span.Attributes)
-      com.google.protobuf.MessageOrBuilder {
+      com.google.protobuf.MessageLiteOrBuilder {
 
     /**
      * <pre>
      * The set of attributes. The value can be a string, an integer, a double
-     * or the Boolean values `true` or `false`. Note, global attributes like
+     * or the Boolean values `true` or `false`. Note, global attributes like 
      * server name can be set as tags using resource API. Examples of attributes:
      *     "/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
      *     "/http/server_latency": 300
@@ -1706,11 +1235,10 @@ public final class Span extends
      * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;</code>
      */
     int getAttributeMapCount();
-
     /**
      * <pre>
      * The set of attributes. The value can be a string, an integer, a double
-     * or the Boolean values `true` or `false`. Note, global attributes like
+     * or the Boolean values `true` or `false`. Note, global attributes like 
      * server name can be set as tags using resource API. Examples of attributes:
      *     "/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
      *     "/http/server_latency": 300
@@ -1722,18 +1250,16 @@ public final class Span extends
      */
     boolean containsAttributeMap(
         java.lang.String key);
-
     /**
      * Use {@link #getAttributeMapMap()} instead.
      */
     @java.lang.Deprecated
     java.util.Map<java.lang.String, io.opencensus.proto.trace.v1.AttributeValue>
     getAttributeMap();
-
     /**
      * <pre>
      * The set of attributes. The value can be a string, an integer, a double
-     * or the Boolean values `true` or `false`. Note, global attributes like
+     * or the Boolean values `true` or `false`. Note, global attributes like 
      * server name can be set as tags using resource API. Examples of attributes:
      *     "/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
      *     "/http/server_latency": 300
@@ -1745,11 +1271,10 @@ public final class Span extends
      */
     java.util.Map<java.lang.String, io.opencensus.proto.trace.v1.AttributeValue>
     getAttributeMapMap();
-
     /**
      * <pre>
      * The set of attributes. The value can be a string, an integer, a double
-     * or the Boolean values `true` or `false`. Note, global attributes like
+     * or the Boolean values `true` or `false`. Note, global attributes like 
      * server name can be set as tags using resource API. Examples of attributes:
      *     "/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
      *     "/http/server_latency": 300
@@ -1763,11 +1288,10 @@ public final class Span extends
     io.opencensus.proto.trace.v1.AttributeValue getAttributeMapOrDefault(
         java.lang.String key,
         io.opencensus.proto.trace.v1.AttributeValue defaultValue);
-
     /**
      * <pre>
      * The set of attributes. The value can be a string, an integer, a double
-     * or the Boolean values `true` or `false`. Note, global attributes like
+     * or the Boolean values `true` or `false`. Note, global attributes like 
      * server name can be set as tags using resource API. Examples of attributes:
      *     "/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
      *     "/http/server_latency": 300
@@ -1789,2481 +1313,58 @@ public final class Span extends
      * </pre>
      *
      * <code>int32 dropped_attributes_count = 2;</code>
-     *
      * @return The droppedAttributesCount.
      */
     int getDroppedAttributesCount();
   }
-
-  public interface TimeEventOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.Span.TimeEvent)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     * The time the event occurred.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp time = 1;</code>
-     *
-     * @return Whether the time field is set.
-     */
-    boolean hasTime();
-
-    /**
-     * <pre>
-     * The time the event occurred.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp time = 1;</code>
-     *
-     * @return The time.
-     */
-    com.google.protobuf.Timestamp getTime();
-
-    /**
-     * <pre>
-     * The time the event occurred.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp time = 1;</code>
-     */
-    com.google.protobuf.TimestampOrBuilder getTimeOrBuilder();
-
-    /**
-     * <pre>
-     * A text annotation with a set of attributes.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
-     *
-     * @return Whether the annotation field is set.
-     */
-    boolean hasAnnotation();
-
-    /**
-     * <pre>
-     * A text annotation with a set of attributes.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
-     *
-     * @return The annotation.
-     */
-    io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation getAnnotation();
-
-    /**
-     * <pre>
-     * A text annotation with a set of attributes.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
-     */
-    io.opencensus.proto.trace.v1.Span.TimeEvent.AnnotationOrBuilder getAnnotationOrBuilder();
-
-    /**
-     * <pre>
-     * An event describing a message sent/received between Spans.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
-     *
-     * @return Whether the messageEvent field is set.
-     */
-    boolean hasMessageEvent();
-
-    /**
-     * <pre>
-     * An event describing a message sent/received between Spans.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
-     *
-     * @return The messageEvent.
-     */
-    io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent getMessageEvent();
-
-    /**
-     * <pre>
-     * An event describing a message sent/received between Spans.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
-     */
-    io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEventOrBuilder getMessageEventOrBuilder();
-
-    io.opencensus.proto.trace.v1.Span.TimeEvent.ValueCase getValueCase();
-  }
-
-  public interface TimeEventsOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.Span.TimeEvents)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     * A collection of `TimeEvent`s.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
-     */
-    java.util.List<io.opencensus.proto.trace.v1.Span.TimeEvent>
-    getTimeEventList();
-
-    /**
-     * <pre>
-     * A collection of `TimeEvent`s.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
-     */
-    io.opencensus.proto.trace.v1.Span.TimeEvent getTimeEvent(int index);
-
-    /**
-     * <pre>
-     * A collection of `TimeEvent`s.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
-     */
-    int getTimeEventCount();
-
-    /**
-     * <pre>
-     * A collection of `TimeEvent`s.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
-     */
-    java.util.List<? extends io.opencensus.proto.trace.v1.Span.TimeEventOrBuilder>
-    getTimeEventOrBuilderList();
-
-    /**
-     * <pre>
-     * A collection of `TimeEvent`s.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
-     */
-    io.opencensus.proto.trace.v1.Span.TimeEventOrBuilder getTimeEventOrBuilder(
-        int index);
-
-    /**
-     * <pre>
-     * The number of dropped annotations in all the included time events.
-     * If the value is 0, then no annotations were dropped.
-     * </pre>
-     *
-     * <code>int32 dropped_annotations_count = 2;</code>
-     *
-     * @return The droppedAnnotationsCount.
-     */
-    int getDroppedAnnotationsCount();
-
-    /**
-     * <pre>
-     * The number of dropped message events in all the included time events.
-     * If the value is 0, then no message events were dropped.
-     * </pre>
-     *
-     * <code>int32 dropped_message_events_count = 3;</code>
-     *
-     * @return The droppedMessageEventsCount.
-     */
-    int getDroppedMessageEventsCount();
-  }
-
-  public interface LinkOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.Span.Link)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     * A unique identifier of a trace that this linked span is part of. The ID is a
-     * 16-byte array.
-     * </pre>
-     *
-     * <code>bytes trace_id = 1;</code>
-     *
-     * @return The traceId.
-     */
-    com.google.protobuf.ByteString getTraceId();
-
-    /**
-     * <pre>
-     * A unique identifier for the linked span. The ID is an 8-byte array.
-     * </pre>
-     *
-     * <code>bytes span_id = 2;</code>
-     *
-     * @return The spanId.
-     */
-    com.google.protobuf.ByteString getSpanId();
-
-    /**
-     * <pre>
-     * The relationship of the current span relative to the linked span.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.Link.Type type = 3;</code>
-     *
-     * @return The enum numeric value on the wire for type.
-     */
-    int getTypeValue();
-
-    /**
-     * <pre>
-     * The relationship of the current span relative to the linked span.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.Link.Type type = 3;</code>
-     *
-     * @return The type.
-     */
-    io.opencensus.proto.trace.v1.Span.Link.Type getType();
-
-    /**
-     * <pre>
-     * A set of attributes on the link.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 4;</code>
-     *
-     * @return Whether the attributes field is set.
-     */
-    boolean hasAttributes();
-
-    /**
-     * <pre>
-     * A set of attributes on the link.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 4;</code>
-     *
-     * @return The attributes.
-     */
-    io.opencensus.proto.trace.v1.Span.Attributes getAttributes();
-
-    /**
-     * <pre>
-     * A set of attributes on the link.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 4;</code>
-     */
-    io.opencensus.proto.trace.v1.Span.AttributesOrBuilder getAttributesOrBuilder();
-
-    /**
-     * <pre>
-     * The Tracestate associated with the link.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 5;</code>
-     *
-     * @return Whether the tracestate field is set.
-     */
-    boolean hasTracestate();
-
-    /**
-     * <pre>
-     * The Tracestate associated with the link.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 5;</code>
-     *
-     * @return The tracestate.
-     */
-    io.opencensus.proto.trace.v1.Span.Tracestate getTracestate();
-
-    /**
-     * <pre>
-     * The Tracestate associated with the link.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 5;</code>
-     */
-    io.opencensus.proto.trace.v1.Span.TracestateOrBuilder getTracestateOrBuilder();
-  }
-
-  public interface LinksOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.Span.Links)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     * A collection of links.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
-     */
-    java.util.List<io.opencensus.proto.trace.v1.Span.Link>
-    getLinkList();
-
-    /**
-     * <pre>
-     * A collection of links.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
-     */
-    io.opencensus.proto.trace.v1.Span.Link getLink(int index);
-
-    /**
-     * <pre>
-     * A collection of links.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
-     */
-    int getLinkCount();
-
-    /**
-     * <pre>
-     * A collection of links.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
-     */
-    java.util.List<? extends io.opencensus.proto.trace.v1.Span.LinkOrBuilder>
-    getLinkOrBuilderList();
-
-    /**
-     * <pre>
-     * A collection of links.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
-     */
-    io.opencensus.proto.trace.v1.Span.LinkOrBuilder getLinkOrBuilder(
-        int index);
-
-    /**
-     * <pre>
-     * The number of dropped links after the maximum size was enforced. If
-     * this value is 0, then no links were dropped.
-     * </pre>
-     *
-     * <code>int32 dropped_links_count = 2;</code>
-     *
-     * @return The droppedLinksCount.
-     */
-    int getDroppedLinksCount();
-  }
-
-  /**
-   * <pre>
-   * This field conveys information about request position in multiple distributed tracing graphs.
-   * It is a list of Tracestate.Entry with a maximum of 32 members in the list.
-   * See the https://github.com/w3c/distributed-tracing for more details about this field.
-   * </pre>
-   * <p>
-   * Protobuf type {@code opencensus.proto.trace.v1.Span.Tracestate}
-   */
-  public static final class Tracestate extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.Span.Tracestate)
-      TracestateOrBuilder {
-    public static final int ENTRIES_FIELD_NUMBER = 1;
-    private static final long serialVersionUID = 0L;
-    // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span.Tracestate)
-    private static final io.opencensus.proto.trace.v1.Span.Tracestate DEFAULT_INSTANCE;
-    private static final com.google.protobuf.Parser<Tracestate>
-        PARSER = new com.google.protobuf.AbstractParser<Tracestate>() {
-      @java.lang.Override
-      public Tracestate parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Tracestate(input, extensionRegistry);
-      }
-    };
-
-    static {
-      DEFAULT_INSTANCE = new io.opencensus.proto.trace.v1.Span.Tracestate();
-    }
-
-    private java.util.List<io.opencensus.proto.trace.v1.Span.Tracestate.Entry> entries_;
-    private byte memoizedIsInitialized = -1;
-
-    // Use Tracestate.newBuilder() to construct.
-    private Tracestate(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-
-    private Tracestate() {
-      entries_ = java.util.Collections.emptyList();
-    }
-
-    private Tracestate(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                entries_ =
-                    new java.util.ArrayList<io.opencensus.proto.trace.v1.Span.Tracestate.Entry>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              entries_.add(
-                  input.readMessage(io.opencensus.proto.trace.v1.Span.Tracestate.Entry.parser(),
-                      extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          entries_ = java.util.Collections.unmodifiableList(entries_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Tracestate_descriptor;
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Tracestate parseDelimitedFrom(
-        java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Tracestate parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Tracestate parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(io.opencensus.proto.trace.v1.Span.Tracestate prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Tracestate getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    public static com.google.protobuf.Parser<Tracestate> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new Tracestate();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Tracestate_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.trace.v1.Span.Tracestate.class,
-              io.opencensus.proto.trace.v1.Span.Tracestate.Builder.class);
-    }
-
-    /**
-     * <pre>
-     * A list of entries that represent the Tracestate.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-     */
-    @java.lang.Override
-    public java.util.List<io.opencensus.proto.trace.v1.Span.Tracestate.Entry> getEntriesList() {
-      return entries_;
-    }
-
-    /**
-     * <pre>
-     * A list of entries that represent the Tracestate.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-     */
-    @java.lang.Override
-    public java.util.List<? extends io.opencensus.proto.trace.v1.Span.Tracestate.EntryOrBuilder>
-    getEntriesOrBuilderList() {
-      return entries_;
-    }
-
-    /**
-     * <pre>
-     * A list of entries that represent the Tracestate.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-     */
-    @java.lang.Override
-    public int getEntriesCount() {
-      return entries_.size();
-    }
-
-    /**
-     * <pre>
-     * A list of entries that represent the Tracestate.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-     */
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span.Tracestate.Entry getEntries(int index) {
-      return entries_.get(index);
-    }
-
-    /**
-     * <pre>
-     * A list of entries that represent the Tracestate.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-     */
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span.Tracestate.EntryOrBuilder getEntriesOrBuilder(
-        int index) {
-      return entries_.get(index);
-    }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) {
-        return true;
-      }
-      if (isInitialized == 0) {
-        return false;
-      }
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-        throws java.io.IOException {
-      for (int i = 0; i < entries_.size(); i++) {
-        output.writeMessage(1, entries_.get(i));
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) {
-        return size;
-      }
-
-      size = 0;
-      for (int i = 0; i < entries_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(1, entries_.get(i));
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-        return true;
-      }
-      if (!(obj instanceof io.opencensus.proto.trace.v1.Span.Tracestate)) {
-        return super.equals(obj);
-      }
-      io.opencensus.proto.trace.v1.Span.Tracestate other =
-          (io.opencensus.proto.trace.v1.Span.Tracestate) obj;
-
-      if (!getEntriesList()
-          .equals(other.getEntriesList())) {
-        return false;
-      }
-      return unknownFields.equals(other.unknownFields);
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (getEntriesCount() > 0) {
-        hash = (37 * hash) + ENTRIES_FIELD_NUMBER;
-        hash = (53 * hash) + getEntriesList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() {
-      return newBuilder();
-    }
-
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Tracestate> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span.Tracestate getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-    public interface EntryOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.Span.Tracestate
-        // .Entry)
-        com.google.protobuf.MessageOrBuilder {
-
-      /**
-       * <pre>
-       * The key must begin with a lowercase letter, and can only contain
-       * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
-       * '-', asterisks '*', and forward slashes '/'.
-       * </pre>
-       *
-       * <code>string key = 1;</code>
-       *
-       * @return The key.
-       */
-      java.lang.String getKey();
-
-      /**
-       * <pre>
-       * The key must begin with a lowercase letter, and can only contain
-       * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
-       * '-', asterisks '*', and forward slashes '/'.
-       * </pre>
-       *
-       * <code>string key = 1;</code>
-       *
-       * @return The bytes for key.
-       */
-      com.google.protobuf.ByteString
-      getKeyBytes();
-
-      /**
-       * <pre>
-       * The value is opaque string up to 256 characters printable ASCII
-       * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
-       * Note that this also excludes tabs, newlines, carriage returns, etc.
-       * </pre>
-       *
-       * <code>string value = 2;</code>
-       *
-       * @return The value.
-       */
-      java.lang.String getValue();
-
-      /**
-       * <pre>
-       * The value is opaque string up to 256 characters printable ASCII
-       * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
-       * Note that this also excludes tabs, newlines, carriage returns, etc.
-       * </pre>
-       *
-       * <code>string value = 2;</code>
-       *
-       * @return The bytes for value.
-       */
-      com.google.protobuf.ByteString
-      getValueBytes();
-    }
-
-    /**
-     * Protobuf type {@code opencensus.proto.trace.v1.Span.Tracestate.Entry}
-     */
-    public static final class Entry extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.Span.Tracestate
-        // .Entry)
-        EntryOrBuilder {
-      public static final int KEY_FIELD_NUMBER = 1;
-      public static final int VALUE_FIELD_NUMBER = 2;
-      private static final long serialVersionUID = 0L;
-      // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span.Tracestate.Entry)
-      private static final io.opencensus.proto.trace.v1.Span.Tracestate.Entry DEFAULT_INSTANCE;
-      private static final com.google.protobuf.Parser<Entry>
-          PARSER = new com.google.protobuf.AbstractParser<Entry>() {
-        @java.lang.Override
-        public Entry parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Entry(input, extensionRegistry);
-        }
-      };
-
-      static {
-        DEFAULT_INSTANCE = new io.opencensus.proto.trace.v1.Span.Tracestate.Entry();
-      }
-
-      private volatile java.lang.Object key_;
-      private volatile java.lang.Object value_;
-      private byte memoizedIsInitialized = -1;
-
-      // Use Entry.newBuilder() to construct.
-      private Entry(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
-      }
-
-      private Entry() {
-        key_ = "";
-        value_ = "";
-      }
-
-      private Entry(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-            com.google.protobuf.UnknownFieldSet.newBuilder();
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 10: {
-                java.lang.String s = input.readStringRequireUtf8();
-
-                key_ = s;
-                break;
-              }
-              case 18: {
-                java.lang.String s = input.readStringRequireUtf8();
-
-                value_ = s;
-                break;
-              }
-              default: {
-                if (!parseUnknownField(
-                    input, unknownFields, extensionRegistry, tag)) {
-                  done = true;
-                }
-                break;
-              }
-            }
-          }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
-        } finally {
-          this.unknownFields = unknownFields.build();
-          makeExtensionsImmutable();
-        }
-      }
-
-      public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Tracestate_Entry_descriptor;
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(
-          java.nio.ByteBuffer data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(
-          java.nio.ByteBuffer data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(
-          java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseDelimitedFrom(
-          java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-      }
-
-      public static Builder newBuilder(
-          io.opencensus.proto.trace.v1.Span.Tracestate.Entry prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.Tracestate.Entry getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-      }
-
-      public static com.google.protobuf.Parser<Entry> parser() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      @SuppressWarnings({"unused"})
-      protected java.lang.Object newInstance(
-          UnusedPrivateParameter unused) {
-        return new Entry();
-      }
-
-      @java.lang.Override
-      public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
-        return this.unknownFields;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Tracestate_Entry_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                io.opencensus.proto.trace.v1.Span.Tracestate.Entry.class,
-                io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder.class);
-      }
-
-      /**
-       * <pre>
-       * The key must begin with a lowercase letter, and can only contain
-       * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
-       * '-', asterisks '*', and forward slashes '/'.
-       * </pre>
-       *
-       * <code>string key = 1;</code>
-       *
-       * @return The key.
-       */
-      @java.lang.Override
-      public java.lang.String getKey() {
-        java.lang.Object ref = key_;
-        if (ref instanceof java.lang.String) {
-          return (java.lang.String) ref;
-        } else {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          key_ = s;
-          return s;
-        }
-      }
-
-      /**
-       * <pre>
-       * The key must begin with a lowercase letter, and can only contain
-       * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
-       * '-', asterisks '*', and forward slashes '/'.
-       * </pre>
-       *
-       * <code>string key = 1;</code>
-       *
-       * @return The bytes for key.
-       */
-      @java.lang.Override
-      public com.google.protobuf.ByteString
-      getKeyBytes() {
-        java.lang.Object ref = key_;
-        if (ref instanceof java.lang.String) {
-          com.google.protobuf.ByteString b =
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          key_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-
-      /**
-       * <pre>
-       * The value is opaque string up to 256 characters printable ASCII
-       * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
-       * Note that this also excludes tabs, newlines, carriage returns, etc.
-       * </pre>
-       *
-       * <code>string value = 2;</code>
-       *
-       * @return The value.
-       */
-      @java.lang.Override
-      public java.lang.String getValue() {
-        java.lang.Object ref = value_;
-        if (ref instanceof java.lang.String) {
-          return (java.lang.String) ref;
-        } else {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          value_ = s;
-          return s;
-        }
-      }
-
-      /**
-       * <pre>
-       * The value is opaque string up to 256 characters printable ASCII
-       * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
-       * Note that this also excludes tabs, newlines, carriage returns, etc.
-       * </pre>
-       *
-       * <code>string value = 2;</code>
-       *
-       * @return The bytes for value.
-       */
-      @java.lang.Override
-      public com.google.protobuf.ByteString
-      getValueBytes() {
-        java.lang.Object ref = value_;
-        if (ref instanceof java.lang.String) {
-          com.google.protobuf.ByteString b =
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          value_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) {
-          return true;
-        }
-        if (isInitialized == 0) {
-          return false;
-        }
-
-        memoizedIsInitialized = 1;
-        return true;
-      }
-
-      @java.lang.Override
-      public void writeTo(com.google.protobuf.CodedOutputStream output)
-          throws java.io.IOException {
-        if (!getKeyBytes().isEmpty()) {
-          com.google.protobuf.GeneratedMessageV3.writeString(output, 1, key_);
-        }
-        if (!getValueBytes().isEmpty()) {
-          com.google.protobuf.GeneratedMessageV3.writeString(output, 2, value_);
-        }
-        unknownFields.writeTo(output);
-      }
-
-      @java.lang.Override
-      public int getSerializedSize() {
-        int size = memoizedSize;
-        if (size != -1) {
-          return size;
-        }
-
-        size = 0;
-        if (!getKeyBytes().isEmpty()) {
-          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, key_);
-        }
-        if (!getValueBytes().isEmpty()) {
-          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, value_);
-        }
-        size += unknownFields.getSerializedSize();
-        memoizedSize = size;
-        return size;
-      }
-
-      @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-          return true;
-        }
-        if (!(obj instanceof io.opencensus.proto.trace.v1.Span.Tracestate.Entry)) {
-          return super.equals(obj);
-        }
-        io.opencensus.proto.trace.v1.Span.Tracestate.Entry other =
-            (io.opencensus.proto.trace.v1.Span.Tracestate.Entry) obj;
-
-        if (!getKey()
-            .equals(other.getKey())) {
-          return false;
-        }
-        if (!getValue()
-            .equals(other.getValue())) {
-          return false;
-        }
-        return unknownFields.equals(other.unknownFields);
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptor().hashCode();
-        hash = (37 * hash) + KEY_FIELD_NUMBER;
-        hash = (53 * hash) + getKey().hashCode();
-        hash = (37 * hash) + VALUE_FIELD_NUMBER;
-        hash = (53 * hash) + getValue().hashCode();
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
-      }
-
-      @java.lang.Override
-      public Builder newBuilderForType() {
-        return newBuilder();
-      }
-
-      @java.lang.Override
-      public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
-      }
-
-      @java.lang.Override
-      protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Parser<Entry> getParserForType() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.Tracestate.Entry getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-      }
-
-      /**
-       * Protobuf type {@code opencensus.proto.trace.v1.Span.Tracestate.Entry}
-       */
-      public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.Span
-          // .Tracestate.Entry)
-          io.opencensus.proto.trace.v1.Span.Tracestate.EntryOrBuilder {
-        private java.lang.Object key_ = "";
-        private java.lang.Object value_ = "";
-
-        // Construct using io.opencensus.proto.trace.v1.Span.Tracestate.Entry.newBuilder()
-        private Builder() {
-          maybeForceBuilderInitialization();
-        }
-
-        private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-          super(parent);
-          maybeForceBuilderInitialization();
-        }
-
-        public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-          return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Tracestate_Entry_descriptor;
-        }
-
-        @java.lang.Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-          return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Tracestate_Entry_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                  io.opencensus.proto.trace.v1.Span.Tracestate.Entry.class,
-                  io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder.class);
-        }
-
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-          }
-        }
-
-        @java.lang.Override
-        public Builder clear() {
-          super.clear();
-          key_ = "";
-
-          value_ = "";
-
-          return this;
-        }
-
-        @java.lang.Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-          return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Tracestate_Entry_descriptor;
-        }
-
-        @java.lang.Override
-        public io.opencensus.proto.trace.v1.Span.Tracestate.Entry getDefaultInstanceForType() {
-          return io.opencensus.proto.trace.v1.Span.Tracestate.Entry.getDefaultInstance();
-        }
-
-        @java.lang.Override
-        public io.opencensus.proto.trace.v1.Span.Tracestate.Entry build() {
-          io.opencensus.proto.trace.v1.Span.Tracestate.Entry result = buildPartial();
-          if (!result.isInitialized()) {
-            throw newUninitializedMessageException(result);
-          }
-          return result;
-        }
-
-        @java.lang.Override
-        public io.opencensus.proto.trace.v1.Span.Tracestate.Entry buildPartial() {
-          io.opencensus.proto.trace.v1.Span.Tracestate.Entry result =
-              new io.opencensus.proto.trace.v1.Span.Tracestate.Entry(this);
-          result.key_ = key_;
-          result.value_ = value_;
-          onBuilt();
-          return result;
-        }
-
-        @java.lang.Override
-        public Builder clone() {
-          return super.clone();
-        }
-
-        @java.lang.Override
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-          return super.setField(field, value);
-        }
-
-        @java.lang.Override
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return super.clearField(field);
-        }
-
-        @java.lang.Override
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return super.clearOneof(oneof);
-        }
-
-        @java.lang.Override
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
-          return super.setRepeatedField(field, index, value);
-        }
-
-        @java.lang.Override
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-          return super.addRepeatedField(field, value);
-        }
-
-        @java.lang.Override
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof io.opencensus.proto.trace.v1.Span.Tracestate.Entry) {
-            return mergeFrom((io.opencensus.proto.trace.v1.Span.Tracestate.Entry) other);
-          } else {
-            super.mergeFrom(other);
-            return this;
-          }
-        }
-
-        public Builder mergeFrom(io.opencensus.proto.trace.v1.Span.Tracestate.Entry other) {
-          if (other == io.opencensus.proto.trace.v1.Span.Tracestate.Entry.getDefaultInstance()) {
-            return this;
-          }
-          if (!other.getKey().isEmpty()) {
-            key_ = other.key_;
-            onChanged();
-          }
-          if (!other.getValue().isEmpty()) {
-            value_ = other.value_;
-            onChanged();
-          }
-          this.mergeUnknownFields(other.unknownFields);
-          onChanged();
-          return this;
-        }
-
-        @java.lang.Override
-        public final boolean isInitialized() {
-          return true;
-        }
-
-        @java.lang.Override
-        public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-          io.opencensus.proto.trace.v1.Span.Tracestate.Entry parsedMessage = null;
-          try {
-            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage =
-                (io.opencensus.proto.trace.v1.Span.Tracestate.Entry) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
-          } finally {
-            if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-            }
-          }
-          return this;
-        }
-
-        /**
-         * <pre>
-         * The key must begin with a lowercase letter, and can only contain
-         * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
-         * '-', asterisks '*', and forward slashes '/'.
-         * </pre>
-         *
-         * <code>string key = 1;</code>
-         *
-         * @return The key.
-         */
-        public java.lang.String getKey() {
-          java.lang.Object ref = key_;
-          if (!(ref instanceof java.lang.String)) {
-            com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
-            java.lang.String s = bs.toStringUtf8();
-            key_ = s;
-            return s;
-          } else {
-            return (java.lang.String) ref;
-          }
-        }
-
-        /**
-         * <pre>
-         * The key must begin with a lowercase letter, and can only contain
-         * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
-         * '-', asterisks '*', and forward slashes '/'.
-         * </pre>
-         *
-         * <code>string key = 1;</code>
-         *
-         * @param value The key to set.
-         * @return This builder for chaining.
-         */
-        public Builder setKey(
-            java.lang.String value) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-
-          key_ = value;
-          onChanged();
-          return this;
-        }
-
-        /**
-         * <pre>
-         * The key must begin with a lowercase letter, and can only contain
-         * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
-         * '-', asterisks '*', and forward slashes '/'.
-         * </pre>
-         *
-         * <code>string key = 1;</code>
-         *
-         * @return The bytes for key.
-         */
-        public com.google.protobuf.ByteString
-        getKeyBytes() {
-          java.lang.Object ref = key_;
-          if (ref instanceof String) {
-            com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                    (java.lang.String) ref);
-            key_ = b;
-            return b;
-          } else {
-            return (com.google.protobuf.ByteString) ref;
-          }
-        }
-
-        /**
-         * <pre>
-         * The key must begin with a lowercase letter, and can only contain
-         * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
-         * '-', asterisks '*', and forward slashes '/'.
-         * </pre>
-         *
-         * <code>string key = 1;</code>
-         *
-         * @param value The bytes for key to set.
-         * @return This builder for chaining.
-         */
-        public Builder setKeyBytes(
-            com.google.protobuf.ByteString value) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          checkByteStringIsUtf8(value);
-
-          key_ = value;
-          onChanged();
-          return this;
-        }
-
-        /**
-         * <pre>
-         * The key must begin with a lowercase letter, and can only contain
-         * lowercase letters 'a'-'z', digits '0'-'9', underscores '_', dashes
-         * '-', asterisks '*', and forward slashes '/'.
-         * </pre>
-         *
-         * <code>string key = 1;</code>
-         *
-         * @return This builder for chaining.
-         */
-        public Builder clearKey() {
-
-          key_ = getDefaultInstance().getKey();
-          onChanged();
-          return this;
-        }
-
-        /**
-         * <pre>
-         * The value is opaque string up to 256 characters printable ASCII
-         * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
-         * Note that this also excludes tabs, newlines, carriage returns, etc.
-         * </pre>
-         *
-         * <code>string value = 2;</code>
-         *
-         * @return The value.
-         */
-        public java.lang.String getValue() {
-          java.lang.Object ref = value_;
-          if (!(ref instanceof java.lang.String)) {
-            com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
-            java.lang.String s = bs.toStringUtf8();
-            value_ = s;
-            return s;
-          } else {
-            return (java.lang.String) ref;
-          }
-        }
-
-        /**
-         * <pre>
-         * The value is opaque string up to 256 characters printable ASCII
-         * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
-         * Note that this also excludes tabs, newlines, carriage returns, etc.
-         * </pre>
-         *
-         * <code>string value = 2;</code>
-         *
-         * @param value The value to set.
-         * @return This builder for chaining.
-         */
-        public Builder setValue(
-            java.lang.String value) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-
-          value_ = value;
-          onChanged();
-          return this;
-        }
-
-        /**
-         * <pre>
-         * The value is opaque string up to 256 characters printable ASCII
-         * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
-         * Note that this also excludes tabs, newlines, carriage returns, etc.
-         * </pre>
-         *
-         * <code>string value = 2;</code>
-         *
-         * @return The bytes for value.
-         */
-        public com.google.protobuf.ByteString
-        getValueBytes() {
-          java.lang.Object ref = value_;
-          if (ref instanceof String) {
-            com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                    (java.lang.String) ref);
-            value_ = b;
-            return b;
-          } else {
-            return (com.google.protobuf.ByteString) ref;
-          }
-        }
-
-        /**
-         * <pre>
-         * The value is opaque string up to 256 characters printable ASCII
-         * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
-         * Note that this also excludes tabs, newlines, carriage returns, etc.
-         * </pre>
-         *
-         * <code>string value = 2;</code>
-         *
-         * @param value The bytes for value to set.
-         * @return This builder for chaining.
-         */
-        public Builder setValueBytes(
-            com.google.protobuf.ByteString value) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          checkByteStringIsUtf8(value);
-
-          value_ = value;
-          onChanged();
-          return this;
-        }
-
-        /**
-         * <pre>
-         * The value is opaque string up to 256 characters printable ASCII
-         * RFC0020 characters (i.e., the range 0x20 to 0x7E) except ',' and '='.
-         * Note that this also excludes tabs, newlines, carriage returns, etc.
-         * </pre>
-         *
-         * <code>string value = 2;</code>
-         *
-         * @return This builder for chaining.
-         */
-        public Builder clearValue() {
-
-          value_ = getDefaultInstance().getValue();
-          onChanged();
-          return this;
-        }
-
-        @java.lang.Override
-        public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.setUnknownFields(unknownFields);
-        }
-
-        @java.lang.Override
-        public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.mergeUnknownFields(unknownFields);
-        }
-
-
-        // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.Span.Tracestate.Entry)
-      }
-
-    }
-
-    /**
-     * <pre>
-     * This field conveys information about request position in multiple distributed tracing graphs.
-     * It is a list of Tracestate.Entry with a maximum of 32 members in the list.
-     * See the https://github.com/w3c/distributed-tracing for more details about this field.
-     * </pre>
-     * <p>
-     * Protobuf type {@code opencensus.proto.trace.v1.Span.Tracestate}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.Span.Tracestate)
-        io.opencensus.proto.trace.v1.Span.TracestateOrBuilder {
-      private int bitField0_;
-      private java.util.List<io.opencensus.proto.trace.v1.Span.Tracestate.Entry> entries_ =
-          java.util.Collections.emptyList();
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          io.opencensus.proto.trace.v1.Span.Tracestate.Entry,
-          io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder,
-          io.opencensus.proto.trace.v1.Span.Tracestate.EntryOrBuilder>
-          entriesBuilder_;
-
-      // Construct using io.opencensus.proto.trace.v1.Span.Tracestate.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-
-      public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Tracestate_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Tracestate_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                io.opencensus.proto.trace.v1.Span.Tracestate.class,
-                io.opencensus.proto.trace.v1.Span.Tracestate.Builder.class);
-      }
-
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-            .alwaysUseFieldBuilders) {
-          getEntriesFieldBuilder();
-        }
-      }
-
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (entriesBuilder_ == null) {
-          entries_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          entriesBuilder_.clear();
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-      getDescriptorForType() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Tracestate_descriptor;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.Tracestate getDefaultInstanceForType() {
-        return io.opencensus.proto.trace.v1.Span.Tracestate.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.Tracestate build() {
-        io.opencensus.proto.trace.v1.Span.Tracestate result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.Tracestate buildPartial() {
-        io.opencensus.proto.trace.v1.Span.Tracestate result =
-            new io.opencensus.proto.trace.v1.Span.Tracestate(this);
-        int from_bitField0_ = bitField0_;
-        if (entriesBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            entries_ = java.util.Collections.unmodifiableList(entries_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.entries_ = entries_;
-        } else {
-          result.entries_ = entriesBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof io.opencensus.proto.trace.v1.Span.Tracestate) {
-          return mergeFrom((io.opencensus.proto.trace.v1.Span.Tracestate) other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(io.opencensus.proto.trace.v1.Span.Tracestate other) {
-        if (other == io.opencensus.proto.trace.v1.Span.Tracestate.getDefaultInstance()) {
-          return this;
-        }
-        if (entriesBuilder_ == null) {
-          if (!other.entries_.isEmpty()) {
-            if (entries_.isEmpty()) {
-              entries_ = other.entries_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureEntriesIsMutable();
-              entries_.addAll(other.entries_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.entries_.isEmpty()) {
-            if (entriesBuilder_.isEmpty()) {
-              entriesBuilder_.dispose();
-              entriesBuilder_ = null;
-              entries_ = other.entries_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              entriesBuilder_ =
-                  com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                      getEntriesFieldBuilder() : null;
-            } else {
-              entriesBuilder_.addAllMessages(other.entries_);
-            }
-          }
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        io.opencensus.proto.trace.v1.Span.Tracestate parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (io.opencensus.proto.trace.v1.Span.Tracestate) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private void ensureEntriesIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          entries_ =
-              new java.util.ArrayList<io.opencensus.proto.trace.v1.Span.Tracestate.Entry>(entries_);
-          bitField0_ |= 0x00000001;
-        }
-      }
-
-      /**
-       * <pre>
-       * A list of entries that represent the Tracestate.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-       */
-      public java.util.List<io.opencensus.proto.trace.v1.Span.Tracestate.Entry> getEntriesList() {
-        if (entriesBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(entries_);
-        } else {
-          return entriesBuilder_.getMessageList();
-        }
-      }
-
-      /**
-       * <pre>
-       * A list of entries that represent the Tracestate.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-       */
-      public int getEntriesCount() {
-        if (entriesBuilder_ == null) {
-          return entries_.size();
-        } else {
-          return entriesBuilder_.getCount();
-        }
-      }
-
-      /**
-       * <pre>
-       * A list of entries that represent the Tracestate.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-       */
-      public io.opencensus.proto.trace.v1.Span.Tracestate.Entry getEntries(int index) {
-        if (entriesBuilder_ == null) {
-          return entries_.get(index);
-        } else {
-          return entriesBuilder_.getMessage(index);
-        }
-      }
-
-      /**
-       * <pre>
-       * A list of entries that represent the Tracestate.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-       */
-      public Builder setEntries(
-          int index, io.opencensus.proto.trace.v1.Span.Tracestate.Entry value) {
-        if (entriesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureEntriesIsMutable();
-          entries_.set(index, value);
-          onChanged();
-        } else {
-          entriesBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-
-      /**
-       * <pre>
-       * A list of entries that represent the Tracestate.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-       */
-      public Builder setEntries(
-          int index, io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder builderForValue) {
-        if (entriesBuilder_ == null) {
-          ensureEntriesIsMutable();
-          entries_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          entriesBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-
-      /**
-       * <pre>
-       * A list of entries that represent the Tracestate.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-       */
-      public Builder addEntries(io.opencensus.proto.trace.v1.Span.Tracestate.Entry value) {
-        if (entriesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureEntriesIsMutable();
-          entries_.add(value);
-          onChanged();
-        } else {
-          entriesBuilder_.addMessage(value);
-        }
-        return this;
-      }
-
-      /**
-       * <pre>
-       * A list of entries that represent the Tracestate.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-       */
-      public Builder addEntries(
-          int index, io.opencensus.proto.trace.v1.Span.Tracestate.Entry value) {
-        if (entriesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureEntriesIsMutable();
-          entries_.add(index, value);
-          onChanged();
-        } else {
-          entriesBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-
-      /**
-       * <pre>
-       * A list of entries that represent the Tracestate.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-       */
-      public Builder addEntries(
-          io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder builderForValue) {
-        if (entriesBuilder_ == null) {
-          ensureEntriesIsMutable();
-          entries_.add(builderForValue.build());
-          onChanged();
-        } else {
-          entriesBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-
-      /**
-       * <pre>
-       * A list of entries that represent the Tracestate.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-       */
-      public Builder addEntries(
-          int index, io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder builderForValue) {
-        if (entriesBuilder_ == null) {
-          ensureEntriesIsMutable();
-          entries_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          entriesBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-
-      /**
-       * <pre>
-       * A list of entries that represent the Tracestate.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-       */
-      public Builder addAllEntries(
-          java.lang.Iterable<? extends io.opencensus.proto.trace.v1.Span.Tracestate.Entry> values) {
-        if (entriesBuilder_ == null) {
-          ensureEntriesIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, entries_);
-          onChanged();
-        } else {
-          entriesBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-
-      /**
-       * <pre>
-       * A list of entries that represent the Tracestate.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-       */
-      public Builder clearEntries() {
-        if (entriesBuilder_ == null) {
-          entries_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          entriesBuilder_.clear();
-        }
-        return this;
-      }
-
-      /**
-       * <pre>
-       * A list of entries that represent the Tracestate.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-       */
-      public Builder removeEntries(int index) {
-        if (entriesBuilder_ == null) {
-          ensureEntriesIsMutable();
-          entries_.remove(index);
-          onChanged();
-        } else {
-          entriesBuilder_.remove(index);
-        }
-        return this;
-      }
-
-      /**
-       * <pre>
-       * A list of entries that represent the Tracestate.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-       */
-      public io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder getEntriesBuilder(
-          int index) {
-        return getEntriesFieldBuilder().getBuilder(index);
-      }
-
-      /**
-       * <pre>
-       * A list of entries that represent the Tracestate.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-       */
-      public io.opencensus.proto.trace.v1.Span.Tracestate.EntryOrBuilder getEntriesOrBuilder(
-          int index) {
-        if (entriesBuilder_ == null) {
-          return entries_.get(index);
-        } else {
-          return entriesBuilder_.getMessageOrBuilder(index);
-        }
-      }
-
-      /**
-       * <pre>
-       * A list of entries that represent the Tracestate.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-       */
-      public java.util.List<? extends io.opencensus.proto.trace.v1.Span.Tracestate.EntryOrBuilder>
-      getEntriesOrBuilderList() {
-        if (entriesBuilder_ != null) {
-          return entriesBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(entries_);
-        }
-      }
-
-      /**
-       * <pre>
-       * A list of entries that represent the Tracestate.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-       */
-      public io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder addEntriesBuilder() {
-        return getEntriesFieldBuilder().addBuilder(
-            io.opencensus.proto.trace.v1.Span.Tracestate.Entry.getDefaultInstance());
-      }
-
-      /**
-       * <pre>
-       * A list of entries that represent the Tracestate.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-       */
-      public io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder addEntriesBuilder(
-          int index) {
-        return getEntriesFieldBuilder().addBuilder(
-            index, io.opencensus.proto.trace.v1.Span.Tracestate.Entry.getDefaultInstance());
-      }
-
-      /**
-       * <pre>
-       * A list of entries that represent the Tracestate.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Tracestate.Entry entries = 1;</code>
-       */
-      public java.util.List<io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder>
-      getEntriesBuilderList() {
-        return getEntriesFieldBuilder().getBuilderList();
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          io.opencensus.proto.trace.v1.Span.Tracestate.Entry,
-          io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder,
-          io.opencensus.proto.trace.v1.Span.Tracestate.EntryOrBuilder>
-      getEntriesFieldBuilder() {
-        if (entriesBuilder_ == null) {
-          entriesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              io.opencensus.proto.trace.v1.Span.Tracestate.Entry,
-              io.opencensus.proto.trace.v1.Span.Tracestate.Entry.Builder,
-              io.opencensus.proto.trace.v1.Span.Tracestate.EntryOrBuilder>(
-              entries_,
-              ((bitField0_ & 0x00000001) != 0),
-              getParentForChildren(),
-              isClean());
-          entries_ = null;
-        }
-        return entriesBuilder_;
-      }
-
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.Span.Tracestate)
-    }
-
-  }
-
   /**
    * <pre>
    * A set of attributes, each with a key and a value.
    * </pre>
-   * <p>
+   *
    * Protobuf type {@code opencensus.proto.trace.v1.Span.Attributes}
    */
-  public static final class Attributes extends
-      com.google.protobuf.GeneratedMessageV3 implements
+  public  static final class Attributes extends
+      com.google.protobuf.GeneratedMessageLite<
+          Attributes, Attributes.Builder> implements
       // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.Span.Attributes)
       AttributesOrBuilder {
-    public static final int ATTRIBUTE_MAP_FIELD_NUMBER = 1;
-    public static final int DROPPED_ATTRIBUTES_COUNT_FIELD_NUMBER = 2;
-    private static final long serialVersionUID = 0L;
-    // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span.Attributes)
-    private static final io.opencensus.proto.trace.v1.Span.Attributes DEFAULT_INSTANCE;
-    private static final com.google.protobuf.Parser<Attributes>
-        PARSER = new com.google.protobuf.AbstractParser<Attributes>() {
-      @java.lang.Override
-      public Attributes parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Attributes(input, extensionRegistry);
-      }
-    };
-
-    static {
-      DEFAULT_INSTANCE = new io.opencensus.proto.trace.v1.Span.Attributes();
-    }
-
-    private com.google.protobuf.MapField<
-        java.lang.String, io.opencensus.proto.trace.v1.AttributeValue> attributeMap_;
-    private int droppedAttributesCount_;
-    private byte memoizedIsInitialized = -1;
-
-    // Use Attributes.newBuilder() to construct.
-    private Attributes(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-
     private Attributes() {
     }
-
-    private Attributes(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                attributeMap_ = com.google.protobuf.MapField.newMapField(
-                    AttributeMapDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000001;
-              }
-              com.google.protobuf.MapEntry<java.lang.String,
-                  io.opencensus.proto.trace.v1.AttributeValue>
-                  attributeMap__ = input.readMessage(
-                  AttributeMapDefaultEntryHolder.defaultEntry.getParserForType(),
-                  extensionRegistry);
-              attributeMap_.getMutableMap().put(
-                  attributeMap__.getKey(), attributeMap__.getValue());
-              break;
-            }
-            case 16: {
-
-              droppedAttributesCount_ = input.readInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
+    public static final int ATTRIBUTE_MAP_FIELD_NUMBER = 1;
+    private static final class AttributeMapDefaultEntryHolder {
+      static final com.google.protobuf.MapEntryLite<
+          java.lang.String, io.opencensus.proto.trace.v1.AttributeValue> defaultEntry =
+              com.google.protobuf.MapEntryLite
+              .<java.lang.String, io.opencensus.proto.trace.v1.AttributeValue>newDefaultInstance(
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "",
+                  com.google.protobuf.WireFormat.FieldType.MESSAGE,
+                  io.opencensus.proto.trace.v1.AttributeValue.getDefaultInstance());
     }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Attributes_descriptor;
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Attributes parseDelimitedFrom(
-        java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Attributes parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(io.opencensus.proto.trace.v1.Span.Attributes prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Attributes getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    public static com.google.protobuf.Parser<Attributes> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new Attributes();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-
-    @SuppressWarnings({"rawtypes"})
-    @java.lang.Override
-    protected com.google.protobuf.MapField internalGetMapField(
-        int number) {
-      switch (number) {
-        case 1:
-          return internalGetAttributeMap();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Attributes_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.trace.v1.Span.Attributes.class,
-              io.opencensus.proto.trace.v1.Span.Attributes.Builder.class);
-    }
-
-    private com.google.protobuf.MapField<java.lang.String,
-        io.opencensus.proto.trace.v1.AttributeValue>
+    private com.google.protobuf.MapFieldLite<
+        java.lang.String, io.opencensus.proto.trace.v1.AttributeValue> attributeMap_ =
+            com.google.protobuf.MapFieldLite.emptyMapField();
+    private com.google.protobuf.MapFieldLite<java.lang.String, io.opencensus.proto.trace.v1.AttributeValue>
     internalGetAttributeMap() {
-      if (attributeMap_ == null) {
-        return com.google.protobuf.MapField.emptyMapField(
-            AttributeMapDefaultEntryHolder.defaultEntry);
+      return attributeMap_;
+    }
+    private com.google.protobuf.MapFieldLite<java.lang.String, io.opencensus.proto.trace.v1.AttributeValue>
+    internalGetMutableAttributeMap() {
+      if (!attributeMap_.isMutable()) {
+        attributeMap_ = attributeMap_.mutableCopy();
       }
       return attributeMap_;
     }
+    @java.lang.Override
 
     public int getAttributeMapCount() {
-      return internalGetAttributeMap().getMap().size();
+      return internalGetAttributeMap().size();
     }
-
     /**
      * <pre>
      * The set of attributes. The value can be a string, an integer, a double
-     * or the Boolean values `true` or `false`. Note, global attributes like
+     * or the Boolean values `true` or `false`. Note, global attributes like 
      * server name can be set as tags using resource API. Examples of attributes:
      *     "/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
      *     "/http/server_latency": 300
@@ -4273,16 +1374,13 @@ public final class Span extends
      *
      * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;</code>
      */
-
     @java.lang.Override
+
     public boolean containsAttributeMap(
         java.lang.String key) {
-      if (key == null) {
-        throw new java.lang.NullPointerException();
-      }
-      return internalGetAttributeMap().getMap().containsKey(key);
+      key.getClass();
+      return internalGetAttributeMap().containsKey(key);
     }
-
     /**
      * Use {@link #getAttributeMapMap()} instead.
      */
@@ -4291,11 +1389,10 @@ public final class Span extends
     public java.util.Map<java.lang.String, io.opencensus.proto.trace.v1.AttributeValue> getAttributeMap() {
       return getAttributeMapMap();
     }
-
     /**
      * <pre>
      * The set of attributes. The value can be a string, an integer, a double
-     * or the Boolean values `true` or `false`. Note, global attributes like
+     * or the Boolean values `true` or `false`. Note, global attributes like 
      * server name can be set as tags using resource API. Examples of attributes:
      *     "/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
      *     "/http/server_latency": 300
@@ -4308,13 +1405,13 @@ public final class Span extends
     @java.lang.Override
 
     public java.util.Map<java.lang.String, io.opencensus.proto.trace.v1.AttributeValue> getAttributeMapMap() {
-      return internalGetAttributeMap().getMap();
+      return java.util.Collections.unmodifiableMap(
+          internalGetAttributeMap());
     }
-
     /**
      * <pre>
      * The set of attributes. The value can be a string, an integer, a double
-     * or the Boolean values `true` or `false`. Note, global attributes like
+     * or the Boolean values `true` or `false`. Note, global attributes like 
      * server name can be set as tags using resource API. Examples of attributes:
      *     "/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
      *     "/http/server_latency": 300
@@ -4329,18 +1426,15 @@ public final class Span extends
     public io.opencensus.proto.trace.v1.AttributeValue getAttributeMapOrDefault(
         java.lang.String key,
         io.opencensus.proto.trace.v1.AttributeValue defaultValue) {
-      if (key == null) {
-        throw new java.lang.NullPointerException();
-      }
+      key.getClass();
       java.util.Map<java.lang.String, io.opencensus.proto.trace.v1.AttributeValue> map =
-          internalGetAttributeMap().getMap();
+          internalGetAttributeMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
-
     /**
      * <pre>
      * The set of attributes. The value can be a string, an integer, a double
-     * or the Boolean values `true` or `false`. Note, global attributes like
+     * or the Boolean values `true` or `false`. Note, global attributes like 
      * server name can be set as tags using resource API. Examples of attributes:
      *     "/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
      *     "/http/server_latency": 300
@@ -4354,17 +1448,34 @@ public final class Span extends
 
     public io.opencensus.proto.trace.v1.AttributeValue getAttributeMapOrThrow(
         java.lang.String key) {
-      if (key == null) {
-        throw new java.lang.NullPointerException();
-      }
+      key.getClass();
       java.util.Map<java.lang.String, io.opencensus.proto.trace.v1.AttributeValue> map =
-          internalGetAttributeMap().getMap();
+          internalGetAttributeMap();
       if (!map.containsKey(key)) {
         throw new java.lang.IllegalArgumentException();
       }
       return map.get(key);
     }
+    /**
+     * <pre>
+     * The set of attributes. The value can be a string, an integer, a double
+     * or the Boolean values `true` or `false`. Note, global attributes like 
+     * server name can be set as tags using resource API. Examples of attributes:
+     *     "/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+     *     "/http/server_latency": 300
+     *     "abc.com/myattribute": true
+     *     "abc.com/score": 10.239
+     * </pre>
+     *
+     * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;</code>
+     */
+    private java.util.Map<java.lang.String, io.opencensus.proto.trace.v1.AttributeValue>
+    getMutableAttributeMapMap() {
+      return internalGetMutableAttributeMap();
+    }
 
+    public static final int DROPPED_ATTRIBUTES_COUNT_FIELD_NUMBER = 2;
+    private int droppedAttributesCount_;
     /**
      * <pre>
      * The number of attributes that were discarded. Attributes can be discarded
@@ -4373,380 +1484,148 @@ public final class Span extends
      * </pre>
      *
      * <code>int32 dropped_attributes_count = 2;</code>
-     *
      * @return The droppedAttributesCount.
      */
     @java.lang.Override
     public int getDroppedAttributesCount() {
       return droppedAttributesCount_;
     }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) {
-        return true;
-      }
-      if (isInitialized == 0) {
-        return false;
-      }
-
-      memoizedIsInitialized = 1;
-      return true;
+    /**
+     * <pre>
+     * The number of attributes that were discarded. Attributes can be discarded
+     * because their keys are too long or because there are too many attributes.
+     * If this value is 0, then no attributes were dropped.
+     * </pre>
+     *
+     * <code>int32 dropped_attributes_count = 2;</code>
+     * @param value The droppedAttributesCount to set.
+     */
+    private void setDroppedAttributesCount(int value) {
+      
+      droppedAttributesCount_ = value;
+    }
+    /**
+     * <pre>
+     * The number of attributes that were discarded. Attributes can be discarded
+     * because their keys are too long or because there are too many attributes.
+     * If this value is 0, then no attributes were dropped.
+     * </pre>
+     *
+     * <code>int32 dropped_attributes_count = 2;</code>
+     */
+    private void clearDroppedAttributesCount() {
+      
+      droppedAttributesCount_ = 0;
     }
 
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
+    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      com.google.protobuf.GeneratedMessageV3
-          .serializeStringMapTo(
-              output,
-              internalGetAttributeMap(),
-              AttributeMapDefaultEntryHolder.defaultEntry,
-              1);
-      if (droppedAttributesCount_ != 0) {
-        output.writeInt32(2, droppedAttributesCount_);
-      }
-      unknownFields.writeTo(output);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Attributes parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Attributes parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Attributes parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
 
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) {
-        return size;
-      }
-
-      size = 0;
-      for (java.util.Map.Entry<java.lang.String, io.opencensus.proto.trace.v1.AttributeValue> entry
-          : internalGetAttributeMap().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.String, io.opencensus.proto.trace.v1.AttributeValue>
-            attributeMap__ = AttributeMapDefaultEntryHolder.defaultEntry.newBuilderForType()
-                                                                        .setKey(entry.getKey())
-                                                                        .setValue(entry.getValue())
-                                                                        .build();
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(1, attributeMap__);
-      }
-      if (droppedAttributesCount_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeInt32Size(2, droppedAttributesCount_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-        return true;
-      }
-      if (!(obj instanceof io.opencensus.proto.trace.v1.Span.Attributes)) {
-        return super.equals(obj);
-      }
-      io.opencensus.proto.trace.v1.Span.Attributes other =
-          (io.opencensus.proto.trace.v1.Span.Attributes) obj;
-
-      if (!internalGetAttributeMap().equals(
-          other.internalGetAttributeMap())) {
-        return false;
-      }
-      if (getDroppedAttributesCount()
-          != other.getDroppedAttributesCount()) {
-        return false;
-      }
-      return unknownFields.equals(other.unknownFields);
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (!internalGetAttributeMap().getMap().isEmpty()) {
-        hash = (37 * hash) + ATTRIBUTE_MAP_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetAttributeMap().hashCode();
-      }
-      hash = (37 * hash) + DROPPED_ATTRIBUTES_COUNT_FIELD_NUMBER;
-      hash = (53 * hash) + getDroppedAttributesCount();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() {
-      return newBuilder();
-    }
-
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Attributes> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span.Attributes getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final class AttributeMapDefaultEntryHolder {
-      static final com.google.protobuf.MapEntry<
-          java.lang.String, io.opencensus.proto.trace.v1.AttributeValue> defaultEntry =
-          com.google.protobuf.MapEntry
-              .newDefaultInstance(
-                  io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Attributes_AttributeMapEntry_descriptor,
-                  com.google.protobuf.WireFormat.FieldType.STRING,
-                  "",
-                  com.google.protobuf.WireFormat.FieldType.MESSAGE,
-                  io.opencensus.proto.trace.v1.AttributeValue.getDefaultInstance());
+    public static Builder newBuilder(io.opencensus.proto.trace.v1.Span.Attributes prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
     }
 
     /**
      * <pre>
      * A set of attributes, each with a key and a value.
      * </pre>
-     * <p>
+     *
      * Protobuf type {@code opencensus.proto.trace.v1.Span.Attributes}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          io.opencensus.proto.trace.v1.Span.Attributes, Builder> implements
         // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.Span.Attributes)
         io.opencensus.proto.trace.v1.Span.AttributesOrBuilder {
-      private int bitField0_;
-      private com.google.protobuf.MapField<
-          java.lang.String, io.opencensus.proto.trace.v1.AttributeValue> attributeMap_;
-      private int droppedAttributesCount_;
-
       // Construct using io.opencensus.proto.trace.v1.Span.Attributes.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+        super(DEFAULT_INSTANCE);
       }
 
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-
-      public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Attributes_descriptor;
-      }
-
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMapField(
-          int number) {
-        switch (number) {
-          case 1:
-            return internalGetAttributeMap();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
-      }
-
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMutableMapField(
-          int number) {
-        switch (number) {
-          case 1:
-            return internalGetMutableAttributeMap();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
-      }
 
       @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Attributes_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                io.opencensus.proto.trace.v1.Span.Attributes.class,
-                io.opencensus.proto.trace.v1.Span.Attributes.Builder.class);
-      }
-
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-            .alwaysUseFieldBuilders) {
-        }
-      }
-
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        internalGetMutableAttributeMap().clear();
-        droppedAttributesCount_ = 0;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-      getDescriptorForType() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Attributes_descriptor;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.Attributes getDefaultInstanceForType() {
-        return io.opencensus.proto.trace.v1.Span.Attributes.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.Attributes build() {
-        io.opencensus.proto.trace.v1.Span.Attributes result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.Attributes buildPartial() {
-        io.opencensus.proto.trace.v1.Span.Attributes result =
-            new io.opencensus.proto.trace.v1.Span.Attributes(this);
-        int from_bitField0_ = bitField0_;
-        result.attributeMap_ = internalGetAttributeMap();
-        result.attributeMap_.makeImmutable();
-        result.droppedAttributesCount_ = droppedAttributesCount_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof io.opencensus.proto.trace.v1.Span.Attributes) {
-          return mergeFrom((io.opencensus.proto.trace.v1.Span.Attributes) other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(io.opencensus.proto.trace.v1.Span.Attributes other) {
-        if (other == io.opencensus.proto.trace.v1.Span.Attributes.getDefaultInstance()) {
-          return this;
-        }
-        internalGetMutableAttributeMap().mergeFrom(
-            other.internalGetAttributeMap());
-        if (other.getDroppedAttributesCount() != 0) {
-          setDroppedAttributesCount(other.getDroppedAttributesCount());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        io.opencensus.proto.trace.v1.Span.Attributes parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (io.opencensus.proto.trace.v1.Span.Attributes) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private com.google.protobuf.MapField<java.lang.String,
-          io.opencensus.proto.trace.v1.AttributeValue>
-      internalGetAttributeMap() {
-        if (attributeMap_ == null) {
-          return com.google.protobuf.MapField.emptyMapField(
-              AttributeMapDefaultEntryHolder.defaultEntry);
-        }
-        return attributeMap_;
-      }
-
-      private com.google.protobuf.MapField<java.lang.String,
-          io.opencensus.proto.trace.v1.AttributeValue>
-      internalGetMutableAttributeMap() {
-        onChanged();
-        if (attributeMap_ == null) {
-          attributeMap_ = com.google.protobuf.MapField.newMapField(
-              AttributeMapDefaultEntryHolder.defaultEntry);
-        }
-        if (!attributeMap_.isMutable()) {
-          attributeMap_ = attributeMap_.copy();
-        }
-        return attributeMap_;
-      }
 
       public int getAttributeMapCount() {
-        return internalGetAttributeMap().getMap().size();
+        return instance.getAttributeMapMap().size();
       }
-
       /**
        * <pre>
        * The set of attributes. The value can be a string, an integer, a double
-       * or the Boolean values `true` or `false`. Note, global attributes like
+       * or the Boolean values `true` or `false`. Note, global attributes like 
        * server name can be set as tags using resource API. Examples of attributes:
        *     "/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
        *     "/http/server_latency": 300
@@ -4754,19 +1633,42 @@ public final class Span extends
        *     "abc.com/score": 10.239
        * </pre>
        *
-       * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;
-       * </code>
+       * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;</code>
        */
-
       @java.lang.Override
+
       public boolean containsAttributeMap(
           java.lang.String key) {
-        if (key == null) {
-          throw new java.lang.NullPointerException();
-        }
-        return internalGetAttributeMap().getMap().containsKey(key);
+        key.getClass();
+        return instance.getAttributeMapMap().containsKey(key);
       }
 
+      public Builder clearAttributeMap() {
+        copyOnWrite();
+        instance.getMutableAttributeMapMap().clear();
+        return this;
+      }
+      /**
+       * <pre>
+       * The set of attributes. The value can be a string, an integer, a double
+       * or the Boolean values `true` or `false`. Note, global attributes like 
+       * server name can be set as tags using resource API. Examples of attributes:
+       *     "/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+       *     "/http/server_latency": 300
+       *     "abc.com/myattribute": true
+       *     "abc.com/score": 10.239
+       * </pre>
+       *
+       * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;</code>
+       */
+
+      public Builder removeAttributeMap(
+          java.lang.String key) {
+        key.getClass();
+        copyOnWrite();
+        instance.getMutableAttributeMapMap().remove(key);
+        return this;
+      }
       /**
        * Use {@link #getAttributeMapMap()} instead.
        */
@@ -4775,11 +1677,10 @@ public final class Span extends
       public java.util.Map<java.lang.String, io.opencensus.proto.trace.v1.AttributeValue> getAttributeMap() {
         return getAttributeMapMap();
       }
-
       /**
        * <pre>
        * The set of attributes. The value can be a string, an integer, a double
-       * or the Boolean values `true` or `false`. Note, global attributes like
+       * or the Boolean values `true` or `false`. Note, global attributes like 
        * server name can be set as tags using resource API. Examples of attributes:
        *     "/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
        *     "/http/server_latency": 300
@@ -4787,19 +1688,17 @@ public final class Span extends
        *     "abc.com/score": 10.239
        * </pre>
        *
-       * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;
-       * </code>
+       * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;</code>
        */
       @java.lang.Override
-
       public java.util.Map<java.lang.String, io.opencensus.proto.trace.v1.AttributeValue> getAttributeMapMap() {
-        return internalGetAttributeMap().getMap();
+        return java.util.Collections.unmodifiableMap(
+            instance.getAttributeMapMap());
       }
-
       /**
        * <pre>
        * The set of attributes. The value can be a string, an integer, a double
-       * or the Boolean values `true` or `false`. Note, global attributes like
+       * or the Boolean values `true` or `false`. Note, global attributes like 
        * server name can be set as tags using resource API. Examples of attributes:
        *     "/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
        *     "/http/server_latency": 300
@@ -4807,26 +1706,22 @@ public final class Span extends
        *     "abc.com/score": 10.239
        * </pre>
        *
-       * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;
-       * </code>
+       * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;</code>
        */
       @java.lang.Override
 
       public io.opencensus.proto.trace.v1.AttributeValue getAttributeMapOrDefault(
           java.lang.String key,
           io.opencensus.proto.trace.v1.AttributeValue defaultValue) {
-        if (key == null) {
-          throw new java.lang.NullPointerException();
-        }
+        key.getClass();
         java.util.Map<java.lang.String, io.opencensus.proto.trace.v1.AttributeValue> map =
-            internalGetAttributeMap().getMap();
+            instance.getAttributeMapMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
       }
-
       /**
        * <pre>
        * The set of attributes. The value can be a string, an integer, a double
-       * or the Boolean values `true` or `false`. Note, global attributes like
+       * or the Boolean values `true` or `false`. Note, global attributes like 
        * server name can be set as tags using resource API. Examples of attributes:
        *     "/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
        *     "/http/server_latency": 300
@@ -4834,34 +1729,24 @@ public final class Span extends
        *     "abc.com/score": 10.239
        * </pre>
        *
-       * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;
-       * </code>
+       * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;</code>
        */
       @java.lang.Override
 
       public io.opencensus.proto.trace.v1.AttributeValue getAttributeMapOrThrow(
           java.lang.String key) {
-        if (key == null) {
-          throw new java.lang.NullPointerException();
-        }
+        key.getClass();
         java.util.Map<java.lang.String, io.opencensus.proto.trace.v1.AttributeValue> map =
-            internalGetAttributeMap().getMap();
+            instance.getAttributeMapMap();
         if (!map.containsKey(key)) {
           throw new java.lang.IllegalArgumentException();
         }
         return map.get(key);
       }
-
-      public Builder clearAttributeMap() {
-        internalGetMutableAttributeMap().getMutableMap()
-                                        .clear();
-        return this;
-      }
-
       /**
        * <pre>
        * The set of attributes. The value can be a string, an integer, a double
-       * or the Boolean values `true` or `false`. Note, global attributes like
+       * or the Boolean values `true` or `false`. Note, global attributes like 
        * server name can be set as tags using resource API. Examples of attributes:
        *     "/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
        *     "/http/server_latency": 300
@@ -4869,61 +1754,21 @@ public final class Span extends
        *     "abc.com/score": 10.239
        * </pre>
        *
-       * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;
-       * </code>
-       */
-
-      public Builder removeAttributeMap(
-          java.lang.String key) {
-        if (key == null) {
-          throw new java.lang.NullPointerException();
-        }
-        internalGetMutableAttributeMap().getMutableMap()
-                                        .remove(key);
-        return this;
-      }
-
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, io.opencensus.proto.trace.v1.AttributeValue>
-      getMutableAttributeMap() {
-        return internalGetMutableAttributeMap().getMutableMap();
-      }
-
-      /**
-       * <pre>
-       * The set of attributes. The value can be a string, an integer, a double
-       * or the Boolean values `true` or `false`. Note, global attributes like
-       * server name can be set as tags using resource API. Examples of attributes:
-       *     "/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
-       *     "/http/server_latency": 300
-       *     "abc.com/myattribute": true
-       *     "abc.com/score": 10.239
-       * </pre>
-       *
-       * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;
-       * </code>
+       * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;</code>
        */
       public Builder putAttributeMap(
           java.lang.String key,
           io.opencensus.proto.trace.v1.AttributeValue value) {
-        if (key == null) {
-          throw new java.lang.NullPointerException();
-        }
-        if (value == null) {
-          throw new java.lang.NullPointerException();
-        }
-        internalGetMutableAttributeMap().getMutableMap()
-                                        .put(key, value);
+        key.getClass();
+        value.getClass();
+        copyOnWrite();
+        instance.getMutableAttributeMapMap().put(key, value);
         return this;
       }
-
       /**
        * <pre>
        * The set of attributes. The value can be a string, an integer, a double
-       * or the Boolean values `true` or `false`. Note, global attributes like
+       * or the Boolean values `true` or `false`. Note, global attributes like 
        * server name can be set as tags using resource API. Examples of attributes:
        *     "/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
        *     "/http/server_latency": 300
@@ -4931,14 +1776,12 @@ public final class Span extends
        *     "abc.com/score": 10.239
        * </pre>
        *
-       * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;
-       * </code>
+       * <code>map&lt;string, .opencensus.proto.trace.v1.AttributeValue&gt; attribute_map = 1;</code>
        */
-
       public Builder putAllAttributeMap(
           java.util.Map<java.lang.String, io.opencensus.proto.trace.v1.AttributeValue> values) {
-        internalGetMutableAttributeMap().getMutableMap()
-                                        .putAll(values);
+        copyOnWrite();
+        instance.getMutableAttributeMapMap().putAll(values);
         return this;
       }
 
@@ -4950,14 +1793,12 @@ public final class Span extends
        * </pre>
        *
        * <code>int32 dropped_attributes_count = 2;</code>
-       *
        * @return The droppedAttributesCount.
        */
       @java.lang.Override
       public int getDroppedAttributesCount() {
-        return droppedAttributesCount_;
+        return instance.getDroppedAttributesCount();
       }
-
       /**
        * <pre>
        * The number of attributes that were discarded. Attributes can be discarded
@@ -4966,17 +1807,14 @@ public final class Span extends
        * </pre>
        *
        * <code>int32 dropped_attributes_count = 2;</code>
-       *
        * @param value The droppedAttributesCount to set.
        * @return This builder for chaining.
        */
       public Builder setDroppedAttributesCount(int value) {
-
-        droppedAttributesCount_ = value;
-        onChanged();
+        copyOnWrite();
+        instance.setDroppedAttributesCount(value);
         return this;
       }
-
       /**
        * <pre>
        * The number of attributes that were discarded. Attributes can be discarded
@@ -4985,625 +1823,170 @@ public final class Span extends
        * </pre>
        *
        * <code>int32 dropped_attributes_count = 2;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearDroppedAttributesCount() {
-
-        droppedAttributesCount_ = 0;
-        onChanged();
+        copyOnWrite();
+        instance.clearDroppedAttributesCount();
         return this;
       }
 
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
       // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.Span.Attributes)
     }
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new io.opencensus.proto.trace.v1.Span.Attributes();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case BUILD_MESSAGE_INFO: {
+            java.lang.Object[] objects = new java.lang.Object[] {
+              "attributeMap_",
+              AttributeMapDefaultEntryHolder.defaultEntry,
+              "droppedAttributesCount_",
+            };
+            java.lang.String info =
+                "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0001\u0000\u0000\u00012\u0002\u0004";
+            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          com.google.protobuf.Parser<io.opencensus.proto.trace.v1.Span.Attributes> parser = PARSER;
+          if (parser == null) {
+            synchronized (io.opencensus.proto.trace.v1.Span.Attributes.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser =
+                    new DefaultInstanceBasedParser<io.opencensus.proto.trace.v1.Span.Attributes>(
+                        DEFAULT_INSTANCE);
+                PARSER = parser;
+              }
+            }
+          }
+          return parser;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
+    }
 
+
+    // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span.Attributes)
+    private static final io.opencensus.proto.trace.v1.Span.Attributes DEFAULT_INSTANCE;
+    static {
+      Attributes defaultInstance = new Attributes();
+      // New instances are implicitly immutable so no need to make
+      // immutable.
+      DEFAULT_INSTANCE = defaultInstance;
+      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+        Attributes.class, defaultInstance);
+    }
+
+    public static io.opencensus.proto.trace.v1.Span.Attributes getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<Attributes> PARSER;
+
+    public static com.google.protobuf.Parser<Attributes> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
+  public interface TimeEventOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.Span.TimeEvent)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <pre>
+     * The time the event occurred.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp time = 1;</code>
+     * @return Whether the time field is set.
+     */
+    boolean hasTime();
+    /**
+     * <pre>
+     * The time the event occurred.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp time = 1;</code>
+     * @return The time.
+     */
+    com.google.protobuf.Timestamp getTime();
+
+    /**
+     * <pre>
+     * A text annotation with a set of attributes.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
+     * @return Whether the annotation field is set.
+     */
+    boolean hasAnnotation();
+    /**
+     * <pre>
+     * A text annotation with a set of attributes.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
+     * @return The annotation.
+     */
+    io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation getAnnotation();
+
+    /**
+     * <pre>
+     * An event describing a message sent/received between Spans.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
+     * @return Whether the messageEvent field is set.
+     */
+    boolean hasMessageEvent();
+    /**
+     * <pre>
+     * An event describing a message sent/received between Spans.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
+     * @return The messageEvent.
+     */
+    io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent getMessageEvent();
+
+    public io.opencensus.proto.trace.v1.Span.TimeEvent.ValueCase getValueCase();
+  }
   /**
    * <pre>
    * A time-stamped annotation or message event in the Span.
    * </pre>
-   * <p>
+   *
    * Protobuf type {@code opencensus.proto.trace.v1.Span.TimeEvent}
    */
-  public static final class TimeEvent extends
-      com.google.protobuf.GeneratedMessageV3 implements
+  public  static final class TimeEvent extends
+      com.google.protobuf.GeneratedMessageLite<
+          TimeEvent, TimeEvent.Builder> implements
       // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.Span.TimeEvent)
       TimeEventOrBuilder {
-    public static final int TIME_FIELD_NUMBER = 1;
-    public static final int ANNOTATION_FIELD_NUMBER = 2;
-    public static final int MESSAGE_EVENT_FIELD_NUMBER = 3;
-    private static final long serialVersionUID = 0L;
-    // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span.TimeEvent)
-    private static final io.opencensus.proto.trace.v1.Span.TimeEvent DEFAULT_INSTANCE;
-    private static final com.google.protobuf.Parser<TimeEvent>
-        PARSER = new com.google.protobuf.AbstractParser<TimeEvent>() {
-      @java.lang.Override
-      public TimeEvent parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new TimeEvent(input, extensionRegistry);
-      }
-    };
-
-    static {
-      DEFAULT_INSTANCE = new io.opencensus.proto.trace.v1.Span.TimeEvent();
-    }
-
-    private int valueCase_ = 0;
-    private java.lang.Object value_;
-    private com.google.protobuf.Timestamp time_;
-    private byte memoizedIsInitialized = -1;
-
-    // Use TimeEvent.newBuilder() to construct.
-    private TimeEvent(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-
     private TimeEvent() {
     }
-
-    private TimeEvent(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.google.protobuf.Timestamp.Builder subBuilder = null;
-              if (time_ != null) {
-                subBuilder = time_.toBuilder();
-              }
-              time_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(time_);
-                time_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder subBuilder = null;
-              if (valueCase_ == 2) {
-                subBuilder =
-                    ((io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation) value_).toBuilder();
-              }
-              value_ =
-                  input.readMessage(io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.parser(),
-                      extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder
-                    .mergeFrom((io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation) value_);
-                value_ = subBuilder.buildPartial();
-              }
-              valueCase_ = 2;
-              break;
-            }
-            case 26: {
-              io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Builder subBuilder = null;
-              if (valueCase_ == 3) {
-                subBuilder =
-                    ((io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent) value_).toBuilder();
-              }
-              value_ =
-                  input.readMessage(
-                      io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.parser(),
-                      extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder
-                    .mergeFrom((io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent) value_);
-                value_ = subBuilder.buildPartial();
-              }
-              valueCase_ = 3;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvent_descriptor;
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseDelimitedFrom(
-        java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(io.opencensus.proto.trace.v1.Span.TimeEvent prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvent getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    public static com.google.protobuf.Parser<TimeEvent> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new TimeEvent();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvent_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.trace.v1.Span.TimeEvent.class,
-              io.opencensus.proto.trace.v1.Span.TimeEvent.Builder.class);
-    }
-
-    public ValueCase
-    getValueCase() {
-      return ValueCase.forNumber(
-          valueCase_);
-    }
-
-    /**
-     * <pre>
-     * The time the event occurred.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp time = 1;</code>
-     *
-     * @return Whether the time field is set.
-     */
-    @java.lang.Override
-    public boolean hasTime() {
-      return time_ != null;
-    }
-
-    /**
-     * <pre>
-     * The time the event occurred.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp time = 1;</code>
-     *
-     * @return The time.
-     */
-    @java.lang.Override
-    public com.google.protobuf.Timestamp getTime() {
-      return time_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : time_;
-    }
-
-    /**
-     * <pre>
-     * The time the event occurred.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp time = 1;</code>
-     */
-    @java.lang.Override
-    public com.google.protobuf.TimestampOrBuilder getTimeOrBuilder() {
-      return getTime();
-    }
-
-    /**
-     * <pre>
-     * A text annotation with a set of attributes.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
-     *
-     * @return Whether the annotation field is set.
-     */
-    @java.lang.Override
-    public boolean hasAnnotation() {
-      return valueCase_ == 2;
-    }
-
-    /**
-     * <pre>
-     * A text annotation with a set of attributes.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
-     *
-     * @return The annotation.
-     */
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation getAnnotation() {
-      if (valueCase_ == 2) {
-        return (io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation) value_;
-      }
-      return io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.getDefaultInstance();
-    }
-
-    /**
-     * <pre>
-     * A text annotation with a set of attributes.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
-     */
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span.TimeEvent.AnnotationOrBuilder getAnnotationOrBuilder() {
-      if (valueCase_ == 2) {
-        return (io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation) value_;
-      }
-      return io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.getDefaultInstance();
-    }
-
-    /**
-     * <pre>
-     * An event describing a message sent/received between Spans.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
-     *
-     * @return Whether the messageEvent field is set.
-     */
-    @java.lang.Override
-    public boolean hasMessageEvent() {
-      return valueCase_ == 3;
-    }
-
-    /**
-     * <pre>
-     * An event describing a message sent/received between Spans.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
-     *
-     * @return The messageEvent.
-     */
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent getMessageEvent() {
-      if (valueCase_ == 3) {
-        return (io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent) value_;
-      }
-      return io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.getDefaultInstance();
-    }
-
-    /**
-     * <pre>
-     * An event describing a message sent/received between Spans.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
-     */
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEventOrBuilder getMessageEventOrBuilder() {
-      if (valueCase_ == 3) {
-        return (io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent) value_;
-      }
-      return io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) {
-        return true;
-      }
-      if (isInitialized == 0) {
-        return false;
-      }
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-        throws java.io.IOException {
-      if (time_ != null) {
-        output.writeMessage(1, getTime());
-      }
-      if (valueCase_ == 2) {
-        output.writeMessage(2, (io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation) value_);
-      }
-      if (valueCase_ == 3) {
-        output.writeMessage(3, (io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent) value_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) {
-        return size;
-      }
-
-      size = 0;
-      if (time_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(1, getTime());
-      }
-      if (valueCase_ == 2) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(2, (io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation) value_);
-      }
-      if (valueCase_ == 3) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(3,
-                (io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent) value_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-        return true;
-      }
-      if (!(obj instanceof io.opencensus.proto.trace.v1.Span.TimeEvent)) {
-        return super.equals(obj);
-      }
-      io.opencensus.proto.trace.v1.Span.TimeEvent other =
-          (io.opencensus.proto.trace.v1.Span.TimeEvent) obj;
-
-      if (hasTime() != other.hasTime()) {
-        return false;
-      }
-      if (hasTime()) {
-        if (!getTime()
-            .equals(other.getTime())) {
-          return false;
-        }
-      }
-      if (!getValueCase().equals(other.getValueCase())) {
-        return false;
-      }
-      switch (valueCase_) {
-        case 2:
-          if (!getAnnotation()
-              .equals(other.getAnnotation())) {
-            return false;
-          }
-          break;
-        case 3:
-          if (!getMessageEvent()
-              .equals(other.getMessageEvent())) {
-            return false;
-          }
-          break;
-        case 0:
-        default:
-      }
-      return unknownFields.equals(other.unknownFields);
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasTime()) {
-        hash = (37 * hash) + TIME_FIELD_NUMBER;
-        hash = (53 * hash) + getTime().hashCode();
-      }
-      switch (valueCase_) {
-        case 2:
-          hash = (37 * hash) + ANNOTATION_FIELD_NUMBER;
-          hash = (53 * hash) + getAnnotation().hashCode();
-          break;
-        case 3:
-          hash = (37 * hash) + MESSAGE_EVENT_FIELD_NUMBER;
-          hash = (53 * hash) + getMessageEvent().hashCode();
-          break;
-        case 0:
-        default:
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() {
-      return newBuilder();
-    }
-
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<TimeEvent> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span.TimeEvent getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-    public enum ValueCase
-        implements com.google.protobuf.Internal.EnumLite,
-        com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-      ANNOTATION(2),
-      MESSAGE_EVENT(3),
-      VALUE_NOT_SET(0);
-      private final int value;
-
-      ValueCase(int value) {
-        this.value = value;
-      }
-
-      /**
-       * @param value The number of the enum to look for.
-       * @return The enum associated with the given number.
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static ValueCase valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static ValueCase forNumber(int value) {
-        switch (value) {
-          case 2:
-            return ANNOTATION;
-          case 3:
-            return MESSAGE_EVENT;
-          case 0:
-            return VALUE_NOT_SET;
-          default:
-            return null;
-        }
-      }
-
-      public int getNumber() {
-        return this.value;
-      }
-    }
-
     public interface AnnotationOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.Span.TimeEvent
-        // .Annotation)
-        com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.Span.TimeEvent.Annotation)
+        com.google.protobuf.MessageLiteOrBuilder {
 
       /**
        * <pre>
@@ -5611,53 +1994,131 @@ public final class Span extends
        * </pre>
        *
        * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
-       *
        * @return Whether the description field is set.
        */
       boolean hasDescription();
-
       /**
        * <pre>
        * A user-supplied message describing the event.
        * </pre>
        *
        * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
-       *
        * @return The description.
        */
       io.opencensus.proto.trace.v1.TruncatableString getDescription();
 
       /**
        * <pre>
+       * A set of attributes on the annotation.
+       * </pre>
+       *
+       * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
+       * @return Whether the attributes field is set.
+       */
+      boolean hasAttributes();
+      /**
+       * <pre>
+       * A set of attributes on the annotation.
+       * </pre>
+       *
+       * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
+       * @return The attributes.
+       */
+      io.opencensus.proto.trace.v1.Span.Attributes getAttributes();
+    }
+    /**
+     * <pre>
+     * A text annotation with a set of attributes.
+     * </pre>
+     *
+     * Protobuf type {@code opencensus.proto.trace.v1.Span.TimeEvent.Annotation}
+     */
+    public  static final class Annotation extends
+        com.google.protobuf.GeneratedMessageLite<
+            Annotation, Annotation.Builder> implements
+        // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.Span.TimeEvent.Annotation)
+        AnnotationOrBuilder {
+      private Annotation() {
+      }
+      public static final int DESCRIPTION_FIELD_NUMBER = 1;
+      private io.opencensus.proto.trace.v1.TruncatableString description_;
+      /**
+       * <pre>
        * A user-supplied message describing the event.
        * </pre>
        *
        * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
        */
-      io.opencensus.proto.trace.v1.TruncatableStringOrBuilder getDescriptionOrBuilder();
+      @java.lang.Override
+      public boolean hasDescription() {
+        return description_ != null;
+      }
+      /**
+       * <pre>
+       * A user-supplied message describing the event.
+       * </pre>
+       *
+       * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
+       */
+      @java.lang.Override
+      public io.opencensus.proto.trace.v1.TruncatableString getDescription() {
+        return description_ == null ? io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance() : description_;
+      }
+      /**
+       * <pre>
+       * A user-supplied message describing the event.
+       * </pre>
+       *
+       * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
+       */
+      private void setDescription(io.opencensus.proto.trace.v1.TruncatableString value) {
+        value.getClass();
+  description_ = value;
+        
+        }
+      /**
+       * <pre>
+       * A user-supplied message describing the event.
+       * </pre>
+       *
+       * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
+       */
+      @java.lang.SuppressWarnings({"ReferenceEquality"})
+      private void mergeDescription(io.opencensus.proto.trace.v1.TruncatableString value) {
+        value.getClass();
+  if (description_ != null &&
+            description_ != io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance()) {
+          description_ =
+            io.opencensus.proto.trace.v1.TruncatableString.newBuilder(description_).mergeFrom(value).buildPartial();
+        } else {
+          description_ = value;
+        }
+        
+      }
+      /**
+       * <pre>
+       * A user-supplied message describing the event.
+       * </pre>
+       *
+       * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
+       */
+      private void clearDescription() {  description_ = null;
+        
+      }
 
+      public static final int ATTRIBUTES_FIELD_NUMBER = 2;
+      private io.opencensus.proto.trace.v1.Span.Attributes attributes_;
       /**
        * <pre>
        * A set of attributes on the annotation.
        * </pre>
        *
        * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
-       *
-       * @return Whether the attributes field is set.
        */
-      boolean hasAttributes();
-
-      /**
-       * <pre>
-       * A set of attributes on the annotation.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
-       *
-       * @return The attributes.
-       */
-      io.opencensus.proto.trace.v1.Span.Attributes getAttributes();
-
+      @java.lang.Override
+      public boolean hasAttributes() {
+        return attributes_ != null;
+      }
       /**
        * <pre>
        * A set of attributes on the annotation.
@@ -5665,13 +2126,371 @@ public final class Span extends
        *
        * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
        */
-      io.opencensus.proto.trace.v1.Span.AttributesOrBuilder getAttributesOrBuilder();
+      @java.lang.Override
+      public io.opencensus.proto.trace.v1.Span.Attributes getAttributes() {
+        return attributes_ == null ? io.opencensus.proto.trace.v1.Span.Attributes.getDefaultInstance() : attributes_;
+      }
+      /**
+       * <pre>
+       * A set of attributes on the annotation.
+       * </pre>
+       *
+       * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
+       */
+      private void setAttributes(io.opencensus.proto.trace.v1.Span.Attributes value) {
+        value.getClass();
+  attributes_ = value;
+        
+        }
+      /**
+       * <pre>
+       * A set of attributes on the annotation.
+       * </pre>
+       *
+       * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
+       */
+      @java.lang.SuppressWarnings({"ReferenceEquality"})
+      private void mergeAttributes(io.opencensus.proto.trace.v1.Span.Attributes value) {
+        value.getClass();
+  if (attributes_ != null &&
+            attributes_ != io.opencensus.proto.trace.v1.Span.Attributes.getDefaultInstance()) {
+          attributes_ =
+            io.opencensus.proto.trace.v1.Span.Attributes.newBuilder(attributes_).mergeFrom(value).buildPartial();
+        } else {
+          attributes_ = value;
+        }
+        
+      }
+      /**
+       * <pre>
+       * A set of attributes on the annotation.
+       * </pre>
+       *
+       * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
+       */
+      private void clearAttributes() {  attributes_ = null;
+        
+      }
+
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+
+      public static Builder newBuilder() {
+        return (Builder) DEFAULT_INSTANCE.createBuilder();
+      }
+      public static Builder newBuilder(io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation prototype) {
+        return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      }
+
+      /**
+       * <pre>
+       * A text annotation with a set of attributes.
+       * </pre>
+       *
+       * Protobuf type {@code opencensus.proto.trace.v1.Span.TimeEvent.Annotation}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageLite.Builder<
+            io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation, Builder> implements
+          // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.Span.TimeEvent.Annotation)
+          io.opencensus.proto.trace.v1.Span.TimeEvent.AnnotationOrBuilder {
+        // Construct using io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.newBuilder()
+        private Builder() {
+          super(DEFAULT_INSTANCE);
+        }
+
+
+        /**
+         * <pre>
+         * A user-supplied message describing the event.
+         * </pre>
+         *
+         * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
+         */
+        @java.lang.Override
+        public boolean hasDescription() {
+          return instance.hasDescription();
+        }
+        /**
+         * <pre>
+         * A user-supplied message describing the event.
+         * </pre>
+         *
+         * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
+         */
+        @java.lang.Override
+        public io.opencensus.proto.trace.v1.TruncatableString getDescription() {
+          return instance.getDescription();
+        }
+        /**
+         * <pre>
+         * A user-supplied message describing the event.
+         * </pre>
+         *
+         * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
+         */
+        public Builder setDescription(io.opencensus.proto.trace.v1.TruncatableString value) {
+          copyOnWrite();
+          instance.setDescription(value);
+          return this;
+          }
+        /**
+         * <pre>
+         * A user-supplied message describing the event.
+         * </pre>
+         *
+         * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
+         */
+        public Builder setDescription(
+            io.opencensus.proto.trace.v1.TruncatableString.Builder builderForValue) {
+          copyOnWrite();
+          instance.setDescription(builderForValue.build());
+          return this;
+        }
+        /**
+         * <pre>
+         * A user-supplied message describing the event.
+         * </pre>
+         *
+         * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
+         */
+        public Builder mergeDescription(io.opencensus.proto.trace.v1.TruncatableString value) {
+          copyOnWrite();
+          instance.mergeDescription(value);
+          return this;
+        }
+        /**
+         * <pre>
+         * A user-supplied message describing the event.
+         * </pre>
+         *
+         * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
+         */
+        public Builder clearDescription() {  copyOnWrite();
+          instance.clearDescription();
+          return this;
+        }
+
+        /**
+         * <pre>
+         * A set of attributes on the annotation.
+         * </pre>
+         *
+         * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
+         */
+        @java.lang.Override
+        public boolean hasAttributes() {
+          return instance.hasAttributes();
+        }
+        /**
+         * <pre>
+         * A set of attributes on the annotation.
+         * </pre>
+         *
+         * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
+         */
+        @java.lang.Override
+        public io.opencensus.proto.trace.v1.Span.Attributes getAttributes() {
+          return instance.getAttributes();
+        }
+        /**
+         * <pre>
+         * A set of attributes on the annotation.
+         * </pre>
+         *
+         * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
+         */
+        public Builder setAttributes(io.opencensus.proto.trace.v1.Span.Attributes value) {
+          copyOnWrite();
+          instance.setAttributes(value);
+          return this;
+          }
+        /**
+         * <pre>
+         * A set of attributes on the annotation.
+         * </pre>
+         *
+         * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
+         */
+        public Builder setAttributes(
+            io.opencensus.proto.trace.v1.Span.Attributes.Builder builderForValue) {
+          copyOnWrite();
+          instance.setAttributes(builderForValue.build());
+          return this;
+        }
+        /**
+         * <pre>
+         * A set of attributes on the annotation.
+         * </pre>
+         *
+         * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
+         */
+        public Builder mergeAttributes(io.opencensus.proto.trace.v1.Span.Attributes value) {
+          copyOnWrite();
+          instance.mergeAttributes(value);
+          return this;
+        }
+        /**
+         * <pre>
+         * A set of attributes on the annotation.
+         * </pre>
+         *
+         * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
+         */
+        public Builder clearAttributes() {  copyOnWrite();
+          instance.clearAttributes();
+          return this;
+        }
+
+        // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.Span.TimeEvent.Annotation)
+      }
+      @java.lang.Override
+      @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+      protected final java.lang.Object dynamicMethod(
+          com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+          java.lang.Object arg0, java.lang.Object arg1) {
+        switch (method) {
+          case NEW_MUTABLE_INSTANCE: {
+            return new io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation();
+          }
+          case NEW_BUILDER: {
+            return new Builder();
+          }
+          case BUILD_MESSAGE_INFO: {
+              java.lang.Object[] objects = new java.lang.Object[] {
+                "description_",
+                "attributes_",
+              };
+              java.lang.String info =
+                  "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001\t\u0002\t";
+              return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+          }
+          // fall through
+          case GET_DEFAULT_INSTANCE: {
+            return DEFAULT_INSTANCE;
+          }
+          case GET_PARSER: {
+            com.google.protobuf.Parser<io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation> parser = PARSER;
+            if (parser == null) {
+              synchronized (io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.class) {
+                parser = PARSER;
+                if (parser == null) {
+                  parser =
+                      new DefaultInstanceBasedParser<io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation>(
+                          DEFAULT_INSTANCE);
+                  PARSER = parser;
+                }
+              }
+            }
+            return parser;
+        }
+        case GET_MEMOIZED_IS_INITIALIZED: {
+          return (byte) 1;
+        }
+        case SET_MEMOIZED_IS_INITIALIZED: {
+          return null;
+        }
+        }
+        throw new UnsupportedOperationException();
+      }
+
+
+      // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span.TimeEvent.Annotation)
+      private static final io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation DEFAULT_INSTANCE;
+      static {
+        Annotation defaultInstance = new Annotation();
+        // New instances are implicitly immutable so no need to make
+        // immutable.
+        DEFAULT_INSTANCE = defaultInstance;
+        com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+          Annotation.class, defaultInstance);
+      }
+
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static volatile com.google.protobuf.Parser<Annotation> PARSER;
+
+      public static com.google.protobuf.Parser<Annotation> parser() {
+        return DEFAULT_INSTANCE.getParserForType();
+      }
     }
 
     public interface MessageEventOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.Span.TimeEvent
-        // .MessageEvent)
-        com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent)
+        com.google.protobuf.MessageLiteOrBuilder {
 
       /**
        * <pre>
@@ -5680,11 +2499,9 @@ public final class Span extends
        * </pre>
        *
        * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type type = 1;</code>
-       *
        * @return The enum numeric value on the wire for type.
        */
       int getTypeValue();
-
       /**
        * <pre>
        * The type of MessageEvent. Indicates whether the message was sent or
@@ -5692,7 +2509,6 @@ public final class Span extends
        * </pre>
        *
        * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type type = 1;</code>
-       *
        * @return The type.
        */
       io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type getType();
@@ -5706,7 +2522,6 @@ public final class Span extends
        * </pre>
        *
        * <code>uint64 id = 2;</code>
-       *
        * @return The id.
        */
       long getId();
@@ -5717,7 +2532,6 @@ public final class Span extends
        * </pre>
        *
        * <code>uint64 uncompressed_size = 3;</code>
-       *
        * @return The uncompressedSize.
        */
       long getUncompressedSize();
@@ -5729,1484 +2543,33 @@ public final class Span extends
        * </pre>
        *
        * <code>uint64 compressed_size = 4;</code>
-       *
        * @return The compressedSize.
        */
       long getCompressedSize();
     }
-
-    /**
-     * <pre>
-     * A text annotation with a set of attributes.
-     * </pre>
-     * <p>
-     * Protobuf type {@code opencensus.proto.trace.v1.Span.TimeEvent.Annotation}
-     */
-    public static final class Annotation extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.Span.TimeEvent
-        // .Annotation)
-        AnnotationOrBuilder {
-      public static final int DESCRIPTION_FIELD_NUMBER = 1;
-      public static final int ATTRIBUTES_FIELD_NUMBER = 2;
-      private static final long serialVersionUID = 0L;
-      // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span.TimeEvent.Annotation)
-      private static final io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation DEFAULT_INSTANCE;
-      private static final com.google.protobuf.Parser<Annotation>
-          PARSER = new com.google.protobuf.AbstractParser<Annotation>() {
-        @java.lang.Override
-        public Annotation parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Annotation(input, extensionRegistry);
-        }
-      };
-
-      static {
-        DEFAULT_INSTANCE = new io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation();
-      }
-
-      private io.opencensus.proto.trace.v1.TruncatableString description_;
-      private io.opencensus.proto.trace.v1.Span.Attributes attributes_;
-      private byte memoizedIsInitialized = -1;
-
-      // Use Annotation.newBuilder() to construct.
-      private Annotation(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
-      }
-
-      private Annotation() {
-      }
-
-      private Annotation(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-            com.google.protobuf.UnknownFieldSet.newBuilder();
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 10: {
-                io.opencensus.proto.trace.v1.TruncatableString.Builder subBuilder = null;
-                if (description_ != null) {
-                  subBuilder = description_.toBuilder();
-                }
-                description_ = input
-                    .readMessage(io.opencensus.proto.trace.v1.TruncatableString.parser(),
-                        extensionRegistry);
-                if (subBuilder != null) {
-                  subBuilder.mergeFrom(description_);
-                  description_ = subBuilder.buildPartial();
-                }
-
-                break;
-              }
-              case 18: {
-                io.opencensus.proto.trace.v1.Span.Attributes.Builder subBuilder = null;
-                if (attributes_ != null) {
-                  subBuilder = attributes_.toBuilder();
-                }
-                attributes_ = input
-                    .readMessage(io.opencensus.proto.trace.v1.Span.Attributes.parser(),
-                        extensionRegistry);
-                if (subBuilder != null) {
-                  subBuilder.mergeFrom(attributes_);
-                  attributes_ = subBuilder.buildPartial();
-                }
-
-                break;
-              }
-              default: {
-                if (!parseUnknownField(
-                    input, unknownFields, extensionRegistry, tag)) {
-                  done = true;
-                }
-                break;
-              }
-            }
-          }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
-        } finally {
-          this.unknownFields = unknownFields.build();
-          makeExtensionsImmutable();
-        }
-      }
-
-      public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvent_Annotation_descriptor;
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(
-          java.nio.ByteBuffer data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(
-          java.nio.ByteBuffer data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(
-          java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseDelimitedFrom(
-          java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-      }
-
-      public static Builder newBuilder(
-          io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-      }
-
-      public static com.google.protobuf.Parser<Annotation> parser() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      @SuppressWarnings({"unused"})
-      protected java.lang.Object newInstance(
-          UnusedPrivateParameter unused) {
-        return new Annotation();
-      }
-
-      @java.lang.Override
-      public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
-        return this.unknownFields;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvent_Annotation_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.class,
-                io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder.class);
-      }
-
-      /**
-       * <pre>
-       * A user-supplied message describing the event.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
-       *
-       * @return Whether the description field is set.
-       */
-      @java.lang.Override
-      public boolean hasDescription() {
-        return description_ != null;
-      }
-
-      /**
-       * <pre>
-       * A user-supplied message describing the event.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
-       *
-       * @return The description.
-       */
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.TruncatableString getDescription() {
-        return description_ == null ?
-            io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance() : description_;
-      }
-
-      /**
-       * <pre>
-       * A user-supplied message describing the event.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
-       */
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.TruncatableStringOrBuilder getDescriptionOrBuilder() {
-        return getDescription();
-      }
-
-      /**
-       * <pre>
-       * A set of attributes on the annotation.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
-       *
-       * @return Whether the attributes field is set.
-       */
-      @java.lang.Override
-      public boolean hasAttributes() {
-        return attributes_ != null;
-      }
-
-      /**
-       * <pre>
-       * A set of attributes on the annotation.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
-       *
-       * @return The attributes.
-       */
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.Attributes getAttributes() {
-        return attributes_ == null ?
-            io.opencensus.proto.trace.v1.Span.Attributes.getDefaultInstance() : attributes_;
-      }
-
-      /**
-       * <pre>
-       * A set of attributes on the annotation.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
-       */
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.AttributesOrBuilder getAttributesOrBuilder() {
-        return getAttributes();
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) {
-          return true;
-        }
-        if (isInitialized == 0) {
-          return false;
-        }
-
-        memoizedIsInitialized = 1;
-        return true;
-      }
-
-      @java.lang.Override
-      public void writeTo(com.google.protobuf.CodedOutputStream output)
-          throws java.io.IOException {
-        if (description_ != null) {
-          output.writeMessage(1, getDescription());
-        }
-        if (attributes_ != null) {
-          output.writeMessage(2, getAttributes());
-        }
-        unknownFields.writeTo(output);
-      }
-
-      @java.lang.Override
-      public int getSerializedSize() {
-        int size = memoizedSize;
-        if (size != -1) {
-          return size;
-        }
-
-        size = 0;
-        if (description_ != null) {
-          size += com.google.protobuf.CodedOutputStream
-              .computeMessageSize(1, getDescription());
-        }
-        if (attributes_ != null) {
-          size += com.google.protobuf.CodedOutputStream
-              .computeMessageSize(2, getAttributes());
-        }
-        size += unknownFields.getSerializedSize();
-        memoizedSize = size;
-        return size;
-      }
-
-      @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-          return true;
-        }
-        if (!(obj instanceof io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation)) {
-          return super.equals(obj);
-        }
-        io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation other =
-            (io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation) obj;
-
-        if (hasDescription() != other.hasDescription()) {
-          return false;
-        }
-        if (hasDescription()) {
-          if (!getDescription()
-              .equals(other.getDescription())) {
-            return false;
-          }
-        }
-        if (hasAttributes() != other.hasAttributes()) {
-          return false;
-        }
-        if (hasAttributes()) {
-          if (!getAttributes()
-              .equals(other.getAttributes())) {
-            return false;
-          }
-        }
-        return unknownFields.equals(other.unknownFields);
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptor().hashCode();
-        if (hasDescription()) {
-          hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
-          hash = (53 * hash) + getDescription().hashCode();
-        }
-        if (hasAttributes()) {
-          hash = (37 * hash) + ATTRIBUTES_FIELD_NUMBER;
-          hash = (53 * hash) + getAttributes().hashCode();
-        }
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
-      }
-
-      @java.lang.Override
-      public Builder newBuilderForType() {
-        return newBuilder();
-      }
-
-      @java.lang.Override
-      public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
-      }
-
-      @java.lang.Override
-      protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Parser<Annotation> getParserForType() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-      }
-
-      /**
-       * <pre>
-       * A text annotation with a set of attributes.
-       * </pre>
-       * <p>
-       * Protobuf type {@code opencensus.proto.trace.v1.Span.TimeEvent.Annotation}
-       */
-      public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.Span.TimeEvent
-          // .Annotation)
-          io.opencensus.proto.trace.v1.Span.TimeEvent.AnnotationOrBuilder {
-        private io.opencensus.proto.trace.v1.TruncatableString description_;
-        private com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.trace.v1.TruncatableString,
-            io.opencensus.proto.trace.v1.TruncatableString.Builder,
-            io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
-            descriptionBuilder_;
-        private io.opencensus.proto.trace.v1.Span.Attributes attributes_;
-        private com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.trace.v1.Span.Attributes,
-            io.opencensus.proto.trace.v1.Span.Attributes.Builder,
-            io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
-            attributesBuilder_;
-
-        // Construct using io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.newBuilder()
-        private Builder() {
-          maybeForceBuilderInitialization();
-        }
-
-        private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-          super(parent);
-          maybeForceBuilderInitialization();
-        }
-
-        public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-          return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvent_Annotation_descriptor;
-        }
-
-        @java.lang.Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-          return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvent_Annotation_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                  io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.class,
-                  io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder.class);
-        }
-
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-          }
-        }
-
-        @java.lang.Override
-        public Builder clear() {
-          super.clear();
-          if (descriptionBuilder_ == null) {
-            description_ = null;
-          } else {
-            description_ = null;
-            descriptionBuilder_ = null;
-          }
-          if (attributesBuilder_ == null) {
-            attributes_ = null;
-          } else {
-            attributes_ = null;
-            attributesBuilder_ = null;
-          }
-          return this;
-        }
-
-        @java.lang.Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-          return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvent_Annotation_descriptor;
-        }
-
-        @java.lang.Override
-        public io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation getDefaultInstanceForType() {
-          return io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.getDefaultInstance();
-        }
-
-        @java.lang.Override
-        public io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation build() {
-          io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation result = buildPartial();
-          if (!result.isInitialized()) {
-            throw newUninitializedMessageException(result);
-          }
-          return result;
-        }
-
-        @java.lang.Override
-        public io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation buildPartial() {
-          io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation result =
-              new io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation(this);
-          if (descriptionBuilder_ == null) {
-            result.description_ = description_;
-          } else {
-            result.description_ = descriptionBuilder_.build();
-          }
-          if (attributesBuilder_ == null) {
-            result.attributes_ = attributes_;
-          } else {
-            result.attributes_ = attributesBuilder_.build();
-          }
-          onBuilt();
-          return result;
-        }
-
-        @java.lang.Override
-        public Builder clone() {
-          return super.clone();
-        }
-
-        @java.lang.Override
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-          return super.setField(field, value);
-        }
-
-        @java.lang.Override
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return super.clearField(field);
-        }
-
-        @java.lang.Override
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return super.clearOneof(oneof);
-        }
-
-        @java.lang.Override
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
-          return super.setRepeatedField(field, index, value);
-        }
-
-        @java.lang.Override
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-          return super.addRepeatedField(field, value);
-        }
-
-        @java.lang.Override
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation) {
-            return mergeFrom((io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation) other);
-          } else {
-            super.mergeFrom(other);
-            return this;
-          }
-        }
-
-        public Builder mergeFrom(io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation other) {
-          if (other ==
-              io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.getDefaultInstance()) {
-            return this;
-          }
-          if (other.hasDescription()) {
-            mergeDescription(other.getDescription());
-          }
-          if (other.hasAttributes()) {
-            mergeAttributes(other.getAttributes());
-          }
-          this.mergeUnknownFields(other.unknownFields);
-          onChanged();
-          return this;
-        }
-
-        @java.lang.Override
-        public final boolean isInitialized() {
-          return true;
-        }
-
-        @java.lang.Override
-        public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-          io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation parsedMessage = null;
-          try {
-            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage =
-                (io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
-          } finally {
-            if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-            }
-          }
-          return this;
-        }
-
-        /**
-         * <pre>
-         * A user-supplied message describing the event.
-         * </pre>
-         *
-         * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
-         *
-         * @return Whether the description field is set.
-         */
-        public boolean hasDescription() {
-          return descriptionBuilder_ != null || description_ != null;
-        }
-
-        /**
-         * <pre>
-         * A user-supplied message describing the event.
-         * </pre>
-         *
-         * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
-         *
-         * @return The description.
-         */
-        public io.opencensus.proto.trace.v1.TruncatableString getDescription() {
-          if (descriptionBuilder_ == null) {
-            return description_ == null ?
-                io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance() : description_;
-          } else {
-            return descriptionBuilder_.getMessage();
-          }
-        }
-
-        /**
-         * <pre>
-         * A user-supplied message describing the event.
-         * </pre>
-         *
-         * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
-         */
-        public Builder setDescription(io.opencensus.proto.trace.v1.TruncatableString value) {
-          if (descriptionBuilder_ == null) {
-            if (value == null) {
-              throw new NullPointerException();
-            }
-            description_ = value;
-            onChanged();
-          } else {
-            descriptionBuilder_.setMessage(value);
-          }
-
-          return this;
-        }
-
-        /**
-         * <pre>
-         * A user-supplied message describing the event.
-         * </pre>
-         *
-         * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
-         */
-        public Builder setDescription(
-            io.opencensus.proto.trace.v1.TruncatableString.Builder builderForValue) {
-          if (descriptionBuilder_ == null) {
-            description_ = builderForValue.build();
-            onChanged();
-          } else {
-            descriptionBuilder_.setMessage(builderForValue.build());
-          }
-
-          return this;
-        }
-
-        /**
-         * <pre>
-         * A user-supplied message describing the event.
-         * </pre>
-         *
-         * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
-         */
-        public Builder mergeDescription(io.opencensus.proto.trace.v1.TruncatableString value) {
-          if (descriptionBuilder_ == null) {
-            if (description_ != null) {
-              description_ =
-                  io.opencensus.proto.trace.v1.TruncatableString.newBuilder(description_)
-                                                                .mergeFrom(value).buildPartial();
-            } else {
-              description_ = value;
-            }
-            onChanged();
-          } else {
-            descriptionBuilder_.mergeFrom(value);
-          }
-
-          return this;
-        }
-
-        /**
-         * <pre>
-         * A user-supplied message describing the event.
-         * </pre>
-         *
-         * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
-         */
-        public Builder clearDescription() {
-          if (descriptionBuilder_ == null) {
-            description_ = null;
-            onChanged();
-          } else {
-            description_ = null;
-            descriptionBuilder_ = null;
-          }
-
-          return this;
-        }
-
-        /**
-         * <pre>
-         * A user-supplied message describing the event.
-         * </pre>
-         *
-         * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
-         */
-        public io.opencensus.proto.trace.v1.TruncatableString.Builder getDescriptionBuilder() {
-
-          onChanged();
-          return getDescriptionFieldBuilder().getBuilder();
-        }
-
-        /**
-         * <pre>
-         * A user-supplied message describing the event.
-         * </pre>
-         *
-         * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
-         */
-        public io.opencensus.proto.trace.v1.TruncatableStringOrBuilder getDescriptionOrBuilder() {
-          if (descriptionBuilder_ != null) {
-            return descriptionBuilder_.getMessageOrBuilder();
-          } else {
-            return description_ == null ?
-                io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance() : description_;
-          }
-        }
-
-        /**
-         * <pre>
-         * A user-supplied message describing the event.
-         * </pre>
-         *
-         * <code>.opencensus.proto.trace.v1.TruncatableString description = 1;</code>
-         */
-        private com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.trace.v1.TruncatableString,
-            io.opencensus.proto.trace.v1.TruncatableString.Builder,
-            io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
-        getDescriptionFieldBuilder() {
-          if (descriptionBuilder_ == null) {
-            descriptionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-                io.opencensus.proto.trace.v1.TruncatableString,
-                io.opencensus.proto.trace.v1.TruncatableString.Builder,
-                io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>(
-                getDescription(),
-                getParentForChildren(),
-                isClean());
-            description_ = null;
-          }
-          return descriptionBuilder_;
-        }
-
-        /**
-         * <pre>
-         * A set of attributes on the annotation.
-         * </pre>
-         *
-         * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
-         *
-         * @return Whether the attributes field is set.
-         */
-        public boolean hasAttributes() {
-          return attributesBuilder_ != null || attributes_ != null;
-        }
-
-        /**
-         * <pre>
-         * A set of attributes on the annotation.
-         * </pre>
-         *
-         * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
-         *
-         * @return The attributes.
-         */
-        public io.opencensus.proto.trace.v1.Span.Attributes getAttributes() {
-          if (attributesBuilder_ == null) {
-            return attributes_ == null ?
-                io.opencensus.proto.trace.v1.Span.Attributes.getDefaultInstance() : attributes_;
-          } else {
-            return attributesBuilder_.getMessage();
-          }
-        }
-
-        /**
-         * <pre>
-         * A set of attributes on the annotation.
-         * </pre>
-         *
-         * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
-         */
-        public Builder setAttributes(io.opencensus.proto.trace.v1.Span.Attributes value) {
-          if (attributesBuilder_ == null) {
-            if (value == null) {
-              throw new NullPointerException();
-            }
-            attributes_ = value;
-            onChanged();
-          } else {
-            attributesBuilder_.setMessage(value);
-          }
-
-          return this;
-        }
-
-        /**
-         * <pre>
-         * A set of attributes on the annotation.
-         * </pre>
-         *
-         * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
-         */
-        public Builder setAttributes(
-            io.opencensus.proto.trace.v1.Span.Attributes.Builder builderForValue) {
-          if (attributesBuilder_ == null) {
-            attributes_ = builderForValue.build();
-            onChanged();
-          } else {
-            attributesBuilder_.setMessage(builderForValue.build());
-          }
-
-          return this;
-        }
-
-        /**
-         * <pre>
-         * A set of attributes on the annotation.
-         * </pre>
-         *
-         * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
-         */
-        public Builder mergeAttributes(io.opencensus.proto.trace.v1.Span.Attributes value) {
-          if (attributesBuilder_ == null) {
-            if (attributes_ != null) {
-              attributes_ =
-                  io.opencensus.proto.trace.v1.Span.Attributes.newBuilder(attributes_)
-                                                              .mergeFrom(value).buildPartial();
-            } else {
-              attributes_ = value;
-            }
-            onChanged();
-          } else {
-            attributesBuilder_.mergeFrom(value);
-          }
-
-          return this;
-        }
-
-        /**
-         * <pre>
-         * A set of attributes on the annotation.
-         * </pre>
-         *
-         * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
-         */
-        public Builder clearAttributes() {
-          if (attributesBuilder_ == null) {
-            attributes_ = null;
-            onChanged();
-          } else {
-            attributes_ = null;
-            attributesBuilder_ = null;
-          }
-
-          return this;
-        }
-
-        /**
-         * <pre>
-         * A set of attributes on the annotation.
-         * </pre>
-         *
-         * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
-         */
-        public io.opencensus.proto.trace.v1.Span.Attributes.Builder getAttributesBuilder() {
-
-          onChanged();
-          return getAttributesFieldBuilder().getBuilder();
-        }
-
-        /**
-         * <pre>
-         * A set of attributes on the annotation.
-         * </pre>
-         *
-         * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
-         */
-        public io.opencensus.proto.trace.v1.Span.AttributesOrBuilder getAttributesOrBuilder() {
-          if (attributesBuilder_ != null) {
-            return attributesBuilder_.getMessageOrBuilder();
-          } else {
-            return attributes_ == null ?
-                io.opencensus.proto.trace.v1.Span.Attributes.getDefaultInstance() : attributes_;
-          }
-        }
-
-        /**
-         * <pre>
-         * A set of attributes on the annotation.
-         * </pre>
-         *
-         * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 2;</code>
-         */
-        private com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.trace.v1.Span.Attributes,
-            io.opencensus.proto.trace.v1.Span.Attributes.Builder,
-            io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
-        getAttributesFieldBuilder() {
-          if (attributesBuilder_ == null) {
-            attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-                io.opencensus.proto.trace.v1.Span.Attributes,
-                io.opencensus.proto.trace.v1.Span.Attributes.Builder,
-                io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>(
-                getAttributes(),
-                getParentForChildren(),
-                isClean());
-            attributes_ = null;
-          }
-          return attributesBuilder_;
-        }
-
-        @java.lang.Override
-        public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.setUnknownFields(unknownFields);
-        }
-
-        @java.lang.Override
-        public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.mergeUnknownFields(unknownFields);
-        }
-
-
-        // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.Span.TimeEvent
-        // .Annotation)
-      }
-
-    }
-
     /**
      * <pre>
      * An event describing a message sent/received between Spans.
      * </pre>
-     * <p>
+     *
      * Protobuf type {@code opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent}
      */
-    public static final class MessageEvent extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.Span.TimeEvent
-        // .MessageEvent)
+    public  static final class MessageEvent extends
+        com.google.protobuf.GeneratedMessageLite<
+            MessageEvent, MessageEvent.Builder> implements
+        // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent)
         MessageEventOrBuilder {
-      public static final int TYPE_FIELD_NUMBER = 1;
-      public static final int ID_FIELD_NUMBER = 2;
-      public static final int UNCOMPRESSED_SIZE_FIELD_NUMBER = 3;
-      public static final int COMPRESSED_SIZE_FIELD_NUMBER = 4;
-      private static final long serialVersionUID = 0L;
-      // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent)
-      private static final io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent
-          DEFAULT_INSTANCE;
-      private static final com.google.protobuf.Parser<MessageEvent>
-          PARSER = new com.google.protobuf.AbstractParser<MessageEvent>() {
-        @java.lang.Override
-        public MessageEvent parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-          return new MessageEvent(input, extensionRegistry);
-        }
-      };
-
-      static {
-        DEFAULT_INSTANCE = new io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent();
-      }
-
-      private int type_;
-      private long id_;
-      private long uncompressedSize_;
-      private long compressedSize_;
-      private byte memoizedIsInitialized = -1;
-
-      // Use MessageEvent.newBuilder() to construct.
-      private MessageEvent(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
-      }
-
       private MessageEvent() {
-        type_ = 0;
       }
-
-      private MessageEvent(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-            com.google.protobuf.UnknownFieldSet.newBuilder();
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 8: {
-                int rawValue = input.readEnum();
-
-                type_ = rawValue;
-                break;
-              }
-              case 16: {
-
-                id_ = input.readUInt64();
-                break;
-              }
-              case 24: {
-
-                uncompressedSize_ = input.readUInt64();
-                break;
-              }
-              case 32: {
-
-                compressedSize_ = input.readUInt64();
-                break;
-              }
-              default: {
-                if (!parseUnknownField(
-                    input, unknownFields, extensionRegistry, tag)) {
-                  done = true;
-                }
-                break;
-              }
-            }
-          }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
-        } finally {
-          this.unknownFields = unknownFields.build();
-          makeExtensionsImmutable();
-        }
-      }
-
-      public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvent_MessageEvent_descriptor;
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(
-          java.nio.ByteBuffer data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(
-          java.nio.ByteBuffer data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(
-          java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseDelimitedFrom(
-          java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-      }
-
-      public static Builder newBuilder(
-          io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-      }
-
-      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-      }
-
-      public static com.google.protobuf.Parser<MessageEvent> parser() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      @SuppressWarnings({"unused"})
-      protected java.lang.Object newInstance(
-          UnusedPrivateParameter unused) {
-        return new MessageEvent();
-      }
-
-      @java.lang.Override
-      public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
-        return this.unknownFields;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvent_MessageEvent_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.class,
-                io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Builder.class);
-      }
-
-      /**
-       * <pre>
-       * The type of MessageEvent. Indicates whether the message was sent or
-       * received.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type type = 1;</code>
-       *
-       * @return The enum numeric value on the wire for type.
-       */
-      @java.lang.Override
-      public int getTypeValue() {
-        return type_;
-      }
-
-      /**
-       * <pre>
-       * The type of MessageEvent. Indicates whether the message was sent or
-       * received.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type type = 1;</code>
-       *
-       * @return The type.
-       */
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type getType() {
-        @SuppressWarnings("deprecation")
-        io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type result =
-            io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type.valueOf(type_);
-        return result == null ?
-            io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type.UNRECOGNIZED : result;
-      }
-
-      /**
-       * <pre>
-       * An identifier for the MessageEvent's message that can be used to match
-       * SENT and RECEIVED MessageEvents. For example, this field could
-       * represent a sequence ID for a streaming RPC. It is recommended to be
-       * unique within a Span.
-       * </pre>
-       *
-       * <code>uint64 id = 2;</code>
-       *
-       * @return The id.
-       */
-      @java.lang.Override
-      public long getId() {
-        return id_;
-      }
-
-      /**
-       * <pre>
-       * The number of uncompressed bytes sent or received.
-       * </pre>
-       *
-       * <code>uint64 uncompressed_size = 3;</code>
-       *
-       * @return The uncompressedSize.
-       */
-      @java.lang.Override
-      public long getUncompressedSize() {
-        return uncompressedSize_;
-      }
-
-      /**
-       * <pre>
-       * The number of compressed bytes sent or received. If zero, assumed to
-       * be the same size as uncompressed.
-       * </pre>
-       *
-       * <code>uint64 compressed_size = 4;</code>
-       *
-       * @return The compressedSize.
-       */
-      @java.lang.Override
-      public long getCompressedSize() {
-        return compressedSize_;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) {
-          return true;
-        }
-        if (isInitialized == 0) {
-          return false;
-        }
-
-        memoizedIsInitialized = 1;
-        return true;
-      }
-
-      @java.lang.Override
-      public void writeTo(com.google.protobuf.CodedOutputStream output)
-          throws java.io.IOException {
-        if (type_ != io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type.TYPE_UNSPECIFIED
-            .getNumber()) {
-          output.writeEnum(1, type_);
-        }
-        if (id_ != 0L) {
-          output.writeUInt64(2, id_);
-        }
-        if (uncompressedSize_ != 0L) {
-          output.writeUInt64(3, uncompressedSize_);
-        }
-        if (compressedSize_ != 0L) {
-          output.writeUInt64(4, compressedSize_);
-        }
-        unknownFields.writeTo(output);
-      }
-
-      @java.lang.Override
-      public int getSerializedSize() {
-        int size = memoizedSize;
-        if (size != -1) {
-          return size;
-        }
-
-        size = 0;
-        if (type_ != io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type.TYPE_UNSPECIFIED
-            .getNumber()) {
-          size += com.google.protobuf.CodedOutputStream
-              .computeEnumSize(1, type_);
-        }
-        if (id_ != 0L) {
-          size += com.google.protobuf.CodedOutputStream
-              .computeUInt64Size(2, id_);
-        }
-        if (uncompressedSize_ != 0L) {
-          size += com.google.protobuf.CodedOutputStream
-              .computeUInt64Size(3, uncompressedSize_);
-        }
-        if (compressedSize_ != 0L) {
-          size += com.google.protobuf.CodedOutputStream
-              .computeUInt64Size(4, compressedSize_);
-        }
-        size += unknownFields.getSerializedSize();
-        memoizedSize = size;
-        return size;
-      }
-
-      @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-          return true;
-        }
-        if (!(obj instanceof io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent)) {
-          return super.equals(obj);
-        }
-        io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent other =
-            (io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent) obj;
-
-        if (type_ != other.type_) {
-          return false;
-        }
-        if (getId()
-            != other.getId()) {
-          return false;
-        }
-        if (getUncompressedSize()
-            != other.getUncompressedSize()) {
-          return false;
-        }
-        if (getCompressedSize()
-            != other.getCompressedSize()) {
-          return false;
-        }
-        return unknownFields.equals(other.unknownFields);
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptor().hashCode();
-        hash = (37 * hash) + TYPE_FIELD_NUMBER;
-        hash = (53 * hash) + type_;
-        hash = (37 * hash) + ID_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getId());
-        hash = (37 * hash) + UNCOMPRESSED_SIZE_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getUncompressedSize());
-        hash = (37 * hash) + COMPRESSED_SIZE_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getCompressedSize());
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
-      }
-
-      @java.lang.Override
-      public Builder newBuilderForType() {
-        return newBuilder();
-      }
-
-      @java.lang.Override
-      public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
-      }
-
-      @java.lang.Override
-      protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Parser<MessageEvent> getParserForType() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-      }
-
       /**
        * <pre>
        * Indicates whether the message was sent or received.
        * </pre>
-       * <p>
+       *
        * Protobuf enum {@code opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type}
        */
       public enum Type
-          implements com.google.protobuf.ProtocolMessageEnum {
+          implements com.google.protobuf.Internal.EnumLite {
         /**
          * <pre>
          * Unknown event type.
@@ -7258,70 +2621,9 @@ public final class Span extends
          * <code>RECEIVED = 2;</code>
          */
         public static final int RECEIVED_VALUE = 2;
-        private static final com.google.protobuf.Internal.EnumLiteMap<
-            Type> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Type>() {
-              public Type findValueByNumber(int number) {
-                return Type.forNumber(number);
-              }
-            };
-        private static final Type[] VALUES = values();
-        private final int value;
 
-        Type(int value) {
-          this.value = value;
-        }
 
-        /**
-         * @param value The numeric wire value of the corresponding enum entry.
-         * @return The enum associated with the given numeric wire value.
-         * @deprecated Use {@link #forNumber(int)} instead.
-         */
-        @java.lang.Deprecated
-        public static Type valueOf(int value) {
-          return forNumber(value);
-        }
-
-        /**
-         * @param value The numeric wire value of the corresponding enum entry.
-         * @return The enum associated with the given numeric wire value.
-         */
-        public static Type forNumber(int value) {
-          switch (value) {
-            case 0:
-              return TYPE_UNSPECIFIED;
-            case 1:
-              return SENT;
-            case 2:
-              return RECEIVED;
-            default:
-              return null;
-          }
-        }
-
-        public static com.google.protobuf.Internal.EnumLiteMap<Type>
-        internalGetValueMap() {
-          return internalValueMap;
-        }
-
-        public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
-          return io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.getDescriptor()
-                                                                         .getEnumTypes().get(0);
-        }
-
-        public static Type valueOf(
-            com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-          if (desc.getType() != getDescriptor()) {
-            throw new java.lang.IllegalArgumentException(
-                "EnumValueDescriptor is not for this type.");
-          }
-          if (desc.getIndex() == -1) {
-            return UNRECOGNIZED;
-          }
-          return VALUES[desc.getIndex()];
-        }
-
+        @java.lang.Override
         public final int getNumber() {
           if (this == UNRECOGNIZED) {
             throw new java.lang.IllegalArgumentException(
@@ -7330,212 +2632,352 @@ public final class Span extends
           return value;
         }
 
-        public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
-          if (this == UNRECOGNIZED) {
-            throw new java.lang.IllegalStateException(
-                "Can't get the descriptor of an unrecognized enum value.");
+        /**
+         * @param value The number of the enum to look for.
+         * @return The enum associated with the given number.
+         * @deprecated Use {@link #forNumber(int)} instead.
+         */
+        @java.lang.Deprecated
+        public static Type valueOf(int value) {
+          return forNumber(value);
+        }
+
+        public static Type forNumber(int value) {
+          switch (value) {
+            case 0: return TYPE_UNSPECIFIED;
+            case 1: return SENT;
+            case 2: return RECEIVED;
+            default: return null;
           }
-          return getDescriptor().getValues().get(ordinal());
         }
 
-        public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
-          return getDescriptor();
+        public static com.google.protobuf.Internal.EnumLiteMap<Type>
+            internalGetValueMap() {
+          return internalValueMap;
+        }
+        private static final com.google.protobuf.Internal.EnumLiteMap<
+            Type> internalValueMap =
+              new com.google.protobuf.Internal.EnumLiteMap<Type>() {
+                @java.lang.Override
+                public Type findValueByNumber(int number) {
+                  return Type.forNumber(number);
+                }
+              };
+
+        public static com.google.protobuf.Internal.EnumVerifier 
+            internalGetVerifier() {
+          return TypeVerifier.INSTANCE;
         }
 
-        // @@protoc_insertion_point(enum_scope:opencensus.proto.trace.v1.Span.TimeEvent
-        // .MessageEvent.Type)
+        private static final class TypeVerifier implements 
+             com.google.protobuf.Internal.EnumVerifier { 
+                static final com.google.protobuf.Internal.EnumVerifier           INSTANCE = new TypeVerifier();
+                @java.lang.Override
+                public boolean isInRange(int number) {
+                  return Type.forNumber(number) != null;
+                }
+              };
+
+        private final int value;
+
+        private Type(int value) {
+          this.value = value;
+        }
+
+        // @@protoc_insertion_point(enum_scope:opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type)
+      }
+
+      public static final int TYPE_FIELD_NUMBER = 1;
+      private int type_;
+      /**
+       * <pre>
+       * The type of MessageEvent. Indicates whether the message was sent or
+       * received.
+       * </pre>
+       *
+       * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type type = 1;</code>
+       * @return The enum numeric value on the wire for type.
+       */
+      @java.lang.Override
+      public int getTypeValue() {
+        return type_;
+      }
+      /**
+       * <pre>
+       * The type of MessageEvent. Indicates whether the message was sent or
+       * received.
+       * </pre>
+       *
+       * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type type = 1;</code>
+       * @return The type.
+       */
+      @java.lang.Override
+      public io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type getType() {
+        io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type result = io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type.forNumber(type_);
+        return result == null ? io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       * The type of MessageEvent. Indicates whether the message was sent or
+       * received.
+       * </pre>
+       *
+       * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type type = 1;</code>
+       * @param value The enum numeric value on the wire for type to set.
+       */
+      private void setTypeValue(int value) {
+          type_ = value;
+      }
+      /**
+       * <pre>
+       * The type of MessageEvent. Indicates whether the message was sent or
+       * received.
+       * </pre>
+       *
+       * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type type = 1;</code>
+       * @param value The type to set.
+       */
+      private void setType(io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type value) {
+        type_ = value.getNumber();
+        
+      }
+      /**
+       * <pre>
+       * The type of MessageEvent. Indicates whether the message was sent or
+       * received.
+       * </pre>
+       *
+       * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type type = 1;</code>
+       */
+      private void clearType() {
+        
+        type_ = 0;
+      }
+
+      public static final int ID_FIELD_NUMBER = 2;
+      private long id_;
+      /**
+       * <pre>
+       * An identifier for the MessageEvent's message that can be used to match
+       * SENT and RECEIVED MessageEvents. For example, this field could
+       * represent a sequence ID for a streaming RPC. It is recommended to be
+       * unique within a Span.
+       * </pre>
+       *
+       * <code>uint64 id = 2;</code>
+       * @return The id.
+       */
+      @java.lang.Override
+      public long getId() {
+        return id_;
+      }
+      /**
+       * <pre>
+       * An identifier for the MessageEvent's message that can be used to match
+       * SENT and RECEIVED MessageEvents. For example, this field could
+       * represent a sequence ID for a streaming RPC. It is recommended to be
+       * unique within a Span.
+       * </pre>
+       *
+       * <code>uint64 id = 2;</code>
+       * @param value The id to set.
+       */
+      private void setId(long value) {
+        
+        id_ = value;
+      }
+      /**
+       * <pre>
+       * An identifier for the MessageEvent's message that can be used to match
+       * SENT and RECEIVED MessageEvents. For example, this field could
+       * represent a sequence ID for a streaming RPC. It is recommended to be
+       * unique within a Span.
+       * </pre>
+       *
+       * <code>uint64 id = 2;</code>
+       */
+      private void clearId() {
+        
+        id_ = 0L;
+      }
+
+      public static final int UNCOMPRESSED_SIZE_FIELD_NUMBER = 3;
+      private long uncompressedSize_;
+      /**
+       * <pre>
+       * The number of uncompressed bytes sent or received.
+       * </pre>
+       *
+       * <code>uint64 uncompressed_size = 3;</code>
+       * @return The uncompressedSize.
+       */
+      @java.lang.Override
+      public long getUncompressedSize() {
+        return uncompressedSize_;
+      }
+      /**
+       * <pre>
+       * The number of uncompressed bytes sent or received.
+       * </pre>
+       *
+       * <code>uint64 uncompressed_size = 3;</code>
+       * @param value The uncompressedSize to set.
+       */
+      private void setUncompressedSize(long value) {
+        
+        uncompressedSize_ = value;
+      }
+      /**
+       * <pre>
+       * The number of uncompressed bytes sent or received.
+       * </pre>
+       *
+       * <code>uint64 uncompressed_size = 3;</code>
+       */
+      private void clearUncompressedSize() {
+        
+        uncompressedSize_ = 0L;
+      }
+
+      public static final int COMPRESSED_SIZE_FIELD_NUMBER = 4;
+      private long compressedSize_;
+      /**
+       * <pre>
+       * The number of compressed bytes sent or received. If zero, assumed to
+       * be the same size as uncompressed.
+       * </pre>
+       *
+       * <code>uint64 compressed_size = 4;</code>
+       * @return The compressedSize.
+       */
+      @java.lang.Override
+      public long getCompressedSize() {
+        return compressedSize_;
+      }
+      /**
+       * <pre>
+       * The number of compressed bytes sent or received. If zero, assumed to
+       * be the same size as uncompressed.
+       * </pre>
+       *
+       * <code>uint64 compressed_size = 4;</code>
+       * @param value The compressedSize to set.
+       */
+      private void setCompressedSize(long value) {
+        
+        compressedSize_ = value;
+      }
+      /**
+       * <pre>
+       * The number of compressed bytes sent or received. If zero, assumed to
+       * be the same size as uncompressed.
+       * </pre>
+       *
+       * <code>uint64 compressed_size = 4;</code>
+       */
+      private void clearCompressedSize() {
+        
+        compressedSize_ = 0L;
+      }
+
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input);
+      }
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+
+      public static Builder newBuilder() {
+        return (Builder) DEFAULT_INSTANCE.createBuilder();
+      }
+      public static Builder newBuilder(io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent prototype) {
+        return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
       }
 
       /**
        * <pre>
        * An event describing a message sent/received between Spans.
        * </pre>
-       * <p>
+       *
        * Protobuf type {@code opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent}
        */
       public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.Span.TimeEvent
-          // .MessageEvent)
+          com.google.protobuf.GeneratedMessageLite.Builder<
+            io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent, Builder> implements
+          // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent)
           io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEventOrBuilder {
-        private int type_ = 0;
-        private long id_;
-        private long uncompressedSize_;
-        private long compressedSize_;
-
         // Construct using io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.newBuilder()
         private Builder() {
-          maybeForceBuilderInitialization();
+          super(DEFAULT_INSTANCE);
         }
 
-        private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-          super(parent);
-          maybeForceBuilderInitialization();
-        }
-
-        public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-          return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvent_MessageEvent_descriptor;
-        }
-
-        @java.lang.Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-          return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvent_MessageEvent_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                  io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.class,
-                  io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Builder.class);
-        }
-
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-          }
-        }
-
-        @java.lang.Override
-        public Builder clear() {
-          super.clear();
-          type_ = 0;
-
-          id_ = 0L;
-
-          uncompressedSize_ = 0L;
-
-          compressedSize_ = 0L;
-
-          return this;
-        }
-
-        @java.lang.Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-          return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvent_MessageEvent_descriptor;
-        }
-
-        @java.lang.Override
-        public io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent getDefaultInstanceForType() {
-          return io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.getDefaultInstance();
-        }
-
-        @java.lang.Override
-        public io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent build() {
-          io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent result = buildPartial();
-          if (!result.isInitialized()) {
-            throw newUninitializedMessageException(result);
-          }
-          return result;
-        }
-
-        @java.lang.Override
-        public io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent buildPartial() {
-          io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent result =
-              new io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent(this);
-          result.type_ = type_;
-          result.id_ = id_;
-          result.uncompressedSize_ = uncompressedSize_;
-          result.compressedSize_ = compressedSize_;
-          onBuilt();
-          return result;
-        }
-
-        @java.lang.Override
-        public Builder clone() {
-          return super.clone();
-        }
-
-        @java.lang.Override
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-          return super.setField(field, value);
-        }
-
-        @java.lang.Override
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return super.clearField(field);
-        }
-
-        @java.lang.Override
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return super.clearOneof(oneof);
-        }
-
-        @java.lang.Override
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
-          return super.setRepeatedField(field, index, value);
-        }
-
-        @java.lang.Override
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-          return super.addRepeatedField(field, value);
-        }
-
-        @java.lang.Override
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent) {
-            return mergeFrom((io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent) other);
-          } else {
-            super.mergeFrom(other);
-            return this;
-          }
-        }
-
-        public Builder mergeFrom(io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent other) {
-          if (other ==
-              io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.getDefaultInstance()) {
-            return this;
-          }
-          if (other.type_ != 0) {
-            setTypeValue(other.getTypeValue());
-          }
-          if (other.getId() != 0L) {
-            setId(other.getId());
-          }
-          if (other.getUncompressedSize() != 0L) {
-            setUncompressedSize(other.getUncompressedSize());
-          }
-          if (other.getCompressedSize() != 0L) {
-            setCompressedSize(other.getCompressedSize());
-          }
-          this.mergeUnknownFields(other.unknownFields);
-          onChanged();
-          return this;
-        }
-
-        @java.lang.Override
-        public final boolean isInitialized() {
-          return true;
-        }
-
-        @java.lang.Override
-        public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-          io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent parsedMessage = null;
-          try {
-            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage =
-                (io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
-          } finally {
-            if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-            }
-          }
-          return this;
-        }
 
         /**
          * <pre>
@@ -7544,14 +2986,12 @@ public final class Span extends
          * </pre>
          *
          * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type type = 1;</code>
-         *
          * @return The enum numeric value on the wire for type.
          */
         @java.lang.Override
         public int getTypeValue() {
-          return type_;
+          return instance.getTypeValue();
         }
-
         /**
          * <pre>
          * The type of MessageEvent. Indicates whether the message was sent or
@@ -7559,17 +2999,14 @@ public final class Span extends
          * </pre>
          *
          * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type type = 1;</code>
-         *
-         * @param value The enum numeric value on the wire for type to set.
+         * @param value The type to set.
          * @return This builder for chaining.
          */
         public Builder setTypeValue(int value) {
-
-          type_ = value;
-          onChanged();
+          copyOnWrite();
+          instance.setTypeValue(value);
           return this;
         }
-
         /**
          * <pre>
          * The type of MessageEvent. Indicates whether the message was sent or
@@ -7577,18 +3014,12 @@ public final class Span extends
          * </pre>
          *
          * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type type = 1;</code>
-         *
          * @return The type.
          */
         @java.lang.Override
         public io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type getType() {
-          @SuppressWarnings("deprecation")
-          io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type result =
-              io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type.valueOf(type_);
-          return result == null ?
-              io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type.UNRECOGNIZED : result;
+          return instance.getType();
         }
-
         /**
          * <pre>
          * The type of MessageEvent. Indicates whether the message was sent or
@@ -7596,21 +3027,14 @@ public final class Span extends
          * </pre>
          *
          * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type type = 1;</code>
-         *
-         * @param value The type to set.
+         * @param value The enum numeric value on the wire for type to set.
          * @return This builder for chaining.
          */
-        public Builder setType(
-            io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type value) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-
-          type_ = value.getNumber();
-          onChanged();
+        public Builder setType(io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type value) {
+          copyOnWrite();
+          instance.setType(value);
           return this;
         }
-
         /**
          * <pre>
          * The type of MessageEvent. Indicates whether the message was sent or
@@ -7618,13 +3042,11 @@ public final class Span extends
          * </pre>
          *
          * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Type type = 1;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearType() {
-
-          type_ = 0;
-          onChanged();
+          copyOnWrite();
+          instance.clearType();
           return this;
         }
 
@@ -7637,14 +3059,12 @@ public final class Span extends
          * </pre>
          *
          * <code>uint64 id = 2;</code>
-         *
          * @return The id.
          */
         @java.lang.Override
         public long getId() {
-          return id_;
+          return instance.getId();
         }
-
         /**
          * <pre>
          * An identifier for the MessageEvent's message that can be used to match
@@ -7654,17 +3074,14 @@ public final class Span extends
          * </pre>
          *
          * <code>uint64 id = 2;</code>
-         *
          * @param value The id to set.
          * @return This builder for chaining.
          */
         public Builder setId(long value) {
-
-          id_ = value;
-          onChanged();
+          copyOnWrite();
+          instance.setId(value);
           return this;
         }
-
         /**
          * <pre>
          * An identifier for the MessageEvent's message that can be used to match
@@ -7674,13 +3091,11 @@ public final class Span extends
          * </pre>
          *
          * <code>uint64 id = 2;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearId() {
-
-          id_ = 0L;
-          onChanged();
+          copyOnWrite();
+          instance.clearId();
           return this;
         }
 
@@ -7690,44 +3105,37 @@ public final class Span extends
          * </pre>
          *
          * <code>uint64 uncompressed_size = 3;</code>
-         *
          * @return The uncompressedSize.
          */
         @java.lang.Override
         public long getUncompressedSize() {
-          return uncompressedSize_;
+          return instance.getUncompressedSize();
         }
-
         /**
          * <pre>
          * The number of uncompressed bytes sent or received.
          * </pre>
          *
          * <code>uint64 uncompressed_size = 3;</code>
-         *
          * @param value The uncompressedSize to set.
          * @return This builder for chaining.
          */
         public Builder setUncompressedSize(long value) {
-
-          uncompressedSize_ = value;
-          onChanged();
+          copyOnWrite();
+          instance.setUncompressedSize(value);
           return this;
         }
-
         /**
          * <pre>
          * The number of uncompressed bytes sent or received.
          * </pre>
          *
          * <code>uint64 uncompressed_size = 3;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearUncompressedSize() {
-
-          uncompressedSize_ = 0L;
-          onChanged();
+          copyOnWrite();
+          instance.clearUncompressedSize();
           return this;
         }
 
@@ -7738,14 +3146,12 @@ public final class Span extends
          * </pre>
          *
          * <code>uint64 compressed_size = 4;</code>
-         *
          * @return The compressedSize.
          */
         @java.lang.Override
         public long getCompressedSize() {
-          return compressedSize_;
+          return instance.getCompressedSize();
         }
-
         /**
          * <pre>
          * The number of compressed bytes sent or received. If zero, assumed to
@@ -7753,17 +3159,14 @@ public final class Span extends
          * </pre>
          *
          * <code>uint64 compressed_size = 4;</code>
-         *
          * @param value The compressedSize to set.
          * @return This builder for chaining.
          */
         public Builder setCompressedSize(long value) {
-
-          compressedSize_ = value;
-          onChanged();
+          copyOnWrite();
+          instance.setCompressedSize(value);
           return this;
         }
-
         /**
          * <pre>
          * The number of compressed bytes sent or received. If zero, assumed to
@@ -7771,297 +3174,474 @@ public final class Span extends
          * </pre>
          *
          * <code>uint64 compressed_size = 4;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearCompressedSize() {
-
-          compressedSize_ = 0L;
-          onChanged();
+          copyOnWrite();
+          instance.clearCompressedSize();
           return this;
         }
 
-        @java.lang.Override
-        public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.setUnknownFields(unknownFields);
+        // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent)
+      }
+      @java.lang.Override
+      @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+      protected final java.lang.Object dynamicMethod(
+          com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+          java.lang.Object arg0, java.lang.Object arg1) {
+        switch (method) {
+          case NEW_MUTABLE_INSTANCE: {
+            return new io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent();
+          }
+          case NEW_BUILDER: {
+            return new Builder();
+          }
+          case BUILD_MESSAGE_INFO: {
+              java.lang.Object[] objects = new java.lang.Object[] {
+                "type_",
+                "id_",
+                "uncompressedSize_",
+                "compressedSize_",
+              };
+              java.lang.String info =
+                  "\u0000\u0004\u0000\u0000\u0001\u0004\u0004\u0000\u0000\u0000\u0001\f\u0002\u0003" +
+                  "\u0003\u0003\u0004\u0003";
+              return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+          }
+          // fall through
+          case GET_DEFAULT_INSTANCE: {
+            return DEFAULT_INSTANCE;
+          }
+          case GET_PARSER: {
+            com.google.protobuf.Parser<io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent> parser = PARSER;
+            if (parser == null) {
+              synchronized (io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.class) {
+                parser = PARSER;
+                if (parser == null) {
+                  parser =
+                      new DefaultInstanceBasedParser<io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent>(
+                          DEFAULT_INSTANCE);
+                  PARSER = parser;
+                }
+              }
+            }
+            return parser;
         }
-
-        @java.lang.Override
-        public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.mergeUnknownFields(unknownFields);
+        case GET_MEMOIZED_IS_INITIALIZED: {
+          return (byte) 1;
         }
-
-
-        // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.Span.TimeEvent
-        // .MessageEvent)
+        case SET_MEMOIZED_IS_INITIALIZED: {
+          return null;
+        }
+        }
+        throw new UnsupportedOperationException();
       }
 
+
+      // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent)
+      private static final io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent DEFAULT_INSTANCE;
+      static {
+        MessageEvent defaultInstance = new MessageEvent();
+        // New instances are implicitly immutable so no need to make
+        // immutable.
+        DEFAULT_INSTANCE = defaultInstance;
+        com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+          MessageEvent.class, defaultInstance);
+      }
+
+      public static io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static volatile com.google.protobuf.Parser<MessageEvent> PARSER;
+
+      public static com.google.protobuf.Parser<MessageEvent> parser() {
+        return DEFAULT_INSTANCE.getParserForType();
+      }
+    }
+
+    private int valueCase_ = 0;
+    private java.lang.Object value_;
+    public enum ValueCase {
+      ANNOTATION(2),
+      MESSAGE_EVENT(3),
+      VALUE_NOT_SET(0);
+      private final int value;
+      private ValueCase(int value) {
+        this.value = value;
+      }
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static ValueCase valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static ValueCase forNumber(int value) {
+        switch (value) {
+          case 2: return ANNOTATION;
+          case 3: return MESSAGE_EVENT;
+          case 0: return VALUE_NOT_SET;
+          default: return null;
+        }
+      }
+      public int getNumber() {
+        return this.value;
+      }
+    };
+
+    @java.lang.Override
+    public ValueCase
+    getValueCase() {
+      return ValueCase.forNumber(
+          valueCase_);
+    }
+
+    private void clearValue() {
+      valueCase_ = 0;
+      value_ = null;
+    }
+
+    public static final int TIME_FIELD_NUMBER = 1;
+    private com.google.protobuf.Timestamp time_;
+    /**
+     * <pre>
+     * The time the event occurred.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp time = 1;</code>
+     */
+    @java.lang.Override
+    public boolean hasTime() {
+      return time_ != null;
+    }
+    /**
+     * <pre>
+     * The time the event occurred.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp time = 1;</code>
+     */
+    @java.lang.Override
+    public com.google.protobuf.Timestamp getTime() {
+      return time_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : time_;
+    }
+    /**
+     * <pre>
+     * The time the event occurred.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp time = 1;</code>
+     */
+    private void setTime(com.google.protobuf.Timestamp value) {
+      value.getClass();
+  time_ = value;
+      
+      }
+    /**
+     * <pre>
+     * The time the event occurred.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp time = 1;</code>
+     */
+    @java.lang.SuppressWarnings({"ReferenceEquality"})
+    private void mergeTime(com.google.protobuf.Timestamp value) {
+      value.getClass();
+  if (time_ != null &&
+          time_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
+        time_ =
+          com.google.protobuf.Timestamp.newBuilder(time_).mergeFrom(value).buildPartial();
+      } else {
+        time_ = value;
+      }
+      
+    }
+    /**
+     * <pre>
+     * The time the event occurred.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp time = 1;</code>
+     */
+    private void clearTime() {  time_ = null;
+      
+    }
+
+    public static final int ANNOTATION_FIELD_NUMBER = 2;
+    /**
+     * <pre>
+     * A text annotation with a set of attributes.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
+     */
+    @java.lang.Override
+    public boolean hasAnnotation() {
+      return valueCase_ == 2;
+    }
+    /**
+     * <pre>
+     * A text annotation with a set of attributes.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
+     */
+    @java.lang.Override
+    public io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation getAnnotation() {
+      if (valueCase_ == 2) {
+         return (io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation) value_;
+      }
+      return io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.getDefaultInstance();
+    }
+    /**
+     * <pre>
+     * A text annotation with a set of attributes.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
+     */
+    private void setAnnotation(io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation value) {
+      value.getClass();
+  value_ = value;
+      valueCase_ = 2;
+    }
+    /**
+     * <pre>
+     * A text annotation with a set of attributes.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
+     */
+    private void mergeAnnotation(io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation value) {
+      value.getClass();
+  if (valueCase_ == 2 &&
+          value_ != io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.getDefaultInstance()) {
+        value_ = io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.newBuilder((io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation) value_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        value_ = value;
+      }
+      valueCase_ = 2;
+    }
+    /**
+     * <pre>
+     * A text annotation with a set of attributes.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
+     */
+    private void clearAnnotation() {
+      if (valueCase_ == 2) {
+        valueCase_ = 0;
+        value_ = null;
+      }
+    }
+
+    public static final int MESSAGE_EVENT_FIELD_NUMBER = 3;
+    /**
+     * <pre>
+     * An event describing a message sent/received between Spans.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
+     */
+    @java.lang.Override
+    public boolean hasMessageEvent() {
+      return valueCase_ == 3;
+    }
+    /**
+     * <pre>
+     * An event describing a message sent/received between Spans.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
+     */
+    @java.lang.Override
+    public io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent getMessageEvent() {
+      if (valueCase_ == 3) {
+         return (io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent) value_;
+      }
+      return io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.getDefaultInstance();
+    }
+    /**
+     * <pre>
+     * An event describing a message sent/received between Spans.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
+     */
+    private void setMessageEvent(io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent value) {
+      value.getClass();
+  value_ = value;
+      valueCase_ = 3;
+    }
+    /**
+     * <pre>
+     * An event describing a message sent/received between Spans.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
+     */
+    private void mergeMessageEvent(io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent value) {
+      value.getClass();
+  if (valueCase_ == 3 &&
+          value_ != io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.getDefaultInstance()) {
+        value_ = io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.newBuilder((io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent) value_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        value_ = value;
+      }
+      valueCase_ = 3;
+    }
+    /**
+     * <pre>
+     * An event describing a message sent/received between Spans.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
+     */
+    private void clearMessageEvent() {
+      if (valueCase_ == 3) {
+        valueCase_ = 0;
+        value_ = null;
+      }
+    }
+
+    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvent parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
+    }
+    public static Builder newBuilder(io.opencensus.proto.trace.v1.Span.TimeEvent prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
     }
 
     /**
      * <pre>
      * A time-stamped annotation or message event in the Span.
      * </pre>
-     * <p>
+     *
      * Protobuf type {@code opencensus.proto.trace.v1.Span.TimeEvent}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          io.opencensus.proto.trace.v1.Span.TimeEvent, Builder> implements
         // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.Span.TimeEvent)
         io.opencensus.proto.trace.v1.Span.TimeEventOrBuilder {
-      private int valueCase_ = 0;
-      private java.lang.Object value_;
-      private com.google.protobuf.Timestamp time_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-          com.google.protobuf.TimestampOrBuilder>
-          timeBuilder_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation,
-          io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
-          io.opencensus.proto.trace.v1.Span.TimeEvent.AnnotationOrBuilder>
-          annotationBuilder_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent,
-          io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Builder,
-          io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEventOrBuilder>
-          messageEventBuilder_;
-
       // Construct using io.opencensus.proto.trace.v1.Span.TimeEvent.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-
-      public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvent_descriptor;
+        super(DEFAULT_INSTANCE);
       }
 
       @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvent_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                io.opencensus.proto.trace.v1.Span.TimeEvent.class,
-                io.opencensus.proto.trace.v1.Span.TimeEvent.Builder.class);
-      }
-
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-            .alwaysUseFieldBuilders) {
-        }
-      }
-
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (timeBuilder_ == null) {
-          time_ = null;
-        } else {
-          time_ = null;
-          timeBuilder_ = null;
-        }
-        valueCase_ = 0;
-        value_ = null;
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-      getDescriptorForType() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvent_descriptor;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.TimeEvent getDefaultInstanceForType() {
-        return io.opencensus.proto.trace.v1.Span.TimeEvent.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.TimeEvent build() {
-        io.opencensus.proto.trace.v1.Span.TimeEvent result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.TimeEvent buildPartial() {
-        io.opencensus.proto.trace.v1.Span.TimeEvent result =
-            new io.opencensus.proto.trace.v1.Span.TimeEvent(this);
-        if (timeBuilder_ == null) {
-          result.time_ = time_;
-        } else {
-          result.time_ = timeBuilder_.build();
-        }
-        if (valueCase_ == 2) {
-          if (annotationBuilder_ == null) {
-            result.value_ = value_;
-          } else {
-            result.value_ = annotationBuilder_.build();
-          }
-        }
-        if (valueCase_ == 3) {
-          if (messageEventBuilder_ == null) {
-            result.value_ = value_;
-          } else {
-            result.value_ = messageEventBuilder_.build();
-          }
-        }
-        result.valueCase_ = valueCase_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof io.opencensus.proto.trace.v1.Span.TimeEvent) {
-          return mergeFrom((io.opencensus.proto.trace.v1.Span.TimeEvent) other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(io.opencensus.proto.trace.v1.Span.TimeEvent other) {
-        if (other == io.opencensus.proto.trace.v1.Span.TimeEvent.getDefaultInstance()) {
-          return this;
-        }
-        if (other.hasTime()) {
-          mergeTime(other.getTime());
-        }
-        switch (other.getValueCase()) {
-          case ANNOTATION: {
-            mergeAnnotation(other.getAnnotation());
-            break;
-          }
-          case MESSAGE_EVENT: {
-            mergeMessageEvent(other.getMessageEvent());
-            break;
-          }
-          case VALUE_NOT_SET: {
-            break;
-          }
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        io.opencensus.proto.trace.v1.Span.TimeEvent parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (io.opencensus.proto.trace.v1.Span.TimeEvent) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
       public ValueCase
-      getValueCase() {
-        return ValueCase.forNumber(
-            valueCase_);
+          getValueCase() {
+        return instance.getValueCase();
       }
 
       public Builder clearValue() {
-        valueCase_ = 0;
-        value_ = null;
-        onChanged();
+        copyOnWrite();
+        instance.clearValue();
         return this;
       }
 
+
       /**
        * <pre>
        * The time the event occurred.
        * </pre>
        *
        * <code>.google.protobuf.Timestamp time = 1;</code>
-       *
-       * @return Whether the time field is set.
        */
+      @java.lang.Override
       public boolean hasTime() {
-        return timeBuilder_ != null || time_ != null;
+        return instance.hasTime();
       }
-
       /**
        * <pre>
        * The time the event occurred.
        * </pre>
        *
        * <code>.google.protobuf.Timestamp time = 1;</code>
-       *
-       * @return The time.
        */
+      @java.lang.Override
       public com.google.protobuf.Timestamp getTime() {
-        if (timeBuilder_ == null) {
-          return time_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : time_;
-        } else {
-          return timeBuilder_.getMessage();
-        }
+        return instance.getTime();
       }
-
       /**
        * <pre>
        * The time the event occurred.
@@ -8070,19 +3650,10 @@ public final class Span extends
        * <code>.google.protobuf.Timestamp time = 1;</code>
        */
       public Builder setTime(com.google.protobuf.Timestamp value) {
-        if (timeBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          time_ = value;
-          onChanged();
-        } else {
-          timeBuilder_.setMessage(value);
-        }
-
+        copyOnWrite();
+        instance.setTime(value);
         return this;
-      }
-
+        }
       /**
        * <pre>
        * The time the event occurred.
@@ -8092,16 +3663,10 @@ public final class Span extends
        */
       public Builder setTime(
           com.google.protobuf.Timestamp.Builder builderForValue) {
-        if (timeBuilder_ == null) {
-          time_ = builderForValue.build();
-          onChanged();
-        } else {
-          timeBuilder_.setMessage(builderForValue.build());
-        }
-
+        copyOnWrite();
+        instance.setTime(builderForValue.build());
         return this;
       }
-
       /**
        * <pre>
        * The time the event occurred.
@@ -8110,21 +3675,10 @@ public final class Span extends
        * <code>.google.protobuf.Timestamp time = 1;</code>
        */
       public Builder mergeTime(com.google.protobuf.Timestamp value) {
-        if (timeBuilder_ == null) {
-          if (time_ != null) {
-            time_ =
-                com.google.protobuf.Timestamp.newBuilder(time_).mergeFrom(value).buildPartial();
-          } else {
-            time_ = value;
-          }
-          onChanged();
-        } else {
-          timeBuilder_.mergeFrom(value);
-        }
-
+        copyOnWrite();
+        instance.mergeTime(value);
         return this;
       }
-
       /**
        * <pre>
        * The time the event occurred.
@@ -8132,68 +3686,9 @@ public final class Span extends
        *
        * <code>.google.protobuf.Timestamp time = 1;</code>
        */
-      public Builder clearTime() {
-        if (timeBuilder_ == null) {
-          time_ = null;
-          onChanged();
-        } else {
-          time_ = null;
-          timeBuilder_ = null;
-        }
-
+      public Builder clearTime() {  copyOnWrite();
+        instance.clearTime();
         return this;
-      }
-
-      /**
-       * <pre>
-       * The time the event occurred.
-       * </pre>
-       *
-       * <code>.google.protobuf.Timestamp time = 1;</code>
-       */
-      public com.google.protobuf.Timestamp.Builder getTimeBuilder() {
-
-        onChanged();
-        return getTimeFieldBuilder().getBuilder();
-      }
-
-      /**
-       * <pre>
-       * The time the event occurred.
-       * </pre>
-       *
-       * <code>.google.protobuf.Timestamp time = 1;</code>
-       */
-      public com.google.protobuf.TimestampOrBuilder getTimeOrBuilder() {
-        if (timeBuilder_ != null) {
-          return timeBuilder_.getMessageOrBuilder();
-        } else {
-          return time_ == null ?
-              com.google.protobuf.Timestamp.getDefaultInstance() : time_;
-        }
-      }
-
-      /**
-       * <pre>
-       * The time the event occurred.
-       * </pre>
-       *
-       * <code>.google.protobuf.Timestamp time = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-          com.google.protobuf.TimestampOrBuilder>
-      getTimeFieldBuilder() {
-        if (timeBuilder_ == null) {
-          timeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-              com.google.protobuf.TimestampOrBuilder>(
-              getTime(),
-              getParentForChildren(),
-              isClean());
-          time_ = null;
-        }
-        return timeBuilder_;
       }
 
       /**
@@ -8202,38 +3697,22 @@ public final class Span extends
        * </pre>
        *
        * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
-       *
-       * @return Whether the annotation field is set.
        */
       @java.lang.Override
       public boolean hasAnnotation() {
-        return valueCase_ == 2;
+        return instance.hasAnnotation();
       }
-
       /**
        * <pre>
        * A text annotation with a set of attributes.
        * </pre>
        *
        * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
-       *
-       * @return The annotation.
        */
       @java.lang.Override
       public io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation getAnnotation() {
-        if (annotationBuilder_ == null) {
-          if (valueCase_ == 2) {
-            return (io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation) value_;
-          }
-          return io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.getDefaultInstance();
-        } else {
-          if (valueCase_ == 2) {
-            return annotationBuilder_.getMessage();
-          }
-          return io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.getDefaultInstance();
-        }
+        return instance.getAnnotation();
       }
-
       /**
        * <pre>
        * A text annotation with a set of attributes.
@@ -8242,19 +3721,10 @@ public final class Span extends
        * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
        */
       public Builder setAnnotation(io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation value) {
-        if (annotationBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          value_ = value;
-          onChanged();
-        } else {
-          annotationBuilder_.setMessage(value);
-        }
-        valueCase_ = 2;
+        copyOnWrite();
+        instance.setAnnotation(value);
         return this;
       }
-
       /**
        * <pre>
        * A text annotation with a set of attributes.
@@ -8264,16 +3734,10 @@ public final class Span extends
        */
       public Builder setAnnotation(
           io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder builderForValue) {
-        if (annotationBuilder_ == null) {
-          value_ = builderForValue.build();
-          onChanged();
-        } else {
-          annotationBuilder_.setMessage(builderForValue.build());
-        }
-        valueCase_ = 2;
+        copyOnWrite();
+        instance.setAnnotation(builderForValue.build());
         return this;
       }
-
       /**
        * <pre>
        * A text annotation with a set of attributes.
@@ -8282,27 +3746,10 @@ public final class Span extends
        * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
        */
       public Builder mergeAnnotation(io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation value) {
-        if (annotationBuilder_ == null) {
-          if (valueCase_ == 2 &&
-              value_ !=
-                  io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.getDefaultInstance()) {
-            value_ = io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation
-                .newBuilder((io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation) value_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            value_ = value;
-          }
-          onChanged();
-        } else {
-          if (valueCase_ == 2) {
-            annotationBuilder_.mergeFrom(value);
-          }
-          annotationBuilder_.setMessage(value);
-        }
-        valueCase_ = 2;
+        copyOnWrite();
+        instance.mergeAnnotation(value);
         return this;
       }
-
       /**
        * <pre>
        * A text annotation with a set of attributes.
@@ -8311,80 +3758,9 @@ public final class Span extends
        * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
        */
       public Builder clearAnnotation() {
-        if (annotationBuilder_ == null) {
-          if (valueCase_ == 2) {
-            valueCase_ = 0;
-            value_ = null;
-            onChanged();
-          }
-        } else {
-          if (valueCase_ == 2) {
-            valueCase_ = 0;
-            value_ = null;
-          }
-          annotationBuilder_.clear();
-        }
+        copyOnWrite();
+        instance.clearAnnotation();
         return this;
-      }
-
-      /**
-       * <pre>
-       * A text annotation with a set of attributes.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
-       */
-      public io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder getAnnotationBuilder() {
-        return getAnnotationFieldBuilder().getBuilder();
-      }
-
-      /**
-       * <pre>
-       * A text annotation with a set of attributes.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
-       */
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.TimeEvent.AnnotationOrBuilder getAnnotationOrBuilder() {
-        if ((valueCase_ == 2) && (annotationBuilder_ != null)) {
-          return annotationBuilder_.getMessageOrBuilder();
-        } else {
-          if (valueCase_ == 2) {
-            return (io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation) value_;
-          }
-          return io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.getDefaultInstance();
-        }
-      }
-
-      /**
-       * <pre>
-       * A text annotation with a set of attributes.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.Span.TimeEvent.Annotation annotation = 2;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation,
-          io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
-          io.opencensus.proto.trace.v1.Span.TimeEvent.AnnotationOrBuilder>
-      getAnnotationFieldBuilder() {
-        if (annotationBuilder_ == null) {
-          if (!(valueCase_ == 2)) {
-            value_ = io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.getDefaultInstance();
-          }
-          annotationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation,
-              io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.Builder,
-              io.opencensus.proto.trace.v1.Span.TimeEvent.AnnotationOrBuilder>(
-              (io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation) value_,
-              getParentForChildren(),
-              isClean());
-          value_ = null;
-        }
-        valueCase_ = 2;
-        onChanged();
-        return annotationBuilder_;
       }
 
       /**
@@ -8393,38 +3769,22 @@ public final class Span extends
        * </pre>
        *
        * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
-       *
-       * @return Whether the messageEvent field is set.
        */
       @java.lang.Override
       public boolean hasMessageEvent() {
-        return valueCase_ == 3;
+        return instance.hasMessageEvent();
       }
-
       /**
        * <pre>
        * An event describing a message sent/received between Spans.
        * </pre>
        *
        * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
-       *
-       * @return The messageEvent.
        */
       @java.lang.Override
       public io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent getMessageEvent() {
-        if (messageEventBuilder_ == null) {
-          if (valueCase_ == 3) {
-            return (io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent) value_;
-          }
-          return io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.getDefaultInstance();
-        } else {
-          if (valueCase_ == 3) {
-            return messageEventBuilder_.getMessage();
-          }
-          return io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.getDefaultInstance();
-        }
+        return instance.getMessageEvent();
       }
-
       /**
        * <pre>
        * An event describing a message sent/received between Spans.
@@ -8432,21 +3792,11 @@ public final class Span extends
        *
        * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
        */
-      public Builder setMessageEvent(
-          io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent value) {
-        if (messageEventBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          value_ = value;
-          onChanged();
-        } else {
-          messageEventBuilder_.setMessage(value);
-        }
-        valueCase_ = 3;
+      public Builder setMessageEvent(io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent value) {
+        copyOnWrite();
+        instance.setMessageEvent(value);
         return this;
       }
-
       /**
        * <pre>
        * An event describing a message sent/received between Spans.
@@ -8456,16 +3806,10 @@ public final class Span extends
        */
       public Builder setMessageEvent(
           io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Builder builderForValue) {
-        if (messageEventBuilder_ == null) {
-          value_ = builderForValue.build();
-          onChanged();
-        } else {
-          messageEventBuilder_.setMessage(builderForValue.build());
-        }
-        valueCase_ = 3;
+        copyOnWrite();
+        instance.setMessageEvent(builderForValue.build());
         return this;
       }
-
       /**
        * <pre>
        * An event describing a message sent/received between Spans.
@@ -8473,29 +3817,11 @@ public final class Span extends
        *
        * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
        */
-      public Builder mergeMessageEvent(
-          io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent value) {
-        if (messageEventBuilder_ == null) {
-          if (valueCase_ == 3 &&
-              value_ !=
-                  io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.getDefaultInstance()) {
-            value_ = io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent
-                .newBuilder((io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent) value_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            value_ = value;
-          }
-          onChanged();
-        } else {
-          if (valueCase_ == 3) {
-            messageEventBuilder_.mergeFrom(value);
-          }
-          messageEventBuilder_.setMessage(value);
-        }
-        valueCase_ = 3;
+      public Builder mergeMessageEvent(io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent value) {
+        copyOnWrite();
+        instance.mergeMessageEvent(value);
         return this;
       }
-
       /**
        * <pre>
        * An event describing a message sent/received between Spans.
@@ -8504,335 +3830,161 @@ public final class Span extends
        * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
        */
       public Builder clearMessageEvent() {
-        if (messageEventBuilder_ == null) {
-          if (valueCase_ == 3) {
-            valueCase_ = 0;
-            value_ = null;
-            onChanged();
-          }
-        } else {
-          if (valueCase_ == 3) {
-            valueCase_ = 0;
-            value_ = null;
-          }
-          messageEventBuilder_.clear();
-        }
+        copyOnWrite();
+        instance.clearMessageEvent();
         return this;
       }
 
-      /**
-       * <pre>
-       * An event describing a message sent/received between Spans.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
-       */
-      public io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Builder getMessageEventBuilder() {
-        return getMessageEventFieldBuilder().getBuilder();
-      }
-
-      /**
-       * <pre>
-       * An event describing a message sent/received between Spans.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
-       */
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEventOrBuilder getMessageEventOrBuilder() {
-        if ((valueCase_ == 3) && (messageEventBuilder_ != null)) {
-          return messageEventBuilder_.getMessageOrBuilder();
-        } else {
-          if (valueCase_ == 3) {
-            return (io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent) value_;
-          }
-          return io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.getDefaultInstance();
-        }
-      }
-
-      /**
-       * <pre>
-       * An event describing a message sent/received between Spans.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent message_event = 3;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent,
-          io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Builder,
-          io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEventOrBuilder>
-      getMessageEventFieldBuilder() {
-        if (messageEventBuilder_ == null) {
-          if (!(valueCase_ == 3)) {
-            value_ = io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.getDefaultInstance();
-          }
-          messageEventBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent,
-              io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.Builder,
-              io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEventOrBuilder>(
-              (io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent) value_,
-              getParentForChildren(),
-              isClean());
-          value_ = null;
-        }
-        valueCase_ = 3;
-        onChanged();
-        return messageEventBuilder_;
-      }
-
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
       // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.Span.TimeEvent)
     }
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new io.opencensus.proto.trace.v1.Span.TimeEvent();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case BUILD_MESSAGE_INFO: {
+            java.lang.Object[] objects = new java.lang.Object[] {
+              "value_",
+              "valueCase_",
+              "time_",
+              io.opencensus.proto.trace.v1.Span.TimeEvent.Annotation.class,
+              io.opencensus.proto.trace.v1.Span.TimeEvent.MessageEvent.class,
+            };
+            java.lang.String info =
+                "\u0000\u0003\u0001\u0000\u0001\u0003\u0003\u0000\u0000\u0000\u0001\t\u0002<\u0000" +
+                "\u0003<\u0000";
+            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          com.google.protobuf.Parser<io.opencensus.proto.trace.v1.Span.TimeEvent> parser = PARSER;
+          if (parser == null) {
+            synchronized (io.opencensus.proto.trace.v1.Span.TimeEvent.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser =
+                    new DefaultInstanceBasedParser<io.opencensus.proto.trace.v1.Span.TimeEvent>(
+                        DEFAULT_INSTANCE);
+                PARSER = parser;
+              }
+            }
+          }
+          return parser;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
+    }
 
+
+    // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span.TimeEvent)
+    private static final io.opencensus.proto.trace.v1.Span.TimeEvent DEFAULT_INSTANCE;
+    static {
+      TimeEvent defaultInstance = new TimeEvent();
+      // New instances are implicitly immutable so no need to make
+      // immutable.
+      DEFAULT_INSTANCE = defaultInstance;
+      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+        TimeEvent.class, defaultInstance);
+    }
+
+    public static io.opencensus.proto.trace.v1.Span.TimeEvent getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<TimeEvent> PARSER;
+
+    public static com.google.protobuf.Parser<TimeEvent> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
+  public interface TimeEventsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.Span.TimeEvents)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <pre>
+     * A collection of `TimeEvent`s.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
+     */
+    java.util.List<io.opencensus.proto.trace.v1.Span.TimeEvent> 
+        getTimeEventList();
+    /**
+     * <pre>
+     * A collection of `TimeEvent`s.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
+     */
+    io.opencensus.proto.trace.v1.Span.TimeEvent getTimeEvent(int index);
+    /**
+     * <pre>
+     * A collection of `TimeEvent`s.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
+     */
+    int getTimeEventCount();
+
+    /**
+     * <pre>
+     * The number of dropped annotations in all the included time events.
+     * If the value is 0, then no annotations were dropped.
+     * </pre>
+     *
+     * <code>int32 dropped_annotations_count = 2;</code>
+     * @return The droppedAnnotationsCount.
+     */
+    int getDroppedAnnotationsCount();
+
+    /**
+     * <pre>
+     * The number of dropped message events in all the included time events.
+     * If the value is 0, then no message events were dropped.
+     * </pre>
+     *
+     * <code>int32 dropped_message_events_count = 3;</code>
+     * @return The droppedMessageEventsCount.
+     */
+    int getDroppedMessageEventsCount();
+  }
   /**
    * <pre>
    * A collection of `TimeEvent`s. A `TimeEvent` is a time-stamped annotation
    * on the span, consisting of either user-supplied key-value pairs, or
    * details of a message sent/received between Spans.
    * </pre>
-   * <p>
+   *
    * Protobuf type {@code opencensus.proto.trace.v1.Span.TimeEvents}
    */
-  public static final class TimeEvents extends
-      com.google.protobuf.GeneratedMessageV3 implements
+  public  static final class TimeEvents extends
+      com.google.protobuf.GeneratedMessageLite<
+          TimeEvents, TimeEvents.Builder> implements
       // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.Span.TimeEvents)
       TimeEventsOrBuilder {
-    public static final int TIME_EVENT_FIELD_NUMBER = 1;
-    public static final int DROPPED_ANNOTATIONS_COUNT_FIELD_NUMBER = 2;
-    public static final int DROPPED_MESSAGE_EVENTS_COUNT_FIELD_NUMBER = 3;
-    private static final long serialVersionUID = 0L;
-    // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span.TimeEvents)
-    private static final io.opencensus.proto.trace.v1.Span.TimeEvents DEFAULT_INSTANCE;
-    private static final com.google.protobuf.Parser<TimeEvents>
-        PARSER = new com.google.protobuf.AbstractParser<TimeEvents>() {
-      @java.lang.Override
-      public TimeEvents parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new TimeEvents(input, extensionRegistry);
-      }
-    };
-
-    static {
-      DEFAULT_INSTANCE = new io.opencensus.proto.trace.v1.Span.TimeEvents();
-    }
-
-    private java.util.List<io.opencensus.proto.trace.v1.Span.TimeEvent> timeEvent_;
-    private int droppedAnnotationsCount_;
-    private int droppedMessageEventsCount_;
-    private byte memoizedIsInitialized = -1;
-
-    // Use TimeEvents.newBuilder() to construct.
-    private TimeEvents(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-
     private TimeEvents() {
-      timeEvent_ = java.util.Collections.emptyList();
+      timeEvent_ = emptyProtobufList();
     }
-
-    private TimeEvents(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                timeEvent_ = new java.util.ArrayList<io.opencensus.proto.trace.v1.Span.TimeEvent>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              timeEvent_.add(
-                  input.readMessage(io.opencensus.proto.trace.v1.Span.TimeEvent.parser(),
-                      extensionRegistry));
-              break;
-            }
-            case 16: {
-
-              droppedAnnotationsCount_ = input.readInt32();
-              break;
-            }
-            case 24: {
-
-              droppedMessageEventsCount_ = input.readInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          timeEvent_ = java.util.Collections.unmodifiableList(timeEvent_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvents_descriptor;
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseDelimitedFrom(
-        java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(io.opencensus.proto.trace.v1.Span.TimeEvents prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.TimeEvents getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    public static com.google.protobuf.Parser<TimeEvents> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new TimeEvents();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvents_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.trace.v1.Span.TimeEvents.class,
-              io.opencensus.proto.trace.v1.Span.TimeEvents.Builder.class);
-    }
-
+    public static final int TIME_EVENT_FIELD_NUMBER = 1;
+    private com.google.protobuf.Internal.ProtobufList<io.opencensus.proto.trace.v1.Span.TimeEvent> timeEvent_;
     /**
      * <pre>
      * A collection of `TimeEvent`s.
@@ -8844,7 +3996,6 @@ public final class Span extends
     public java.util.List<io.opencensus.proto.trace.v1.Span.TimeEvent> getTimeEventList() {
       return timeEvent_;
     }
-
     /**
      * <pre>
      * A collection of `TimeEvent`s.
@@ -8852,12 +4003,10 @@ public final class Span extends
      *
      * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
      */
-    @java.lang.Override
-    public java.util.List<? extends io.opencensus.proto.trace.v1.Span.TimeEventOrBuilder>
-    getTimeEventOrBuilderList() {
+    public java.util.List<? extends io.opencensus.proto.trace.v1.Span.TimeEventOrBuilder> 
+        getTimeEventOrBuilderList() {
       return timeEvent_;
     }
-
     /**
      * <pre>
      * A collection of `TimeEvent`s.
@@ -8869,7 +4018,6 @@ public final class Span extends
     public int getTimeEventCount() {
       return timeEvent_.size();
     }
-
     /**
      * <pre>
      * A collection of `TimeEvent`s.
@@ -8881,6 +4029,24 @@ public final class Span extends
     public io.opencensus.proto.trace.v1.Span.TimeEvent getTimeEvent(int index) {
       return timeEvent_.get(index);
     }
+    /**
+     * <pre>
+     * A collection of `TimeEvent`s.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
+     */
+    public io.opencensus.proto.trace.v1.Span.TimeEventOrBuilder getTimeEventOrBuilder(
+        int index) {
+      return timeEvent_.get(index);
+    }
+    private void ensureTimeEventIsMutable() {
+      com.google.protobuf.Internal.ProtobufList<io.opencensus.proto.trace.v1.Span.TimeEvent> tmp = timeEvent_;
+      if (!tmp.isModifiable()) {
+        timeEvent_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(tmp);
+       }
+    }
 
     /**
      * <pre>
@@ -8889,12 +4055,74 @@ public final class Span extends
      *
      * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
      */
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span.TimeEventOrBuilder getTimeEventOrBuilder(
-        int index) {
-      return timeEvent_.get(index);
+    private void setTimeEvent(
+        int index, io.opencensus.proto.trace.v1.Span.TimeEvent value) {
+      value.getClass();
+  ensureTimeEventIsMutable();
+      timeEvent_.set(index, value);
+    }
+    /**
+     * <pre>
+     * A collection of `TimeEvent`s.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
+     */
+    private void addTimeEvent(io.opencensus.proto.trace.v1.Span.TimeEvent value) {
+      value.getClass();
+  ensureTimeEventIsMutable();
+      timeEvent_.add(value);
+    }
+    /**
+     * <pre>
+     * A collection of `TimeEvent`s.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
+     */
+    private void addTimeEvent(
+        int index, io.opencensus.proto.trace.v1.Span.TimeEvent value) {
+      value.getClass();
+  ensureTimeEventIsMutable();
+      timeEvent_.add(index, value);
+    }
+    /**
+     * <pre>
+     * A collection of `TimeEvent`s.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
+     */
+    private void addAllTimeEvent(
+        java.lang.Iterable<? extends io.opencensus.proto.trace.v1.Span.TimeEvent> values) {
+      ensureTimeEventIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, timeEvent_);
+    }
+    /**
+     * <pre>
+     * A collection of `TimeEvent`s.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
+     */
+    private void clearTimeEvent() {
+      timeEvent_ = emptyProtobufList();
+    }
+    /**
+     * <pre>
+     * A collection of `TimeEvent`s.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
+     */
+    private void removeTimeEvent(int index) {
+      ensureTimeEventIsMutable();
+      timeEvent_.remove(index);
     }
 
+    public static final int DROPPED_ANNOTATIONS_COUNT_FIELD_NUMBER = 2;
+    private int droppedAnnotationsCount_;
     /**
      * <pre>
      * The number of dropped annotations in all the included time events.
@@ -8902,14 +4130,40 @@ public final class Span extends
      * </pre>
      *
      * <code>int32 dropped_annotations_count = 2;</code>
-     *
      * @return The droppedAnnotationsCount.
      */
     @java.lang.Override
     public int getDroppedAnnotationsCount() {
       return droppedAnnotationsCount_;
     }
+    /**
+     * <pre>
+     * The number of dropped annotations in all the included time events.
+     * If the value is 0, then no annotations were dropped.
+     * </pre>
+     *
+     * <code>int32 dropped_annotations_count = 2;</code>
+     * @param value The droppedAnnotationsCount to set.
+     */
+    private void setDroppedAnnotationsCount(int value) {
+      
+      droppedAnnotationsCount_ = value;
+    }
+    /**
+     * <pre>
+     * The number of dropped annotations in all the included time events.
+     * If the value is 0, then no annotations were dropped.
+     * </pre>
+     *
+     * <code>int32 dropped_annotations_count = 2;</code>
+     */
+    private void clearDroppedAnnotationsCount() {
+      
+      droppedAnnotationsCount_ = 0;
+    }
 
+    public static final int DROPPED_MESSAGE_EVENTS_COUNT_FIELD_NUMBER = 3;
+    private int droppedMessageEventsCount_;
     /**
      * <pre>
      * The number of dropped message events in all the included time events.
@@ -8917,140 +4171,117 @@ public final class Span extends
      * </pre>
      *
      * <code>int32 dropped_message_events_count = 3;</code>
-     *
      * @return The droppedMessageEventsCount.
      */
     @java.lang.Override
     public int getDroppedMessageEventsCount() {
       return droppedMessageEventsCount_;
     }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) {
-        return true;
-      }
-      if (isInitialized == 0) {
-        return false;
-      }
-
-      memoizedIsInitialized = 1;
-      return true;
+    /**
+     * <pre>
+     * The number of dropped message events in all the included time events.
+     * If the value is 0, then no message events were dropped.
+     * </pre>
+     *
+     * <code>int32 dropped_message_events_count = 3;</code>
+     * @param value The droppedMessageEventsCount to set.
+     */
+    private void setDroppedMessageEventsCount(int value) {
+      
+      droppedMessageEventsCount_ = value;
+    }
+    /**
+     * <pre>
+     * The number of dropped message events in all the included time events.
+     * If the value is 0, then no message events were dropped.
+     * </pre>
+     *
+     * <code>int32 dropped_message_events_count = 3;</code>
+     */
+    private void clearDroppedMessageEventsCount() {
+      
+      droppedMessageEventsCount_ = 0;
     }
 
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
+    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      for (int i = 0; i < timeEvent_.size(); i++) {
-        output.writeMessage(1, timeEvent_.get(i));
-      }
-      if (droppedAnnotationsCount_ != 0) {
-        output.writeInt32(2, droppedAnnotationsCount_);
-      }
-      if (droppedMessageEventsCount_ != 0) {
-        output.writeInt32(3, droppedMessageEventsCount_);
-      }
-      unknownFields.writeTo(output);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.trace.v1.Span.TimeEvents parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
 
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) {
-        return size;
-      }
-
-      size = 0;
-      for (int i = 0; i < timeEvent_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(1, timeEvent_.get(i));
-      }
-      if (droppedAnnotationsCount_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeInt32Size(2, droppedAnnotationsCount_);
-      }
-      if (droppedMessageEventsCount_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeInt32Size(3, droppedMessageEventsCount_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-        return true;
-      }
-      if (!(obj instanceof io.opencensus.proto.trace.v1.Span.TimeEvents)) {
-        return super.equals(obj);
-      }
-      io.opencensus.proto.trace.v1.Span.TimeEvents other =
-          (io.opencensus.proto.trace.v1.Span.TimeEvents) obj;
-
-      if (!getTimeEventList()
-          .equals(other.getTimeEventList())) {
-        return false;
-      }
-      if (getDroppedAnnotationsCount()
-          != other.getDroppedAnnotationsCount()) {
-        return false;
-      }
-      if (getDroppedMessageEventsCount()
-          != other.getDroppedMessageEventsCount()) {
-        return false;
-      }
-      return unknownFields.equals(other.unknownFields);
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (getTimeEventCount() > 0) {
-        hash = (37 * hash) + TIME_EVENT_FIELD_NUMBER;
-        hash = (53 * hash) + getTimeEventList().hashCode();
-      }
-      hash = (37 * hash) + DROPPED_ANNOTATIONS_COUNT_FIELD_NUMBER;
-      hash = (53 * hash) + getDroppedAnnotationsCount();
-      hash = (37 * hash) + DROPPED_MESSAGE_EVENTS_COUNT_FIELD_NUMBER;
-      hash = (53 * hash) + getDroppedMessageEventsCount();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() {
-      return newBuilder();
-    }
-
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<TimeEvents> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span.TimeEvents getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
+    public static Builder newBuilder(io.opencensus.proto.trace.v1.Span.TimeEvents prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
     }
 
     /**
@@ -9059,232 +4290,19 @@ public final class Span extends
      * on the span, consisting of either user-supplied key-value pairs, or
      * details of a message sent/received between Spans.
      * </pre>
-     * <p>
+     *
      * Protobuf type {@code opencensus.proto.trace.v1.Span.TimeEvents}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          io.opencensus.proto.trace.v1.Span.TimeEvents, Builder> implements
         // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.Span.TimeEvents)
         io.opencensus.proto.trace.v1.Span.TimeEventsOrBuilder {
-      private int bitField0_;
-      private java.util.List<io.opencensus.proto.trace.v1.Span.TimeEvent> timeEvent_ =
-          java.util.Collections.emptyList();
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          io.opencensus.proto.trace.v1.Span.TimeEvent,
-          io.opencensus.proto.trace.v1.Span.TimeEvent.Builder,
-          io.opencensus.proto.trace.v1.Span.TimeEventOrBuilder>
-          timeEventBuilder_;
-      private int droppedAnnotationsCount_;
-      private int droppedMessageEventsCount_;
-
       // Construct using io.opencensus.proto.trace.v1.Span.TimeEvents.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+        super(DEFAULT_INSTANCE);
       }
 
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-
-      public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvents_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvents_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                io.opencensus.proto.trace.v1.Span.TimeEvents.class,
-                io.opencensus.proto.trace.v1.Span.TimeEvents.Builder.class);
-      }
-
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-            .alwaysUseFieldBuilders) {
-          getTimeEventFieldBuilder();
-        }
-      }
-
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (timeEventBuilder_ == null) {
-          timeEvent_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          timeEventBuilder_.clear();
-        }
-        droppedAnnotationsCount_ = 0;
-
-        droppedMessageEventsCount_ = 0;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-      getDescriptorForType() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_TimeEvents_descriptor;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.TimeEvents getDefaultInstanceForType() {
-        return io.opencensus.proto.trace.v1.Span.TimeEvents.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.TimeEvents build() {
-        io.opencensus.proto.trace.v1.Span.TimeEvents result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.TimeEvents buildPartial() {
-        io.opencensus.proto.trace.v1.Span.TimeEvents result =
-            new io.opencensus.proto.trace.v1.Span.TimeEvents(this);
-        int from_bitField0_ = bitField0_;
-        if (timeEventBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            timeEvent_ = java.util.Collections.unmodifiableList(timeEvent_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.timeEvent_ = timeEvent_;
-        } else {
-          result.timeEvent_ = timeEventBuilder_.build();
-        }
-        result.droppedAnnotationsCount_ = droppedAnnotationsCount_;
-        result.droppedMessageEventsCount_ = droppedMessageEventsCount_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof io.opencensus.proto.trace.v1.Span.TimeEvents) {
-          return mergeFrom((io.opencensus.proto.trace.v1.Span.TimeEvents) other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(io.opencensus.proto.trace.v1.Span.TimeEvents other) {
-        if (other == io.opencensus.proto.trace.v1.Span.TimeEvents.getDefaultInstance()) {
-          return this;
-        }
-        if (timeEventBuilder_ == null) {
-          if (!other.timeEvent_.isEmpty()) {
-            if (timeEvent_.isEmpty()) {
-              timeEvent_ = other.timeEvent_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureTimeEventIsMutable();
-              timeEvent_.addAll(other.timeEvent_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.timeEvent_.isEmpty()) {
-            if (timeEventBuilder_.isEmpty()) {
-              timeEventBuilder_.dispose();
-              timeEventBuilder_ = null;
-              timeEvent_ = other.timeEvent_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              timeEventBuilder_ =
-                  com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                      getTimeEventFieldBuilder() : null;
-            } else {
-              timeEventBuilder_.addAllMessages(other.timeEvent_);
-            }
-          }
-        }
-        if (other.getDroppedAnnotationsCount() != 0) {
-          setDroppedAnnotationsCount(other.getDroppedAnnotationsCount());
-        }
-        if (other.getDroppedMessageEventsCount() != 0) {
-          setDroppedMessageEventsCount(other.getDroppedMessageEventsCount());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        io.opencensus.proto.trace.v1.Span.TimeEvents parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (io.opencensus.proto.trace.v1.Span.TimeEvents) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private void ensureTimeEventIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          timeEvent_ =
-              new java.util.ArrayList<io.opencensus.proto.trace.v1.Span.TimeEvent>(timeEvent_);
-          bitField0_ |= 0x00000001;
-        }
-      }
 
       /**
        * <pre>
@@ -9293,14 +4311,11 @@ public final class Span extends
        *
        * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
        */
+      @java.lang.Override
       public java.util.List<io.opencensus.proto.trace.v1.Span.TimeEvent> getTimeEventList() {
-        if (timeEventBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(timeEvent_);
-        } else {
-          return timeEventBuilder_.getMessageList();
-        }
+        return java.util.Collections.unmodifiableList(
+            instance.getTimeEventList());
       }
-
       /**
        * <pre>
        * A collection of `TimeEvent`s.
@@ -9308,29 +4323,20 @@ public final class Span extends
        *
        * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
        */
+      @java.lang.Override
       public int getTimeEventCount() {
-        if (timeEventBuilder_ == null) {
-          return timeEvent_.size();
-        } else {
-          return timeEventBuilder_.getCount();
-        }
-      }
-
-      /**
+        return instance.getTimeEventCount();
+      }/**
        * <pre>
        * A collection of `TimeEvent`s.
        * </pre>
        *
        * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
        */
+      @java.lang.Override
       public io.opencensus.proto.trace.v1.Span.TimeEvent getTimeEvent(int index) {
-        if (timeEventBuilder_ == null) {
-          return timeEvent_.get(index);
-        } else {
-          return timeEventBuilder_.getMessage(index);
-        }
+        return instance.getTimeEvent(index);
       }
-
       /**
        * <pre>
        * A collection of `TimeEvent`s.
@@ -9340,19 +4346,10 @@ public final class Span extends
        */
       public Builder setTimeEvent(
           int index, io.opencensus.proto.trace.v1.Span.TimeEvent value) {
-        if (timeEventBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureTimeEventIsMutable();
-          timeEvent_.set(index, value);
-          onChanged();
-        } else {
-          timeEventBuilder_.setMessage(index, value);
-        }
+        copyOnWrite();
+        instance.setTimeEvent(index, value);
         return this;
       }
-
       /**
        * <pre>
        * A collection of `TimeEvent`s.
@@ -9362,16 +4359,11 @@ public final class Span extends
        */
       public Builder setTimeEvent(
           int index, io.opencensus.proto.trace.v1.Span.TimeEvent.Builder builderForValue) {
-        if (timeEventBuilder_ == null) {
-          ensureTimeEventIsMutable();
-          timeEvent_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          timeEventBuilder_.setMessage(index, builderForValue.build());
-        }
+        copyOnWrite();
+        instance.setTimeEvent(index,
+            builderForValue.build());
         return this;
       }
-
       /**
        * <pre>
        * A collection of `TimeEvent`s.
@@ -9380,19 +4372,10 @@ public final class Span extends
        * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
        */
       public Builder addTimeEvent(io.opencensus.proto.trace.v1.Span.TimeEvent value) {
-        if (timeEventBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureTimeEventIsMutable();
-          timeEvent_.add(value);
-          onChanged();
-        } else {
-          timeEventBuilder_.addMessage(value);
-        }
+        copyOnWrite();
+        instance.addTimeEvent(value);
         return this;
       }
-
       /**
        * <pre>
        * A collection of `TimeEvent`s.
@@ -9402,19 +4385,10 @@ public final class Span extends
        */
       public Builder addTimeEvent(
           int index, io.opencensus.proto.trace.v1.Span.TimeEvent value) {
-        if (timeEventBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureTimeEventIsMutable();
-          timeEvent_.add(index, value);
-          onChanged();
-        } else {
-          timeEventBuilder_.addMessage(index, value);
-        }
+        copyOnWrite();
+        instance.addTimeEvent(index, value);
         return this;
       }
-
       /**
        * <pre>
        * A collection of `TimeEvent`s.
@@ -9424,16 +4398,10 @@ public final class Span extends
        */
       public Builder addTimeEvent(
           io.opencensus.proto.trace.v1.Span.TimeEvent.Builder builderForValue) {
-        if (timeEventBuilder_ == null) {
-          ensureTimeEventIsMutable();
-          timeEvent_.add(builderForValue.build());
-          onChanged();
-        } else {
-          timeEventBuilder_.addMessage(builderForValue.build());
-        }
+        copyOnWrite();
+        instance.addTimeEvent(builderForValue.build());
         return this;
       }
-
       /**
        * <pre>
        * A collection of `TimeEvent`s.
@@ -9443,16 +4411,11 @@ public final class Span extends
        */
       public Builder addTimeEvent(
           int index, io.opencensus.proto.trace.v1.Span.TimeEvent.Builder builderForValue) {
-        if (timeEventBuilder_ == null) {
-          ensureTimeEventIsMutable();
-          timeEvent_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          timeEventBuilder_.addMessage(index, builderForValue.build());
-        }
+        copyOnWrite();
+        instance.addTimeEvent(index,
+            builderForValue.build());
         return this;
       }
-
       /**
        * <pre>
        * A collection of `TimeEvent`s.
@@ -9462,17 +4425,10 @@ public final class Span extends
        */
       public Builder addAllTimeEvent(
           java.lang.Iterable<? extends io.opencensus.proto.trace.v1.Span.TimeEvent> values) {
-        if (timeEventBuilder_ == null) {
-          ensureTimeEventIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, timeEvent_);
-          onChanged();
-        } else {
-          timeEventBuilder_.addAllMessages(values);
-        }
+        copyOnWrite();
+        instance.addAllTimeEvent(values);
         return this;
       }
-
       /**
        * <pre>
        * A collection of `TimeEvent`s.
@@ -9481,16 +4437,10 @@ public final class Span extends
        * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
        */
       public Builder clearTimeEvent() {
-        if (timeEventBuilder_ == null) {
-          timeEvent_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          timeEventBuilder_.clear();
-        }
+        copyOnWrite();
+        instance.clearTimeEvent();
         return this;
       }
-
       /**
        * <pre>
        * A collection of `TimeEvent`s.
@@ -9499,114 +4449,9 @@ public final class Span extends
        * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
        */
       public Builder removeTimeEvent(int index) {
-        if (timeEventBuilder_ == null) {
-          ensureTimeEventIsMutable();
-          timeEvent_.remove(index);
-          onChanged();
-        } else {
-          timeEventBuilder_.remove(index);
-        }
+        copyOnWrite();
+        instance.removeTimeEvent(index);
         return this;
-      }
-
-      /**
-       * <pre>
-       * A collection of `TimeEvent`s.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
-       */
-      public io.opencensus.proto.trace.v1.Span.TimeEvent.Builder getTimeEventBuilder(
-          int index) {
-        return getTimeEventFieldBuilder().getBuilder(index);
-      }
-
-      /**
-       * <pre>
-       * A collection of `TimeEvent`s.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
-       */
-      public io.opencensus.proto.trace.v1.Span.TimeEventOrBuilder getTimeEventOrBuilder(
-          int index) {
-        if (timeEventBuilder_ == null) {
-          return timeEvent_.get(index);
-        } else {
-          return timeEventBuilder_.getMessageOrBuilder(index);
-        }
-      }
-
-      /**
-       * <pre>
-       * A collection of `TimeEvent`s.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
-       */
-      public java.util.List<? extends io.opencensus.proto.trace.v1.Span.TimeEventOrBuilder>
-      getTimeEventOrBuilderList() {
-        if (timeEventBuilder_ != null) {
-          return timeEventBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(timeEvent_);
-        }
-      }
-
-      /**
-       * <pre>
-       * A collection of `TimeEvent`s.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
-       */
-      public io.opencensus.proto.trace.v1.Span.TimeEvent.Builder addTimeEventBuilder() {
-        return getTimeEventFieldBuilder().addBuilder(
-            io.opencensus.proto.trace.v1.Span.TimeEvent.getDefaultInstance());
-      }
-
-      /**
-       * <pre>
-       * A collection of `TimeEvent`s.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
-       */
-      public io.opencensus.proto.trace.v1.Span.TimeEvent.Builder addTimeEventBuilder(
-          int index) {
-        return getTimeEventFieldBuilder().addBuilder(
-            index, io.opencensus.proto.trace.v1.Span.TimeEvent.getDefaultInstance());
-      }
-
-      /**
-       * <pre>
-       * A collection of `TimeEvent`s.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.TimeEvent time_event = 1;</code>
-       */
-      public java.util.List<io.opencensus.proto.trace.v1.Span.TimeEvent.Builder>
-      getTimeEventBuilderList() {
-        return getTimeEventFieldBuilder().getBuilderList();
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          io.opencensus.proto.trace.v1.Span.TimeEvent,
-          io.opencensus.proto.trace.v1.Span.TimeEvent.Builder,
-          io.opencensus.proto.trace.v1.Span.TimeEventOrBuilder>
-      getTimeEventFieldBuilder() {
-        if (timeEventBuilder_ == null) {
-          timeEventBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              io.opencensus.proto.trace.v1.Span.TimeEvent,
-              io.opencensus.proto.trace.v1.Span.TimeEvent.Builder,
-              io.opencensus.proto.trace.v1.Span.TimeEventOrBuilder>(
-              timeEvent_,
-              ((bitField0_ & 0x00000001) != 0),
-              getParentForChildren(),
-              isClean());
-          timeEvent_ = null;
-        }
-        return timeEventBuilder_;
       }
 
       /**
@@ -9616,14 +4461,12 @@ public final class Span extends
        * </pre>
        *
        * <code>int32 dropped_annotations_count = 2;</code>
-       *
        * @return The droppedAnnotationsCount.
        */
       @java.lang.Override
       public int getDroppedAnnotationsCount() {
-        return droppedAnnotationsCount_;
+        return instance.getDroppedAnnotationsCount();
       }
-
       /**
        * <pre>
        * The number of dropped annotations in all the included time events.
@@ -9631,17 +4474,14 @@ public final class Span extends
        * </pre>
        *
        * <code>int32 dropped_annotations_count = 2;</code>
-       *
        * @param value The droppedAnnotationsCount to set.
        * @return This builder for chaining.
        */
       public Builder setDroppedAnnotationsCount(int value) {
-
-        droppedAnnotationsCount_ = value;
-        onChanged();
+        copyOnWrite();
+        instance.setDroppedAnnotationsCount(value);
         return this;
       }
-
       /**
        * <pre>
        * The number of dropped annotations in all the included time events.
@@ -9649,13 +4489,11 @@ public final class Span extends
        * </pre>
        *
        * <code>int32 dropped_annotations_count = 2;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearDroppedAnnotationsCount() {
-
-        droppedAnnotationsCount_ = 0;
-        onChanged();
+        copyOnWrite();
+        instance.clearDroppedAnnotationsCount();
         return this;
       }
 
@@ -9666,14 +4504,12 @@ public final class Span extends
        * </pre>
        *
        * <code>int32 dropped_message_events_count = 3;</code>
-       *
        * @return The droppedMessageEventsCount.
        */
       @java.lang.Override
       public int getDroppedMessageEventsCount() {
-        return droppedMessageEventsCount_;
+        return instance.getDroppedMessageEventsCount();
       }
-
       /**
        * <pre>
        * The number of dropped message events in all the included time events.
@@ -9681,17 +4517,14 @@ public final class Span extends
        * </pre>
        *
        * <code>int32 dropped_message_events_count = 3;</code>
-       *
        * @param value The droppedMessageEventsCount to set.
        * @return This builder for chaining.
        */
       public Builder setDroppedMessageEventsCount(int value) {
-
-        droppedMessageEventsCount_ = value;
-        onChanged();
+        copyOnWrite();
+        instance.setDroppedMessageEventsCount(value);
         return this;
       }
-
       /**
        * <pre>
        * The number of dropped message events in all the included time events.
@@ -9699,310 +4532,106 @@ public final class Span extends
        * </pre>
        *
        * <code>int32 dropped_message_events_count = 3;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearDroppedMessageEventsCount() {
-
-        droppedMessageEventsCount_ = 0;
-        onChanged();
+        copyOnWrite();
+        instance.clearDroppedMessageEventsCount();
         return this;
       }
 
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
       // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.Span.TimeEvents)
     }
-
-  }
-
-  /**
-   * <pre>
-   * A pointer from the current span to another span in the same trace or in a
-   * different trace. For example, this can be used in batching operations,
-   * where a single batch handler processes multiple requests from different
-   * traces or when the handler receives a request from a different project.
-   * </pre>
-   * <p>
-   * Protobuf type {@code opencensus.proto.trace.v1.Span.Link}
-   */
-  public static final class Link extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.Span.Link)
-      LinkOrBuilder {
-    public static final int TRACE_ID_FIELD_NUMBER = 1;
-    public static final int SPAN_ID_FIELD_NUMBER = 2;
-    public static final int TYPE_FIELD_NUMBER = 3;
-    public static final int ATTRIBUTES_FIELD_NUMBER = 4;
-    public static final int TRACESTATE_FIELD_NUMBER = 5;
-    private static final long serialVersionUID = 0L;
-    // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span.Link)
-    private static final io.opencensus.proto.trace.v1.Span.Link DEFAULT_INSTANCE;
-    private static final com.google.protobuf.Parser<Link>
-        PARSER = new com.google.protobuf.AbstractParser<Link>() {
-      @java.lang.Override
-      public Link parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Link(input, extensionRegistry);
-      }
-    };
-
-    static {
-      DEFAULT_INSTANCE = new io.opencensus.proto.trace.v1.Span.Link();
-    }
-
-    private com.google.protobuf.ByteString traceId_;
-    private com.google.protobuf.ByteString spanId_;
-    private int type_;
-    private io.opencensus.proto.trace.v1.Span.Attributes attributes_;
-    private io.opencensus.proto.trace.v1.Span.Tracestate tracestate_;
-    private byte memoizedIsInitialized = -1;
-
-    // Use Link.newBuilder() to construct.
-    private Link(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-
-    private Link() {
-      traceId_ = com.google.protobuf.ByteString.EMPTY;
-      spanId_ = com.google.protobuf.ByteString.EMPTY;
-      type_ = 0;
-    }
-
-    private Link(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-
-              traceId_ = input.readBytes();
-              break;
-            }
-            case 18: {
-
-              spanId_ = input.readBytes();
-              break;
-            }
-            case 24: {
-              int rawValue = input.readEnum();
-
-              type_ = rawValue;
-              break;
-            }
-            case 34: {
-              io.opencensus.proto.trace.v1.Span.Attributes.Builder subBuilder = null;
-              if (attributes_ != null) {
-                subBuilder = attributes_.toBuilder();
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new io.opencensus.proto.trace.v1.Span.TimeEvents();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case BUILD_MESSAGE_INFO: {
+            java.lang.Object[] objects = new java.lang.Object[] {
+              "timeEvent_",
+              io.opencensus.proto.trace.v1.Span.TimeEvent.class,
+              "droppedAnnotationsCount_",
+              "droppedMessageEventsCount_",
+            };
+            java.lang.String info =
+                "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0001\u0000\u0001\u001b\u0002\u0004" +
+                "\u0003\u0004";
+            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          com.google.protobuf.Parser<io.opencensus.proto.trace.v1.Span.TimeEvents> parser = PARSER;
+          if (parser == null) {
+            synchronized (io.opencensus.proto.trace.v1.Span.TimeEvents.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser =
+                    new DefaultInstanceBasedParser<io.opencensus.proto.trace.v1.Span.TimeEvents>(
+                        DEFAULT_INSTANCE);
+                PARSER = parser;
               }
-              attributes_ = input.readMessage(io.opencensus.proto.trace.v1.Span.Attributes.parser(),
-                  extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(attributes_);
-                attributes_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 42: {
-              io.opencensus.proto.trace.v1.Span.Tracestate.Builder subBuilder = null;
-              if (tracestate_ != null) {
-                subBuilder = tracestate_.toBuilder();
-              }
-              tracestate_ = input.readMessage(io.opencensus.proto.trace.v1.Span.Tracestate.parser(),
-                  extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(tracestate_);
-                tracestate_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
             }
           }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
+          return parser;
       }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
     }
 
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Link_descriptor;
+
+    // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span.TimeEvents)
+    private static final io.opencensus.proto.trace.v1.Span.TimeEvents DEFAULT_INSTANCE;
+    static {
+      TimeEvents defaultInstance = new TimeEvents();
+      // New instances are implicitly immutable so no need to make
+      // immutable.
+      DEFAULT_INSTANCE = defaultInstance;
+      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+        TimeEvents.class, defaultInstance);
     }
 
-    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Link parseDelimitedFrom(
-        java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Link parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(io.opencensus.proto.trace.v1.Span.Link prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Link getDefaultInstance() {
+    public static io.opencensus.proto.trace.v1.Span.TimeEvents getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    public static com.google.protobuf.Parser<Link> parser() {
-      return PARSER;
-    }
+    private static volatile com.google.protobuf.Parser<TimeEvents> PARSER;
 
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new Link();
+    public static com.google.protobuf.Parser<TimeEvents> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
     }
+  }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Link_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.trace.v1.Span.Link.class,
-              io.opencensus.proto.trace.v1.Span.Link.Builder.class);
-    }
+  public interface LinkOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.Span.Link)
+      com.google.protobuf.MessageLiteOrBuilder {
 
     /**
      * <pre>
-     * A unique identifier of a trace that this linked span is part of. The ID is a
+     * A unique identifier of a trace that this linked span is part of. The ID is a 
      * 16-byte array.
      * </pre>
      *
      * <code>bytes trace_id = 1;</code>
-     *
      * @return The traceId.
      */
-    @java.lang.Override
-    public com.google.protobuf.ByteString getTraceId() {
-      return traceId_;
-    }
+    com.google.protobuf.ByteString getTraceId();
 
     /**
      * <pre>
@@ -10010,13 +4639,9 @@ public final class Span extends
      * </pre>
      *
      * <code>bytes span_id = 2;</code>
-     *
      * @return The spanId.
      */
-    @java.lang.Override
-    public com.google.protobuf.ByteString getSpanId() {
-      return spanId_;
-    }
+    com.google.protobuf.ByteString getSpanId();
 
     /**
      * <pre>
@@ -10024,30 +4649,18 @@ public final class Span extends
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Span.Link.Type type = 3;</code>
-     *
      * @return The enum numeric value on the wire for type.
      */
-    @java.lang.Override
-    public int getTypeValue() {
-      return type_;
-    }
-
+    int getTypeValue();
     /**
      * <pre>
      * The relationship of the current span relative to the linked span.
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Span.Link.Type type = 3;</code>
-     *
      * @return The type.
      */
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span.Link.Type getType() {
-      @SuppressWarnings("deprecation")
-      io.opencensus.proto.trace.v1.Span.Link.Type result =
-          io.opencensus.proto.trace.v1.Span.Link.Type.valueOf(type_);
-      return result == null ? io.opencensus.proto.trace.v1.Span.Link.Type.UNRECOGNIZED : result;
-    }
+    io.opencensus.proto.trace.v1.Span.Link.Type getType();
 
     /**
      * <pre>
@@ -10055,40 +4668,18 @@ public final class Span extends
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 4;</code>
-     *
      * @return Whether the attributes field is set.
      */
-    @java.lang.Override
-    public boolean hasAttributes() {
-      return attributes_ != null;
-    }
-
+    boolean hasAttributes();
     /**
      * <pre>
      * A set of attributes on the link.
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 4;</code>
-     *
      * @return The attributes.
      */
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span.Attributes getAttributes() {
-      return attributes_ == null ?
-          io.opencensus.proto.trace.v1.Span.Attributes.getDefaultInstance() : attributes_;
-    }
-
-    /**
-     * <pre>
-     * A set of attributes on the link.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 4;</code>
-     */
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span.AttributesOrBuilder getAttributesOrBuilder() {
-      return getAttributes();
-    }
+    io.opencensus.proto.trace.v1.Span.Attributes getAttributes();
 
     /**
      * <pre>
@@ -10096,215 +4687,48 @@ public final class Span extends
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 5;</code>
-     *
      * @return Whether the tracestate field is set.
      */
-    @java.lang.Override
-    public boolean hasTracestate() {
-      return tracestate_ != null;
-    }
-
+    boolean hasTracestate();
     /**
      * <pre>
      * The Tracestate associated with the link.
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 5;</code>
-     *
      * @return The tracestate.
      */
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span.Tracestate getTracestate() {
-      return tracestate_ == null ?
-          io.opencensus.proto.trace.v1.Span.Tracestate.getDefaultInstance() : tracestate_;
+    io.opencensus.proto.trace.v1.Span.Tracestate getTracestate();
+  }
+  /**
+   * <pre>
+   * A pointer from the current span to another span in the same trace or in a
+   * different trace. For example, this can be used in batching operations,
+   * where a single batch handler processes multiple requests from different
+   * traces or when the handler receives a request from a different project.
+   * </pre>
+   *
+   * Protobuf type {@code opencensus.proto.trace.v1.Span.Link}
+   */
+  public  static final class Link extends
+      com.google.protobuf.GeneratedMessageLite<
+          Link, Link.Builder> implements
+      // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.Span.Link)
+      LinkOrBuilder {
+    private Link() {
+      traceId_ = com.google.protobuf.ByteString.EMPTY;
+      spanId_ = com.google.protobuf.ByteString.EMPTY;
     }
-
-    /**
-     * <pre>
-     * The Tracestate associated with the link.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 5;</code>
-     */
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span.TracestateOrBuilder getTracestateOrBuilder() {
-      return getTracestate();
-    }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) {
-        return true;
-      }
-      if (isInitialized == 0) {
-        return false;
-      }
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-        throws java.io.IOException {
-      if (!traceId_.isEmpty()) {
-        output.writeBytes(1, traceId_);
-      }
-      if (!spanId_.isEmpty()) {
-        output.writeBytes(2, spanId_);
-      }
-      if (type_ != io.opencensus.proto.trace.v1.Span.Link.Type.TYPE_UNSPECIFIED.getNumber()) {
-        output.writeEnum(3, type_);
-      }
-      if (attributes_ != null) {
-        output.writeMessage(4, getAttributes());
-      }
-      if (tracestate_ != null) {
-        output.writeMessage(5, getTracestate());
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) {
-        return size;
-      }
-
-      size = 0;
-      if (!traceId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeBytesSize(1, traceId_);
-      }
-      if (!spanId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeBytesSize(2, spanId_);
-      }
-      if (type_ != io.opencensus.proto.trace.v1.Span.Link.Type.TYPE_UNSPECIFIED.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeEnumSize(3, type_);
-      }
-      if (attributes_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(4, getAttributes());
-      }
-      if (tracestate_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(5, getTracestate());
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-        return true;
-      }
-      if (!(obj instanceof io.opencensus.proto.trace.v1.Span.Link)) {
-        return super.equals(obj);
-      }
-      io.opencensus.proto.trace.v1.Span.Link other = (io.opencensus.proto.trace.v1.Span.Link) obj;
-
-      if (!getTraceId()
-          .equals(other.getTraceId())) {
-        return false;
-      }
-      if (!getSpanId()
-          .equals(other.getSpanId())) {
-        return false;
-      }
-      if (type_ != other.type_) {
-        return false;
-      }
-      if (hasAttributes() != other.hasAttributes()) {
-        return false;
-      }
-      if (hasAttributes()) {
-        if (!getAttributes()
-            .equals(other.getAttributes())) {
-          return false;
-        }
-      }
-      if (hasTracestate() != other.hasTracestate()) {
-        return false;
-      }
-      if (hasTracestate()) {
-        if (!getTracestate()
-            .equals(other.getTracestate())) {
-          return false;
-        }
-      }
-      return unknownFields.equals(other.unknownFields);
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + TRACE_ID_FIELD_NUMBER;
-      hash = (53 * hash) + getTraceId().hashCode();
-      hash = (37 * hash) + SPAN_ID_FIELD_NUMBER;
-      hash = (53 * hash) + getSpanId().hashCode();
-      hash = (37 * hash) + TYPE_FIELD_NUMBER;
-      hash = (53 * hash) + type_;
-      if (hasAttributes()) {
-        hash = (37 * hash) + ATTRIBUTES_FIELD_NUMBER;
-        hash = (53 * hash) + getAttributes().hashCode();
-      }
-      if (hasTracestate()) {
-        hash = (37 * hash) + TRACESTATE_FIELD_NUMBER;
-        hash = (53 * hash) + getTracestate().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() {
-      return newBuilder();
-    }
-
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Link> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span.Link getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
     /**
      * <pre>
      * The relationship of the current span relative to the linked span: child,
      * parent, or unspecified.
      * </pre>
-     * <p>
+     *
      * Protobuf enum {@code opencensus.proto.trace.v1.Span.Link.Type}
      */
     public enum Type
-        implements com.google.protobuf.ProtocolMessageEnum {
+        implements com.google.protobuf.Internal.EnumLite {
       /**
        * <pre>
        * The relationship of the two spans is unknown, or known but other
@@ -10358,69 +4782,9 @@ public final class Span extends
        * <code>PARENT_LINKED_SPAN = 2;</code>
        */
       public static final int PARENT_LINKED_SPAN_VALUE = 2;
-      private static final com.google.protobuf.Internal.EnumLiteMap<
-          Type> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<Type>() {
-            public Type findValueByNumber(int number) {
-              return Type.forNumber(number);
-            }
-          };
-      private static final Type[] VALUES = values();
-      private final int value;
 
-      Type(int value) {
-        this.value = value;
-      }
 
-      /**
-       * @param value The numeric wire value of the corresponding enum entry.
-       * @return The enum associated with the given numeric wire value.
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static Type valueOf(int value) {
-        return forNumber(value);
-      }
-
-      /**
-       * @param value The numeric wire value of the corresponding enum entry.
-       * @return The enum associated with the given numeric wire value.
-       */
-      public static Type forNumber(int value) {
-        switch (value) {
-          case 0:
-            return TYPE_UNSPECIFIED;
-          case 1:
-            return CHILD_LINKED_SPAN;
-          case 2:
-            return PARENT_LINKED_SPAN;
-          default:
-            return null;
-        }
-      }
-
-      public static com.google.protobuf.Internal.EnumLiteMap<Type>
-      internalGetValueMap() {
-        return internalValueMap;
-      }
-
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
-      getDescriptor() {
-        return io.opencensus.proto.trace.v1.Span.Link.getDescriptor().getEnumTypes().get(0);
-      }
-
-      public static Type valueOf(
-          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-        if (desc.getType() != getDescriptor()) {
-          throw new java.lang.IllegalArgumentException(
-              "EnumValueDescriptor is not for this type.");
-        }
-        if (desc.getIndex() == -1) {
-          return UNRECOGNIZED;
-        }
-        return VALUES[desc.getIndex()];
-      }
-
+      @java.lang.Override
       public final int getNumber() {
         if (this == UNRECOGNIZED) {
           throw new java.lang.IllegalArgumentException(
@@ -10429,21 +4793,415 @@ public final class Span extends
         return value;
       }
 
-      public final com.google.protobuf.Descriptors.EnumValueDescriptor
-      getValueDescriptor() {
-        if (this == UNRECOGNIZED) {
-          throw new java.lang.IllegalStateException(
-              "Can't get the descriptor of an unrecognized enum value.");
-        }
-        return getDescriptor().getValues().get(ordinal());
+      /**
+       * @param value The number of the enum to look for.
+       * @return The enum associated with the given number.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static Type valueOf(int value) {
+        return forNumber(value);
       }
 
-      public final com.google.protobuf.Descriptors.EnumDescriptor
-      getDescriptorForType() {
-        return getDescriptor();
+      public static Type forNumber(int value) {
+        switch (value) {
+          case 0: return TYPE_UNSPECIFIED;
+          case 1: return CHILD_LINKED_SPAN;
+          case 2: return PARENT_LINKED_SPAN;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Type>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          Type> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Type>() {
+              @java.lang.Override
+              public Type findValueByNumber(int number) {
+                return Type.forNumber(number);
+              }
+            };
+
+      public static com.google.protobuf.Internal.EnumVerifier 
+          internalGetVerifier() {
+        return TypeVerifier.INSTANCE;
+      }
+
+      private static final class TypeVerifier implements 
+           com.google.protobuf.Internal.EnumVerifier { 
+              static final com.google.protobuf.Internal.EnumVerifier           INSTANCE = new TypeVerifier();
+              @java.lang.Override
+              public boolean isInRange(int number) {
+                return Type.forNumber(number) != null;
+              }
+            };
+
+      private final int value;
+
+      private Type(int value) {
+        this.value = value;
       }
 
       // @@protoc_insertion_point(enum_scope:opencensus.proto.trace.v1.Span.Link.Type)
+    }
+
+    public static final int TRACE_ID_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString traceId_;
+    /**
+     * <pre>
+     * A unique identifier of a trace that this linked span is part of. The ID is a 
+     * 16-byte array.
+     * </pre>
+     *
+     * <code>bytes trace_id = 1;</code>
+     * @return The traceId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getTraceId() {
+      return traceId_;
+    }
+    /**
+     * <pre>
+     * A unique identifier of a trace that this linked span is part of. The ID is a 
+     * 16-byte array.
+     * </pre>
+     *
+     * <code>bytes trace_id = 1;</code>
+     * @param value The traceId to set.
+     */
+    private void setTraceId(com.google.protobuf.ByteString value) {
+      value.getClass();
+  
+      traceId_ = value;
+    }
+    /**
+     * <pre>
+     * A unique identifier of a trace that this linked span is part of. The ID is a 
+     * 16-byte array.
+     * </pre>
+     *
+     * <code>bytes trace_id = 1;</code>
+     */
+    private void clearTraceId() {
+      
+      traceId_ = getDefaultInstance().getTraceId();
+    }
+
+    public static final int SPAN_ID_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString spanId_;
+    /**
+     * <pre>
+     * A unique identifier for the linked span. The ID is an 8-byte array.
+     * </pre>
+     *
+     * <code>bytes span_id = 2;</code>
+     * @return The spanId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getSpanId() {
+      return spanId_;
+    }
+    /**
+     * <pre>
+     * A unique identifier for the linked span. The ID is an 8-byte array.
+     * </pre>
+     *
+     * <code>bytes span_id = 2;</code>
+     * @param value The spanId to set.
+     */
+    private void setSpanId(com.google.protobuf.ByteString value) {
+      value.getClass();
+  
+      spanId_ = value;
+    }
+    /**
+     * <pre>
+     * A unique identifier for the linked span. The ID is an 8-byte array.
+     * </pre>
+     *
+     * <code>bytes span_id = 2;</code>
+     */
+    private void clearSpanId() {
+      
+      spanId_ = getDefaultInstance().getSpanId();
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 3;
+    private int type_;
+    /**
+     * <pre>
+     * The relationship of the current span relative to the linked span.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.Link.Type type = 3;</code>
+     * @return The enum numeric value on the wire for type.
+     */
+    @java.lang.Override
+    public int getTypeValue() {
+      return type_;
+    }
+    /**
+     * <pre>
+     * The relationship of the current span relative to the linked span.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.Link.Type type = 3;</code>
+     * @return The type.
+     */
+    @java.lang.Override
+    public io.opencensus.proto.trace.v1.Span.Link.Type getType() {
+      io.opencensus.proto.trace.v1.Span.Link.Type result = io.opencensus.proto.trace.v1.Span.Link.Type.forNumber(type_);
+      return result == null ? io.opencensus.proto.trace.v1.Span.Link.Type.UNRECOGNIZED : result;
+    }
+    /**
+     * <pre>
+     * The relationship of the current span relative to the linked span.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.Link.Type type = 3;</code>
+     * @param value The enum numeric value on the wire for type to set.
+     */
+    private void setTypeValue(int value) {
+        type_ = value;
+    }
+    /**
+     * <pre>
+     * The relationship of the current span relative to the linked span.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.Link.Type type = 3;</code>
+     * @param value The type to set.
+     */
+    private void setType(io.opencensus.proto.trace.v1.Span.Link.Type value) {
+      type_ = value.getNumber();
+      
+    }
+    /**
+     * <pre>
+     * The relationship of the current span relative to the linked span.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.Link.Type type = 3;</code>
+     */
+    private void clearType() {
+      
+      type_ = 0;
+    }
+
+    public static final int ATTRIBUTES_FIELD_NUMBER = 4;
+    private io.opencensus.proto.trace.v1.Span.Attributes attributes_;
+    /**
+     * <pre>
+     * A set of attributes on the link.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 4;</code>
+     */
+    @java.lang.Override
+    public boolean hasAttributes() {
+      return attributes_ != null;
+    }
+    /**
+     * <pre>
+     * A set of attributes on the link.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 4;</code>
+     */
+    @java.lang.Override
+    public io.opencensus.proto.trace.v1.Span.Attributes getAttributes() {
+      return attributes_ == null ? io.opencensus.proto.trace.v1.Span.Attributes.getDefaultInstance() : attributes_;
+    }
+    /**
+     * <pre>
+     * A set of attributes on the link.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 4;</code>
+     */
+    private void setAttributes(io.opencensus.proto.trace.v1.Span.Attributes value) {
+      value.getClass();
+  attributes_ = value;
+      
+      }
+    /**
+     * <pre>
+     * A set of attributes on the link.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 4;</code>
+     */
+    @java.lang.SuppressWarnings({"ReferenceEquality"})
+    private void mergeAttributes(io.opencensus.proto.trace.v1.Span.Attributes value) {
+      value.getClass();
+  if (attributes_ != null &&
+          attributes_ != io.opencensus.proto.trace.v1.Span.Attributes.getDefaultInstance()) {
+        attributes_ =
+          io.opencensus.proto.trace.v1.Span.Attributes.newBuilder(attributes_).mergeFrom(value).buildPartial();
+      } else {
+        attributes_ = value;
+      }
+      
+    }
+    /**
+     * <pre>
+     * A set of attributes on the link.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 4;</code>
+     */
+    private void clearAttributes() {  attributes_ = null;
+      
+    }
+
+    public static final int TRACESTATE_FIELD_NUMBER = 5;
+    private io.opencensus.proto.trace.v1.Span.Tracestate tracestate_;
+    /**
+     * <pre>
+     * The Tracestate associated with the link.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 5;</code>
+     */
+    @java.lang.Override
+    public boolean hasTracestate() {
+      return tracestate_ != null;
+    }
+    /**
+     * <pre>
+     * The Tracestate associated with the link.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 5;</code>
+     */
+    @java.lang.Override
+    public io.opencensus.proto.trace.v1.Span.Tracestate getTracestate() {
+      return tracestate_ == null ? io.opencensus.proto.trace.v1.Span.Tracestate.getDefaultInstance() : tracestate_;
+    }
+    /**
+     * <pre>
+     * The Tracestate associated with the link.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 5;</code>
+     */
+    private void setTracestate(io.opencensus.proto.trace.v1.Span.Tracestate value) {
+      value.getClass();
+  tracestate_ = value;
+      
+      }
+    /**
+     * <pre>
+     * The Tracestate associated with the link.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 5;</code>
+     */
+    @java.lang.SuppressWarnings({"ReferenceEquality"})
+    private void mergeTracestate(io.opencensus.proto.trace.v1.Span.Tracestate value) {
+      value.getClass();
+  if (tracestate_ != null &&
+          tracestate_ != io.opencensus.proto.trace.v1.Span.Tracestate.getDefaultInstance()) {
+        tracestate_ =
+          io.opencensus.proto.trace.v1.Span.Tracestate.newBuilder(tracestate_).mergeFrom(value).buildPartial();
+      } else {
+        tracestate_ = value;
+      }
+      
+    }
+    /**
+     * <pre>
+     * The Tracestate associated with the link.
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 5;</code>
+     */
+    private void clearTracestate() {  tracestate_ = null;
+      
+    }
+
+    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Link parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Link parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Link parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
+    }
+    public static Builder newBuilder(io.opencensus.proto.trace.v1.Span.Link prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
     }
 
     /**
@@ -10453,271 +5211,60 @@ public final class Span extends
      * where a single batch handler processes multiple requests from different
      * traces or when the handler receives a request from a different project.
      * </pre>
-     * <p>
+     *
      * Protobuf type {@code opencensus.proto.trace.v1.Span.Link}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          io.opencensus.proto.trace.v1.Span.Link, Builder> implements
         // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.Span.Link)
         io.opencensus.proto.trace.v1.Span.LinkOrBuilder {
-      private com.google.protobuf.ByteString traceId_ = com.google.protobuf.ByteString.EMPTY;
-      private com.google.protobuf.ByteString spanId_ = com.google.protobuf.ByteString.EMPTY;
-      private int type_ = 0;
-      private io.opencensus.proto.trace.v1.Span.Attributes attributes_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          io.opencensus.proto.trace.v1.Span.Attributes,
-          io.opencensus.proto.trace.v1.Span.Attributes.Builder,
-          io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
-          attributesBuilder_;
-      private io.opencensus.proto.trace.v1.Span.Tracestate tracestate_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          io.opencensus.proto.trace.v1.Span.Tracestate,
-          io.opencensus.proto.trace.v1.Span.Tracestate.Builder,
-          io.opencensus.proto.trace.v1.Span.TracestateOrBuilder>
-          tracestateBuilder_;
-
       // Construct using io.opencensus.proto.trace.v1.Span.Link.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+        super(DEFAULT_INSTANCE);
       }
 
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-
-      public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Link_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Link_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                io.opencensus.proto.trace.v1.Span.Link.class,
-                io.opencensus.proto.trace.v1.Span.Link.Builder.class);
-      }
-
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-            .alwaysUseFieldBuilders) {
-        }
-      }
-
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        traceId_ = com.google.protobuf.ByteString.EMPTY;
-
-        spanId_ = com.google.protobuf.ByteString.EMPTY;
-
-        type_ = 0;
-
-        if (attributesBuilder_ == null) {
-          attributes_ = null;
-        } else {
-          attributes_ = null;
-          attributesBuilder_ = null;
-        }
-        if (tracestateBuilder_ == null) {
-          tracestate_ = null;
-        } else {
-          tracestate_ = null;
-          tracestateBuilder_ = null;
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-      getDescriptorForType() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Link_descriptor;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.Link getDefaultInstanceForType() {
-        return io.opencensus.proto.trace.v1.Span.Link.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.Link build() {
-        io.opencensus.proto.trace.v1.Span.Link result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.Link buildPartial() {
-        io.opencensus.proto.trace.v1.Span.Link result =
-            new io.opencensus.proto.trace.v1.Span.Link(this);
-        result.traceId_ = traceId_;
-        result.spanId_ = spanId_;
-        result.type_ = type_;
-        if (attributesBuilder_ == null) {
-          result.attributes_ = attributes_;
-        } else {
-          result.attributes_ = attributesBuilder_.build();
-        }
-        if (tracestateBuilder_ == null) {
-          result.tracestate_ = tracestate_;
-        } else {
-          result.tracestate_ = tracestateBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof io.opencensus.proto.trace.v1.Span.Link) {
-          return mergeFrom((io.opencensus.proto.trace.v1.Span.Link) other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(io.opencensus.proto.trace.v1.Span.Link other) {
-        if (other == io.opencensus.proto.trace.v1.Span.Link.getDefaultInstance()) {
-          return this;
-        }
-        if (other.getTraceId() != com.google.protobuf.ByteString.EMPTY) {
-          setTraceId(other.getTraceId());
-        }
-        if (other.getSpanId() != com.google.protobuf.ByteString.EMPTY) {
-          setSpanId(other.getSpanId());
-        }
-        if (other.type_ != 0) {
-          setTypeValue(other.getTypeValue());
-        }
-        if (other.hasAttributes()) {
-          mergeAttributes(other.getAttributes());
-        }
-        if (other.hasTracestate()) {
-          mergeTracestate(other.getTracestate());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        io.opencensus.proto.trace.v1.Span.Link parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (io.opencensus.proto.trace.v1.Span.Link) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
 
       /**
        * <pre>
-       * A unique identifier of a trace that this linked span is part of. The ID is a
+       * A unique identifier of a trace that this linked span is part of. The ID is a 
        * 16-byte array.
        * </pre>
        *
        * <code>bytes trace_id = 1;</code>
-       *
        * @return The traceId.
        */
       @java.lang.Override
       public com.google.protobuf.ByteString getTraceId() {
-        return traceId_;
+        return instance.getTraceId();
       }
-
       /**
        * <pre>
-       * A unique identifier of a trace that this linked span is part of. The ID is a
+       * A unique identifier of a trace that this linked span is part of. The ID is a 
        * 16-byte array.
        * </pre>
        *
        * <code>bytes trace_id = 1;</code>
-       *
        * @param value The traceId to set.
        * @return This builder for chaining.
        */
       public Builder setTraceId(com.google.protobuf.ByteString value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-
-        traceId_ = value;
-        onChanged();
+        copyOnWrite();
+        instance.setTraceId(value);
         return this;
       }
-
       /**
        * <pre>
-       * A unique identifier of a trace that this linked span is part of. The ID is a
+       * A unique identifier of a trace that this linked span is part of. The ID is a 
        * 16-byte array.
        * </pre>
        *
        * <code>bytes trace_id = 1;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearTraceId() {
-
-        traceId_ = getDefaultInstance().getTraceId();
-        onChanged();
+        copyOnWrite();
+        instance.clearTraceId();
         return this;
       }
 
@@ -10727,47 +5274,37 @@ public final class Span extends
        * </pre>
        *
        * <code>bytes span_id = 2;</code>
-       *
        * @return The spanId.
        */
       @java.lang.Override
       public com.google.protobuf.ByteString getSpanId() {
-        return spanId_;
+        return instance.getSpanId();
       }
-
       /**
        * <pre>
        * A unique identifier for the linked span. The ID is an 8-byte array.
        * </pre>
        *
        * <code>bytes span_id = 2;</code>
-       *
        * @param value The spanId to set.
        * @return This builder for chaining.
        */
       public Builder setSpanId(com.google.protobuf.ByteString value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-
-        spanId_ = value;
-        onChanged();
+        copyOnWrite();
+        instance.setSpanId(value);
         return this;
       }
-
       /**
        * <pre>
        * A unique identifier for the linked span. The ID is an 8-byte array.
        * </pre>
        *
        * <code>bytes span_id = 2;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearSpanId() {
-
-        spanId_ = getDefaultInstance().getSpanId();
-        onChanged();
+        copyOnWrite();
+        instance.clearSpanId();
         return this;
       }
 
@@ -10777,81 +5314,63 @@ public final class Span extends
        * </pre>
        *
        * <code>.opencensus.proto.trace.v1.Span.Link.Type type = 3;</code>
-       *
        * @return The enum numeric value on the wire for type.
        */
       @java.lang.Override
       public int getTypeValue() {
-        return type_;
+        return instance.getTypeValue();
       }
-
       /**
        * <pre>
        * The relationship of the current span relative to the linked span.
        * </pre>
        *
        * <code>.opencensus.proto.trace.v1.Span.Link.Type type = 3;</code>
-       *
-       * @param value The enum numeric value on the wire for type to set.
+       * @param value The type to set.
        * @return This builder for chaining.
        */
       public Builder setTypeValue(int value) {
-
-        type_ = value;
-        onChanged();
+        copyOnWrite();
+        instance.setTypeValue(value);
         return this;
       }
-
       /**
        * <pre>
        * The relationship of the current span relative to the linked span.
        * </pre>
        *
        * <code>.opencensus.proto.trace.v1.Span.Link.Type type = 3;</code>
-       *
        * @return The type.
        */
       @java.lang.Override
       public io.opencensus.proto.trace.v1.Span.Link.Type getType() {
-        @SuppressWarnings("deprecation")
-        io.opencensus.proto.trace.v1.Span.Link.Type result =
-            io.opencensus.proto.trace.v1.Span.Link.Type.valueOf(type_);
-        return result == null ? io.opencensus.proto.trace.v1.Span.Link.Type.UNRECOGNIZED : result;
+        return instance.getType();
       }
-
       /**
        * <pre>
        * The relationship of the current span relative to the linked span.
        * </pre>
        *
        * <code>.opencensus.proto.trace.v1.Span.Link.Type type = 3;</code>
-       *
-       * @param value The type to set.
+       * @param value The enum numeric value on the wire for type to set.
        * @return This builder for chaining.
        */
       public Builder setType(io.opencensus.proto.trace.v1.Span.Link.Type value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-
-        type_ = value.getNumber();
-        onChanged();
+        copyOnWrite();
+        instance.setType(value);
         return this;
       }
-
       /**
        * <pre>
        * The relationship of the current span relative to the linked span.
        * </pre>
        *
        * <code>.opencensus.proto.trace.v1.Span.Link.Type type = 3;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearType() {
-
-        type_ = 0;
-        onChanged();
+        copyOnWrite();
+        instance.clearType();
         return this;
       }
 
@@ -10861,31 +5380,22 @@ public final class Span extends
        * </pre>
        *
        * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 4;</code>
-       *
-       * @return Whether the attributes field is set.
        */
+      @java.lang.Override
       public boolean hasAttributes() {
-        return attributesBuilder_ != null || attributes_ != null;
+        return instance.hasAttributes();
       }
-
       /**
        * <pre>
        * A set of attributes on the link.
        * </pre>
        *
        * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 4;</code>
-       *
-       * @return The attributes.
        */
+      @java.lang.Override
       public io.opencensus.proto.trace.v1.Span.Attributes getAttributes() {
-        if (attributesBuilder_ == null) {
-          return attributes_ == null ?
-              io.opencensus.proto.trace.v1.Span.Attributes.getDefaultInstance() : attributes_;
-        } else {
-          return attributesBuilder_.getMessage();
-        }
+        return instance.getAttributes();
       }
-
       /**
        * <pre>
        * A set of attributes on the link.
@@ -10894,19 +5404,10 @@ public final class Span extends
        * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 4;</code>
        */
       public Builder setAttributes(io.opencensus.proto.trace.v1.Span.Attributes value) {
-        if (attributesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          attributes_ = value;
-          onChanged();
-        } else {
-          attributesBuilder_.setMessage(value);
-        }
-
+        copyOnWrite();
+        instance.setAttributes(value);
         return this;
-      }
-
+        }
       /**
        * <pre>
        * A set of attributes on the link.
@@ -10916,16 +5417,10 @@ public final class Span extends
        */
       public Builder setAttributes(
           io.opencensus.proto.trace.v1.Span.Attributes.Builder builderForValue) {
-        if (attributesBuilder_ == null) {
-          attributes_ = builderForValue.build();
-          onChanged();
-        } else {
-          attributesBuilder_.setMessage(builderForValue.build());
-        }
-
+        copyOnWrite();
+        instance.setAttributes(builderForValue.build());
         return this;
       }
-
       /**
        * <pre>
        * A set of attributes on the link.
@@ -10934,22 +5429,10 @@ public final class Span extends
        * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 4;</code>
        */
       public Builder mergeAttributes(io.opencensus.proto.trace.v1.Span.Attributes value) {
-        if (attributesBuilder_ == null) {
-          if (attributes_ != null) {
-            attributes_ =
-                io.opencensus.proto.trace.v1.Span.Attributes.newBuilder(attributes_)
-                                                            .mergeFrom(value).buildPartial();
-          } else {
-            attributes_ = value;
-          }
-          onChanged();
-        } else {
-          attributesBuilder_.mergeFrom(value);
-        }
-
+        copyOnWrite();
+        instance.mergeAttributes(value);
         return this;
       }
-
       /**
        * <pre>
        * A set of attributes on the link.
@@ -10957,70 +5440,9 @@ public final class Span extends
        *
        * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 4;</code>
        */
-      public Builder clearAttributes() {
-        if (attributesBuilder_ == null) {
-          attributes_ = null;
-          onChanged();
-        } else {
-          attributes_ = null;
-          attributesBuilder_ = null;
-        }
-
+      public Builder clearAttributes() {  copyOnWrite();
+        instance.clearAttributes();
         return this;
-      }
-
-      /**
-       * <pre>
-       * A set of attributes on the link.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 4;</code>
-       */
-      public io.opencensus.proto.trace.v1.Span.Attributes.Builder getAttributesBuilder() {
-
-        onChanged();
-        return getAttributesFieldBuilder().getBuilder();
-      }
-
-      /**
-       * <pre>
-       * A set of attributes on the link.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 4;</code>
-       */
-      public io.opencensus.proto.trace.v1.Span.AttributesOrBuilder getAttributesOrBuilder() {
-        if (attributesBuilder_ != null) {
-          return attributesBuilder_.getMessageOrBuilder();
-        } else {
-          return attributes_ == null ?
-              io.opencensus.proto.trace.v1.Span.Attributes.getDefaultInstance() : attributes_;
-        }
-      }
-
-      /**
-       * <pre>
-       * A set of attributes on the link.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 4;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          io.opencensus.proto.trace.v1.Span.Attributes,
-          io.opencensus.proto.trace.v1.Span.Attributes.Builder,
-          io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
-      getAttributesFieldBuilder() {
-        if (attributesBuilder_ == null) {
-          attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              io.opencensus.proto.trace.v1.Span.Attributes,
-              io.opencensus.proto.trace.v1.Span.Attributes.Builder,
-              io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>(
-              getAttributes(),
-              getParentForChildren(),
-              isClean());
-          attributes_ = null;
-        }
-        return attributesBuilder_;
       }
 
       /**
@@ -11029,31 +5451,22 @@ public final class Span extends
        * </pre>
        *
        * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 5;</code>
-       *
-       * @return Whether the tracestate field is set.
        */
+      @java.lang.Override
       public boolean hasTracestate() {
-        return tracestateBuilder_ != null || tracestate_ != null;
+        return instance.hasTracestate();
       }
-
       /**
        * <pre>
        * The Tracestate associated with the link.
        * </pre>
        *
        * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 5;</code>
-       *
-       * @return The tracestate.
        */
+      @java.lang.Override
       public io.opencensus.proto.trace.v1.Span.Tracestate getTracestate() {
-        if (tracestateBuilder_ == null) {
-          return tracestate_ == null ?
-              io.opencensus.proto.trace.v1.Span.Tracestate.getDefaultInstance() : tracestate_;
-        } else {
-          return tracestateBuilder_.getMessage();
-        }
+        return instance.getTracestate();
       }
-
       /**
        * <pre>
        * The Tracestate associated with the link.
@@ -11062,19 +5475,10 @@ public final class Span extends
        * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 5;</code>
        */
       public Builder setTracestate(io.opencensus.proto.trace.v1.Span.Tracestate value) {
-        if (tracestateBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          tracestate_ = value;
-          onChanged();
-        } else {
-          tracestateBuilder_.setMessage(value);
-        }
-
+        copyOnWrite();
+        instance.setTracestate(value);
         return this;
-      }
-
+        }
       /**
        * <pre>
        * The Tracestate associated with the link.
@@ -11084,16 +5488,10 @@ public final class Span extends
        */
       public Builder setTracestate(
           io.opencensus.proto.trace.v1.Span.Tracestate.Builder builderForValue) {
-        if (tracestateBuilder_ == null) {
-          tracestate_ = builderForValue.build();
-          onChanged();
-        } else {
-          tracestateBuilder_.setMessage(builderForValue.build());
-        }
-
+        copyOnWrite();
+        instance.setTracestate(builderForValue.build());
         return this;
       }
-
       /**
        * <pre>
        * The Tracestate associated with the link.
@@ -11102,22 +5500,10 @@ public final class Span extends
        * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 5;</code>
        */
       public Builder mergeTracestate(io.opencensus.proto.trace.v1.Span.Tracestate value) {
-        if (tracestateBuilder_ == null) {
-          if (tracestate_ != null) {
-            tracestate_ =
-                io.opencensus.proto.trace.v1.Span.Tracestate.newBuilder(tracestate_)
-                                                            .mergeFrom(value).buildPartial();
-          } else {
-            tracestate_ = value;
-          }
-          onChanged();
-        } else {
-          tracestateBuilder_.mergeFrom(value);
-        }
-
+        copyOnWrite();
+        instance.mergeTracestate(value);
         return this;
       }
-
       /**
        * <pre>
        * The Tracestate associated with the link.
@@ -11125,317 +5511,149 @@ public final class Span extends
        *
        * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 5;</code>
        */
-      public Builder clearTracestate() {
-        if (tracestateBuilder_ == null) {
-          tracestate_ = null;
-          onChanged();
-        } else {
-          tracestate_ = null;
-          tracestateBuilder_ = null;
-        }
-
+      public Builder clearTracestate() {  copyOnWrite();
+        instance.clearTracestate();
         return this;
       }
-
-      /**
-       * <pre>
-       * The Tracestate associated with the link.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 5;</code>
-       */
-      public io.opencensus.proto.trace.v1.Span.Tracestate.Builder getTracestateBuilder() {
-
-        onChanged();
-        return getTracestateFieldBuilder().getBuilder();
-      }
-
-      /**
-       * <pre>
-       * The Tracestate associated with the link.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 5;</code>
-       */
-      public io.opencensus.proto.trace.v1.Span.TracestateOrBuilder getTracestateOrBuilder() {
-        if (tracestateBuilder_ != null) {
-          return tracestateBuilder_.getMessageOrBuilder();
-        } else {
-          return tracestate_ == null ?
-              io.opencensus.proto.trace.v1.Span.Tracestate.getDefaultInstance() : tracestate_;
-        }
-      }
-
-      /**
-       * <pre>
-       * The Tracestate associated with the link.
-       * </pre>
-       *
-       * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 5;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          io.opencensus.proto.trace.v1.Span.Tracestate,
-          io.opencensus.proto.trace.v1.Span.Tracestate.Builder,
-          io.opencensus.proto.trace.v1.Span.TracestateOrBuilder>
-      getTracestateFieldBuilder() {
-        if (tracestateBuilder_ == null) {
-          tracestateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              io.opencensus.proto.trace.v1.Span.Tracestate,
-              io.opencensus.proto.trace.v1.Span.Tracestate.Builder,
-              io.opencensus.proto.trace.v1.Span.TracestateOrBuilder>(
-              getTracestate(),
-              getParentForChildren(),
-              isClean());
-          tracestate_ = null;
-        }
-        return tracestateBuilder_;
-      }
-
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
 
       // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.Span.Link)
     }
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new io.opencensus.proto.trace.v1.Span.Link();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case BUILD_MESSAGE_INFO: {
+            java.lang.Object[] objects = new java.lang.Object[] {
+              "traceId_",
+              "spanId_",
+              "type_",
+              "attributes_",
+              "tracestate_",
+            };
+            java.lang.String info =
+                "\u0000\u0005\u0000\u0000\u0001\u0005\u0005\u0000\u0000\u0000\u0001\n\u0002\n\u0003" +
+                "\f\u0004\t\u0005\t";
+            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          com.google.protobuf.Parser<io.opencensus.proto.trace.v1.Span.Link> parser = PARSER;
+          if (parser == null) {
+            synchronized (io.opencensus.proto.trace.v1.Span.Link.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser =
+                    new DefaultInstanceBasedParser<io.opencensus.proto.trace.v1.Span.Link>(
+                        DEFAULT_INSTANCE);
+                PARSER = parser;
+              }
+            }
+          }
+          return parser;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
+    }
 
+
+    // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span.Link)
+    private static final io.opencensus.proto.trace.v1.Span.Link DEFAULT_INSTANCE;
+    static {
+      Link defaultInstance = new Link();
+      // New instances are implicitly immutable so no need to make
+      // immutable.
+      DEFAULT_INSTANCE = defaultInstance;
+      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+        Link.class, defaultInstance);
+    }
+
+    public static io.opencensus.proto.trace.v1.Span.Link getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<Link> PARSER;
+
+    public static com.google.protobuf.Parser<Link> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
+  public interface LinksOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.Span.Links)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <pre>
+     * A collection of links.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
+     */
+    java.util.List<io.opencensus.proto.trace.v1.Span.Link> 
+        getLinkList();
+    /**
+     * <pre>
+     * A collection of links.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
+     */
+    io.opencensus.proto.trace.v1.Span.Link getLink(int index);
+    /**
+     * <pre>
+     * A collection of links.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
+     */
+    int getLinkCount();
+
+    /**
+     * <pre>
+     * The number of dropped links after the maximum size was enforced. If
+     * this value is 0, then no links were dropped.
+     * </pre>
+     *
+     * <code>int32 dropped_links_count = 2;</code>
+     * @return The droppedLinksCount.
+     */
+    int getDroppedLinksCount();
+  }
   /**
    * <pre>
    * A collection of links, which are references from this span to a span
    * in the same or different trace.
    * </pre>
-   * <p>
+   *
    * Protobuf type {@code opencensus.proto.trace.v1.Span.Links}
    */
-  public static final class Links extends
-      com.google.protobuf.GeneratedMessageV3 implements
+  public  static final class Links extends
+      com.google.protobuf.GeneratedMessageLite<
+          Links, Links.Builder> implements
       // @@protoc_insertion_point(message_implements:opencensus.proto.trace.v1.Span.Links)
       LinksOrBuilder {
-    public static final int LINK_FIELD_NUMBER = 1;
-    public static final int DROPPED_LINKS_COUNT_FIELD_NUMBER = 2;
-    private static final long serialVersionUID = 0L;
-    // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span.Links)
-    private static final io.opencensus.proto.trace.v1.Span.Links DEFAULT_INSTANCE;
-    private static final com.google.protobuf.Parser<Links>
-        PARSER = new com.google.protobuf.AbstractParser<Links>() {
-      @java.lang.Override
-      public Links parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Links(input, extensionRegistry);
-      }
-    };
-
-    static {
-      DEFAULT_INSTANCE = new io.opencensus.proto.trace.v1.Span.Links();
-    }
-
-    private java.util.List<io.opencensus.proto.trace.v1.Span.Link> link_;
-    private int droppedLinksCount_;
-    private byte memoizedIsInitialized = -1;
-
-    // Use Links.newBuilder() to construct.
-    private Links(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-
     private Links() {
-      link_ = java.util.Collections.emptyList();
+      link_ = emptyProtobufList();
     }
-
-    private Links(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                link_ = new java.util.ArrayList<io.opencensus.proto.trace.v1.Span.Link>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              link_.add(
-                  input.readMessage(io.opencensus.proto.trace.v1.Span.Link.parser(),
-                      extensionRegistry));
-              break;
-            }
-            case 16: {
-
-              droppedLinksCount_ = input.readInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          link_ = java.util.Collections.unmodifiableList(link_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Links_descriptor;
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Links parseDelimitedFrom(
-        java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Links parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(io.opencensus.proto.trace.v1.Span.Links prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
-    public static io.opencensus.proto.trace.v1.Span.Links getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    public static com.google.protobuf.Parser<Links> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new Links();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Links_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.trace.v1.Span.Links.class,
-              io.opencensus.proto.trace.v1.Span.Links.Builder.class);
-    }
-
+    public static final int LINK_FIELD_NUMBER = 1;
+    private com.google.protobuf.Internal.ProtobufList<io.opencensus.proto.trace.v1.Span.Link> link_;
     /**
      * <pre>
      * A collection of links.
@@ -11447,7 +5665,6 @@ public final class Span extends
     public java.util.List<io.opencensus.proto.trace.v1.Span.Link> getLinkList() {
       return link_;
     }
-
     /**
      * <pre>
      * A collection of links.
@@ -11455,12 +5672,10 @@ public final class Span extends
      *
      * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
      */
-    @java.lang.Override
-    public java.util.List<? extends io.opencensus.proto.trace.v1.Span.LinkOrBuilder>
-    getLinkOrBuilderList() {
+    public java.util.List<? extends io.opencensus.proto.trace.v1.Span.LinkOrBuilder> 
+        getLinkOrBuilderList() {
       return link_;
     }
-
     /**
      * <pre>
      * A collection of links.
@@ -11472,7 +5687,6 @@ public final class Span extends
     public int getLinkCount() {
       return link_.size();
     }
-
     /**
      * <pre>
      * A collection of links.
@@ -11484,6 +5698,24 @@ public final class Span extends
     public io.opencensus.proto.trace.v1.Span.Link getLink(int index) {
       return link_.get(index);
     }
+    /**
+     * <pre>
+     * A collection of links.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
+     */
+    public io.opencensus.proto.trace.v1.Span.LinkOrBuilder getLinkOrBuilder(
+        int index) {
+      return link_.get(index);
+    }
+    private void ensureLinkIsMutable() {
+      com.google.protobuf.Internal.ProtobufList<io.opencensus.proto.trace.v1.Span.Link> tmp = link_;
+      if (!tmp.isModifiable()) {
+        link_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(tmp);
+       }
+    }
 
     /**
      * <pre>
@@ -11492,12 +5724,74 @@ public final class Span extends
      *
      * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
      */
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span.LinkOrBuilder getLinkOrBuilder(
-        int index) {
-      return link_.get(index);
+    private void setLink(
+        int index, io.opencensus.proto.trace.v1.Span.Link value) {
+      value.getClass();
+  ensureLinkIsMutable();
+      link_.set(index, value);
+    }
+    /**
+     * <pre>
+     * A collection of links.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
+     */
+    private void addLink(io.opencensus.proto.trace.v1.Span.Link value) {
+      value.getClass();
+  ensureLinkIsMutable();
+      link_.add(value);
+    }
+    /**
+     * <pre>
+     * A collection of links.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
+     */
+    private void addLink(
+        int index, io.opencensus.proto.trace.v1.Span.Link value) {
+      value.getClass();
+  ensureLinkIsMutable();
+      link_.add(index, value);
+    }
+    /**
+     * <pre>
+     * A collection of links.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
+     */
+    private void addAllLink(
+        java.lang.Iterable<? extends io.opencensus.proto.trace.v1.Span.Link> values) {
+      ensureLinkIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, link_);
+    }
+    /**
+     * <pre>
+     * A collection of links.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
+     */
+    private void clearLink() {
+      link_ = emptyProtobufList();
+    }
+    /**
+     * <pre>
+     * A collection of links.
+     * </pre>
+     *
+     * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
+     */
+    private void removeLink(int index) {
+      ensureLinkIsMutable();
+      link_.remove(index);
     }
 
+    public static final int DROPPED_LINKS_COUNT_FIELD_NUMBER = 2;
+    private int droppedLinksCount_;
     /**
      * <pre>
      * The number of dropped links after the maximum size was enforced. If
@@ -11505,126 +5799,117 @@ public final class Span extends
      * </pre>
      *
      * <code>int32 dropped_links_count = 2;</code>
-     *
      * @return The droppedLinksCount.
      */
     @java.lang.Override
     public int getDroppedLinksCount() {
       return droppedLinksCount_;
     }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) {
-        return true;
-      }
-      if (isInitialized == 0) {
-        return false;
-      }
-
-      memoizedIsInitialized = 1;
-      return true;
+    /**
+     * <pre>
+     * The number of dropped links after the maximum size was enforced. If
+     * this value is 0, then no links were dropped.
+     * </pre>
+     *
+     * <code>int32 dropped_links_count = 2;</code>
+     * @param value The droppedLinksCount to set.
+     */
+    private void setDroppedLinksCount(int value) {
+      
+      droppedLinksCount_ = value;
+    }
+    /**
+     * <pre>
+     * The number of dropped links after the maximum size was enforced. If
+     * this value is 0, then no links were dropped.
+     * </pre>
+     *
+     * <code>int32 dropped_links_count = 2;</code>
+     */
+    private void clearDroppedLinksCount() {
+      
+      droppedLinksCount_ = 0;
     }
 
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
+    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      for (int i = 0; i < link_.size(); i++) {
-        output.writeMessage(1, link_.get(i));
-      }
-      if (droppedLinksCount_ != 0) {
-        output.writeInt32(2, droppedLinksCount_);
-      }
-      unknownFields.writeTo(output);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Links parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Links parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.trace.v1.Span.Links parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
 
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) {
-        return size;
-      }
-
-      size = 0;
-      for (int i = 0; i < link_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(1, link_.get(i));
-      }
-      if (droppedLinksCount_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeInt32Size(2, droppedLinksCount_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-        return true;
-      }
-      if (!(obj instanceof io.opencensus.proto.trace.v1.Span.Links)) {
-        return super.equals(obj);
-      }
-      io.opencensus.proto.trace.v1.Span.Links other = (io.opencensus.proto.trace.v1.Span.Links) obj;
-
-      if (!getLinkList()
-          .equals(other.getLinkList())) {
-        return false;
-      }
-      if (getDroppedLinksCount()
-          != other.getDroppedLinksCount()) {
-        return false;
-      }
-      return unknownFields.equals(other.unknownFields);
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (getLinkCount() > 0) {
-        hash = (37 * hash) + LINK_FIELD_NUMBER;
-        hash = (53 * hash) + getLinkList().hashCode();
-      }
-      hash = (37 * hash) + DROPPED_LINKS_COUNT_FIELD_NUMBER;
-      hash = (53 * hash) + getDroppedLinksCount();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() {
-      return newBuilder();
-    }
-
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Links> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span.Links getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
+    public static Builder newBuilder(io.opencensus.proto.trace.v1.Span.Links prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
     }
 
     /**
@@ -11632,223 +5917,19 @@ public final class Span extends
      * A collection of links, which are references from this span to a span
      * in the same or different trace.
      * </pre>
-     * <p>
+     *
      * Protobuf type {@code opencensus.proto.trace.v1.Span.Links}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          io.opencensus.proto.trace.v1.Span.Links, Builder> implements
         // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.Span.Links)
         io.opencensus.proto.trace.v1.Span.LinksOrBuilder {
-      private int bitField0_;
-      private java.util.List<io.opencensus.proto.trace.v1.Span.Link> link_ =
-          java.util.Collections.emptyList();
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          io.opencensus.proto.trace.v1.Span.Link, io.opencensus.proto.trace.v1.Span.Link.Builder,
-          io.opencensus.proto.trace.v1.Span.LinkOrBuilder>
-          linkBuilder_;
-      private int droppedLinksCount_;
-
       // Construct using io.opencensus.proto.trace.v1.Span.Links.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+        super(DEFAULT_INSTANCE);
       }
 
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-
-      public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Links_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Links_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                io.opencensus.proto.trace.v1.Span.Links.class,
-                io.opencensus.proto.trace.v1.Span.Links.Builder.class);
-      }
-
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-            .alwaysUseFieldBuilders) {
-          getLinkFieldBuilder();
-        }
-      }
-
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (linkBuilder_ == null) {
-          link_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          linkBuilder_.clear();
-        }
-        droppedLinksCount_ = 0;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-      getDescriptorForType() {
-        return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_Links_descriptor;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.Links getDefaultInstanceForType() {
-        return io.opencensus.proto.trace.v1.Span.Links.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.Links build() {
-        io.opencensus.proto.trace.v1.Span.Links result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.trace.v1.Span.Links buildPartial() {
-        io.opencensus.proto.trace.v1.Span.Links result =
-            new io.opencensus.proto.trace.v1.Span.Links(this);
-        int from_bitField0_ = bitField0_;
-        if (linkBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            link_ = java.util.Collections.unmodifiableList(link_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.link_ = link_;
-        } else {
-          result.link_ = linkBuilder_.build();
-        }
-        result.droppedLinksCount_ = droppedLinksCount_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof io.opencensus.proto.trace.v1.Span.Links) {
-          return mergeFrom((io.opencensus.proto.trace.v1.Span.Links) other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(io.opencensus.proto.trace.v1.Span.Links other) {
-        if (other == io.opencensus.proto.trace.v1.Span.Links.getDefaultInstance()) {
-          return this;
-        }
-        if (linkBuilder_ == null) {
-          if (!other.link_.isEmpty()) {
-            if (link_.isEmpty()) {
-              link_ = other.link_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureLinkIsMutable();
-              link_.addAll(other.link_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.link_.isEmpty()) {
-            if (linkBuilder_.isEmpty()) {
-              linkBuilder_.dispose();
-              linkBuilder_ = null;
-              link_ = other.link_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              linkBuilder_ =
-                  com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                      getLinkFieldBuilder() : null;
-            } else {
-              linkBuilder_.addAllMessages(other.link_);
-            }
-          }
-        }
-        if (other.getDroppedLinksCount() != 0) {
-          setDroppedLinksCount(other.getDroppedLinksCount());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        io.opencensus.proto.trace.v1.Span.Links parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (io.opencensus.proto.trace.v1.Span.Links) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private void ensureLinkIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          link_ = new java.util.ArrayList<io.opencensus.proto.trace.v1.Span.Link>(link_);
-          bitField0_ |= 0x00000001;
-        }
-      }
 
       /**
        * <pre>
@@ -11857,14 +5938,11 @@ public final class Span extends
        *
        * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
        */
+      @java.lang.Override
       public java.util.List<io.opencensus.proto.trace.v1.Span.Link> getLinkList() {
-        if (linkBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(link_);
-        } else {
-          return linkBuilder_.getMessageList();
-        }
+        return java.util.Collections.unmodifiableList(
+            instance.getLinkList());
       }
-
       /**
        * <pre>
        * A collection of links.
@@ -11872,29 +5950,20 @@ public final class Span extends
        *
        * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
        */
+      @java.lang.Override
       public int getLinkCount() {
-        if (linkBuilder_ == null) {
-          return link_.size();
-        } else {
-          return linkBuilder_.getCount();
-        }
-      }
-
-      /**
+        return instance.getLinkCount();
+      }/**
        * <pre>
        * A collection of links.
        * </pre>
        *
        * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
        */
+      @java.lang.Override
       public io.opencensus.proto.trace.v1.Span.Link getLink(int index) {
-        if (linkBuilder_ == null) {
-          return link_.get(index);
-        } else {
-          return linkBuilder_.getMessage(index);
-        }
+        return instance.getLink(index);
       }
-
       /**
        * <pre>
        * A collection of links.
@@ -11904,19 +5973,10 @@ public final class Span extends
        */
       public Builder setLink(
           int index, io.opencensus.proto.trace.v1.Span.Link value) {
-        if (linkBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureLinkIsMutable();
-          link_.set(index, value);
-          onChanged();
-        } else {
-          linkBuilder_.setMessage(index, value);
-        }
+        copyOnWrite();
+        instance.setLink(index, value);
         return this;
       }
-
       /**
        * <pre>
        * A collection of links.
@@ -11926,16 +5986,11 @@ public final class Span extends
        */
       public Builder setLink(
           int index, io.opencensus.proto.trace.v1.Span.Link.Builder builderForValue) {
-        if (linkBuilder_ == null) {
-          ensureLinkIsMutable();
-          link_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          linkBuilder_.setMessage(index, builderForValue.build());
-        }
+        copyOnWrite();
+        instance.setLink(index,
+            builderForValue.build());
         return this;
       }
-
       /**
        * <pre>
        * A collection of links.
@@ -11944,19 +5999,10 @@ public final class Span extends
        * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
        */
       public Builder addLink(io.opencensus.proto.trace.v1.Span.Link value) {
-        if (linkBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureLinkIsMutable();
-          link_.add(value);
-          onChanged();
-        } else {
-          linkBuilder_.addMessage(value);
-        }
+        copyOnWrite();
+        instance.addLink(value);
         return this;
       }
-
       /**
        * <pre>
        * A collection of links.
@@ -11966,19 +6012,10 @@ public final class Span extends
        */
       public Builder addLink(
           int index, io.opencensus.proto.trace.v1.Span.Link value) {
-        if (linkBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureLinkIsMutable();
-          link_.add(index, value);
-          onChanged();
-        } else {
-          linkBuilder_.addMessage(index, value);
-        }
+        copyOnWrite();
+        instance.addLink(index, value);
         return this;
       }
-
       /**
        * <pre>
        * A collection of links.
@@ -11988,16 +6025,10 @@ public final class Span extends
        */
       public Builder addLink(
           io.opencensus.proto.trace.v1.Span.Link.Builder builderForValue) {
-        if (linkBuilder_ == null) {
-          ensureLinkIsMutable();
-          link_.add(builderForValue.build());
-          onChanged();
-        } else {
-          linkBuilder_.addMessage(builderForValue.build());
-        }
+        copyOnWrite();
+        instance.addLink(builderForValue.build());
         return this;
       }
-
       /**
        * <pre>
        * A collection of links.
@@ -12007,16 +6038,11 @@ public final class Span extends
        */
       public Builder addLink(
           int index, io.opencensus.proto.trace.v1.Span.Link.Builder builderForValue) {
-        if (linkBuilder_ == null) {
-          ensureLinkIsMutable();
-          link_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          linkBuilder_.addMessage(index, builderForValue.build());
-        }
+        copyOnWrite();
+        instance.addLink(index,
+            builderForValue.build());
         return this;
       }
-
       /**
        * <pre>
        * A collection of links.
@@ -12026,17 +6052,10 @@ public final class Span extends
        */
       public Builder addAllLink(
           java.lang.Iterable<? extends io.opencensus.proto.trace.v1.Span.Link> values) {
-        if (linkBuilder_ == null) {
-          ensureLinkIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, link_);
-          onChanged();
-        } else {
-          linkBuilder_.addAllMessages(values);
-        }
+        copyOnWrite();
+        instance.addAllLink(values);
         return this;
       }
-
       /**
        * <pre>
        * A collection of links.
@@ -12045,16 +6064,10 @@ public final class Span extends
        * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
        */
       public Builder clearLink() {
-        if (linkBuilder_ == null) {
-          link_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          linkBuilder_.clear();
-        }
+        copyOnWrite();
+        instance.clearLink();
         return this;
       }
-
       /**
        * <pre>
        * A collection of links.
@@ -12063,113 +6076,9 @@ public final class Span extends
        * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
        */
       public Builder removeLink(int index) {
-        if (linkBuilder_ == null) {
-          ensureLinkIsMutable();
-          link_.remove(index);
-          onChanged();
-        } else {
-          linkBuilder_.remove(index);
-        }
+        copyOnWrite();
+        instance.removeLink(index);
         return this;
-      }
-
-      /**
-       * <pre>
-       * A collection of links.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
-       */
-      public io.opencensus.proto.trace.v1.Span.Link.Builder getLinkBuilder(
-          int index) {
-        return getLinkFieldBuilder().getBuilder(index);
-      }
-
-      /**
-       * <pre>
-       * A collection of links.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
-       */
-      public io.opencensus.proto.trace.v1.Span.LinkOrBuilder getLinkOrBuilder(
-          int index) {
-        if (linkBuilder_ == null) {
-          return link_.get(index);
-        } else {
-          return linkBuilder_.getMessageOrBuilder(index);
-        }
-      }
-
-      /**
-       * <pre>
-       * A collection of links.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
-       */
-      public java.util.List<? extends io.opencensus.proto.trace.v1.Span.LinkOrBuilder>
-      getLinkOrBuilderList() {
-        if (linkBuilder_ != null) {
-          return linkBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(link_);
-        }
-      }
-
-      /**
-       * <pre>
-       * A collection of links.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
-       */
-      public io.opencensus.proto.trace.v1.Span.Link.Builder addLinkBuilder() {
-        return getLinkFieldBuilder().addBuilder(
-            io.opencensus.proto.trace.v1.Span.Link.getDefaultInstance());
-      }
-
-      /**
-       * <pre>
-       * A collection of links.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
-       */
-      public io.opencensus.proto.trace.v1.Span.Link.Builder addLinkBuilder(
-          int index) {
-        return getLinkFieldBuilder().addBuilder(
-            index, io.opencensus.proto.trace.v1.Span.Link.getDefaultInstance());
-      }
-
-      /**
-       * <pre>
-       * A collection of links.
-       * </pre>
-       *
-       * <code>repeated .opencensus.proto.trace.v1.Span.Link link = 1;</code>
-       */
-      public java.util.List<io.opencensus.proto.trace.v1.Span.Link.Builder>
-      getLinkBuilderList() {
-        return getLinkFieldBuilder().getBuilderList();
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          io.opencensus.proto.trace.v1.Span.Link, io.opencensus.proto.trace.v1.Span.Link.Builder,
-          io.opencensus.proto.trace.v1.Span.LinkOrBuilder>
-      getLinkFieldBuilder() {
-        if (linkBuilder_ == null) {
-          linkBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              io.opencensus.proto.trace.v1.Span.Link,
-              io.opencensus.proto.trace.v1.Span.Link.Builder,
-              io.opencensus.proto.trace.v1.Span.LinkOrBuilder>(
-              link_,
-              ((bitField0_ & 0x00000001) != 0),
-              getParentForChildren(),
-              isClean());
-          link_ = null;
-        }
-        return linkBuilder_;
       }
 
       /**
@@ -12179,14 +6088,12 @@ public final class Span extends
        * </pre>
        *
        * <code>int32 dropped_links_count = 2;</code>
-       *
        * @return The droppedLinksCount.
        */
       @java.lang.Override
       public int getDroppedLinksCount() {
-        return droppedLinksCount_;
+        return instance.getDroppedLinksCount();
       }
-
       /**
        * <pre>
        * The number of dropped links after the maximum size was enforced. If
@@ -12194,17 +6101,14 @@ public final class Span extends
        * </pre>
        *
        * <code>int32 dropped_links_count = 2;</code>
-       *
        * @param value The droppedLinksCount to set.
        * @return This builder for chaining.
        */
       public Builder setDroppedLinksCount(int value) {
-
-        droppedLinksCount_ = value;
-        onChanged();
+        copyOnWrite();
+        instance.setDroppedLinksCount(value);
         return this;
       }
-
       /**
        * <pre>
        * The number of dropped links after the maximum size was enforced. If
@@ -12212,32 +6116,1339 @@ public final class Span extends
        * </pre>
        *
        * <code>int32 dropped_links_count = 2;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearDroppedLinksCount() {
-
-        droppedLinksCount_ = 0;
-        onChanged();
+        copyOnWrite();
+        instance.clearDroppedLinksCount();
         return this;
       }
 
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
       // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.Span.Links)
     }
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new io.opencensus.proto.trace.v1.Span.Links();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case BUILD_MESSAGE_INFO: {
+            java.lang.Object[] objects = new java.lang.Object[] {
+              "link_",
+              io.opencensus.proto.trace.v1.Span.Link.class,
+              "droppedLinksCount_",
+            };
+            java.lang.String info =
+                "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0001\u0000\u0001\u001b\u0002\u0004" +
+                "";
+            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          com.google.protobuf.Parser<io.opencensus.proto.trace.v1.Span.Links> parser = PARSER;
+          if (parser == null) {
+            synchronized (io.opencensus.proto.trace.v1.Span.Links.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser =
+                    new DefaultInstanceBasedParser<io.opencensus.proto.trace.v1.Span.Links>(
+                        DEFAULT_INSTANCE);
+                PARSER = parser;
+              }
+            }
+          }
+          return parser;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
+    }
 
+
+    // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span.Links)
+    private static final io.opencensus.proto.trace.v1.Span.Links DEFAULT_INSTANCE;
+    static {
+      Links defaultInstance = new Links();
+      // New instances are implicitly immutable so no need to make
+      // immutable.
+      DEFAULT_INSTANCE = defaultInstance;
+      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+        Links.class, defaultInstance);
+    }
+
+    public static io.opencensus.proto.trace.v1.Span.Links getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<Links> PARSER;
+
+    public static com.google.protobuf.Parser<Links> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public static final int TRACE_ID_FIELD_NUMBER = 1;
+  private com.google.protobuf.ByteString traceId_;
+  /**
+   * <pre>
+   * A unique identifier for a trace. All spans from the same trace share
+   * the same `trace_id`. The ID is a 16-byte array. An ID with all zeroes
+   * is considered invalid.
+   * This field is semantically required. Receiver should generate new
+   * random trace_id if empty or invalid trace_id was received.
+   * This field is required.
+   * </pre>
+   *
+   * <code>bytes trace_id = 1;</code>
+   * @return The traceId.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString getTraceId() {
+    return traceId_;
+  }
+  /**
+   * <pre>
+   * A unique identifier for a trace. All spans from the same trace share
+   * the same `trace_id`. The ID is a 16-byte array. An ID with all zeroes
+   * is considered invalid.
+   * This field is semantically required. Receiver should generate new
+   * random trace_id if empty or invalid trace_id was received.
+   * This field is required.
+   * </pre>
+   *
+   * <code>bytes trace_id = 1;</code>
+   * @param value The traceId to set.
+   */
+  private void setTraceId(com.google.protobuf.ByteString value) {
+    value.getClass();
+  
+    traceId_ = value;
+  }
+  /**
+   * <pre>
+   * A unique identifier for a trace. All spans from the same trace share
+   * the same `trace_id`. The ID is a 16-byte array. An ID with all zeroes
+   * is considered invalid.
+   * This field is semantically required. Receiver should generate new
+   * random trace_id if empty or invalid trace_id was received.
+   * This field is required.
+   * </pre>
+   *
+   * <code>bytes trace_id = 1;</code>
+   */
+  private void clearTraceId() {
+    
+    traceId_ = getDefaultInstance().getTraceId();
+  }
+
+  public static final int SPAN_ID_FIELD_NUMBER = 2;
+  private com.google.protobuf.ByteString spanId_;
+  /**
+   * <pre>
+   * A unique identifier for a span within a trace, assigned when the span
+   * is created. The ID is an 8-byte array. An ID with all zeroes is considered
+   * invalid.
+   * This field is semantically required. Receiver should generate new
+   * random span_id if empty or invalid span_id was received.
+   * This field is required.
+   * </pre>
+   *
+   * <code>bytes span_id = 2;</code>
+   * @return The spanId.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString getSpanId() {
+    return spanId_;
+  }
+  /**
+   * <pre>
+   * A unique identifier for a span within a trace, assigned when the span
+   * is created. The ID is an 8-byte array. An ID with all zeroes is considered
+   * invalid.
+   * This field is semantically required. Receiver should generate new
+   * random span_id if empty or invalid span_id was received.
+   * This field is required.
+   * </pre>
+   *
+   * <code>bytes span_id = 2;</code>
+   * @param value The spanId to set.
+   */
+  private void setSpanId(com.google.protobuf.ByteString value) {
+    value.getClass();
+  
+    spanId_ = value;
+  }
+  /**
+   * <pre>
+   * A unique identifier for a span within a trace, assigned when the span
+   * is created. The ID is an 8-byte array. An ID with all zeroes is considered
+   * invalid.
+   * This field is semantically required. Receiver should generate new
+   * random span_id if empty or invalid span_id was received.
+   * This field is required.
+   * </pre>
+   *
+   * <code>bytes span_id = 2;</code>
+   */
+  private void clearSpanId() {
+    
+    spanId_ = getDefaultInstance().getSpanId();
+  }
+
+  public static final int TRACESTATE_FIELD_NUMBER = 15;
+  private io.opencensus.proto.trace.v1.Span.Tracestate tracestate_;
+  /**
+   * <pre>
+   * The Tracestate on the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 15;</code>
+   */
+  @java.lang.Override
+  public boolean hasTracestate() {
+    return tracestate_ != null;
+  }
+  /**
+   * <pre>
+   * The Tracestate on the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 15;</code>
+   */
+  @java.lang.Override
+  public io.opencensus.proto.trace.v1.Span.Tracestate getTracestate() {
+    return tracestate_ == null ? io.opencensus.proto.trace.v1.Span.Tracestate.getDefaultInstance() : tracestate_;
+  }
+  /**
+   * <pre>
+   * The Tracestate on the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 15;</code>
+   */
+  private void setTracestate(io.opencensus.proto.trace.v1.Span.Tracestate value) {
+    value.getClass();
+  tracestate_ = value;
+    
+    }
+  /**
+   * <pre>
+   * The Tracestate on the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 15;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeTracestate(io.opencensus.proto.trace.v1.Span.Tracestate value) {
+    value.getClass();
+  if (tracestate_ != null &&
+        tracestate_ != io.opencensus.proto.trace.v1.Span.Tracestate.getDefaultInstance()) {
+      tracestate_ =
+        io.opencensus.proto.trace.v1.Span.Tracestate.newBuilder(tracestate_).mergeFrom(value).buildPartial();
+    } else {
+      tracestate_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * The Tracestate on the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 15;</code>
+   */
+  private void clearTracestate() {  tracestate_ = null;
+    
+  }
+
+  public static final int PARENT_SPAN_ID_FIELD_NUMBER = 3;
+  private com.google.protobuf.ByteString parentSpanId_;
+  /**
+   * <pre>
+   * The `span_id` of this span's parent span. If this is a root span, then this
+   * field must be empty. The ID is an 8-byte array.
+   * </pre>
+   *
+   * <code>bytes parent_span_id = 3;</code>
+   * @return The parentSpanId.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString getParentSpanId() {
+    return parentSpanId_;
+  }
+  /**
+   * <pre>
+   * The `span_id` of this span's parent span. If this is a root span, then this
+   * field must be empty. The ID is an 8-byte array.
+   * </pre>
+   *
+   * <code>bytes parent_span_id = 3;</code>
+   * @param value The parentSpanId to set.
+   */
+  private void setParentSpanId(com.google.protobuf.ByteString value) {
+    value.getClass();
+  
+    parentSpanId_ = value;
+  }
+  /**
+   * <pre>
+   * The `span_id` of this span's parent span. If this is a root span, then this
+   * field must be empty. The ID is an 8-byte array.
+   * </pre>
+   *
+   * <code>bytes parent_span_id = 3;</code>
+   */
+  private void clearParentSpanId() {
+    
+    parentSpanId_ = getDefaultInstance().getParentSpanId();
+  }
+
+  public static final int NAME_FIELD_NUMBER = 4;
+  private io.opencensus.proto.trace.v1.TruncatableString name_;
+  /**
+   * <pre>
+   * A description of the span's operation.
+   * For example, the name can be a qualified method name or a file name
+   * and a line number where the operation is called. A best practice is to use
+   * the same display name at the same call point in an application.
+   * This makes it easier to correlate spans in different traces.
+   * This field is semantically required to be set to non-empty string.
+   * When null or empty string received - receiver may use string "name"
+   * as a replacement. There might be smarted algorithms implemented by
+   * receiver to fix the empty span name.
+   * This field is required.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.TruncatableString name = 4;</code>
+   */
+  @java.lang.Override
+  public boolean hasName() {
+    return name_ != null;
+  }
+  /**
+   * <pre>
+   * A description of the span's operation.
+   * For example, the name can be a qualified method name or a file name
+   * and a line number where the operation is called. A best practice is to use
+   * the same display name at the same call point in an application.
+   * This makes it easier to correlate spans in different traces.
+   * This field is semantically required to be set to non-empty string.
+   * When null or empty string received - receiver may use string "name"
+   * as a replacement. There might be smarted algorithms implemented by
+   * receiver to fix the empty span name.
+   * This field is required.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.TruncatableString name = 4;</code>
+   */
+  @java.lang.Override
+  public io.opencensus.proto.trace.v1.TruncatableString getName() {
+    return name_ == null ? io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance() : name_;
+  }
+  /**
+   * <pre>
+   * A description of the span's operation.
+   * For example, the name can be a qualified method name or a file name
+   * and a line number where the operation is called. A best practice is to use
+   * the same display name at the same call point in an application.
+   * This makes it easier to correlate spans in different traces.
+   * This field is semantically required to be set to non-empty string.
+   * When null or empty string received - receiver may use string "name"
+   * as a replacement. There might be smarted algorithms implemented by
+   * receiver to fix the empty span name.
+   * This field is required.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.TruncatableString name = 4;</code>
+   */
+  private void setName(io.opencensus.proto.trace.v1.TruncatableString value) {
+    value.getClass();
+  name_ = value;
+    
+    }
+  /**
+   * <pre>
+   * A description of the span's operation.
+   * For example, the name can be a qualified method name or a file name
+   * and a line number where the operation is called. A best practice is to use
+   * the same display name at the same call point in an application.
+   * This makes it easier to correlate spans in different traces.
+   * This field is semantically required to be set to non-empty string.
+   * When null or empty string received - receiver may use string "name"
+   * as a replacement. There might be smarted algorithms implemented by
+   * receiver to fix the empty span name.
+   * This field is required.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.TruncatableString name = 4;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeName(io.opencensus.proto.trace.v1.TruncatableString value) {
+    value.getClass();
+  if (name_ != null &&
+        name_ != io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance()) {
+      name_ =
+        io.opencensus.proto.trace.v1.TruncatableString.newBuilder(name_).mergeFrom(value).buildPartial();
+    } else {
+      name_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * A description of the span's operation.
+   * For example, the name can be a qualified method name or a file name
+   * and a line number where the operation is called. A best practice is to use
+   * the same display name at the same call point in an application.
+   * This makes it easier to correlate spans in different traces.
+   * This field is semantically required to be set to non-empty string.
+   * When null or empty string received - receiver may use string "name"
+   * as a replacement. There might be smarted algorithms implemented by
+   * receiver to fix the empty span name.
+   * This field is required.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.TruncatableString name = 4;</code>
+   */
+  private void clearName() {  name_ = null;
+    
+  }
+
+  public static final int KIND_FIELD_NUMBER = 14;
+  private int kind_;
+  /**
+   * <pre>
+   * Distinguishes between spans generated in a particular context. For example,
+   * two spans with the same name may be distinguished using `CLIENT` (caller)
+   * and `SERVER` (callee) to identify queueing latency associated with the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.SpanKind kind = 14;</code>
+   * @return The enum numeric value on the wire for kind.
+   */
+  @java.lang.Override
+  public int getKindValue() {
+    return kind_;
+  }
+  /**
+   * <pre>
+   * Distinguishes between spans generated in a particular context. For example,
+   * two spans with the same name may be distinguished using `CLIENT` (caller)
+   * and `SERVER` (callee) to identify queueing latency associated with the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.SpanKind kind = 14;</code>
+   * @return The kind.
+   */
+  @java.lang.Override
+  public io.opencensus.proto.trace.v1.Span.SpanKind getKind() {
+    io.opencensus.proto.trace.v1.Span.SpanKind result = io.opencensus.proto.trace.v1.Span.SpanKind.forNumber(kind_);
+    return result == null ? io.opencensus.proto.trace.v1.Span.SpanKind.UNRECOGNIZED : result;
+  }
+  /**
+   * <pre>
+   * Distinguishes between spans generated in a particular context. For example,
+   * two spans with the same name may be distinguished using `CLIENT` (caller)
+   * and `SERVER` (callee) to identify queueing latency associated with the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.SpanKind kind = 14;</code>
+   * @param value The enum numeric value on the wire for kind to set.
+   */
+  private void setKindValue(int value) {
+      kind_ = value;
+  }
+  /**
+   * <pre>
+   * Distinguishes between spans generated in a particular context. For example,
+   * two spans with the same name may be distinguished using `CLIENT` (caller)
+   * and `SERVER` (callee) to identify queueing latency associated with the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.SpanKind kind = 14;</code>
+   * @param value The kind to set.
+   */
+  private void setKind(io.opencensus.proto.trace.v1.Span.SpanKind value) {
+    kind_ = value.getNumber();
+    
+  }
+  /**
+   * <pre>
+   * Distinguishes between spans generated in a particular context. For example,
+   * two spans with the same name may be distinguished using `CLIENT` (caller)
+   * and `SERVER` (callee) to identify queueing latency associated with the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.SpanKind kind = 14;</code>
+   */
+  private void clearKind() {
+    
+    kind_ = 0;
+  }
+
+  public static final int START_TIME_FIELD_NUMBER = 5;
+  private com.google.protobuf.Timestamp startTime_;
+  /**
+   * <pre>
+   * The start time of the span. On the client side, this is the time kept by
+   * the local machine where the span execution starts. On the server side, this
+   * is the time when the server's application handler starts running.
+   * This field is semantically required. When not set on receive -
+   * receiver should set it to the value of end_time field if it was
+   * set. Or to the current time if neither was set. It is important to
+   * keep end_time &gt; start_time for consistency.
+   * This field is required.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp start_time = 5;</code>
+   */
+  @java.lang.Override
+  public boolean hasStartTime() {
+    return startTime_ != null;
+  }
+  /**
+   * <pre>
+   * The start time of the span. On the client side, this is the time kept by
+   * the local machine where the span execution starts. On the server side, this
+   * is the time when the server's application handler starts running.
+   * This field is semantically required. When not set on receive -
+   * receiver should set it to the value of end_time field if it was
+   * set. Or to the current time if neither was set. It is important to
+   * keep end_time &gt; start_time for consistency.
+   * This field is required.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp start_time = 5;</code>
+   */
+  @java.lang.Override
+  public com.google.protobuf.Timestamp getStartTime() {
+    return startTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : startTime_;
+  }
+  /**
+   * <pre>
+   * The start time of the span. On the client side, this is the time kept by
+   * the local machine where the span execution starts. On the server side, this
+   * is the time when the server's application handler starts running.
+   * This field is semantically required. When not set on receive -
+   * receiver should set it to the value of end_time field if it was
+   * set. Or to the current time if neither was set. It is important to
+   * keep end_time &gt; start_time for consistency.
+   * This field is required.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp start_time = 5;</code>
+   */
+  private void setStartTime(com.google.protobuf.Timestamp value) {
+    value.getClass();
+  startTime_ = value;
+    
+    }
+  /**
+   * <pre>
+   * The start time of the span. On the client side, this is the time kept by
+   * the local machine where the span execution starts. On the server side, this
+   * is the time when the server's application handler starts running.
+   * This field is semantically required. When not set on receive -
+   * receiver should set it to the value of end_time field if it was
+   * set. Or to the current time if neither was set. It is important to
+   * keep end_time &gt; start_time for consistency.
+   * This field is required.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp start_time = 5;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeStartTime(com.google.protobuf.Timestamp value) {
+    value.getClass();
+  if (startTime_ != null &&
+        startTime_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
+      startTime_ =
+        com.google.protobuf.Timestamp.newBuilder(startTime_).mergeFrom(value).buildPartial();
+    } else {
+      startTime_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * The start time of the span. On the client side, this is the time kept by
+   * the local machine where the span execution starts. On the server side, this
+   * is the time when the server's application handler starts running.
+   * This field is semantically required. When not set on receive -
+   * receiver should set it to the value of end_time field if it was
+   * set. Or to the current time if neither was set. It is important to
+   * keep end_time &gt; start_time for consistency.
+   * This field is required.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp start_time = 5;</code>
+   */
+  private void clearStartTime() {  startTime_ = null;
+    
+  }
+
+  public static final int END_TIME_FIELD_NUMBER = 6;
+  private com.google.protobuf.Timestamp endTime_;
+  /**
+   * <pre>
+   * The end time of the span. On the client side, this is the time kept by
+   * the local machine where the span execution ends. On the server side, this
+   * is the time when the server application handler stops running.
+   * This field is semantically required. When not set on receive -
+   * receiver should set it to start_time value. It is important to
+   * keep end_time &gt; start_time for consistency.
+   * This field is required.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp end_time = 6;</code>
+   */
+  @java.lang.Override
+  public boolean hasEndTime() {
+    return endTime_ != null;
+  }
+  /**
+   * <pre>
+   * The end time of the span. On the client side, this is the time kept by
+   * the local machine where the span execution ends. On the server side, this
+   * is the time when the server application handler stops running.
+   * This field is semantically required. When not set on receive -
+   * receiver should set it to start_time value. It is important to
+   * keep end_time &gt; start_time for consistency.
+   * This field is required.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp end_time = 6;</code>
+   */
+  @java.lang.Override
+  public com.google.protobuf.Timestamp getEndTime() {
+    return endTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : endTime_;
+  }
+  /**
+   * <pre>
+   * The end time of the span. On the client side, this is the time kept by
+   * the local machine where the span execution ends. On the server side, this
+   * is the time when the server application handler stops running.
+   * This field is semantically required. When not set on receive -
+   * receiver should set it to start_time value. It is important to
+   * keep end_time &gt; start_time for consistency.
+   * This field is required.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp end_time = 6;</code>
+   */
+  private void setEndTime(com.google.protobuf.Timestamp value) {
+    value.getClass();
+  endTime_ = value;
+    
+    }
+  /**
+   * <pre>
+   * The end time of the span. On the client side, this is the time kept by
+   * the local machine where the span execution ends. On the server side, this
+   * is the time when the server application handler stops running.
+   * This field is semantically required. When not set on receive -
+   * receiver should set it to start_time value. It is important to
+   * keep end_time &gt; start_time for consistency.
+   * This field is required.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp end_time = 6;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeEndTime(com.google.protobuf.Timestamp value) {
+    value.getClass();
+  if (endTime_ != null &&
+        endTime_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
+      endTime_ =
+        com.google.protobuf.Timestamp.newBuilder(endTime_).mergeFrom(value).buildPartial();
+    } else {
+      endTime_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * The end time of the span. On the client side, this is the time kept by
+   * the local machine where the span execution ends. On the server side, this
+   * is the time when the server application handler stops running.
+   * This field is semantically required. When not set on receive -
+   * receiver should set it to start_time value. It is important to
+   * keep end_time &gt; start_time for consistency.
+   * This field is required.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp end_time = 6;</code>
+   */
+  private void clearEndTime() {  endTime_ = null;
+    
+  }
+
+  public static final int ATTRIBUTES_FIELD_NUMBER = 7;
+  private io.opencensus.proto.trace.v1.Span.Attributes attributes_;
+  /**
+   * <pre>
+   * A set of attributes on the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 7;</code>
+   */
+  @java.lang.Override
+  public boolean hasAttributes() {
+    return attributes_ != null;
+  }
+  /**
+   * <pre>
+   * A set of attributes on the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 7;</code>
+   */
+  @java.lang.Override
+  public io.opencensus.proto.trace.v1.Span.Attributes getAttributes() {
+    return attributes_ == null ? io.opencensus.proto.trace.v1.Span.Attributes.getDefaultInstance() : attributes_;
+  }
+  /**
+   * <pre>
+   * A set of attributes on the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 7;</code>
+   */
+  private void setAttributes(io.opencensus.proto.trace.v1.Span.Attributes value) {
+    value.getClass();
+  attributes_ = value;
+    
+    }
+  /**
+   * <pre>
+   * A set of attributes on the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 7;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeAttributes(io.opencensus.proto.trace.v1.Span.Attributes value) {
+    value.getClass();
+  if (attributes_ != null &&
+        attributes_ != io.opencensus.proto.trace.v1.Span.Attributes.getDefaultInstance()) {
+      attributes_ =
+        io.opencensus.proto.trace.v1.Span.Attributes.newBuilder(attributes_).mergeFrom(value).buildPartial();
+    } else {
+      attributes_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * A set of attributes on the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 7;</code>
+   */
+  private void clearAttributes() {  attributes_ = null;
+    
+  }
+
+  public static final int STACK_TRACE_FIELD_NUMBER = 8;
+  private io.opencensus.proto.trace.v1.StackTrace stackTrace_;
+  /**
+   * <pre>
+   * A stack trace captured at the start of the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.StackTrace stack_trace = 8;</code>
+   */
+  @java.lang.Override
+  public boolean hasStackTrace() {
+    return stackTrace_ != null;
+  }
+  /**
+   * <pre>
+   * A stack trace captured at the start of the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.StackTrace stack_trace = 8;</code>
+   */
+  @java.lang.Override
+  public io.opencensus.proto.trace.v1.StackTrace getStackTrace() {
+    return stackTrace_ == null ? io.opencensus.proto.trace.v1.StackTrace.getDefaultInstance() : stackTrace_;
+  }
+  /**
+   * <pre>
+   * A stack trace captured at the start of the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.StackTrace stack_trace = 8;</code>
+   */
+  private void setStackTrace(io.opencensus.proto.trace.v1.StackTrace value) {
+    value.getClass();
+  stackTrace_ = value;
+    
+    }
+  /**
+   * <pre>
+   * A stack trace captured at the start of the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.StackTrace stack_trace = 8;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeStackTrace(io.opencensus.proto.trace.v1.StackTrace value) {
+    value.getClass();
+  if (stackTrace_ != null &&
+        stackTrace_ != io.opencensus.proto.trace.v1.StackTrace.getDefaultInstance()) {
+      stackTrace_ =
+        io.opencensus.proto.trace.v1.StackTrace.newBuilder(stackTrace_).mergeFrom(value).buildPartial();
+    } else {
+      stackTrace_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * A stack trace captured at the start of the span.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.StackTrace stack_trace = 8;</code>
+   */
+  private void clearStackTrace() {  stackTrace_ = null;
+    
+  }
+
+  public static final int TIME_EVENTS_FIELD_NUMBER = 9;
+  private io.opencensus.proto.trace.v1.Span.TimeEvents timeEvents_;
+  /**
+   * <pre>
+   * The included time events.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.TimeEvents time_events = 9;</code>
+   */
+  @java.lang.Override
+  public boolean hasTimeEvents() {
+    return timeEvents_ != null;
+  }
+  /**
+   * <pre>
+   * The included time events.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.TimeEvents time_events = 9;</code>
+   */
+  @java.lang.Override
+  public io.opencensus.proto.trace.v1.Span.TimeEvents getTimeEvents() {
+    return timeEvents_ == null ? io.opencensus.proto.trace.v1.Span.TimeEvents.getDefaultInstance() : timeEvents_;
+  }
+  /**
+   * <pre>
+   * The included time events.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.TimeEvents time_events = 9;</code>
+   */
+  private void setTimeEvents(io.opencensus.proto.trace.v1.Span.TimeEvents value) {
+    value.getClass();
+  timeEvents_ = value;
+    
+    }
+  /**
+   * <pre>
+   * The included time events.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.TimeEvents time_events = 9;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeTimeEvents(io.opencensus.proto.trace.v1.Span.TimeEvents value) {
+    value.getClass();
+  if (timeEvents_ != null &&
+        timeEvents_ != io.opencensus.proto.trace.v1.Span.TimeEvents.getDefaultInstance()) {
+      timeEvents_ =
+        io.opencensus.proto.trace.v1.Span.TimeEvents.newBuilder(timeEvents_).mergeFrom(value).buildPartial();
+    } else {
+      timeEvents_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * The included time events.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.TimeEvents time_events = 9;</code>
+   */
+  private void clearTimeEvents() {  timeEvents_ = null;
+    
+  }
+
+  public static final int LINKS_FIELD_NUMBER = 10;
+  private io.opencensus.proto.trace.v1.Span.Links links_;
+  /**
+   * <pre>
+   * The included links.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.Links links = 10;</code>
+   */
+  @java.lang.Override
+  public boolean hasLinks() {
+    return links_ != null;
+  }
+  /**
+   * <pre>
+   * The included links.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.Links links = 10;</code>
+   */
+  @java.lang.Override
+  public io.opencensus.proto.trace.v1.Span.Links getLinks() {
+    return links_ == null ? io.opencensus.proto.trace.v1.Span.Links.getDefaultInstance() : links_;
+  }
+  /**
+   * <pre>
+   * The included links.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.Links links = 10;</code>
+   */
+  private void setLinks(io.opencensus.proto.trace.v1.Span.Links value) {
+    value.getClass();
+  links_ = value;
+    
+    }
+  /**
+   * <pre>
+   * The included links.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.Links links = 10;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeLinks(io.opencensus.proto.trace.v1.Span.Links value) {
+    value.getClass();
+  if (links_ != null &&
+        links_ != io.opencensus.proto.trace.v1.Span.Links.getDefaultInstance()) {
+      links_ =
+        io.opencensus.proto.trace.v1.Span.Links.newBuilder(links_).mergeFrom(value).buildPartial();
+    } else {
+      links_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * The included links.
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Span.Links links = 10;</code>
+   */
+  private void clearLinks() {  links_ = null;
+    
+  }
+
+  public static final int STATUS_FIELD_NUMBER = 11;
+  private io.opencensus.proto.trace.v1.Status status_;
+  /**
+   * <pre>
+   * An optional final status for this span. Semantically when Status
+   * wasn't set it is means span ended without errors and assume
+   * Status.Ok (code = 0).
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Status status = 11;</code>
+   */
+  @java.lang.Override
+  public boolean hasStatus() {
+    return status_ != null;
+  }
+  /**
+   * <pre>
+   * An optional final status for this span. Semantically when Status
+   * wasn't set it is means span ended without errors and assume
+   * Status.Ok (code = 0).
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Status status = 11;</code>
+   */
+  @java.lang.Override
+  public io.opencensus.proto.trace.v1.Status getStatus() {
+    return status_ == null ? io.opencensus.proto.trace.v1.Status.getDefaultInstance() : status_;
+  }
+  /**
+   * <pre>
+   * An optional final status for this span. Semantically when Status
+   * wasn't set it is means span ended without errors and assume
+   * Status.Ok (code = 0).
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Status status = 11;</code>
+   */
+  private void setStatus(io.opencensus.proto.trace.v1.Status value) {
+    value.getClass();
+  status_ = value;
+    
+    }
+  /**
+   * <pre>
+   * An optional final status for this span. Semantically when Status
+   * wasn't set it is means span ended without errors and assume
+   * Status.Ok (code = 0).
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Status status = 11;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeStatus(io.opencensus.proto.trace.v1.Status value) {
+    value.getClass();
+  if (status_ != null &&
+        status_ != io.opencensus.proto.trace.v1.Status.getDefaultInstance()) {
+      status_ =
+        io.opencensus.proto.trace.v1.Status.newBuilder(status_).mergeFrom(value).buildPartial();
+    } else {
+      status_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * An optional final status for this span. Semantically when Status
+   * wasn't set it is means span ended without errors and assume
+   * Status.Ok (code = 0).
+   * </pre>
+   *
+   * <code>.opencensus.proto.trace.v1.Status status = 11;</code>
+   */
+  private void clearStatus() {  status_ = null;
+    
+  }
+
+  public static final int RESOURCE_FIELD_NUMBER = 16;
+  private io.opencensus.proto.resource.v1.Resource resource_;
+  /**
+   * <pre>
+   * An optional resource that is associated with this span. If not set, this span 
+   * should be part of a batch that does include the resource information, unless resource 
+   * information is unknown.
+   * </pre>
+   *
+   * <code>.opencensus.proto.resource.v1.Resource resource = 16;</code>
+   */
+  @java.lang.Override
+  public boolean hasResource() {
+    return resource_ != null;
+  }
+  /**
+   * <pre>
+   * An optional resource that is associated with this span. If not set, this span 
+   * should be part of a batch that does include the resource information, unless resource 
+   * information is unknown.
+   * </pre>
+   *
+   * <code>.opencensus.proto.resource.v1.Resource resource = 16;</code>
+   */
+  @java.lang.Override
+  public io.opencensus.proto.resource.v1.Resource getResource() {
+    return resource_ == null ? io.opencensus.proto.resource.v1.Resource.getDefaultInstance() : resource_;
+  }
+  /**
+   * <pre>
+   * An optional resource that is associated with this span. If not set, this span 
+   * should be part of a batch that does include the resource information, unless resource 
+   * information is unknown.
+   * </pre>
+   *
+   * <code>.opencensus.proto.resource.v1.Resource resource = 16;</code>
+   */
+  private void setResource(io.opencensus.proto.resource.v1.Resource value) {
+    value.getClass();
+  resource_ = value;
+    
+    }
+  /**
+   * <pre>
+   * An optional resource that is associated with this span. If not set, this span 
+   * should be part of a batch that does include the resource information, unless resource 
+   * information is unknown.
+   * </pre>
+   *
+   * <code>.opencensus.proto.resource.v1.Resource resource = 16;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeResource(io.opencensus.proto.resource.v1.Resource value) {
+    value.getClass();
+  if (resource_ != null &&
+        resource_ != io.opencensus.proto.resource.v1.Resource.getDefaultInstance()) {
+      resource_ =
+        io.opencensus.proto.resource.v1.Resource.newBuilder(resource_).mergeFrom(value).buildPartial();
+    } else {
+      resource_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * An optional resource that is associated with this span. If not set, this span 
+   * should be part of a batch that does include the resource information, unless resource 
+   * information is unknown.
+   * </pre>
+   *
+   * <code>.opencensus.proto.resource.v1.Resource resource = 16;</code>
+   */
+  private void clearResource() {  resource_ = null;
+    
+  }
+
+  public static final int SAME_PROCESS_AS_PARENT_SPAN_FIELD_NUMBER = 12;
+  private com.google.protobuf.BoolValue sameProcessAsParentSpan_;
+  /**
+   * <pre>
+   * A highly recommended but not required flag that identifies when a
+   * trace crosses a process boundary. True when the parent_span belongs
+   * to the same process as the current span. This flag is most commonly
+   * used to indicate the need to adjust time as clocks in different
+   * processes may not be synchronized.
+   * </pre>
+   *
+   * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
+   */
+  @java.lang.Override
+  public boolean hasSameProcessAsParentSpan() {
+    return sameProcessAsParentSpan_ != null;
+  }
+  /**
+   * <pre>
+   * A highly recommended but not required flag that identifies when a
+   * trace crosses a process boundary. True when the parent_span belongs
+   * to the same process as the current span. This flag is most commonly
+   * used to indicate the need to adjust time as clocks in different
+   * processes may not be synchronized.
+   * </pre>
+   *
+   * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
+   */
+  @java.lang.Override
+  public com.google.protobuf.BoolValue getSameProcessAsParentSpan() {
+    return sameProcessAsParentSpan_ == null ? com.google.protobuf.BoolValue.getDefaultInstance() : sameProcessAsParentSpan_;
+  }
+  /**
+   * <pre>
+   * A highly recommended but not required flag that identifies when a
+   * trace crosses a process boundary. True when the parent_span belongs
+   * to the same process as the current span. This flag is most commonly
+   * used to indicate the need to adjust time as clocks in different
+   * processes may not be synchronized.
+   * </pre>
+   *
+   * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
+   */
+  private void setSameProcessAsParentSpan(com.google.protobuf.BoolValue value) {
+    value.getClass();
+  sameProcessAsParentSpan_ = value;
+    
+    }
+  /**
+   * <pre>
+   * A highly recommended but not required flag that identifies when a
+   * trace crosses a process boundary. True when the parent_span belongs
+   * to the same process as the current span. This flag is most commonly
+   * used to indicate the need to adjust time as clocks in different
+   * processes may not be synchronized.
+   * </pre>
+   *
+   * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeSameProcessAsParentSpan(com.google.protobuf.BoolValue value) {
+    value.getClass();
+  if (sameProcessAsParentSpan_ != null &&
+        sameProcessAsParentSpan_ != com.google.protobuf.BoolValue.getDefaultInstance()) {
+      sameProcessAsParentSpan_ =
+        com.google.protobuf.BoolValue.newBuilder(sameProcessAsParentSpan_).mergeFrom(value).buildPartial();
+    } else {
+      sameProcessAsParentSpan_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * A highly recommended but not required flag that identifies when a
+   * trace crosses a process boundary. True when the parent_span belongs
+   * to the same process as the current span. This flag is most commonly
+   * used to indicate the need to adjust time as clocks in different
+   * processes may not be synchronized.
+   * </pre>
+   *
+   * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
+   */
+  private void clearSameProcessAsParentSpan() {  sameProcessAsParentSpan_ = null;
+    
+  }
+
+  public static final int CHILD_SPAN_COUNT_FIELD_NUMBER = 13;
+  private com.google.protobuf.UInt32Value childSpanCount_;
+  /**
+   * <pre>
+   * An optional number of child spans that were generated while this span
+   * was active. If set, allows an implementation to detect missing child spans.
+   * </pre>
+   *
+   * <code>.google.protobuf.UInt32Value child_span_count = 13;</code>
+   */
+  @java.lang.Override
+  public boolean hasChildSpanCount() {
+    return childSpanCount_ != null;
+  }
+  /**
+   * <pre>
+   * An optional number of child spans that were generated while this span
+   * was active. If set, allows an implementation to detect missing child spans.
+   * </pre>
+   *
+   * <code>.google.protobuf.UInt32Value child_span_count = 13;</code>
+   */
+  @java.lang.Override
+  public com.google.protobuf.UInt32Value getChildSpanCount() {
+    return childSpanCount_ == null ? com.google.protobuf.UInt32Value.getDefaultInstance() : childSpanCount_;
+  }
+  /**
+   * <pre>
+   * An optional number of child spans that were generated while this span
+   * was active. If set, allows an implementation to detect missing child spans.
+   * </pre>
+   *
+   * <code>.google.protobuf.UInt32Value child_span_count = 13;</code>
+   */
+  private void setChildSpanCount(com.google.protobuf.UInt32Value value) {
+    value.getClass();
+  childSpanCount_ = value;
+    
+    }
+  /**
+   * <pre>
+   * An optional number of child spans that were generated while this span
+   * was active. If set, allows an implementation to detect missing child spans.
+   * </pre>
+   *
+   * <code>.google.protobuf.UInt32Value child_span_count = 13;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeChildSpanCount(com.google.protobuf.UInt32Value value) {
+    value.getClass();
+  if (childSpanCount_ != null &&
+        childSpanCount_ != com.google.protobuf.UInt32Value.getDefaultInstance()) {
+      childSpanCount_ =
+        com.google.protobuf.UInt32Value.newBuilder(childSpanCount_).mergeFrom(value).buildPartial();
+    } else {
+      childSpanCount_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * An optional number of child spans that were generated while this span
+   * was active. If set, allows an implementation to detect missing child spans.
+   * </pre>
+   *
+   * <code>.google.protobuf.UInt32Value child_span_count = 13;</code>
+   */
+  private void clearChildSpanCount() {  childSpanCount_ = null;
+    
+  }
+
+  public static io.opencensus.proto.trace.v1.Span parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.trace.v1.Span parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.trace.v1.Span parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.trace.v1.Span parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.trace.v1.Span parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.trace.v1.Span parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.trace.v1.Span parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.trace.v1.Span parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.trace.v1.Span parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.trace.v1.Span parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.trace.v1.Span parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.trace.v1.Span parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+
+  public static Builder newBuilder() {
+    return (Builder) DEFAULT_INSTANCE.createBuilder();
+  }
+  public static Builder newBuilder(io.opencensus.proto.trace.v1.Span prototype) {
+    return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
   }
 
   /**
@@ -12252,419 +7463,19 @@ public final class Span extends
    * The next id is 17.
    * TODO(bdrutu): Add an example.
    * </pre>
-   * <p>
+   *
    * Protobuf type {@code opencensus.proto.trace.v1.Span}
    */
   public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+      com.google.protobuf.GeneratedMessageLite.Builder<
+        io.opencensus.proto.trace.v1.Span, Builder> implements
       // @@protoc_insertion_point(builder_implements:opencensus.proto.trace.v1.Span)
       io.opencensus.proto.trace.v1.SpanOrBuilder {
-    private com.google.protobuf.ByteString traceId_ = com.google.protobuf.ByteString.EMPTY;
-    private com.google.protobuf.ByteString spanId_ = com.google.protobuf.ByteString.EMPTY;
-    private io.opencensus.proto.trace.v1.Span.Tracestate tracestate_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.Span.Tracestate,
-        io.opencensus.proto.trace.v1.Span.Tracestate.Builder,
-        io.opencensus.proto.trace.v1.Span.TracestateOrBuilder>
-        tracestateBuilder_;
-    private com.google.protobuf.ByteString parentSpanId_ = com.google.protobuf.ByteString.EMPTY;
-    private io.opencensus.proto.trace.v1.TruncatableString name_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.TruncatableString,
-        io.opencensus.proto.trace.v1.TruncatableString.Builder,
-        io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
-        nameBuilder_;
-    private int kind_ = 0;
-    private com.google.protobuf.Timestamp startTime_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-        com.google.protobuf.TimestampOrBuilder>
-        startTimeBuilder_;
-    private com.google.protobuf.Timestamp endTime_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-        com.google.protobuf.TimestampOrBuilder>
-        endTimeBuilder_;
-    private io.opencensus.proto.trace.v1.Span.Attributes attributes_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.Span.Attributes,
-        io.opencensus.proto.trace.v1.Span.Attributes.Builder,
-        io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
-        attributesBuilder_;
-    private io.opencensus.proto.trace.v1.StackTrace stackTrace_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.StackTrace, io.opencensus.proto.trace.v1.StackTrace.Builder,
-        io.opencensus.proto.trace.v1.StackTraceOrBuilder>
-        stackTraceBuilder_;
-    private io.opencensus.proto.trace.v1.Span.TimeEvents timeEvents_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.Span.TimeEvents,
-        io.opencensus.proto.trace.v1.Span.TimeEvents.Builder,
-        io.opencensus.proto.trace.v1.Span.TimeEventsOrBuilder>
-        timeEventsBuilder_;
-    private io.opencensus.proto.trace.v1.Span.Links links_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.Span.Links, io.opencensus.proto.trace.v1.Span.Links.Builder,
-        io.opencensus.proto.trace.v1.Span.LinksOrBuilder>
-        linksBuilder_;
-    private io.opencensus.proto.trace.v1.Status status_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.Status, io.opencensus.proto.trace.v1.Status.Builder,
-        io.opencensus.proto.trace.v1.StatusOrBuilder>
-        statusBuilder_;
-    private io.opencensus.proto.resource.v1.Resource resource_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.resource.v1.Resource,
-        io.opencensus.proto.resource.v1.Resource.Builder,
-        io.opencensus.proto.resource.v1.ResourceOrBuilder>
-        resourceBuilder_;
-    private com.google.protobuf.BoolValue sameProcessAsParentSpan_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.BoolValue, com.google.protobuf.BoolValue.Builder,
-        com.google.protobuf.BoolValueOrBuilder>
-        sameProcessAsParentSpanBuilder_;
-    private com.google.protobuf.UInt32Value childSpanCount_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.UInt32Value, com.google.protobuf.UInt32Value.Builder,
-        com.google.protobuf.UInt32ValueOrBuilder>
-        childSpanCountBuilder_;
-
     // Construct using io.opencensus.proto.trace.v1.Span.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+      super(DEFAULT_INSTANCE);
     }
 
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.trace.v1.Span.class,
-              io.opencensus.proto.trace.v1.Span.Builder.class);
-    }
-
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-          .alwaysUseFieldBuilders) {
-      }
-    }
-
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      traceId_ = com.google.protobuf.ByteString.EMPTY;
-
-      spanId_ = com.google.protobuf.ByteString.EMPTY;
-
-      if (tracestateBuilder_ == null) {
-        tracestate_ = null;
-      } else {
-        tracestate_ = null;
-        tracestateBuilder_ = null;
-      }
-      parentSpanId_ = com.google.protobuf.ByteString.EMPTY;
-
-      if (nameBuilder_ == null) {
-        name_ = null;
-      } else {
-        name_ = null;
-        nameBuilder_ = null;
-      }
-      kind_ = 0;
-
-      if (startTimeBuilder_ == null) {
-        startTime_ = null;
-      } else {
-        startTime_ = null;
-        startTimeBuilder_ = null;
-      }
-      if (endTimeBuilder_ == null) {
-        endTime_ = null;
-      } else {
-        endTime_ = null;
-        endTimeBuilder_ = null;
-      }
-      if (attributesBuilder_ == null) {
-        attributes_ = null;
-      } else {
-        attributes_ = null;
-        attributesBuilder_ = null;
-      }
-      if (stackTraceBuilder_ == null) {
-        stackTrace_ = null;
-      } else {
-        stackTrace_ = null;
-        stackTraceBuilder_ = null;
-      }
-      if (timeEventsBuilder_ == null) {
-        timeEvents_ = null;
-      } else {
-        timeEvents_ = null;
-        timeEventsBuilder_ = null;
-      }
-      if (linksBuilder_ == null) {
-        links_ = null;
-      } else {
-        links_ = null;
-        linksBuilder_ = null;
-      }
-      if (statusBuilder_ == null) {
-        status_ = null;
-      } else {
-        status_ = null;
-        statusBuilder_ = null;
-      }
-      if (resourceBuilder_ == null) {
-        resource_ = null;
-      } else {
-        resource_ = null;
-        resourceBuilder_ = null;
-      }
-      if (sameProcessAsParentSpanBuilder_ == null) {
-        sameProcessAsParentSpan_ = null;
-      } else {
-        sameProcessAsParentSpan_ = null;
-        sameProcessAsParentSpanBuilder_ = null;
-      }
-      if (childSpanCountBuilder_ == null) {
-        childSpanCount_ = null;
-      } else {
-        childSpanCount_ = null;
-        childSpanCountBuilder_ = null;
-      }
-      return this;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return io.opencensus.proto.trace.v1.TraceProto.internal_static_opencensus_proto_trace_v1_Span_descriptor;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span getDefaultInstanceForType() {
-      return io.opencensus.proto.trace.v1.Span.getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span build() {
-      io.opencensus.proto.trace.v1.Span result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.trace.v1.Span buildPartial() {
-      io.opencensus.proto.trace.v1.Span result = new io.opencensus.proto.trace.v1.Span(this);
-      result.traceId_ = traceId_;
-      result.spanId_ = spanId_;
-      if (tracestateBuilder_ == null) {
-        result.tracestate_ = tracestate_;
-      } else {
-        result.tracestate_ = tracestateBuilder_.build();
-      }
-      result.parentSpanId_ = parentSpanId_;
-      if (nameBuilder_ == null) {
-        result.name_ = name_;
-      } else {
-        result.name_ = nameBuilder_.build();
-      }
-      result.kind_ = kind_;
-      if (startTimeBuilder_ == null) {
-        result.startTime_ = startTime_;
-      } else {
-        result.startTime_ = startTimeBuilder_.build();
-      }
-      if (endTimeBuilder_ == null) {
-        result.endTime_ = endTime_;
-      } else {
-        result.endTime_ = endTimeBuilder_.build();
-      }
-      if (attributesBuilder_ == null) {
-        result.attributes_ = attributes_;
-      } else {
-        result.attributes_ = attributesBuilder_.build();
-      }
-      if (stackTraceBuilder_ == null) {
-        result.stackTrace_ = stackTrace_;
-      } else {
-        result.stackTrace_ = stackTraceBuilder_.build();
-      }
-      if (timeEventsBuilder_ == null) {
-        result.timeEvents_ = timeEvents_;
-      } else {
-        result.timeEvents_ = timeEventsBuilder_.build();
-      }
-      if (linksBuilder_ == null) {
-        result.links_ = links_;
-      } else {
-        result.links_ = linksBuilder_.build();
-      }
-      if (statusBuilder_ == null) {
-        result.status_ = status_;
-      } else {
-        result.status_ = statusBuilder_.build();
-      }
-      if (resourceBuilder_ == null) {
-        result.resource_ = resource_;
-      } else {
-        result.resource_ = resourceBuilder_.build();
-      }
-      if (sameProcessAsParentSpanBuilder_ == null) {
-        result.sameProcessAsParentSpan_ = sameProcessAsParentSpan_;
-      } else {
-        result.sameProcessAsParentSpan_ = sameProcessAsParentSpanBuilder_.build();
-      }
-      if (childSpanCountBuilder_ == null) {
-        result.childSpanCount_ = childSpanCount_;
-      } else {
-        result.childSpanCount_ = childSpanCountBuilder_.build();
-      }
-      onBuilt();
-      return result;
-    }
-
-    @java.lang.Override
-    public Builder clone() {
-      return super.clone();
-    }
-
-    @java.lang.Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.setField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-
-    @java.lang.Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-
-    @java.lang.Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-
-    @java.lang.Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof io.opencensus.proto.trace.v1.Span) {
-        return mergeFrom((io.opencensus.proto.trace.v1.Span) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(io.opencensus.proto.trace.v1.Span other) {
-      if (other == io.opencensus.proto.trace.v1.Span.getDefaultInstance()) {
-        return this;
-      }
-      if (other.getTraceId() != com.google.protobuf.ByteString.EMPTY) {
-        setTraceId(other.getTraceId());
-      }
-      if (other.getSpanId() != com.google.protobuf.ByteString.EMPTY) {
-        setSpanId(other.getSpanId());
-      }
-      if (other.hasTracestate()) {
-        mergeTracestate(other.getTracestate());
-      }
-      if (other.getParentSpanId() != com.google.protobuf.ByteString.EMPTY) {
-        setParentSpanId(other.getParentSpanId());
-      }
-      if (other.hasName()) {
-        mergeName(other.getName());
-      }
-      if (other.kind_ != 0) {
-        setKindValue(other.getKindValue());
-      }
-      if (other.hasStartTime()) {
-        mergeStartTime(other.getStartTime());
-      }
-      if (other.hasEndTime()) {
-        mergeEndTime(other.getEndTime());
-      }
-      if (other.hasAttributes()) {
-        mergeAttributes(other.getAttributes());
-      }
-      if (other.hasStackTrace()) {
-        mergeStackTrace(other.getStackTrace());
-      }
-      if (other.hasTimeEvents()) {
-        mergeTimeEvents(other.getTimeEvents());
-      }
-      if (other.hasLinks()) {
-        mergeLinks(other.getLinks());
-      }
-      if (other.hasStatus()) {
-        mergeStatus(other.getStatus());
-      }
-      if (other.hasResource()) {
-        mergeResource(other.getResource());
-      }
-      if (other.hasSameProcessAsParentSpan()) {
-        mergeSameProcessAsParentSpan(other.getSameProcessAsParentSpan());
-      }
-      if (other.hasChildSpanCount()) {
-        mergeChildSpanCount(other.getChildSpanCount());
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      io.opencensus.proto.trace.v1.Span parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.opencensus.proto.trace.v1.Span) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
-      return this;
-    }
 
     /**
      * <pre>
@@ -12677,14 +7488,12 @@ public final class Span extends
      * </pre>
      *
      * <code>bytes trace_id = 1;</code>
-     *
      * @return The traceId.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString getTraceId() {
-      return traceId_;
+      return instance.getTraceId();
     }
-
     /**
      * <pre>
      * A unique identifier for a trace. All spans from the same trace share
@@ -12696,20 +7505,14 @@ public final class Span extends
      * </pre>
      *
      * <code>bytes trace_id = 1;</code>
-     *
      * @param value The traceId to set.
      * @return This builder for chaining.
      */
     public Builder setTraceId(com.google.protobuf.ByteString value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-
-      traceId_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setTraceId(value);
       return this;
     }
-
     /**
      * <pre>
      * A unique identifier for a trace. All spans from the same trace share
@@ -12721,13 +7524,11 @@ public final class Span extends
      * </pre>
      *
      * <code>bytes trace_id = 1;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearTraceId() {
-
-      traceId_ = getDefaultInstance().getTraceId();
-      onChanged();
+      copyOnWrite();
+      instance.clearTraceId();
       return this;
     }
 
@@ -12742,14 +7543,12 @@ public final class Span extends
      * </pre>
      *
      * <code>bytes span_id = 2;</code>
-     *
      * @return The spanId.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString getSpanId() {
-      return spanId_;
+      return instance.getSpanId();
     }
-
     /**
      * <pre>
      * A unique identifier for a span within a trace, assigned when the span
@@ -12761,20 +7560,14 @@ public final class Span extends
      * </pre>
      *
      * <code>bytes span_id = 2;</code>
-     *
      * @param value The spanId to set.
      * @return This builder for chaining.
      */
     public Builder setSpanId(com.google.protobuf.ByteString value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-
-      spanId_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setSpanId(value);
       return this;
     }
-
     /**
      * <pre>
      * A unique identifier for a span within a trace, assigned when the span
@@ -12786,13 +7579,11 @@ public final class Span extends
      * </pre>
      *
      * <code>bytes span_id = 2;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearSpanId() {
-
-      spanId_ = getDefaultInstance().getSpanId();
-      onChanged();
+      copyOnWrite();
+      instance.clearSpanId();
       return this;
     }
 
@@ -12802,31 +7593,22 @@ public final class Span extends
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 15;</code>
-     *
-     * @return Whether the tracestate field is set.
      */
+    @java.lang.Override
     public boolean hasTracestate() {
-      return tracestateBuilder_ != null || tracestate_ != null;
+      return instance.hasTracestate();
     }
-
     /**
      * <pre>
      * The Tracestate on the span.
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 15;</code>
-     *
-     * @return The tracestate.
      */
+    @java.lang.Override
     public io.opencensus.proto.trace.v1.Span.Tracestate getTracestate() {
-      if (tracestateBuilder_ == null) {
-        return tracestate_ == null ?
-            io.opencensus.proto.trace.v1.Span.Tracestate.getDefaultInstance() : tracestate_;
-      } else {
-        return tracestateBuilder_.getMessage();
-      }
+      return instance.getTracestate();
     }
-
     /**
      * <pre>
      * The Tracestate on the span.
@@ -12835,19 +7617,10 @@ public final class Span extends
      * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 15;</code>
      */
     public Builder setTracestate(io.opencensus.proto.trace.v1.Span.Tracestate value) {
-      if (tracestateBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        tracestate_ = value;
-        onChanged();
-      } else {
-        tracestateBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setTracestate(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * The Tracestate on the span.
@@ -12857,16 +7630,10 @@ public final class Span extends
      */
     public Builder setTracestate(
         io.opencensus.proto.trace.v1.Span.Tracestate.Builder builderForValue) {
-      if (tracestateBuilder_ == null) {
-        tracestate_ = builderForValue.build();
-        onChanged();
-      } else {
-        tracestateBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setTracestate(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * The Tracestate on the span.
@@ -12875,22 +7642,10 @@ public final class Span extends
      * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 15;</code>
      */
     public Builder mergeTracestate(io.opencensus.proto.trace.v1.Span.Tracestate value) {
-      if (tracestateBuilder_ == null) {
-        if (tracestate_ != null) {
-          tracestate_ =
-              io.opencensus.proto.trace.v1.Span.Tracestate.newBuilder(tracestate_).mergeFrom(value)
-                                                          .buildPartial();
-        } else {
-          tracestate_ = value;
-        }
-        onChanged();
-      } else {
-        tracestateBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeTracestate(value);
       return this;
     }
-
     /**
      * <pre>
      * The Tracestate on the span.
@@ -12898,70 +7653,9 @@ public final class Span extends
      *
      * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 15;</code>
      */
-    public Builder clearTracestate() {
-      if (tracestateBuilder_ == null) {
-        tracestate_ = null;
-        onChanged();
-      } else {
-        tracestate_ = null;
-        tracestateBuilder_ = null;
-      }
-
+    public Builder clearTracestate() {  copyOnWrite();
+      instance.clearTracestate();
       return this;
-    }
-
-    /**
-     * <pre>
-     * The Tracestate on the span.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 15;</code>
-     */
-    public io.opencensus.proto.trace.v1.Span.Tracestate.Builder getTracestateBuilder() {
-
-      onChanged();
-      return getTracestateFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * The Tracestate on the span.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 15;</code>
-     */
-    public io.opencensus.proto.trace.v1.Span.TracestateOrBuilder getTracestateOrBuilder() {
-      if (tracestateBuilder_ != null) {
-        return tracestateBuilder_.getMessageOrBuilder();
-      } else {
-        return tracestate_ == null ?
-            io.opencensus.proto.trace.v1.Span.Tracestate.getDefaultInstance() : tracestate_;
-      }
-    }
-
-    /**
-     * <pre>
-     * The Tracestate on the span.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.Tracestate tracestate = 15;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.Span.Tracestate,
-        io.opencensus.proto.trace.v1.Span.Tracestate.Builder,
-        io.opencensus.proto.trace.v1.Span.TracestateOrBuilder>
-    getTracestateFieldBuilder() {
-      if (tracestateBuilder_ == null) {
-        tracestateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.trace.v1.Span.Tracestate,
-            io.opencensus.proto.trace.v1.Span.Tracestate.Builder,
-            io.opencensus.proto.trace.v1.Span.TracestateOrBuilder>(
-            getTracestate(),
-            getParentForChildren(),
-            isClean());
-        tracestate_ = null;
-      }
-      return tracestateBuilder_;
     }
 
     /**
@@ -12971,14 +7665,12 @@ public final class Span extends
      * </pre>
      *
      * <code>bytes parent_span_id = 3;</code>
-     *
      * @return The parentSpanId.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString getParentSpanId() {
-      return parentSpanId_;
+      return instance.getParentSpanId();
     }
-
     /**
      * <pre>
      * The `span_id` of this span's parent span. If this is a root span, then this
@@ -12986,20 +7678,14 @@ public final class Span extends
      * </pre>
      *
      * <code>bytes parent_span_id = 3;</code>
-     *
      * @param value The parentSpanId to set.
      * @return This builder for chaining.
      */
     public Builder setParentSpanId(com.google.protobuf.ByteString value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-
-      parentSpanId_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setParentSpanId(value);
       return this;
     }
-
     /**
      * <pre>
      * The `span_id` of this span's parent span. If this is a root span, then this
@@ -13007,13 +7693,11 @@ public final class Span extends
      * </pre>
      *
      * <code>bytes parent_span_id = 3;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearParentSpanId() {
-
-      parentSpanId_ = getDefaultInstance().getParentSpanId();
-      onChanged();
+      copyOnWrite();
+      instance.clearParentSpanId();
       return this;
     }
 
@@ -13032,13 +7716,11 @@ public final class Span extends
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.TruncatableString name = 4;</code>
-     *
-     * @return Whether the name field is set.
      */
+    @java.lang.Override
     public boolean hasName() {
-      return nameBuilder_ != null || name_ != null;
+      return instance.hasName();
     }
-
     /**
      * <pre>
      * A description of the span's operation.
@@ -13054,18 +7736,11 @@ public final class Span extends
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.TruncatableString name = 4;</code>
-     *
-     * @return The name.
      */
+    @java.lang.Override
     public io.opencensus.proto.trace.v1.TruncatableString getName() {
-      if (nameBuilder_ == null) {
-        return name_ == null ? io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance() :
-            name_;
-      } else {
-        return nameBuilder_.getMessage();
-      }
+      return instance.getName();
     }
-
     /**
      * <pre>
      * A description of the span's operation.
@@ -13083,19 +7758,10 @@ public final class Span extends
      * <code>.opencensus.proto.trace.v1.TruncatableString name = 4;</code>
      */
     public Builder setName(io.opencensus.proto.trace.v1.TruncatableString value) {
-      if (nameBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        name_ = value;
-        onChanged();
-      } else {
-        nameBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setName(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * A description of the span's operation.
@@ -13114,16 +7780,10 @@ public final class Span extends
      */
     public Builder setName(
         io.opencensus.proto.trace.v1.TruncatableString.Builder builderForValue) {
-      if (nameBuilder_ == null) {
-        name_ = builderForValue.build();
-        onChanged();
-      } else {
-        nameBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setName(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * A description of the span's operation.
@@ -13141,22 +7801,10 @@ public final class Span extends
      * <code>.opencensus.proto.trace.v1.TruncatableString name = 4;</code>
      */
     public Builder mergeName(io.opencensus.proto.trace.v1.TruncatableString value) {
-      if (nameBuilder_ == null) {
-        if (name_ != null) {
-          name_ =
-              io.opencensus.proto.trace.v1.TruncatableString.newBuilder(name_).mergeFrom(value)
-                                                            .buildPartial();
-        } else {
-          name_ = value;
-        }
-        onChanged();
-      } else {
-        nameBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeName(value);
       return this;
     }
-
     /**
      * <pre>
      * A description of the span's operation.
@@ -13173,97 +7821,9 @@ public final class Span extends
      *
      * <code>.opencensus.proto.trace.v1.TruncatableString name = 4;</code>
      */
-    public Builder clearName() {
-      if (nameBuilder_ == null) {
-        name_ = null;
-        onChanged();
-      } else {
-        name_ = null;
-        nameBuilder_ = null;
-      }
-
+    public Builder clearName() {  copyOnWrite();
+      instance.clearName();
       return this;
-    }
-
-    /**
-     * <pre>
-     * A description of the span's operation.
-     * For example, the name can be a qualified method name or a file name
-     * and a line number where the operation is called. A best practice is to use
-     * the same display name at the same call point in an application.
-     * This makes it easier to correlate spans in different traces.
-     * This field is semantically required to be set to non-empty string.
-     * When null or empty string received - receiver may use string "name"
-     * as a replacement. There might be smarted algorithms implemented by
-     * receiver to fix the empty span name.
-     * This field is required.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.TruncatableString name = 4;</code>
-     */
-    public io.opencensus.proto.trace.v1.TruncatableString.Builder getNameBuilder() {
-
-      onChanged();
-      return getNameFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * A description of the span's operation.
-     * For example, the name can be a qualified method name or a file name
-     * and a line number where the operation is called. A best practice is to use
-     * the same display name at the same call point in an application.
-     * This makes it easier to correlate spans in different traces.
-     * This field is semantically required to be set to non-empty string.
-     * When null or empty string received - receiver may use string "name"
-     * as a replacement. There might be smarted algorithms implemented by
-     * receiver to fix the empty span name.
-     * This field is required.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.TruncatableString name = 4;</code>
-     */
-    public io.opencensus.proto.trace.v1.TruncatableStringOrBuilder getNameOrBuilder() {
-      if (nameBuilder_ != null) {
-        return nameBuilder_.getMessageOrBuilder();
-      } else {
-        return name_ == null ?
-            io.opencensus.proto.trace.v1.TruncatableString.getDefaultInstance() : name_;
-      }
-    }
-
-    /**
-     * <pre>
-     * A description of the span's operation.
-     * For example, the name can be a qualified method name or a file name
-     * and a line number where the operation is called. A best practice is to use
-     * the same display name at the same call point in an application.
-     * This makes it easier to correlate spans in different traces.
-     * This field is semantically required to be set to non-empty string.
-     * When null or empty string received - receiver may use string "name"
-     * as a replacement. There might be smarted algorithms implemented by
-     * receiver to fix the empty span name.
-     * This field is required.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.TruncatableString name = 4;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.TruncatableString,
-        io.opencensus.proto.trace.v1.TruncatableString.Builder,
-        io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>
-    getNameFieldBuilder() {
-      if (nameBuilder_ == null) {
-        nameBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.trace.v1.TruncatableString,
-            io.opencensus.proto.trace.v1.TruncatableString.Builder,
-            io.opencensus.proto.trace.v1.TruncatableStringOrBuilder>(
-            getName(),
-            getParentForChildren(),
-            isClean());
-        name_ = null;
-      }
-      return nameBuilder_;
     }
 
     /**
@@ -13274,14 +7834,12 @@ public final class Span extends
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Span.SpanKind kind = 14;</code>
-     *
      * @return The enum numeric value on the wire for kind.
      */
     @java.lang.Override
     public int getKindValue() {
-      return kind_;
+      return instance.getKindValue();
     }
-
     /**
      * <pre>
      * Distinguishes between spans generated in a particular context. For example,
@@ -13290,17 +7848,14 @@ public final class Span extends
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Span.SpanKind kind = 14;</code>
-     *
-     * @param value The enum numeric value on the wire for kind to set.
+     * @param value The kind to set.
      * @return This builder for chaining.
      */
     public Builder setKindValue(int value) {
-
-      kind_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setKindValue(value);
       return this;
     }
-
     /**
      * <pre>
      * Distinguishes between spans generated in a particular context. For example,
@@ -13309,17 +7864,12 @@ public final class Span extends
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Span.SpanKind kind = 14;</code>
-     *
      * @return The kind.
      */
     @java.lang.Override
     public io.opencensus.proto.trace.v1.Span.SpanKind getKind() {
-      @SuppressWarnings("deprecation")
-      io.opencensus.proto.trace.v1.Span.SpanKind result =
-          io.opencensus.proto.trace.v1.Span.SpanKind.valueOf(kind_);
-      return result == null ? io.opencensus.proto.trace.v1.Span.SpanKind.UNRECOGNIZED : result;
+      return instance.getKind();
     }
-
     /**
      * <pre>
      * Distinguishes between spans generated in a particular context. For example,
@@ -13328,20 +7878,14 @@ public final class Span extends
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Span.SpanKind kind = 14;</code>
-     *
-     * @param value The kind to set.
+     * @param value The enum numeric value on the wire for kind to set.
      * @return This builder for chaining.
      */
     public Builder setKind(io.opencensus.proto.trace.v1.Span.SpanKind value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-
-      kind_ = value.getNumber();
-      onChanged();
+      copyOnWrite();
+      instance.setKind(value);
       return this;
     }
-
     /**
      * <pre>
      * Distinguishes between spans generated in a particular context. For example,
@@ -13350,13 +7894,11 @@ public final class Span extends
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Span.SpanKind kind = 14;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearKind() {
-
-      kind_ = 0;
-      onChanged();
+      copyOnWrite();
+      instance.clearKind();
       return this;
     }
 
@@ -13373,13 +7915,11 @@ public final class Span extends
      * </pre>
      *
      * <code>.google.protobuf.Timestamp start_time = 5;</code>
-     *
-     * @return Whether the startTime field is set.
      */
+    @java.lang.Override
     public boolean hasStartTime() {
-      return startTimeBuilder_ != null || startTime_ != null;
+      return instance.hasStartTime();
     }
-
     /**
      * <pre>
      * The start time of the span. On the client side, this is the time kept by
@@ -13393,17 +7933,11 @@ public final class Span extends
      * </pre>
      *
      * <code>.google.protobuf.Timestamp start_time = 5;</code>
-     *
-     * @return The startTime.
      */
+    @java.lang.Override
     public com.google.protobuf.Timestamp getStartTime() {
-      if (startTimeBuilder_ == null) {
-        return startTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : startTime_;
-      } else {
-        return startTimeBuilder_.getMessage();
-      }
+      return instance.getStartTime();
     }
-
     /**
      * <pre>
      * The start time of the span. On the client side, this is the time kept by
@@ -13419,19 +7953,10 @@ public final class Span extends
      * <code>.google.protobuf.Timestamp start_time = 5;</code>
      */
     public Builder setStartTime(com.google.protobuf.Timestamp value) {
-      if (startTimeBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        startTime_ = value;
-        onChanged();
-      } else {
-        startTimeBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setStartTime(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * The start time of the span. On the client side, this is the time kept by
@@ -13448,16 +7973,10 @@ public final class Span extends
      */
     public Builder setStartTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
-      if (startTimeBuilder_ == null) {
-        startTime_ = builderForValue.build();
-        onChanged();
-      } else {
-        startTimeBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setStartTime(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * The start time of the span. On the client side, this is the time kept by
@@ -13473,21 +7992,10 @@ public final class Span extends
      * <code>.google.protobuf.Timestamp start_time = 5;</code>
      */
     public Builder mergeStartTime(com.google.protobuf.Timestamp value) {
-      if (startTimeBuilder_ == null) {
-        if (startTime_ != null) {
-          startTime_ =
-              com.google.protobuf.Timestamp.newBuilder(startTime_).mergeFrom(value).buildPartial();
-        } else {
-          startTime_ = value;
-        }
-        onChanged();
-      } else {
-        startTimeBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeStartTime(value);
       return this;
     }
-
     /**
      * <pre>
      * The start time of the span. On the client side, this is the time kept by
@@ -13502,89 +8010,9 @@ public final class Span extends
      *
      * <code>.google.protobuf.Timestamp start_time = 5;</code>
      */
-    public Builder clearStartTime() {
-      if (startTimeBuilder_ == null) {
-        startTime_ = null;
-        onChanged();
-      } else {
-        startTime_ = null;
-        startTimeBuilder_ = null;
-      }
-
+    public Builder clearStartTime() {  copyOnWrite();
+      instance.clearStartTime();
       return this;
-    }
-
-    /**
-     * <pre>
-     * The start time of the span. On the client side, this is the time kept by
-     * the local machine where the span execution starts. On the server side, this
-     * is the time when the server's application handler starts running.
-     * This field is semantically required. When not set on receive -
-     * receiver should set it to the value of end_time field if it was
-     * set. Or to the current time if neither was set. It is important to
-     * keep end_time &gt; start_time for consistency.
-     * This field is required.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp start_time = 5;</code>
-     */
-    public com.google.protobuf.Timestamp.Builder getStartTimeBuilder() {
-
-      onChanged();
-      return getStartTimeFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * The start time of the span. On the client side, this is the time kept by
-     * the local machine where the span execution starts. On the server side, this
-     * is the time when the server's application handler starts running.
-     * This field is semantically required. When not set on receive -
-     * receiver should set it to the value of end_time field if it was
-     * set. Or to the current time if neither was set. It is important to
-     * keep end_time &gt; start_time for consistency.
-     * This field is required.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp start_time = 5;</code>
-     */
-    public com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder() {
-      if (startTimeBuilder_ != null) {
-        return startTimeBuilder_.getMessageOrBuilder();
-      } else {
-        return startTime_ == null ?
-            com.google.protobuf.Timestamp.getDefaultInstance() : startTime_;
-      }
-    }
-
-    /**
-     * <pre>
-     * The start time of the span. On the client side, this is the time kept by
-     * the local machine where the span execution starts. On the server side, this
-     * is the time when the server's application handler starts running.
-     * This field is semantically required. When not set on receive -
-     * receiver should set it to the value of end_time field if it was
-     * set. Or to the current time if neither was set. It is important to
-     * keep end_time &gt; start_time for consistency.
-     * This field is required.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp start_time = 5;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-        com.google.protobuf.TimestampOrBuilder>
-    getStartTimeFieldBuilder() {
-      if (startTimeBuilder_ == null) {
-        startTimeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-            com.google.protobuf.TimestampOrBuilder>(
-            getStartTime(),
-            getParentForChildren(),
-            isClean());
-        startTime_ = null;
-      }
-      return startTimeBuilder_;
     }
 
     /**
@@ -13599,13 +8027,11 @@ public final class Span extends
      * </pre>
      *
      * <code>.google.protobuf.Timestamp end_time = 6;</code>
-     *
-     * @return Whether the endTime field is set.
      */
+    @java.lang.Override
     public boolean hasEndTime() {
-      return endTimeBuilder_ != null || endTime_ != null;
+      return instance.hasEndTime();
     }
-
     /**
      * <pre>
      * The end time of the span. On the client side, this is the time kept by
@@ -13618,17 +8044,11 @@ public final class Span extends
      * </pre>
      *
      * <code>.google.protobuf.Timestamp end_time = 6;</code>
-     *
-     * @return The endTime.
      */
+    @java.lang.Override
     public com.google.protobuf.Timestamp getEndTime() {
-      if (endTimeBuilder_ == null) {
-        return endTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : endTime_;
-      } else {
-        return endTimeBuilder_.getMessage();
-      }
+      return instance.getEndTime();
     }
-
     /**
      * <pre>
      * The end time of the span. On the client side, this is the time kept by
@@ -13643,19 +8063,10 @@ public final class Span extends
      * <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
     public Builder setEndTime(com.google.protobuf.Timestamp value) {
-      if (endTimeBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        endTime_ = value;
-        onChanged();
-      } else {
-        endTimeBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setEndTime(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * The end time of the span. On the client side, this is the time kept by
@@ -13671,16 +8082,10 @@ public final class Span extends
      */
     public Builder setEndTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
-      if (endTimeBuilder_ == null) {
-        endTime_ = builderForValue.build();
-        onChanged();
-      } else {
-        endTimeBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setEndTime(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * The end time of the span. On the client side, this is the time kept by
@@ -13695,21 +8100,10 @@ public final class Span extends
      * <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
     public Builder mergeEndTime(com.google.protobuf.Timestamp value) {
-      if (endTimeBuilder_ == null) {
-        if (endTime_ != null) {
-          endTime_ =
-              com.google.protobuf.Timestamp.newBuilder(endTime_).mergeFrom(value).buildPartial();
-        } else {
-          endTime_ = value;
-        }
-        onChanged();
-      } else {
-        endTimeBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeEndTime(value);
       return this;
     }
-
     /**
      * <pre>
      * The end time of the span. On the client side, this is the time kept by
@@ -13723,86 +8117,9 @@ public final class Span extends
      *
      * <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
-    public Builder clearEndTime() {
-      if (endTimeBuilder_ == null) {
-        endTime_ = null;
-        onChanged();
-      } else {
-        endTime_ = null;
-        endTimeBuilder_ = null;
-      }
-
+    public Builder clearEndTime() {  copyOnWrite();
+      instance.clearEndTime();
       return this;
-    }
-
-    /**
-     * <pre>
-     * The end time of the span. On the client side, this is the time kept by
-     * the local machine where the span execution ends. On the server side, this
-     * is the time when the server application handler stops running.
-     * This field is semantically required. When not set on receive -
-     * receiver should set it to start_time value. It is important to
-     * keep end_time &gt; start_time for consistency.
-     * This field is required.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp end_time = 6;</code>
-     */
-    public com.google.protobuf.Timestamp.Builder getEndTimeBuilder() {
-
-      onChanged();
-      return getEndTimeFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * The end time of the span. On the client side, this is the time kept by
-     * the local machine where the span execution ends. On the server side, this
-     * is the time when the server application handler stops running.
-     * This field is semantically required. When not set on receive -
-     * receiver should set it to start_time value. It is important to
-     * keep end_time &gt; start_time for consistency.
-     * This field is required.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp end_time = 6;</code>
-     */
-    public com.google.protobuf.TimestampOrBuilder getEndTimeOrBuilder() {
-      if (endTimeBuilder_ != null) {
-        return endTimeBuilder_.getMessageOrBuilder();
-      } else {
-        return endTime_ == null ?
-            com.google.protobuf.Timestamp.getDefaultInstance() : endTime_;
-      }
-    }
-
-    /**
-     * <pre>
-     * The end time of the span. On the client side, this is the time kept by
-     * the local machine where the span execution ends. On the server side, this
-     * is the time when the server application handler stops running.
-     * This field is semantically required. When not set on receive -
-     * receiver should set it to start_time value. It is important to
-     * keep end_time &gt; start_time for consistency.
-     * This field is required.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp end_time = 6;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-        com.google.protobuf.TimestampOrBuilder>
-    getEndTimeFieldBuilder() {
-      if (endTimeBuilder_ == null) {
-        endTimeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-            com.google.protobuf.TimestampOrBuilder>(
-            getEndTime(),
-            getParentForChildren(),
-            isClean());
-        endTime_ = null;
-      }
-      return endTimeBuilder_;
     }
 
     /**
@@ -13811,31 +8128,22 @@ public final class Span extends
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 7;</code>
-     *
-     * @return Whether the attributes field is set.
      */
+    @java.lang.Override
     public boolean hasAttributes() {
-      return attributesBuilder_ != null || attributes_ != null;
+      return instance.hasAttributes();
     }
-
     /**
      * <pre>
      * A set of attributes on the span.
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 7;</code>
-     *
-     * @return The attributes.
      */
+    @java.lang.Override
     public io.opencensus.proto.trace.v1.Span.Attributes getAttributes() {
-      if (attributesBuilder_ == null) {
-        return attributes_ == null ?
-            io.opencensus.proto.trace.v1.Span.Attributes.getDefaultInstance() : attributes_;
-      } else {
-        return attributesBuilder_.getMessage();
-      }
+      return instance.getAttributes();
     }
-
     /**
      * <pre>
      * A set of attributes on the span.
@@ -13844,19 +8152,10 @@ public final class Span extends
      * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 7;</code>
      */
     public Builder setAttributes(io.opencensus.proto.trace.v1.Span.Attributes value) {
-      if (attributesBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        attributes_ = value;
-        onChanged();
-      } else {
-        attributesBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setAttributes(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * A set of attributes on the span.
@@ -13866,16 +8165,10 @@ public final class Span extends
      */
     public Builder setAttributes(
         io.opencensus.proto.trace.v1.Span.Attributes.Builder builderForValue) {
-      if (attributesBuilder_ == null) {
-        attributes_ = builderForValue.build();
-        onChanged();
-      } else {
-        attributesBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setAttributes(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * A set of attributes on the span.
@@ -13884,22 +8177,10 @@ public final class Span extends
      * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 7;</code>
      */
     public Builder mergeAttributes(io.opencensus.proto.trace.v1.Span.Attributes value) {
-      if (attributesBuilder_ == null) {
-        if (attributes_ != null) {
-          attributes_ =
-              io.opencensus.proto.trace.v1.Span.Attributes.newBuilder(attributes_).mergeFrom(value)
-                                                          .buildPartial();
-        } else {
-          attributes_ = value;
-        }
-        onChanged();
-      } else {
-        attributesBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeAttributes(value);
       return this;
     }
-
     /**
      * <pre>
      * A set of attributes on the span.
@@ -13907,70 +8188,9 @@ public final class Span extends
      *
      * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 7;</code>
      */
-    public Builder clearAttributes() {
-      if (attributesBuilder_ == null) {
-        attributes_ = null;
-        onChanged();
-      } else {
-        attributes_ = null;
-        attributesBuilder_ = null;
-      }
-
+    public Builder clearAttributes() {  copyOnWrite();
+      instance.clearAttributes();
       return this;
-    }
-
-    /**
-     * <pre>
-     * A set of attributes on the span.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 7;</code>
-     */
-    public io.opencensus.proto.trace.v1.Span.Attributes.Builder getAttributesBuilder() {
-
-      onChanged();
-      return getAttributesFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * A set of attributes on the span.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 7;</code>
-     */
-    public io.opencensus.proto.trace.v1.Span.AttributesOrBuilder getAttributesOrBuilder() {
-      if (attributesBuilder_ != null) {
-        return attributesBuilder_.getMessageOrBuilder();
-      } else {
-        return attributes_ == null ?
-            io.opencensus.proto.trace.v1.Span.Attributes.getDefaultInstance() : attributes_;
-      }
-    }
-
-    /**
-     * <pre>
-     * A set of attributes on the span.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.Attributes attributes = 7;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.Span.Attributes,
-        io.opencensus.proto.trace.v1.Span.Attributes.Builder,
-        io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>
-    getAttributesFieldBuilder() {
-      if (attributesBuilder_ == null) {
-        attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.trace.v1.Span.Attributes,
-            io.opencensus.proto.trace.v1.Span.Attributes.Builder,
-            io.opencensus.proto.trace.v1.Span.AttributesOrBuilder>(
-            getAttributes(),
-            getParentForChildren(),
-            isClean());
-        attributes_ = null;
-      }
-      return attributesBuilder_;
     }
 
     /**
@@ -13979,31 +8199,22 @@ public final class Span extends
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.StackTrace stack_trace = 8;</code>
-     *
-     * @return Whether the stackTrace field is set.
      */
+    @java.lang.Override
     public boolean hasStackTrace() {
-      return stackTraceBuilder_ != null || stackTrace_ != null;
+      return instance.hasStackTrace();
     }
-
     /**
      * <pre>
      * A stack trace captured at the start of the span.
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.StackTrace stack_trace = 8;</code>
-     *
-     * @return The stackTrace.
      */
+    @java.lang.Override
     public io.opencensus.proto.trace.v1.StackTrace getStackTrace() {
-      if (stackTraceBuilder_ == null) {
-        return stackTrace_ == null ? io.opencensus.proto.trace.v1.StackTrace.getDefaultInstance() :
-            stackTrace_;
-      } else {
-        return stackTraceBuilder_.getMessage();
-      }
+      return instance.getStackTrace();
     }
-
     /**
      * <pre>
      * A stack trace captured at the start of the span.
@@ -14012,19 +8223,10 @@ public final class Span extends
      * <code>.opencensus.proto.trace.v1.StackTrace stack_trace = 8;</code>
      */
     public Builder setStackTrace(io.opencensus.proto.trace.v1.StackTrace value) {
-      if (stackTraceBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        stackTrace_ = value;
-        onChanged();
-      } else {
-        stackTraceBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setStackTrace(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * A stack trace captured at the start of the span.
@@ -14034,16 +8236,10 @@ public final class Span extends
      */
     public Builder setStackTrace(
         io.opencensus.proto.trace.v1.StackTrace.Builder builderForValue) {
-      if (stackTraceBuilder_ == null) {
-        stackTrace_ = builderForValue.build();
-        onChanged();
-      } else {
-        stackTraceBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setStackTrace(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * A stack trace captured at the start of the span.
@@ -14052,22 +8248,10 @@ public final class Span extends
      * <code>.opencensus.proto.trace.v1.StackTrace stack_trace = 8;</code>
      */
     public Builder mergeStackTrace(io.opencensus.proto.trace.v1.StackTrace value) {
-      if (stackTraceBuilder_ == null) {
-        if (stackTrace_ != null) {
-          stackTrace_ =
-              io.opencensus.proto.trace.v1.StackTrace.newBuilder(stackTrace_).mergeFrom(value)
-                                                     .buildPartial();
-        } else {
-          stackTrace_ = value;
-        }
-        onChanged();
-      } else {
-        stackTraceBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeStackTrace(value);
       return this;
     }
-
     /**
      * <pre>
      * A stack trace captured at the start of the span.
@@ -14075,69 +8259,9 @@ public final class Span extends
      *
      * <code>.opencensus.proto.trace.v1.StackTrace stack_trace = 8;</code>
      */
-    public Builder clearStackTrace() {
-      if (stackTraceBuilder_ == null) {
-        stackTrace_ = null;
-        onChanged();
-      } else {
-        stackTrace_ = null;
-        stackTraceBuilder_ = null;
-      }
-
+    public Builder clearStackTrace() {  copyOnWrite();
+      instance.clearStackTrace();
       return this;
-    }
-
-    /**
-     * <pre>
-     * A stack trace captured at the start of the span.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.StackTrace stack_trace = 8;</code>
-     */
-    public io.opencensus.proto.trace.v1.StackTrace.Builder getStackTraceBuilder() {
-
-      onChanged();
-      return getStackTraceFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * A stack trace captured at the start of the span.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.StackTrace stack_trace = 8;</code>
-     */
-    public io.opencensus.proto.trace.v1.StackTraceOrBuilder getStackTraceOrBuilder() {
-      if (stackTraceBuilder_ != null) {
-        return stackTraceBuilder_.getMessageOrBuilder();
-      } else {
-        return stackTrace_ == null ?
-            io.opencensus.proto.trace.v1.StackTrace.getDefaultInstance() : stackTrace_;
-      }
-    }
-
-    /**
-     * <pre>
-     * A stack trace captured at the start of the span.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.StackTrace stack_trace = 8;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.StackTrace, io.opencensus.proto.trace.v1.StackTrace.Builder,
-        io.opencensus.proto.trace.v1.StackTraceOrBuilder>
-    getStackTraceFieldBuilder() {
-      if (stackTraceBuilder_ == null) {
-        stackTraceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.trace.v1.StackTrace,
-            io.opencensus.proto.trace.v1.StackTrace.Builder,
-            io.opencensus.proto.trace.v1.StackTraceOrBuilder>(
-            getStackTrace(),
-            getParentForChildren(),
-            isClean());
-        stackTrace_ = null;
-      }
-      return stackTraceBuilder_;
     }
 
     /**
@@ -14146,31 +8270,22 @@ public final class Span extends
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Span.TimeEvents time_events = 9;</code>
-     *
-     * @return Whether the timeEvents field is set.
      */
+    @java.lang.Override
     public boolean hasTimeEvents() {
-      return timeEventsBuilder_ != null || timeEvents_ != null;
+      return instance.hasTimeEvents();
     }
-
     /**
      * <pre>
      * The included time events.
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Span.TimeEvents time_events = 9;</code>
-     *
-     * @return The timeEvents.
      */
+    @java.lang.Override
     public io.opencensus.proto.trace.v1.Span.TimeEvents getTimeEvents() {
-      if (timeEventsBuilder_ == null) {
-        return timeEvents_ == null ?
-            io.opencensus.proto.trace.v1.Span.TimeEvents.getDefaultInstance() : timeEvents_;
-      } else {
-        return timeEventsBuilder_.getMessage();
-      }
+      return instance.getTimeEvents();
     }
-
     /**
      * <pre>
      * The included time events.
@@ -14179,19 +8294,10 @@ public final class Span extends
      * <code>.opencensus.proto.trace.v1.Span.TimeEvents time_events = 9;</code>
      */
     public Builder setTimeEvents(io.opencensus.proto.trace.v1.Span.TimeEvents value) {
-      if (timeEventsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        timeEvents_ = value;
-        onChanged();
-      } else {
-        timeEventsBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setTimeEvents(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * The included time events.
@@ -14201,16 +8307,10 @@ public final class Span extends
      */
     public Builder setTimeEvents(
         io.opencensus.proto.trace.v1.Span.TimeEvents.Builder builderForValue) {
-      if (timeEventsBuilder_ == null) {
-        timeEvents_ = builderForValue.build();
-        onChanged();
-      } else {
-        timeEventsBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setTimeEvents(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * The included time events.
@@ -14219,22 +8319,10 @@ public final class Span extends
      * <code>.opencensus.proto.trace.v1.Span.TimeEvents time_events = 9;</code>
      */
     public Builder mergeTimeEvents(io.opencensus.proto.trace.v1.Span.TimeEvents value) {
-      if (timeEventsBuilder_ == null) {
-        if (timeEvents_ != null) {
-          timeEvents_ =
-              io.opencensus.proto.trace.v1.Span.TimeEvents.newBuilder(timeEvents_).mergeFrom(value)
-                                                          .buildPartial();
-        } else {
-          timeEvents_ = value;
-        }
-        onChanged();
-      } else {
-        timeEventsBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeTimeEvents(value);
       return this;
     }
-
     /**
      * <pre>
      * The included time events.
@@ -14242,70 +8330,9 @@ public final class Span extends
      *
      * <code>.opencensus.proto.trace.v1.Span.TimeEvents time_events = 9;</code>
      */
-    public Builder clearTimeEvents() {
-      if (timeEventsBuilder_ == null) {
-        timeEvents_ = null;
-        onChanged();
-      } else {
-        timeEvents_ = null;
-        timeEventsBuilder_ = null;
-      }
-
+    public Builder clearTimeEvents() {  copyOnWrite();
+      instance.clearTimeEvents();
       return this;
-    }
-
-    /**
-     * <pre>
-     * The included time events.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.TimeEvents time_events = 9;</code>
-     */
-    public io.opencensus.proto.trace.v1.Span.TimeEvents.Builder getTimeEventsBuilder() {
-
-      onChanged();
-      return getTimeEventsFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * The included time events.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.TimeEvents time_events = 9;</code>
-     */
-    public io.opencensus.proto.trace.v1.Span.TimeEventsOrBuilder getTimeEventsOrBuilder() {
-      if (timeEventsBuilder_ != null) {
-        return timeEventsBuilder_.getMessageOrBuilder();
-      } else {
-        return timeEvents_ == null ?
-            io.opencensus.proto.trace.v1.Span.TimeEvents.getDefaultInstance() : timeEvents_;
-      }
-    }
-
-    /**
-     * <pre>
-     * The included time events.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.TimeEvents time_events = 9;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.Span.TimeEvents,
-        io.opencensus.proto.trace.v1.Span.TimeEvents.Builder,
-        io.opencensus.proto.trace.v1.Span.TimeEventsOrBuilder>
-    getTimeEventsFieldBuilder() {
-      if (timeEventsBuilder_ == null) {
-        timeEventsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.trace.v1.Span.TimeEvents,
-            io.opencensus.proto.trace.v1.Span.TimeEvents.Builder,
-            io.opencensus.proto.trace.v1.Span.TimeEventsOrBuilder>(
-            getTimeEvents(),
-            getParentForChildren(),
-            isClean());
-        timeEvents_ = null;
-      }
-      return timeEventsBuilder_;
     }
 
     /**
@@ -14314,31 +8341,22 @@ public final class Span extends
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Span.Links links = 10;</code>
-     *
-     * @return Whether the links field is set.
      */
+    @java.lang.Override
     public boolean hasLinks() {
-      return linksBuilder_ != null || links_ != null;
+      return instance.hasLinks();
     }
-
     /**
      * <pre>
      * The included links.
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Span.Links links = 10;</code>
-     *
-     * @return The links.
      */
+    @java.lang.Override
     public io.opencensus.proto.trace.v1.Span.Links getLinks() {
-      if (linksBuilder_ == null) {
-        return links_ == null ? io.opencensus.proto.trace.v1.Span.Links.getDefaultInstance() :
-            links_;
-      } else {
-        return linksBuilder_.getMessage();
-      }
+      return instance.getLinks();
     }
-
     /**
      * <pre>
      * The included links.
@@ -14347,19 +8365,10 @@ public final class Span extends
      * <code>.opencensus.proto.trace.v1.Span.Links links = 10;</code>
      */
     public Builder setLinks(io.opencensus.proto.trace.v1.Span.Links value) {
-      if (linksBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        links_ = value;
-        onChanged();
-      } else {
-        linksBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setLinks(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * The included links.
@@ -14369,16 +8378,10 @@ public final class Span extends
      */
     public Builder setLinks(
         io.opencensus.proto.trace.v1.Span.Links.Builder builderForValue) {
-      if (linksBuilder_ == null) {
-        links_ = builderForValue.build();
-        onChanged();
-      } else {
-        linksBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setLinks(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * The included links.
@@ -14387,22 +8390,10 @@ public final class Span extends
      * <code>.opencensus.proto.trace.v1.Span.Links links = 10;</code>
      */
     public Builder mergeLinks(io.opencensus.proto.trace.v1.Span.Links value) {
-      if (linksBuilder_ == null) {
-        if (links_ != null) {
-          links_ =
-              io.opencensus.proto.trace.v1.Span.Links.newBuilder(links_).mergeFrom(value)
-                                                     .buildPartial();
-        } else {
-          links_ = value;
-        }
-        onChanged();
-      } else {
-        linksBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeLinks(value);
       return this;
     }
-
     /**
      * <pre>
      * The included links.
@@ -14410,69 +8401,9 @@ public final class Span extends
      *
      * <code>.opencensus.proto.trace.v1.Span.Links links = 10;</code>
      */
-    public Builder clearLinks() {
-      if (linksBuilder_ == null) {
-        links_ = null;
-        onChanged();
-      } else {
-        links_ = null;
-        linksBuilder_ = null;
-      }
-
+    public Builder clearLinks() {  copyOnWrite();
+      instance.clearLinks();
       return this;
-    }
-
-    /**
-     * <pre>
-     * The included links.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.Links links = 10;</code>
-     */
-    public io.opencensus.proto.trace.v1.Span.Links.Builder getLinksBuilder() {
-
-      onChanged();
-      return getLinksFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * The included links.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.Links links = 10;</code>
-     */
-    public io.opencensus.proto.trace.v1.Span.LinksOrBuilder getLinksOrBuilder() {
-      if (linksBuilder_ != null) {
-        return linksBuilder_.getMessageOrBuilder();
-      } else {
-        return links_ == null ?
-            io.opencensus.proto.trace.v1.Span.Links.getDefaultInstance() : links_;
-      }
-    }
-
-    /**
-     * <pre>
-     * The included links.
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Span.Links links = 10;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.Span.Links, io.opencensus.proto.trace.v1.Span.Links.Builder,
-        io.opencensus.proto.trace.v1.Span.LinksOrBuilder>
-    getLinksFieldBuilder() {
-      if (linksBuilder_ == null) {
-        linksBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.trace.v1.Span.Links,
-            io.opencensus.proto.trace.v1.Span.Links.Builder,
-            io.opencensus.proto.trace.v1.Span.LinksOrBuilder>(
-            getLinks(),
-            getParentForChildren(),
-            isClean());
-        links_ = null;
-      }
-      return linksBuilder_;
     }
 
     /**
@@ -14483,13 +8414,11 @@ public final class Span extends
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Status status = 11;</code>
-     *
-     * @return Whether the status field is set.
      */
+    @java.lang.Override
     public boolean hasStatus() {
-      return statusBuilder_ != null || status_ != null;
+      return instance.hasStatus();
     }
-
     /**
      * <pre>
      * An optional final status for this span. Semantically when Status
@@ -14498,17 +8427,11 @@ public final class Span extends
      * </pre>
      *
      * <code>.opencensus.proto.trace.v1.Status status = 11;</code>
-     *
-     * @return The status.
      */
+    @java.lang.Override
     public io.opencensus.proto.trace.v1.Status getStatus() {
-      if (statusBuilder_ == null) {
-        return status_ == null ? io.opencensus.proto.trace.v1.Status.getDefaultInstance() : status_;
-      } else {
-        return statusBuilder_.getMessage();
-      }
+      return instance.getStatus();
     }
-
     /**
      * <pre>
      * An optional final status for this span. Semantically when Status
@@ -14519,19 +8442,10 @@ public final class Span extends
      * <code>.opencensus.proto.trace.v1.Status status = 11;</code>
      */
     public Builder setStatus(io.opencensus.proto.trace.v1.Status value) {
-      if (statusBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        status_ = value;
-        onChanged();
-      } else {
-        statusBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setStatus(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * An optional final status for this span. Semantically when Status
@@ -14543,16 +8457,10 @@ public final class Span extends
      */
     public Builder setStatus(
         io.opencensus.proto.trace.v1.Status.Builder builderForValue) {
-      if (statusBuilder_ == null) {
-        status_ = builderForValue.build();
-        onChanged();
-      } else {
-        statusBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setStatus(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * An optional final status for this span. Semantically when Status
@@ -14563,163 +8471,68 @@ public final class Span extends
      * <code>.opencensus.proto.trace.v1.Status status = 11;</code>
      */
     public Builder mergeStatus(io.opencensus.proto.trace.v1.Status value) {
-      if (statusBuilder_ == null) {
-        if (status_ != null) {
-          status_ =
-              io.opencensus.proto.trace.v1.Status.newBuilder(status_).mergeFrom(value)
-                                                 .buildPartial();
-        } else {
-          status_ = value;
-        }
-        onChanged();
-      } else {
-        statusBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeStatus(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * An optional final status for this span. Semantically when Status
+     * wasn't set it is means span ended without errors and assume
+     * Status.Ok (code = 0).
+     * </pre>
+     *
+     * <code>.opencensus.proto.trace.v1.Status status = 11;</code>
+     */
+    public Builder clearStatus() {  copyOnWrite();
+      instance.clearStatus();
       return this;
     }
 
     /**
      * <pre>
-     * An optional final status for this span. Semantically when Status
-     * wasn't set it is means span ended without errors and assume
-     * Status.Ok (code = 0).
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Status status = 11;</code>
-     */
-    public Builder clearStatus() {
-      if (statusBuilder_ == null) {
-        status_ = null;
-        onChanged();
-      } else {
-        status_ = null;
-        statusBuilder_ = null;
-      }
-
-      return this;
-    }
-
-    /**
-     * <pre>
-     * An optional final status for this span. Semantically when Status
-     * wasn't set it is means span ended without errors and assume
-     * Status.Ok (code = 0).
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Status status = 11;</code>
-     */
-    public io.opencensus.proto.trace.v1.Status.Builder getStatusBuilder() {
-
-      onChanged();
-      return getStatusFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * An optional final status for this span. Semantically when Status
-     * wasn't set it is means span ended without errors and assume
-     * Status.Ok (code = 0).
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Status status = 11;</code>
-     */
-    public io.opencensus.proto.trace.v1.StatusOrBuilder getStatusOrBuilder() {
-      if (statusBuilder_ != null) {
-        return statusBuilder_.getMessageOrBuilder();
-      } else {
-        return status_ == null ?
-            io.opencensus.proto.trace.v1.Status.getDefaultInstance() : status_;
-      }
-    }
-
-    /**
-     * <pre>
-     * An optional final status for this span. Semantically when Status
-     * wasn't set it is means span ended without errors and assume
-     * Status.Ok (code = 0).
-     * </pre>
-     *
-     * <code>.opencensus.proto.trace.v1.Status status = 11;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.trace.v1.Status, io.opencensus.proto.trace.v1.Status.Builder,
-        io.opencensus.proto.trace.v1.StatusOrBuilder>
-    getStatusFieldBuilder() {
-      if (statusBuilder_ == null) {
-        statusBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.trace.v1.Status, io.opencensus.proto.trace.v1.Status.Builder,
-            io.opencensus.proto.trace.v1.StatusOrBuilder>(
-            getStatus(),
-            getParentForChildren(),
-            isClean());
-        status_ = null;
-      }
-      return statusBuilder_;
-    }
-
-    /**
-     * <pre>
-     * An optional resource that is associated with this span. If not set, this span
-     * should be part of a batch that does include the resource information, unless resource
+     * An optional resource that is associated with this span. If not set, this span 
+     * should be part of a batch that does include the resource information, unless resource 
      * information is unknown.
      * </pre>
      *
      * <code>.opencensus.proto.resource.v1.Resource resource = 16;</code>
-     *
-     * @return Whether the resource field is set.
      */
+    @java.lang.Override
     public boolean hasResource() {
-      return resourceBuilder_ != null || resource_ != null;
+      return instance.hasResource();
     }
-
     /**
      * <pre>
-     * An optional resource that is associated with this span. If not set, this span
-     * should be part of a batch that does include the resource information, unless resource
+     * An optional resource that is associated with this span. If not set, this span 
+     * should be part of a batch that does include the resource information, unless resource 
      * information is unknown.
      * </pre>
      *
      * <code>.opencensus.proto.resource.v1.Resource resource = 16;</code>
-     *
-     * @return The resource.
      */
+    @java.lang.Override
     public io.opencensus.proto.resource.v1.Resource getResource() {
-      if (resourceBuilder_ == null) {
-        return resource_ == null ? io.opencensus.proto.resource.v1.Resource.getDefaultInstance() :
-            resource_;
-      } else {
-        return resourceBuilder_.getMessage();
-      }
+      return instance.getResource();
     }
-
     /**
      * <pre>
-     * An optional resource that is associated with this span. If not set, this span
-     * should be part of a batch that does include the resource information, unless resource
+     * An optional resource that is associated with this span. If not set, this span 
+     * should be part of a batch that does include the resource information, unless resource 
      * information is unknown.
      * </pre>
      *
      * <code>.opencensus.proto.resource.v1.Resource resource = 16;</code>
      */
     public Builder setResource(io.opencensus.proto.resource.v1.Resource value) {
-      if (resourceBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        resource_ = value;
-        onChanged();
-      } else {
-        resourceBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setResource(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
-     * An optional resource that is associated with this span. If not set, this span
-     * should be part of a batch that does include the resource information, unless resource
+     * An optional resource that is associated with this span. If not set, this span 
+     * should be part of a batch that does include the resource information, unless resource 
      * information is unknown.
      * </pre>
      *
@@ -14727,121 +8540,36 @@ public final class Span extends
      */
     public Builder setResource(
         io.opencensus.proto.resource.v1.Resource.Builder builderForValue) {
-      if (resourceBuilder_ == null) {
-        resource_ = builderForValue.build();
-        onChanged();
-      } else {
-        resourceBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setResource(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
-     * An optional resource that is associated with this span. If not set, this span
-     * should be part of a batch that does include the resource information, unless resource
+     * An optional resource that is associated with this span. If not set, this span 
+     * should be part of a batch that does include the resource information, unless resource 
      * information is unknown.
      * </pre>
      *
      * <code>.opencensus.proto.resource.v1.Resource resource = 16;</code>
      */
     public Builder mergeResource(io.opencensus.proto.resource.v1.Resource value) {
-      if (resourceBuilder_ == null) {
-        if (resource_ != null) {
-          resource_ =
-              io.opencensus.proto.resource.v1.Resource.newBuilder(resource_).mergeFrom(value)
-                                                      .buildPartial();
-        } else {
-          resource_ = value;
-        }
-        onChanged();
-      } else {
-        resourceBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeResource(value);
       return this;
     }
-
     /**
      * <pre>
-     * An optional resource that is associated with this span. If not set, this span
-     * should be part of a batch that does include the resource information, unless resource
+     * An optional resource that is associated with this span. If not set, this span 
+     * should be part of a batch that does include the resource information, unless resource 
      * information is unknown.
      * </pre>
      *
      * <code>.opencensus.proto.resource.v1.Resource resource = 16;</code>
      */
-    public Builder clearResource() {
-      if (resourceBuilder_ == null) {
-        resource_ = null;
-        onChanged();
-      } else {
-        resource_ = null;
-        resourceBuilder_ = null;
-      }
-
+    public Builder clearResource() {  copyOnWrite();
+      instance.clearResource();
       return this;
-    }
-
-    /**
-     * <pre>
-     * An optional resource that is associated with this span. If not set, this span
-     * should be part of a batch that does include the resource information, unless resource
-     * information is unknown.
-     * </pre>
-     *
-     * <code>.opencensus.proto.resource.v1.Resource resource = 16;</code>
-     */
-    public io.opencensus.proto.resource.v1.Resource.Builder getResourceBuilder() {
-
-      onChanged();
-      return getResourceFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * An optional resource that is associated with this span. If not set, this span
-     * should be part of a batch that does include the resource information, unless resource
-     * information is unknown.
-     * </pre>
-     *
-     * <code>.opencensus.proto.resource.v1.Resource resource = 16;</code>
-     */
-    public io.opencensus.proto.resource.v1.ResourceOrBuilder getResourceOrBuilder() {
-      if (resourceBuilder_ != null) {
-        return resourceBuilder_.getMessageOrBuilder();
-      } else {
-        return resource_ == null ?
-            io.opencensus.proto.resource.v1.Resource.getDefaultInstance() : resource_;
-      }
-    }
-
-    /**
-     * <pre>
-     * An optional resource that is associated with this span. If not set, this span
-     * should be part of a batch that does include the resource information, unless resource
-     * information is unknown.
-     * </pre>
-     *
-     * <code>.opencensus.proto.resource.v1.Resource resource = 16;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.resource.v1.Resource,
-        io.opencensus.proto.resource.v1.Resource.Builder,
-        io.opencensus.proto.resource.v1.ResourceOrBuilder>
-    getResourceFieldBuilder() {
-      if (resourceBuilder_ == null) {
-        resourceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.resource.v1.Resource,
-            io.opencensus.proto.resource.v1.Resource.Builder,
-            io.opencensus.proto.resource.v1.ResourceOrBuilder>(
-            getResource(),
-            getParentForChildren(),
-            isClean());
-        resource_ = null;
-      }
-      return resourceBuilder_;
     }
 
     /**
@@ -14854,13 +8582,11 @@ public final class Span extends
      * </pre>
      *
      * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
-     *
-     * @return Whether the sameProcessAsParentSpan field is set.
      */
+    @java.lang.Override
     public boolean hasSameProcessAsParentSpan() {
-      return sameProcessAsParentSpanBuilder_ != null || sameProcessAsParentSpan_ != null;
+      return instance.hasSameProcessAsParentSpan();
     }
-
     /**
      * <pre>
      * A highly recommended but not required flag that identifies when a
@@ -14871,18 +8597,11 @@ public final class Span extends
      * </pre>
      *
      * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
-     *
-     * @return The sameProcessAsParentSpan.
      */
+    @java.lang.Override
     public com.google.protobuf.BoolValue getSameProcessAsParentSpan() {
-      if (sameProcessAsParentSpanBuilder_ == null) {
-        return sameProcessAsParentSpan_ == null ?
-            com.google.protobuf.BoolValue.getDefaultInstance() : sameProcessAsParentSpan_;
-      } else {
-        return sameProcessAsParentSpanBuilder_.getMessage();
-      }
+      return instance.getSameProcessAsParentSpan();
     }
-
     /**
      * <pre>
      * A highly recommended but not required flag that identifies when a
@@ -14895,19 +8614,10 @@ public final class Span extends
      * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
      */
     public Builder setSameProcessAsParentSpan(com.google.protobuf.BoolValue value) {
-      if (sameProcessAsParentSpanBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        sameProcessAsParentSpan_ = value;
-        onChanged();
-      } else {
-        sameProcessAsParentSpanBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setSameProcessAsParentSpan(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * A highly recommended but not required flag that identifies when a
@@ -14921,16 +8631,10 @@ public final class Span extends
      */
     public Builder setSameProcessAsParentSpan(
         com.google.protobuf.BoolValue.Builder builderForValue) {
-      if (sameProcessAsParentSpanBuilder_ == null) {
-        sameProcessAsParentSpan_ = builderForValue.build();
-        onChanged();
-      } else {
-        sameProcessAsParentSpanBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setSameProcessAsParentSpan(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * A highly recommended but not required flag that identifies when a
@@ -14943,22 +8647,10 @@ public final class Span extends
      * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
      */
     public Builder mergeSameProcessAsParentSpan(com.google.protobuf.BoolValue value) {
-      if (sameProcessAsParentSpanBuilder_ == null) {
-        if (sameProcessAsParentSpan_ != null) {
-          sameProcessAsParentSpan_ =
-              com.google.protobuf.BoolValue.newBuilder(sameProcessAsParentSpan_).mergeFrom(value)
-                                           .buildPartial();
-        } else {
-          sameProcessAsParentSpan_ = value;
-        }
-        onChanged();
-      } else {
-        sameProcessAsParentSpanBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeSameProcessAsParentSpan(value);
       return this;
     }
-
     /**
      * <pre>
      * A highly recommended but not required flag that identifies when a
@@ -14970,80 +8662,9 @@ public final class Span extends
      *
      * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
      */
-    public Builder clearSameProcessAsParentSpan() {
-      if (sameProcessAsParentSpanBuilder_ == null) {
-        sameProcessAsParentSpan_ = null;
-        onChanged();
-      } else {
-        sameProcessAsParentSpan_ = null;
-        sameProcessAsParentSpanBuilder_ = null;
-      }
-
+    public Builder clearSameProcessAsParentSpan() {  copyOnWrite();
+      instance.clearSameProcessAsParentSpan();
       return this;
-    }
-
-    /**
-     * <pre>
-     * A highly recommended but not required flag that identifies when a
-     * trace crosses a process boundary. True when the parent_span belongs
-     * to the same process as the current span. This flag is most commonly
-     * used to indicate the need to adjust time as clocks in different
-     * processes may not be synchronized.
-     * </pre>
-     *
-     * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
-     */
-    public com.google.protobuf.BoolValue.Builder getSameProcessAsParentSpanBuilder() {
-
-      onChanged();
-      return getSameProcessAsParentSpanFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * A highly recommended but not required flag that identifies when a
-     * trace crosses a process boundary. True when the parent_span belongs
-     * to the same process as the current span. This flag is most commonly
-     * used to indicate the need to adjust time as clocks in different
-     * processes may not be synchronized.
-     * </pre>
-     *
-     * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
-     */
-    public com.google.protobuf.BoolValueOrBuilder getSameProcessAsParentSpanOrBuilder() {
-      if (sameProcessAsParentSpanBuilder_ != null) {
-        return sameProcessAsParentSpanBuilder_.getMessageOrBuilder();
-      } else {
-        return sameProcessAsParentSpan_ == null ?
-            com.google.protobuf.BoolValue.getDefaultInstance() : sameProcessAsParentSpan_;
-      }
-    }
-
-    /**
-     * <pre>
-     * A highly recommended but not required flag that identifies when a
-     * trace crosses a process boundary. True when the parent_span belongs
-     * to the same process as the current span. This flag is most commonly
-     * used to indicate the need to adjust time as clocks in different
-     * processes may not be synchronized.
-     * </pre>
-     *
-     * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.BoolValue, com.google.protobuf.BoolValue.Builder,
-        com.google.protobuf.BoolValueOrBuilder>
-    getSameProcessAsParentSpanFieldBuilder() {
-      if (sameProcessAsParentSpanBuilder_ == null) {
-        sameProcessAsParentSpanBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.google.protobuf.BoolValue, com.google.protobuf.BoolValue.Builder,
-            com.google.protobuf.BoolValueOrBuilder>(
-            getSameProcessAsParentSpan(),
-            getParentForChildren(),
-            isClean());
-        sameProcessAsParentSpan_ = null;
-      }
-      return sameProcessAsParentSpanBuilder_;
     }
 
     /**
@@ -15053,13 +8674,11 @@ public final class Span extends
      * </pre>
      *
      * <code>.google.protobuf.UInt32Value child_span_count = 13;</code>
-     *
-     * @return Whether the childSpanCount field is set.
      */
+    @java.lang.Override
     public boolean hasChildSpanCount() {
-      return childSpanCountBuilder_ != null || childSpanCount_ != null;
+      return instance.hasChildSpanCount();
     }
-
     /**
      * <pre>
      * An optional number of child spans that were generated while this span
@@ -15067,18 +8686,11 @@ public final class Span extends
      * </pre>
      *
      * <code>.google.protobuf.UInt32Value child_span_count = 13;</code>
-     *
-     * @return The childSpanCount.
      */
+    @java.lang.Override
     public com.google.protobuf.UInt32Value getChildSpanCount() {
-      if (childSpanCountBuilder_ == null) {
-        return childSpanCount_ == null ? com.google.protobuf.UInt32Value.getDefaultInstance() :
-            childSpanCount_;
-      } else {
-        return childSpanCountBuilder_.getMessage();
-      }
+      return instance.getChildSpanCount();
     }
-
     /**
      * <pre>
      * An optional number of child spans that were generated while this span
@@ -15088,19 +8700,10 @@ public final class Span extends
      * <code>.google.protobuf.UInt32Value child_span_count = 13;</code>
      */
     public Builder setChildSpanCount(com.google.protobuf.UInt32Value value) {
-      if (childSpanCountBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        childSpanCount_ = value;
-        onChanged();
-      } else {
-        childSpanCountBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setChildSpanCount(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * An optional number of child spans that were generated while this span
@@ -15111,16 +8714,10 @@ public final class Span extends
      */
     public Builder setChildSpanCount(
         com.google.protobuf.UInt32Value.Builder builderForValue) {
-      if (childSpanCountBuilder_ == null) {
-        childSpanCount_ = builderForValue.build();
-        onChanged();
-      } else {
-        childSpanCountBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setChildSpanCount(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * An optional number of child spans that were generated while this span
@@ -15130,22 +8727,10 @@ public final class Span extends
      * <code>.google.protobuf.UInt32Value child_span_count = 13;</code>
      */
     public Builder mergeChildSpanCount(com.google.protobuf.UInt32Value value) {
-      if (childSpanCountBuilder_ == null) {
-        if (childSpanCount_ != null) {
-          childSpanCount_ =
-              com.google.protobuf.UInt32Value.newBuilder(childSpanCount_).mergeFrom(value)
-                                             .buildPartial();
-        } else {
-          childSpanCount_ = value;
-        }
-        onChanged();
-      } else {
-        childSpanCountBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeChildSpanCount(value);
       return this;
     }
-
     /**
      * <pre>
      * An optional number of child spans that were generated while this span
@@ -15154,88 +8739,99 @@ public final class Span extends
      *
      * <code>.google.protobuf.UInt32Value child_span_count = 13;</code>
      */
-    public Builder clearChildSpanCount() {
-      if (childSpanCountBuilder_ == null) {
-        childSpanCount_ = null;
-        onChanged();
-      } else {
-        childSpanCount_ = null;
-        childSpanCountBuilder_ = null;
-      }
-
+    public Builder clearChildSpanCount() {  copyOnWrite();
+      instance.clearChildSpanCount();
       return this;
     }
-
-    /**
-     * <pre>
-     * An optional number of child spans that were generated while this span
-     * was active. If set, allows an implementation to detect missing child spans.
-     * </pre>
-     *
-     * <code>.google.protobuf.UInt32Value child_span_count = 13;</code>
-     */
-    public com.google.protobuf.UInt32Value.Builder getChildSpanCountBuilder() {
-
-      onChanged();
-      return getChildSpanCountFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * An optional number of child spans that were generated while this span
-     * was active. If set, allows an implementation to detect missing child spans.
-     * </pre>
-     *
-     * <code>.google.protobuf.UInt32Value child_span_count = 13;</code>
-     */
-    public com.google.protobuf.UInt32ValueOrBuilder getChildSpanCountOrBuilder() {
-      if (childSpanCountBuilder_ != null) {
-        return childSpanCountBuilder_.getMessageOrBuilder();
-      } else {
-        return childSpanCount_ == null ?
-            com.google.protobuf.UInt32Value.getDefaultInstance() : childSpanCount_;
-      }
-    }
-
-    /**
-     * <pre>
-     * An optional number of child spans that were generated while this span
-     * was active. If set, allows an implementation to detect missing child spans.
-     * </pre>
-     *
-     * <code>.google.protobuf.UInt32Value child_span_count = 13;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.UInt32Value, com.google.protobuf.UInt32Value.Builder,
-        com.google.protobuf.UInt32ValueOrBuilder>
-    getChildSpanCountFieldBuilder() {
-      if (childSpanCountBuilder_ == null) {
-        childSpanCountBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.google.protobuf.UInt32Value, com.google.protobuf.UInt32Value.Builder,
-            com.google.protobuf.UInt32ValueOrBuilder>(
-            getChildSpanCount(),
-            getParentForChildren(),
-            isClean());
-        childSpanCount_ = null;
-      }
-      return childSpanCountBuilder_;
-    }
-
-    @java.lang.Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
-    }
-
-    @java.lang.Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
-    }
-
 
     // @@protoc_insertion_point(builder_scope:opencensus.proto.trace.v1.Span)
   }
+  @java.lang.Override
+  @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+  protected final java.lang.Object dynamicMethod(
+      com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+      java.lang.Object arg0, java.lang.Object arg1) {
+    switch (method) {
+      case NEW_MUTABLE_INSTANCE: {
+        return new io.opencensus.proto.trace.v1.Span();
+      }
+      case NEW_BUILDER: {
+        return new Builder();
+      }
+      case BUILD_MESSAGE_INFO: {
+          java.lang.Object[] objects = new java.lang.Object[] {
+            "traceId_",
+            "spanId_",
+            "parentSpanId_",
+            "name_",
+            "startTime_",
+            "endTime_",
+            "attributes_",
+            "stackTrace_",
+            "timeEvents_",
+            "links_",
+            "status_",
+            "sameProcessAsParentSpan_",
+            "childSpanCount_",
+            "kind_",
+            "tracestate_",
+            "resource_",
+          };
+          java.lang.String info =
+              "\u0000\u0010\u0000\u0000\u0001\u0010\u0010\u0000\u0000\u0000\u0001\n\u0002\n\u0003" +
+              "\n\u0004\t\u0005\t\u0006\t\u0007\t\b\t\t\t\n\t\u000b\t\f\t\r\t\u000e\f\u000f\t\u0010" +
+              "\t";
+          return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+      }
+      // fall through
+      case GET_DEFAULT_INSTANCE: {
+        return DEFAULT_INSTANCE;
+      }
+      case GET_PARSER: {
+        com.google.protobuf.Parser<io.opencensus.proto.trace.v1.Span> parser = PARSER;
+        if (parser == null) {
+          synchronized (io.opencensus.proto.trace.v1.Span.class) {
+            parser = PARSER;
+            if (parser == null) {
+              parser =
+                  new DefaultInstanceBasedParser<io.opencensus.proto.trace.v1.Span>(
+                      DEFAULT_INSTANCE);
+              PARSER = parser;
+            }
+          }
+        }
+        return parser;
+    }
+    case GET_MEMOIZED_IS_INITIALIZED: {
+      return (byte) 1;
+    }
+    case SET_MEMOIZED_IS_INITIALIZED: {
+      return null;
+    }
+    }
+    throw new UnsupportedOperationException();
+  }
 
+
+  // @@protoc_insertion_point(class_scope:opencensus.proto.trace.v1.Span)
+  private static final io.opencensus.proto.trace.v1.Span DEFAULT_INSTANCE;
+  static {
+    Span defaultInstance = new Span();
+    // New instances are implicitly immutable so no need to make
+    // immutable.
+    DEFAULT_INSTANCE = defaultInstance;
+    com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+      Span.class, defaultInstance);
+  }
+
+  public static io.opencensus.proto.trace.v1.Span getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  private static volatile com.google.protobuf.Parser<Span> PARSER;
+
+  public static com.google.protobuf.Parser<Span> parser() {
+    return DEFAULT_INSTANCE.getParserForType();
+  }
 }
 

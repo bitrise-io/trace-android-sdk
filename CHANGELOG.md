@@ -6,6 +6,12 @@ trace-android-sdk public beta versions
 **Note:** these versions of the *trace-android-sdk* are stored in a public repo, but should be 
 considered still as beta.
 
+### trace-sdk - 0.2.1 - 2021-07-02
+* fix: **trace-sdk should work on minified client apps:** Updated proguard rules and ensured data gets sent correctly to the backend.
+* fix: **use java lite protocol buffer dependencies:** Recompile proto files to java lite instead of java.
+* fix: **datamanager resource bug:** Fix datamanager bug not saving resource entities.
+* fix: **DataManagerInstrumentedTest bug:** Fixed an occasional issue in the DataManagerInstrumentedTest.
+
 ### trace-sdk - 0.2.0 - 2021-04-15
 * feat: **Support Android version 21:** Update minSdkVersion to 21 for trace-sdk and trace-test-application
 

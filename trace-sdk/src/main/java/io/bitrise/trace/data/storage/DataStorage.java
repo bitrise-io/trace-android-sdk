@@ -40,29 +40,6 @@ public abstract class DataStorage {
   }
 
   /**
-   * Saves the given {@link FormattedData} to the storage. {@link Trace}s and Spans are not saved
-   * directly to the DataStorage, they should be sent to the {@link TraceManager}.
-   *
-   * <p>Should not be called on the main thread.
-   *
-   * @param formattedData the FormattedData.
-   */
-  @WorkerThread
-  public void saveFormattedData(@Nullable final FormattedData formattedData) {
-    if (formattedData == null) {
-      return;
-    }
-
-    if (formattedData.getMetricEntity() != null) {
-      saveMetric(formattedData.getMetricEntity());
-    } else if (formattedData.getResourceEntity() != null) {
-      saveResourceEntity(formattedData.getResourceEntity());
-    } else if (formattedData.getSpan() != null) {
-      TraceLog.e(new TraceException.FormattedDataSpanNonNullException(formattedData.getSpan()));
-    }
-  }
-
-  /**
    * Saves the given {@link MetricEntity} to the storage.
    *
    * <p>Should not be called on the main thread.

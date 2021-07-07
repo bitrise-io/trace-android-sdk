@@ -7,623 +7,29 @@ package io.opencensus.proto.stats.v1;
  * <pre>
  * Describes a data point to be collected for a Measure.
  * </pre>
- * <p>
+ *
  * Protobuf type {@code opencensus.proto.stats.v1.Measurement}
  */
-public final class Measurement extends
-    com.google.protobuf.GeneratedMessageV3 implements
+public  final class Measurement extends
+    com.google.protobuf.GeneratedMessageLite<
+        Measurement, Measurement.Builder> implements
     // @@protoc_insertion_point(message_implements:opencensus.proto.stats.v1.Measurement)
     MeasurementOrBuilder {
-  public static final int TAGS_FIELD_NUMBER = 1;
-  public static final int MEASURE_NAME_FIELD_NUMBER = 2;
-  public static final int DOUBLE_VALUE_FIELD_NUMBER = 3;
-  public static final int INT_VALUE_FIELD_NUMBER = 4;
-  public static final int TIME_FIELD_NUMBER = 5;
-  private static final long serialVersionUID = 0L;
-  // @@protoc_insertion_point(class_scope:opencensus.proto.stats.v1.Measurement)
-  private static final io.opencensus.proto.stats.v1.Measurement DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<Measurement>
-      PARSER = new com.google.protobuf.AbstractParser<Measurement>() {
-    @java.lang.Override
-    public Measurement parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Measurement(input, extensionRegistry);
-    }
-  };
-
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.stats.v1.Measurement();
-  }
-
-  private int valueCase_ = 0;
-  private java.lang.Object value_;
-
-  private java.util.List<io.opencensus.proto.stats.v1.Tag> tags_;
-  private volatile java.lang.Object measureName_;
-  private com.google.protobuf.Timestamp time_;
-  private byte memoizedIsInitialized = -1;
-
-  // Use Measurement.newBuilder() to construct.
-  private Measurement(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
   private Measurement() {
-    tags_ = java.util.Collections.emptyList();
+    tags_ = emptyProtobufList();
     measureName_ = "";
   }
-
-  private Measurement(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-              tags_ = new java.util.ArrayList<io.opencensus.proto.stats.v1.Tag>();
-              mutable_bitField0_ |= 0x00000001;
-            }
-            tags_.add(
-                input.readMessage(io.opencensus.proto.stats.v1.Tag.parser(), extensionRegistry));
-            break;
-          }
-          case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            measureName_ = s;
-            break;
-          }
-          case 25: {
-            valueCase_ = 3;
-            value_ = input.readDouble();
-            break;
-          }
-          case 32: {
-            valueCase_ = 4;
-            value_ = input.readInt64();
-            break;
-          }
-          case 42: {
-            com.google.protobuf.Timestamp.Builder subBuilder = null;
-            if (time_ != null) {
-              subBuilder = time_.toBuilder();
-            }
-            time_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(time_);
-              time_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      if (((mutable_bitField0_ & 0x00000001) != 0)) {
-        tags_ = java.util.Collections.unmodifiableList(tags_);
-      }
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
-
-  public static final com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
-    return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_Measurement_descriptor;
-  }
-
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measurement parseDelimitedFrom(
-      java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measurement parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(io.opencensus.proto.stats.v1.Measurement prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
-  public static io.opencensus.proto.stats.v1.Measurement getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public static com.google.protobuf.Parser<Measurement> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new Measurement();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
-    return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_Measurement_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.stats.v1.Measurement.class,
-            io.opencensus.proto.stats.v1.Measurement.Builder.class);
-  }
-
-  public ValueCase
-  getValueCase() {
-    return ValueCase.forNumber(
-        valueCase_);
-  }
-
-  /**
-   * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
-   */
-  @java.lang.Override
-  public java.util.List<io.opencensus.proto.stats.v1.Tag> getTagsList() {
-    return tags_;
-  }
-
-  /**
-   * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
-   */
-  @java.lang.Override
-  public java.util.List<? extends io.opencensus.proto.stats.v1.TagOrBuilder>
-  getTagsOrBuilderList() {
-    return tags_;
-  }
-
-  /**
-   * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
-   */
-  @java.lang.Override
-  public int getTagsCount() {
-    return tags_.size();
-  }
-
-  /**
-   * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
-   */
-  @java.lang.Override
-  public io.opencensus.proto.stats.v1.Tag getTags(int index) {
-    return tags_.get(index);
-  }
-
-  /**
-   * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
-   */
-  @java.lang.Override
-  public io.opencensus.proto.stats.v1.TagOrBuilder getTagsOrBuilder(
-      int index) {
-    return tags_.get(index);
-  }
-
-  /**
-   * <pre>
-   * The name of the measure to which the value is applied.
-   * </pre>
-   *
-   * <code>string measure_name = 2;</code>
-   *
-   * @return The measureName.
-   */
-  @java.lang.Override
-  public java.lang.String getMeasureName() {
-    java.lang.Object ref = measureName_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs =
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      measureName_ = s;
-      return s;
-    }
-  }
-
-  /**
-   * <pre>
-   * The name of the measure to which the value is applied.
-   * </pre>
-   *
-   * <code>string measure_name = 2;</code>
-   *
-   * @return The bytes for measureName.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-  getMeasureNameBytes() {
-    java.lang.Object ref = measureName_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      measureName_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  /**
-   * <code>double double_value = 3;</code>
-   *
-   * @return The doubleValue.
-   */
-  @java.lang.Override
-  public double getDoubleValue() {
-    if (valueCase_ == 3) {
-      return (java.lang.Double) value_;
-    }
-    return 0D;
-  }
-
-  /**
-   * <code>int64 int_value = 4;</code>
-   *
-   * @return The intValue.
-   */
-  @java.lang.Override
-  public long getIntValue() {
-    if (valueCase_ == 4) {
-      return (java.lang.Long) value_;
-    }
-    return 0L;
-  }
-
-  /**
-   * <pre>
-   * The time when this measurement was recorded. If the implementation uses a async buffer to
-   * record measurements this may be the time when the measurement was read from the buffer.
-   * </pre>
-   *
-   * <code>.google.protobuf.Timestamp time = 5;</code>
-   *
-   * @return Whether the time field is set.
-   */
-  @java.lang.Override
-  public boolean hasTime() {
-    return time_ != null;
-  }
-
-  /**
-   * <pre>
-   * The time when this measurement was recorded. If the implementation uses a async buffer to
-   * record measurements this may be the time when the measurement was read from the buffer.
-   * </pre>
-   *
-   * <code>.google.protobuf.Timestamp time = 5;</code>
-   *
-   * @return The time.
-   */
-  @java.lang.Override
-  public com.google.protobuf.Timestamp getTime() {
-    return time_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : time_;
-  }
-
-  /**
-   * <pre>
-   * The time when this measurement was recorded. If the implementation uses a async buffer to
-   * record measurements this may be the time when the measurement was read from the buffer.
-   * </pre>
-   *
-   * <code>.google.protobuf.Timestamp time = 5;</code>
-   */
-  @java.lang.Override
-  public com.google.protobuf.TimestampOrBuilder getTimeOrBuilder() {
-    return getTime();
-  }
-
-  @java.lang.Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) {
-      return true;
-    }
-    if (isInitialized == 0) {
-      return false;
-    }
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-      throws java.io.IOException {
-    for (int i = 0; i < tags_.size(); i++) {
-      output.writeMessage(1, tags_.get(i));
-    }
-    if (!getMeasureNameBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, measureName_);
-    }
-    if (valueCase_ == 3) {
-      output.writeDouble(
-          3, (Double) value_);
-    }
-    if (valueCase_ == 4) {
-      output.writeInt64(
-          4, (Long) value_);
-    }
-    if (time_ != null) {
-      output.writeMessage(5, getTime());
-    }
-    unknownFields.writeTo(output);
-  }
-
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) {
-      return size;
-    }
-
-    size = 0;
-    for (int i = 0; i < tags_.size(); i++) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, tags_.get(i));
-    }
-    if (!getMeasureNameBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, measureName_);
-    }
-    if (valueCase_ == 3) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(
-              3, (Double) value_);
-    }
-    if (valueCase_ == 4) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(
-              4, (Long) value_);
-    }
-    if (time_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, getTime());
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-      return true;
-    }
-    if (!(obj instanceof io.opencensus.proto.stats.v1.Measurement)) {
-      return super.equals(obj);
-    }
-    io.opencensus.proto.stats.v1.Measurement other = (io.opencensus.proto.stats.v1.Measurement) obj;
-
-    if (!getTagsList()
-        .equals(other.getTagsList())) {
-      return false;
-    }
-    if (!getMeasureName()
-        .equals(other.getMeasureName())) {
-      return false;
-    }
-    if (hasTime() != other.hasTime()) {
-      return false;
-    }
-    if (hasTime()) {
-      if (!getTime()
-          .equals(other.getTime())) {
-        return false;
-      }
-    }
-    if (!getValueCase().equals(other.getValueCase())) {
-      return false;
-    }
-    switch (valueCase_) {
-      case 3:
-        if (java.lang.Double.doubleToLongBits(getDoubleValue())
-            != java.lang.Double.doubleToLongBits(
-            other.getDoubleValue())) {
-          return false;
-        }
-        break;
-      case 4:
-        if (getIntValue()
-            != other.getIntValue()) {
-          return false;
-        }
-        break;
-      case 0:
-      default:
-    }
-    return unknownFields.equals(other.unknownFields);
-  }
-
-  @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    if (getTagsCount() > 0) {
-      hash = (37 * hash) + TAGS_FIELD_NUMBER;
-      hash = (53 * hash) + getTagsList().hashCode();
-    }
-    hash = (37 * hash) + MEASURE_NAME_FIELD_NUMBER;
-    hash = (53 * hash) + getMeasureName().hashCode();
-    if (hasTime()) {
-      hash = (37 * hash) + TIME_FIELD_NUMBER;
-      hash = (53 * hash) + getTime().hashCode();
-    }
-    switch (valueCase_) {
-      case 3:
-        hash = (37 * hash) + DOUBLE_VALUE_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            java.lang.Double.doubleToLongBits(getDoubleValue()));
-        break;
-      case 4:
-        hash = (37 * hash) + INT_VALUE_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getIntValue());
-        break;
-      case 0:
-      default:
-    }
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
-
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<Measurement> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.stats.v1.Measurement getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public enum ValueCase
-      implements com.google.protobuf.Internal.EnumLite,
-      com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+  private int valueCase_ = 0;
+  private java.lang.Object value_;
+  public enum ValueCase {
     DOUBLE_VALUE(3),
     INT_VALUE(4),
     VALUE_NOT_SET(0);
     private final int value;
-
-    ValueCase(int value) {
+    private ValueCase(int value) {
       this.value = value;
     }
-
     /**
-     * @param value The number of the enum to look for.
-     * @return The enum associated with the given number.
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @java.lang.Deprecated
@@ -633,729 +39,656 @@ public final class Measurement extends
 
     public static ValueCase forNumber(int value) {
       switch (value) {
-        case 3:
-          return DOUBLE_VALUE;
-        case 4:
-          return INT_VALUE;
-        case 0:
-          return VALUE_NOT_SET;
-        default:
-          return null;
+        case 3: return DOUBLE_VALUE;
+        case 4: return INT_VALUE;
+        case 0: return VALUE_NOT_SET;
+        default: return null;
       }
     }
-
     public int getNumber() {
       return this.value;
     }
+  };
+
+  @java.lang.Override
+  public ValueCase
+  getValueCase() {
+    return ValueCase.forNumber(
+        valueCase_);
+  }
+
+  private void clearValue() {
+    valueCase_ = 0;
+    value_ = null;
+  }
+
+  public static final int TAGS_FIELD_NUMBER = 1;
+  private com.google.protobuf.Internal.ProtobufList<io.opencensus.proto.stats.v1.Tag> tags_;
+  /**
+   * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
+   */
+  @java.lang.Override
+  public java.util.List<io.opencensus.proto.stats.v1.Tag> getTagsList() {
+    return tags_;
+  }
+  /**
+   * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
+   */
+  public java.util.List<? extends io.opencensus.proto.stats.v1.TagOrBuilder> 
+      getTagsOrBuilderList() {
+    return tags_;
+  }
+  /**
+   * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
+   */
+  @java.lang.Override
+  public int getTagsCount() {
+    return tags_.size();
+  }
+  /**
+   * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
+   */
+  @java.lang.Override
+  public io.opencensus.proto.stats.v1.Tag getTags(int index) {
+    return tags_.get(index);
+  }
+  /**
+   * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
+   */
+  public io.opencensus.proto.stats.v1.TagOrBuilder getTagsOrBuilder(
+      int index) {
+    return tags_.get(index);
+  }
+  private void ensureTagsIsMutable() {
+    com.google.protobuf.Internal.ProtobufList<io.opencensus.proto.stats.v1.Tag> tmp = tags_;
+    if (!tmp.isModifiable()) {
+      tags_ =
+          com.google.protobuf.GeneratedMessageLite.mutableCopy(tmp);
+     }
+  }
+
+  /**
+   * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
+   */
+  private void setTags(
+      int index, io.opencensus.proto.stats.v1.Tag value) {
+    value.getClass();
+  ensureTagsIsMutable();
+    tags_.set(index, value);
+  }
+  /**
+   * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
+   */
+  private void addTags(io.opencensus.proto.stats.v1.Tag value) {
+    value.getClass();
+  ensureTagsIsMutable();
+    tags_.add(value);
+  }
+  /**
+   * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
+   */
+  private void addTags(
+      int index, io.opencensus.proto.stats.v1.Tag value) {
+    value.getClass();
+  ensureTagsIsMutable();
+    tags_.add(index, value);
+  }
+  /**
+   * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
+   */
+  private void addAllTags(
+      java.lang.Iterable<? extends io.opencensus.proto.stats.v1.Tag> values) {
+    ensureTagsIsMutable();
+    com.google.protobuf.AbstractMessageLite.addAll(
+        values, tags_);
+  }
+  /**
+   * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
+   */
+  private void clearTags() {
+    tags_ = emptyProtobufList();
+  }
+  /**
+   * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
+   */
+  private void removeTags(int index) {
+    ensureTagsIsMutable();
+    tags_.remove(index);
+  }
+
+  public static final int MEASURE_NAME_FIELD_NUMBER = 2;
+  private java.lang.String measureName_;
+  /**
+   * <pre>
+   * The name of the measure to which the value is applied.
+   * </pre>
+   *
+   * <code>string measure_name = 2;</code>
+   * @return The measureName.
+   */
+  @java.lang.Override
+  public java.lang.String getMeasureName() {
+    return measureName_;
+  }
+  /**
+   * <pre>
+   * The name of the measure to which the value is applied.
+   * </pre>
+   *
+   * <code>string measure_name = 2;</code>
+   * @return The bytes for measureName.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getMeasureNameBytes() {
+    return com.google.protobuf.ByteString.copyFromUtf8(measureName_);
+  }
+  /**
+   * <pre>
+   * The name of the measure to which the value is applied.
+   * </pre>
+   *
+   * <code>string measure_name = 2;</code>
+   * @param value The measureName to set.
+   */
+  private void setMeasureName(
+      java.lang.String value) {
+    value.getClass();
+  
+    measureName_ = value;
+  }
+  /**
+   * <pre>
+   * The name of the measure to which the value is applied.
+   * </pre>
+   *
+   * <code>string measure_name = 2;</code>
+   */
+  private void clearMeasureName() {
+    
+    measureName_ = getDefaultInstance().getMeasureName();
+  }
+  /**
+   * <pre>
+   * The name of the measure to which the value is applied.
+   * </pre>
+   *
+   * <code>string measure_name = 2;</code>
+   * @param value The bytes for measureName to set.
+   */
+  private void setMeasureNameBytes(
+      com.google.protobuf.ByteString value) {
+    checkByteStringIsUtf8(value);
+    measureName_ = value.toStringUtf8();
+    
+  }
+
+  public static final int DOUBLE_VALUE_FIELD_NUMBER = 3;
+  /**
+   * <code>double double_value = 3;</code>
+   * @return The doubleValue.
+   */
+  @java.lang.Override
+  public double getDoubleValue() {
+    if (valueCase_ == 3) {
+      return (java.lang.Double) value_;
+    }
+    return 0D;
+  }
+  /**
+   * <code>double double_value = 3;</code>
+   * @param value The doubleValue to set.
+   */
+  private void setDoubleValue(double value) {
+    valueCase_ = 3;
+    value_ = value;
+  }
+  /**
+   * <code>double double_value = 3;</code>
+   */
+  private void clearDoubleValue() {
+    if (valueCase_ == 3) {
+      valueCase_ = 0;
+      value_ = null;
+    }
+  }
+
+  public static final int INT_VALUE_FIELD_NUMBER = 4;
+  /**
+   * <code>int64 int_value = 4;</code>
+   * @return The intValue.
+   */
+  @java.lang.Override
+  public long getIntValue() {
+    if (valueCase_ == 4) {
+      return (java.lang.Long) value_;
+    }
+    return 0L;
+  }
+  /**
+   * <code>int64 int_value = 4;</code>
+   * @param value The intValue to set.
+   */
+  private void setIntValue(long value) {
+    valueCase_ = 4;
+    value_ = value;
+  }
+  /**
+   * <code>int64 int_value = 4;</code>
+   */
+  private void clearIntValue() {
+    if (valueCase_ == 4) {
+      valueCase_ = 0;
+      value_ = null;
+    }
+  }
+
+  public static final int TIME_FIELD_NUMBER = 5;
+  private com.google.protobuf.Timestamp time_;
+  /**
+   * <pre>
+   * The time when this measurement was recorded. If the implementation uses a async buffer to
+   * record measurements this may be the time when the measurement was read from the buffer.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp time = 5;</code>
+   */
+  @java.lang.Override
+  public boolean hasTime() {
+    return time_ != null;
+  }
+  /**
+   * <pre>
+   * The time when this measurement was recorded. If the implementation uses a async buffer to
+   * record measurements this may be the time when the measurement was read from the buffer.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp time = 5;</code>
+   */
+  @java.lang.Override
+  public com.google.protobuf.Timestamp getTime() {
+    return time_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : time_;
+  }
+  /**
+   * <pre>
+   * The time when this measurement was recorded. If the implementation uses a async buffer to
+   * record measurements this may be the time when the measurement was read from the buffer.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp time = 5;</code>
+   */
+  private void setTime(com.google.protobuf.Timestamp value) {
+    value.getClass();
+  time_ = value;
+    
+    }
+  /**
+   * <pre>
+   * The time when this measurement was recorded. If the implementation uses a async buffer to
+   * record measurements this may be the time when the measurement was read from the buffer.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp time = 5;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeTime(com.google.protobuf.Timestamp value) {
+    value.getClass();
+  if (time_ != null &&
+        time_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
+      time_ =
+        com.google.protobuf.Timestamp.newBuilder(time_).mergeFrom(value).buildPartial();
+    } else {
+      time_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * The time when this measurement was recorded. If the implementation uses a async buffer to
+   * record measurements this may be the time when the measurement was read from the buffer.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp time = 5;</code>
+   */
+  private void clearTime() {  time_ = null;
+    
+  }
+
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.stats.v1.Measurement parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.stats.v1.Measurement parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.stats.v1.Measurement parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+
+  public static Builder newBuilder() {
+    return (Builder) DEFAULT_INSTANCE.createBuilder();
+  }
+  public static Builder newBuilder(io.opencensus.proto.stats.v1.Measurement prototype) {
+    return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
   }
 
   /**
    * <pre>
    * Describes a data point to be collected for a Measure.
    * </pre>
-   * <p>
+   *
    * Protobuf type {@code opencensus.proto.stats.v1.Measurement}
    */
   public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+      com.google.protobuf.GeneratedMessageLite.Builder<
+        io.opencensus.proto.stats.v1.Measurement, Builder> implements
       // @@protoc_insertion_point(builder_implements:opencensus.proto.stats.v1.Measurement)
       io.opencensus.proto.stats.v1.MeasurementOrBuilder {
-    private int valueCase_ = 0;
-    private java.lang.Object value_;
-    private int bitField0_;
-    private java.util.List<io.opencensus.proto.stats.v1.Tag> tags_ =
-        java.util.Collections.emptyList();
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opencensus.proto.stats.v1.Tag, io.opencensus.proto.stats.v1.Tag.Builder,
-        io.opencensus.proto.stats.v1.TagOrBuilder>
-        tagsBuilder_;
-    private java.lang.Object measureName_ = "";
-    private com.google.protobuf.Timestamp time_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-        com.google.protobuf.TimestampOrBuilder>
-        timeBuilder_;
-
     // Construct using io.opencensus.proto.stats.v1.Measurement.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
-    }
-
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_Measurement_descriptor;
+      super(DEFAULT_INSTANCE);
     }
 
     @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_Measurement_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.stats.v1.Measurement.class,
-              io.opencensus.proto.stats.v1.Measurement.Builder.class);
-    }
-
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-          .alwaysUseFieldBuilders) {
-        getTagsFieldBuilder();
-      }
-    }
-
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      if (tagsBuilder_ == null) {
-        tags_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-      } else {
-        tagsBuilder_.clear();
-      }
-      measureName_ = "";
-
-      if (timeBuilder_ == null) {
-        time_ = null;
-      } else {
-        time_ = null;
-        timeBuilder_ = null;
-      }
-      valueCase_ = 0;
-      value_ = null;
-      return this;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return io.opencensus.proto.stats.v1.StatsProto.internal_static_opencensus_proto_stats_v1_Measurement_descriptor;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.stats.v1.Measurement getDefaultInstanceForType() {
-      return io.opencensus.proto.stats.v1.Measurement.getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.stats.v1.Measurement build() {
-      io.opencensus.proto.stats.v1.Measurement result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.stats.v1.Measurement buildPartial() {
-      io.opencensus.proto.stats.v1.Measurement result =
-          new io.opencensus.proto.stats.v1.Measurement(this);
-      int from_bitField0_ = bitField0_;
-      if (tagsBuilder_ == null) {
-        if (((bitField0_ & 0x00000001) != 0)) {
-          tags_ = java.util.Collections.unmodifiableList(tags_);
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.tags_ = tags_;
-      } else {
-        result.tags_ = tagsBuilder_.build();
-      }
-      result.measureName_ = measureName_;
-      if (valueCase_ == 3) {
-        result.value_ = value_;
-      }
-      if (valueCase_ == 4) {
-        result.value_ = value_;
-      }
-      if (timeBuilder_ == null) {
-        result.time_ = time_;
-      } else {
-        result.time_ = timeBuilder_.build();
-      }
-      result.valueCase_ = valueCase_;
-      onBuilt();
-      return result;
-    }
-
-    @java.lang.Override
-    public Builder clone() {
-      return super.clone();
-    }
-
-    @java.lang.Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.setField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-
-    @java.lang.Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-
-    @java.lang.Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-
-    @java.lang.Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof io.opencensus.proto.stats.v1.Measurement) {
-        return mergeFrom((io.opencensus.proto.stats.v1.Measurement) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(io.opencensus.proto.stats.v1.Measurement other) {
-      if (other == io.opencensus.proto.stats.v1.Measurement.getDefaultInstance()) {
-        return this;
-      }
-      if (tagsBuilder_ == null) {
-        if (!other.tags_.isEmpty()) {
-          if (tags_.isEmpty()) {
-            tags_ = other.tags_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-          } else {
-            ensureTagsIsMutable();
-            tags_.addAll(other.tags_);
-          }
-          onChanged();
-        }
-      } else {
-        if (!other.tags_.isEmpty()) {
-          if (tagsBuilder_.isEmpty()) {
-            tagsBuilder_.dispose();
-            tagsBuilder_ = null;
-            tags_ = other.tags_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-            tagsBuilder_ =
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                    getTagsFieldBuilder() : null;
-          } else {
-            tagsBuilder_.addAllMessages(other.tags_);
-          }
-        }
-      }
-      if (!other.getMeasureName().isEmpty()) {
-        measureName_ = other.measureName_;
-        onChanged();
-      }
-      if (other.hasTime()) {
-        mergeTime(other.getTime());
-      }
-      switch (other.getValueCase()) {
-        case DOUBLE_VALUE: {
-          setDoubleValue(other.getDoubleValue());
-          break;
-        }
-        case INT_VALUE: {
-          setIntValue(other.getIntValue());
-          break;
-        }
-        case VALUE_NOT_SET: {
-          break;
-        }
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      io.opencensus.proto.stats.v1.Measurement parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.opencensus.proto.stats.v1.Measurement) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
-      return this;
-    }
-
     public ValueCase
-    getValueCase() {
-      return ValueCase.forNumber(
-          valueCase_);
+        getValueCase() {
+      return instance.getValueCase();
     }
 
     public Builder clearValue() {
-      valueCase_ = 0;
-      value_ = null;
-      onChanged();
+      copyOnWrite();
+      instance.clearValue();
       return this;
     }
 
-    private void ensureTagsIsMutable() {
-      if (!((bitField0_ & 0x00000001) != 0)) {
-        tags_ = new java.util.ArrayList<io.opencensus.proto.stats.v1.Tag>(tags_);
-        bitField0_ |= 0x00000001;
-      }
-    }
 
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<io.opencensus.proto.stats.v1.Tag> getTagsList() {
-      if (tagsBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(tags_);
-      } else {
-        return tagsBuilder_.getMessageList();
-      }
+      return java.util.Collections.unmodifiableList(
+          instance.getTagsList());
     }
-
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
+    @java.lang.Override
     public int getTagsCount() {
-      if (tagsBuilder_ == null) {
-        return tags_.size();
-      } else {
-        return tagsBuilder_.getCount();
-      }
-    }
-
-    /**
+      return instance.getTagsCount();
+    }/**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
+    @java.lang.Override
     public io.opencensus.proto.stats.v1.Tag getTags(int index) {
-      if (tagsBuilder_ == null) {
-        return tags_.get(index);
-      } else {
-        return tagsBuilder_.getMessage(index);
-      }
+      return instance.getTags(index);
     }
-
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
     public Builder setTags(
         int index, io.opencensus.proto.stats.v1.Tag value) {
-      if (tagsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureTagsIsMutable();
-        tags_.set(index, value);
-        onChanged();
-      } else {
-        tagsBuilder_.setMessage(index, value);
-      }
+      copyOnWrite();
+      instance.setTags(index, value);
       return this;
     }
-
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
     public Builder setTags(
         int index, io.opencensus.proto.stats.v1.Tag.Builder builderForValue) {
-      if (tagsBuilder_ == null) {
-        ensureTagsIsMutable();
-        tags_.set(index, builderForValue.build());
-        onChanged();
-      } else {
-        tagsBuilder_.setMessage(index, builderForValue.build());
-      }
+      copyOnWrite();
+      instance.setTags(index,
+          builderForValue.build());
       return this;
     }
-
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
     public Builder addTags(io.opencensus.proto.stats.v1.Tag value) {
-      if (tagsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureTagsIsMutable();
-        tags_.add(value);
-        onChanged();
-      } else {
-        tagsBuilder_.addMessage(value);
-      }
+      copyOnWrite();
+      instance.addTags(value);
       return this;
     }
-
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
     public Builder addTags(
         int index, io.opencensus.proto.stats.v1.Tag value) {
-      if (tagsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureTagsIsMutable();
-        tags_.add(index, value);
-        onChanged();
-      } else {
-        tagsBuilder_.addMessage(index, value);
-      }
+      copyOnWrite();
+      instance.addTags(index, value);
       return this;
     }
-
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
     public Builder addTags(
         io.opencensus.proto.stats.v1.Tag.Builder builderForValue) {
-      if (tagsBuilder_ == null) {
-        ensureTagsIsMutable();
-        tags_.add(builderForValue.build());
-        onChanged();
-      } else {
-        tagsBuilder_.addMessage(builderForValue.build());
-      }
+      copyOnWrite();
+      instance.addTags(builderForValue.build());
       return this;
     }
-
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
     public Builder addTags(
         int index, io.opencensus.proto.stats.v1.Tag.Builder builderForValue) {
-      if (tagsBuilder_ == null) {
-        ensureTagsIsMutable();
-        tags_.add(index, builderForValue.build());
-        onChanged();
-      } else {
-        tagsBuilder_.addMessage(index, builderForValue.build());
-      }
+      copyOnWrite();
+      instance.addTags(index,
+          builderForValue.build());
       return this;
     }
-
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
     public Builder addAllTags(
         java.lang.Iterable<? extends io.opencensus.proto.stats.v1.Tag> values) {
-      if (tagsBuilder_ == null) {
-        ensureTagsIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, tags_);
-        onChanged();
-      } else {
-        tagsBuilder_.addAllMessages(values);
-      }
+      copyOnWrite();
+      instance.addAllTags(values);
       return this;
     }
-
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
     public Builder clearTags() {
-      if (tagsBuilder_ == null) {
-        tags_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        onChanged();
-      } else {
-        tagsBuilder_.clear();
-      }
+      copyOnWrite();
+      instance.clearTags();
       return this;
     }
-
     /**
      * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
      */
     public Builder removeTags(int index) {
-      if (tagsBuilder_ == null) {
-        ensureTagsIsMutable();
-        tags_.remove(index);
-        onChanged();
-      } else {
-        tagsBuilder_.remove(index);
-      }
+      copyOnWrite();
+      instance.removeTags(index);
       return this;
     }
 
     /**
-     * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
-     */
-    public io.opencensus.proto.stats.v1.Tag.Builder getTagsBuilder(
-        int index) {
-      return getTagsFieldBuilder().getBuilder(index);
-    }
-
-    /**
-     * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
-     */
-    public io.opencensus.proto.stats.v1.TagOrBuilder getTagsOrBuilder(
-        int index) {
-      if (tagsBuilder_ == null) {
-        return tags_.get(index);
-      } else {
-        return tagsBuilder_.getMessageOrBuilder(index);
-      }
-    }
-
-    /**
-     * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
-     */
-    public java.util.List<? extends io.opencensus.proto.stats.v1.TagOrBuilder>
-    getTagsOrBuilderList() {
-      if (tagsBuilder_ != null) {
-        return tagsBuilder_.getMessageOrBuilderList();
-      } else {
-        return java.util.Collections.unmodifiableList(tags_);
-      }
-    }
-
-    /**
-     * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
-     */
-    public io.opencensus.proto.stats.v1.Tag.Builder addTagsBuilder() {
-      return getTagsFieldBuilder().addBuilder(
-          io.opencensus.proto.stats.v1.Tag.getDefaultInstance());
-    }
-
-    /**
-     * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
-     */
-    public io.opencensus.proto.stats.v1.Tag.Builder addTagsBuilder(
-        int index) {
-      return getTagsFieldBuilder().addBuilder(
-          index, io.opencensus.proto.stats.v1.Tag.getDefaultInstance());
-    }
-
-    /**
-     * <code>repeated .opencensus.proto.stats.v1.Tag tags = 1;</code>
-     */
-    public java.util.List<io.opencensus.proto.stats.v1.Tag.Builder>
-    getTagsBuilderList() {
-      return getTagsFieldBuilder().getBuilderList();
-    }
-
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opencensus.proto.stats.v1.Tag, io.opencensus.proto.stats.v1.Tag.Builder,
-        io.opencensus.proto.stats.v1.TagOrBuilder>
-    getTagsFieldBuilder() {
-      if (tagsBuilder_ == null) {
-        tagsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            io.opencensus.proto.stats.v1.Tag, io.opencensus.proto.stats.v1.Tag.Builder,
-            io.opencensus.proto.stats.v1.TagOrBuilder>(
-            tags_,
-            ((bitField0_ & 0x00000001) != 0),
-            getParentForChildren(),
-            isClean());
-        tags_ = null;
-      }
-      return tagsBuilder_;
-    }
-
-    /**
      * <pre>
      * The name of the measure to which the value is applied.
      * </pre>
      *
      * <code>string measure_name = 2;</code>
-     *
      * @return The measureName.
      */
+    @java.lang.Override
     public java.lang.String getMeasureName() {
-      java.lang.Object ref = measureName_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        measureName_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+      return instance.getMeasureName();
     }
-
     /**
      * <pre>
      * The name of the measure to which the value is applied.
      * </pre>
      *
      * <code>string measure_name = 2;</code>
+     * @return The bytes for measureName.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getMeasureNameBytes() {
+      return instance.getMeasureNameBytes();
+    }
+    /**
+     * <pre>
+     * The name of the measure to which the value is applied.
+     * </pre>
      *
+     * <code>string measure_name = 2;</code>
      * @param value The measureName to set.
      * @return This builder for chaining.
      */
     public Builder setMeasureName(
         java.lang.String value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-
-      measureName_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setMeasureName(value);
       return this;
     }
-
     /**
      * <pre>
      * The name of the measure to which the value is applied.
      * </pre>
      *
      * <code>string measure_name = 2;</code>
-     *
-     * @return The bytes for measureName.
+     * @return This builder for chaining.
      */
-    public com.google.protobuf.ByteString
-    getMeasureNameBytes() {
-      java.lang.Object ref = measureName_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        measureName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public Builder clearMeasureName() {
+      copyOnWrite();
+      instance.clearMeasureName();
+      return this;
     }
-
     /**
      * <pre>
      * The name of the measure to which the value is applied.
      * </pre>
      *
      * <code>string measure_name = 2;</code>
-     *
      * @param value The bytes for measureName to set.
      * @return This builder for chaining.
      */
     public Builder setMeasureNameBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      checkByteStringIsUtf8(value);
-
-      measureName_ = value;
-      onChanged();
-      return this;
-    }
-
-    /**
-     * <pre>
-     * The name of the measure to which the value is applied.
-     * </pre>
-     *
-     * <code>string measure_name = 2;</code>
-     *
-     * @return This builder for chaining.
-     */
-    public Builder clearMeasureName() {
-
-      measureName_ = getDefaultInstance().getMeasureName();
-      onChanged();
+      copyOnWrite();
+      instance.setMeasureNameBytes(value);
       return this;
     }
 
     /**
      * <code>double double_value = 3;</code>
-     *
      * @return The doubleValue.
      */
+    @java.lang.Override
     public double getDoubleValue() {
-      if (valueCase_ == 3) {
-        return (java.lang.Double) value_;
-      }
-      return 0D;
+      return instance.getDoubleValue();
     }
-
     /**
      * <code>double double_value = 3;</code>
-     *
      * @param value The doubleValue to set.
      * @return This builder for chaining.
      */
     public Builder setDoubleValue(double value) {
-      valueCase_ = 3;
-      value_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setDoubleValue(value);
       return this;
     }
-
     /**
      * <code>double double_value = 3;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearDoubleValue() {
-      if (valueCase_ == 3) {
-        valueCase_ = 0;
-        value_ = null;
-        onChanged();
-      }
+      copyOnWrite();
+      instance.clearDoubleValue();
       return this;
     }
 
     /**
      * <code>int64 int_value = 4;</code>
-     *
      * @return The intValue.
      */
+    @java.lang.Override
     public long getIntValue() {
-      if (valueCase_ == 4) {
-        return (java.lang.Long) value_;
-      }
-      return 0L;
+      return instance.getIntValue();
     }
-
     /**
      * <code>int64 int_value = 4;</code>
-     *
      * @param value The intValue to set.
      * @return This builder for chaining.
      */
     public Builder setIntValue(long value) {
-      valueCase_ = 4;
-      value_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setIntValue(value);
       return this;
     }
-
     /**
      * <code>int64 int_value = 4;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearIntValue() {
-      if (valueCase_ == 4) {
-        valueCase_ = 0;
-        value_ = null;
-        onChanged();
-      }
+      copyOnWrite();
+      instance.clearIntValue();
       return this;
     }
 
@@ -1366,13 +699,11 @@ public final class Measurement extends
      * </pre>
      *
      * <code>.google.protobuf.Timestamp time = 5;</code>
-     *
-     * @return Whether the time field is set.
      */
+    @java.lang.Override
     public boolean hasTime() {
-      return timeBuilder_ != null || time_ != null;
+      return instance.hasTime();
     }
-
     /**
      * <pre>
      * The time when this measurement was recorded. If the implementation uses a async buffer to
@@ -1380,17 +711,11 @@ public final class Measurement extends
      * </pre>
      *
      * <code>.google.protobuf.Timestamp time = 5;</code>
-     *
-     * @return The time.
      */
+    @java.lang.Override
     public com.google.protobuf.Timestamp getTime() {
-      if (timeBuilder_ == null) {
-        return time_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : time_;
-      } else {
-        return timeBuilder_.getMessage();
-      }
+      return instance.getTime();
     }
-
     /**
      * <pre>
      * The time when this measurement was recorded. If the implementation uses a async buffer to
@@ -1400,19 +725,10 @@ public final class Measurement extends
      * <code>.google.protobuf.Timestamp time = 5;</code>
      */
     public Builder setTime(com.google.protobuf.Timestamp value) {
-      if (timeBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        time_ = value;
-        onChanged();
-      } else {
-        timeBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setTime(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * The time when this measurement was recorded. If the implementation uses a async buffer to
@@ -1423,16 +739,10 @@ public final class Measurement extends
      */
     public Builder setTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
-      if (timeBuilder_ == null) {
-        time_ = builderForValue.build();
-        onChanged();
-      } else {
-        timeBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setTime(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * The time when this measurement was recorded. If the implementation uses a async buffer to
@@ -1442,21 +752,10 @@ public final class Measurement extends
      * <code>.google.protobuf.Timestamp time = 5;</code>
      */
     public Builder mergeTime(com.google.protobuf.Timestamp value) {
-      if (timeBuilder_ == null) {
-        if (time_ != null) {
-          time_ =
-              com.google.protobuf.Timestamp.newBuilder(time_).mergeFrom(value).buildPartial();
-        } else {
-          time_ = value;
-        }
-        onChanged();
-      } else {
-        timeBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeTime(value);
       return this;
     }
-
     /**
      * <pre>
      * The time when this measurement was recorded. If the implementation uses a async buffer to
@@ -1465,88 +764,88 @@ public final class Measurement extends
      *
      * <code>.google.protobuf.Timestamp time = 5;</code>
      */
-    public Builder clearTime() {
-      if (timeBuilder_ == null) {
-        time_ = null;
-        onChanged();
-      } else {
-        time_ = null;
-        timeBuilder_ = null;
-      }
-
+    public Builder clearTime() {  copyOnWrite();
+      instance.clearTime();
       return this;
     }
-
-    /**
-     * <pre>
-     * The time when this measurement was recorded. If the implementation uses a async buffer to
-     * record measurements this may be the time when the measurement was read from the buffer.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp time = 5;</code>
-     */
-    public com.google.protobuf.Timestamp.Builder getTimeBuilder() {
-
-      onChanged();
-      return getTimeFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * The time when this measurement was recorded. If the implementation uses a async buffer to
-     * record measurements this may be the time when the measurement was read from the buffer.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp time = 5;</code>
-     */
-    public com.google.protobuf.TimestampOrBuilder getTimeOrBuilder() {
-      if (timeBuilder_ != null) {
-        return timeBuilder_.getMessageOrBuilder();
-      } else {
-        return time_ == null ?
-            com.google.protobuf.Timestamp.getDefaultInstance() : time_;
-      }
-    }
-
-    /**
-     * <pre>
-     * The time when this measurement was recorded. If the implementation uses a async buffer to
-     * record measurements this may be the time when the measurement was read from the buffer.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp time = 5;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-        com.google.protobuf.TimestampOrBuilder>
-    getTimeFieldBuilder() {
-      if (timeBuilder_ == null) {
-        timeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-            com.google.protobuf.TimestampOrBuilder>(
-            getTime(),
-            getParentForChildren(),
-            isClean());
-        time_ = null;
-      }
-      return timeBuilder_;
-    }
-
-    @java.lang.Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
-    }
-
-    @java.lang.Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
-    }
-
 
     // @@protoc_insertion_point(builder_scope:opencensus.proto.stats.v1.Measurement)
   }
+  @java.lang.Override
+  @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+  protected final java.lang.Object dynamicMethod(
+      com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+      java.lang.Object arg0, java.lang.Object arg1) {
+    switch (method) {
+      case NEW_MUTABLE_INSTANCE: {
+        return new io.opencensus.proto.stats.v1.Measurement();
+      }
+      case NEW_BUILDER: {
+        return new Builder();
+      }
+      case BUILD_MESSAGE_INFO: {
+          java.lang.Object[] objects = new java.lang.Object[] {
+            "value_",
+            "valueCase_",
+            "tags_",
+            io.opencensus.proto.stats.v1.Tag.class,
+            "measureName_",
+            "time_",
+          };
+          java.lang.String info =
+              "\u0000\u0005\u0001\u0000\u0001\u0005\u0005\u0000\u0001\u0000\u0001\u001b\u0002\u0208" +
+              "\u00033\u0000\u00045\u0000\u0005\t";
+          return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+      }
+      // fall through
+      case GET_DEFAULT_INSTANCE: {
+        return DEFAULT_INSTANCE;
+      }
+      case GET_PARSER: {
+        com.google.protobuf.Parser<io.opencensus.proto.stats.v1.Measurement> parser = PARSER;
+        if (parser == null) {
+          synchronized (io.opencensus.proto.stats.v1.Measurement.class) {
+            parser = PARSER;
+            if (parser == null) {
+              parser =
+                  new DefaultInstanceBasedParser<io.opencensus.proto.stats.v1.Measurement>(
+                      DEFAULT_INSTANCE);
+              PARSER = parser;
+            }
+          }
+        }
+        return parser;
+    }
+    case GET_MEMOIZED_IS_INITIALIZED: {
+      return (byte) 1;
+    }
+    case SET_MEMOIZED_IS_INITIALIZED: {
+      return null;
+    }
+    }
+    throw new UnsupportedOperationException();
+  }
 
+
+  // @@protoc_insertion_point(class_scope:opencensus.proto.stats.v1.Measurement)
+  private static final io.opencensus.proto.stats.v1.Measurement DEFAULT_INSTANCE;
+  static {
+    Measurement defaultInstance = new Measurement();
+    // New instances are implicitly immutable so no need to make
+    // immutable.
+    DEFAULT_INSTANCE = defaultInstance;
+    com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+      Measurement.class, defaultInstance);
+  }
+
+  public static io.opencensus.proto.stats.v1.Measurement getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  private static volatile com.google.protobuf.Parser<Measurement> PARSER;
+
+  public static com.google.protobuf.Parser<Measurement> parser() {
+    return DEFAULT_INSTANCE.getParserForType();
+  }
 }
 

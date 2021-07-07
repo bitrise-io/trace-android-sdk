@@ -5,7 +5,7 @@ package io.opencensus.proto.trace.v1;
 
 public interface TruncatableStringOrBuilder extends
     // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.TruncatableString)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.MessageLiteOrBuilder {
 
   /**
    * <pre>
@@ -18,11 +18,9 @@ public interface TruncatableStringOrBuilder extends
    * </pre>
    *
    * <code>string value = 1;</code>
-   *
    * @return The value.
    */
   java.lang.String getValue();
-
   /**
    * <pre>
    * The shortened string. For example, if the original string was 500 bytes long and
@@ -34,11 +32,10 @@ public interface TruncatableStringOrBuilder extends
    * </pre>
    *
    * <code>string value = 1;</code>
-   *
    * @return The bytes for value.
    */
   com.google.protobuf.ByteString
-  getValueBytes();
+      getValueBytes();
 
   /**
    * <pre>
@@ -47,7 +44,6 @@ public interface TruncatableStringOrBuilder extends
    * </pre>
    *
    * <code>int32 truncated_byte_count = 2;</code>
-   *
    * @return The truncatedByteCount.
    */
   int getTruncatedByteCount();

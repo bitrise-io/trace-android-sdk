@@ -1,6 +1,7 @@
 package io.bitrise.trace.network;
 
 import androidx.annotation.NonNull;
+import com.google.gson.annotations.SerializedName;
 import io.opencensus.proto.resource.v1.Resource;
 
 /**
@@ -8,6 +9,7 @@ import io.opencensus.proto.resource.v1.Resource;
  */
 public abstract class NetworkRequest {
 
+  @SerializedName("resource")
   @NonNull
   Resource resource;
 

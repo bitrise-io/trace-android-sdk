@@ -15,7 +15,8 @@ import io.bitrise.trace.data.collector.DataSourceType;
 import io.bitrise.trace.data.collector.DummyDataCollector;
 import io.bitrise.trace.data.collector.DummyDataListener;
 import io.bitrise.trace.data.dto.Data;
-import io.bitrise.trace.data.dto.FormattedData;
+import io.bitrise.trace.data.metric.MetricEntity;
+import io.bitrise.trace.data.resource.ResourceEntity;
 import io.bitrise.trace.data.storage.DataStorage;
 import io.bitrise.trace.scheduler.ServiceScheduler;
 import io.bitrise.trace.session.ApplicationSessionManager;
@@ -125,10 +126,36 @@ public class DataManagerInstrumentedTest {
     sleep(100);
     // this happens asynchronously, and can take a few milliseconds to actually get called.
 
-    final ArgumentCaptor<FormattedData> formattedDataArgumentCaptor =
-        ArgumentCaptor.forClass(FormattedData.class);
+    final ArgumentCaptor<MetricEntity> metricEntityArgumentCaptor =
+        ArgumentCaptor.forClass(MetricEntity.class);
     verify(mockDataStorage, times(1))
-        .saveFormattedData(formattedDataArgumentCaptor.capture());
-    assertNotNull(formattedDataArgumentCaptor.getValue().getMetricEntity());
+        .saveMetric(metricEntityArgumentCaptor.capture());
+    assertNotNull(metricEntityArgumentCaptor.getValue());
+  }
+
+  /**
+   * When the {@link DataManager#handleReceivedData(Data)} is called with a valid {@link Data}
+   * that will be converted to a {@link io.opencensus.proto.resource.v1.Resource} it should not
+   * throw an exception and call the relevant database save method.
+   */
+  @Test
+  public void handleReceivedData_shouldHandleResource() throws InterruptedException {
+    DataManager.getInstance(context);
+    ApplicationSessionManager.getInstance().startSession();
+    final DataStorage mockDataStorage = Mockito.mock(DataStorage.class);
+    dataManager.setDataStorage(mockDataStorage);
+
+    final Data data = new Data(DataSourceType.APP_VERSION_CODE);
+    data.setContent("123");
+    dataManager.handleReceivedData(data);
+
+    sleep(100);
+    // this happens asynchronously, and can take a few milliseconds to actually get called.
+
+    final ArgumentCaptor<ResourceEntity>  resourceEntityArgumentCaptor =
+        ArgumentCaptor.forClass(ResourceEntity.class);
+    verify(mockDataStorage, times(1))
+        .saveResourceEntity(resourceEntityArgumentCaptor.capture());
+    assertNotNull(resourceEntityArgumentCaptor.getValue());
   }
 }

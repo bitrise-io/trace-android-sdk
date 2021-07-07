@@ -2,14 +2,12 @@ package io.bitrise.trace.data.application;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
-import android.content.Context;
-import io.bitrise.trace.BuildConfig;
-import io.bitrise.trace.configuration.ConfigurationManager;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import io.bitrise.trace.data.collector.application.ApplicationVersionCodeDataCollector;
 import io.bitrise.trace.data.dto.Data;
-import java.util.HashMap;
-import java.util.Map;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -19,23 +17,23 @@ import org.mockito.Mockito;
 public class ApplicationVersionCodeDataCollectorTest {
 
   private static final int versionCode = 123;
-  private final Context mockContext = Mockito.mock(Context.class);
+  private final PackageManager mockPackageManager = Mockito.mock(PackageManager.class);
+  private final String packageName = "packageName";
   private final ApplicationVersionCodeDataCollector collector =
-      new ApplicationVersionCodeDataCollector(
-          mockContext);
+      new ApplicationVersionCodeDataCollector(mockPackageManager, packageName);
 
   @Test
-  public void collectData_configurationManagerInitialised() {
-    final Map<String, Object> configuration = new HashMap<>();
-    configuration.put("VERSION_CODE", versionCode);
-    ConfigurationManager.getDebugInstance(BuildConfig.TRACE_TOKEN, configuration);
+  public void collectData_configurationManagerInitialised()
+      throws PackageManager.NameNotFoundException {
+    final PackageInfo packageInfo = new PackageInfo();
+    packageInfo.versionCode = versionCode;
+    when(mockPackageManager.getPackageInfo(packageName, 0))
+        .thenReturn(packageInfo);
 
     final Data expectedData = new Data(ApplicationVersionCodeDataCollector.class);
     expectedData.setContent(String.valueOf(versionCode));
 
     assertEquals(expectedData, collector.collectData());
-
-    ConfigurationManager.reset();
   }
 
   @Test
