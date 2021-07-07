@@ -55,6 +55,11 @@ public class Session {
   private final List<ResourceEntity> storedResources = new ArrayList<>();
 
 
+  /**
+   * Returns a {@link Resource} object for the current active session.
+   *
+   * @return the resources for the current active session.
+   */
   @Nullable
   public Resource getResources() {
     // not a valid set of resources, we should fail

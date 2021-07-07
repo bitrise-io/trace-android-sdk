@@ -50,8 +50,8 @@ public class ExceptionDataFormatter {
     if (initialFrame == null) {
       return crashType;
     }
-    return crashType + " " + initialFrame.getPackageName() + "." + initialFrame.getFunctionName() + "("
-        + initialFrame.getFileName() + ":" + initialFrame.getLineNo() + ")";
+    return crashType + " " + initialFrame.getPackageName() + "." + initialFrame.getFunctionName()
+        + "(" + initialFrame.getFileName() + ":" + initialFrame.getLineNo() + ")";
   }
 
   /**
