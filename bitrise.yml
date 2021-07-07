@@ -6,7 +6,7 @@ trigger_map:
 - push_branch: main
   workflow: primary_v2
 - pull_request_source_branch: "*"
-  workflow: primary_v2
+  workflow: primary_main
 workflows:
   testkit-init:
     steps:
@@ -201,6 +201,85 @@ workflows:
       1. Builds trace-gradle-plugin and trace-sdk
       2. Builds trace-test-application
       3. Runs the instrumented tests for trace-sdk
+  primary_main:
+    before_run: []
+    steps:
+      - script@1:
+          title: prepare_envs
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key PRIMARY_BUILD_NUMBER --value $BITRISE_BUILD_NUMBER
+      - build-router-start@0:
+          inputs:
+            - workflows: |-
+                build_trace-gradle-plugin
+                build_trace-sdk
+                check_code_formatting
+            - environment_key_list: PRIMARY_BUILD_NUMBER
+            - abort_on_fail: 'yes'
+            - wait_for_builds: 'true'
+            - access_token: "$TRACE_ANDROID_SDK_ACCESS_TOKEN"
+          title: trace-gradle-plugin_&_trace-sdk_build_start
+      - script@1:
+          title: store_build_slug_numbers
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key TRACE_SDK_BUILD_SLUG --value `echo "${ROUTER_STARTED_BUILD_SLUGS}" | sed '2!d'`
+                envman add --key TRACE_GRADLE_PLUGIN_BUILD_SLUG --value `echo "${ROUTER_STARTED_BUILD_SLUGS}" | sed '1!d'`
+      - build-router-start@0:
+          inputs:
+            - workflows: |-
+                test_trace-android-sdk_api_21
+                test_trace-android-sdk_api_22
+                test_trace-android-sdk_api_23
+                test_trace-android-sdk_api_24
+            - environment_key_list: |-
+                PRIMARY_BUILD_NUMBER
+                TRACE_SDK_BUILD_SLUG
+                TRACE_GRADLE_PLUGIN_BUILD_SLUG
+            - wait_for_builds: 'true'
+            - access_token: "$TRACE_ANDROID_SDK_ACCESS_TOKEN"
+          title: trace-android-sdk_test_21_to_24
+      - build-router-start@0:
+          inputs:
+            - workflows: |-
+                test_trace-android-sdk_api_25
+                test_trace-android-sdk_api_26
+                test_trace-android-sdk_api_27
+                test_trace-android-sdk_api_28
+            - environment_key_list: |-
+                PRIMARY_BUILD_NUMBER
+                TRACE_SDK_BUILD_SLUG
+                TRACE_GRADLE_PLUGIN_BUILD_SLUG
+            - wait_for_builds: 'true'
+            - access_token: "$TRACE_ANDROID_SDK_ACCESS_TOKEN"
+          title: trace-android-sdk_test_25_to_28
+      - build-router-start@0:
+          inputs:
+            - workflows: |-
+                test_trace-android-sdk_api_29
+                test_trace-android-sdk_api_30
+            - environment_key_list: |-
+                PRIMARY_BUILD_NUMBER
+                TRACE_SDK_BUILD_SLUG
+                TRACE_GRADLE_PLUGIN_BUILD_SLUG
+            - wait_for_builds: 'true'
+            - access_token: "$TRACE_ANDROID_SDK_ACCESS_TOKEN"
+          title: trace-android-sdk_test_29_to_30
+    description: |-
+      Tests the project for committing to main.
   clone_repo:
     steps:
       - activate-ssh-key:
@@ -794,6 +873,7 @@ workflows:
       - android-build:
           inputs:
             - module: trace-test-application
+            - variant: debug
             - arguments: "--stacktrace"
       - android-unit-test:
           inputs:
