@@ -7,7 +7,6 @@ import androidx.annotation.VisibleForTesting;
 import io.bitrise.trace.data.collector.BaseDataListener;
 import io.bitrise.trace.data.dto.CrashData;
 import io.bitrise.trace.data.management.DataManager;
-import io.bitrise.trace.utils.log.TraceLog;
 
 /**
  * Listens for any unhandled exceptions that get thrown.

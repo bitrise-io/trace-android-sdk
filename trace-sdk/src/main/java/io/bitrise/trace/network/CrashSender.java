@@ -1,7 +1,6 @@
 package io.bitrise.trace.network;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import io.bitrise.trace.data.dto.CrashReport;
 import io.bitrise.trace.utils.TraceClock;
 import io.bitrise.trace.utils.UniqueIdGenerator;
