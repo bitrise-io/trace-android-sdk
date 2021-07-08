@@ -10,7 +10,6 @@ import io.bitrise.trace.plugin.network.SymbolCollectorNetworkClient;
 import java.io.File;
 import java.io.IOException;
 import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import org.gradle.api.GradleException;
@@ -80,8 +79,8 @@ public class UploadMappingFileTask extends BaseTraceVariantTask {
           name, getVariant().getName());
     } else {
       throw new GradleException(
-          String.format("Failed to upload mapping file %s for variant %s.", name,
-              getVariant().getName()));
+          String.format("Failed to upload mapping file %s for variant %s. network code %s.",
+              name, getVariant().getName(), response.code()));
     }
   }
 }
