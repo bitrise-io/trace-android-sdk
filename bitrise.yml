@@ -1419,3 +1419,6 @@ app:
   - RUN_TESTKIT: 'false'
     opts:
       is_expand: false
+meta:
+  bitrise.io:
+    machine_type_id: elite-xl
