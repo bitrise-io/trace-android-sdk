@@ -51,8 +51,8 @@ public class UploadMappingFileTask extends BaseTraceVariantTask {
     final RequestBody requestFile = RequestBody.create(MediaType.parse("text/plain"), file);
 
     // get customer application information.
-    final AppExtension androidProjectInfo = (AppExtension) project.getExtensions().findByName(
-       "android");
+    final AppExtension androidProjectInfo = (AppExtension) project.getExtensions()
+                                                                  .findByName("android");
     if (androidProjectInfo == null || androidProjectInfo.getDefaultConfig() == null) {
       logger.info(TraceGradlePlugin.LOGGER_TAG, "Could not find android default config.");
       return;
