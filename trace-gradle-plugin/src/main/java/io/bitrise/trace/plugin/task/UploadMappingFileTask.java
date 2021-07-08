@@ -2,6 +2,7 @@ package io.bitrise.trace.plugin.task;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import com.android.build.gradle.AppExtension;
 import io.bitrise.trace.plugin.TraceGradlePlugin;
 import io.bitrise.trace.plugin.configuration.BuildConfigurationManager;
 import io.bitrise.trace.plugin.modifier.BuildHelper;
@@ -48,32 +49,43 @@ public class UploadMappingFileTask extends BaseTraceVariantTask {
     }
 
     final RequestBody requestFile = RequestBody.create(MediaType.parse("text/plain"), file);
-    final String buildId = GenerateBuildIdTask.readBuildIdFromFile(project.getBuildDir(),
-        getVariant().getName());
-    uploadFile(requestFile, file.getName(), buildId);
+
+    // get customer application information.
+    final AppExtension androidProjectInfo = (AppExtension) project.getExtensions().findByName(
+       "android");
+    if (androidProjectInfo == null || androidProjectInfo.getDefaultConfig() == null) {
+      logger.info(TraceGradlePlugin.LOGGER_TAG, "Could not find android default config.");
+      return;
+    }
+    final String versionName = androidProjectInfo.getDefaultConfig().getVersionName();
+    final String versionCode = androidProjectInfo.getDefaultConfig().getVersionCode().toString();
+
+    uploadFile(requestFile, file.getName(), versionName, versionCode);
   }
 
   /**
    * Uploads the given File to the backend, so later an obfuscated crash report can be retraced.
    *
-   * @param requestFile the file itself as a multipart body.
-   * @param name        the name of the file.
-   * @param buildId     the build ID for the file.
-   * @throws IOException if any I/O exception occurs.
+   * @param requestFile       the file itself as a multipart body.
+   * @param name              the name of the file.
+   * @param appVersionCode    the version code of the customer application.
+   * @param appVersionName    the version name of the customer application.
+   * @throws IOException      if any I/O exception occurs.
    */
   private void uploadFile(@NonNull final RequestBody requestFile,
                           @NonNull final String name,
-                          @NonNull final String buildId) throws IOException {
+                          @NonNull final String appVersionCode,
+                          @NonNull final String appVersionName) throws IOException {
     final SymbolCollectorCommunicator symbolCollectorCommunicator =
         SymbolCollectorNetworkClient.getCommunicator();
     final String token = String.format("Bearer %1$s",
         BuildConfigurationManager.getInstance(project.getRootDir().getAbsolutePath()).getToken());
-    final Call<ResponseBody> mappingFileUploadCall =
-        symbolCollectorCommunicator
-            .uploadMappingFile(project.getVersion().toString(), token, buildId,
-                requestFile);
+    final Call<ResponseBody> mappingFileUploadCall = symbolCollectorCommunicator
+            .uploadMappingFile(appVersionName, token, appVersionCode, requestFile);
+
     logger.info("Starting to upload mapping file {} for variant {}.", name, getVariant().getName());
     final Response<ResponseBody> response = mappingFileUploadCall.execute();
+
     if (response.isSuccessful()) {
       logger.info("Successfully finished uploading mapping file {} for variant {}.",
           name, getVariant().getName());
