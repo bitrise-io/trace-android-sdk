@@ -245,16 +245,7 @@ workflows:
                 test_trace-android-sdk_api_22
                 test_trace-android-sdk_api_23
                 test_trace-android-sdk_api_24
-            - environment_key_list: |-
-                PRIMARY_BUILD_NUMBER
-                TRACE_SDK_BUILD_SLUG
-                TRACE_GRADLE_PLUGIN_BUILD_SLUG
-            - wait_for_builds: 'true'
-            - access_token: "$TRACE_ANDROID_SDK_ACCESS_TOKEN"
-          title: trace-android-sdk_test_21_and_24
-      - build-router-start@0:
-          inputs:
-            - workflows: |-
+                test_trace-android-sdk_api_25
                 test_trace-android-sdk_api_26
                 test_trace-android-sdk_api_27
                 test_trace-android-sdk_api_28
@@ -266,7 +257,7 @@ workflows:
                 TRACE_GRADLE_PLUGIN_BUILD_SLUG
             - wait_for_builds: 'true'
             - access_token: "$TRACE_ANDROID_SDK_ACCESS_TOKEN"
-          title: trace-android-sdk_test_26_and_30
+          title: trace-android-sdk_test_21_and_30
     description: |-
       Tests the project for committing to main.
   clone_repo:
