@@ -8,18 +8,25 @@ import io.bitrise.trace.configuration.ConfigurationManager;
 import io.bitrise.trace.data.collector.DataCollector;
 import io.bitrise.trace.data.collector.DataListener;
 import io.bitrise.trace.data.collector.DataSource;
+import io.bitrise.trace.data.collector.crash.TraceCrashDataListener;
+import io.bitrise.trace.data.dto.CrashData;
+import io.bitrise.trace.data.dto.CrashReport;
 import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.dto.FormattedData;
+import io.bitrise.trace.data.management.formatter.crash.CrashDataFormatter;
 import io.bitrise.trace.data.storage.DataStorage;
 import io.bitrise.trace.data.storage.TraceDataStorage;
 import io.bitrise.trace.data.trace.ApplicationTraceManager;
 import io.bitrise.trace.data.trace.Trace;
 import io.bitrise.trace.data.trace.TraceManager;
+import io.bitrise.trace.network.CrashSender;
 import io.bitrise.trace.network.DataSender;
 import io.bitrise.trace.network.MetricSender;
 import io.bitrise.trace.network.TraceSender;
 import io.bitrise.trace.scheduler.ExecutorScheduler;
 import io.bitrise.trace.scheduler.ServiceScheduler;
+import io.bitrise.trace.session.ApplicationSessionManager;
+import io.bitrise.trace.session.Session;
 import io.bitrise.trace.utils.log.LogMessageConstants;
 import io.bitrise.trace.utils.log.TraceLog;
 import io.opencensus.proto.metrics.v1.Metric;
@@ -112,6 +119,9 @@ public class DataManager {
   @NonNull
   DataStorage dataStorage;
 
+  @NonNull
+  Context context;
+
   /**
    * Constructor to prevent instantiation outside of the class.
    *
@@ -122,6 +132,7 @@ public class DataManager {
     this.dataStorage = TraceDataStorage.getInstance(context);
     this.dataFormatterDelegator = DataFormatterDelegator.getInstance();
     this.traceManager = ApplicationTraceManager.getInstance(context);
+    this.context = context;
   }
 
   /**
@@ -384,7 +395,37 @@ public class DataManager {
       } else if (formattedData.getResourceEntity() != null) {
         Executors.newSingleThreadExecutor()
                  .execute(() -> dataStorage.saveResourceEntity(formattedData.getResourceEntity()));
+
+        final Session session = ApplicationSessionManager.getInstance().getActiveSession();
+        if (session != null) {
+          session.addResourceEntity(formattedData.getResourceEntity());
+        }
       }
     }
+  }
+
+  /**
+   * Handles a received {@link CrashData} from the {@link TraceCrashDataListener} and ensures
+   * it's sent to the server asap.
+   *
+   * @param crashData the {@link CrashData} object captured.
+   */
+  public void handleReceivedCrash(final @NonNull CrashData crashData) {
+    final CrashReport crashReport = CrashDataFormatter.formatCrashData(crashData);
+
+    final Session session = ApplicationSessionManager.getInstance().getActiveSession();
+    if (session == null) {
+      TraceLog.d("Data manager: active session was null.");
+      return;
+    }
+
+    final Resource resource = session.getResources();
+    if (resource == null) {
+      TraceLog.d("Data manager: session resources were null.");
+      return;
+    }
+
+    final CrashSender crashSender = new CrashSender(crashReport, resource);
+    crashSender.send();
   }
 }
