@@ -1,6 +1,7 @@
 package io.bitrise.trace.network;
 
 import androidx.annotation.NonNull;
+import com.google.gson.annotations.SerializedName;
 import io.bitrise.trace.data.dto.CrashReport;
 import io.opencensus.proto.resource.v1.Resource;
 import java.util.List;
@@ -41,32 +42,35 @@ public class CrashRequest extends NetworkRequest {
    */
   public static class Metadata {
 
-    @NonNull final String title;
+    @SerializedName("throwableClassName")
+    @NonNull final String throwableClassName;
     @NonNull final String description;
     @NonNull final String timestamp;
     @NonNull final String uuid;
-    @NonNull final String traceid;
-    @NonNull final String spanid;
+    @SerializedName("traceId")
+    @NonNull final String traceId;
+    @SerializedName("spanId")
+    @NonNull final String spanId;
 
     /**
      * Creates a {@link Metadata} object.
      *
-     * @param title the title for the crash to be displayed in the dashboard.
+     * @param throwableClassName the class name of the throwable that caused the crash.
      * @param description the description of the crash to be displayed in the dashboard.
      * @param timestamp the timestamp the crash occurred, in the specific format.
      * @param uuid a unique identifier for the crash report.
-     * @param traceid the current trace id (if possible).
-     * @param spanid the current span id (if possible).
+     * @param traceId the current trace id (if possible).
+     * @param spanId the current span id (if possible).
      */
-    public Metadata(@NonNull String title, @NonNull String description,
-                    @NonNull String timestamp, @NonNull String uuid, @NonNull String traceid,
-                    @NonNull String spanid) {
-      this.title = title;
+    public Metadata(@NonNull String throwableClassName, @NonNull String description,
+                    @NonNull String timestamp, @NonNull String uuid, @NonNull String traceId,
+                    @NonNull String spanId) {
+      this.throwableClassName = throwableClassName;
       this.description = description;
       this.timestamp = timestamp;
       this.uuid = uuid;
-      this.traceid = traceid;
-      this.spanid = spanid;
+      this.traceId = traceId;
+      this.spanId = spanId;
     }
   }
 }

@@ -41,7 +41,7 @@ public class CrashSender {
   public void send() {
 
     final CrashRequest.Metadata metadata = new CrashRequest.Metadata(
-        crashReport.getTitle(),
+        crashReport.getThrowableClassName(),
         crashReport.getDescription(),
         TraceClock.createCrashRequestFormat(millisecondTimestamp, TimeZone.getDefault()),
         this.uuid,

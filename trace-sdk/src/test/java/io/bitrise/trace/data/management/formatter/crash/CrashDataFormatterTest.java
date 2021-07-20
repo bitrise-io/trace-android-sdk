@@ -17,23 +17,6 @@ import org.mockito.Mockito;
  */
 public class CrashDataFormatterTest {
 
-  private static final String exceptionClassName = "ExceptionClassName";
-
-  @Test
-  public void getCrashTitle() {
-    final CrashReport.Frame frame = new CrashReport.Frame(
-        "package", "function", "file", 123, 0);
-
-    assertEquals("ExceptionClassName package.function(file:123)",
-        CrashDataFormatter.getCrashTitle(frame, exceptionClassName));
-  }
-
-  @Test
-  public void getCrashTitle_frameIsNull() {
-    assertEquals(exceptionClassName,
-        CrashDataFormatter.getCrashTitle(null, exceptionClassName));
-  }
-
   @Test
   public void convertStackTraceElementsToCrashReportFrame() {
     final List<CrashReport.Frame> frames = CrashDataFormatter
@@ -72,7 +55,7 @@ public class CrashDataFormatterTest {
 
     assertEquals(expectedThreads, result.getThreads());
     assertEquals("", result.getDescription());
-    assertEquals("java.lang.RuntimeException class1.method1(file1:1)", result.getTitle());
+    assertEquals("java.lang.RuntimeException", result.getThrowableClassName());
   }
 
 }

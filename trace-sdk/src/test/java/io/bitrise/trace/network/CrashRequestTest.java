@@ -23,7 +23,7 @@ public class CrashRequestTest {
     final CrashReport crashReport = CrashFormatterTestProvider.createCrashReport();
 
     final CrashRequest.Metadata metadata = new CrashRequest.Metadata(
-        crashReport.getTitle(),
+        crashReport.getThrowableClassName(),
         crashReport.getDescription(),
         TraceClock.createCrashRequestFormat(1624544328342L, TimeZone.getTimeZone("Europe/London")),
         "d519fb6e-0edf-42de-8d90-5a59fc41b9a1",

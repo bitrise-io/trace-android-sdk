@@ -1,7 +1,6 @@
 package io.bitrise.trace.data.management.formatter.crash;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import io.bitrise.trace.data.dto.CrashData;
 import io.bitrise.trace.data.dto.CrashReport;
@@ -36,22 +35,10 @@ public class CrashDataFormatter {
           convertStackTraceElementsToCrashReportFrame(entry.getValue())));
     }
 
-    final String title = getCrashTitle(initialThread.getFirstFrame(),
-        crashData.getThrowable().getClass().getName());
     final String description = crashData.getThrowable().getMessage();
 
-    return new CrashReport(threads, title,
+    return new CrashReport(threads, crashData.getThrowable().getClass().getName(),
         description == null ? "" : description);
-  }
-
-  @VisibleForTesting
-  @Nullable
-  static String getCrashTitle(final CrashReport.Frame initialFrame, final String crashType) {
-    if (initialFrame == null) {
-      return crashType;
-    }
-    return crashType + " " + initialFrame.getPackageName() + "." + initialFrame.getFunctionName()
-        + "(" + initialFrame.getFileName() + ":" + initialFrame.getLineNo() + ")";
   }
 
   /**
