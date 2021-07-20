@@ -51,7 +51,7 @@ public class CrashFormatterTestProvider {
     threads.add(new CrashReport.Thread(1L, true, createStackTraceFrames()));
     threads.add(new CrashReport.Thread(12345L, false, createStackTraceFramesWithNulls()));
 
-    return new CrashReport(threads, "title", "description");
+    return new CrashReport(threads, "throwable class name", "description");
   }
 
 }

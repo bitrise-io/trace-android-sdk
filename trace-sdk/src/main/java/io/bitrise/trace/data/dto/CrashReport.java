@@ -13,22 +13,22 @@ public class CrashReport {
   @NonNull
   final List<Thread> threads;
 
-  @NonNull final String title;
+  @NonNull final String throwableClassName;
   @NonNull final String description;
 
   /**
    * Creates a CrashReport object with the following data.
    *
    * @param threads the {@link CrashReport.Thread} threads that were running.
-   * @param title the title the report should have.
+   * @param throwableClassName the class name of the throwable that caused the crash.
    * @param description the description for the report.
    */
   public CrashReport(
       @NonNull List<Thread> threads,
-      @NonNull final String title,
+      @NonNull final String throwableClassName,
       @NonNull final String description) {
     this.threads = threads;
-    this.title = title;
+    this.throwableClassName = throwableClassName;
     this.description = description;
   }
 
@@ -38,8 +38,8 @@ public class CrashReport {
   }
 
   @NonNull
-  public String getTitle() {
-    return title;
+  public String getThrowableClassName() {
+    return throwableClassName;
   }
 
   @NonNull

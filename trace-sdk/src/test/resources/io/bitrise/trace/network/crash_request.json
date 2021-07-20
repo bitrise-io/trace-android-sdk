@@ -42,12 +42,12 @@
     }
   ],
   "metadata":{
-    "title":"title",
+    "throwableClassName":"throwable class name",
     "description":"description",
     "timestamp":"2021-06-24T15:18:48+01:00",
     "uuid":"d519fb6e-0edf-42de-8d90-5a59fc41b9a1",
-    "traceid":"6d010d9eb5624242990dac11a048dac4",
-    "spanid":"707ccf317d314af1"
+    "traceId":"6d010d9eb5624242990dac11a048dac4",
+    "spanId":"707ccf317d314af1"
   },
   "resource":{
     "labels":{
