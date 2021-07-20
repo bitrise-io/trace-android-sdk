@@ -57,6 +57,7 @@ public class CrashReport {
     @SerializedName("isRequesting")
     final boolean wasThreadThatCrashed;
 
+    @SerializedName("frames")
     @NonNull List<Frame> frames;
 
     /**
