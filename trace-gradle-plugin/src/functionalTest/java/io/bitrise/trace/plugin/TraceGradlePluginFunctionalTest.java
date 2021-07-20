@@ -7,14 +7,12 @@ import static org.hamcrest.Matchers.lessThan;
 import static org.junit.Assert.assertEquals;
 
 import androidx.annotation.NonNull;
-import io.bitrise.trace.plugin.task.GenerateBuildIdTask;
 import io.bitrise.trace.plugin.task.ManifestModifierTask;
 import io.bitrise.trace.plugin.task.UploadMappingFileTask;
 import io.bitrise.trace.plugin.task.VerifyTraceTask;
 import io.bitrise.trace.plugin.util.FunctionalTestHelper;
 import io.bitrise.trace.plugin.util.FunctionalTestWriter;
 import io.bitrise.trace.plugin.util.TestConstants;
-import java.io.File;
 import java.util.List;
 import java.util.Optional;
 import org.gradle.testkit.runner.BuildResult;
@@ -129,8 +127,6 @@ public class TraceGradlePluginFunctionalTest {
     final BuildResult buildResult = executeTaskForResult(TestConstants.ASSEMBLE_DEBUG_TASK_NAME);
 
     verifyDebugManifestTasks(buildResult);
-    verifyDebugGenerateBuildIdTasks(buildResult);
-    verifyGenerateBuildIdTasksForAssembleDebug();
     assertTaskHasNotRun(buildResult, "debugUploadMappingFile");
   }
 
@@ -144,8 +140,6 @@ public class TraceGradlePluginFunctionalTest {
     final BuildResult buildResult = executeTaskForResult(TestConstants.ASSEMBLE_DEBUG_TASK_NAME);
 
     verifyDebugManifestTasks(buildResult);
-    verifyDebugGenerateBuildIdTasks(buildResult);
-    verifyGenerateBuildIdTasksForAssembleDebug();
     assertTaskHasNotRun(buildResult, "debugUploadMappingFile");
   }
 
@@ -159,12 +153,9 @@ public class TraceGradlePluginFunctionalTest {
     final BuildResult buildResult = executeTaskForResult(TestConstants.BUILD_TASK_NAME);
 
     verifyDebugManifestTasks(buildResult);
-    verifyDebugGenerateBuildIdTasks(buildResult);
 
     verifyReleaseManifestTasks(buildResult);
-    verifyGenerateBuildIdTasksForBuild();
 
-    verifyReleaseGenerateBuildIdTasks(buildResult);
     verifyUploadMappingFileTasksForAssembleRelease(buildResult);
   }
 
@@ -235,74 +226,6 @@ public class TraceGradlePluginFunctionalTest {
     assertThat(manifestProcessIndex, is(lessThan(manifestModifyIndex)));
     assertEquals(TaskOutcome.SUCCESS, processReleaseManifestTask.getOutcome());
     assertEquals(TaskOutcome.SUCCESS, releaseModifyManifestTask.getOutcome());
-  }
-
-  /**
-   * Verifies when 'assembleDebug' task is executed, that the {@link GenerateBuildIdTask} has run
-   * in the given {@link BuildResult} and that it ran after the assemble task.
-   *
-   * @param buildResult the BuildResult.
-   */
-  private void verifyDebugGenerateBuildIdTasks(@NonNull final BuildResult buildResult) {
-    final List<BuildTask> buildTasks = buildResult.getTasks();
-
-    final BuildTask assembleDebugTask = assertTaskHasRun(buildResult, "assembleDebug");
-    final BuildTask debugGenerateBitriseBuildIdTask =
-        assertTaskHasRun(buildResult, "debugGenerateBitriseBuildId");
-    final int assembleDebugIndex = buildTasks.indexOf(assembleDebugTask);
-    final int generateBitriseBuildIdIndex = buildTasks.indexOf(debugGenerateBitriseBuildIdTask);
-
-    assertThat(generateBitriseBuildIdIndex, is(greaterThan(assembleDebugIndex)));
-    assertEquals(TaskOutcome.SUCCESS, assembleDebugTask.getOutcome());
-    assertEquals(TaskOutcome.SUCCESS, debugGenerateBitriseBuildIdTask.getOutcome());
-  }
-
-  /**
-   * Verifies when 'assembleRelease' task is executed, that the {@link GenerateBuildIdTask} has
-   * run in the given {@link BuildResult} and that it ran after the assemble task.
-   *
-   * @param buildResult the BuildResult.
-   */
-  private void verifyReleaseGenerateBuildIdTasks(@NonNull final BuildResult buildResult) {
-    final List<BuildTask> buildTasks = buildResult.getTasks();
-
-    final BuildTask assembleReleaseTask = assertTaskHasRun(buildResult, "assembleRelease");
-    final BuildTask releaseGenerateBitriseBuildIdTask =
-        assertTaskHasRun(buildResult, "releaseGenerateBitriseBuildId");
-    final int assembleReleaseIndex = buildTasks.indexOf(assembleReleaseTask);
-    final int generateBitriseBuildIdIndex = buildTasks.indexOf(releaseGenerateBitriseBuildIdTask);
-
-    assertThat(generateBitriseBuildIdIndex, is(greaterThan(assembleReleaseIndex)));
-    assertEquals(TaskOutcome.SUCCESS, assembleReleaseTask.getOutcome());
-    assertEquals(TaskOutcome.SUCCESS, releaseGenerateBitriseBuildIdTask.getOutcome());
-  }
-
-  /**
-   * Verifies when 'build' task is executed, that the {@link GenerateBuildIdTask} has created the
-   * files that contains the build ID.
-   */
-  private void verifyGenerateBuildIdTasksForBuild() {
-    final File debugBuildIdFile = new File(
-        functionalTestHelper.getTestDir(testName).getPath()
-            + String.format(buildIdFileRelativePathFormat, "debug"));
-    final File releaseBuildIdFile = new File(
-        functionalTestHelper.getTestDir(testName).getPath()
-            + String.format(buildIdFileRelativePathFormat, "release"));
-
-    assertThat(debugBuildIdFile.exists(), is(true));
-    assertThat(releaseBuildIdFile.exists(), is(true));
-  }
-
-  /**
-   * Verifies when 'assembleDebug' task is executed, that the {@link GenerateBuildIdTask} has
-   * created the file that contains the build ID.
-   */
-  private void verifyGenerateBuildIdTasksForAssembleDebug() {
-    final File debugBuildIdFile = new File(
-        functionalTestHelper.getTestDir(testName).getPath()
-            + String.format(buildIdFileRelativePathFormat, "debug"));
-
-    assertThat(debugBuildIdFile.exists(), is(true));
   }
 
   /**
