@@ -281,4 +281,22 @@ public class FunctionalTestHelper {
       ioe.printStackTrace();
     }
   }
+
+  /**
+   * Sets up the Proguard rules file by copying the given file to the given test. Consumes any
+   * I/O error if occurs.
+   *
+   * @param testName the name of the given test.
+   * @param index    the prefix index of the manifest file.
+   */
+  public void setupProguardRulesFile(@NonNull final TestName testName, final int index) {
+    final String testDirPath = getTestDirName(testName);
+
+    try {
+      FunctionalTestUtils.copyFile(FunctionalTestUtils.getProguardRulesFileForResource(index),
+          FunctionalTestUtils.getProguardRulesFileDefaultPath(testDirPath));
+    } catch (final IOException ioe) {
+      ioe.printStackTrace();
+    }
+  }
 }
