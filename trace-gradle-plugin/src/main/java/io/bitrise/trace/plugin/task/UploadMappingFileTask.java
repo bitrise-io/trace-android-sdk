@@ -2,6 +2,7 @@ package io.bitrise.trace.plugin.task;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import com.android.build.gradle.AppExtension;
 import io.bitrise.trace.plugin.TraceGradlePlugin;
 import io.bitrise.trace.plugin.configuration.BuildConfigurationManager;
 import io.bitrise.trace.plugin.modifier.BuildHelper;
@@ -10,7 +11,6 @@ import io.bitrise.trace.plugin.network.SymbolCollectorNetworkClient;
 import java.io.File;
 import java.io.IOException;
 import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import org.gradle.api.GradleException;
@@ -49,39 +49,50 @@ public class UploadMappingFileTask extends BaseTraceVariantTask {
     }
 
     final RequestBody requestFile = RequestBody.create(MediaType.parse("text/plain"), file);
-    final String buildId = GenerateBuildIdTask.readBuildIdFromFile(project.getBuildDir(),
-        getVariant().getName());
-    uploadFile(requestFile, file.getName(), buildId);
+
+    // get customer application information.
+    final AppExtension androidProjectInfo = (AppExtension) project.getExtensions()
+                                                                  .findByName("android");
+    if (androidProjectInfo == null || androidProjectInfo.getDefaultConfig() == null) {
+      logger.info(TraceGradlePlugin.LOGGER_TAG, "Could not find android default config.");
+      return;
+    }
+    final String versionName = androidProjectInfo.getDefaultConfig().getVersionName();
+    final String buildCode = androidProjectInfo.getDefaultConfig().getVersionCode().toString();
+
+    uploadFile(requestFile, file.getName(), buildCode, versionName);
   }
 
   /**
    * Uploads the given File to the backend, so later an obfuscated crash report can be retraced.
    *
-   * @param requestFile the file itself as a multipart body.
-   * @param name        the name of the file.
-   * @param buildId     the build ID for the file.
-   * @throws IOException if any I/O exception occurs.
+   * @param requestFile       the file itself as a multipart body.
+   * @param name              the name of the file.
+   * @param buildCode    the version code of the customer application.
+   * @param versionName    the version name of the customer application.
+   * @throws IOException      if any I/O exception occurs.
    */
   private void uploadFile(@NonNull final RequestBody requestFile,
                           @NonNull final String name,
-                          @NonNull final String buildId) throws IOException {
+                          @NonNull final String buildCode,
+                          @NonNull final String versionName) throws IOException {
     final SymbolCollectorCommunicator symbolCollectorCommunicator =
         SymbolCollectorNetworkClient.getCommunicator();
     final String token = String.format("Bearer %1$s",
         BuildConfigurationManager.getInstance(project.getRootDir().getAbsolutePath()).getToken());
-    final Call<ResponseBody> mappingFileUploadCall =
-        symbolCollectorCommunicator
-            .uploadMappingFile(project.getVersion().toString(), token, buildId,
-                requestFile);
+    final Call<ResponseBody> mappingFileUploadCall = symbolCollectorCommunicator
+            .uploadMappingFile(token, buildCode, versionName, requestFile);
+
     logger.info("Starting to upload mapping file {} for variant {}.", name, getVariant().getName());
     final Response<ResponseBody> response = mappingFileUploadCall.execute();
+
     if (response.isSuccessful()) {
       logger.info("Successfully finished uploading mapping file {} for variant {}.",
           name, getVariant().getName());
     } else {
       throw new GradleException(
-          String.format("Failed to upload mapping file %s for variant %s.", name,
-              getVariant().getName()));
+          String.format("Failed to upload mapping file %s for variant %s. network code %s.",
+              name, getVariant().getName(), response.code()));
     }
   }
 }
