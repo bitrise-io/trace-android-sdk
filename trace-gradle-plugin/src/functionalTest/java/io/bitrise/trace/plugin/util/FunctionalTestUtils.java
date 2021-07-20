@@ -85,6 +85,19 @@ public class FunctionalTestUtils {
   }
 
   /**
+   * Gets the proguard-rules.pro file from the resources with the given prefix index. Build
+   * files are prefixed to enable usage for multiple resource files.
+   *
+   * @param index the prefix index.
+   * @return the path of the file.
+   */
+  @NonNull
+  public static String getProguardRulesFileForResource(final int index) {
+    return String.format("%1$s%2$s_%3$s", TestConstants.FUNCTIONAL_TEST_RESOURCE_PATH, index,
+        BuildHelper.PROGUARD_RULES_FILE_NAME);
+  }
+
+  /**
    * Gets the default path for the AndroidManifest.xml.
    *
    * @param rootPath the root path of the project.
@@ -95,6 +108,19 @@ public class FunctionalTestUtils {
     final File dir = new File(rootPath + TestConstants.MAIN_SOURCE_DIRECTORY_NAME);
     dir.mkdirs();
     return dir.getPath() + File.separator + BuildHelper.ANDROID_MANIFEST_FILE_NAME;
+  }
+
+  /**
+   * Gets the default path for the proguard-rules.pro.
+   *
+   * @param rootPath the root path of the project.
+   * @return the path of the file.
+   */
+  @NonNull
+  public static String getProguardRulesFileDefaultPath(@NonNull final String rootPath) {
+    final File dir = new File(rootPath);
+    dir.mkdirs();
+    return dir.getPath() + File.separator + BuildHelper.PROGUARD_RULES_FILE_NAME;
   }
 
   /**

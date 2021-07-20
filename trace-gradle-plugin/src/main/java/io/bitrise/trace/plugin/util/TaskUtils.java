@@ -6,6 +6,7 @@ import com.android.build.gradle.api.BaseVariant;
 import com.android.build.gradle.api.BaseVariantOutput;
 import com.android.build.gradle.tasks.ManifestProcessorTask;
 import com.android.build.gradle.tasks.ProcessAndroidResources;
+import java.io.File;
 import java.util.List;
 import org.gradle.api.Project;
 import org.gradle.api.Task;
@@ -31,7 +32,6 @@ public class TaskUtils {
   public static List<Task> getTaskList(@NonNull final Project project) {
     return project.getGradle().getTaskGraph().getAllTasks();
   }
-
 
   /**
    * Gets the {@link ManifestProcessorTask} for the given {@link BaseVariantOutput}.
@@ -70,5 +70,29 @@ public class TaskUtils {
       return null;
     }
     return baseVariant.getAssembleProvider().get();
+  }
+
+  /**
+   * Gets the path for the directory for the outputs of the Trace tasks.
+   *
+   * @param buildDir the build directory of the project.
+   * @return the path.
+   */
+  @NonNull
+  public static String getTraceOutputDirPath(@NonNull final File buildDir) {
+    return buildDir.getAbsolutePath() + "/outputs/trace";
+  }
+
+  /**
+   * Gets the path for the directory for the outputs of the Trace tasks for the given variant.
+   *
+   * @param buildDir    the build directory of the project.
+   * @param variantName the name of the variant.
+   * @return the path.
+   */
+  @NonNull
+  public static String getTraceOutputDirPath(@NonNull final File buildDir,
+                                             @NonNull final String variantName) {
+    return getTraceOutputDirPath(buildDir) + "/" + variantName;
   }
 }

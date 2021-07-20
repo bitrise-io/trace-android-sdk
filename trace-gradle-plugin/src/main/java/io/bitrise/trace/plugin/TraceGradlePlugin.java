@@ -10,9 +10,9 @@ import com.android.build.gradle.tasks.ManifestProcessorTask;
 import com.android.build.gradle.tasks.ProcessAndroidResources;
 import io.bitrise.trace.plugin.configuration.BuildConfigurationManager;
 import io.bitrise.trace.plugin.modifier.TraceTransform;
-import io.bitrise.trace.plugin.task.GenerateBuildIdTask;
 import io.bitrise.trace.plugin.task.ManifestModifierTask;
 import io.bitrise.trace.plugin.task.TaskConfig;
+import io.bitrise.trace.plugin.task.UploadMappingFileTask;
 import io.bitrise.trace.plugin.task.VerifyTraceTask;
 import io.bitrise.trace.plugin.util.TaskUtils;
 import io.bitrise.trace.plugin.util.TraceTaskBuilder;
@@ -154,6 +154,7 @@ public class TraceGradlePlugin implements Plugin<Project> {
     // because different outputs will have a different AndroidManifest.xml file.
     variant.getOutputs().forEach(
         variantOutput -> addTraceTasksToVariantOutput(project, variant, variantOutput));
+    registerUploadMappingFileTask(project, variant);
   }
 
   /**
@@ -168,7 +169,6 @@ public class TraceGradlePlugin implements Plugin<Project> {
                                             @NonNull final BaseVariant variant,
                                             @NonNull final BaseVariantOutput variantOutput) {
     registerManifestModifierTask(project, variant, variantOutput);
-    registerGenerateBuildIdTask(project, variant, variantOutput);
   }
 
   /**
@@ -209,32 +209,31 @@ public class TraceGradlePlugin implements Plugin<Project> {
   }
 
   /**
-   * Registers the {@link GenerateBuildIdTask} for the builds. Runs after the assemble task.
+   * Registers the {@link UploadMappingFileTask} for the builds. Runs after the assemble task.
    *
-   * @param project       the {@link Project}.
-   * @param variant       the {@link BaseVariant}.
-   * @param variantOutput the {@link BaseVariantOutput}.
+   * @param project             the {@link Project}.
+   * @param variant             the {@link BaseVariant}.
    */
-  private void registerGenerateBuildIdTask(@NonNull final Project project,
-                                           @NonNull final BaseVariant variant,
-                                           @NonNull final BaseVariantOutput variantOutput) {
+  private void registerUploadMappingFileTask(@NonNull final Project project,
+                                             @NonNull final BaseVariant variant) {
+    if (!variant.getBuildType().isMinifyEnabled()) {
+      return;
+    }
     final TaskContainer taskContainer = project.getTasks();
-    final GenerateBuildIdTask generateBuildIdTask =
-        (GenerateBuildIdTask) new TraceVariantTaskBuilder(
+    final UploadMappingFileTask uploadMappingFileTask =
+        (UploadMappingFileTask) new TraceVariantTaskBuilder(
             taskContainer,
-            TaskConfig.TASK_NAME_GENERATE_BUILD_ID,
-            GenerateBuildIdTask.class,
+            TaskConfig.TASK_NAME_UPLOAD_MAPPING_FILE,
+            UploadMappingFileTask.class,
             variant)
-            .setVariantOutput(variantOutput)
             .setGroup(TaskConfig.TRACE_PLUGIN_TASK_GROUP)
-            .setDescription(TaskConfig.TASK_DESCRIPTION_GENERATE_BUILD_ID)
+            .setDescription(TaskConfig.TASK_DESCRIPTION_UPLOAD_MAPPING_FILE)
             .build();
 
     final Task assembleTask = TaskUtils.getAssembleTask(variant);
     if (assembleTask != null) {
-      assembleTask.finalizedBy(generateBuildIdTask);
-      generateBuildIdTask.dependsOn(assembleTask);
-      assembleTask.finalizedBy(generateBuildIdTask);
+      assembleTask.finalizedBy(uploadMappingFileTask);
+      uploadMappingFileTask.dependsOn(assembleTask);
     }
   }
 }
