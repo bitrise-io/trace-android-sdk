@@ -15,8 +15,8 @@ import retrofit2.http.POST;
 public interface SymbolCollectorCommunicator {
   @POST("symbols/android")
   Call<ResponseBody> uploadMappingFile(
-      @Header("app_version") String appVersion,
       @Header("Authorization") String token,
-      @Header("build_version") String buildId,
+      @Header("build_version") String buildCode,
+      @Header("app_version") String versionName,
       @Body RequestBody body);
 }

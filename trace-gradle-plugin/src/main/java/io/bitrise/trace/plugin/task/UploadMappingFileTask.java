@@ -58,9 +58,9 @@ public class UploadMappingFileTask extends BaseTraceVariantTask {
       return;
     }
     final String versionName = androidProjectInfo.getDefaultConfig().getVersionName();
-    final String versionCode = androidProjectInfo.getDefaultConfig().getVersionCode().toString();
+    final String buildCode = androidProjectInfo.getDefaultConfig().getVersionCode().toString();
 
-    uploadFile(requestFile, file.getName(), versionName, versionCode);
+    uploadFile(requestFile, file.getName(), buildCode, versionName);
   }
 
   /**
@@ -68,20 +68,20 @@ public class UploadMappingFileTask extends BaseTraceVariantTask {
    *
    * @param requestFile       the file itself as a multipart body.
    * @param name              the name of the file.
-   * @param appVersionCode    the version code of the customer application.
-   * @param appVersionName    the version name of the customer application.
+   * @param buildCode    the version code of the customer application.
+   * @param versionName    the version name of the customer application.
    * @throws IOException      if any I/O exception occurs.
    */
   private void uploadFile(@NonNull final RequestBody requestFile,
                           @NonNull final String name,
-                          @NonNull final String appVersionCode,
-                          @NonNull final String appVersionName) throws IOException {
+                          @NonNull final String buildCode,
+                          @NonNull final String versionName) throws IOException {
     final SymbolCollectorCommunicator symbolCollectorCommunicator =
         SymbolCollectorNetworkClient.getCommunicator();
     final String token = String.format("Bearer %1$s",
         BuildConfigurationManager.getInstance(project.getRootDir().getAbsolutePath()).getToken());
     final Call<ResponseBody> mappingFileUploadCall = symbolCollectorCommunicator
-            .uploadMappingFile(appVersionName, token, appVersionCode, requestFile);
+            .uploadMappingFile(token, buildCode, versionName, requestFile);
 
     logger.info("Starting to upload mapping file {} for variant {}.", name, getVariant().getName());
     final Response<ResponseBody> response = mappingFileUploadCall.execute();
