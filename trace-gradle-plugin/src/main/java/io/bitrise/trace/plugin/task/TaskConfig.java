@@ -19,15 +19,6 @@ public class TaskConfig {
   public static final String TASK_DESCRIPTION_MANIFEST_MODIFIER = "Modifies the AndroidManifest"
       + ".xml. Adds the Trace application if no other custom application class is set.";
   /**
-   * The task name for {@link GenerateBuildIdTask}.
-   */
-  public static final String TASK_NAME_GENERATE_BUILD_ID = "generateBitriseBuildId";
-  /**
-   * The description for {@link GenerateBuildIdTask}.
-   */
-  public static final String TASK_DESCRIPTION_GENERATE_BUILD_ID =
-      "Creates a unique build ID for the given build.";
-  /**
    * The task name for {@link UploadMappingFileTask}.
    */
   public static final String TASK_NAME_UPLOAD_MAPPING_FILE = "uploadMappingFile";

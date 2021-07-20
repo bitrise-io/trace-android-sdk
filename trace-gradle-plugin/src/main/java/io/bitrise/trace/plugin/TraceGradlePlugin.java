@@ -10,7 +10,6 @@ import com.android.build.gradle.tasks.ManifestProcessorTask;
 import com.android.build.gradle.tasks.ProcessAndroidResources;
 import io.bitrise.trace.plugin.configuration.BuildConfigurationManager;
 import io.bitrise.trace.plugin.modifier.TraceTransform;
-import io.bitrise.trace.plugin.task.GenerateBuildIdTask;
 import io.bitrise.trace.plugin.task.ManifestModifierTask;
 import io.bitrise.trace.plugin.task.TaskConfig;
 import io.bitrise.trace.plugin.task.UploadMappingFileTask;
@@ -155,9 +154,7 @@ public class TraceGradlePlugin implements Plugin<Project> {
     // because different outputs will have a different AndroidManifest.xml file.
     variant.getOutputs().forEach(
         variantOutput -> addTraceTasksToVariantOutput(project, variant, variantOutput));
-    final GenerateBuildIdTask generateBuildIdTask =
-        registerGenerateBuildIdTask(project, variant);
-    registerUploadMappingFileTask(project, variant, generateBuildIdTask);
+    registerUploadMappingFileTask(project, variant);
   }
 
   /**
@@ -212,44 +209,13 @@ public class TraceGradlePlugin implements Plugin<Project> {
   }
 
   /**
-   * Registers the {@link GenerateBuildIdTask} for the builds. Runs after the assemble task.
-   *
-   * @param project the {@link Project}.
-   * @param variant the {@link BaseVariant}.
-   * @return the task itself.
-   */
-  private GenerateBuildIdTask registerGenerateBuildIdTask(@NonNull final Project project,
-                                                          @NonNull final BaseVariant variant) {
-    final TaskContainer taskContainer = project.getTasks();
-    final GenerateBuildIdTask generateBuildIdTask =
-        (GenerateBuildIdTask) new TraceVariantTaskBuilder(
-            taskContainer,
-            TaskConfig.TASK_NAME_GENERATE_BUILD_ID,
-            GenerateBuildIdTask.class,
-            variant)
-            .setGroup(TaskConfig.TRACE_PLUGIN_TASK_GROUP)
-            .setDescription(TaskConfig.TASK_DESCRIPTION_GENERATE_BUILD_ID)
-            .build();
-
-    final Task assembleTask = TaskUtils.getAssembleTask(variant);
-    if (assembleTask != null) {
-      assembleTask.finalizedBy(generateBuildIdTask);
-      generateBuildIdTask.dependsOn(assembleTask);
-    }
-    return generateBuildIdTask;
-  }
-
-  /**
    * Registers the {@link UploadMappingFileTask} for the builds. Runs after the assemble task.
    *
    * @param project             the {@link Project}.
    * @param variant             the {@link BaseVariant}.
-   * @param generateBuildIdTask the {@link GenerateBuildIdTask} that this task will depend on.
    */
   private void registerUploadMappingFileTask(@NonNull final Project project,
-                                             @NonNull final BaseVariant variant,
-                                             @NonNull
-                                             final GenerateBuildIdTask generateBuildIdTask) {
+                                             @NonNull final BaseVariant variant) {
     if (!variant.getBuildType().isMinifyEnabled()) {
       return;
     }
@@ -269,6 +235,5 @@ public class TraceGradlePlugin implements Plugin<Project> {
       assembleTask.finalizedBy(uploadMappingFileTask);
       uploadMappingFileTask.dependsOn(assembleTask);
     }
-    uploadMappingFileTask.dependsOn(generateBuildIdTask);
   }
 }
