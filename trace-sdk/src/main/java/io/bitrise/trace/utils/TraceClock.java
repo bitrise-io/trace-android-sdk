@@ -4,6 +4,10 @@ import android.os.SystemClock;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 import com.google.protobuf.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Provides the time for different components of Trace SDK.
@@ -80,5 +84,25 @@ public class TraceClock {
   @VisibleForTesting
   public static long getElapsedSeconds() {
     return SystemClock.uptimeMillis() / 1000;
+  }
+
+  /**
+   * Formats a given millisecond into the format expected by the backend for a crash report.
+   *
+   * @param milliseconds the current timestamp in milliseconds.
+   * @param timeZone the timezone that should be used, probably should be TimeZone.getDefault().
+   * @return the String representation of the timestamp for crash reports.
+   */
+  public static String createCrashRequestFormat(final long milliseconds,
+                                                final TimeZone timeZone) {
+    final SimpleDateFormat sdf =
+        new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.getDefault());
+    sdf.setTimeZone(timeZone);
+
+    final String date = sdf.format(new Date(milliseconds));
+
+    // we need to add a colon in between to make +0100 into +01:00
+    return date.substring(0, date.length() - 2) + ":" + ""
+        + date.substring(date.length() - 2);
   }
 }
