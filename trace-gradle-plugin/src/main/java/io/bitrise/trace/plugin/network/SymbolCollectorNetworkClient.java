@@ -103,7 +103,7 @@ public final class SymbolCollectorNetworkClient {
   @NonNull
   private static HttpLoggingInterceptor getLoggingInterceptor() {
     final HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-    interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+    interceptor.setLevel(HttpLoggingInterceptor.Level.NONE);
     return interceptor;
   }
 
