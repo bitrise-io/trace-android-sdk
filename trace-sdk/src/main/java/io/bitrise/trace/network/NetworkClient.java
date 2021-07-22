@@ -136,7 +136,6 @@ public final class NetworkClient {
         .registerTypeAdapter(TimeSeries.class, new TimeSeriesAdapter())
         .registerTypeAdapter(Span.class, new SpanAdapter())
         .registerTypeAdapter(TruncatableString.class, new TruncatableStringAdapter())
-        .serializeNulls()
         .create();
   }
 

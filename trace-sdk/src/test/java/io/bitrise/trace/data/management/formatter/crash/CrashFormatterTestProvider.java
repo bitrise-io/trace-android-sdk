@@ -3,7 +3,6 @@ package io.bitrise.trace.data.management.formatter.crash;
 import io.bitrise.trace.data.dto.CrashReport;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.Test;
 
 /**
  * Provides test data for the crash formatter tests.
@@ -51,7 +50,8 @@ public class CrashFormatterTestProvider {
     threads.add(new CrashReport.Thread(1L, true, createStackTraceFrames()));
     threads.add(new CrashReport.Thread(12345L, false, createStackTraceFramesWithNulls()));
 
-    return new CrashReport(threads, "throwable class name", "description");
+    return new CrashReport(threads, "throwable class name", "description",
+        null);
   }
 
 }

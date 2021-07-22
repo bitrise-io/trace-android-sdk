@@ -28,7 +28,8 @@ public class CrashRequestTest {
         TraceClock.createCrashRequestFormat(1624544328342L, TimeZone.getTimeZone("Europe/London")),
         "d519fb6e-0edf-42de-8d90-5a59fc41b9a1",
         "6d010d9eb5624242990dac11a048dac4",
-        "707ccf317d314af1"
+        "707ccf317d314af1",
+        null
     );
 
     final Resource resource = DataTestUtils.getSampleResource("session-id");

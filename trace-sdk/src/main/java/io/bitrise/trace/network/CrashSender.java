@@ -46,7 +46,8 @@ public class CrashSender {
         TraceClock.createCrashRequestFormat(millisecondTimestamp, TimeZone.getDefault()),
         this.uuid,
         "",
-        ""
+        "",
+        crashReport.getAllExceptionNames()
     );
 
     final CrashRequest request = new CrashRequest(resource, crashReport, metadata);
