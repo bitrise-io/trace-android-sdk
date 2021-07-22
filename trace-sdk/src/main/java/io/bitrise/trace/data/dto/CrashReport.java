@@ -15,6 +15,7 @@ public class CrashReport {
 
   @NonNull final String throwableClassName;
   @NonNull final String description;
+  @Nullable final String allExceptionNames;
 
   /**
    * Creates a CrashReport object with the following data.
@@ -22,14 +23,17 @@ public class CrashReport {
    * @param threads the {@link CrashReport.Thread} threads that were running.
    * @param throwableClassName the class name of the throwable that caused the crash.
    * @param description the description for the report.
+   * @param allExceptionNames a list of all the exception class names if it was a nested exception.
    */
   public CrashReport(
       @NonNull List<Thread> threads,
       @NonNull final String throwableClassName,
-      @NonNull final String description) {
+      @NonNull final String description,
+      @Nullable final String allExceptionNames) {
     this.threads = threads;
     this.throwableClassName = throwableClassName;
     this.description = description;
+    this.allExceptionNames = allExceptionNames;
   }
 
   @NonNull
@@ -45,6 +49,11 @@ public class CrashReport {
   @NonNull
   public String getDescription() {
     return description;
+  }
+
+  @Nullable
+  public String getAllExceptionNames() {
+    return allExceptionNames;
   }
 
   /**

@@ -1,6 +1,7 @@
 package io.bitrise.trace.data.management.formatter.crash;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import io.bitrise.trace.data.dto.CrashData;
 import io.bitrise.trace.data.dto.CrashReport;
@@ -24,9 +25,10 @@ public class CrashDataFormatter {
     final List<CrashReport.Thread> threads = new ArrayList<>();
 
     // add thread that crashed
+    final Throwable rootThrowable = findRootCause(crashData.getThrowable());
     final CrashReport.Thread initialThread =
         new CrashReport.Thread(crashData.getCrashedThreadId(), true,
-        convertStackTraceElementsToCrashReportFrame(crashData.getThrowable().getStackTrace()));
+        convertStackTraceElementsToCrashReportFrame(rootThrowable.getStackTrace()));
     threads.add(initialThread);
 
     // add all the other threads
@@ -35,10 +37,44 @@ public class CrashDataFormatter {
           convertStackTraceElementsToCrashReportFrame(entry.getValue())));
     }
 
-    final String description = crashData.getThrowable().getMessage();
+    final String description = rootThrowable.getMessage();
 
-    return new CrashReport(threads, crashData.getThrowable().getClass().getName(),
-        description == null ? "" : description);
+    return new CrashReport(
+        threads,
+        rootThrowable.getClass().getName(),
+        description == null ? "" : description,
+        printAllExceptionNames(crashData.getThrowable()));
+  }
+
+  @NonNull
+  private static Throwable findRootCause(@NonNull final Throwable throwable) {
+    Throwable rootCause = throwable;
+    while (rootCause.getCause() != null && rootCause.getCause() != rootCause) {
+      rootCause = rootCause.getCause();
+    }
+    return rootCause;
+  }
+
+  @Nullable
+  static String printAllExceptionNames(@NonNull final Throwable throwable) {
+    // not a nested exception, so we ignore these
+    if (throwable.getCause() == null) {
+      return null;
+    }
+
+    // loop down all the exceptions
+    final StringBuilder sb = new StringBuilder();
+    Throwable rootCause = throwable;
+    while (rootCause.getCause() != null
+        && rootCause.getCause() != rootCause) {
+      sb.append(rootCause.getClass().getName());
+      sb.append(", ");
+      rootCause = rootCause.getCause();
+    }
+
+    sb.append(rootCause.getClass().getName());
+
+    return sb.toString();
   }
 
   /**

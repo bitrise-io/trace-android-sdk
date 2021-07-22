@@ -1,6 +1,7 @@
 package io.bitrise.trace.network;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.gson.annotations.SerializedName;
 import io.bitrise.trace.data.dto.CrashReport;
 import io.opencensus.proto.resource.v1.Resource;
@@ -51,6 +52,8 @@ public class CrashRequest extends NetworkRequest {
     @NonNull final String traceId;
     @SerializedName("spanId")
     @NonNull final String spanId;
+    @SerializedName("allExceptionNames")
+    @Nullable final String allExceptionNames;
 
     /**
      * Creates a {@link Metadata} object.
@@ -61,16 +64,24 @@ public class CrashRequest extends NetworkRequest {
      * @param uuid a unique identifier for the crash report.
      * @param traceId the current trace id (if possible).
      * @param spanId the current span id (if possible).
+     * @param allExceptionNames a list of all the exception class names if it was a nested
+     *                          exception.
      */
     public Metadata(@NonNull String throwableClassName, @NonNull String description,
                     @NonNull String timestamp, @NonNull String uuid, @NonNull String traceId,
-                    @NonNull String spanId) {
+                    @NonNull String spanId, @Nullable String allExceptionNames) {
       this.throwableClassName = throwableClassName;
       this.description = description;
       this.timestamp = timestamp;
       this.uuid = uuid;
       this.traceId = traceId;
       this.spanId = spanId;
+      this.allExceptionNames = allExceptionNames;
     }
+  }
+
+  @NonNull
+  public Metadata getMetadata() {
+    return metadata;
   }
 }
