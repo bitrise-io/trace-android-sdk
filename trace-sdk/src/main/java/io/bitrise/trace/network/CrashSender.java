@@ -6,9 +6,12 @@ import io.bitrise.trace.utils.TraceClock;
 import io.bitrise.trace.utils.UniqueIdGenerator;
 import io.bitrise.trace.utils.log.TraceLog;
 import io.opencensus.proto.resource.v1.Resource;
+import java.io.IOException;
 import java.util.TimeZone;
-import retrofit2.Call;
-import retrofit2.Callback;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import retrofit2.Response;
 
 /**
@@ -52,23 +55,30 @@ public class CrashSender {
 
     final CrashRequest request = new CrashRequest(resource, crashReport, metadata);
 
-    NetworkClient.getCommunicator().sendCrash(request).enqueue(new Callback<Void>() {
-      @Override
-      public void onResponse(@NonNull final Call<Void> call,
-                             @NonNull final Response<Void> response) {
+    final ExecutorService service = Executors.newFixedThreadPool(1);
+    Future<?> future = service.submit(() -> {
+
+      try {
+
+        final Response<Void> response =
+            NetworkClient.getCommunicator().sendCrash(request).execute();
 
         if (response.isSuccessful()) {
           TraceLog.d("Crash report sent successfully: " + response.headers().get("correlation-id"));
         } else {
           TraceLog.e("Crash report failed to send: " + response.code());
         }
+
+      } catch (IOException e) {
+        TraceLog.e("Crash report failed to send: " + e.getLocalizedMessage());
       }
 
-      @Override
-      public void onFailure(@NonNull final Call<Void> call, @NonNull final Throwable t) {
-        TraceLog.e("Crash report failed to send: " + t.getMessage());
-      }
     });
 
+    try {
+      future.get();
+    } catch (ExecutionException | InterruptedException e) {
+      // nop
+    }
   }
 }
