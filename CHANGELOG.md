@@ -6,6 +6,12 @@ trace-android-sdk public beta versions
 **Note:** these versions of the *trace-android-sdk* are stored in a public repo, but should be 
 considered still as beta.
 
+### trace-sdk - 0.3.0 - 2021-07-23
+* feat: **catch and send crash reports:**
+
+### trace-gradle-plugin - 0.2.0 - 2021-07-23
+* feat: **Upload mapping file on assembleRelease:**
+
 ### trace-sdk - 0.2.1 - 2021-07-02
 * fix: **trace-sdk should work on minified client apps:** Updated proguard rules and ensured data gets sent correctly to the backend.
 * fix: **use java lite protocol buffer dependencies:** Recompile proto files to java lite instead of java.
