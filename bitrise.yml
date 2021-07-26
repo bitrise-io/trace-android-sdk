@@ -4,9 +4,9 @@ default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 project_type: android
 trigger_map:
 - push_branch: main
-  workflow: primary_v2
+  workflow: primary
 - pull_request_source_branch: "*"
-  workflow: primary_main
+  workflow: primary
 workflows:
   testkit-init:
     steps:
@@ -146,62 +146,7 @@ workflows:
             - zip_name: "$TRACE_CHECKSTYLE_REPORTS_ZIP_NAME"
             - deploy_path: "$BITRISE_SOURCE_DIR/checkStyleReports/"
           is_always_run: true
-  primary_v2:
-    before_run: []
-    steps:
-      - script@1:
-          title: prepare_envs
-          inputs:
-            - content: |-
-                #!/usr/bin/env bash
-                # fail if any commands fails
-                set -e
-                # debug log
-                set -x
-
-                envman add --key PRIMARY_BUILD_NUMBER --value $BITRISE_BUILD_NUMBER
-      - build-router-start@0:
-          inputs:
-            - workflows: |-
-                build_trace-gradle-plugin
-                build_trace-sdk
-                check_code_formatting
-            - environment_key_list: PRIMARY_BUILD_NUMBER
-            - abort_on_fail: 'yes'
-            - wait_for_builds: 'true'
-            - access_token: "$TRACE_ANDROID_SDK_ACCESS_TOKEN"
-          title: trace-gradle-plugin_&_trace-sdk_build_start
-      - script@1:
-          title: store_build_slug_numbers
-          inputs:
-            - content: |-
-                #!/usr/bin/env bash
-                # fail if any commands fails
-                set -e
-                # debug log
-                set -x
-
-                envman add --key TRACE_SDK_BUILD_SLUG --value `echo "${ROUTER_STARTED_BUILD_SLUGS}" | sed '2!d'`
-                envman add --key TRACE_GRADLE_PLUGIN_BUILD_SLUG --value `echo "${ROUTER_STARTED_BUILD_SLUGS}" | sed '1!d'`
-      - build-router-start@0:
-          inputs:
-            - workflows: |-
-                build_trace-test-application
-                test_trace-android-sdk_api_21
-                test_trace-android-sdk_api_30
-            - environment_key_list: |-
-                PRIMARY_BUILD_NUMBER
-                TRACE_SDK_BUILD_SLUG
-                TRACE_GRADLE_PLUGIN_BUILD_SLUG
-            - wait_for_builds: 'true'
-            - access_token: "$TRACE_ANDROID_SDK_ACCESS_TOKEN"
-          title: trace-android-sdk_test
-    description: |-
-      Starts all the builds that required for the trace-android-sdk:
-      1. Builds trace-gradle-plugin and trace-sdk
-      2. Builds trace-test-application
-      3. Runs the instrumented tests for trace-sdk
-  primary_main:
+  primary:
     before_run: []
     steps:
       - script@1:
