@@ -4,9 +4,9 @@ default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 project_type: android
 trigger_map:
 - push_branch: main
-  workflow: primary_v2
+  workflow: primary
 - pull_request_source_branch: "*"
-  workflow: primary_v2
+  workflow: primary
 workflows:
   testkit-init:
     steps:
@@ -38,69 +38,6 @@ workflows:
         title: init_testkit
     description: Initialise the testkit docker container, required for many of the
       functional tests to run.
-  release:
-    steps:
-    - activate-ssh-key:
-        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-    - git-clone: {}
-    - script@1:
-        title: Add credentials for private central repo
-        inputs:
-        - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# debug
-            log\nset -x\n\n{\necho $GOOGLE_APPLICATION_CREDENTIALS_CONTENT > $HOME/trace-android-sa.json\n}
-            &> /dev/null "
-    - install-missing-android-tools:
-        inputs:
-        - gradlew_path: "$PROJECT_LOCATION/gradlew"
-    - script@1:
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            def commitHistory = {git rev-list main |
-                while read sha1; do
-                    git show -s --format='%B' $sha1 | tr -d '\n'; echo
-                done}
-
-            envman add --key TRACE_COMMIT_CHANGES --value "$commitHistory"
-        title: Export commit history
-    - script@1:
-        title: Prepare release
-        inputs:
-        - content: |
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            $BITRISE_SOURCE_DIR/gradlew prepareForRelease --stacktrace
-            envman add --key TRACE_VERSION_NAME --value "$TRACE_VERSION_NAME"
-    - script@1:
-        title: Push changes
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            git add $BITRISE_SOURCE_DIR/CHANGELOG.md
-            git add $BITRISE_SOURCE_DIR/gradle.properties
-            git add $BITRISE_SOURCE_DIR/trace-sdk/gradle.properties
-
-            git commit -m "chore: Release $TRACE_VERSION_NAME"
-
-            git push
-    - git-tag@1:
-        inputs:
-          - tag_message: "$BITRISE_BUILD_NUMBER"
-          - tag: "$TRACE_VERSION_NAME"
   analyse_code:
     steps:
       - activate-ssh-key:
@@ -177,7 +114,7 @@ workflows:
             - gradle_task: "checkStyle"
             - gradlew_path: "$BITRISE_SOURCE_DIR/gradlew"
       - script@1:
-          title: prepare_output
+          title: save_code_formatting_reports
           inputs:
             - content: |-
                 #!/usr/bin/env bash
@@ -188,17 +125,8 @@ workflows:
 
                 # Set appropriate zip file name, and export these as environment variables
                 envman add --key TRACE_CHECKSTYLE_REPORTS_ZIP_NAME --value "trace_checkstyle_reports_$PRIMARY_BUILD_NUMBER"
-          is_always_run: true
-      - script@1:
-          title: create_checkstyle_reports
-          inputs:
-            - content: |-
-                #!/usr/bin/env bash
-                # fail if any commands fails
-                set -e
-                # debug log
-                set -x
 
+                # create the report folders
                 mkdir $BITRISE_SOURCE_DIR/checkStyleReports/
                 mkdir $BITRISE_SOURCE_DIR/checkStyleReports/buildSrc/
                 mkdir $BITRISE_SOURCE_DIR/checkStyleReports/trace-gradle-plugin/
@@ -218,9 +146,8 @@ workflows:
             - zip_name: "$TRACE_CHECKSTYLE_REPORTS_ZIP_NAME"
             - deploy_path: "$BITRISE_SOURCE_DIR/checkStyleReports/"
           is_always_run: true
-  primary_v2:
-    before_run:
-      - check_code_formatting
+  primary:
+    before_run: []
     steps:
       - script@1:
           title: prepare_envs
@@ -238,6 +165,7 @@ workflows:
             - workflows: |-
                 build_trace-gradle-plugin
                 build_trace-sdk
+                check_code_formatting
             - environment_key_list: PRIMARY_BUILD_NUMBER
             - abort_on_fail: 'yes'
             - wait_for_builds: 'true'
@@ -256,47 +184,37 @@ workflows:
                 envman add --key TRACE_SDK_BUILD_SLUG --value `echo "${ROUTER_STARTED_BUILD_SLUGS}" | sed '2!d'`
                 envman add --key TRACE_GRADLE_PLUGIN_BUILD_SLUG --value `echo "${ROUTER_STARTED_BUILD_SLUGS}" | sed '1!d'`
       - build-router-start@0:
-          title: trace-test-application_build
-          inputs:
-            - workflows: build_trace-test-application
-            - environment_key_list: |-
-                PRIMARY_BUILD_NUMBER
-                TRACE_SDK_BUILD_SLUG
-                TRACE_GRADLE_PLUGIN_BUILD_SLUG
-            - abort_on_fail: 'yes'
-            - wait_for_builds: 'true'
-            - access_token: "$TRACE_ANDROID_SDK_ACCESS_TOKEN"
-      - script@1:
-          title: store_build_slug_numbers
-          inputs:
-            - content: |-
-                #!/usr/bin/env bash
-                # fail if any commands fails
-                set -e
-                # debug log
-                set -x
-
-                envman add --key TRACE_TEST_APP_BUILD_SLUG --value `echo "${ROUTER_STARTED_BUILD_SLUGS}" | sed '1!d'`
-      - build-router-start@0:
           inputs:
             - workflows: |-
                 test_trace-android-sdk_api_21
-                test_trace-android-sdk_api_24
+                test_trace-android-sdk_api_22
                 test_trace-android-sdk_api_29
                 test_trace-android-sdk_api_30
             - environment_key_list: |-
                 PRIMARY_BUILD_NUMBER
                 TRACE_SDK_BUILD_SLUG
                 TRACE_GRADLE_PLUGIN_BUILD_SLUG
-                TRACE_TEST_APP_BUILD_SLUG
             - wait_for_builds: 'true'
             - access_token: "$TRACE_ANDROID_SDK_ACCESS_TOKEN"
-          title: trace-android-sdk_test
+          title: trace-android-sdk_test_21_22_29_30
+      - build-router-start@0:
+          inputs:
+            - workflows: |-
+                test_trace-android-sdk_api_23
+                test_trace-android-sdk_api_24
+                test_trace-android-sdk_api_25
+                test_trace-android-sdk_api_26
+                test_trace-android-sdk_api_27
+                test_trace-android-sdk_api_28
+            - environment_key_list: |-
+                PRIMARY_BUILD_NUMBER
+                TRACE_SDK_BUILD_SLUG
+                TRACE_GRADLE_PLUGIN_BUILD_SLUG
+            - wait_for_builds: 'true'
+            - access_token: "$TRACE_ANDROID_SDK_ACCESS_TOKEN"
+          title: trace-android-sdk_test_23_to_28
     description: |-
-      Starts all the builds that required for the trace-android-sdk:
-      1. Builds trace-gradle-plugin and trace-sdk
-      2. Builds trace-test-application
-      3. Runs the instrumented tests for trace-sdk and trace-test-application
+      Tests the project for committing to main.
   clone_repo:
     steps:
       - activate-ssh-key:
@@ -890,6 +808,7 @@ workflows:
       - android-build:
           inputs:
             - module: trace-test-application
+            - variant: debug
             - arguments: "--stacktrace"
       - android-unit-test:
           inputs:
@@ -932,31 +851,6 @@ workflows:
       - clone_repo
       - download_trace-gradle-plugin_maven_local
       - download_trace-sdk_maven_local
-  test_trace-android-sdk_api_29:
-    description: |-
-      test_trace-android-sdk workflow usage for API level 29.
-      1. Runs the instrumented tests for trace-sdk
-      2. Runs the instrumented tests for trace-test-application
-      Important note: The android connected tests occasionally fail if the emulator crashes - you will need to rebuild the project if this happens.
-    before_run: []
-    after_run:
-      - test_trace-android-sdk
-    steps:
-      - script@1:
-          inputs:
-            - content: |-
-                #!/usr/bin/env bash
-                # fail if any commands fails
-                set -e
-                # debug log
-                set -x
-
-                envman add --key AVD_API_LEVEL --value 29
-          title: add_avd_api_level
-      - avd-manager@1:
-          inputs:
-            - api_level: "$AVD_API_LEVEL"
-          title: launch_avd_29
   download_trace-test-application_build_dir:
     steps:
       - script@1:
@@ -1085,18 +979,6 @@ workflows:
                   $BITRISE_SOURCE_DIR/gradlew ":trace-sdk:combinedTestReportDebug" "-Pandroid.testInstrumentationRunnerArguments.notAnnotation=io.bitrise.trace.TestKitTest" --stacktrace
                 fi
           title: trace-sdk connectedAndroidTest
-      - script@1:
-          inputs:
-            - content: |
-                #!/usr/bin/env bash
-                # fail if any commands fails
-                set -e
-                # debug log
-                set -x
-
-                adb devices
-                $BITRISE_SOURCE_DIR/gradlew ":trace-test-application:connectedAndroidTest" --stacktrace
-          title: trace-test-application connectedAndroidTest
       - codecov@2:
           inputs:
             - CODECOV_TOKEN: "$CODECOV_TOKEN"
@@ -1116,34 +998,6 @@ workflows:
                 mkdir -p /bitrise/src/trace-test-application/build/reports
                 adb logcat -d > $BITRISE_SOURCE_DIR/trace-test-application/build/reports/logcat.txt
       - script@1:
-          title: save_collected_test_data
-          is_always_run: true
-          description: |-
-            Pulls from the virtual device and moves it to the build reports dir the following things:
-            1. screenshots of UI tests
-            2. view hierarchy xmls of UI tests
-          inputs:
-            - content: |-
-                #!/usr/bin/env bash
-                # fail if any commands fails
-                set -e
-                # debug log
-                set -x
-
-                echo "Listing files in /sdcard/Pictures/UiTestScreenShots/"
-                adb shell ls /sdcard/Pictures/UiTestScreenShots/ || true
-
-                echo
-
-                echo "Listing files in /sdcard/Download/UiTestHierarchy/"
-                adb shell ls /sdcard/Download/UiTestHierarchy/ || true
-
-                echo "Pulling test data files"
-                mkdir -p /bitrise/src/trace-test-application/build/reports/screenshots/
-                adb pull /sdcard/Pictures/UiTestScreenShots/ /bitrise/src/trace-test-application/build/reports/screenshots/
-                mkdir -p /bitrise/src/trace-test-application/build/reports/viewhierarchy/
-                adb pull /sdcard/Download/UiTestHierarchy/ /bitrise/src/trace-test-application/build/reports/viewhierarchy/
-      - script@1:
           inputs:
             - content: |-
                 #!/usr/bin/env bash
@@ -1153,8 +1007,6 @@ workflows:
                 set -x
 
                 envman add --key TRACE_SDK_REPORTS_ZIP_NAME --value "trace_sdk_build_reports_""$PRIMARY_BUILD_NUMBER"_API_"$AVD_API_LEVEL"
-                envman add --key TRACE_TEST_APP_REPORTS_ZIP_NAME --value "trace_test_app_reports_""$PRIMARY_BUILD_NUMBER"_API_"$AVD_API_LEVEL"
-                envman add --key TRACE_TEST_APP_OUTPUTS_ZIP_NAME --value "trace_test_app_outputs_""$PRIMARY_BUILD_NUMBER"_API_"$AVD_API_LEVEL"
           title: prepare_outputs
           is_always_run: true
       - deploy-to-bitrise-io@1:
@@ -1164,20 +1016,6 @@ workflows:
             - deploy_path: "$BITRISE_SOURCE_DIR/trace-sdk/build/reports/"
             - zip_name: "$TRACE_SDK_REPORTS_ZIP_NAME"
             - is_enable_public_page: 'false'
-      - deploy-to-bitrise-io@1:
-          title: deploy_trace-test-application_reports
-          inputs:
-            - is_compress: 'true'
-            - zip_name: "$TRACE_TEST_APP_REPORTS_ZIP_NAME"
-            - deploy_path: "$BITRISE_SOURCE_DIR/trace-test-application/build/reports/"
-            - is_enable_public_page: 'false'
-      - deploy-to-bitrise-io@1:
-          title: deploy_trace-test-application_outputs
-          inputs:
-            - is_enable_public_page: 'false'
-            - deploy_path: "$BITRISE_SOURCE_DIR/trace-test-application/build/outputs/apk/"
-            - zip_name: "$TRACE_TEST_APP_OUTPUTS_ZIP_NAME"
-            - is_compress: 'true'
     description: |-
       1. Runs the instrumented tests for trace-sdk
       2. Runs the instrumented tests for trace-test-application
@@ -1188,8 +1026,7 @@ workflows:
       - download_trace-gradle-plugin_maven_local
       - download_trace-sdk_maven_local
       - download_trace-sdk_build_dir
-      - wait_for_trace-test-application
-      - download_trace-test-application_build_dir
+      - wait_for_emulator
   test_trace-android-sdk_api_30:
     description: |-
       test_trace-android-sdk workflow usage for API level 30.
@@ -1215,12 +1052,119 @@ workflows:
           inputs:
             - api_level: "$AVD_API_LEVEL"
           title: launch_avd_30
+  test_trace-android-sdk_api_29:
+    description: |-
+      test_trace-android-sdk workflow usage for API level 29.
+    before_run: []
+    after_run:
+      - test_trace-android-sdk
+    steps:
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key AVD_API_LEVEL --value 29
+          title: add_avd_api_level
+      - avd-manager@1:
+          inputs:
+            - api_level: "$AVD_API_LEVEL"
+          title: launch_avd_29
+  test_trace-android-sdk_api_28:
+    description: |-
+      test_trace-android-sdk workflow usage for API level 28.
+    before_run: []
+    after_run:
+      - test_trace-android-sdk
+    steps:
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key AVD_API_LEVEL --value 28
+          title: add_avd_api_level
+      - avd-manager@1:
+          inputs:
+            - api_level: "$AVD_API_LEVEL"
+          title: launch_avd_28
+  test_trace-android-sdk_api_27:
+    description: |-
+      test_trace-android-sdk workflow usage for API level 27.
+    before_run: []
+    after_run:
+      - test_trace-android-sdk
+    steps:
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key AVD_API_LEVEL --value 27
+          title: add_avd_api_level
+      - avd-manager@1:
+          inputs:
+            - api_level: "$AVD_API_LEVEL"
+          title: launch_avd_27
+  test_trace-android-sdk_api_26:
+    description: |-
+      test_trace-android-sdk workflow usage for API level 26.
+    before_run: []
+    after_run:
+      - test_trace-android-sdk
+    steps:
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key AVD_API_LEVEL --value 26
+          title: add_avd_api_level
+      - avd-manager@1:
+          inputs:
+            - api_level: "$AVD_API_LEVEL"
+          title: launch_avd_26
+  test_trace-android-sdk_api_25:
+    description: |-
+      test_trace-android-sdk workflow usage for API level 25.
+    before_run: []
+    after_run:
+      - test_trace-android-sdk
+    steps:
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key AVD_API_LEVEL --value 25
+          title: add_avd_api_level
+      - avd-manager@1:
+          inputs:
+            - api_level: "$AVD_API_LEVEL"
+          title: launch_avd_25
   test_trace-android-sdk_api_24:
     description: |-
-      test_trace-android-sdk workflow usage for API level 30.
-      1. Runs the instrumented tests for trace-sdk
-      2. Runs the instrumented tests for trace-test-application
-      Important note: The android connected tests occasionally fail if the emulator crashes - you will need to rebuild the project if this happens.
+      test_trace-android-sdk workflow usage for API level 24.
     before_run: []
     after_run:
       - test_trace-android-sdk
@@ -1240,6 +1184,50 @@ workflows:
           inputs:
             - api_level: "$AVD_API_LEVEL"
           title: launch_avd_24
+  test_trace-android-sdk_api_23:
+    description: |-
+      test_trace-android-sdk workflow usage for API level 23.
+    before_run: []
+    after_run:
+      - test_trace-android-sdk
+    steps:
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key AVD_API_LEVEL --value 23
+          title: add_avd_api_level
+      - avd-manager@1:
+          inputs:
+            - api_level: "$AVD_API_LEVEL"
+          title: launch_avd_23
+  test_trace-android-sdk_api_22:
+    description: |-
+      test_trace-android-sdk workflow usage for API level 22.
+    before_run: []
+    after_run:
+      - test_trace-android-sdk
+    steps:
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+
+                envman add --key AVD_API_LEVEL --value 22
+          title: add_avd_api_level
+      - avd-manager@1:
+          inputs:
+            - api_level: "$AVD_API_LEVEL"
+          title: launch_avd_22
   test_trace-android-sdk_api_21:
     description: |-
       test_trace-android-sdk workflow usage for API level 21.
@@ -1265,20 +1253,12 @@ workflows:
           inputs:
             - api_level: "$AVD_API_LEVEL"
           title: launch_avd_21
-  wait_for_trace-test-application:
+  wait_for_emulator:
     steps:
       - wait-for-android-emulator@1:
           title: wait_for_android_emulator
-      - build-router-wait@0:
-          inputs:
-            - build_artifacts_save_path: "/temp/"
-            - abort_on_fail: 'yes'
-            - buildslugs: "$TRACE_TEST_APP_BUILD_SLUG"
-            - access_token: "$TRACE_ANDROID_SDK_ACCESS_TOKEN"
-          is_always_run: false
     description: |-
-      1. Waits for the AVD to start
-      2. Waits for the build_trace-test-application workflow to finish
+      Waits for the AVD to start
     before_run: []
     after_run: []
   release_trace_sdk:
@@ -1378,3 +1358,6 @@ app:
   - RUN_TESTKIT: 'false'
     opts:
       is_expand: false
+meta:
+  bitrise.io:
+    machine_type_id: elite-xl
