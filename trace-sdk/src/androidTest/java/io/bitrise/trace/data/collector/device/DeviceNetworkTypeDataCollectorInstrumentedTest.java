@@ -17,15 +17,15 @@ public class DeviceNetworkTypeDataCollectorInstrumentedTest
     extends BaseDataCollectorInstrumentedTest {
 
   @Test
-  @SdkSuppress(maxSdkVersion = 28)
-  public void collectData_preSdk29() {
+  @SdkSuppress(maxSdkVersion = 24)
+  public void collectData_sdk24AndEarlier() {
     final DeviceNetworkTypeDataCollector collector = new DeviceNetworkTypeDataCollector(context);
     assertNetworkCollectedData(collector.collectData(), "UNKNOWN");
   }
 
   @Test
-  @SdkSuppress(minSdkVersion = 29)
-  public void collectData_sdk29AndAfter() {
+  @SdkSuppress(minSdkVersion = 25)
+  public void collectData_sdk25AndAfter() {
     final DeviceNetworkTypeDataCollector collector = new DeviceNetworkTypeDataCollector(context);
     assertNetworkCollectedData(collector.collectData(), "WIFI");
   }
