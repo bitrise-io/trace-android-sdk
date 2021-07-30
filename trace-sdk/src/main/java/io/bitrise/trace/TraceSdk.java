@@ -152,6 +152,7 @@ public class TraceSdk {
     TraceActivityLifecycleTracker.reset();
     ApplicationTraceManager.reset();
     ConfigurationManager.reset();
+    isNetworkTracingEnabled = false;
   }
 
   /**

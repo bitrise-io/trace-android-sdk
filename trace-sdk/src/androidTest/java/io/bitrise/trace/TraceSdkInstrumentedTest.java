@@ -7,7 +7,6 @@ import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;
 import io.bitrise.trace.configuration.ConfigurationManager;
 import java.util.Collections;
-import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
