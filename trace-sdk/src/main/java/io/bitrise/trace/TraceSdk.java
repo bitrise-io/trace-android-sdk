@@ -16,6 +16,7 @@ import io.bitrise.trace.utils.TraceException;
 import io.bitrise.trace.utils.log.LogMessageConstants;
 import io.bitrise.trace.utils.log.TraceLog;
 import java.net.URL;
+import java.util.List;
 import javax.inject.Singleton;
 
 /**
@@ -53,11 +54,23 @@ public class TraceSdk {
   }
 
   /**
-   * Initializes the Trace SDK plugin.
+   * Initializes the Trace SDK.
    *
-   * @param context the Android Context.
+   * @param context the Android Application context.
    */
   public static synchronized void init(@NonNull final Context context) {
+    init(context, null);
+  }
+
+  /**
+   * Initializes the Trace SDK with customizable options.
+   *
+   * @param context the Android Application context.
+   * @param options an optional list of {@link TraceOption} objects, providing null means no
+   *                special options.
+   */
+  public static synchronized void init(@NonNull final Context context,
+                                       @Nullable final List<TraceOption> options) {
     if (isInitialised()) {
       return;
     }
@@ -75,7 +88,7 @@ public class TraceSdk {
       initSessionManager();
       initDataCollection(context);
       initLifeCycleListener(context);
-      initNetworkTracing();
+      initNetworkTracing(options);
       TraceLog.i(String.format(LogMessageConstants.TRACE_DEBUG_FLAG_STATUS, DEBUG_ENABLED));
     } else {
       TraceLog.e(new TraceException.TraceConfigNotInitialisedException());
@@ -205,7 +218,13 @@ public class TraceSdk {
    * type network requests to use our {@link TraceURLStreamHandlerFactory} instead.
    */
   @VisibleForTesting
-  static void initNetworkTracing() {
+  static void initNetworkTracing(@Nullable final List<TraceOption> options) {
+
+    if (! TraceOptionsUtil.determineIfNetworkUrlConnectionTracing(options)) {
+      TraceLog.w("Network tracing for URL Connection disabled.");
+      return;
+    }
+
     try {
       URL.setURLStreamHandlerFactory(new TraceURLStreamHandlerFactory());
       TraceLog.d(LogMessageConstants.URL_CONNECTION_REQUESTS_SUCCESS);
