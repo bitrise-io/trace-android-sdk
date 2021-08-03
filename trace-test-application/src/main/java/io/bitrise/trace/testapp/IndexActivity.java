@@ -19,8 +19,6 @@ public class IndexActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_index);
 
-    TraceSdk.setDebugEnabled(true);
-
     final Button btnUiTests = findViewById(R.id.btn_ui_tests);
     final Button btnNetworkTests = findViewById(R.id.btn_network_tests);
     final Button btnExceptionTests = findViewById(R.id.btn_exception_tests);

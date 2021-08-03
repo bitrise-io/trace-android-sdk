@@ -46,6 +46,39 @@ public class TraceOptionsUtilTests {
     assertTrue(TraceOptionsUtil.determineIfNetworkUrlConnectionTracing(options));
   }
 
+  @Test
+  public void determineIfDebugMode_nullOptions() {
+    assertFalse(TraceOptionsUtil.determineIfDebugMode(null));
+  }
+
+  @Test
+  public void determineIfDebugMode_emptyOptions() {
+    assertFalse(TraceOptionsUtil.determineIfDebugMode(new ArrayList<>()));
+  }
+
+  @Test
+  public void determineIfDebugMode_optionKeyTrue() {
+    final List<TraceOption> options = new ArrayList<>();
+    options.add(new TraceOption.DebugMode(true));
+
+    assertTrue(TraceOptionsUtil.determineIfDebugMode(options));
+  }
+
+  @Test
+  public void determineIfDebugMode_optionKeyFalse() {
+    final List<TraceOption> options = new ArrayList<>();
+    options.add(new TraceOption.DebugMode(false));
+
+    assertFalse(TraceOptionsUtil.determineIfDebugMode(options));
+  }
+
+  @Test
+  public void determineIfDebugMode_otherOptions() {
+    final List<TraceOption> options = new ArrayList<>();
+    options.add(new DummyOption());
+
+    assertFalse(TraceOptionsUtil.determineIfDebugMode(options));
+  }
 
   /**
    * private test {@link TraceOption} class.
