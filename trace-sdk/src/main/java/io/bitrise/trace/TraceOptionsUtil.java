@@ -13,10 +13,10 @@ public class TraceOptionsUtil {
    *
    * @param options the complete list of options provided when the sdk was initialised.
    * @return true by default, and false if the {@link TraceOption.NetworkUrlConnectionTracing}
-   * object has been created and set to false.
+   *     object has been created and set to false.
    */
   protected static boolean determineIfNetworkUrlConnectionTracing(
-       @Nullable final List<TraceOption> options) {
+      @Nullable final List<TraceOption> options) {
 
     if (options == null || options.size() == 0) {
       return true;
@@ -36,7 +36,7 @@ public class TraceOptionsUtil {
    *
    * @param options the complete list of options provided when the sdk was initialised.
    * @return false by default, and true if the {@link TraceOption.DebugMode} object has been created
-   * and set to to true.
+   *     and set to to true.
    */
   protected static boolean determineIfDebugMode(@Nullable final List<TraceOption> options) {
     if (options == null || options.size() == 0) {

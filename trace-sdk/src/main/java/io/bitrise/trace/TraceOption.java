@@ -35,7 +35,7 @@ public class TraceOption {
    * Option object for putting trace into a debug mode - currently this will mean more
    * debug level log messages.
    *
-   * Please note if you are not using a debug build, and or minify is enabled it can affect
+   * <p>Please note if you are not using a debug build, and or minify is enabled it can affect
    * these logs, and they can be stripped out depending on your configuration.
    */
   public static class DebugMode extends TraceOption {
