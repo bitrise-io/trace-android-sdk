@@ -1,13 +1,12 @@
 package io.bitrise.trace;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;
 import io.bitrise.trace.configuration.ConfigurationManager;
-import io.bitrise.trace.utils.log.TraceLog;
+import java.util.Collections;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,7 +32,14 @@ public class TraceSdkInstrumentedTest {
 
   @Test
   public void initNetworkTracing() {
-    TraceSdk.initNetworkTracing();
+    TraceSdk.initNetworkTracing(null);
     assertTrue(TraceSdk.isNetworkTracingEnabled);
+  }
+
+  @Test
+  public void initNetworkTracing_whenOptionDisabled() {
+    TraceSdk.initNetworkTracing(Collections.singletonList(
+        new TraceOption.NetworkUrlConnectionTracing(false)));
+    assertFalse(TraceSdk.isNetworkTracingEnabled);
   }
 }

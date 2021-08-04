@@ -16,6 +16,7 @@ import io.bitrise.trace.utils.TraceException;
 import io.bitrise.trace.utils.log.LogMessageConstants;
 import io.bitrise.trace.utils.log.TraceLog;
 import java.net.URL;
+import java.util.List;
 import javax.inject.Singleton;
 
 /**
@@ -36,16 +37,15 @@ public class TraceSdk {
   @VisibleForTesting
   @Nullable
   static volatile TraceSdk traceSdk;
+
   /**
-   * The TraceSdk has a debug mode - currently this will mean more debug level log messages.
-   *
-   * <p>Please note if you are not using a debug build, and or minify is enabled it can affect
-   * these logs, and they can be stripped out depending on your configuration. You also need to
-   * ensure that the TraceSdk has been initialised before setting the debug enabled mode.
+   * Boolean to determine if the customer enabled debug mode for the TraceSdk.
    */
-  private static boolean DEBUG_ENABLED = false;
+  private static boolean isDebugModeEnabled = false;
 
-
+  /**
+   * Boolean to determine if the UrlConnection tracing was initialised successfully.
+   */
   static boolean isNetworkTracingEnabled = false;
 
   private TraceSdk() {
@@ -53,11 +53,23 @@ public class TraceSdk {
   }
 
   /**
-   * Initializes the Trace SDK plugin.
+   * Initializes the Trace SDK.
    *
-   * @param context the Android Context.
+   * @param context the Android Application context.
    */
   public static synchronized void init(@NonNull final Context context) {
+    init(context, null);
+  }
+
+  /**
+   * Initializes the Trace SDK with customizable options.
+   *
+   * @param context the Android Application context.
+   * @param options an optional list of {@link TraceOption} objects, providing null means no
+   *                special options.
+   */
+  public static synchronized void init(@NonNull final Context context,
+                                       @Nullable final List<TraceOption> options) {
     if (isInitialised()) {
       return;
     }
@@ -65,6 +77,8 @@ public class TraceSdk {
     initConfigurations(context);
 
     if (ConfigurationManager.isInitialised()) {
+
+      isDebugModeEnabled = TraceOptionsUtil.determineIfDebugMode(options);
 
       initLogger();
 
@@ -75,8 +89,8 @@ public class TraceSdk {
       initSessionManager();
       initDataCollection(context);
       initLifeCycleListener(context);
-      initNetworkTracing();
-      TraceLog.i(String.format(LogMessageConstants.TRACE_DEBUG_FLAG_STATUS, DEBUG_ENABLED));
+      initNetworkTracing(options);
+      TraceLog.i(String.format(LogMessageConstants.TRACE_DEBUG_FLAG_STATUS, isDebugModeEnabled));
     } else {
       TraceLog.e(new TraceException.TraceConfigNotInitialisedException());
     }
@@ -87,22 +101,8 @@ public class TraceSdk {
    *
    * @return whether the sdk is in debug mode.
    */
-  public static boolean isDebugEnabled() {
-    return DEBUG_ENABLED;
-  }
-
-  /**
-   * Flag to enable debug mode - currently this will mean more debug level log messages.
-   *
-   * <p>Please note if you are not using a debug build, and or minify is enabled it can affect
-   * these logs, and they can be stripped out depending on your configuration. You also need to
-   * ensure that the TraceSdk has been initialised before setting the debug enabled mode.
-   *
-   * @param debugEnabled boolean value to enable or disable debug mode in the TraceSdk.
-   */
-  public static synchronized void setDebugEnabled(final boolean debugEnabled) {
-    DEBUG_ENABLED = debugEnabled;
-    TraceLog.i(String.format(LogMessageConstants.TRACE_DEBUG_FLAG_STATUS, DEBUG_ENABLED));
+  public static boolean isDebugModeEnabled() {
+    return isDebugModeEnabled;
   }
 
   /**
@@ -139,6 +139,7 @@ public class TraceSdk {
     TraceActivityLifecycleTracker.reset();
     ApplicationTraceManager.reset();
     ConfigurationManager.reset();
+    isNetworkTracingEnabled = false;
   }
 
   /**
@@ -205,7 +206,13 @@ public class TraceSdk {
    * type network requests to use our {@link TraceURLStreamHandlerFactory} instead.
    */
   @VisibleForTesting
-  static void initNetworkTracing() {
+  static void initNetworkTracing(@Nullable final List<TraceOption> options) {
+
+    if (! TraceOptionsUtil.determineIfNetworkUrlConnectionTracing(options)) {
+      TraceLog.w("Network tracing for URL Connection disabled.");
+      return;
+    }
+
     try {
       URL.setURLStreamHandlerFactory(new TraceURLStreamHandlerFactory());
       TraceLog.d(LogMessageConstants.URL_CONNECTION_REQUESTS_SUCCESS);

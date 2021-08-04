@@ -52,15 +52,6 @@ public class TraceSdkTest {
   }
 
   @Test
-  public void setDebugEnabled() {
-    TraceSdk.setDebugEnabled(true);
-    assertTrue(TraceSdk.isDebugEnabled());
-
-    TraceSdk.setDebugEnabled(false);
-    assertFalse(TraceSdk.isDebugEnabled());
-  }
-
-  @Test
   public void initLogger_debugMode() {
     ConfigurationManager.getDebugInstance("token", Collections.singletonMap("DEBUG", true));
     TraceSdk.initLogger();
