@@ -27,20 +27,6 @@ Use Trace to:
 * SDK uses AndroidX libraries, there could be issues when integrating it to an app with the 
 deprecated Android support libraries.
 
-## Debug mode
-
-The TraceSdk has a debug mode - currently this will mean more debug level log messages.
-
-Please note if you are not using a debug build, and or minify is enabled it can affect these logs, and they can be stripped out depending on your configuration
-You also need to ensure that the TraceSdk has been initialised before setting the debug enabled mode.
-
-To enable this add the following to your project e.g. in your MainActivity:
-
-```java
-TraceSdk.setDebugEnabled(true)
-```
-
-Note: You can enable and disable debug mode anywhere in your application, this could be the first activity, or a specific activity later in the application lifecycle.
 
 ## Installation
 
@@ -106,6 +92,40 @@ version.
 5. The first time you run the application, the build will take several minutes longer than normal 
 while the Trace SDK applies the plugin. 
 6. Check your logcat messages, Trace should now be working
+
+## Options
+
+You can customise some of the Trace sdk behaviour.
+
+You will need to manually initialise the sdk, ideally in a your own Application classes `onCreate`
+function e.g.
+
+```
+TraceSdk.init(applicationContext)
+```
+
+You can then pass in an optional list of `TraceOption` objects. The following options can be added:
+
+* `TraceOption.DebugMode` - boolean - default set to false.
+    * This puts the Trace sdk into a debug mode, which currently prints more debug messages into
+    the log cat.
+* `TraceOption.NetworkUrlConnectionTracing` - boolean - default set to true.
+    * This will disable any network tracing for UrlConnection events. This can be useful if you are
+    experiencing any issues with third party libraries.
+
+e.g. to initialise trace with the debug mode option:
+
+```
+TraceSdk.init(
+    applicationContext,
+    listOf(
+        TraceOption.DebugMode(true)
+    )
+)
+```
+
+Note: It is possible to add multiple of the same type of option to the list, however only the first
+object affects the behaviour of the sdk, any subsequent objects will be ignored.
 
 ## License
 Trace is released under the MIT license. See 
