@@ -6,6 +6,9 @@ trace-android-sdk public beta versions
 **Note:** these versions of the *trace-android-sdk* are stored in a public repo, but should be 
 considered still as beta.
 
+### trace-sdk - 0.3.1 - 2021-08-04
+* feat: **enable options when initialising the trace sdk**
+
 ### trace-sdk - 0.3.0 - 2021-07-23
 * feat: **catch and send crash reports:**
 
