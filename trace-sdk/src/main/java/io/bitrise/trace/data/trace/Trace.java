@@ -7,6 +7,7 @@ import androidx.room.Ignore;
 import io.bitrise.trace.data.storage.TraceDatabase;
 import io.bitrise.trace.session.ApplicationSessionManager;
 import io.bitrise.trace.session.Session;
+import io.bitrise.trace.utils.TraceClock;
 import io.bitrise.trace.utils.UniqueIdGenerator;
 import io.opencensus.proto.trace.v1.Span;
 import java.util.ArrayList;
@@ -114,6 +115,50 @@ public class Trace {
 
   public void setSpanList(@NonNull final List<Span> spanList) {
     this.spanList = spanList;
+  }
+
+  /**
+   * Finds the last active view style {@link Span}, or null if none can be found.
+   *
+   * @return the Span that represents the last view on the screen.
+   */
+  @Nullable
+  public Span getLastActiveViewSpan() {
+    // if we have zero spans - return null
+    if (spanList.isEmpty()) {
+      return null;
+    }
+
+    // if we only have 1 span - we should only send back if it is an activity style
+    if (spanList.size() == 1) {
+      if (spanList.get(0).hasAttributes()) {
+        return null;
+      } else {
+        return spanList.get(0);
+      }
+    }
+
+    Span lastSpan = spanList.get(0);
+
+    for (Span span : spanList) {
+
+      long lastSpanStart = TraceClock.timestampToMillis(lastSpan.getStartTime());
+      long start = TraceClock.timestampToMillis(span.getStartTime());
+
+      // ignore network style spans
+      if (! span.hasAttributes()) {
+        if (start > lastSpanStart) {
+          lastSpan = span;
+        }
+      }
+    }
+
+    // if we started with a network span - and never had any later spans - we need to ignore it.
+    if (lastSpan.hasAttributes()) {
+      return null;
+    }
+
+    return lastSpan;
   }
 
   /**
