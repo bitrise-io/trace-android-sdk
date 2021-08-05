@@ -17,6 +17,7 @@ public class TraceClockTest {
   final long dummyMilliseconds1 = 1000;
   final long dummyMilliseconds2 = 1999;
   final long dummyMilliseconds3 = 1603374824000L;
+  final long dummyMilliseconds4 = 1628173584882L;
 
   /**
    * Check if the result of a milliseconds value is divided by 1000.
@@ -83,6 +84,14 @@ public class TraceClockTest {
         Timestamp.newBuilder().setSeconds(1603374824L).setNanos(0).build();
     final Timestamp actualValue = TraceClock.createTimestamp(dummyMilliseconds3);
     assertThat(actualValue, is(equalTo(expectedValue)));
+  }
+
+  @Test
+  public void getTimeStamp_convertsBothWaysWithRealDate() {
+    final Timestamp expectedTimestamp =
+        Timestamp.newBuilder().setSeconds(1628173584L).setNanos(882000000).build();
+    assertEquals(expectedTimestamp, TraceClock.createTimestamp(dummyMilliseconds4));
+    assertEquals(dummyMilliseconds4, TraceClock.timestampToMillis(expectedTimestamp));
   }
 
   @Test
