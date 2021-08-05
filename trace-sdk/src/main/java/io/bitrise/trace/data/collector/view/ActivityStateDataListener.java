@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import io.bitrise.trace.data.TraceActivityLifecycleTracker;
 import io.bitrise.trace.data.collector.BaseDataListener;
 import io.bitrise.trace.data.collector.TraceActivityLifecycleSink;
@@ -37,7 +38,7 @@ public class ActivityStateDataListener extends BaseDataListener
    * {@link ActivityData}.
    */
   @NonNull
-  final Map<Integer, ActivityData> activityMap;
+  final Map<Integer, ActivityData> activityMap = new HashMap<>();
   /**
    * The {@link TraceActivityLifecycleTracker} for observing the lifecycle state changes.
    */
@@ -57,7 +58,6 @@ public class ActivityStateDataListener extends BaseDataListener
   public ActivityStateDataListener(@NonNull final Context context) {
     this.dataManager = DataManager.getInstance(context);
     this.traceActivityLifecycleTracker = TraceActivityLifecycleTracker.getInstance(context);
-    this.activityMap = new HashMap<>();
     this.traceManager = ApplicationTraceManager.getInstance(context);
   }
 
@@ -70,6 +70,8 @@ public class ActivityStateDataListener extends BaseDataListener
 
   @Override
   public void stopCollecting() {
+    endAnyActivitiesOpen();
+    flushAllRemainingData();
     traceActivityLifecycleTracker.unregisterTraceActivityLifecycleSink(this);
     setActive(false);
   }
@@ -141,7 +143,8 @@ public class ActivityStateDataListener extends BaseDataListener
    *                          to change.
    * @param activityStateType the {@link ActivityState} to add.
    */
-  private void updateActivityMap(final int activityId,
+  @VisibleForTesting
+  void updateActivityMap(final int activityId,
                                  @Nullable final String name,
                                  @NonNull final ActivityState activityStateType) {
     ActivityData activityData = activityMap.get(activityId);
@@ -169,5 +172,23 @@ public class ActivityStateDataListener extends BaseDataListener
     data.setContent(activityMap.get(id));
     activityMap.remove(id);
     onDataCollected(data);
+  }
+
+  private void endAnyActivitiesOpen() {
+    if (! activityMap.isEmpty()) {
+      for (Map.Entry<Integer, ActivityData> entry : activityMap.entrySet()) {
+         entry.getValue().putState(ActivityState.STOPPED, TraceClock.getCurrentTimeMillis());
+      }
+    }
+  }
+
+  private void flushAllRemainingData() {
+    if (! activityMap.isEmpty()) {
+      for (Map.Entry<Integer, ActivityData> entry : activityMap.entrySet()) {
+        final Data data = new Data(this);
+        data.setContent(entry.getValue());
+        onDataCollected(data);
+      }
+    }
   }
 }
