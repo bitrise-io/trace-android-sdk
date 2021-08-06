@@ -50,7 +50,7 @@ public class TraceTest {
     final List<Span> spans = new ArrayList<>();
     spans.add(networkSpan);
     final Trace trace = new Trace("trace id", spans);
-    assertNull( trace.getLastActiveViewSpan());
+    assertNull(trace.getLastActiveViewSpan());
   }
 
   @Test

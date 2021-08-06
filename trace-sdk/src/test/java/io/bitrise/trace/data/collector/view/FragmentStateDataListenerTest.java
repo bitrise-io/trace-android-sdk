@@ -485,15 +485,15 @@ public class FragmentStateDataListenerTest {
     activityMap.put(activityHashCode, fragmentMap);
 
     listener.activityFragmentMap = activityMap;
-    assertEquals(1,
-        listener.activityFragmentMap.get(activityHashCode).get(fragmentHashCode).getStates().size());
+    assertEquals(1, listener.activityFragmentMap.get(activityHashCode)
+                                                .get(fragmentHashCode).getStates().size());
 
     // when i call stop
     listener.stopCollecting();
 
     // then the fragment map should be updated
-    assertEquals(2,
-        listener.activityFragmentMap.get(activityHashCode).get(fragmentHashCode).getStates().size());
+    assertEquals(2, listener.activityFragmentMap.get(activityHashCode)
+                                                .get(fragmentHashCode).getStates().size());
 
     // and the data manager called
     final ArgumentCaptor<Data> argumentCaptorData = ArgumentCaptor.forClass(Data.class);

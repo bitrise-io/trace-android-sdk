@@ -441,7 +441,8 @@ public class FragmentStateDataListener extends FragmentManager.FragmentLifecycle
         final FragmentData fragmentData = fragmentEntry.getValue();
 
         // append the stopped state to all the entries
-        fragmentData.addState(new FragmentDataStateEntry(FragmentState.STOPPED, TraceClock.getCurrentTimeMillis()));
+        fragmentData.addState(
+            new FragmentDataStateEntry(FragmentState.STOPPED, TraceClock.getCurrentTimeMillis()));
 
         // send the data up
         final Data data = new Data(this);

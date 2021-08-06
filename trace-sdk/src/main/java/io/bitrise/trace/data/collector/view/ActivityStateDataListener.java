@@ -175,9 +175,9 @@ public class ActivityStateDataListener extends BaseDataListener
   }
 
   private void endAnyActivitiesOpen() {
-    if (! activityMap.isEmpty()) {
+    if (!activityMap.isEmpty()) {
       for (Map.Entry<Integer, ActivityData> entry : activityMap.entrySet()) {
-         entry.getValue().putState(ActivityState.STOPPED, TraceClock.getCurrentTimeMillis());
+        entry.getValue().putState(ActivityState.STOPPED, TraceClock.getCurrentTimeMillis());
       }
     }
   }
