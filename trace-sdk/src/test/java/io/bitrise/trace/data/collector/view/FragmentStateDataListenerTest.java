@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -29,6 +30,7 @@ import io.bitrise.trace.data.dto.FragmentDataStateEntry;
 import io.bitrise.trace.data.dto.FragmentState;
 import io.bitrise.trace.data.management.DataManager;
 import io.bitrise.trace.session.ApplicationSessionManager;
+import io.bitrise.trace.utils.TraceClock;
 import java.util.HashMap;
 import java.util.Map;
 import org.hamcrest.core.IsNull;
@@ -36,6 +38,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 /**
@@ -459,5 +462,49 @@ public class FragmentStateDataListenerTest {
     listener.onFragmentPaused(mockFragmentManager1, mockFragment1);
     assertFalse(listener.isActive());
     assertEquals(listener.activityFragmentMap.size(), 0);
+  }
+
+  @Test
+  public void stopCollecting_shouldEndAnyOpenFragments() {
+    final FragmentStateDataListener listener = new FragmentStateDataListener(
+        mockContext, activityStateDataListener);
+    final DataManager mockDataManager = Mockito.mock(DataManager.class);
+    listener.dataManager = mockDataManager;
+
+    final int fragmentHashCode = 1234;
+    final int activityHashCode = 4321;
+
+    // given an open fragment in the activity map
+    final FragmentData fragmentData = new FragmentData("span id");
+    fragmentData.addState(FragmentState.CREATED, TraceClock.getCurrentTimeMillis());
+
+    final Map<Integer, FragmentData> fragmentMap = new HashMap<>();
+    fragmentMap.put(fragmentHashCode, fragmentData);
+
+    final Map<Integer, Map<Integer, FragmentData>> activityMap = new HashMap<>();
+    activityMap.put(activityHashCode, fragmentMap);
+
+    listener.activityFragmentMap = activityMap;
+    assertEquals(1,
+        listener.activityFragmentMap.get(activityHashCode).get(fragmentHashCode).getStates().size());
+
+    // when i call stop
+    listener.stopCollecting();
+
+    // then the fragment map should be updated
+    assertEquals(2,
+        listener.activityFragmentMap.get(activityHashCode).get(fragmentHashCode).getStates().size());
+
+    // and the data manager called
+    final ArgumentCaptor<Data> argumentCaptorData = ArgumentCaptor.forClass(Data.class);
+    verify(mockDataManager, times(1))
+        .handleReceivedData(argumentCaptorData.capture());
+
+    final Object actualContent = argumentCaptorData.getValue().getContent();
+    assertTrue(actualContent instanceof FragmentData);
+
+    // verify 2 states are there (created / stopped)
+    final FragmentData actualFragmentData = (FragmentData) actualContent;
+    assertEquals(2, actualFragmentData.getStates().size());
   }
 }
