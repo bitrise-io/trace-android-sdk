@@ -2,6 +2,7 @@ package io.bitrise.trace.network;
 
 import androidx.annotation.NonNull;
 import io.bitrise.trace.data.dto.CrashReport;
+import io.bitrise.trace.data.trace.ApplicationTraceManager;
 import io.bitrise.trace.utils.TraceClock;
 import io.bitrise.trace.utils.UniqueIdGenerator;
 import io.bitrise.trace.utils.log.TraceLog;
@@ -23,6 +24,8 @@ public class CrashSender {
   final long millisecondTimestamp;
   @NonNull final String uuid;
   @NonNull final Resource resource;
+  @NonNull final String traceId;
+  @NonNull final String spanId;
 
   /**
    * Creates an object that can send crash reports.
@@ -30,12 +33,16 @@ public class CrashSender {
    * @param crashReport the {@link CrashReport} to send.
    */
   public CrashSender(@NonNull final CrashReport crashReport,
-                     @NonNull final Resource resource) {
+                     @NonNull final Resource resource,
+                     @NonNull final String traceId,
+                     @NonNull final String spanId) {
 
     this.crashReport = crashReport;
     this.millisecondTimestamp = TraceClock.getCurrentTimeMillis();
     this.uuid = UniqueIdGenerator.makeCrashReportId();
     this.resource = resource;
+    this.traceId = traceId;
+    this.spanId = spanId;
   }
 
   /**
@@ -48,8 +55,8 @@ public class CrashSender {
         crashReport.getDescription(),
         TraceClock.createCrashRequestFormat(millisecondTimestamp, TimeZone.getDefault()),
         this.uuid,
-        "",
-        "",
+        traceId,
+        spanId,
         crashReport.getAllExceptionNames()
     );
 
