@@ -70,8 +70,7 @@ public class ActivityStateDataListener extends BaseDataListener
 
   @Override
   public void stopCollecting() {
-    endAnyActivitiesOpen();
-    flushAllRemainingData();
+    endAnyActivitiesOpenAndFlush();
     traceActivityLifecycleTracker.unregisterTraceActivityLifecycleSink(this);
     setActive(false);
   }
@@ -174,21 +173,16 @@ public class ActivityStateDataListener extends BaseDataListener
     onDataCollected(data);
   }
 
-  private void endAnyActivitiesOpen() {
+  private void endAnyActivitiesOpenAndFlush() {
     if (!activityMap.isEmpty()) {
       for (Map.Entry<Integer, ActivityData> entry : activityMap.entrySet()) {
         entry.getValue().putState(ActivityState.STOPPED, TraceClock.getCurrentTimeMillis());
-      }
-    }
-  }
 
-  private void flushAllRemainingData() {
-    if (! activityMap.isEmpty()) {
-      for (Map.Entry<Integer, ActivityData> entry : activityMap.entrySet()) {
         final Data data = new Data(this);
         data.setContent(entry.getValue());
         onDataCollected(data);
       }
     }
   }
+
 }
