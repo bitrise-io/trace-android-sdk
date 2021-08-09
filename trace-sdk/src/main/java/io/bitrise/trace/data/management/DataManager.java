@@ -293,7 +293,7 @@ public class DataManager {
         executorScheduler.cancelAll();
       }
 
-      activeDataCollectors.clear();
+      getActiveDataCollectors().clear();
     }
   }
 
@@ -302,10 +302,10 @@ public class DataManager {
    */
   private void stopEventDrivenDataCollection() {
     synchronized (activeDataListenerLock) {
-      for (@NonNull final DataListener dataListener : activeDataListeners) {
+      for (@NonNull final DataListener dataListener : getActiveDataListeners()) {
         dataListener.stopCollecting();
       }
-      activeDataListeners.clear();
+      getActiveDataListeners().clear();
     }
   }
 
