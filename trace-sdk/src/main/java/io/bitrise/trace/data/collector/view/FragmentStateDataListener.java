@@ -20,6 +20,7 @@ import io.bitrise.trace.data.collector.TraceActivityLifecycleSink;
 import io.bitrise.trace.data.dto.ActivityData;
 import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.dto.FragmentData;
+import io.bitrise.trace.data.dto.FragmentDataStateEntry;
 import io.bitrise.trace.data.dto.FragmentState;
 import io.bitrise.trace.data.management.DataManager;
 import io.bitrise.trace.data.trace.ApplicationTraceManager;
@@ -48,7 +49,7 @@ public class FragmentStateDataListener extends FragmentManager.FragmentLifecycle
    */
   @VisibleForTesting
   @NonNull
-  final Map<Integer, Map<Integer, FragmentData>> activityFragmentMap;
+  Map<Integer, Map<Integer, FragmentData>> activityFragmentMap;
   /**
    * The {@link TraceActivityLifecycleTracker} to register itself to it's lifecycle event callbacks.
    */
@@ -425,6 +426,31 @@ public class FragmentStateDataListener extends FragmentManager.FragmentLifecycle
   public void stopCollecting() {
     traceActivityLifecycleTracker.unregisterTraceActivityLifecycleSink(this);
     isActive = false;
+    endAnyFragmentsOpenAndFlush();
+  }
+
+  private void endAnyFragmentsOpenAndFlush() {
+
+    // loop through any activities we had open
+    for (Map.Entry<Integer, Map<Integer, FragmentData>> activityEntry :
+        activityFragmentMap.entrySet()) {
+      final Map<Integer, FragmentData> fragmentMap = activityEntry.getValue();
+
+      // loop through any fragments in those activities
+      for (Map.Entry<Integer, FragmentData> fragmentEntry : fragmentMap.entrySet()) {
+        final FragmentData fragmentData = fragmentEntry.getValue();
+
+        // append the stopped state to all the entries
+        fragmentData.addState(
+            new FragmentDataStateEntry(FragmentState.STOPPED, TraceClock.getCurrentTimeMillis()));
+
+        // send the data up
+        final Data data = new Data(this);
+        data.setContent(fragmentData);
+        onDataCollected(data);
+
+      }
+    }
   }
 
   @Override

@@ -17,12 +17,14 @@ import io.bitrise.trace.data.collector.DataListener;
 import io.bitrise.trace.data.collector.memory.MemoryDataCollector;
 import io.bitrise.trace.data.collector.network.okhttp.OkHttpDataListener;
 import io.bitrise.trace.data.collector.view.ApplicationStartUpDataListener;
+import io.bitrise.trace.data.dto.CrashData;
 import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.dto.NetworkData;
 import io.bitrise.trace.data.storage.TraceDataStorage;
 import io.bitrise.trace.scheduler.ExecutorScheduler;
 import io.bitrise.trace.scheduler.ServiceScheduler;
 import io.bitrise.trace.session.ApplicationSessionManager;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -204,4 +206,22 @@ public class DataManagerTest {
   }
 
   //endregion
+
+  @Test
+  public void handleReceivedCrash() {
+    // given a crash
+    final CrashData crashData = new CrashData(new RuntimeException(), 0, new HashMap<>());
+    final DataManager mockDataManager = Mockito.mock(DataManager.class,
+        Mockito.CALLS_REAL_METHODS);
+
+    when(mockDataManager.getActiveDataCollectors()).thenReturn(new HashSet<>());
+    when(mockDataManager.getActiveDataListeners()).thenReturn(new HashSet<>());
+
+    // when i call handleReceivedCrash
+    mockDataManager.handleReceivedCrash(crashData);
+
+    // stop collection should be called
+    verify(mockDataManager, times(1)).stopCollection();
+
+  }
 }

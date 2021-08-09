@@ -27,10 +27,12 @@ import io.bitrise.trace.scheduler.ExecutorScheduler;
 import io.bitrise.trace.scheduler.ServiceScheduler;
 import io.bitrise.trace.session.ApplicationSessionManager;
 import io.bitrise.trace.session.Session;
+import io.bitrise.trace.utils.ByteStringConverter;
 import io.bitrise.trace.utils.log.LogMessageConstants;
 import io.bitrise.trace.utils.log.TraceLog;
 import io.opencensus.proto.metrics.v1.Metric;
 import io.opencensus.proto.resource.v1.Resource;
+import io.opencensus.proto.trace.v1.Span;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.Executors;
@@ -291,7 +293,7 @@ public class DataManager {
         executorScheduler.cancelAll();
       }
 
-      activeDataCollectors.clear();
+      getActiveDataCollectors().clear();
     }
   }
 
@@ -300,10 +302,10 @@ public class DataManager {
    */
   private void stopEventDrivenDataCollection() {
     synchronized (activeDataListenerLock) {
-      for (@NonNull final DataListener dataListener : activeDataListeners) {
+      for (@NonNull final DataListener dataListener : getActiveDataListeners()) {
         dataListener.stopCollecting();
       }
-      activeDataListeners.clear();
+      getActiveDataListeners().clear();
     }
   }
 
@@ -411,6 +413,10 @@ public class DataManager {
    * @param crashData the {@link CrashData} object captured.
    */
   public void handleReceivedCrash(final @NonNull CrashData crashData) {
+
+    //end any current spans and traces
+    stopCollection();
+
     final CrashReport crashReport = CrashDataFormatter.formatCrashData(crashData);
 
     final Session session = ApplicationSessionManager.getInstance().getActiveSession();
@@ -425,7 +431,17 @@ public class DataManager {
       return;
     }
 
-    final CrashSender crashSender = new CrashSender(crashReport, resource);
+    final Trace activeTrace = ApplicationTraceManager.getInstance(context).getActiveTrace();
+    if (activeTrace == null) {
+      TraceLog.d("Data manager: active trace was null.");
+      return;
+    }
+
+    final Span lastSpan = activeTrace.getLastActiveViewSpan();
+
+    final CrashSender crashSender = new CrashSender(
+        crashReport, resource, activeTrace.getTraceId(),
+        lastSpan == null ? "" : ByteStringConverter.toString(lastSpan.getSpanId()));
     crashSender.send();
   }
 }

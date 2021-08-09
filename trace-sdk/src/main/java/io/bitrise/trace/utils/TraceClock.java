@@ -43,6 +43,16 @@ public class TraceClock {
   }
 
   /**
+   * Converts a {@link Timestamp} object back to milliseconds - which can be useful for comparison.
+   *
+   * @param timestamp the {@link Timestamp} object with seconds and nanos.
+   * @return the timestamp in milliseconds.
+   */
+  public static long timestampToMillis(@NonNull final Timestamp timestamp) {
+    return (timestamp.getSeconds() * 1000) + (timestamp.getNanos() / 1000 / 1000);
+  }
+
+  /**
    * Gets the current {@link Timestamp}.
    *
    * @return the current Timestamp.
