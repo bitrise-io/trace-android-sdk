@@ -451,6 +451,6 @@ public class DataManager {
           lastSpan == null ? "" : ByteStringConverter.toString(lastSpan.getSpanId())
         );
 
-    // todo save crash to storage
+    dataStorage.saveCrashRequest(request);
   }
 }
