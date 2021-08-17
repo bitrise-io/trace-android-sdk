@@ -1,18 +1,9 @@
 package io.bitrise.trace.network;
 
 import androidx.annotation.NonNull;
-import io.bitrise.trace.data.dto.CrashReport;
-import io.bitrise.trace.data.trace.ApplicationTraceManager;
-import io.bitrise.trace.utils.TraceClock;
-import io.bitrise.trace.utils.UniqueIdGenerator;
 import io.bitrise.trace.utils.log.TraceLog;
-import io.opencensus.proto.resource.v1.Resource;
-import java.io.IOException;
-import java.util.TimeZone;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
@@ -20,72 +11,35 @@ import retrofit2.Response;
  */
 public class CrashSender {
 
-  @NonNull final CrashReport crashReport;
-  final long millisecondTimestamp;
-  @NonNull final String uuid;
-  @NonNull final Resource resource;
-  @NonNull final String traceId;
-  @NonNull final String spanId;
+  @NonNull final CrashRequest request;
 
   /**
    * Creates an object that can send crash reports.
    *
-   * @param crashReport the {@link CrashReport} to send.
+   * @param request - the {@link CrashRequest} object to send.
    */
-  public CrashSender(@NonNull final CrashReport crashReport,
-                     @NonNull final Resource resource,
-                     @NonNull final String traceId,
-                     @NonNull final String spanId) {
-
-    this.crashReport = crashReport;
-    this.millisecondTimestamp = TraceClock.getCurrentTimeMillis();
-    this.uuid = UniqueIdGenerator.makeCrashReportId();
-    this.resource = resource;
-    this.traceId = traceId;
-    this.spanId = spanId;
+  public CrashSender(@NonNull final CrashRequest request) {
+    this.request = request;
   }
 
   /**
    * Send the {@link CrashRequest} to the backend server.
    */
   public void send() {
-
-    final CrashRequest.Metadata metadata = new CrashRequest.Metadata(
-        crashReport.getThrowableClassName(),
-        crashReport.getDescription(),
-        TraceClock.createCrashRequestFormat(millisecondTimestamp, TimeZone.getDefault()),
-        this.uuid,
-        traceId,
-        spanId,
-        crashReport.getAllExceptionNames()
-    );
-
-    final CrashRequest request = new CrashRequest(resource, crashReport, metadata);
-
-    final ExecutorService service = Executors.newFixedThreadPool(1);
-    Future<?> future = service.submit(() -> {
-
-      try {
-
-        final Response<Void> response =
-            NetworkClient.getCommunicator().sendCrash(request).execute();
-
+    NetworkClient.getCommunicator().sendCrash(request).enqueue(new Callback<Void>() {
+      @Override
+      public void onResponse(@NonNull final Call<Void> call, @NonNull final Response<Void> response) {
         if (response.isSuccessful()) {
           TraceLog.d("Crash report sent successfully: " + response.headers().get("correlation-id"));
         } else {
           TraceLog.e("Crash report failed to send: " + response.code());
         }
-
-      } catch (IOException e) {
-        TraceLog.e("Crash report failed to send: " + e.getLocalizedMessage());
       }
 
+      @Override
+      public void onFailure(@NonNull final Call<Void> call, @NonNull final Throwable t) {
+        TraceLog.e("Crash report failed to send: " + t.getLocalizedMessage());
+      }
     });
-
-    try {
-      future.get();
-    } catch (ExecutionException | InterruptedException e) {
-      // nop
-    }
   }
 }

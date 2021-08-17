@@ -4,8 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.gson.annotations.SerializedName;
 import io.bitrise.trace.data.dto.CrashReport;
+import io.bitrise.trace.utils.TraceClock;
 import io.opencensus.proto.resource.v1.Resource;
 import java.util.List;
+import java.util.Objects;
+import java.util.TimeZone;
 
 /**
  * The complete object that forms the payload to the backend for a crash report.
@@ -21,20 +24,47 @@ public class CrashRequest extends NetworkRequest {
    * Creates the crash request body.
    *
    * @param resource the current session's resources.
-   * @param crash the {@link CrashReport}.
-   * @param metadata any additional metadata that can be supplied.
+   * @param
+   *
    */
   public CrashRequest(@NonNull final Resource resource,
-                      @NonNull CrashReport crash,
-                      @NonNull Metadata metadata) {
+                      @NonNull final CrashReport crashReport,
+                      final long millisecondTimestamp,
+                      @NonNull final String uuid,
+                      @NonNull final String traceId,
+                      @NonNull final String spanId) {
     this.resource = resource;
-    this.crash = crash.getThreads();
-    this.metadata = metadata;
+    this.crash = crashReport.getThreads();
+    this.metadata = new CrashRequest.Metadata(
+        crashReport.getThrowableClassName(),
+        crashReport.getDescription(),
+        TraceClock.createCrashRequestFormat(millisecondTimestamp, TimeZone.getDefault()),
+        uuid,
+        traceId,
+        spanId,
+        crashReport.getAllExceptionNames()
+    );
   }
 
   @NonNull
   public List<CrashReport.Thread> getCrash() {
     return crash;
+  }
+
+  @Override
+  public boolean equals(@Nullable Object obj) {
+    if (obj == this) {
+      return true;
+    }
+    if (!(obj instanceof CrashRequest)) {
+      return false;
+    }
+
+    final CrashRequest request = (CrashRequest) obj;
+
+    return request.crash.equals(this.crash)
+        && request.metadata.equals(this.metadata)
+        && request.resource.equals(this.resource);
   }
 
   /**
@@ -77,6 +107,30 @@ public class CrashRequest extends NetworkRequest {
       this.traceId = traceId;
       this.spanId = spanId;
       this.allExceptionNames = allExceptionNames;
+    }
+
+    @NonNull
+    public String getUuid() {
+      return uuid;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+      if (obj == this) {
+        return true;
+      }
+      if (!(obj instanceof CrashRequest.Metadata)) {
+        return false;
+      }
+      final Metadata metadata = (Metadata) obj;
+
+      return metadata.description.equals(this.description)
+          && metadata.spanId.equals(this.spanId)
+          && metadata.throwableClassName.equals(this.throwableClassName)
+          && metadata.timestamp.equals(this.timestamp)
+          && metadata.traceId.equals(this.traceId)
+          && metadata.uuid.equals(this.uuid)
+          && Objects.equals(metadata.allExceptionNames, this.allExceptionNames);
     }
   }
 

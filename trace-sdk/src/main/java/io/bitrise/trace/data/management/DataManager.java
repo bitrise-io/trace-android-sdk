@@ -19,6 +19,7 @@ import io.bitrise.trace.data.storage.TraceDataStorage;
 import io.bitrise.trace.data.trace.ApplicationTraceManager;
 import io.bitrise.trace.data.trace.Trace;
 import io.bitrise.trace.data.trace.TraceManager;
+import io.bitrise.trace.network.CrashRequest;
 import io.bitrise.trace.network.CrashSender;
 import io.bitrise.trace.network.DataSender;
 import io.bitrise.trace.network.MetricSender;
@@ -28,6 +29,8 @@ import io.bitrise.trace.scheduler.ServiceScheduler;
 import io.bitrise.trace.session.ApplicationSessionManager;
 import io.bitrise.trace.session.Session;
 import io.bitrise.trace.utils.ByteStringConverter;
+import io.bitrise.trace.utils.TraceClock;
+import io.bitrise.trace.utils.UniqueIdGenerator;
 import io.bitrise.trace.utils.log.LogMessageConstants;
 import io.bitrise.trace.utils.log.TraceLog;
 import io.opencensus.proto.metrics.v1.Metric;
@@ -439,9 +442,15 @@ public class DataManager {
 
     final Span lastSpan = activeTrace.getLastActiveViewSpan();
 
-    final CrashSender crashSender = new CrashSender(
-        crashReport, resource, activeTrace.getTraceId(),
-        lastSpan == null ? "" : ByteStringConverter.toString(lastSpan.getSpanId()));
-    crashSender.send();
+    final CrashRequest request = new CrashRequest(
+          resource,
+          crashReport,
+          TraceClock.getCurrentTimeMillis(),
+          UniqueIdGenerator.makeCrashReportId(),
+          activeTrace.getTraceId(),
+          lastSpan == null ? "" : ByteStringConverter.toString(lastSpan.getSpanId())
+        );
+
+    // todo save crash to storage
   }
 }
