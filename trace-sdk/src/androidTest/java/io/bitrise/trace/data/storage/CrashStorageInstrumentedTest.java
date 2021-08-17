@@ -26,6 +26,9 @@ public class CrashStorageInstrumentedTest {
 
   private static DataStorage dataStorage;
 
+  /**
+   * Creates an empty data storage.
+   */
   @BeforeClass
   public static void setUp() {
     final Context context = ApplicationProvider.getApplicationContext();
@@ -33,6 +36,9 @@ public class CrashStorageInstrumentedTest {
     dataStorage.traceDatabase = Room.inMemoryDatabaseBuilder(context, TraceDatabase.class).build();
   }
 
+  /**
+   * Ensures the data storage is cleared.
+   */
   @AfterClass
   public static void tearDown() {
     ApplicationSessionManager.getInstance().stopSession();
@@ -44,6 +50,14 @@ public class CrashStorageInstrumentedTest {
     dataStorage.traceDatabase.clearAllTables();
   }
 
+  /**
+   * Creates a dummy {@link CrashRequest} object.
+   *
+   * @param uuid a unique identifier for the crash report.
+   * @param timestamp a timestamp in milliseconds for the crash report.
+   *
+   * @return a crash request object for testing purposes.
+   */
   private CrashRequest createCrashRequest(@NonNull final String uuid,
                                            final long timestamp) {
     return new CrashRequest(
@@ -56,7 +70,12 @@ public class CrashStorageInstrumentedTest {
     );
   }
 
-  public static CrashReport createCrashReport() {
+  /**
+   * Creates a dummy{@link CrashReport}.
+   *
+   * @return a crash report for testing purposes.
+   */
+  static CrashReport createCrashReport() {
     final List<CrashReport.Thread> threads = new ArrayList<>();
     threads.add(new CrashReport.Thread(1L, true, createStackTraceFrames()));
     threads.add(new CrashReport.Thread(12345L, false, createStackTraceFrames()));
@@ -64,6 +83,12 @@ public class CrashStorageInstrumentedTest {
     return new CrashReport(threads, "throwable class name", "description",
         null);
   }
+
+  /**
+   * Creates a list of dummy {@link CrashReport.Frame}'s.
+   *
+   * @return some stack trace frames for testing purposes.
+   */
   static List<CrashReport.Frame> createStackTraceFrames() {
     final List<CrashReport.Frame> frames = new ArrayList<>();
     frames.add(new CrashReport.Frame("class1", "method1", "file1", 1, 0));

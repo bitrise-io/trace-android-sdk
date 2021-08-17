@@ -28,16 +28,19 @@ public class CrashSender {
   public void send() {
     NetworkClient.getCommunicator().sendCrash(request).enqueue(new Callback<Void>() {
       @Override
-      public void onResponse(@NonNull final Call<Void> call, @NonNull final Response<Void> response) {
+      public void onResponse(@NonNull final Call<Void> call,
+                             @NonNull final Response<Void> response) {
         if (response.isSuccessful()) {
-          TraceLog.d("Crash report sent successfully: " + response.headers().get("correlation-id"));
+          TraceLog.d("Crash report sent successfully: "
+              + response.headers().get("correlation-id"));
         } else {
           TraceLog.e("Crash report failed to send: " + response.code());
         }
       }
 
       @Override
-      public void onFailure(@NonNull final Call<Void> call, @NonNull final Throwable t) {
+      public void onFailure(@NonNull final Call<Void> call,
+                            @NonNull final Throwable t) {
         TraceLog.e("Crash report failed to send: " + t.getLocalizedMessage());
       }
     });

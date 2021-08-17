@@ -20,7 +20,6 @@ import io.bitrise.trace.data.trace.ApplicationTraceManager;
 import io.bitrise.trace.data.trace.Trace;
 import io.bitrise.trace.data.trace.TraceManager;
 import io.bitrise.trace.network.CrashRequest;
-import io.bitrise.trace.network.CrashSender;
 import io.bitrise.trace.network.DataSender;
 import io.bitrise.trace.network.MetricSender;
 import io.bitrise.trace.network.TraceSender;

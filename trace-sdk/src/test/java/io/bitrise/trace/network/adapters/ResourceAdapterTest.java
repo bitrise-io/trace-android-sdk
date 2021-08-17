@@ -40,13 +40,15 @@ public class ResourceAdapterTest {
 
   @Test
   public void deserialize_withLabel() {
-    final Resource resource = NetworkClient.getGson().fromJson(jsonResource, Resource.class);
+    final Resource resource = NetworkClient.getGson()
+                                           .fromJson(jsonResource, Resource.class);
     assertEquals(createResourceWithLabel(), resource);
   }
 
   @Test
   public void deserialize_noContent() {
-    final Resource resource = NetworkClient.getGson().fromJson(jsonResourceNoLabels, Resource.class);
+    final Resource resource = NetworkClient.getGson()
+                                           .fromJson(jsonResourceNoLabels, Resource.class);
     assertEquals(createResourceNoContent(), resource);
   }
 

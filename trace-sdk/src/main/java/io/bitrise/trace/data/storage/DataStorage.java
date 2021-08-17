@@ -378,12 +378,22 @@ public abstract class DataStorage {
     this.traceDatabase = traceDatabase;
   }
 
+  /**
+   * Save a {@link CrashRequest} object to the database.
+   *
+   * @param request - the {@link CrashRequest} object to save.
+   */
   @WorkerThread
   public void saveCrashRequest(@NonNull final CrashRequest request) {
     traceDatabase.getCrashDao().insert(new CrashEntity(request));
     TraceLog.d("saved crash request");
   }
 
+  /**
+   * Gets all currently saved {@link CrashRequest} objects.
+   *
+   * @return a list of the saved {@link CrashRequest}'s.
+   */
   @WorkerThread
   @NonNull
   public List<CrashRequest> getAllCrashRequests() {
@@ -397,6 +407,11 @@ public abstract class DataStorage {
     return requests;
   }
 
+  /**
+   * Remove a {@link CrashRequest} object from the database.
+   *
+   * @param id - the uuid of the {@link CrashRequest} to remove.
+   */
   @WorkerThread
   public void deleteCrashRequest(@NonNull final String id) {
     traceDatabase.getCrashDao().deleteById(id);
