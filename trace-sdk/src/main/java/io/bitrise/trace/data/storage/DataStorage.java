@@ -4,19 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
-import io.bitrise.trace.data.dto.FormattedData;
 import io.bitrise.trace.data.metric.MetricEntity;
 import io.bitrise.trace.data.resource.ResourceEntity;
+import io.bitrise.trace.data.storage.entities.CrashEntity;
 import io.bitrise.trace.data.trace.Trace;
 import io.bitrise.trace.data.trace.TraceEntity;
-import io.bitrise.trace.data.trace.TraceManager;
 import io.bitrise.trace.data.trace.TraceUtils;
+import io.bitrise.trace.network.CrashRequest;
 import io.bitrise.trace.session.Session;
-import io.bitrise.trace.utils.TraceException;
 import io.bitrise.trace.utils.log.LogMessageConstants;
 import io.bitrise.trace.utils.log.TraceLog;
 import io.opencensus.proto.metrics.v1.Metric;
 import io.opencensus.proto.resource.v1.Resource;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -376,5 +376,29 @@ public abstract class DataStorage {
   @VisibleForTesting
   public void setTraceDatabase(@NonNull final TraceDatabase traceDatabase) {
     this.traceDatabase = traceDatabase;
+  }
+
+  @WorkerThread
+  public void saveCrashRequest(@NonNull final CrashRequest request) {
+    traceDatabase.getCrashDao().insert(new CrashEntity(request));
+    TraceLog.d("saved crash request");
+  }
+
+  @WorkerThread
+  @NonNull
+  public List<CrashRequest> getAllCrashRequests() {
+    final List<CrashEntity> entities = traceDatabase.getCrashDao().getAll();
+
+    final List<CrashRequest> requests = new ArrayList<>();
+    for (final CrashEntity entity : entities) {
+      requests.add(entity.getCrashRequest());
+    }
+
+    return requests;
+  }
+
+  @WorkerThread
+  public void deleteCrashRequest(@NonNull final String id) {
+    traceDatabase.getCrashDao().deleteById(id);
   }
 }
