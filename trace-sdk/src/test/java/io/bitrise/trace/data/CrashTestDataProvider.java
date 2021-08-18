@@ -2,8 +2,10 @@ package io.bitrise.trace.data;
 
 import io.bitrise.trace.data.dto.CrashReport;
 import io.bitrise.trace.network.CrashRequest;
+import io.bitrise.trace.test.DataTestUtils;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  * Provides test data for the crash formatter tests.
@@ -11,7 +13,7 @@ import java.util.List;
 public class CrashTestDataProvider {
 
 
-  static StackTraceElement[] createStackTraceElements() {
+  public static StackTraceElement[] createStackTraceElements() {
     final StackTraceElement[] list = new StackTraceElement[3];
 
     list[0] = new StackTraceElement("class1", "method1", "file1", 1);
@@ -21,7 +23,7 @@ public class CrashTestDataProvider {
     return list;
   }
 
-  static List<CrashReport.Frame> createStackTraceFrames() {
+  public static List<CrashReport.Frame> createStackTraceFrames() {
     final List<CrashReport.Frame> frames = new ArrayList<>();
     frames.add(new CrashReport.Frame("class1", "method1", "file1", 1, 0));
     frames.add(new CrashReport.Frame("class2", "method2", "file2", 2, 1));
@@ -29,13 +31,13 @@ public class CrashTestDataProvider {
     return frames;
   }
 
-  static StackTraceElement[] createStackTraceElementsWithNulls() {
+  public static StackTraceElement[] createStackTraceElementsWithNulls() {
     final StackTraceElement[] list = new StackTraceElement[1];
     list[0] = new StackTraceElement("class", "method", null, 0);
     return list;
   }
 
-  static List<CrashReport.Frame> createStackTraceFramesWithNulls() {
+  public static List<CrashReport.Frame> createStackTraceFramesWithNulls() {
     final List<CrashReport.Frame> frames = new ArrayList<>();
     frames.add(new CrashReport.Frame("class", "method", "", 0, 0));
     return frames;
@@ -86,6 +88,30 @@ public class CrashTestDataProvider {
         "traceid2",
         "spanid2",
         "allExceptionNames2"
+    );
+  }
+
+  public static CrashRequest createCrashRequest() {
+    return new CrashRequest(
+        DataTestUtils.getSampleResource("session-id"),
+        createCrashReport(),
+        1629292193024L,
+        TimeZone.getTimeZone("Europe/London"),
+        "uuid",
+        "trace-id",
+        "spanid"
+    );
+  }
+
+  public static CrashRequest createDifferentRequest() {
+    return new CrashRequest(
+        DataTestUtils.getSampleResource("different-id"),
+        createCrashReport(),
+        1629292193025L,
+        TimeZone.getTimeZone("Europe/London"),
+        "different-uuid",
+        "different-trace-id",
+        "different-spanid"
     );
   }
 

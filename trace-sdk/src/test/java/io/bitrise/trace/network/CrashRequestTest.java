@@ -44,6 +44,32 @@ public class CrashRequestTest {
   }
 
   @Test
+  public void crashRequest_equals_self() {
+    final CrashRequest crashRequest = CrashTestDataProvider.createCrashRequest();
+    assertTrue(crashRequest.equals(crashRequest));
+  }
+
+  @Test
+  public void crashRequest_equals_notCrashRequestType() {
+    final CrashRequest crashRequest = CrashTestDataProvider.createCrashRequest();
+    assertFalse(crashRequest.equals("potato"));
+  }
+
+  @Test
+  public void crashRequest_equals_differentObjects() {
+    final CrashRequest crashRequest = CrashTestDataProvider.createCrashRequest();
+    final CrashRequest crashRequest2 = CrashTestDataProvider.createDifferentRequest();
+    assertFalse(crashRequest.equals(crashRequest2));
+  }
+
+  @Test
+  public void crashRequest_equals_isEqual() {
+    final CrashRequest crashRequest = CrashTestDataProvider.createCrashRequest();
+    final CrashRequest crashRequest2 = CrashTestDataProvider.createCrashRequest();
+    assertTrue(crashRequest.equals(crashRequest2));
+  }
+
+  @Test
   public void metadata_equals_self() {
     final CrashRequest.Metadata metadata = CrashTestDataProvider.createTestMetadata();
     assertTrue(metadata.equals(metadata));
