@@ -1,4 +1,4 @@
-package io.bitrise.trace.data.management.formatter.crash;
+package io.bitrise.trace.data;
 
 import io.bitrise.trace.data.dto.CrashReport;
 import io.bitrise.trace.network.CrashRequest;
@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Provides test data for the crash formatter tests.
  */
-public class CrashFormatterTestProvider {
+public class CrashTestDataProvider {
 
 
   static StackTraceElement[] createStackTraceElements() {
@@ -54,7 +54,7 @@ public class CrashFormatterTestProvider {
     return new CrashReport(threads, "throwable class name", "description",
         null);
   }
-  
+
   /**
    * Create a test {@link CrashRequest.Metadata} object.
    *

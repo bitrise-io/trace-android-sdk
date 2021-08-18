@@ -5,7 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import io.bitrise.trace.data.dto.CrashReport;
-import io.bitrise.trace.data.management.formatter.crash.CrashFormatterTestProvider;
+import io.bitrise.trace.data.CrashTestDataProvider;
 import io.bitrise.trace.internal.TestUtils;
 import io.bitrise.trace.test.DataTestUtils;
 import io.opencensus.proto.resource.v1.Resource;
@@ -21,7 +21,7 @@ public class CrashRequestTest {
   @Test
   public void crashRequest() throws IOException {
     // given a crash report, metadata and resources
-    final CrashReport crashReport = CrashFormatterTestProvider.createCrashReport();
+    final CrashReport crashReport = CrashTestDataProvider.createCrashReport();
 
     final Resource resource = DataTestUtils.getSampleResource("session-id");
 
@@ -45,28 +45,28 @@ public class CrashRequestTest {
 
   @Test
   public void metadata_equals_self() {
-    final CrashRequest.Metadata metadata = CrashFormatterTestProvider.createTestMetadata();
+    final CrashRequest.Metadata metadata = CrashTestDataProvider.createTestMetadata();
     assertTrue(metadata.equals(metadata));
   }
 
   @Test
   public void metadata_equals_notMetadataType() {
-    final CrashRequest.Metadata metadata = CrashFormatterTestProvider.createTestMetadata();
+    final CrashRequest.Metadata metadata = CrashTestDataProvider.createTestMetadata();
     assertFalse(metadata.equals("potato"));
   }
 
   @Test
   public void metadata_equals_differentObjects() {
-    final CrashRequest.Metadata metadata = CrashFormatterTestProvider.createTestMetadata();
+    final CrashRequest.Metadata metadata = CrashTestDataProvider.createTestMetadata();
     final CrashRequest.Metadata metadata2 =
-        CrashFormatterTestProvider.createDifferentTestMetadata();
+        CrashTestDataProvider.createDifferentTestMetadata();
     assertFalse(metadata.equals(metadata2));
   }
 
   @Test
   public void metadata_equals_isEqual() {
-    final CrashRequest.Metadata metadata = CrashFormatterTestProvider.createTestMetadata();
-    final CrashRequest.Metadata metadata2 = CrashFormatterTestProvider.createTestMetadata();
+    final CrashRequest.Metadata metadata = CrashTestDataProvider.createTestMetadata();
+    final CrashRequest.Metadata metadata2 = CrashTestDataProvider.createTestMetadata();
     assertTrue(metadata.equals(metadata2));
   }
 }

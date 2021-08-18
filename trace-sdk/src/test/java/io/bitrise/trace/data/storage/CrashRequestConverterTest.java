@@ -2,7 +2,7 @@ package io.bitrise.trace.data.storage;
 
 import static org.junit.Assert.assertEquals;
 
-import io.bitrise.trace.data.management.formatter.crash.CrashFormatterTestProvider;
+import io.bitrise.trace.data.CrashTestDataProvider;
 import io.bitrise.trace.data.storage.converters.CrashRequestConverter;
 import io.bitrise.trace.network.CrashRequest;
 import io.bitrise.trace.test.DataTestUtils;
@@ -32,7 +32,7 @@ public class CrashRequestConverterTest {
 
   final CrashRequest crashRequest = new CrashRequest(
       DataTestUtils.getSampleResource("session-id"),
-      CrashFormatterTestProvider.createCrashReport(),
+      CrashTestDataProvider.createCrashReport(),
       1628778619944L,
       TimeZone.getTimeZone("Europe/London"),
       "uuid",
