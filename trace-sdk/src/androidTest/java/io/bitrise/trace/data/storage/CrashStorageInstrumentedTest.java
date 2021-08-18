@@ -14,6 +14,7 @@ import io.bitrise.trace.session.ApplicationSessionManager;
 import io.bitrise.trace.test.DataTestUtils;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -64,6 +65,7 @@ public class CrashStorageInstrumentedTest {
         DataTestUtils.getSampleResource("session-id"),
         createCrashReport(),
         timestamp,
+        TimeZone.getDefault(),
         uuid,
         "trace-id",
         "span-id"
