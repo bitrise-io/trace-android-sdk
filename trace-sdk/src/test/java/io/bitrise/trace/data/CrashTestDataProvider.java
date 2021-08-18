@@ -12,7 +12,11 @@ import java.util.TimeZone;
  */
 public class CrashTestDataProvider {
 
-
+  /**
+   * Creates a test list of {@link StackTraceElement}'s.
+   *
+   * @return the list of test stack trace elements.
+   */
   public static StackTraceElement[] createStackTraceElements() {
     final StackTraceElement[] list = new StackTraceElement[3];
 
@@ -23,6 +27,11 @@ public class CrashTestDataProvider {
     return list;
   }
 
+  /**
+   * Creates a test list of {@link CrashReport.Frame}'s.
+   *
+   * @return the list of test crash report frames.
+   */
   public static List<CrashReport.Frame> createStackTraceFrames() {
     final List<CrashReport.Frame> frames = new ArrayList<>();
     frames.add(new CrashReport.Frame("class1", "method1", "file1", 1, 0));
@@ -31,12 +40,22 @@ public class CrashTestDataProvider {
     return frames;
   }
 
+  /**
+   * Creates a test list of {@link StackTraceElement} where properties that can be null are.
+   *
+   * @return the list of test stack trace elements.
+   */
   public static StackTraceElement[] createStackTraceElementsWithNulls() {
     final StackTraceElement[] list = new StackTraceElement[1];
     list[0] = new StackTraceElement("class", "method", null, 0);
     return list;
   }
 
+  /**
+   * Creates a list of {@link CrashReport.Frame} where properties that can be null are.
+   *
+   * @return the list of test crash report frames.
+   */
   public static List<CrashReport.Frame> createStackTraceFramesWithNulls() {
     final List<CrashReport.Frame> frames = new ArrayList<>();
     frames.add(new CrashReport.Frame("class", "method", "", 0, 0));
@@ -91,6 +110,11 @@ public class CrashTestDataProvider {
     );
   }
 
+  /**
+   * Creates a test {@link CrashRequest}.
+   *
+   * @return the test crash request object.
+   */
   public static CrashRequest createCrashRequest() {
     return new CrashRequest(
         DataTestUtils.getSampleResource("session-id"),
@@ -103,7 +127,12 @@ public class CrashTestDataProvider {
     );
   }
 
-  public static CrashRequest createDifferentRequest() {
+  /**
+   * Creates a different test {@link CrashRequest}.
+   *
+   * @return the test crash request object.
+   */
+  public static CrashRequest createDifferentCrashRequest() {
     return new CrashRequest(
         DataTestUtils.getSampleResource("different-id"),
         createCrashReport(),

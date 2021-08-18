@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import io.bitrise.trace.data.dto.CrashReport;
 import io.bitrise.trace.data.CrashTestDataProvider;
+import io.bitrise.trace.data.dto.CrashReport;
 import io.bitrise.trace.internal.TestUtils;
 import io.bitrise.trace.test.DataTestUtils;
 import io.opencensus.proto.resource.v1.Resource;
@@ -58,7 +58,7 @@ public class CrashRequestTest {
   @Test
   public void crashRequest_equals_differentObjects() {
     final CrashRequest crashRequest = CrashTestDataProvider.createCrashRequest();
-    final CrashRequest crashRequest2 = CrashTestDataProvider.createDifferentRequest();
+    final CrashRequest crashRequest2 = CrashTestDataProvider.createDifferentCrashRequest();
     assertFalse(crashRequest.equals(crashRequest2));
   }
 
