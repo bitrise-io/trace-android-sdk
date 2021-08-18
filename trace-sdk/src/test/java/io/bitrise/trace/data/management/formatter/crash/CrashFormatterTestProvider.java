@@ -1,6 +1,7 @@
 package io.bitrise.trace.data.management.formatter.crash;
 
 import io.bitrise.trace.data.dto.CrashReport;
+import io.bitrise.trace.network.CrashRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +53,40 @@ public class CrashFormatterTestProvider {
 
     return new CrashReport(threads, "throwable class name", "description",
         null);
+  }
+  
+  /**
+   * Create a test {@link CrashRequest.Metadata} object.
+   *
+   * @return a test metadata object.
+   */
+  public static CrashRequest.Metadata createTestMetadata() {
+    return new CrashRequest.Metadata(
+        "throwableClassName",
+        "description",
+        "timestamp",
+        "uuid",
+        "traceid",
+        "spanid",
+        "allExceptionNames"
+    );
+  }
+
+  /**
+   * Creates a different {@link CrashRequest.Metadata} object.
+   *
+   * @return a test metadata object.
+   */
+  public static CrashRequest.Metadata createDifferentTestMetadata() {
+    return new CrashRequest.Metadata(
+        "throwableClassName2",
+        "description2",
+        "timestamp2",
+        "uuid2",
+        "traceid2",
+        "spanid2",
+        "allExceptionNames2"
+    );
   }
 
 }

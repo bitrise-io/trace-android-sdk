@@ -1,6 +1,8 @@
 package io.bitrise.trace.network;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import io.bitrise.trace.data.dto.CrashReport;
 import io.bitrise.trace.data.management.formatter.crash.CrashFormatterTestProvider;
@@ -39,5 +41,32 @@ public class CrashRequestTest {
     final String filePath = "src/test/resources/io/bitrise/trace/network/crash_request.json";
     final String expectedJson = TestUtils.getJsonContentRemovingWhitespace(filePath);
     assertEquals(expectedJson, requestJson);
+  }
+
+  @Test
+  public void metadata_equals_self() {
+    final CrashRequest.Metadata metadata = CrashFormatterTestProvider.createTestMetadata();
+    assertTrue(metadata.equals(metadata));
+  }
+
+  @Test
+  public void metadata_equals_notMetadataType() {
+    final CrashRequest.Metadata metadata = CrashFormatterTestProvider.createTestMetadata();
+    assertFalse(metadata.equals("potato"));
+  }
+
+  @Test
+  public void metadata_equals_differentObjects() {
+    final CrashRequest.Metadata metadata = CrashFormatterTestProvider.createTestMetadata();
+    final CrashRequest.Metadata metadata2 =
+        CrashFormatterTestProvider.createDifferentTestMetadata();
+    assertFalse(metadata.equals(metadata2));
+  }
+
+  @Test
+  public void metadata_equals_isEqual() {
+    final CrashRequest.Metadata metadata = CrashFormatterTestProvider.createTestMetadata();
+    final CrashRequest.Metadata metadata2 = CrashFormatterTestProvider.createTestMetadata();
+    assertTrue(metadata.equals(metadata2));
   }
 }
