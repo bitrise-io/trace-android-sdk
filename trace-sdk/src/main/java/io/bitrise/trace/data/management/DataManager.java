@@ -37,6 +37,7 @@ import io.opencensus.proto.resource.v1.Resource;
 import io.opencensus.proto.trace.v1.Span;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TimeZone;
 import java.util.concurrent.Executors;
 import javax.inject.Singleton;
 
@@ -445,6 +446,7 @@ public class DataManager {
           resource,
           crashReport,
           TraceClock.getCurrentTimeMillis(),
+          TimeZone.getDefault(),
           UniqueIdGenerator.makeCrashReportId(),
           activeTrace.getTraceId(),
           lastSpan == null ? "" : ByteStringConverter.toString(lastSpan.getSpanId())

@@ -6,6 +6,7 @@ import io.bitrise.trace.data.management.formatter.crash.CrashFormatterTestProvid
 import io.bitrise.trace.data.storage.converters.CrashRequestConverter;
 import io.bitrise.trace.network.CrashRequest;
 import io.bitrise.trace.test.DataTestUtils;
+import java.util.TimeZone;
 import org.junit.Test;
 
 /**
@@ -33,6 +34,7 @@ public class CrashRequestConverterTest {
       DataTestUtils.getSampleResource("session-id"),
       CrashFormatterTestProvider.createCrashReport(),
       1628778619944L,
+      TimeZone.getTimeZone("Europe/London"),
       "uuid",
       "trace-id",
       "span-id"
