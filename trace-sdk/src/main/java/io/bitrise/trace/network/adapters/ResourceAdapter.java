@@ -29,7 +29,9 @@ public class ResourceAdapter implements JsonSerializer<Resource>, JsonDeserializ
     final JsonObject srcResource = json.getAsJsonObject();
     final Resource.Builder resource = Resource.newBuilder();
 
-    resource.setType(srcResource.get(PROPERTY_TYPE).getAsString());
+    if (srcResource.has(PROPERTY_TYPE)) {
+      resource.setType(srcResource.get(PROPERTY_TYPE).getAsString());
+    }
 
     if (srcResource.has(PROPERTY_LABELS)) {
       final JsonObject srcLabels = srcResource.get(PROPERTY_LABELS).getAsJsonObject();

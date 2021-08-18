@@ -13,6 +13,7 @@ public class ResourceAdapterTest {
 
   private final String jsonResource = "{\"labels\":{\"key\":\"value\"},\"type\":\"mobile\"}";
   final String jsonResourceNoLabels = "{\"labels\":{},\"type\":\"\"}";
+  final String jsonResourceNoContent = "{}";
 
   private Resource createResourceWithLabel() {
     final Resource.Builder resourceBuilder = Resource.newBuilder();
@@ -33,7 +34,7 @@ public class ResourceAdapterTest {
   }
 
   @Test
-  public void serialize_noContent() {
+  public void serialize_noLabels() {
     final String json = NetworkClient.getGson().toJson(createResourceNoContent());
     assertEquals(jsonResourceNoLabels, json);
   }
@@ -48,7 +49,7 @@ public class ResourceAdapterTest {
   @Test
   public void deserialize_noContent() {
     final Resource resource = NetworkClient.getGson()
-                                           .fromJson(jsonResourceNoLabels, Resource.class);
+                                           .fromJson(jsonResourceNoContent, Resource.class);
     assertEquals(createResourceNoContent(), resource);
   }
 
