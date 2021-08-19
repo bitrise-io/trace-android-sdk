@@ -415,5 +415,38 @@ public abstract class DataStorage {
   @WorkerThread
   public void deleteCrashRequest(@NonNull final String id) {
     traceDatabase.getCrashDao().deleteById(id);
+    TraceLog.d("Deleted crash request");
+  }
+
+  /**
+   * Update the crash request sent attempt counter - used when a request fails. So we don't
+   * repeatedly try to send a failing request.
+   *
+   * @param id the requests metadata uuid.
+   */
+  @WorkerThread
+  public void updateCrashRequestSentAttemptCounter(@NonNull final String id) {
+    final CrashEntity crashEntity = getCrashEntity(id);
+
+    if (crashEntity != null) {
+      crashEntity.updateSentAttempts();
+
+      if (crashEntity.getSentAttempts() < 5) {
+        traceDatabase.getCrashDao().insert(crashEntity);
+      } else {
+        deleteCrashRequest(id);
+      }
+    }
+  }
+
+  /**
+   * Gets the {@link CrashEntity} for a given id.
+   *
+   * @param id the requests metadata uuid to find.
+   * @return the {@link CrashEntity} object for a given id, or null if it cannot be found.
+   */
+  @WorkerThread
+  public CrashEntity getCrashEntity(@NonNull final String id) {
+    return traceDatabase.getCrashDao().getById(id);
   }
 }
