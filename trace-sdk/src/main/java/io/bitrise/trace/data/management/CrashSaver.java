@@ -28,8 +28,9 @@ public class CrashSaver {
   /**
    * Validates if we have enough data to create a {@link CrashRequest} and then stores it in the
    * {@link DataStorage}.
-   * @param resource the current sessions {@link Resource}.
-   * @param session the current {@link Session}.
+   *
+   * @param resource    the current sessions {@link Resource}.
+   * @param session     the current {@link Session}.
    * @param activeTrace the currently active {@link Trace}.
    * @param crashReport the crash report created by the {@link CrashDataFormatter}
    * @param dataStorage access to the current {@link DataStorage}.
