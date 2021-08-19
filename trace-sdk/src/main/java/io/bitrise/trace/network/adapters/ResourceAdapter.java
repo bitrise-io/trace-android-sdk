@@ -14,9 +14,7 @@ import java.util.Map;
 import java.util.TreeSet;
 
 /**
- * Adapter for {@link Resource} objects. This class is required because the current
- * {@link com.google.gson.protobuf.ProtoTypeAdapter} causes a StackOverflowException when
- * it serializes Resource objects.
+ * Adapter for {@link Resource} objects.
  */
 public class ResourceAdapter implements JsonSerializer<Resource>, JsonDeserializer<Resource> {
 
@@ -27,8 +25,21 @@ public class ResourceAdapter implements JsonSerializer<Resource>, JsonDeserializ
   public Resource deserialize(@NonNull final JsonElement json, @NonNull final Type typeOfT,
                               @NonNull final JsonDeserializationContext context)
       throws JsonParseException {
-    // todo this is not currently needed - we do not save Resource objects to storage.
-    return null;
+
+    final JsonObject srcResource = json.getAsJsonObject();
+    final Resource.Builder resource = Resource.newBuilder();
+
+    if (srcResource.has(PROPERTY_TYPE)) {
+      resource.setType(srcResource.get(PROPERTY_TYPE).getAsString());
+    }
+
+    if (srcResource.has(PROPERTY_LABELS)) {
+      final JsonObject srcLabels = srcResource.get(PROPERTY_LABELS).getAsJsonObject();
+      for (Map.Entry<String, JsonElement> entry : srcLabels.entrySet()) {
+        resource.putLabels(entry.getKey(), entry.getValue().getAsString());
+      }
+    }
+    return resource.build();
   }
 
   @Override
