@@ -73,4 +73,13 @@ public class CrashEntity {
   public int getSentAttempts() {
     return sentAttempts;
   }
+
+  /**
+   * Sets the number of attempts to send a request.
+   *
+   * @param sentAttempts the number of attempts so far.
+   */
+  public void setSentAttempts(int sentAttempts) {
+    this.sentAttempts = sentAttempts;
+  }
 }
