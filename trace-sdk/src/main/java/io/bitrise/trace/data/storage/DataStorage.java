@@ -430,10 +430,12 @@ public abstract class DataStorage {
 
     if (crashEntity != null) {
       crashEntity.updateSentAttempts();
-
       if (crashEntity.getSentAttempts() < 5) {
+        TraceLog.d("Updating crash request: failed attempts to send: "
+            + crashEntity.getSentAttempts());
         traceDatabase.getCrashDao().insert(crashEntity);
       } else {
+        TraceLog.d("Crash request reached maximum attempts to send, will be deleted.");
         deleteCrashRequest(id);
       }
     }
