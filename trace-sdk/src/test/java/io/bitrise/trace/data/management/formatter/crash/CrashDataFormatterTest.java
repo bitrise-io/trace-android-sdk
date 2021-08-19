@@ -3,6 +3,7 @@ package io.bitrise.trace.data.management.formatter.crash;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+import io.bitrise.trace.data.CrashTestDataProvider;
 import io.bitrise.trace.data.dto.CrashData;
 import io.bitrise.trace.data.dto.CrashReport;
 import java.util.ArrayList;
@@ -21,25 +22,25 @@ public class CrashDataFormatterTest {
   public void convertStackTraceElementsToCrashReportFrame() {
     final List<CrashReport.Frame> frames = CrashDataFormatter
         .convertStackTraceElementsToCrashReportFrame(
-            CrashFormatterTestProvider.createStackTraceElements());
-    assertEquals(CrashFormatterTestProvider.createStackTraceFrames(), frames);
+            CrashTestDataProvider.createStackTraceElements());
+    assertEquals(CrashTestDataProvider.createStackTraceFrames(), frames);
   }
 
   @Test
   public void convertStackTraceElementsToCrashReportFrame_withNulls() {
     final List<CrashReport.Frame> frames = CrashDataFormatter
         .convertStackTraceElementsToCrashReportFrame(
-            CrashFormatterTestProvider.createStackTraceElementsWithNulls());
-    assertEquals(CrashFormatterTestProvider.createStackTraceFramesWithNulls(), frames);
+            CrashTestDataProvider.createStackTraceElementsWithNulls());
+    assertEquals(CrashTestDataProvider.createStackTraceFramesWithNulls(), frames);
   }
 
   @Test
   public void formatCrashData() {
     final Map<Thread, StackTraceElement[]> allStackTraces = new HashMap<>();
     final Thread mockThread = Mockito.mock(Thread.class);
-    allStackTraces.put(mockThread, CrashFormatterTestProvider.createStackTraceElements());
+    allStackTraces.put(mockThread, CrashTestDataProvider.createStackTraceElements());
     final RuntimeException runtimeException = new RuntimeException();
-    runtimeException.setStackTrace(CrashFormatterTestProvider.createStackTraceElements());
+    runtimeException.setStackTrace(CrashTestDataProvider.createStackTraceElements());
 
     final CrashData input = new CrashData(runtimeException, 0, allStackTraces);
 
@@ -49,9 +50,9 @@ public class CrashDataFormatterTest {
 
     final List<CrashReport.Thread> expectedThreads = new ArrayList<>();
     expectedThreads.add(new CrashReport.Thread(0L, true,
-        CrashFormatterTestProvider.createStackTraceFrames()));
+        CrashTestDataProvider.createStackTraceFrames()));
     expectedThreads.add(new CrashReport.Thread(12345L, false,
-        CrashFormatterTestProvider.createStackTraceFrames()));
+        CrashTestDataProvider.createStackTraceFrames()));
 
     assertEquals(expectedThreads, result.getThreads());
     assertEquals("", result.getDescription());
