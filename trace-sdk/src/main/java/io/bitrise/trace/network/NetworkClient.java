@@ -3,6 +3,7 @@ package io.bitrise.trace.network;
 import android.os.Build;
 import android.os.LocaleList;
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -67,7 +68,8 @@ public final class NetworkClient {
   /**
    * The {@link NetworkCommunicator} interface of this client.
    */
-  private static volatile NetworkCommunicator networkCommunicator;
+  @VisibleForTesting
+  static volatile NetworkCommunicator networkCommunicator;
 
   /**
    * Constructor to prevent instantiation outside of the class.

@@ -1,5 +1,6 @@
 package io.bitrise.trace.data;
 
+import androidx.annotation.NonNull;
 import io.bitrise.trace.data.dto.CrashReport;
 import io.bitrise.trace.network.CrashRequest;
 import io.bitrise.trace.test.DataTestUtils;
@@ -116,12 +117,21 @@ public class CrashTestDataProvider {
    * @return the test crash request object.
    */
   public static CrashRequest createCrashRequest() {
+    return createCrashRequestWithUuid("uuid");
+  }
+
+  /**
+   * Creates a test {@link CrashRequest} with a given uuid.
+   *
+   * @return the test crash request object.
+   */
+  public static CrashRequest createCrashRequestWithUuid(@NonNull final String uuid) {
     return new CrashRequest(
         DataTestUtils.getSampleResource("session-id"),
         createCrashReport(),
         1629292193024L,
         TimeZone.getTimeZone("Europe/London"),
-        "uuid",
+        uuid,
         "trace-id",
         "spanid"
     );
