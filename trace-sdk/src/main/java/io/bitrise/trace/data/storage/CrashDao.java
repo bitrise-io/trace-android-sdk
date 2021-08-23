@@ -6,6 +6,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import io.bitrise.trace.data.storage.entities.CrashEntity;
+import io.bitrise.trace.network.CrashRequest;
 import java.util.List;
 
 /**
@@ -22,6 +23,15 @@ public interface CrashDao  {
   @NonNull
   @Query("SELECT * FROM CrashEntity")
   List<CrashEntity> getAll();
+
+  /**
+   * Gets a {@link CrashEntity} by uuid.
+   *
+   * @param id the uuid as specified in the {@link CrashRequest.Metadata}.
+   * @return the crash entity, or null if it cannot be found.
+   */
+  @Query("SELECT * FROM CrashEntity WHERE id = :id")
+  CrashEntity getById(@NonNull String id);
 
   /**
    * Inserts the given {@link CrashEntity}s to the database. Replaces if there is a conflict.

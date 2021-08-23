@@ -9,6 +9,8 @@ import io.bitrise.trace.configuration.ConfigurationManager;
 import io.bitrise.trace.data.TraceActivityLifecycleTracker;
 import io.bitrise.trace.data.collector.network.urlconnection.TraceURLStreamHandlerFactory;
 import io.bitrise.trace.data.management.DataManager;
+import io.bitrise.trace.data.management.StartupMonitor;
+import io.bitrise.trace.data.storage.TraceDataStorage;
 import io.bitrise.trace.data.trace.ApplicationTraceManager;
 import io.bitrise.trace.session.ApplicationSessionManager;
 import io.bitrise.trace.session.SessionManager;
@@ -91,6 +93,7 @@ public class TraceSdk {
       initLifeCycleListener(context);
       initNetworkTracing(options);
       TraceLog.i(String.format(LogMessageConstants.TRACE_DEBUG_FLAG_STATUS, isDebugModeEnabled));
+      StartupMonitor.checkSavedCrashes(TraceDataStorage.getInstance(context));
     } else {
       TraceLog.e(new TraceException.TraceConfigNotInitialisedException());
     }

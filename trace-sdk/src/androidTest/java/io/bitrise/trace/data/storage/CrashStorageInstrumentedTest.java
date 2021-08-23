@@ -146,5 +146,65 @@ public class CrashStorageInstrumentedTest {
     assertTrue(updatedRequests.contains(request2));
   }
 
+  @Test
+  public void updateCrashRequest() {
+    // given a crash request in the data store
+    final CrashRequest request1 = createCrashRequest("uuid1", 1628778619944L);
+    dataStorage.saveCrashRequest(request1);
+
+    // verify there is only one record
+    assertEquals(1, dataStorage.getAllCrashRequests().size());
+
+    // update the counter
+    dataStorage.updateCrashRequestSentAttemptCounter(request1.getMetadata().getUuid());
+
+    // verify there is still one record
+    assertEquals(1, dataStorage.getAllCrashRequests().size());
+
+    // verify our crash entity increased attempts
+    final CrashEntity crashEntity = dataStorage.getCrashEntity(request1.getMetadata().getUuid());
+    assertEquals(1, crashEntity.getSentAttempts());
+  }
+
+  @Test
+  public void updateCrashRequest_idDoesNotExist() {
+    // given a crash request in the data store
+    final CrashRequest request1 = createCrashRequest("uuid1", 1628778619944L);
+    dataStorage.saveCrashRequest(request1);
+
+    // verify there is only one record
+    assertEquals(1, dataStorage.getAllCrashRequests().size());
+
+    // update the counter for a crash that doesn't exist
+    dataStorage.updateCrashRequestSentAttemptCounter("uuid2");
+
+    // verify there is still one record
+    assertEquals(1, dataStorage.getAllCrashRequests().size());
+  }
+
+  @Test
+  public void updateCrashRequestMaxAttempts() {
+    // given a crash request in the data store
+    final CrashRequest request = createCrashRequest("uuid1", 1628778619944L);
+    dataStorage.saveCrashRequest(request);
+
+    // verify there is only one record
+    assertEquals(1, dataStorage.getAllCrashRequests().size());
+
+    // update the counter 4 times
+    dataStorage.updateCrashRequestSentAttemptCounter(request.getMetadata().getUuid());
+    dataStorage.updateCrashRequestSentAttemptCounter(request.getMetadata().getUuid());
+    dataStorage.updateCrashRequestSentAttemptCounter(request.getMetadata().getUuid());
+    dataStorage.updateCrashRequestSentAttemptCounter(request.getMetadata().getUuid());
+
+    // verify there are still records
+    assertEquals(1, dataStorage.getAllCrashRequests().size());
+
+    // update one final time
+    dataStorage.updateCrashRequestSentAttemptCounter(request.getMetadata().getUuid());
+
+    // verify there are no records left
+    assertEquals(0, dataStorage.getAllCrashRequests().size());
+  }
 
 }

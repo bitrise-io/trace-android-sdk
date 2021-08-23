@@ -22,6 +22,8 @@ public class CrashEntity {
   @NonNull
   private final CrashRequest crashRequest;
 
+  private int sentAttempts;
+
   /**
    * Create a {@link CrashEntity} to save to storage.
    *
@@ -31,12 +33,19 @@ public class CrashEntity {
   public CrashEntity(@NonNull String id, @NonNull CrashRequest crashRequest) {
     this.id = id;
     this.crashRequest = crashRequest;
+    sentAttempts = 0;
   }
 
+  /**
+   * Creates a {@link CrashEntity} to save to storage.
+   *
+   * @param crashRequest the {@link CrashRequest} object to hold.
+   */
   @Ignore
   public CrashEntity(@NonNull CrashRequest crashRequest) {
     this.id = crashRequest.getMetadata().getUuid();
     this.crashRequest = crashRequest;
+    sentAttempts = 0;
   }
 
   @NonNull
@@ -47,5 +56,30 @@ public class CrashEntity {
   @NonNull
   public CrashRequest getCrashRequest() {
     return crashRequest;
+  }
+
+  /**
+   * Update the counter for the number of attempts this request has tried to send.
+   */
+  public void updateSentAttempts() {
+    this.sentAttempts++;
+  }
+
+  /**
+   * Gets the current number of attempts to send the request.
+   *
+   * @return the number of attempts to send the request.
+   */
+  public int getSentAttempts() {
+    return sentAttempts;
+  }
+
+  /**
+   * Sets the number of attempts to send a request.
+   *
+   * @param sentAttempts the number of attempts so far.
+   */
+  public void setSentAttempts(int sentAttempts) {
+    this.sentAttempts = sentAttempts;
   }
 }
