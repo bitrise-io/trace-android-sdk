@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "3b23897323b1e59e144b07135503374d",
+    "identityHash": "314dec443482a8e1b39c7b955124e0a7",
     "entities": [
       {
         "tableName": "TraceEntity",
@@ -120,7 +120,7 @@
       },
       {
         "tableName": "CrashEntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `crashRequest` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `crashRequest` TEXT NOT NULL, `sentAttempts` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -132,6 +132,12 @@
             "fieldPath": "crashRequest",
             "columnName": "crashRequest",
             "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sentAttempts",
+            "columnName": "sentAttempts",
+            "affinity": "INTEGER",
             "notNull": true
           }
         ],
@@ -148,7 +154,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3b23897323b1e59e144b07135503374d')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '314dec443482a8e1b39c7b955124e0a7')"
     ]
   }
 }
