@@ -167,6 +167,22 @@ public class CrashStorageInstrumentedTest {
   }
 
   @Test
+  public void updateCrashRequest_idDoesNotExist() {
+    // given a crash request in the data store
+    final CrashRequest request1 = createCrashRequest("uuid1", 1628778619944L);
+    dataStorage.saveCrashRequest(request1);
+
+    // verify there is only one record
+    assertEquals(1, dataStorage.getAllCrashRequests().size());
+
+    // update the counter for a crash that doesn't exist
+    dataStorage.updateCrashRequestSentAttemptCounter("uuid2");
+
+    // verify there is still one record
+    assertEquals(1, dataStorage.getAllCrashRequests().size());
+  }
+
+  @Test
   public void updateCrashRequestMaxAttempts() {
     // given a crash request in the data store
     final CrashRequest request = createCrashRequest("uuid1", 1628778619944L);
