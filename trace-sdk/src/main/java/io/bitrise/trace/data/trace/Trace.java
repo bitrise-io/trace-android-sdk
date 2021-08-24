@@ -7,6 +7,7 @@ import androidx.room.Ignore;
 import io.bitrise.trace.data.storage.TraceDatabase;
 import io.bitrise.trace.session.ApplicationSessionManager;
 import io.bitrise.trace.session.Session;
+import io.bitrise.trace.utils.ByteStringConverter;
 import io.bitrise.trace.utils.TraceClock;
 import io.bitrise.trace.utils.UniqueIdGenerator;
 import io.opencensus.proto.trace.v1.Span;
@@ -159,6 +160,28 @@ public class Trace {
     }
 
     return lastSpan;
+  }
+
+  /**
+   * Creates a string that contains the trace id, span size, and each spans id and name. This is
+   * useful for debugging what each trace actually contains.
+   *
+   * @return a string that can be logged for additional debugging info.
+   */
+  @NonNull
+  public String getDebugLoggingInfo() {
+    final StringBuilder sb = new StringBuilder();
+
+    sb.append("trace id: ").append(traceId).append("\n");
+    sb.append("span size: ").append(getSpanList().size()).append("\n");
+
+    for (Span span : getSpanList()) {
+      sb.append("   ")
+        .append("span id: ").append(ByteStringConverter.toString(span.getSpanId()))
+        .append(" span name: ").append(span.getName().getValue()).append("\n");
+    }
+
+    return sb.toString();
   }
 
   /**
