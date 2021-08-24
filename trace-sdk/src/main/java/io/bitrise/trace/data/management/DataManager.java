@@ -413,6 +413,7 @@ public class DataManager {
 
     //end any current spans and traces
     stopCollection();
+    ApplicationTraceManager.getInstance(context).stopTrace();
 
     final CrashReport crashReport = CrashDataFormatter.formatCrashData(crashData);
     final Trace activeTrace = ApplicationTraceManager.getInstance(context).getActiveTrace();
