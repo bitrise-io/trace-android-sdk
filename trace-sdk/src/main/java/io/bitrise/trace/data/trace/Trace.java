@@ -178,8 +178,7 @@ public class Trace {
     for (Span span : getSpanList()) {
       sb.append("   ")
         .append("span id: ").append(ByteStringConverter.toString(span.getSpanId()))
-        .append(" span name: ").append(span.getName().getValue())
-        .append("\n");
+        .append(" span name: ").append(span.getName().getValue()).append("\n");
     }
 
     return sb.toString();
