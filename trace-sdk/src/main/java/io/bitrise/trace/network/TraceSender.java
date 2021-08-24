@@ -106,6 +106,12 @@ public class TraceSender extends DataSender {
     if (spans.isEmpty()) {
       return null;
     }
+
+    TraceLog.debugV("get network request: we have " + getTraceList().size() + " traces to send.");
+    for (Trace trace : getTraceList()) {
+      TraceLog.debugV(trace.getDebugLoggingInfo());
+    }
+
     return new TraceRequest(resource, spans);
   }
 

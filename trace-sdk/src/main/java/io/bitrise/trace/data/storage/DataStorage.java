@@ -61,15 +61,11 @@ public abstract class DataStorage {
    */
   @WorkerThread
   public void saveTraces(@NonNull final Trace... traces) {
-    if (traces.length == 1) {
-      traceDatabase.getTraceDao().insertAll(new TraceEntity(traces[0]));
-    } else {
-      final TraceEntity[] traceEntities = new TraceEntity[traces.length];
-      for (int i = 0; i < traces.length; i++) {
-        traceEntities[i] = new TraceEntity(traces[i]);
-      }
-      traceDatabase.getTraceDao().insertAll(traceEntities);
+    for (Trace trace : traces) {
+      TraceLog.debugV(trace.getDebugLoggingInfo());
+      traceDatabase.getTraceDao().insertAll(new TraceEntity(trace));
     }
+
     TraceLog.d(LogMessageConstants.SAVE_TRACE);
   }
 
