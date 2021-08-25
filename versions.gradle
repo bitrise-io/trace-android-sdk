@@ -38,7 +38,7 @@ buildscript {
     ]
     ext.traceVersions = [
             'opencensus'        : '1.0.1',
-            'traceSdk'          : '0.2.0',
-            'traceGradlePlugin' : '0.1.0'
+            'traceSdk'          : '0.3.2',
+            'traceGradlePlugin' : '0.2.0'
     ]
 }
