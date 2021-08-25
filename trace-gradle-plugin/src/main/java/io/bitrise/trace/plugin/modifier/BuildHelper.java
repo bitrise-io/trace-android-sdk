@@ -1,6 +1,8 @@
 package io.bitrise.trace.plugin.modifier;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.android.build.gradle.api.BaseVariant;
 import com.android.build.gradle.api.BaseVariantOutput;
 import com.android.build.gradle.tasks.ManifestProcessorTask;
 import com.android.builder.internal.ClassFieldImpl;
@@ -27,6 +29,11 @@ public class BuildHelper {
    * The name for the AndroidManifest.xml files.
    */
   public static final String ANDROID_MANIFEST_FILE_NAME = "AndroidManifest.xml";
+
+  /**
+   * The name for the proguard-rules.pro files.
+   */
+  public static final String PROGUARD_RULES_FILE_NAME = "proguard-rules.pro";
 
   // region Helper methods
   private final Logger logger;
@@ -87,6 +94,17 @@ public class BuildHelper {
                 .filter(file -> file.getPath().contains("/merged_manifests/"))
                 .filter(file -> file.getName().equals(ANDROID_MANIFEST_FILE_NAME))
                 .collect(Collectors.toList());
+  }
+
+  /**
+   * Gets the path for the mapping file of the given variant.
+   *
+   * @param variant the build variant.
+   * @return the mapping file.
+   */
+  @Nullable
+  public File getMappingFiletPath(@NonNull final BaseVariant variant) {
+    return variant.getMappingFile();
   }
 
   /**

@@ -6,264 +6,83 @@ package io.opencensus.proto.metrics.v1;
 /**
  * Protobuf type {@code opencensus.proto.metrics.v1.LabelValue}
  */
-public final class LabelValue extends
-    com.google.protobuf.GeneratedMessageV3 implements
+public  final class LabelValue extends
+    com.google.protobuf.GeneratedMessageLite<
+        LabelValue, LabelValue.Builder> implements
     // @@protoc_insertion_point(message_implements:opencensus.proto.metrics.v1.LabelValue)
     LabelValueOrBuilder {
-  public static final int VALUE_FIELD_NUMBER = 1;
-  public static final int HAS_VALUE_FIELD_NUMBER = 2;
-  private static final long serialVersionUID = 0L;
-  // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.LabelValue)
-  private static final io.opencensus.proto.metrics.v1.LabelValue DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<LabelValue>
-      PARSER = new com.google.protobuf.AbstractParser<LabelValue>() {
-    @java.lang.Override
-    public LabelValue parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new LabelValue(input, extensionRegistry);
-    }
-  };
-
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.metrics.v1.LabelValue();
-  }
-
-  private volatile java.lang.Object value_;
-  private boolean hasValue_;
-  private byte memoizedIsInitialized = -1;
-
-  // Use LabelValue.newBuilder() to construct.
-  private LabelValue(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
   private LabelValue() {
     value_ = "";
   }
-
-  private LabelValue(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            value_ = s;
-            break;
-          }
-          case 16: {
-
-            hasValue_ = input.readBool();
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
-
-  public static final com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
-    return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_LabelValue_descriptor;
-  }
-
-  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.LabelValue parseDelimitedFrom(
-      java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.metrics.v1.LabelValue parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(io.opencensus.proto.metrics.v1.LabelValue prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
-  public static io.opencensus.proto.metrics.v1.LabelValue getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public static com.google.protobuf.Parser<LabelValue> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new LabelValue();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
-    return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_LabelValue_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.metrics.v1.LabelValue.class,
-            io.opencensus.proto.metrics.v1.LabelValue.Builder.class);
-  }
-
+  public static final int VALUE_FIELD_NUMBER = 1;
+  private java.lang.String value_;
   /**
    * <pre>
    * The value for the label.
    * </pre>
    *
    * <code>string value = 1;</code>
-   *
    * @return The value.
    */
   @java.lang.Override
   public java.lang.String getValue() {
-    java.lang.Object ref = value_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs =
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      value_ = s;
-      return s;
-    }
+    return value_;
   }
-
   /**
    * <pre>
    * The value for the label.
    * </pre>
    *
    * <code>string value = 1;</code>
-   *
    * @return The bytes for value.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-  getValueBytes() {
-    java.lang.Object ref = value_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      value_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+      getValueBytes() {
+    return com.google.protobuf.ByteString.copyFromUtf8(value_);
+  }
+  /**
+   * <pre>
+   * The value for the label.
+   * </pre>
+   *
+   * <code>string value = 1;</code>
+   * @param value The value to set.
+   */
+  private void setValue(
+      java.lang.String value) {
+    value.getClass();
+  
+    value_ = value;
+  }
+  /**
+   * <pre>
+   * The value for the label.
+   * </pre>
+   *
+   * <code>string value = 1;</code>
+   */
+  private void clearValue() {
+    
+    value_ = getDefaultInstance().getValue();
+  }
+  /**
+   * <pre>
+   * The value for the label.
+   * </pre>
+   *
+   * <code>string value = 1;</code>
+   * @param value The bytes for value to set.
+   */
+  private void setValueBytes(
+      com.google.protobuf.ByteString value) {
+    checkByteStringIsUtf8(value);
+    value_ = value.toStringUtf8();
+    
   }
 
+  public static final int HAS_VALUE_FIELD_NUMBER = 2;
+  private boolean hasValue_;
   /**
    * <pre>
    * If false the value field is ignored and considered not set.
@@ -271,295 +90,132 @@ public final class LabelValue extends
    * </pre>
    *
    * <code>bool has_value = 2;</code>
-   *
    * @return The hasValue.
    */
   @java.lang.Override
   public boolean getHasValue() {
     return hasValue_;
   }
-
-  @java.lang.Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) {
-      return true;
-    }
-    if (isInitialized == 0) {
-      return false;
-    }
-
-    memoizedIsInitialized = 1;
-    return true;
+  /**
+   * <pre>
+   * If false the value field is ignored and considered not set.
+   * This is used to differentiate a missing label from an empty string.
+   * </pre>
+   *
+   * <code>bool has_value = 2;</code>
+   * @param value The hasValue to set.
+   */
+  private void setHasValue(boolean value) {
+    
+    hasValue_ = value;
+  }
+  /**
+   * <pre>
+   * If false the value field is ignored and considered not set.
+   * This is used to differentiate a missing label from an empty string.
+   * </pre>
+   *
+   * <code>bool has_value = 2;</code>
+   */
+  private void clearHasValue() {
+    
+    hasValue_ = false;
   }
 
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
+  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(java.io.InputStream input)
       throws java.io.IOException {
-    if (!getValueBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, value_);
-    }
-    if (hasValue_ != false) {
-      output.writeBool(2, hasValue_);
-    }
-    unknownFields.writeTo(output);
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.LabelValue parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.metrics.v1.LabelValue parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.metrics.v1.LabelValue parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
   }
 
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) {
-      return size;
-    }
-
-    size = 0;
-    if (!getValueBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, value_);
-    }
-    if (hasValue_ != false) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(2, hasValue_);
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
+  public static Builder newBuilder() {
+    return (Builder) DEFAULT_INSTANCE.createBuilder();
   }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-      return true;
-    }
-    if (!(obj instanceof io.opencensus.proto.metrics.v1.LabelValue)) {
-      return super.equals(obj);
-    }
-    io.opencensus.proto.metrics.v1.LabelValue other =
-        (io.opencensus.proto.metrics.v1.LabelValue) obj;
-
-    if (!getValue()
-        .equals(other.getValue())) {
-      return false;
-    }
-    if (getHasValue()
-        != other.getHasValue()) {
-      return false;
-    }
-    return unknownFields.equals(other.unknownFields);
-  }
-
-  @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + VALUE_FIELD_NUMBER;
-    hash = (53 * hash) + getValue().hashCode();
-    hash = (37 * hash) + HAS_VALUE_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getHasValue());
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
-
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<LabelValue> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.metrics.v1.LabelValue getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
+  public static Builder newBuilder(io.opencensus.proto.metrics.v1.LabelValue prototype) {
+    return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
   }
 
   /**
    * Protobuf type {@code opencensus.proto.metrics.v1.LabelValue}
    */
   public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+      com.google.protobuf.GeneratedMessageLite.Builder<
+        io.opencensus.proto.metrics.v1.LabelValue, Builder> implements
       // @@protoc_insertion_point(builder_implements:opencensus.proto.metrics.v1.LabelValue)
       io.opencensus.proto.metrics.v1.LabelValueOrBuilder {
-    private java.lang.Object value_ = "";
-    private boolean hasValue_;
-
     // Construct using io.opencensus.proto.metrics.v1.LabelValue.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+      super(DEFAULT_INSTANCE);
     }
 
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_LabelValue_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_LabelValue_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.metrics.v1.LabelValue.class,
-              io.opencensus.proto.metrics.v1.LabelValue.Builder.class);
-    }
-
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-          .alwaysUseFieldBuilders) {
-      }
-    }
-
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      value_ = "";
-
-      hasValue_ = false;
-
-      return this;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_LabelValue_descriptor;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.LabelValue getDefaultInstanceForType() {
-      return io.opencensus.proto.metrics.v1.LabelValue.getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.LabelValue build() {
-      io.opencensus.proto.metrics.v1.LabelValue result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.LabelValue buildPartial() {
-      io.opencensus.proto.metrics.v1.LabelValue result =
-          new io.opencensus.proto.metrics.v1.LabelValue(this);
-      result.value_ = value_;
-      result.hasValue_ = hasValue_;
-      onBuilt();
-      return result;
-    }
-
-    @java.lang.Override
-    public Builder clone() {
-      return super.clone();
-    }
-
-    @java.lang.Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.setField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-
-    @java.lang.Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-
-    @java.lang.Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-
-    @java.lang.Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof io.opencensus.proto.metrics.v1.LabelValue) {
-        return mergeFrom((io.opencensus.proto.metrics.v1.LabelValue) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(io.opencensus.proto.metrics.v1.LabelValue other) {
-      if (other == io.opencensus.proto.metrics.v1.LabelValue.getDefaultInstance()) {
-        return this;
-      }
-      if (!other.getValue().isEmpty()) {
-        value_ = other.value_;
-        onChanged();
-      }
-      if (other.getHasValue() != false) {
-        setHasValue(other.getHasValue());
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      io.opencensus.proto.metrics.v1.LabelValue parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.opencensus.proto.metrics.v1.LabelValue) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
-      return this;
-    }
 
     /**
      * <pre>
@@ -567,101 +223,66 @@ public final class LabelValue extends
      * </pre>
      *
      * <code>string value = 1;</code>
-     *
      * @return The value.
      */
+    @java.lang.Override
     public java.lang.String getValue() {
-      java.lang.Object ref = value_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        value_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+      return instance.getValue();
     }
-
     /**
      * <pre>
      * The value for the label.
      * </pre>
      *
      * <code>string value = 1;</code>
+     * @return The bytes for value.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getValueBytes() {
+      return instance.getValueBytes();
+    }
+    /**
+     * <pre>
+     * The value for the label.
+     * </pre>
      *
+     * <code>string value = 1;</code>
      * @param value The value to set.
      * @return This builder for chaining.
      */
     public Builder setValue(
         java.lang.String value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-
-      value_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setValue(value);
       return this;
     }
-
     /**
      * <pre>
      * The value for the label.
      * </pre>
      *
      * <code>string value = 1;</code>
-     *
-     * @return The bytes for value.
+     * @return This builder for chaining.
      */
-    public com.google.protobuf.ByteString
-    getValueBytes() {
-      java.lang.Object ref = value_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        value_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public Builder clearValue() {
+      copyOnWrite();
+      instance.clearValue();
+      return this;
     }
-
     /**
      * <pre>
      * The value for the label.
      * </pre>
      *
      * <code>string value = 1;</code>
-     *
      * @param value The bytes for value to set.
      * @return This builder for chaining.
      */
     public Builder setValueBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      checkByteStringIsUtf8(value);
-
-      value_ = value;
-      onChanged();
-      return this;
-    }
-
-    /**
-     * <pre>
-     * The value for the label.
-     * </pre>
-     *
-     * <code>string value = 1;</code>
-     *
-     * @return This builder for chaining.
-     */
-    public Builder clearValue() {
-
-      value_ = getDefaultInstance().getValue();
-      onChanged();
+      copyOnWrite();
+      instance.setValueBytes(value);
       return this;
     }
 
@@ -672,14 +293,12 @@ public final class LabelValue extends
      * </pre>
      *
      * <code>bool has_value = 2;</code>
-     *
      * @return The hasValue.
      */
     @java.lang.Override
     public boolean getHasValue() {
-      return hasValue_;
+      return instance.getHasValue();
     }
-
     /**
      * <pre>
      * If false the value field is ignored and considered not set.
@@ -687,17 +306,14 @@ public final class LabelValue extends
      * </pre>
      *
      * <code>bool has_value = 2;</code>
-     *
      * @param value The hasValue to set.
      * @return This builder for chaining.
      */
     public Builder setHasValue(boolean value) {
-
-      hasValue_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setHasValue(value);
       return this;
     }
-
     /**
      * <pre>
      * If false the value field is ignored and considered not set.
@@ -705,31 +321,87 @@ public final class LabelValue extends
      * </pre>
      *
      * <code>bool has_value = 2;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearHasValue() {
-
-      hasValue_ = false;
-      onChanged();
+      copyOnWrite();
+      instance.clearHasValue();
       return this;
     }
 
-    @java.lang.Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
-    }
-
-    @java.lang.Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
-    }
-
-
     // @@protoc_insertion_point(builder_scope:opencensus.proto.metrics.v1.LabelValue)
   }
+  @java.lang.Override
+  @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+  protected final java.lang.Object dynamicMethod(
+      com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+      java.lang.Object arg0, java.lang.Object arg1) {
+    switch (method) {
+      case NEW_MUTABLE_INSTANCE: {
+        return new io.opencensus.proto.metrics.v1.LabelValue();
+      }
+      case NEW_BUILDER: {
+        return new Builder();
+      }
+      case BUILD_MESSAGE_INFO: {
+          java.lang.Object[] objects = new java.lang.Object[] {
+            "value_",
+            "hasValue_",
+          };
+          java.lang.String info =
+              "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001\u0208\u0002\u0007" +
+              "";
+          return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+      }
+      // fall through
+      case GET_DEFAULT_INSTANCE: {
+        return DEFAULT_INSTANCE;
+      }
+      case GET_PARSER: {
+        com.google.protobuf.Parser<io.opencensus.proto.metrics.v1.LabelValue> parser = PARSER;
+        if (parser == null) {
+          synchronized (io.opencensus.proto.metrics.v1.LabelValue.class) {
+            parser = PARSER;
+            if (parser == null) {
+              parser =
+                  new DefaultInstanceBasedParser<io.opencensus.proto.metrics.v1.LabelValue>(
+                      DEFAULT_INSTANCE);
+              PARSER = parser;
+            }
+          }
+        }
+        return parser;
+    }
+    case GET_MEMOIZED_IS_INITIALIZED: {
+      return (byte) 1;
+    }
+    case SET_MEMOIZED_IS_INITIALIZED: {
+      return null;
+    }
+    }
+    throw new UnsupportedOperationException();
+  }
 
+
+  // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.LabelValue)
+  private static final io.opencensus.proto.metrics.v1.LabelValue DEFAULT_INSTANCE;
+  static {
+    LabelValue defaultInstance = new LabelValue();
+    // New instances are implicitly immutable so no need to make
+    // immutable.
+    DEFAULT_INSTANCE = defaultInstance;
+    com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+      LabelValue.class, defaultInstance);
+  }
+
+  public static io.opencensus.proto.metrics.v1.LabelValue getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  private static volatile com.google.protobuf.Parser<LabelValue> PARSER;
+
+  public static com.google.protobuf.Parser<LabelValue> parser() {
+    return DEFAULT_INSTANCE.getParserForType();
+  }
 }
 

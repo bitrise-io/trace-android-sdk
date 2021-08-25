@@ -7,13 +7,12 @@ import static org.hamcrest.Matchers.lessThan;
 import static org.junit.Assert.assertEquals;
 
 import androidx.annotation.NonNull;
-import io.bitrise.trace.plugin.task.GenerateBuildIdTask;
 import io.bitrise.trace.plugin.task.ManifestModifierTask;
+import io.bitrise.trace.plugin.task.UploadMappingFileTask;
 import io.bitrise.trace.plugin.task.VerifyTraceTask;
 import io.bitrise.trace.plugin.util.FunctionalTestHelper;
 import io.bitrise.trace.plugin.util.FunctionalTestWriter;
 import io.bitrise.trace.plugin.util.TestConstants;
-import java.io.File;
 import java.util.List;
 import java.util.Optional;
 import org.gradle.testkit.runner.BuildResult;
@@ -58,7 +57,7 @@ public class TraceGradlePluginFunctionalTest {
    * build variant.
    */
   private static final String buildIdFileRelativePathFormat =
-      "/build/outputs/apk/%s/bitriseBuildId.txt";
+      "/build/outputs/trace/%s/bitriseBuildId.txt";
   /**
    * An instance of {@link FunctionalTestWriter} that will write the output of each test case
    * to the console with * AQUA4 color from the Bitkit.
@@ -104,6 +103,7 @@ public class TraceGradlePluginFunctionalTest {
     functionalTestHelper.setupGradleProperties(testName, 0);
     functionalTestHelper.setupBitriseAddons(testName, 0);
     functionalTestHelper.setupAndroidManifest(testName, 0);
+    functionalTestHelper.setupProguardRulesFile(testName, 0);
   }
 
   /**
@@ -127,8 +127,7 @@ public class TraceGradlePluginFunctionalTest {
     final BuildResult buildResult = executeTaskForResult(TestConstants.ASSEMBLE_DEBUG_TASK_NAME);
 
     verifyDebugManifestTasks(buildResult);
-    verifyDebugGenerateBuildIdTasks(buildResult);
-    verifyGenerateBuildIdTasksForAssembleDebug();
+    assertTaskHasNotRun(buildResult, "debugUploadMappingFile");
   }
 
   /**
@@ -141,26 +140,23 @@ public class TraceGradlePluginFunctionalTest {
     final BuildResult buildResult = executeTaskForResult(TestConstants.ASSEMBLE_DEBUG_TASK_NAME);
 
     verifyDebugManifestTasks(buildResult);
-    verifyDebugGenerateBuildIdTasks(buildResult);
-    verifyGenerateBuildIdTasksForAssembleDebug();
+    assertTaskHasNotRun(buildResult, "debugUploadMappingFile");
   }
 
   /**
    * Tests that the Trace tasks are hooked in all the required places when the 'build' task is
    * executed.
    */
-  @Test
+  @Test(expected = UnexpectedBuildFailure.class)
   public void buildTraceTaskHookTest_withGradleConfig_0() {
     functionalTestHelper.setupBuildGradle(testName, 0);
     final BuildResult buildResult = executeTaskForResult(TestConstants.BUILD_TASK_NAME);
 
     verifyDebugManifestTasks(buildResult);
-    verifyDebugGenerateBuildIdTasks(buildResult);
 
     verifyReleaseManifestTasks(buildResult);
-    verifyGenerateBuildIdTasksForBuild();
 
-    verifyReleaseGenerateBuildIdTasks(buildResult);
+    verifyUploadMappingFileTasksForAssembleRelease(buildResult);
   }
 
   /**
@@ -171,16 +167,10 @@ public class TraceGradlePluginFunctionalTest {
   public void verifyTraceTaskTest_withGradleConfig_0() {
     functionalTestHelper.setupBuildGradle(testName, 0);
     final BuildResult buildResult = executeTaskForResult(TestConstants.VERIFY_TRACE_TASK_NAME);
+    final BuildTask verifyTraceTask =
+        assertTaskHasRun(buildResult, TestConstants.VERIFY_TRACE_TASK_NAME);
 
-    final List<BuildTask> buildTasks = buildResult.getTasks();
-    final Optional<BuildTask> verifyTraceTaskOptional =
-        buildTasks.stream()
-                  .filter(buildTask -> buildTask.getPath()
-                                                .equals(":" + TestConstants.VERIFY_TRACE_TASK_NAME))
-                  .findFirst();
-
-    assertThat(verifyTraceTaskOptional.isPresent(), is(true));
-    assertEquals(TaskOutcome.FAILED, verifyTraceTaskOptional.get().getOutcome());
+    assertEquals(TaskOutcome.FAILED, verifyTraceTask.getOutcome());
   }
 
   /**
@@ -192,15 +182,9 @@ public class TraceGradlePluginFunctionalTest {
     functionalTestHelper.setupBuildGradle(testName, 1);
     final BuildResult buildResult = executeTaskForResult(TestConstants.VERIFY_TRACE_TASK_NAME);
 
-    final List<BuildTask> buildTasks = buildResult.getTasks();
-    final Optional<BuildTask> verifyTraceTaskOptional =
-        buildTasks.stream()
-                  .filter(buildTask -> buildTask.getPath()
-                                                .equals(":" + TestConstants.VERIFY_TRACE_TASK_NAME))
-                  .findFirst();
-
-    assertThat(verifyTraceTaskOptional.isPresent(), is(true));
-    assertEquals(TaskOutcome.SUCCESS, verifyTraceTaskOptional.get().getOutcome());
+    final BuildTask verifyTraceTask =
+        assertTaskHasRun(buildResult, TestConstants.VERIFY_TRACE_TASK_NAME);
+    assertEquals(TaskOutcome.SUCCESS, verifyTraceTask.getOutcome());
   }
 
   /**
@@ -212,20 +196,9 @@ public class TraceGradlePluginFunctionalTest {
   private void verifyDebugManifestTasks(@NonNull final BuildResult buildResult) {
     final List<BuildTask> buildTasks = buildResult.getTasks();
 
-    final Optional<BuildTask> processDebugManifestTaskOptional =
-        buildTasks.stream()
-                  .filter(buildTask -> buildTask.getPath().equals(":processDebugManifest"))
-                  .findFirst();
-    final Optional<BuildTask> debugModifyManifestTaskOptional =
-        buildTasks.stream()
-                  .filter(buildTask -> buildTask.getPath().equals(":debugModifyManifest"))
-                  .findFirst();
-
-    assertThat(processDebugManifestTaskOptional.isPresent(), is(true));
-    assertThat(debugModifyManifestTaskOptional.isPresent(), is(true));
-
-    final BuildTask processDebugManifestTask = processDebugManifestTaskOptional.get();
-    final BuildTask debugModifyManifestTask = debugModifyManifestTaskOptional.get();
+    final BuildTask processDebugManifestTask =
+        assertTaskHasRun(buildResult, "processDebugManifest");
+    final BuildTask debugModifyManifestTask = assertTaskHasRun(buildResult, "debugModifyManifest");
     final int manifestProcessIndex = buildTasks.indexOf(processDebugManifestTask);
     final int manifestModifyIndex = buildTasks.indexOf(debugModifyManifestTask);
 
@@ -243,20 +216,10 @@ public class TraceGradlePluginFunctionalTest {
   private void verifyReleaseManifestTasks(@NonNull final BuildResult buildResult) {
     final List<BuildTask> buildTasks = buildResult.getTasks();
 
-    final Optional<BuildTask> processReleaseManifestTaskOptional =
-        buildTasks.stream()
-                  .filter(buildTask -> buildTask.getPath().equals(":processReleaseManifest"))
-                  .findFirst();
-    final Optional<BuildTask> releaseModifyManifestTaskOptional =
-        buildTasks.stream()
-                  .filter(buildTask -> buildTask.getPath().equals(":releaseModifyManifest"))
-                  .findFirst();
-
-    assertThat(processReleaseManifestTaskOptional.isPresent(), is(true));
-    assertThat(releaseModifyManifestTaskOptional.isPresent(), is(true));
-
-    final BuildTask processReleaseManifestTask = processReleaseManifestTaskOptional.get();
-    final BuildTask releaseModifyManifestTask = releaseModifyManifestTaskOptional.get();
+    final BuildTask processReleaseManifestTask =
+        assertTaskHasRun(buildResult, "processReleaseManifest");
+    final BuildTask releaseModifyManifestTask =
+        assertTaskHasRun(buildResult, "releaseModifyManifest");
     final int manifestProcessIndex = buildTasks.indexOf(processReleaseManifestTask);
     final int manifestModifyIndex = buildTasks.indexOf(releaseModifyManifestTask);
 
@@ -266,94 +229,23 @@ public class TraceGradlePluginFunctionalTest {
   }
 
   /**
-   * Verifies when 'assembleDebug' task is executed, that the {@link GenerateBuildIdTask} has run
-   * in the given {@link BuildResult} and that it ran after the assemble task.
-   *
-   * @param buildResult the BuildResult.
+   * Verifies when 'assembleRelease' task is executed, that the {@link UploadMappingFileTask} has
+   * run.
    */
-  private void verifyDebugGenerateBuildIdTasks(@NonNull final BuildResult buildResult) {
+  private void verifyUploadMappingFileTasksForAssembleRelease(
+      @NonNull final BuildResult buildResult) {
     final List<BuildTask> buildTasks = buildResult.getTasks();
-
-    final Optional<BuildTask> assembleDebugTaskOptional =
-        buildTasks.stream()
-                  .filter(buildTask -> buildTask.getPath().equals(":assembleDebug"))
-                  .findFirst();
-    final Optional<BuildTask> debugGenerateBitriseBuildIdTaskOptional =
-        buildTasks.stream()
-                  .filter(buildTask -> buildTask.getPath().equals(":debugGenerateBitriseBuildId"))
-                  .findFirst();
-
-    assertThat(assembleDebugTaskOptional.isPresent(), is(true));
-    assertThat(debugGenerateBitriseBuildIdTaskOptional.isPresent(), is(true));
-
-    final BuildTask assembleDebugTask = assembleDebugTaskOptional.get();
-    final BuildTask debugGenerateBitriseBuildIdTask = debugGenerateBitriseBuildIdTaskOptional.get();
-    final int assembleDebugIndex = buildTasks.indexOf(assembleDebugTask);
-    final int generateBitriseBuildIdIndex = buildTasks.indexOf(debugGenerateBitriseBuildIdTask);
-
-    assertThat(generateBitriseBuildIdIndex, is(greaterThan(assembleDebugIndex)));
-    assertEquals(TaskOutcome.SUCCESS, assembleDebugTask.getOutcome());
-    assertEquals(TaskOutcome.SUCCESS, debugGenerateBitriseBuildIdTask.getOutcome());
-  }
-
-  /**
-   * Verifies when 'assembleRelease' task is executed, that the {@link GenerateBuildIdTask} has
-   * run in the given {@link BuildResult} and that it ran after the assemble task.
-   *
-   * @param buildResult the BuildResult.
-   */
-  private void verifyReleaseGenerateBuildIdTasks(@NonNull final BuildResult buildResult) {
-    final List<BuildTask> buildTasks = buildResult.getTasks();
-
-    final Optional<BuildTask> assembleReleaseTaskOptional =
-        buildTasks.stream()
-                  .filter(buildTask -> buildTask.getPath().equals(":assembleRelease"))
-                  .findFirst();
-    final Optional<BuildTask> releaseGenerateBitriseBuildIdTaskOptional =
-        buildTasks.stream()
-                  .filter(buildTask -> buildTask.getPath().equals(":releaseGenerateBitriseBuildId"))
-                  .findFirst();
-
-    assertThat(assembleReleaseTaskOptional.isPresent(), is(true));
-    assertThat(releaseGenerateBitriseBuildIdTaskOptional.isPresent(), is(true));
-
-    final BuildTask assembleReleaseTask = assembleReleaseTaskOptional.get();
-    final BuildTask releaseGenerateBitriseBuildIdTask =
-        releaseGenerateBitriseBuildIdTaskOptional.get();
+    final BuildTask assembleReleaseTask = assertTaskHasRun(buildResult, "assembleRelease");
+    final BuildTask releaseUploadMappingFile =
+        assertTaskHasRun(buildResult, "releaseUploadMappingFile");
     final int assembleReleaseIndex = buildTasks.indexOf(assembleReleaseTask);
-    final int generateBitriseBuildIdIndex = buildTasks.indexOf(releaseGenerateBitriseBuildIdTask);
+    final int generateBitriseBuildIdIndex = buildTasks.indexOf(releaseUploadMappingFile);
 
     assertThat(generateBitriseBuildIdIndex, is(greaterThan(assembleReleaseIndex)));
     assertEquals(TaskOutcome.SUCCESS, assembleReleaseTask.getOutcome());
-    assertEquals(TaskOutcome.SUCCESS, releaseGenerateBitriseBuildIdTask.getOutcome());
-  }
-
-  /**
-   * Verifies when 'build' task is executed, that the {@link GenerateBuildIdTask} has created the
-   * files that contains the build ID.
-   */
-  private void verifyGenerateBuildIdTasksForBuild() {
-    final File debugBuildIdFile = new File(
-        functionalTestHelper.getTestDir(testName).getPath()
-            + String.format(buildIdFileRelativePathFormat, "debug"));
-    final File releaseBuildIdFile = new File(
-        functionalTestHelper.getTestDir(testName).getPath()
-            + String.format(buildIdFileRelativePathFormat, "release"));
-
-    assertThat(debugBuildIdFile.exists(), is(true));
-    assertThat(releaseBuildIdFile.exists(), is(true));
-  }
-
-  /**
-   * Verifies when 'assembleDebug' task is executed, that the {@link GenerateBuildIdTask} has
-   * created the file that contains the build ID.
-   */
-  private void verifyGenerateBuildIdTasksForAssembleDebug() {
-    final File debugBuildIdFile = new File(
-        functionalTestHelper.getTestDir(testName).getPath()
-            + String.format(buildIdFileRelativePathFormat, "debug"));
-
-    assertThat(debugBuildIdFile.exists(), is(true));
+    assertEquals(TaskOutcome.FAILED, releaseUploadMappingFile.getOutcome());
+    // todo APM-3212 - currently this tests that the tasks got called for the assembleRelease -
+    //  in future we ideally want to be able to test this task works end to end.
   }
 
   /**
@@ -371,5 +263,46 @@ public class TraceGradlePluginFunctionalTest {
                        .forwardStdOutput(stdOutWriter)
                        .forwardStdError(errWriter)
                        .build();
+  }
+
+  /**
+   * Checks the given {@link BuildResult} if the given task has run. Runs an assert on it.
+   *
+   * @param buildResult the BuildResult of Gradle task execution.
+   * @param taskName    the name of the task we are looking for.
+   * @return the given task.
+   */
+  private BuildTask assertTaskHasRun(@NonNull final BuildResult buildResult,
+                                     @NonNull final String taskName) {
+    final Optional<BuildTask> buildTaskOptional = getOptionalOfTask(buildResult, taskName);
+    assertThat(buildTaskOptional.isPresent(), is(true));
+    return buildTaskOptional.get();
+  }
+
+  /**
+   * Checks the given {@link BuildResult} if the given task has NOT run. Runs an assert on it.
+   *
+   * @param buildResult the BuildResult of Gradle task execution.
+   * @param taskName    the name of the task we are looking for.
+   */
+  private void assertTaskHasNotRun(@NonNull final BuildResult buildResult,
+                                   @NonNull final String taskName) {
+    final Optional<BuildTask> buildTaskOptional = getOptionalOfTask(buildResult, taskName);
+    assertThat(buildTaskOptional.isPresent(), is(false));
+  }
+
+  /**
+   * Checks the given {@link BuildResult} if the given task has run or not.
+   *
+   * @param buildResult the BuildResult of Gradle task execution.
+   * @param taskName    the name of the task we are looking for.
+   * @return the Optional of the given task.
+   */
+  private Optional<BuildTask> getOptionalOfTask(@NonNull final BuildResult buildResult,
+                                                @NonNull final String taskName) {
+    final List<BuildTask> buildTasks = buildResult.getTasks();
+    return buildTasks.stream()
+                     .filter(buildTask -> buildTask.getPath().equals(":" + taskName))
+                     .findFirst();
   }
 }

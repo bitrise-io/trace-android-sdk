@@ -1,8 +1,7 @@
 package io.bitrise.trace.data.collector.application;
 
-import android.content.Context;
+import android.content.pm.PackageManager;
 import androidx.annotation.NonNull;
-import io.bitrise.trace.configuration.ConfigurationManager;
 import io.bitrise.trace.data.collector.DataCollector;
 import io.bitrise.trace.data.dto.Data;
 
@@ -11,16 +10,19 @@ import io.bitrise.trace.data.dto.Data;
  */
 public class ApplicationVersionNameDataCollector extends ApplicationDataCollector {
 
-  @NonNull
-  private final Context context;
+  @NonNull private final PackageManager packageManager;
+  @NonNull private final String packageName;
 
   /**
    * Constructor for class.
    *
-   * @param context the Android Context.
+   * @param packageManager - the customer application {@link PackageManager}.
+   * @param packageName - the customer application package name.
    */
-  public ApplicationVersionNameDataCollector(@NonNull final Context context) {
-    this.context = context;
+  public ApplicationVersionNameDataCollector(@NonNull final PackageManager packageManager,
+                                             @NonNull final String packageName) {
+    this.packageManager = packageManager;
+    this.packageName = packageName;
   }
 
   @NonNull
@@ -44,9 +46,10 @@ public class ApplicationVersionNameDataCollector extends ApplicationDataCollecto
    */
   @NonNull
   private String getAppVersionName() {
-    if (!ConfigurationManager.isInitialised()) {
-      ConfigurationManager.init(context);
+    try {
+      return packageManager.getPackageInfo(packageName, 0).versionName;
+    } catch (PackageManager.NameNotFoundException e) {
+      return "unknown";
     }
-    return (String) ConfigurationManager.getInstance().getConfigItem("VERSION_NAME");
   }
 }

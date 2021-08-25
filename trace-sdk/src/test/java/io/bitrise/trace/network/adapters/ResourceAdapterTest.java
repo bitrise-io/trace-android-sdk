@@ -1,7 +1,6 @@
 package io.bitrise.trace.network.adapters;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 import io.bitrise.trace.network.NetworkClient;
 import io.opencensus.proto.resource.v1.Resource;
@@ -13,32 +12,45 @@ import org.junit.Test;
 public class ResourceAdapterTest {
 
   private final String jsonResource = "{\"labels\":{\"key\":\"value\"},\"type\":\"mobile\"}";
+  final String jsonResourceNoLabels = "{\"labels\":{},\"type\":\"\"}";
+  final String jsonResourceNoContent = "{}";
 
-  @Test
-  public void serialize_withLabel() {
+  private Resource createResourceWithLabel() {
     final Resource.Builder resourceBuilder = Resource.newBuilder();
     resourceBuilder.setType("mobile");
     resourceBuilder.putLabels("key", "value");
-    final Resource resource = resourceBuilder.build();
+    return resourceBuilder.build();
+  }
 
-    final String json = NetworkClient.getGson().toJson(resource);
+  private Resource createResourceNoContent() {
+    final Resource.Builder resourceBuilder = Resource.newBuilder();
+    return resourceBuilder.build();
+  }
+
+  @Test
+  public void serialize_withLabel() {
+    final String json = NetworkClient.getGson().toJson(createResourceWithLabel());
     assertEquals(jsonResource, json);
   }
 
   @Test
-  public void serialize_withNoLabel() {
-    final Resource.Builder resourceBuilder = Resource.newBuilder();
-    resourceBuilder.setType("mobile");
-    final Resource resource = resourceBuilder.build();
-
-    final String json = NetworkClient.getGson().toJson(resource);
-    final String jsonResourceNoLabels = "{\"labels\":{},\"type\":\"mobile\"}";
+  public void serialize_noLabels() {
+    final String json = NetworkClient.getGson().toJson(createResourceNoContent());
     assertEquals(jsonResourceNoLabels, json);
   }
 
   @Test
-  public void deserialize() {
-    final Resource resource = NetworkClient.getGson().fromJson(jsonResource, Resource.class);
-    assertNull(resource);
+  public void deserialize_withLabel() {
+    final Resource resource = NetworkClient.getGson()
+                                           .fromJson(jsonResource, Resource.class);
+    assertEquals(createResourceWithLabel(), resource);
   }
+
+  @Test
+  public void deserialize_noContent() {
+    final Resource resource = NetworkClient.getGson()
+                                           .fromJson(jsonResourceNoContent, Resource.class);
+    assertEquals(createResourceNoContent(), resource);
+  }
+
 }

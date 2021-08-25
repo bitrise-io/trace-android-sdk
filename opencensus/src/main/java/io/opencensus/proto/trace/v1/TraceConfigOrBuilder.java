@@ -5,64 +5,40 @@ package io.opencensus.proto.trace.v1;
 
 public interface TraceConfigOrBuilder extends
     // @@protoc_insertion_point(interface_extends:opencensus.proto.trace.v1.TraceConfig)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.MessageLiteOrBuilder {
 
   /**
    * <code>.opencensus.proto.trace.v1.ProbabilitySampler probability_sampler = 1;</code>
-   *
    * @return Whether the probabilitySampler field is set.
    */
   boolean hasProbabilitySampler();
-
   /**
    * <code>.opencensus.proto.trace.v1.ProbabilitySampler probability_sampler = 1;</code>
-   *
    * @return The probabilitySampler.
    */
   io.opencensus.proto.trace.v1.ProbabilitySampler getProbabilitySampler();
 
   /**
-   * <code>.opencensus.proto.trace.v1.ProbabilitySampler probability_sampler = 1;</code>
-   */
-  io.opencensus.proto.trace.v1.ProbabilitySamplerOrBuilder getProbabilitySamplerOrBuilder();
-
-  /**
    * <code>.opencensus.proto.trace.v1.ConstantSampler constant_sampler = 2;</code>
-   *
    * @return Whether the constantSampler field is set.
    */
   boolean hasConstantSampler();
-
   /**
    * <code>.opencensus.proto.trace.v1.ConstantSampler constant_sampler = 2;</code>
-   *
    * @return The constantSampler.
    */
   io.opencensus.proto.trace.v1.ConstantSampler getConstantSampler();
 
   /**
-   * <code>.opencensus.proto.trace.v1.ConstantSampler constant_sampler = 2;</code>
-   */
-  io.opencensus.proto.trace.v1.ConstantSamplerOrBuilder getConstantSamplerOrBuilder();
-
-  /**
    * <code>.opencensus.proto.trace.v1.RateLimitingSampler rate_limiting_sampler = 3;</code>
-   *
    * @return Whether the rateLimitingSampler field is set.
    */
   boolean hasRateLimitingSampler();
-
   /**
    * <code>.opencensus.proto.trace.v1.RateLimitingSampler rate_limiting_sampler = 3;</code>
-   *
    * @return The rateLimitingSampler.
    */
   io.opencensus.proto.trace.v1.RateLimitingSampler getRateLimitingSampler();
-
-  /**
-   * <code>.opencensus.proto.trace.v1.RateLimitingSampler rate_limiting_sampler = 3;</code>
-   */
-  io.opencensus.proto.trace.v1.RateLimitingSamplerOrBuilder getRateLimitingSamplerOrBuilder();
 
   /**
    * <pre>
@@ -70,7 +46,6 @@ public interface TraceConfigOrBuilder extends
    * </pre>
    *
    * <code>int64 max_number_of_attributes = 4;</code>
-   *
    * @return The maxNumberOfAttributes.
    */
   long getMaxNumberOfAttributes();
@@ -81,7 +56,6 @@ public interface TraceConfigOrBuilder extends
    * </pre>
    *
    * <code>int64 max_number_of_annotations = 5;</code>
-   *
    * @return The maxNumberOfAnnotations.
    */
   long getMaxNumberOfAnnotations();
@@ -92,7 +66,6 @@ public interface TraceConfigOrBuilder extends
    * </pre>
    *
    * <code>int64 max_number_of_message_events = 6;</code>
-   *
    * @return The maxNumberOfMessageEvents.
    */
   long getMaxNumberOfMessageEvents();
@@ -103,10 +76,9 @@ public interface TraceConfigOrBuilder extends
    * </pre>
    *
    * <code>int64 max_number_of_links = 7;</code>
-   *
    * @return The maxNumberOfLinks.
    */
   long getMaxNumberOfLinks();
 
-  io.opencensus.proto.trace.v1.TraceConfig.SamplerCase getSamplerCase();
+  public io.opencensus.proto.trace.v1.TraceConfig.SamplerCase getSamplerCase();
 }

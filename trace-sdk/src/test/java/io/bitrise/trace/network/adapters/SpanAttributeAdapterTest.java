@@ -26,7 +26,12 @@ public class SpanAttributeAdapterTest {
   private final String jsonAttributeValueNotSet =
       "{\"attribute_map\":{\"success\":{\"value\":{\"value_case\":0}}}}";
 
-  private Span.Attributes getAttributeString() {
+  /**
+   * Creates a test {@link Span.Attributes} object.
+   *
+   * @return the test {@link Span.Attributes} object.
+   */
+  public static Span.Attributes getAttributeString() {
     final Span.Attributes.Builder attributes = Span.Attributes.newBuilder();
     attributes.putAttributeMap(
         "http.method", AttributeValue.newBuilder()

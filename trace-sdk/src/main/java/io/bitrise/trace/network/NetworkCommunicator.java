@@ -47,6 +47,10 @@ public interface NetworkCommunicator {
   @POST("/api/v1/trace")
   Call<Void> sendTraces(@Body @NonNull final TraceRequest traceRequest);
 
-  @POST("/api/v1/crashes/android")
-  Call<Void> sendCrashes();
+  @Headers({
+      "Accept: application/vnd.bitrise.trace-v1+json",
+      "Content-Type: application/vnd.bitrise.trace-v1+json"
+  })
+  @POST("/api/crashes")
+  Call<Void> sendCrash(@Body @NonNull final CrashRequest crashRequest);
 }

@@ -3,23 +3,32 @@ package io.bitrise.trace.network;
 import android.os.Build;
 import android.os.LocaleList;
 import androidx.annotation.NonNull;
-import com.google.common.base.CaseFormat;
+import androidx.annotation.VisibleForTesting;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.protobuf.ProtoTypeAdapter;
 import com.google.protobuf.ByteString;
-import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.Timestamp;
 import io.bitrise.trace.BuildConfig;
 import io.bitrise.trace.TraceSdk;
 import io.bitrise.trace.configuration.ConfigurationManager;
 import io.bitrise.trace.network.adapters.ByteStringAdapter;
+import io.bitrise.trace.network.adapters.MetricAdapter;
+import io.bitrise.trace.network.adapters.MetricDescriptorAdapter;
 import io.bitrise.trace.network.adapters.PointAdapter;
 import io.bitrise.trace.network.adapters.ResourceAdapter;
+import io.bitrise.trace.network.adapters.SpanAdapter;
 import io.bitrise.trace.network.adapters.SpanAttributeAdapter;
+import io.bitrise.trace.network.adapters.TimeSeriesAdapter;
+import io.bitrise.trace.network.adapters.TimestampAdapter;
+import io.bitrise.trace.network.adapters.TruncatableStringAdapter;
+import io.opencensus.proto.metrics.v1.Metric;
+import io.opencensus.proto.metrics.v1.MetricDescriptor;
 import io.opencensus.proto.metrics.v1.Point;
+import io.opencensus.proto.metrics.v1.TimeSeries;
 import io.opencensus.proto.resource.v1.Resource;
 import io.opencensus.proto.trace.v1.Span;
+import io.opencensus.proto.trace.v1.TruncatableString;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +68,8 @@ public final class NetworkClient {
   /**
    * The {@link NetworkCommunicator} interface of this client.
    */
-  private static volatile NetworkCommunicator networkCommunicator;
+  @VisibleForTesting
+  static volatile NetworkCommunicator networkCommunicator;
 
   /**
    * Constructor to prevent instantiation outside of the class.
@@ -122,13 +132,12 @@ public final class NetworkClient {
         .registerTypeAdapter(Point.class, new PointAdapter())
         .registerTypeAdapter(Span.Attributes.class, new SpanAttributeAdapter())
         .registerTypeAdapter(Resource.class, new ResourceAdapter())
-        .registerTypeHierarchyAdapter(GeneratedMessageV3.class,
-            ProtoTypeAdapter.newBuilder()
-                            .setFieldNameSerializationFormat(CaseFormat.LOWER_UNDERSCORE,
-                                CaseFormat.LOWER_UNDERSCORE)
-                            .setEnumSerialization(ProtoTypeAdapter.EnumSerialization.NUMBER)
-                            .build())
-        .serializeNulls()
+        .registerTypeAdapter(Metric.class, new MetricAdapter())
+        .registerTypeAdapter(MetricDescriptor.class, new MetricDescriptorAdapter())
+        .registerTypeAdapter(Timestamp.class, new TimestampAdapter())
+        .registerTypeAdapter(TimeSeries.class, new TimeSeriesAdapter())
+        .registerTypeAdapter(Span.class, new SpanAdapter())
+        .registerTypeAdapter(TruncatableString.class, new TruncatableStringAdapter())
         .create();
   }
 

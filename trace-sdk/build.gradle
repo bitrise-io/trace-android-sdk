@@ -25,7 +25,7 @@ android {
         }
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            consumerProguardFiles 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -36,7 +36,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "androidx.concurrent:concurrent-futures:${versions.concurrentFutures}"
     implementation "androidx.room:room-runtime:${versions.room}"
     implementation "androidx.lifecycle:lifecycle-livedata:${versions.liveData}"
     implementation "androidx.fragment:fragment:${versions.fragment}"
@@ -58,6 +57,11 @@ dependencies {
     implementation "io.azam.ulidj:ulidj:${versions.ulidj}"
     implementation("com.scottyab:rootbeer-lib:${versions.rootbeer}"){
         because constraintReasons.rootBeer
+    }
+
+    implementation "com.google.protobuf:protobuf-javalite:${versions.protobufJava}"
+    implementation("com.google.guava:guava:${versions.guava}") {
+        because "we use settable futures in the sender classes."
     }
 
     testImplementation "junit:junit:${versions.junit}"

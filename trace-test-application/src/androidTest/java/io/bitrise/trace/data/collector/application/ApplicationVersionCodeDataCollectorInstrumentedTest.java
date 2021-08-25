@@ -28,7 +28,8 @@ public class ApplicationVersionCodeDataCollectorInstrumentedTest {
   @Test
   public void collectData_contentShouldMatch() {
     final ApplicationVersionCodeDataCollector applicationVersionCodeDataCollector =
-        new ApplicationVersionCodeDataCollector(context);
+        new ApplicationVersionCodeDataCollector(
+            context.getPackageManager(), context.getPackageName());
     final String actualValue =
         (String) applicationVersionCodeDataCollector.collectData().getContent();
     final String expectedValue = "1";

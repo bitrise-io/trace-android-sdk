@@ -9,6 +9,8 @@ import io.bitrise.trace.configuration.ConfigurationManager;
 import io.bitrise.trace.data.TraceActivityLifecycleTracker;
 import io.bitrise.trace.data.collector.network.urlconnection.TraceURLStreamHandlerFactory;
 import io.bitrise.trace.data.management.DataManager;
+import io.bitrise.trace.data.management.StartupMonitor;
+import io.bitrise.trace.data.storage.TraceDataStorage;
 import io.bitrise.trace.data.trace.ApplicationTraceManager;
 import io.bitrise.trace.session.ApplicationSessionManager;
 import io.bitrise.trace.session.SessionManager;
@@ -16,6 +18,7 @@ import io.bitrise.trace.utils.TraceException;
 import io.bitrise.trace.utils.log.LogMessageConstants;
 import io.bitrise.trace.utils.log.TraceLog;
 import java.net.URL;
+import java.util.List;
 import javax.inject.Singleton;
 
 /**
@@ -32,27 +35,43 @@ public class TraceSdk {
    * The name for the product.
    */
   public static final String NAME = "Trace Android";
+
+  @VisibleForTesting
   @Nullable
-  private static volatile TraceSdk traceSdk;
+  static volatile TraceSdk traceSdk;
+
   /**
-   * The TraceSdk has a debug mode - currently this will mean more debug level log messages.
-   *
-   * <p>Please note if you are not using a debug build, and or minify is enabled it can affect
-   * these logs, and they can be stripped out depending on your configuration. You also need to
-   * ensure that the TraceSdk has been initialised before setting the debug enabled mode.
+   * Boolean to determine if the customer enabled debug mode for the TraceSdk.
    */
-  private static boolean DEBUG_ENABLED = false;
+  private static boolean isDebugModeEnabled = false;
+
+  /**
+   * Boolean to determine if the UrlConnection tracing was initialised successfully.
+   */
+  static boolean isNetworkTracingEnabled = false;
 
   private TraceSdk() {
     // nop
   }
 
   /**
-   * Initializes the Trace SDK plugin.
+   * Initializes the Trace SDK.
    *
-   * @param context the Android Context.
+   * @param context the Android Application context.
    */
   public static synchronized void init(@NonNull final Context context) {
+    init(context, null);
+  }
+
+  /**
+   * Initializes the Trace SDK with customizable options.
+   *
+   * @param context the Android Application context.
+   * @param options an optional list of {@link TraceOption} objects, providing null means no
+   *                special options.
+   */
+  public static synchronized void init(@NonNull final Context context,
+                                       @Nullable final List<TraceOption> options) {
     if (isInitialised()) {
       return;
     }
@@ -60,6 +79,8 @@ public class TraceSdk {
     initConfigurations(context);
 
     if (ConfigurationManager.isInitialised()) {
+
+      isDebugModeEnabled = TraceOptionsUtil.determineIfDebugMode(options);
 
       initLogger();
 
@@ -70,8 +91,9 @@ public class TraceSdk {
       initSessionManager();
       initDataCollection(context);
       initLifeCycleListener(context);
-      initNetworkTracing();
-      TraceLog.i(String.format(LogMessageConstants.TRACE_DEBUG_FLAG_STATUS, DEBUG_ENABLED));
+      initNetworkTracing(options);
+      TraceLog.i(String.format(LogMessageConstants.TRACE_DEBUG_FLAG_STATUS, isDebugModeEnabled));
+      StartupMonitor.checkSavedCrashes(TraceDataStorage.getInstance(context));
     } else {
       TraceLog.e(new TraceException.TraceConfigNotInitialisedException());
     }
@@ -82,29 +104,16 @@ public class TraceSdk {
    *
    * @return whether the sdk is in debug mode.
    */
-  public static boolean isDebugEnabled() {
-    return DEBUG_ENABLED;
-  }
-
-  /**
-   * Flag to enable debug mode - currently this will mean more debug level log messages.
-   *
-   * <p>Please note if you are not using a debug build, and or minify is enabled it can affect
-   * these logs, and they can be stripped out depending on your configuration. You also need to
-   * ensure that the TraceSdk has been initialised before setting the debug enabled mode.
-   *
-   * @param debugEnabled boolean value to enable or disable debug mode in the TraceSdk.
-   */
-  public static synchronized void setDebugEnabled(final boolean debugEnabled) {
-    DEBUG_ENABLED = debugEnabled;
-    TraceLog.i(String.format(LogMessageConstants.TRACE_DEBUG_FLAG_STATUS, DEBUG_ENABLED));
+  public static boolean isDebugModeEnabled() {
+    return isDebugModeEnabled;
   }
 
   /**
    * Initialises the custom trace logger based on the current build type. Note: In future we
    * would like a way for this to be customisable by developers.
    */
-  private static void initLogger() {
+  @VisibleForTesting
+  static void initLogger() {
     if (ConfigurationManager.getInstance().isAppDebugBuild()) {
       TraceLog.makeAndroidLogger();
     } else {
@@ -133,6 +142,7 @@ public class TraceSdk {
     TraceActivityLifecycleTracker.reset();
     ApplicationTraceManager.reset();
     ConfigurationManager.reset();
+    isNetworkTracingEnabled = false;
   }
 
   /**
@@ -198,10 +208,18 @@ public class TraceSdk {
    * Initialises the network tracing, currently initialising {@link java.net.URLConnection}
    * type network requests to use our {@link TraceURLStreamHandlerFactory} instead.
    */
-  private static void initNetworkTracing() {
+  @VisibleForTesting
+  static void initNetworkTracing(@Nullable final List<TraceOption> options) {
+
+    if (! TraceOptionsUtil.determineIfNetworkUrlConnectionTracing(options)) {
+      TraceLog.w("Network tracing for URL Connection disabled.");
+      return;
+    }
+
     try {
       URL.setURLStreamHandlerFactory(new TraceURLStreamHandlerFactory());
       TraceLog.d(LogMessageConstants.URL_CONNECTION_REQUESTS_SUCCESS);
+      isNetworkTracingEnabled = true;
     } catch (final Error e) {
       // this will catch the java.lang.Error: factory already defined error which should
       // only be caused from the integration tests calling init multiple times.

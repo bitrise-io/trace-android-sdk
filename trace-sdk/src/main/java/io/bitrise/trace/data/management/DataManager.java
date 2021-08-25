@@ -8,8 +8,12 @@ import io.bitrise.trace.configuration.ConfigurationManager;
 import io.bitrise.trace.data.collector.DataCollector;
 import io.bitrise.trace.data.collector.DataListener;
 import io.bitrise.trace.data.collector.DataSource;
+import io.bitrise.trace.data.collector.crash.TraceCrashDataListener;
+import io.bitrise.trace.data.dto.CrashData;
+import io.bitrise.trace.data.dto.CrashReport;
 import io.bitrise.trace.data.dto.Data;
 import io.bitrise.trace.data.dto.FormattedData;
+import io.bitrise.trace.data.management.formatter.crash.CrashDataFormatter;
 import io.bitrise.trace.data.storage.DataStorage;
 import io.bitrise.trace.data.storage.TraceDataStorage;
 import io.bitrise.trace.data.trace.ApplicationTraceManager;
@@ -20,6 +24,8 @@ import io.bitrise.trace.network.MetricSender;
 import io.bitrise.trace.network.TraceSender;
 import io.bitrise.trace.scheduler.ExecutorScheduler;
 import io.bitrise.trace.scheduler.ServiceScheduler;
+import io.bitrise.trace.session.ApplicationSessionManager;
+import io.bitrise.trace.session.Session;
 import io.bitrise.trace.utils.log.LogMessageConstants;
 import io.bitrise.trace.utils.log.TraceLog;
 import io.opencensus.proto.metrics.v1.Metric;
@@ -61,13 +67,15 @@ public class DataManager {
   /**
    * The Set of active {@link DataListener}s.
    */
+  @VisibleForTesting
   @NonNull
-  private final Set<DataListener> activeDataListeners = new HashSet<>();
+  final Set<DataListener> activeDataListeners = new HashSet<>();
   /**
    * The Set of active {@link DataCollector}s.
    */
+  @VisibleForTesting
   @NonNull
-  private final Set<DataCollector> activeDataCollectors = new HashSet<>();
+  final Set<DataCollector> activeDataCollectors = new HashSet<>();
   /**
    * The {@link DataFormatterDelegator} that is responsible for converting the Data to the
    * required format and push it to the {@link DataStorage}.
@@ -77,8 +85,9 @@ public class DataManager {
   /**
    * The {@link TraceManager} that will handle the received Spans.
    */
+  @VisibleForTesting
   @NonNull
-  private final TraceManager traceManager;
+  final TraceManager traceManager;
   /**
    * The {@link ServiceScheduler} to schedule Service runs for sending {@link Metric}s.
    */
@@ -99,13 +108,18 @@ public class DataManager {
   /**
    * The {@link ExecutorScheduler} to be able to schedule recurring events.
    */
+  @VisibleForTesting
   @Nullable
-  private ExecutorScheduler executorScheduler;
+  ExecutorScheduler executorScheduler;
   /**
    * The {@link DataStorage} for the formatter.
    */
+  @VisibleForTesting
   @NonNull
-  private DataStorage dataStorage;
+  DataStorage dataStorage;
+
+  @NonNull
+  Context context;
 
   /**
    * Constructor to prevent instantiation outside of the class.
@@ -117,6 +131,7 @@ public class DataManager {
     this.dataStorage = TraceDataStorage.getInstance(context);
     this.dataFormatterDelegator = DataFormatterDelegator.getInstance();
     this.traceManager = ApplicationTraceManager.getInstance(context);
+    this.context = context;
   }
 
   /**
@@ -133,6 +148,18 @@ public class DataManager {
         TraceLog.d(LogMessageConstants.DATA_MANAGER_INITIALISED);
       }
       return dataManager;
+    }
+  }
+
+  /**
+   * Configures the current instance to a specific DataManager - used only for testing.
+   *
+   * @param manager the DataManager to use.
+   */
+  @VisibleForTesting
+  public static synchronized void setTestInstance(@NonNull final DataManager manager) {
+    synchronized (dataManagerLock) {
+      dataManager = manager;
     }
   }
 
@@ -188,6 +215,8 @@ public class DataManager {
     TraceLog.d(LogMessageConstants.DATA_MANAGER_START_COLLECTING);
     startEventDrivenDataCollection(context);
     startRecurringDataCollection(context);
+
+    collectDataFromSingleCollectors(context);
   }
 
   /**
@@ -204,13 +233,14 @@ public class DataManager {
    *
    * @param context the Android Context.
    */
-  private void startRecurringDataCollection(@NonNull final Context context) {
+  @VisibleForTesting
+  void startRecurringDataCollection(@NonNull final Context context) {
     synchronized (activeDataCollectorLock) {
       if (!activeDataCollectors.isEmpty()) {
         return;
       }
 
-      activeDataCollectors.addAll(configurationManager.getDataCollectors(context));
+      activeDataCollectors.addAll(configurationManager.getRecurringDataCollectors(context));
       for (@NonNull final DataCollector dataCollector : activeDataCollectors) {
         final Runnable collectDataRunnable = () -> handleReceivedData(dataCollector.collectData());
         executorScheduler = new ExecutorScheduler(context, collectDataRunnable, 0,
@@ -221,11 +251,25 @@ public class DataManager {
   }
 
   /**
+   * Collects data from the single collectors, these are data that do not change during the
+   * application lifecycle e.g. Application version code.
+   *
+   * @param context the Android Context.
+   */
+  void collectDataFromSingleCollectors(@NonNull final Context context) {
+    final Set<DataCollector> collectors = configurationManager.getSingleDataCollectors(context);
+    for (DataCollector collector : collectors) {
+      handleReceivedData(collector.collectData());
+    }
+  }
+
+  /**
    * Starts the collection of event driven data.
    *
    * @param context the Android Context.
    */
-  private void startEventDrivenDataCollection(@NonNull final Context context) {
+  @VisibleForTesting
+  void startEventDrivenDataCollection(@NonNull final Context context) {
     synchronized (activeDataListenerLock) {
       if (!activeDataListeners.isEmpty()) {
         return;
@@ -246,7 +290,7 @@ public class DataManager {
         executorScheduler.cancelAll();
       }
 
-      activeDataCollectors.clear();
+      getActiveDataCollectors().clear();
     }
   }
 
@@ -255,10 +299,10 @@ public class DataManager {
    */
   private void stopEventDrivenDataCollection() {
     synchronized (activeDataListenerLock) {
-      for (@NonNull final DataListener dataListener : activeDataListeners) {
+      for (@NonNull final DataListener dataListener : getActiveDataListeners()) {
         dataListener.stopCollecting();
       }
-      activeDataListeners.clear();
+      getActiveDataListeners().clear();
     }
   }
 
@@ -268,7 +312,7 @@ public class DataManager {
    * @param context the Android Context.
    */
   public void startSending(@NonNull final Context context) {
-    stopSending(context);
+    stopSending();
     TraceLog.d(LogMessageConstants.DATA_MANAGER_START_SENDING);
     if (metricServiceScheduler == null) {
       metricServiceScheduler = new ServiceScheduler(context, MetricSender.class,
@@ -286,20 +330,21 @@ public class DataManager {
   /**
    * Stops the sending of any pending requests to the server. These request will be dismissed and
    * will not be sent. No future requests will be sent unless {@link #startSending} is called again.
-   *
-   * @param context the Android Context.
    */
-  public void stopSending(@NonNull final Context context) {
-    TraceLog.d(LogMessageConstants.DATA_MANAGER_STOP_SENDING);
-    if (metricServiceScheduler == null) {
-      metricServiceScheduler = new ServiceScheduler(context, MetricSender.class);
-    }
-    metricServiceScheduler.cancelAll();
+  public void stopSending() {
 
-    if (traceServiceScheduler == null) {
-      traceServiceScheduler = new ServiceScheduler(context, TraceSender.class);
+    if (metricServiceScheduler != null || traceServiceScheduler != null) {
+      TraceLog.d(LogMessageConstants.DATA_MANAGER_STOP_SENDING);
     }
-    traceServiceScheduler.cancelAll();
+
+    if (metricServiceScheduler != null) {
+      metricServiceScheduler.cancelAll();
+    }
+
+    if (traceServiceScheduler != null) {
+      traceServiceScheduler.cancelAll();
+    }
+
   }
 
   /**
@@ -333,18 +378,51 @@ public class DataManager {
    */
   public void handleReceivedData(@NonNull final Data data) {
     final FormattedData[] formattedDataArray = dataFormatterDelegator.formatData(data);
-    for (@Nullable final FormattedData formattedData : formattedDataArray) {
-      if (formattedData == null) {
-        TraceLog.d("Formatted data, but result content was null: " + data);
-        return;
-      }
 
+    if (formattedDataArray.length == 0) {
+      TraceLog.d("Formatted data, but result content was null: "
+          + data.getDataSourceType().toString());
+      return;
+    }
+
+    for (@NonNull final FormattedData formattedData : formattedDataArray) {
       if (formattedData.getSpan() != null) {
         traceManager.addSpanToActiveTrace(formattedData.getSpan());
-      } else {
+      } else if (formattedData.getMetricEntity() != null) {
         Executors.newSingleThreadExecutor()
-                 .execute(() -> dataStorage.saveFormattedData(formattedData));
+                 .execute(() -> dataStorage.saveMetric(formattedData.getMetricEntity()));
+      } else if (formattedData.getResourceEntity() != null) {
+        Executors.newSingleThreadExecutor()
+                 .execute(() -> dataStorage.saveResourceEntity(formattedData.getResourceEntity()));
+
+        final Session session = ApplicationSessionManager.getInstance().getActiveSession();
+        if (session != null) {
+          session.addResourceEntity(formattedData.getResourceEntity());
+        }
       }
     }
+  }
+
+  /**
+   * Handles a received {@link CrashData} from the {@link TraceCrashDataListener} and ensures
+   * it's sent to the server asap.
+   *
+   * @param crashData the {@link CrashData} object captured.
+   */
+  public void handleReceivedCrash(final @NonNull CrashData crashData) {
+
+    //end any current spans and traces
+    stopCollection();
+    ApplicationTraceManager.getInstance(context).stopTrace();
+
+    final CrashReport crashReport = CrashDataFormatter.formatCrashData(crashData);
+    final Trace activeTrace = ApplicationTraceManager.getInstance(context).getActiveTrace();
+    final Session session = ApplicationSessionManager.getInstance().getActiveSession();
+    Resource resource = null;
+    if (session != null) {
+      resource = session.getResources();
+    }
+
+    CrashSaver.saveCrash(resource, session, activeTrace, crashReport, dataStorage);
   }
 }

@@ -7,6 +7,8 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.hamcrest.core.IsNull.nullValue;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -101,5 +103,30 @@ public class ApplicationSessionManagerTest {
     sessionManager.startSession();
     final Session actualResult = sessionManager.getActiveSession();
     assertThat(actualResult, not(equalTo(expectedValue)));
+  }
+
+  @Test
+  public void reset_sessionManagerIsNotNull() {
+    sessionManager.startSession();
+    assertTrue(ApplicationSessionManager.isSessionManagerActive());
+    assertTrue(ApplicationSessionManager.isSessionActive());
+
+    ApplicationSessionManager.reset();
+
+    assertFalse(ApplicationSessionManager.isSessionManagerActive());
+    assertFalse(ApplicationSessionManager.isSessionActive());
+  }
+
+  @Test
+  public void reset_sessionManagerIsAlreadyNull() {
+    ApplicationSessionManager.reset();
+
+    assertFalse(ApplicationSessionManager.isSessionManagerActive());
+    assertFalse(ApplicationSessionManager.isSessionActive());
+
+    ApplicationSessionManager.reset();
+
+    assertFalse(ApplicationSessionManager.isSessionManagerActive());
+    assertFalse(ApplicationSessionManager.isSessionActive());
   }
 }

@@ -5,7 +5,7 @@ package io.opencensus.proto.agent.common.v1;
 
 public interface NodeOrBuilder extends
     // @@protoc_insertion_point(interface_extends:opencensus.proto.agent.common.v1.Node)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.MessageLiteOrBuilder {
 
   /**
    * <pre>
@@ -13,92 +13,56 @@ public interface NodeOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.ProcessIdentifier identifier = 1;</code>
-   *
    * @return Whether the identifier field is set.
    */
   boolean hasIdentifier();
-
   /**
    * <pre>
    * Identifier that uniquely identifies a process within a VM/container.
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.ProcessIdentifier identifier = 1;</code>
-   *
    * @return The identifier.
    */
   io.opencensus.proto.agent.common.v1.ProcessIdentifier getIdentifier();
 
   /**
    * <pre>
-   * Identifier that uniquely identifies a process within a VM/container.
-   * </pre>
-   *
-   * <code>.opencensus.proto.agent.common.v1.ProcessIdentifier identifier = 1;</code>
-   */
-  io.opencensus.proto.agent.common.v1.ProcessIdentifierOrBuilder getIdentifierOrBuilder();
-
-  /**
-   * <pre>
    * Information on the OpenCensus Library that initiates the stream.
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.LibraryInfo library_info = 2;</code>
-   *
    * @return Whether the libraryInfo field is set.
    */
   boolean hasLibraryInfo();
-
   /**
    * <pre>
    * Information on the OpenCensus Library that initiates the stream.
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.LibraryInfo library_info = 2;</code>
-   *
    * @return The libraryInfo.
    */
   io.opencensus.proto.agent.common.v1.LibraryInfo getLibraryInfo();
 
   /**
    * <pre>
-   * Information on the OpenCensus Library that initiates the stream.
-   * </pre>
-   *
-   * <code>.opencensus.proto.agent.common.v1.LibraryInfo library_info = 2;</code>
-   */
-  io.opencensus.proto.agent.common.v1.LibraryInfoOrBuilder getLibraryInfoOrBuilder();
-
-  /**
-   * <pre>
    * Additional information on service.
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.ServiceInfo service_info = 3;</code>
-   *
    * @return Whether the serviceInfo field is set.
    */
   boolean hasServiceInfo();
-
   /**
    * <pre>
    * Additional information on service.
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.ServiceInfo service_info = 3;</code>
-   *
    * @return The serviceInfo.
    */
   io.opencensus.proto.agent.common.v1.ServiceInfo getServiceInfo();
-
-  /**
-   * <pre>
-   * Additional information on service.
-   * </pre>
-   *
-   * <code>.opencensus.proto.agent.common.v1.ServiceInfo service_info = 3;</code>
-   */
-  io.opencensus.proto.agent.common.v1.ServiceInfoOrBuilder getServiceInfoOrBuilder();
 
   /**
    * <pre>
@@ -108,7 +72,6 @@ public interface NodeOrBuilder extends
    * <code>map&lt;string, string&gt; attributes = 4;</code>
    */
   int getAttributesCount();
-
   /**
    * <pre>
    * Additional attributes.
@@ -118,14 +81,12 @@ public interface NodeOrBuilder extends
    */
   boolean containsAttributes(
       java.lang.String key);
-
   /**
    * Use {@link #getAttributesMap()} instead.
    */
   @java.lang.Deprecated
   java.util.Map<java.lang.String, java.lang.String>
   getAttributes();
-
   /**
    * <pre>
    * Additional attributes.
@@ -135,7 +96,6 @@ public interface NodeOrBuilder extends
    */
   java.util.Map<java.lang.String, java.lang.String>
   getAttributesMap();
-
   /**
    * <pre>
    * Additional attributes.
@@ -147,7 +107,6 @@ public interface NodeOrBuilder extends
   java.lang.String getAttributesOrDefault(
       java.lang.String key,
       java.lang.String defaultValue);
-
   /**
    * <pre>
    * Additional attributes.

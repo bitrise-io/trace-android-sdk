@@ -4,6 +4,10 @@ import android.os.SystemClock;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 import com.google.protobuf.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Provides the time for different components of Trace SDK.
@@ -36,6 +40,16 @@ public class TraceClock {
   public static int getNanos(final long timeInMilliseconds) {
     final long milliseconds = timeInMilliseconds % 1000;
     return (int) milliseconds * 1000 * 1000;
+  }
+
+  /**
+   * Converts a {@link Timestamp} object back to milliseconds - which can be useful for comparison.
+   *
+   * @param timestamp the {@link Timestamp} object with seconds and nanos.
+   * @return the timestamp in milliseconds.
+   */
+  public static long timestampToMillis(@NonNull final Timestamp timestamp) {
+    return (timestamp.getSeconds() * 1000) + (timestamp.getNanos() / 1000 / 1000);
   }
 
   /**
@@ -80,5 +94,25 @@ public class TraceClock {
   @VisibleForTesting
   public static long getElapsedSeconds() {
     return SystemClock.uptimeMillis() / 1000;
+  }
+
+  /**
+   * Formats a given millisecond into the format expected by the backend for a crash report.
+   *
+   * @param milliseconds the current timestamp in milliseconds.
+   * @param timeZone the timezone that should be used, probably should be TimeZone.getDefault().
+   * @return the String representation of the timestamp for crash reports.
+   */
+  public static String createCrashRequestFormat(final long milliseconds,
+                                                final TimeZone timeZone) {
+    final SimpleDateFormat sdf =
+        new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.getDefault());
+    sdf.setTimeZone(timeZone);
+
+    final String date = sdf.format(new Date(milliseconds));
+
+    // we need to add a colon in between to make +0100 into +01:00
+    return date.substring(0, date.length() - 2) + ":" + ""
+        + date.substring(date.length() - 2);
   }
 }

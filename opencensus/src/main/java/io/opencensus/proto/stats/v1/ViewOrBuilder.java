@@ -5,7 +5,7 @@ package io.opencensus.proto.stats.v1;
 
 public interface ViewOrBuilder extends
     // @@protoc_insertion_point(interface_extends:opencensus.proto.stats.v1.View)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.MessageLiteOrBuilder {
 
   /**
    * <pre>
@@ -14,11 +14,9 @@ public interface ViewOrBuilder extends
    * </pre>
    *
    * <code>string name = 1;</code>
-   *
    * @return The name.
    */
   java.lang.String getName();
-
   /**
    * <pre>
    * A string by which the View will be referred to, e.g. "rpc_latency". Names MUST be unique
@@ -26,11 +24,10 @@ public interface ViewOrBuilder extends
    * </pre>
    *
    * <code>string name = 1;</code>
-   *
    * @return The bytes for name.
    */
   com.google.protobuf.ByteString
-  getNameBytes();
+      getNameBytes();
 
   /**
    * <pre>
@@ -38,22 +35,19 @@ public interface ViewOrBuilder extends
    * </pre>
    *
    * <code>string description = 2;</code>
-   *
    * @return The description.
    */
   java.lang.String getDescription();
-
   /**
    * <pre>
    * Describes the view, e.g. "RPC latency distribution"
    * </pre>
    *
    * <code>string description = 2;</code>
-   *
    * @return The bytes for description.
    */
   com.google.protobuf.ByteString
-  getDescriptionBytes();
+      getDescriptionBytes();
 
   /**
    * <pre>
@@ -61,45 +55,31 @@ public interface ViewOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.Measure measure = 3;</code>
-   *
    * @return Whether the measure field is set.
    */
   boolean hasMeasure();
-
   /**
    * <pre>
    * The Measure to which this view is applied.
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.Measure measure = 3;</code>
-   *
    * @return The measure.
    */
   io.opencensus.proto.stats.v1.Measure getMeasure();
 
   /**
    * <pre>
-   * The Measure to which this view is applied.
-   * </pre>
-   *
-   * <code>.opencensus.proto.stats.v1.Measure measure = 3;</code>
-   */
-  io.opencensus.proto.stats.v1.MeasureOrBuilder getMeasureOrBuilder();
-
-  /**
-   * <pre>
    * An array of tag keys. These values associated with tags of this name form the basis by which
    * individual stats will be aggregated (one aggregation per unique tag value). If none are
    * provided, then all data is recorded in a single aggregation.
    * </pre>
    *
    * <code>repeated string columns = 4;</code>
-   *
    * @return A list containing the columns.
    */
   java.util.List<java.lang.String>
-  getColumnsList();
-
+      getColumnsList();
   /**
    * <pre>
    * An array of tag keys. These values associated with tags of this name form the basis by which
@@ -108,11 +88,9 @@ public interface ViewOrBuilder extends
    * </pre>
    *
    * <code>repeated string columns = 4;</code>
-   *
    * @return The count of columns.
    */
   int getColumnsCount();
-
   /**
    * <pre>
    * An array of tag keys. These values associated with tags of this name form the basis by which
@@ -121,12 +99,10 @@ public interface ViewOrBuilder extends
    * </pre>
    *
    * <code>repeated string columns = 4;</code>
-   *
    * @param index The index of the element to return.
    * @return The columns at the given index.
    */
   java.lang.String getColumns(int index);
-
   /**
    * <pre>
    * An array of tag keys. These values associated with tags of this name form the basis by which
@@ -135,12 +111,11 @@ public interface ViewOrBuilder extends
    * </pre>
    *
    * <code>repeated string columns = 4;</code>
-   *
-   * @param index The index of the value to return.
-   * @return The bytes of the columns at the given index.
+   * @param index The index of the element to return.
+   * @return The columns at the given index.
    */
   com.google.protobuf.ByteString
-  getColumnsBytes(int index);
+      getColumnsBytes(int index);
 
   /**
    * <pre>
@@ -148,74 +123,48 @@ public interface ViewOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.CountAggregation count_aggregation = 5;</code>
-   *
    * @return Whether the countAggregation field is set.
    */
   boolean hasCountAggregation();
-
   /**
    * <pre>
    * Counts the number of measurements recorded.
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.CountAggregation count_aggregation = 5;</code>
-   *
    * @return The countAggregation.
    */
   io.opencensus.proto.stats.v1.CountAggregation getCountAggregation();
 
   /**
    * <pre>
-   * Counts the number of measurements recorded.
-   * </pre>
-   *
-   * <code>.opencensus.proto.stats.v1.CountAggregation count_aggregation = 5;</code>
-   */
-  io.opencensus.proto.stats.v1.CountAggregationOrBuilder getCountAggregationOrBuilder();
-
-  /**
-   * <pre>
    * Indicates that data collected and aggregated with this Aggregation will be summed up.
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.SumAggregation sum_aggregation = 6;</code>
-   *
    * @return Whether the sumAggregation field is set.
    */
   boolean hasSumAggregation();
-
   /**
    * <pre>
    * Indicates that data collected and aggregated with this Aggregation will be summed up.
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.SumAggregation sum_aggregation = 6;</code>
-   *
    * @return The sumAggregation.
    */
   io.opencensus.proto.stats.v1.SumAggregation getSumAggregation();
 
   /**
    * <pre>
-   * Indicates that data collected and aggregated with this Aggregation will be summed up.
-   * </pre>
-   *
-   * <code>.opencensus.proto.stats.v1.SumAggregation sum_aggregation = 6;</code>
-   */
-  io.opencensus.proto.stats.v1.SumAggregationOrBuilder getSumAggregationOrBuilder();
-
-  /**
-   * <pre>
    * Indicates that data collected and aggregated with this Aggregation will represent the last
    * recorded value. This is useful to support Gauges.
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.LastValueAggregation last_value_aggregation = 7;</code>
-   *
    * @return Whether the lastValueAggregation field is set.
    */
   boolean hasLastValueAggregation();
-
   /**
    * <pre>
    * Indicates that data collected and aggregated with this Aggregation will represent the last
@@ -223,34 +172,21 @@ public interface ViewOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.LastValueAggregation last_value_aggregation = 7;</code>
-   *
    * @return The lastValueAggregation.
    */
   io.opencensus.proto.stats.v1.LastValueAggregation getLastValueAggregation();
 
   /**
    * <pre>
-   * Indicates that data collected and aggregated with this Aggregation will represent the last
-   * recorded value. This is useful to support Gauges.
-   * </pre>
-   *
-   * <code>.opencensus.proto.stats.v1.LastValueAggregation last_value_aggregation = 7;</code>
-   */
-  io.opencensus.proto.stats.v1.LastValueAggregationOrBuilder getLastValueAggregationOrBuilder();
-
-  /**
-   * <pre>
    * Indicates that the desired Aggregation is a histogram distribution. A distribution
    * Aggregation may contain a histogram of the values in the population. User should define the
    * bucket boundaries for that histogram (see DistributionAggregation).
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.DistributionAggregation distribution_aggregation = 8;</code>
-   *
    * @return Whether the distributionAggregation field is set.
    */
   boolean hasDistributionAggregation();
-
   /**
    * <pre>
    * Indicates that the desired Aggregation is a histogram distribution. A distribution
@@ -259,21 +195,9 @@ public interface ViewOrBuilder extends
    * </pre>
    *
    * <code>.opencensus.proto.stats.v1.DistributionAggregation distribution_aggregation = 8;</code>
-   *
    * @return The distributionAggregation.
    */
   io.opencensus.proto.stats.v1.DistributionAggregation getDistributionAggregation();
 
-  /**
-   * <pre>
-   * Indicates that the desired Aggregation is a histogram distribution. A distribution
-   * Aggregation may contain a histogram of the values in the population. User should define the
-   * bucket boundaries for that histogram (see DistributionAggregation).
-   * </pre>
-   *
-   * <code>.opencensus.proto.stats.v1.DistributionAggregation distribution_aggregation = 8;</code>
-   */
-  io.opencensus.proto.stats.v1.DistributionAggregationOrBuilder getDistributionAggregationOrBuilder();
-
-  io.opencensus.proto.stats.v1.View.AggregationCase getAggregationCase();
+  public io.opencensus.proto.stats.v1.View.AggregationCase getAggregationCase();
 }

@@ -7,303 +7,114 @@ package io.opencensus.proto.resource.v1;
  * <pre>
  * Resource information.
  * </pre>
- * <p>
+ *
  * Protobuf type {@code opencensus.proto.resource.v1.Resource}
  */
-public final class Resource extends
-    com.google.protobuf.GeneratedMessageV3 implements
+public  final class Resource extends
+    com.google.protobuf.GeneratedMessageLite<
+        Resource, Resource.Builder> implements
     // @@protoc_insertion_point(message_implements:opencensus.proto.resource.v1.Resource)
     ResourceOrBuilder {
-  public static final int TYPE_FIELD_NUMBER = 1;
-  public static final int LABELS_FIELD_NUMBER = 2;
-  private static final long serialVersionUID = 0L;
-  // @@protoc_insertion_point(class_scope:opencensus.proto.resource.v1.Resource)
-  private static final io.opencensus.proto.resource.v1.Resource DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<Resource>
-      PARSER = new com.google.protobuf.AbstractParser<Resource>() {
-    @java.lang.Override
-    public Resource parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Resource(input, extensionRegistry);
-    }
-  };
-
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.resource.v1.Resource();
-  }
-
-  private volatile java.lang.Object type_;
-  private com.google.protobuf.MapField<
-      java.lang.String, java.lang.String> labels_;
-  private byte memoizedIsInitialized = -1;
-
-  // Use Resource.newBuilder() to construct.
-  private Resource(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
   private Resource() {
     type_ = "";
   }
-
-  private Resource(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            type_ = s;
-            break;
-          }
-          case 18: {
-            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-              labels_ = com.google.protobuf.MapField.newMapField(
-                  LabelsDefaultEntryHolder.defaultEntry);
-              mutable_bitField0_ |= 0x00000001;
-            }
-            com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-                labels__ = input.readMessage(
-                LabelsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-            labels_.getMutableMap().put(
-                labels__.getKey(), labels__.getValue());
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
-
-  public static final com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
-    return io.opencensus.proto.resource.v1.ResourceProto.internal_static_opencensus_proto_resource_v1_Resource_descriptor;
-  }
-
-  public static io.opencensus.proto.resource.v1.Resource parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.resource.v1.Resource parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.resource.v1.Resource parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.resource.v1.Resource parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.resource.v1.Resource parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.resource.v1.Resource parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.resource.v1.Resource parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.resource.v1.Resource parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.resource.v1.Resource parseDelimitedFrom(
-      java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.resource.v1.Resource parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.resource.v1.Resource parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.resource.v1.Resource parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(io.opencensus.proto.resource.v1.Resource prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
-  public static io.opencensus.proto.resource.v1.Resource getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public static com.google.protobuf.Parser<Resource> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new Resource();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @SuppressWarnings({"rawtypes"})
-  @java.lang.Override
-  protected com.google.protobuf.MapField internalGetMapField(
-      int number) {
-    switch (number) {
-      case 2:
-        return internalGetLabels();
-      default:
-        throw new RuntimeException(
-            "Invalid map field number: " + number);
-    }
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
-    return io.opencensus.proto.resource.v1.ResourceProto.internal_static_opencensus_proto_resource_v1_Resource_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.resource.v1.Resource.class,
-            io.opencensus.proto.resource.v1.Resource.Builder.class);
-  }
-
+  public static final int TYPE_FIELD_NUMBER = 1;
+  private java.lang.String type_;
   /**
    * <pre>
    * Type identifier for the resource.
    * </pre>
    *
    * <code>string type = 1;</code>
-   *
    * @return The type.
    */
   @java.lang.Override
   public java.lang.String getType() {
-    java.lang.Object ref = type_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs =
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      type_ = s;
-      return s;
-    }
+    return type_;
   }
-
   /**
    * <pre>
    * Type identifier for the resource.
    * </pre>
    *
    * <code>string type = 1;</code>
-   *
    * @return The bytes for type.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-  getTypeBytes() {
-    java.lang.Object ref = type_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      type_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+      getTypeBytes() {
+    return com.google.protobuf.ByteString.copyFromUtf8(type_);
+  }
+  /**
+   * <pre>
+   * Type identifier for the resource.
+   * </pre>
+   *
+   * <code>string type = 1;</code>
+   * @param value The type to set.
+   */
+  private void setType(
+      java.lang.String value) {
+    value.getClass();
+  
+    type_ = value;
+  }
+  /**
+   * <pre>
+   * Type identifier for the resource.
+   * </pre>
+   *
+   * <code>string type = 1;</code>
+   */
+  private void clearType() {
+    
+    type_ = getDefaultInstance().getType();
+  }
+  /**
+   * <pre>
+   * Type identifier for the resource.
+   * </pre>
+   *
+   * <code>string type = 1;</code>
+   * @param value The bytes for type to set.
+   */
+  private void setTypeBytes(
+      com.google.protobuf.ByteString value) {
+    checkByteStringIsUtf8(value);
+    type_ = value.toStringUtf8();
+    
   }
 
-  private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+  public static final int LABELS_FIELD_NUMBER = 2;
+  private static final class LabelsDefaultEntryHolder {
+    static final com.google.protobuf.MapEntryLite<
+        java.lang.String, java.lang.String> defaultEntry =
+            com.google.protobuf.MapEntryLite
+            .<java.lang.String, java.lang.String>newDefaultInstance(
+                com.google.protobuf.WireFormat.FieldType.STRING,
+                "",
+                com.google.protobuf.WireFormat.FieldType.STRING,
+                "");
+  }
+  private com.google.protobuf.MapFieldLite<
+      java.lang.String, java.lang.String> labels_ =
+          com.google.protobuf.MapFieldLite.emptyMapField();
+  private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.String>
   internalGetLabels() {
-    if (labels_ == null) {
-      return com.google.protobuf.MapField.emptyMapField(
-          LabelsDefaultEntryHolder.defaultEntry);
+    return labels_;
+  }
+  private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.String>
+  internalGetMutableLabels() {
+    if (!labels_.isMutable()) {
+      labels_ = labels_.mutableCopy();
     }
     return labels_;
   }
+  @java.lang.Override
 
   public int getLabelsCount() {
-    return internalGetLabels().getMap().size();
+    return internalGetLabels().size();
   }
-
   /**
    * <pre>
    * Set of labels that describe the resource.
@@ -311,16 +122,13 @@ public final class Resource extends
    *
    * <code>map&lt;string, string&gt; labels = 2;</code>
    */
-
   @java.lang.Override
+
   public boolean containsLabels(
       java.lang.String key) {
-    if (key == null) {
-      throw new java.lang.NullPointerException();
-    }
-    return internalGetLabels().getMap().containsKey(key);
+    key.getClass();
+    return internalGetLabels().containsKey(key);
   }
-
   /**
    * Use {@link #getLabelsMap()} instead.
    */
@@ -329,7 +137,6 @@ public final class Resource extends
   public java.util.Map<java.lang.String, java.lang.String> getLabels() {
     return getLabelsMap();
   }
-
   /**
    * <pre>
    * Set of labels that describe the resource.
@@ -340,9 +147,9 @@ public final class Resource extends
   @java.lang.Override
 
   public java.util.Map<java.lang.String, java.lang.String> getLabelsMap() {
-    return internalGetLabels().getMap();
+    return java.util.Collections.unmodifiableMap(
+        internalGetLabels());
   }
-
   /**
    * <pre>
    * Set of labels that describe the resource.
@@ -355,14 +162,11 @@ public final class Resource extends
   public java.lang.String getLabelsOrDefault(
       java.lang.String key,
       java.lang.String defaultValue) {
-    if (key == null) {
-      throw new java.lang.NullPointerException();
-    }
+    key.getClass();
     java.util.Map<java.lang.String, java.lang.String> map =
-        internalGetLabels().getMap();
+        internalGetLabels();
     return map.containsKey(key) ? map.get(key) : defaultValue;
   }
-
   /**
    * <pre>
    * Set of labels that describe the resource.
@@ -374,349 +178,124 @@ public final class Resource extends
 
   public java.lang.String getLabelsOrThrow(
       java.lang.String key) {
-    if (key == null) {
-      throw new java.lang.NullPointerException();
-    }
+    key.getClass();
     java.util.Map<java.lang.String, java.lang.String> map =
-        internalGetLabels().getMap();
+        internalGetLabels();
     if (!map.containsKey(key)) {
       throw new java.lang.IllegalArgumentException();
     }
     return map.get(key);
   }
-
-  @java.lang.Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) {
-      return true;
-    }
-    if (isInitialized == 0) {
-      return false;
-    }
-
-    memoizedIsInitialized = 1;
-    return true;
+  /**
+   * <pre>
+   * Set of labels that describe the resource.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 2;</code>
+   */
+  private java.util.Map<java.lang.String, java.lang.String>
+  getMutableLabelsMap() {
+    return internalGetMutableLabels();
   }
 
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
+  public static io.opencensus.proto.resource.v1.Resource parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.resource.v1.Resource parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.resource.v1.Resource parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.resource.v1.Resource parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.resource.v1.Resource parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.resource.v1.Resource parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.resource.v1.Resource parseFrom(java.io.InputStream input)
       throws java.io.IOException {
-    if (!getTypeBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, type_);
-    }
-    com.google.protobuf.GeneratedMessageV3
-        .serializeStringMapTo(
-            output,
-            internalGetLabels(),
-            LabelsDefaultEntryHolder.defaultEntry,
-            2);
-    unknownFields.writeTo(output);
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.resource.v1.Resource parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.resource.v1.Resource parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.resource.v1.Resource parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.resource.v1.Resource parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.resource.v1.Resource parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
   }
 
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) {
-      return size;
-    }
-
-    size = 0;
-    if (!getTypeBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, type_);
-    }
-    for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
-        : internalGetLabels().getMap().entrySet()) {
-      com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-          labels__ = LabelsDefaultEntryHolder.defaultEntry.newBuilderForType()
-                                                          .setKey(entry.getKey())
-                                                          .setValue(entry.getValue())
-                                                          .build();
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, labels__);
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
+  public static Builder newBuilder() {
+    return (Builder) DEFAULT_INSTANCE.createBuilder();
   }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-      return true;
-    }
-    if (!(obj instanceof io.opencensus.proto.resource.v1.Resource)) {
-      return super.equals(obj);
-    }
-    io.opencensus.proto.resource.v1.Resource other = (io.opencensus.proto.resource.v1.Resource) obj;
-
-    if (!getType()
-        .equals(other.getType())) {
-      return false;
-    }
-    if (!internalGetLabels().equals(
-        other.internalGetLabels())) {
-      return false;
-    }
-    return unknownFields.equals(other.unknownFields);
-  }
-
-  @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + TYPE_FIELD_NUMBER;
-    hash = (53 * hash) + getType().hashCode();
-    if (!internalGetLabels().getMap().isEmpty()) {
-      hash = (37 * hash) + LABELS_FIELD_NUMBER;
-      hash = (53 * hash) + internalGetLabels().hashCode();
-    }
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
-
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<Resource> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.resource.v1.Resource getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final class LabelsDefaultEntryHolder {
-    static final com.google.protobuf.MapEntry<
-        java.lang.String, java.lang.String> defaultEntry =
-        com.google.protobuf.MapEntry
-            .newDefaultInstance(
-                io.opencensus.proto.resource.v1.ResourceProto.internal_static_opencensus_proto_resource_v1_Resource_LabelsEntry_descriptor,
-                com.google.protobuf.WireFormat.FieldType.STRING,
-                "",
-                com.google.protobuf.WireFormat.FieldType.STRING,
-                "");
+  public static Builder newBuilder(io.opencensus.proto.resource.v1.Resource prototype) {
+    return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
   }
 
   /**
    * <pre>
    * Resource information.
    * </pre>
-   * <p>
+   *
    * Protobuf type {@code opencensus.proto.resource.v1.Resource}
    */
   public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+      com.google.protobuf.GeneratedMessageLite.Builder<
+        io.opencensus.proto.resource.v1.Resource, Builder> implements
       // @@protoc_insertion_point(builder_implements:opencensus.proto.resource.v1.Resource)
       io.opencensus.proto.resource.v1.ResourceOrBuilder {
-    private int bitField0_;
-    private java.lang.Object type_ = "";
-    private com.google.protobuf.MapField<
-        java.lang.String, java.lang.String> labels_;
-
     // Construct using io.opencensus.proto.resource.v1.Resource.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+      super(DEFAULT_INSTANCE);
     }
 
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.resource.v1.ResourceProto.internal_static_opencensus_proto_resource_v1_Resource_descriptor;
-    }
-
-    @SuppressWarnings({"rawtypes"})
-    protected com.google.protobuf.MapField internalGetMapField(
-        int number) {
-      switch (number) {
-        case 2:
-          return internalGetLabels();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
-    }
-
-    @SuppressWarnings({"rawtypes"})
-    protected com.google.protobuf.MapField internalGetMutableMapField(
-        int number) {
-      switch (number) {
-        case 2:
-          return internalGetMutableLabels();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.resource.v1.ResourceProto.internal_static_opencensus_proto_resource_v1_Resource_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.resource.v1.Resource.class,
-              io.opencensus.proto.resource.v1.Resource.Builder.class);
-    }
-
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-          .alwaysUseFieldBuilders) {
-      }
-    }
-
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      type_ = "";
-
-      internalGetMutableLabels().clear();
-      return this;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return io.opencensus.proto.resource.v1.ResourceProto.internal_static_opencensus_proto_resource_v1_Resource_descriptor;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.resource.v1.Resource getDefaultInstanceForType() {
-      return io.opencensus.proto.resource.v1.Resource.getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.resource.v1.Resource build() {
-      io.opencensus.proto.resource.v1.Resource result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.resource.v1.Resource buildPartial() {
-      io.opencensus.proto.resource.v1.Resource result =
-          new io.opencensus.proto.resource.v1.Resource(this);
-      int from_bitField0_ = bitField0_;
-      result.type_ = type_;
-      result.labels_ = internalGetLabels();
-      result.labels_.makeImmutable();
-      onBuilt();
-      return result;
-    }
-
-    @java.lang.Override
-    public Builder clone() {
-      return super.clone();
-    }
-
-    @java.lang.Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.setField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-
-    @java.lang.Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-
-    @java.lang.Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-
-    @java.lang.Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof io.opencensus.proto.resource.v1.Resource) {
-        return mergeFrom((io.opencensus.proto.resource.v1.Resource) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(io.opencensus.proto.resource.v1.Resource other) {
-      if (other == io.opencensus.proto.resource.v1.Resource.getDefaultInstance()) {
-        return this;
-      }
-      if (!other.getType().isEmpty()) {
-        type_ = other.type_;
-        onChanged();
-      }
-      internalGetMutableLabels().mergeFrom(
-          other.internalGetLabels());
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      io.opencensus.proto.resource.v1.Resource parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.opencensus.proto.resource.v1.Resource) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
-      return this;
-    }
 
     /**
      * <pre>
@@ -724,130 +303,94 @@ public final class Resource extends
      * </pre>
      *
      * <code>string type = 1;</code>
-     *
      * @return The type.
      */
+    @java.lang.Override
     public java.lang.String getType() {
-      java.lang.Object ref = type_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        type_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+      return instance.getType();
     }
-
     /**
      * <pre>
      * Type identifier for the resource.
      * </pre>
      *
      * <code>string type = 1;</code>
+     * @return The bytes for type.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getTypeBytes() {
+      return instance.getTypeBytes();
+    }
+    /**
+     * <pre>
+     * Type identifier for the resource.
+     * </pre>
      *
+     * <code>string type = 1;</code>
      * @param value The type to set.
      * @return This builder for chaining.
      */
     public Builder setType(
         java.lang.String value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-
-      type_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setType(value);
       return this;
     }
-
     /**
      * <pre>
      * Type identifier for the resource.
      * </pre>
      *
      * <code>string type = 1;</code>
-     *
-     * @return The bytes for type.
+     * @return This builder for chaining.
      */
-    public com.google.protobuf.ByteString
-    getTypeBytes() {
-      java.lang.Object ref = type_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        type_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public Builder clearType() {
+      copyOnWrite();
+      instance.clearType();
+      return this;
     }
-
     /**
      * <pre>
      * Type identifier for the resource.
      * </pre>
      *
      * <code>string type = 1;</code>
-     *
      * @param value The bytes for type to set.
      * @return This builder for chaining.
      */
     public Builder setTypeBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      checkByteStringIsUtf8(value);
-
-      type_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setTypeBytes(value);
       return this;
     }
 
-    /**
-     * <pre>
-     * Type identifier for the resource.
-     * </pre>
-     *
-     * <code>string type = 1;</code>
-     *
-     * @return This builder for chaining.
-     */
-    public Builder clearType() {
-
-      type_ = getDefaultInstance().getType();
-      onChanged();
-      return this;
-    }
-
-    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-    internalGetLabels() {
-      if (labels_ == null) {
-        return com.google.protobuf.MapField.emptyMapField(
-            LabelsDefaultEntryHolder.defaultEntry);
-      }
-      return labels_;
-    }
-
-    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-    internalGetMutableLabels() {
-      onChanged();
-      if (labels_ == null) {
-        labels_ = com.google.protobuf.MapField.newMapField(
-            LabelsDefaultEntryHolder.defaultEntry);
-      }
-      if (!labels_.isMutable()) {
-        labels_ = labels_.copy();
-      }
-      return labels_;
-    }
+    @java.lang.Override
 
     public int getLabelsCount() {
-      return internalGetLabels().getMap().size();
+      return instance.getLabelsMap().size();
+    }
+    /**
+     * <pre>
+     * Set of labels that describe the resource.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; labels = 2;</code>
+     */
+    @java.lang.Override
+
+    public boolean containsLabels(
+        java.lang.String key) {
+      key.getClass();
+      return instance.getLabelsMap().containsKey(key);
     }
 
+    public Builder clearLabels() {
+      copyOnWrite();
+      instance.getMutableLabelsMap().clear();
+      return this;
+    }
     /**
      * <pre>
      * Set of labels that describe the resource.
@@ -856,15 +399,13 @@ public final class Resource extends
      * <code>map&lt;string, string&gt; labels = 2;</code>
      */
 
-    @java.lang.Override
-    public boolean containsLabels(
+    public Builder removeLabels(
         java.lang.String key) {
-      if (key == null) {
-        throw new java.lang.NullPointerException();
-      }
-      return internalGetLabels().getMap().containsKey(key);
+      key.getClass();
+      copyOnWrite();
+      instance.getMutableLabelsMap().remove(key);
+      return this;
     }
-
     /**
      * Use {@link #getLabelsMap()} instead.
      */
@@ -873,7 +414,6 @@ public final class Resource extends
     public java.util.Map<java.lang.String, java.lang.String> getLabels() {
       return getLabelsMap();
     }
-
     /**
      * <pre>
      * Set of labels that describe the resource.
@@ -882,11 +422,10 @@ public final class Resource extends
      * <code>map&lt;string, string&gt; labels = 2;</code>
      */
     @java.lang.Override
-
     public java.util.Map<java.lang.String, java.lang.String> getLabelsMap() {
-      return internalGetLabels().getMap();
+      return java.util.Collections.unmodifiableMap(
+          instance.getLabelsMap());
     }
-
     /**
      * <pre>
      * Set of labels that describe the resource.
@@ -899,14 +438,11 @@ public final class Resource extends
     public java.lang.String getLabelsOrDefault(
         java.lang.String key,
         java.lang.String defaultValue) {
-      if (key == null) {
-        throw new java.lang.NullPointerException();
-      }
+      key.getClass();
       java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetLabels().getMap();
+          instance.getLabelsMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
-
     /**
      * <pre>
      * Set of labels that describe the resource.
@@ -918,50 +454,14 @@ public final class Resource extends
 
     public java.lang.String getLabelsOrThrow(
         java.lang.String key) {
-      if (key == null) {
-        throw new java.lang.NullPointerException();
-      }
+      key.getClass();
       java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetLabels().getMap();
+          instance.getLabelsMap();
       if (!map.containsKey(key)) {
         throw new java.lang.IllegalArgumentException();
       }
       return map.get(key);
     }
-
-    public Builder clearLabels() {
-      internalGetMutableLabels().getMutableMap()
-                                .clear();
-      return this;
-    }
-
-    /**
-     * <pre>
-     * Set of labels that describe the resource.
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; labels = 2;</code>
-     */
-
-    public Builder removeLabels(
-        java.lang.String key) {
-      if (key == null) {
-        throw new java.lang.NullPointerException();
-      }
-      internalGetMutableLabels().getMutableMap()
-                                .remove(key);
-      return this;
-    }
-
-    /**
-     * Use alternate mutation accessors instead.
-     */
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, java.lang.String>
-    getMutableLabels() {
-      return internalGetMutableLabels().getMutableMap();
-    }
-
     /**
      * <pre>
      * Set of labels that describe the resource.
@@ -972,17 +472,12 @@ public final class Resource extends
     public Builder putLabels(
         java.lang.String key,
         java.lang.String value) {
-      if (key == null) {
-        throw new java.lang.NullPointerException();
-      }
-      if (value == null) {
-        throw new java.lang.NullPointerException();
-      }
-      internalGetMutableLabels().getMutableMap()
-                                .put(key, value);
+      key.getClass();
+      value.getClass();
+      copyOnWrite();
+      instance.getMutableLabelsMap().put(key, value);
       return this;
     }
-
     /**
      * <pre>
      * Set of labels that describe the resource.
@@ -990,29 +485,86 @@ public final class Resource extends
      *
      * <code>map&lt;string, string&gt; labels = 2;</code>
      */
-
     public Builder putAllLabels(
         java.util.Map<java.lang.String, java.lang.String> values) {
-      internalGetMutableLabels().getMutableMap()
-                                .putAll(values);
+      copyOnWrite();
+      instance.getMutableLabelsMap().putAll(values);
       return this;
     }
 
-    @java.lang.Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
-    }
-
-    @java.lang.Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
-    }
-
-
     // @@protoc_insertion_point(builder_scope:opencensus.proto.resource.v1.Resource)
   }
+  @java.lang.Override
+  @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+  protected final java.lang.Object dynamicMethod(
+      com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+      java.lang.Object arg0, java.lang.Object arg1) {
+    switch (method) {
+      case NEW_MUTABLE_INSTANCE: {
+        return new io.opencensus.proto.resource.v1.Resource();
+      }
+      case NEW_BUILDER: {
+        return new Builder();
+      }
+      case BUILD_MESSAGE_INFO: {
+          java.lang.Object[] objects = new java.lang.Object[] {
+            "type_",
+            "labels_",
+            LabelsDefaultEntryHolder.defaultEntry,
+          };
+          java.lang.String info =
+              "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0001\u0000\u0000\u0001\u0208\u00022";
+          return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+      }
+      // fall through
+      case GET_DEFAULT_INSTANCE: {
+        return DEFAULT_INSTANCE;
+      }
+      case GET_PARSER: {
+        com.google.protobuf.Parser<io.opencensus.proto.resource.v1.Resource> parser = PARSER;
+        if (parser == null) {
+          synchronized (io.opencensus.proto.resource.v1.Resource.class) {
+            parser = PARSER;
+            if (parser == null) {
+              parser =
+                  new DefaultInstanceBasedParser<io.opencensus.proto.resource.v1.Resource>(
+                      DEFAULT_INSTANCE);
+              PARSER = parser;
+            }
+          }
+        }
+        return parser;
+    }
+    case GET_MEMOIZED_IS_INITIALIZED: {
+      return (byte) 1;
+    }
+    case SET_MEMOIZED_IS_INITIALIZED: {
+      return null;
+    }
+    }
+    throw new UnsupportedOperationException();
+  }
 
+
+  // @@protoc_insertion_point(class_scope:opencensus.proto.resource.v1.Resource)
+  private static final io.opencensus.proto.resource.v1.Resource DEFAULT_INSTANCE;
+  static {
+    Resource defaultInstance = new Resource();
+    // New instances are implicitly immutable so no need to make
+    // immutable.
+    DEFAULT_INSTANCE = defaultInstance;
+    com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+      Resource.class, defaultInstance);
+  }
+
+  public static io.opencensus.proto.resource.v1.Resource getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  private static volatile com.google.protobuf.Parser<Resource> PARSER;
+
+  public static com.google.protobuf.Parser<Resource> parser() {
+    return DEFAULT_INSTANCE.getParserForType();
+  }
 }
 

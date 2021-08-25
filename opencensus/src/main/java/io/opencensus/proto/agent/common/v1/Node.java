@@ -10,314 +10,40 @@ package io.opencensus.proto.agent.common.v1;
  * In the future we plan to extend the identifier proto definition to support
  * additional information (e.g cloud id, etc.)
  * </pre>
- * <p>
+ *
  * Protobuf type {@code opencensus.proto.agent.common.v1.Node}
  */
-public final class Node extends
-    com.google.protobuf.GeneratedMessageV3 implements
+public  final class Node extends
+    com.google.protobuf.GeneratedMessageLite<
+        Node, Node.Builder> implements
     // @@protoc_insertion_point(message_implements:opencensus.proto.agent.common.v1.Node)
     NodeOrBuilder {
-  public static final int IDENTIFIER_FIELD_NUMBER = 1;
-  public static final int LIBRARY_INFO_FIELD_NUMBER = 2;
-  public static final int SERVICE_INFO_FIELD_NUMBER = 3;
-  public static final int ATTRIBUTES_FIELD_NUMBER = 4;
-  private static final long serialVersionUID = 0L;
-  // @@protoc_insertion_point(class_scope:opencensus.proto.agent.common.v1.Node)
-  private static final io.opencensus.proto.agent.common.v1.Node DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<Node>
-      PARSER = new com.google.protobuf.AbstractParser<Node>() {
-    @java.lang.Override
-    public Node parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Node(input, extensionRegistry);
-    }
-  };
-
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.agent.common.v1.Node();
-  }
-
-  private io.opencensus.proto.agent.common.v1.ProcessIdentifier identifier_;
-  private io.opencensus.proto.agent.common.v1.LibraryInfo libraryInfo_;
-  private io.opencensus.proto.agent.common.v1.ServiceInfo serviceInfo_;
-  private com.google.protobuf.MapField<
-      java.lang.String, java.lang.String> attributes_;
-  private byte memoizedIsInitialized = -1;
-
-  // Use Node.newBuilder() to construct.
-  private Node(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
   private Node() {
   }
-
-  private Node(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            io.opencensus.proto.agent.common.v1.ProcessIdentifier.Builder subBuilder = null;
-            if (identifier_ != null) {
-              subBuilder = identifier_.toBuilder();
-            }
-            identifier_ = input
-                .readMessage(io.opencensus.proto.agent.common.v1.ProcessIdentifier.parser(),
-                    extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(identifier_);
-              identifier_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 18: {
-            io.opencensus.proto.agent.common.v1.LibraryInfo.Builder subBuilder = null;
-            if (libraryInfo_ != null) {
-              subBuilder = libraryInfo_.toBuilder();
-            }
-            libraryInfo_ = input
-                .readMessage(io.opencensus.proto.agent.common.v1.LibraryInfo.parser(),
-                    extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(libraryInfo_);
-              libraryInfo_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 26: {
-            io.opencensus.proto.agent.common.v1.ServiceInfo.Builder subBuilder = null;
-            if (serviceInfo_ != null) {
-              subBuilder = serviceInfo_.toBuilder();
-            }
-            serviceInfo_ = input
-                .readMessage(io.opencensus.proto.agent.common.v1.ServiceInfo.parser(),
-                    extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(serviceInfo_);
-              serviceInfo_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 34: {
-            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-              attributes_ = com.google.protobuf.MapField.newMapField(
-                  AttributesDefaultEntryHolder.defaultEntry);
-              mutable_bitField0_ |= 0x00000001;
-            }
-            com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-                attributes__ = input.readMessage(
-                AttributesDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-            attributes_.getMutableMap().put(
-                attributes__.getKey(), attributes__.getValue());
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
-
-  public static final com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
-    return io.opencensus.proto.agent.common.v1.CommonProto.internal_static_opencensus_proto_agent_common_v1_Node_descriptor;
-  }
-
-  public static io.opencensus.proto.agent.common.v1.Node parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.agent.common.v1.Node parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.agent.common.v1.Node parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.agent.common.v1.Node parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.agent.common.v1.Node parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.agent.common.v1.Node parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.agent.common.v1.Node parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.agent.common.v1.Node parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.agent.common.v1.Node parseDelimitedFrom(
-      java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.agent.common.v1.Node parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.agent.common.v1.Node parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.agent.common.v1.Node parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(io.opencensus.proto.agent.common.v1.Node prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
-  public static io.opencensus.proto.agent.common.v1.Node getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public static com.google.protobuf.Parser<Node> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new Node();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @SuppressWarnings({"rawtypes"})
-  @java.lang.Override
-  protected com.google.protobuf.MapField internalGetMapField(
-      int number) {
-    switch (number) {
-      case 4:
-        return internalGetAttributes();
-      default:
-        throw new RuntimeException(
-            "Invalid map field number: " + number);
-    }
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
-    return io.opencensus.proto.agent.common.v1.CommonProto.internal_static_opencensus_proto_agent_common_v1_Node_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.agent.common.v1.Node.class,
-            io.opencensus.proto.agent.common.v1.Node.Builder.class);
-  }
-
+  public static final int IDENTIFIER_FIELD_NUMBER = 1;
+  private io.opencensus.proto.agent.common.v1.ProcessIdentifier identifier_;
   /**
    * <pre>
    * Identifier that uniquely identifies a process within a VM/container.
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.ProcessIdentifier identifier = 1;</code>
-   *
-   * @return Whether the identifier field is set.
    */
   @java.lang.Override
   public boolean hasIdentifier() {
     return identifier_ != null;
   }
-
   /**
    * <pre>
    * Identifier that uniquely identifies a process within a VM/container.
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.ProcessIdentifier identifier = 1;</code>
-   *
-   * @return The identifier.
    */
   @java.lang.Override
   public io.opencensus.proto.agent.common.v1.ProcessIdentifier getIdentifier() {
-    return identifier_ == null ?
-        io.opencensus.proto.agent.common.v1.ProcessIdentifier.getDefaultInstance() : identifier_;
+    return identifier_ == null ? io.opencensus.proto.agent.common.v1.ProcessIdentifier.getDefaultInstance() : identifier_;
   }
-
   /**
    * <pre>
    * Identifier that uniquely identifies a process within a VM/container.
@@ -325,40 +51,65 @@ public final class Node extends
    *
    * <code>.opencensus.proto.agent.common.v1.ProcessIdentifier identifier = 1;</code>
    */
-  @java.lang.Override
-  public io.opencensus.proto.agent.common.v1.ProcessIdentifierOrBuilder getIdentifierOrBuilder() {
-    return getIdentifier();
+  private void setIdentifier(io.opencensus.proto.agent.common.v1.ProcessIdentifier value) {
+    value.getClass();
+  identifier_ = value;
+    
+    }
+  /**
+   * <pre>
+   * Identifier that uniquely identifies a process within a VM/container.
+   * </pre>
+   *
+   * <code>.opencensus.proto.agent.common.v1.ProcessIdentifier identifier = 1;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeIdentifier(io.opencensus.proto.agent.common.v1.ProcessIdentifier value) {
+    value.getClass();
+  if (identifier_ != null &&
+        identifier_ != io.opencensus.proto.agent.common.v1.ProcessIdentifier.getDefaultInstance()) {
+      identifier_ =
+        io.opencensus.proto.agent.common.v1.ProcessIdentifier.newBuilder(identifier_).mergeFrom(value).buildPartial();
+    } else {
+      identifier_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * Identifier that uniquely identifies a process within a VM/container.
+   * </pre>
+   *
+   * <code>.opencensus.proto.agent.common.v1.ProcessIdentifier identifier = 1;</code>
+   */
+  private void clearIdentifier() {  identifier_ = null;
+    
   }
 
+  public static final int LIBRARY_INFO_FIELD_NUMBER = 2;
+  private io.opencensus.proto.agent.common.v1.LibraryInfo libraryInfo_;
   /**
    * <pre>
    * Information on the OpenCensus Library that initiates the stream.
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.LibraryInfo library_info = 2;</code>
-   *
-   * @return Whether the libraryInfo field is set.
    */
   @java.lang.Override
   public boolean hasLibraryInfo() {
     return libraryInfo_ != null;
   }
-
   /**
    * <pre>
    * Information on the OpenCensus Library that initiates the stream.
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.LibraryInfo library_info = 2;</code>
-   *
-   * @return The libraryInfo.
    */
   @java.lang.Override
   public io.opencensus.proto.agent.common.v1.LibraryInfo getLibraryInfo() {
-    return libraryInfo_ == null ?
-        io.opencensus.proto.agent.common.v1.LibraryInfo.getDefaultInstance() : libraryInfo_;
+    return libraryInfo_ == null ? io.opencensus.proto.agent.common.v1.LibraryInfo.getDefaultInstance() : libraryInfo_;
   }
-
   /**
    * <pre>
    * Information on the OpenCensus Library that initiates the stream.
@@ -366,40 +117,65 @@ public final class Node extends
    *
    * <code>.opencensus.proto.agent.common.v1.LibraryInfo library_info = 2;</code>
    */
-  @java.lang.Override
-  public io.opencensus.proto.agent.common.v1.LibraryInfoOrBuilder getLibraryInfoOrBuilder() {
-    return getLibraryInfo();
+  private void setLibraryInfo(io.opencensus.proto.agent.common.v1.LibraryInfo value) {
+    value.getClass();
+  libraryInfo_ = value;
+    
+    }
+  /**
+   * <pre>
+   * Information on the OpenCensus Library that initiates the stream.
+   * </pre>
+   *
+   * <code>.opencensus.proto.agent.common.v1.LibraryInfo library_info = 2;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeLibraryInfo(io.opencensus.proto.agent.common.v1.LibraryInfo value) {
+    value.getClass();
+  if (libraryInfo_ != null &&
+        libraryInfo_ != io.opencensus.proto.agent.common.v1.LibraryInfo.getDefaultInstance()) {
+      libraryInfo_ =
+        io.opencensus.proto.agent.common.v1.LibraryInfo.newBuilder(libraryInfo_).mergeFrom(value).buildPartial();
+    } else {
+      libraryInfo_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * Information on the OpenCensus Library that initiates the stream.
+   * </pre>
+   *
+   * <code>.opencensus.proto.agent.common.v1.LibraryInfo library_info = 2;</code>
+   */
+  private void clearLibraryInfo() {  libraryInfo_ = null;
+    
   }
 
+  public static final int SERVICE_INFO_FIELD_NUMBER = 3;
+  private io.opencensus.proto.agent.common.v1.ServiceInfo serviceInfo_;
   /**
    * <pre>
    * Additional information on service.
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.ServiceInfo service_info = 3;</code>
-   *
-   * @return Whether the serviceInfo field is set.
    */
   @java.lang.Override
   public boolean hasServiceInfo() {
     return serviceInfo_ != null;
   }
-
   /**
    * <pre>
    * Additional information on service.
    * </pre>
    *
    * <code>.opencensus.proto.agent.common.v1.ServiceInfo service_info = 3;</code>
-   *
-   * @return The serviceInfo.
    */
   @java.lang.Override
   public io.opencensus.proto.agent.common.v1.ServiceInfo getServiceInfo() {
-    return serviceInfo_ == null ?
-        io.opencensus.proto.agent.common.v1.ServiceInfo.getDefaultInstance() : serviceInfo_;
+    return serviceInfo_ == null ? io.opencensus.proto.agent.common.v1.ServiceInfo.getDefaultInstance() : serviceInfo_;
   }
-
   /**
    * <pre>
    * Additional information on service.
@@ -407,24 +183,71 @@ public final class Node extends
    *
    * <code>.opencensus.proto.agent.common.v1.ServiceInfo service_info = 3;</code>
    */
-  @java.lang.Override
-  public io.opencensus.proto.agent.common.v1.ServiceInfoOrBuilder getServiceInfoOrBuilder() {
-    return getServiceInfo();
+  private void setServiceInfo(io.opencensus.proto.agent.common.v1.ServiceInfo value) {
+    value.getClass();
+  serviceInfo_ = value;
+    
+    }
+  /**
+   * <pre>
+   * Additional information on service.
+   * </pre>
+   *
+   * <code>.opencensus.proto.agent.common.v1.ServiceInfo service_info = 3;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeServiceInfo(io.opencensus.proto.agent.common.v1.ServiceInfo value) {
+    value.getClass();
+  if (serviceInfo_ != null &&
+        serviceInfo_ != io.opencensus.proto.agent.common.v1.ServiceInfo.getDefaultInstance()) {
+      serviceInfo_ =
+        io.opencensus.proto.agent.common.v1.ServiceInfo.newBuilder(serviceInfo_).mergeFrom(value).buildPartial();
+    } else {
+      serviceInfo_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * Additional information on service.
+   * </pre>
+   *
+   * <code>.opencensus.proto.agent.common.v1.ServiceInfo service_info = 3;</code>
+   */
+  private void clearServiceInfo() {  serviceInfo_ = null;
+    
   }
 
-  private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+  public static final int ATTRIBUTES_FIELD_NUMBER = 4;
+  private static final class AttributesDefaultEntryHolder {
+    static final com.google.protobuf.MapEntryLite<
+        java.lang.String, java.lang.String> defaultEntry =
+            com.google.protobuf.MapEntryLite
+            .<java.lang.String, java.lang.String>newDefaultInstance(
+                com.google.protobuf.WireFormat.FieldType.STRING,
+                "",
+                com.google.protobuf.WireFormat.FieldType.STRING,
+                "");
+  }
+  private com.google.protobuf.MapFieldLite<
+      java.lang.String, java.lang.String> attributes_ =
+          com.google.protobuf.MapFieldLite.emptyMapField();
+  private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.String>
   internalGetAttributes() {
-    if (attributes_ == null) {
-      return com.google.protobuf.MapField.emptyMapField(
-          AttributesDefaultEntryHolder.defaultEntry);
+    return attributes_;
+  }
+  private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.String>
+  internalGetMutableAttributes() {
+    if (!attributes_.isMutable()) {
+      attributes_ = attributes_.mutableCopy();
     }
     return attributes_;
   }
+  @java.lang.Override
 
   public int getAttributesCount() {
-    return internalGetAttributes().getMap().size();
+    return internalGetAttributes().size();
   }
-
   /**
    * <pre>
    * Additional attributes.
@@ -432,16 +255,13 @@ public final class Node extends
    *
    * <code>map&lt;string, string&gt; attributes = 4;</code>
    */
-
   @java.lang.Override
+
   public boolean containsAttributes(
       java.lang.String key) {
-    if (key == null) {
-      throw new java.lang.NullPointerException();
-    }
-    return internalGetAttributes().getMap().containsKey(key);
+    key.getClass();
+    return internalGetAttributes().containsKey(key);
   }
-
   /**
    * Use {@link #getAttributesMap()} instead.
    */
@@ -450,7 +270,6 @@ public final class Node extends
   public java.util.Map<java.lang.String, java.lang.String> getAttributes() {
     return getAttributesMap();
   }
-
   /**
    * <pre>
    * Additional attributes.
@@ -461,9 +280,9 @@ public final class Node extends
   @java.lang.Override
 
   public java.util.Map<java.lang.String, java.lang.String> getAttributesMap() {
-    return internalGetAttributes().getMap();
+    return java.util.Collections.unmodifiableMap(
+        internalGetAttributes());
   }
-
   /**
    * <pre>
    * Additional attributes.
@@ -476,14 +295,11 @@ public final class Node extends
   public java.lang.String getAttributesOrDefault(
       java.lang.String key,
       java.lang.String defaultValue) {
-    if (key == null) {
-      throw new java.lang.NullPointerException();
-    }
+    key.getClass();
     java.util.Map<java.lang.String, java.lang.String> map =
-        internalGetAttributes().getMap();
+        internalGetAttributes();
     return map.containsKey(key) ? map.get(key) : defaultValue;
   }
-
   /**
    * <pre>
    * Additional attributes.
@@ -495,197 +311,105 @@ public final class Node extends
 
   public java.lang.String getAttributesOrThrow(
       java.lang.String key) {
-    if (key == null) {
-      throw new java.lang.NullPointerException();
-    }
+    key.getClass();
     java.util.Map<java.lang.String, java.lang.String> map =
-        internalGetAttributes().getMap();
+        internalGetAttributes();
     if (!map.containsKey(key)) {
       throw new java.lang.IllegalArgumentException();
     }
     return map.get(key);
   }
-
-  @java.lang.Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) {
-      return true;
-    }
-    if (isInitialized == 0) {
-      return false;
-    }
-
-    memoizedIsInitialized = 1;
-    return true;
+  /**
+   * <pre>
+   * Additional attributes.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; attributes = 4;</code>
+   */
+  private java.util.Map<java.lang.String, java.lang.String>
+  getMutableAttributesMap() {
+    return internalGetMutableAttributes();
   }
 
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
+  public static io.opencensus.proto.agent.common.v1.Node parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.agent.common.v1.Node parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.agent.common.v1.Node parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.agent.common.v1.Node parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.agent.common.v1.Node parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.agent.common.v1.Node parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.agent.common.v1.Node parseFrom(java.io.InputStream input)
       throws java.io.IOException {
-    if (identifier_ != null) {
-      output.writeMessage(1, getIdentifier());
-    }
-    if (libraryInfo_ != null) {
-      output.writeMessage(2, getLibraryInfo());
-    }
-    if (serviceInfo_ != null) {
-      output.writeMessage(3, getServiceInfo());
-    }
-    com.google.protobuf.GeneratedMessageV3
-        .serializeStringMapTo(
-            output,
-            internalGetAttributes(),
-            AttributesDefaultEntryHolder.defaultEntry,
-            4);
-    unknownFields.writeTo(output);
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.agent.common.v1.Node parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.agent.common.v1.Node parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.agent.common.v1.Node parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.agent.common.v1.Node parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.agent.common.v1.Node parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
   }
 
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) {
-      return size;
-    }
-
-    size = 0;
-    if (identifier_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getIdentifier());
-    }
-    if (libraryInfo_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getLibraryInfo());
-    }
-    if (serviceInfo_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getServiceInfo());
-    }
-    for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
-        : internalGetAttributes().getMap().entrySet()) {
-      com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-          attributes__ = AttributesDefaultEntryHolder.defaultEntry.newBuilderForType()
-                                                                  .setKey(entry.getKey())
-                                                                  .setValue(entry.getValue())
-                                                                  .build();
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, attributes__);
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
+  public static Builder newBuilder() {
+    return (Builder) DEFAULT_INSTANCE.createBuilder();
   }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-      return true;
-    }
-    if (!(obj instanceof io.opencensus.proto.agent.common.v1.Node)) {
-      return super.equals(obj);
-    }
-    io.opencensus.proto.agent.common.v1.Node other = (io.opencensus.proto.agent.common.v1.Node) obj;
-
-    if (hasIdentifier() != other.hasIdentifier()) {
-      return false;
-    }
-    if (hasIdentifier()) {
-      if (!getIdentifier()
-          .equals(other.getIdentifier())) {
-        return false;
-      }
-    }
-    if (hasLibraryInfo() != other.hasLibraryInfo()) {
-      return false;
-    }
-    if (hasLibraryInfo()) {
-      if (!getLibraryInfo()
-          .equals(other.getLibraryInfo())) {
-        return false;
-      }
-    }
-    if (hasServiceInfo() != other.hasServiceInfo()) {
-      return false;
-    }
-    if (hasServiceInfo()) {
-      if (!getServiceInfo()
-          .equals(other.getServiceInfo())) {
-        return false;
-      }
-    }
-    if (!internalGetAttributes().equals(
-        other.internalGetAttributes())) {
-      return false;
-    }
-    return unknownFields.equals(other.unknownFields);
-  }
-
-  @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasIdentifier()) {
-      hash = (37 * hash) + IDENTIFIER_FIELD_NUMBER;
-      hash = (53 * hash) + getIdentifier().hashCode();
-    }
-    if (hasLibraryInfo()) {
-      hash = (37 * hash) + LIBRARY_INFO_FIELD_NUMBER;
-      hash = (53 * hash) + getLibraryInfo().hashCode();
-    }
-    if (hasServiceInfo()) {
-      hash = (37 * hash) + SERVICE_INFO_FIELD_NUMBER;
-      hash = (53 * hash) + getServiceInfo().hashCode();
-    }
-    if (!internalGetAttributes().getMap().isEmpty()) {
-      hash = (37 * hash) + ATTRIBUTES_FIELD_NUMBER;
-      hash = (53 * hash) + internalGetAttributes().hashCode();
-    }
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
-
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<Node> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.agent.common.v1.Node getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final class AttributesDefaultEntryHolder {
-    static final com.google.protobuf.MapEntry<
-        java.lang.String, java.lang.String> defaultEntry =
-        com.google.protobuf.MapEntry
-            .newDefaultInstance(
-                io.opencensus.proto.agent.common.v1.CommonProto.internal_static_opencensus_proto_agent_common_v1_Node_AttributesEntry_descriptor,
-                com.google.protobuf.WireFormat.FieldType.STRING,
-                "",
-                com.google.protobuf.WireFormat.FieldType.STRING,
-                "");
+  public static Builder newBuilder(io.opencensus.proto.agent.common.v1.Node prototype) {
+    return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
   }
 
   /**
@@ -695,252 +419,19 @@ public final class Node extends
    * In the future we plan to extend the identifier proto definition to support
    * additional information (e.g cloud id, etc.)
    * </pre>
-   * <p>
+   *
    * Protobuf type {@code opencensus.proto.agent.common.v1.Node}
    */
   public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+      com.google.protobuf.GeneratedMessageLite.Builder<
+        io.opencensus.proto.agent.common.v1.Node, Builder> implements
       // @@protoc_insertion_point(builder_implements:opencensus.proto.agent.common.v1.Node)
       io.opencensus.proto.agent.common.v1.NodeOrBuilder {
-    private int bitField0_;
-    private io.opencensus.proto.agent.common.v1.ProcessIdentifier identifier_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.agent.common.v1.ProcessIdentifier,
-        io.opencensus.proto.agent.common.v1.ProcessIdentifier.Builder,
-        io.opencensus.proto.agent.common.v1.ProcessIdentifierOrBuilder>
-        identifierBuilder_;
-    private io.opencensus.proto.agent.common.v1.LibraryInfo libraryInfo_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.agent.common.v1.LibraryInfo,
-        io.opencensus.proto.agent.common.v1.LibraryInfo.Builder,
-        io.opencensus.proto.agent.common.v1.LibraryInfoOrBuilder>
-        libraryInfoBuilder_;
-    private io.opencensus.proto.agent.common.v1.ServiceInfo serviceInfo_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.agent.common.v1.ServiceInfo,
-        io.opencensus.proto.agent.common.v1.ServiceInfo.Builder,
-        io.opencensus.proto.agent.common.v1.ServiceInfoOrBuilder>
-        serviceInfoBuilder_;
-    private com.google.protobuf.MapField<
-        java.lang.String, java.lang.String> attributes_;
-
     // Construct using io.opencensus.proto.agent.common.v1.Node.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+      super(DEFAULT_INSTANCE);
     }
 
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.agent.common.v1.CommonProto.internal_static_opencensus_proto_agent_common_v1_Node_descriptor;
-    }
-
-    @SuppressWarnings({"rawtypes"})
-    protected com.google.protobuf.MapField internalGetMapField(
-        int number) {
-      switch (number) {
-        case 4:
-          return internalGetAttributes();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
-    }
-
-    @SuppressWarnings({"rawtypes"})
-    protected com.google.protobuf.MapField internalGetMutableMapField(
-        int number) {
-      switch (number) {
-        case 4:
-          return internalGetMutableAttributes();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.agent.common.v1.CommonProto.internal_static_opencensus_proto_agent_common_v1_Node_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.agent.common.v1.Node.class,
-              io.opencensus.proto.agent.common.v1.Node.Builder.class);
-    }
-
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-          .alwaysUseFieldBuilders) {
-      }
-    }
-
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      if (identifierBuilder_ == null) {
-        identifier_ = null;
-      } else {
-        identifier_ = null;
-        identifierBuilder_ = null;
-      }
-      if (libraryInfoBuilder_ == null) {
-        libraryInfo_ = null;
-      } else {
-        libraryInfo_ = null;
-        libraryInfoBuilder_ = null;
-      }
-      if (serviceInfoBuilder_ == null) {
-        serviceInfo_ = null;
-      } else {
-        serviceInfo_ = null;
-        serviceInfoBuilder_ = null;
-      }
-      internalGetMutableAttributes().clear();
-      return this;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return io.opencensus.proto.agent.common.v1.CommonProto.internal_static_opencensus_proto_agent_common_v1_Node_descriptor;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.agent.common.v1.Node getDefaultInstanceForType() {
-      return io.opencensus.proto.agent.common.v1.Node.getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.agent.common.v1.Node build() {
-      io.opencensus.proto.agent.common.v1.Node result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.agent.common.v1.Node buildPartial() {
-      io.opencensus.proto.agent.common.v1.Node result =
-          new io.opencensus.proto.agent.common.v1.Node(this);
-      int from_bitField0_ = bitField0_;
-      if (identifierBuilder_ == null) {
-        result.identifier_ = identifier_;
-      } else {
-        result.identifier_ = identifierBuilder_.build();
-      }
-      if (libraryInfoBuilder_ == null) {
-        result.libraryInfo_ = libraryInfo_;
-      } else {
-        result.libraryInfo_ = libraryInfoBuilder_.build();
-      }
-      if (serviceInfoBuilder_ == null) {
-        result.serviceInfo_ = serviceInfo_;
-      } else {
-        result.serviceInfo_ = serviceInfoBuilder_.build();
-      }
-      result.attributes_ = internalGetAttributes();
-      result.attributes_.makeImmutable();
-      onBuilt();
-      return result;
-    }
-
-    @java.lang.Override
-    public Builder clone() {
-      return super.clone();
-    }
-
-    @java.lang.Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.setField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-
-    @java.lang.Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-
-    @java.lang.Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-
-    @java.lang.Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof io.opencensus.proto.agent.common.v1.Node) {
-        return mergeFrom((io.opencensus.proto.agent.common.v1.Node) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(io.opencensus.proto.agent.common.v1.Node other) {
-      if (other == io.opencensus.proto.agent.common.v1.Node.getDefaultInstance()) {
-        return this;
-      }
-      if (other.hasIdentifier()) {
-        mergeIdentifier(other.getIdentifier());
-      }
-      if (other.hasLibraryInfo()) {
-        mergeLibraryInfo(other.getLibraryInfo());
-      }
-      if (other.hasServiceInfo()) {
-        mergeServiceInfo(other.getServiceInfo());
-      }
-      internalGetMutableAttributes().mergeFrom(
-          other.internalGetAttributes());
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      io.opencensus.proto.agent.common.v1.Node parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.opencensus.proto.agent.common.v1.Node) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
-      return this;
-    }
 
     /**
      * <pre>
@@ -948,32 +439,22 @@ public final class Node extends
      * </pre>
      *
      * <code>.opencensus.proto.agent.common.v1.ProcessIdentifier identifier = 1;</code>
-     *
-     * @return Whether the identifier field is set.
      */
+    @java.lang.Override
     public boolean hasIdentifier() {
-      return identifierBuilder_ != null || identifier_ != null;
+      return instance.hasIdentifier();
     }
-
     /**
      * <pre>
      * Identifier that uniquely identifies a process within a VM/container.
      * </pre>
      *
      * <code>.opencensus.proto.agent.common.v1.ProcessIdentifier identifier = 1;</code>
-     *
-     * @return The identifier.
      */
+    @java.lang.Override
     public io.opencensus.proto.agent.common.v1.ProcessIdentifier getIdentifier() {
-      if (identifierBuilder_ == null) {
-        return identifier_ == null ?
-            io.opencensus.proto.agent.common.v1.ProcessIdentifier.getDefaultInstance() :
-            identifier_;
-      } else {
-        return identifierBuilder_.getMessage();
-      }
+      return instance.getIdentifier();
     }
-
     /**
      * <pre>
      * Identifier that uniquely identifies a process within a VM/container.
@@ -982,19 +463,10 @@ public final class Node extends
      * <code>.opencensus.proto.agent.common.v1.ProcessIdentifier identifier = 1;</code>
      */
     public Builder setIdentifier(io.opencensus.proto.agent.common.v1.ProcessIdentifier value) {
-      if (identifierBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        identifier_ = value;
-        onChanged();
-      } else {
-        identifierBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setIdentifier(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * Identifier that uniquely identifies a process within a VM/container.
@@ -1004,16 +476,10 @@ public final class Node extends
      */
     public Builder setIdentifier(
         io.opencensus.proto.agent.common.v1.ProcessIdentifier.Builder builderForValue) {
-      if (identifierBuilder_ == null) {
-        identifier_ = builderForValue.build();
-        onChanged();
-      } else {
-        identifierBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setIdentifier(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * Identifier that uniquely identifies a process within a VM/container.
@@ -1022,22 +488,10 @@ public final class Node extends
      * <code>.opencensus.proto.agent.common.v1.ProcessIdentifier identifier = 1;</code>
      */
     public Builder mergeIdentifier(io.opencensus.proto.agent.common.v1.ProcessIdentifier value) {
-      if (identifierBuilder_ == null) {
-        if (identifier_ != null) {
-          identifier_ =
-              io.opencensus.proto.agent.common.v1.ProcessIdentifier.newBuilder(identifier_)
-                                                                   .mergeFrom(value).buildPartial();
-        } else {
-          identifier_ = value;
-        }
-        onChanged();
-      } else {
-        identifierBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeIdentifier(value);
       return this;
     }
-
     /**
      * <pre>
      * Identifier that uniquely identifies a process within a VM/container.
@@ -1045,71 +499,9 @@ public final class Node extends
      *
      * <code>.opencensus.proto.agent.common.v1.ProcessIdentifier identifier = 1;</code>
      */
-    public Builder clearIdentifier() {
-      if (identifierBuilder_ == null) {
-        identifier_ = null;
-        onChanged();
-      } else {
-        identifier_ = null;
-        identifierBuilder_ = null;
-      }
-
+    public Builder clearIdentifier() {  copyOnWrite();
+      instance.clearIdentifier();
       return this;
-    }
-
-    /**
-     * <pre>
-     * Identifier that uniquely identifies a process within a VM/container.
-     * </pre>
-     *
-     * <code>.opencensus.proto.agent.common.v1.ProcessIdentifier identifier = 1;</code>
-     */
-    public io.opencensus.proto.agent.common.v1.ProcessIdentifier.Builder getIdentifierBuilder() {
-
-      onChanged();
-      return getIdentifierFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * Identifier that uniquely identifies a process within a VM/container.
-     * </pre>
-     *
-     * <code>.opencensus.proto.agent.common.v1.ProcessIdentifier identifier = 1;</code>
-     */
-    public io.opencensus.proto.agent.common.v1.ProcessIdentifierOrBuilder getIdentifierOrBuilder() {
-      if (identifierBuilder_ != null) {
-        return identifierBuilder_.getMessageOrBuilder();
-      } else {
-        return identifier_ == null ?
-            io.opencensus.proto.agent.common.v1.ProcessIdentifier.getDefaultInstance() :
-            identifier_;
-      }
-    }
-
-    /**
-     * <pre>
-     * Identifier that uniquely identifies a process within a VM/container.
-     * </pre>
-     *
-     * <code>.opencensus.proto.agent.common.v1.ProcessIdentifier identifier = 1;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.agent.common.v1.ProcessIdentifier,
-        io.opencensus.proto.agent.common.v1.ProcessIdentifier.Builder,
-        io.opencensus.proto.agent.common.v1.ProcessIdentifierOrBuilder>
-    getIdentifierFieldBuilder() {
-      if (identifierBuilder_ == null) {
-        identifierBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.agent.common.v1.ProcessIdentifier,
-            io.opencensus.proto.agent.common.v1.ProcessIdentifier.Builder,
-            io.opencensus.proto.agent.common.v1.ProcessIdentifierOrBuilder>(
-            getIdentifier(),
-            getParentForChildren(),
-            isClean());
-        identifier_ = null;
-      }
-      return identifierBuilder_;
     }
 
     /**
@@ -1118,31 +510,22 @@ public final class Node extends
      * </pre>
      *
      * <code>.opencensus.proto.agent.common.v1.LibraryInfo library_info = 2;</code>
-     *
-     * @return Whether the libraryInfo field is set.
      */
+    @java.lang.Override
     public boolean hasLibraryInfo() {
-      return libraryInfoBuilder_ != null || libraryInfo_ != null;
+      return instance.hasLibraryInfo();
     }
-
     /**
      * <pre>
      * Information on the OpenCensus Library that initiates the stream.
      * </pre>
      *
      * <code>.opencensus.proto.agent.common.v1.LibraryInfo library_info = 2;</code>
-     *
-     * @return The libraryInfo.
      */
+    @java.lang.Override
     public io.opencensus.proto.agent.common.v1.LibraryInfo getLibraryInfo() {
-      if (libraryInfoBuilder_ == null) {
-        return libraryInfo_ == null ?
-            io.opencensus.proto.agent.common.v1.LibraryInfo.getDefaultInstance() : libraryInfo_;
-      } else {
-        return libraryInfoBuilder_.getMessage();
-      }
+      return instance.getLibraryInfo();
     }
-
     /**
      * <pre>
      * Information on the OpenCensus Library that initiates the stream.
@@ -1151,19 +534,10 @@ public final class Node extends
      * <code>.opencensus.proto.agent.common.v1.LibraryInfo library_info = 2;</code>
      */
     public Builder setLibraryInfo(io.opencensus.proto.agent.common.v1.LibraryInfo value) {
-      if (libraryInfoBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        libraryInfo_ = value;
-        onChanged();
-      } else {
-        libraryInfoBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setLibraryInfo(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * Information on the OpenCensus Library that initiates the stream.
@@ -1173,16 +547,10 @@ public final class Node extends
      */
     public Builder setLibraryInfo(
         io.opencensus.proto.agent.common.v1.LibraryInfo.Builder builderForValue) {
-      if (libraryInfoBuilder_ == null) {
-        libraryInfo_ = builderForValue.build();
-        onChanged();
-      } else {
-        libraryInfoBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setLibraryInfo(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * Information on the OpenCensus Library that initiates the stream.
@@ -1191,22 +559,10 @@ public final class Node extends
      * <code>.opencensus.proto.agent.common.v1.LibraryInfo library_info = 2;</code>
      */
     public Builder mergeLibraryInfo(io.opencensus.proto.agent.common.v1.LibraryInfo value) {
-      if (libraryInfoBuilder_ == null) {
-        if (libraryInfo_ != null) {
-          libraryInfo_ =
-              io.opencensus.proto.agent.common.v1.LibraryInfo.newBuilder(libraryInfo_)
-                                                             .mergeFrom(value).buildPartial();
-        } else {
-          libraryInfo_ = value;
-        }
-        onChanged();
-      } else {
-        libraryInfoBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeLibraryInfo(value);
       return this;
     }
-
     /**
      * <pre>
      * Information on the OpenCensus Library that initiates the stream.
@@ -1214,70 +570,9 @@ public final class Node extends
      *
      * <code>.opencensus.proto.agent.common.v1.LibraryInfo library_info = 2;</code>
      */
-    public Builder clearLibraryInfo() {
-      if (libraryInfoBuilder_ == null) {
-        libraryInfo_ = null;
-        onChanged();
-      } else {
-        libraryInfo_ = null;
-        libraryInfoBuilder_ = null;
-      }
-
+    public Builder clearLibraryInfo() {  copyOnWrite();
+      instance.clearLibraryInfo();
       return this;
-    }
-
-    /**
-     * <pre>
-     * Information on the OpenCensus Library that initiates the stream.
-     * </pre>
-     *
-     * <code>.opencensus.proto.agent.common.v1.LibraryInfo library_info = 2;</code>
-     */
-    public io.opencensus.proto.agent.common.v1.LibraryInfo.Builder getLibraryInfoBuilder() {
-
-      onChanged();
-      return getLibraryInfoFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * Information on the OpenCensus Library that initiates the stream.
-     * </pre>
-     *
-     * <code>.opencensus.proto.agent.common.v1.LibraryInfo library_info = 2;</code>
-     */
-    public io.opencensus.proto.agent.common.v1.LibraryInfoOrBuilder getLibraryInfoOrBuilder() {
-      if (libraryInfoBuilder_ != null) {
-        return libraryInfoBuilder_.getMessageOrBuilder();
-      } else {
-        return libraryInfo_ == null ?
-            io.opencensus.proto.agent.common.v1.LibraryInfo.getDefaultInstance() : libraryInfo_;
-      }
-    }
-
-    /**
-     * <pre>
-     * Information on the OpenCensus Library that initiates the stream.
-     * </pre>
-     *
-     * <code>.opencensus.proto.agent.common.v1.LibraryInfo library_info = 2;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.agent.common.v1.LibraryInfo,
-        io.opencensus.proto.agent.common.v1.LibraryInfo.Builder,
-        io.opencensus.proto.agent.common.v1.LibraryInfoOrBuilder>
-    getLibraryInfoFieldBuilder() {
-      if (libraryInfoBuilder_ == null) {
-        libraryInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.agent.common.v1.LibraryInfo,
-            io.opencensus.proto.agent.common.v1.LibraryInfo.Builder,
-            io.opencensus.proto.agent.common.v1.LibraryInfoOrBuilder>(
-            getLibraryInfo(),
-            getParentForChildren(),
-            isClean());
-        libraryInfo_ = null;
-      }
-      return libraryInfoBuilder_;
     }
 
     /**
@@ -1286,31 +581,22 @@ public final class Node extends
      * </pre>
      *
      * <code>.opencensus.proto.agent.common.v1.ServiceInfo service_info = 3;</code>
-     *
-     * @return Whether the serviceInfo field is set.
      */
+    @java.lang.Override
     public boolean hasServiceInfo() {
-      return serviceInfoBuilder_ != null || serviceInfo_ != null;
+      return instance.hasServiceInfo();
     }
-
     /**
      * <pre>
      * Additional information on service.
      * </pre>
      *
      * <code>.opencensus.proto.agent.common.v1.ServiceInfo service_info = 3;</code>
-     *
-     * @return The serviceInfo.
      */
+    @java.lang.Override
     public io.opencensus.proto.agent.common.v1.ServiceInfo getServiceInfo() {
-      if (serviceInfoBuilder_ == null) {
-        return serviceInfo_ == null ?
-            io.opencensus.proto.agent.common.v1.ServiceInfo.getDefaultInstance() : serviceInfo_;
-      } else {
-        return serviceInfoBuilder_.getMessage();
-      }
+      return instance.getServiceInfo();
     }
-
     /**
      * <pre>
      * Additional information on service.
@@ -1319,19 +605,10 @@ public final class Node extends
      * <code>.opencensus.proto.agent.common.v1.ServiceInfo service_info = 3;</code>
      */
     public Builder setServiceInfo(io.opencensus.proto.agent.common.v1.ServiceInfo value) {
-      if (serviceInfoBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        serviceInfo_ = value;
-        onChanged();
-      } else {
-        serviceInfoBuilder_.setMessage(value);
-      }
-
+      copyOnWrite();
+      instance.setServiceInfo(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * Additional information on service.
@@ -1341,16 +618,10 @@ public final class Node extends
      */
     public Builder setServiceInfo(
         io.opencensus.proto.agent.common.v1.ServiceInfo.Builder builderForValue) {
-      if (serviceInfoBuilder_ == null) {
-        serviceInfo_ = builderForValue.build();
-        onChanged();
-      } else {
-        serviceInfoBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setServiceInfo(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * Additional information on service.
@@ -1359,121 +630,47 @@ public final class Node extends
      * <code>.opencensus.proto.agent.common.v1.ServiceInfo service_info = 3;</code>
      */
     public Builder mergeServiceInfo(io.opencensus.proto.agent.common.v1.ServiceInfo value) {
-      if (serviceInfoBuilder_ == null) {
-        if (serviceInfo_ != null) {
-          serviceInfo_ =
-              io.opencensus.proto.agent.common.v1.ServiceInfo.newBuilder(serviceInfo_)
-                                                             .mergeFrom(value).buildPartial();
-        } else {
-          serviceInfo_ = value;
-        }
-        onChanged();
-      } else {
-        serviceInfoBuilder_.mergeFrom(value);
-      }
-
+      copyOnWrite();
+      instance.mergeServiceInfo(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Additional information on service.
+     * </pre>
+     *
+     * <code>.opencensus.proto.agent.common.v1.ServiceInfo service_info = 3;</code>
+     */
+    public Builder clearServiceInfo() {  copyOnWrite();
+      instance.clearServiceInfo();
       return this;
     }
 
-    /**
-     * <pre>
-     * Additional information on service.
-     * </pre>
-     *
-     * <code>.opencensus.proto.agent.common.v1.ServiceInfo service_info = 3;</code>
-     */
-    public Builder clearServiceInfo() {
-      if (serviceInfoBuilder_ == null) {
-        serviceInfo_ = null;
-        onChanged();
-      } else {
-        serviceInfo_ = null;
-        serviceInfoBuilder_ = null;
-      }
-
-      return this;
-    }
-
-    /**
-     * <pre>
-     * Additional information on service.
-     * </pre>
-     *
-     * <code>.opencensus.proto.agent.common.v1.ServiceInfo service_info = 3;</code>
-     */
-    public io.opencensus.proto.agent.common.v1.ServiceInfo.Builder getServiceInfoBuilder() {
-
-      onChanged();
-      return getServiceInfoFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * Additional information on service.
-     * </pre>
-     *
-     * <code>.opencensus.proto.agent.common.v1.ServiceInfo service_info = 3;</code>
-     */
-    public io.opencensus.proto.agent.common.v1.ServiceInfoOrBuilder getServiceInfoOrBuilder() {
-      if (serviceInfoBuilder_ != null) {
-        return serviceInfoBuilder_.getMessageOrBuilder();
-      } else {
-        return serviceInfo_ == null ?
-            io.opencensus.proto.agent.common.v1.ServiceInfo.getDefaultInstance() : serviceInfo_;
-      }
-    }
-
-    /**
-     * <pre>
-     * Additional information on service.
-     * </pre>
-     *
-     * <code>.opencensus.proto.agent.common.v1.ServiceInfo service_info = 3;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.agent.common.v1.ServiceInfo,
-        io.opencensus.proto.agent.common.v1.ServiceInfo.Builder,
-        io.opencensus.proto.agent.common.v1.ServiceInfoOrBuilder>
-    getServiceInfoFieldBuilder() {
-      if (serviceInfoBuilder_ == null) {
-        serviceInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.agent.common.v1.ServiceInfo,
-            io.opencensus.proto.agent.common.v1.ServiceInfo.Builder,
-            io.opencensus.proto.agent.common.v1.ServiceInfoOrBuilder>(
-            getServiceInfo(),
-            getParentForChildren(),
-            isClean());
-        serviceInfo_ = null;
-      }
-      return serviceInfoBuilder_;
-    }
-
-    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-    internalGetAttributes() {
-      if (attributes_ == null) {
-        return com.google.protobuf.MapField.emptyMapField(
-            AttributesDefaultEntryHolder.defaultEntry);
-      }
-      return attributes_;
-    }
-
-    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-    internalGetMutableAttributes() {
-      onChanged();
-      if (attributes_ == null) {
-        attributes_ = com.google.protobuf.MapField.newMapField(
-            AttributesDefaultEntryHolder.defaultEntry);
-      }
-      if (!attributes_.isMutable()) {
-        attributes_ = attributes_.copy();
-      }
-      return attributes_;
-    }
+    @java.lang.Override
 
     public int getAttributesCount() {
-      return internalGetAttributes().getMap().size();
+      return instance.getAttributesMap().size();
+    }
+    /**
+     * <pre>
+     * Additional attributes.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; attributes = 4;</code>
+     */
+    @java.lang.Override
+
+    public boolean containsAttributes(
+        java.lang.String key) {
+      key.getClass();
+      return instance.getAttributesMap().containsKey(key);
     }
 
+    public Builder clearAttributes() {
+      copyOnWrite();
+      instance.getMutableAttributesMap().clear();
+      return this;
+    }
     /**
      * <pre>
      * Additional attributes.
@@ -1482,15 +679,13 @@ public final class Node extends
      * <code>map&lt;string, string&gt; attributes = 4;</code>
      */
 
-    @java.lang.Override
-    public boolean containsAttributes(
+    public Builder removeAttributes(
         java.lang.String key) {
-      if (key == null) {
-        throw new java.lang.NullPointerException();
-      }
-      return internalGetAttributes().getMap().containsKey(key);
+      key.getClass();
+      copyOnWrite();
+      instance.getMutableAttributesMap().remove(key);
+      return this;
     }
-
     /**
      * Use {@link #getAttributesMap()} instead.
      */
@@ -1499,7 +694,6 @@ public final class Node extends
     public java.util.Map<java.lang.String, java.lang.String> getAttributes() {
       return getAttributesMap();
     }
-
     /**
      * <pre>
      * Additional attributes.
@@ -1508,11 +702,10 @@ public final class Node extends
      * <code>map&lt;string, string&gt; attributes = 4;</code>
      */
     @java.lang.Override
-
     public java.util.Map<java.lang.String, java.lang.String> getAttributesMap() {
-      return internalGetAttributes().getMap();
+      return java.util.Collections.unmodifiableMap(
+          instance.getAttributesMap());
     }
-
     /**
      * <pre>
      * Additional attributes.
@@ -1525,14 +718,11 @@ public final class Node extends
     public java.lang.String getAttributesOrDefault(
         java.lang.String key,
         java.lang.String defaultValue) {
-      if (key == null) {
-        throw new java.lang.NullPointerException();
-      }
+      key.getClass();
       java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetAttributes().getMap();
+          instance.getAttributesMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
-
     /**
      * <pre>
      * Additional attributes.
@@ -1544,50 +734,14 @@ public final class Node extends
 
     public java.lang.String getAttributesOrThrow(
         java.lang.String key) {
-      if (key == null) {
-        throw new java.lang.NullPointerException();
-      }
+      key.getClass();
       java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetAttributes().getMap();
+          instance.getAttributesMap();
       if (!map.containsKey(key)) {
         throw new java.lang.IllegalArgumentException();
       }
       return map.get(key);
     }
-
-    public Builder clearAttributes() {
-      internalGetMutableAttributes().getMutableMap()
-                                    .clear();
-      return this;
-    }
-
-    /**
-     * <pre>
-     * Additional attributes.
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; attributes = 4;</code>
-     */
-
-    public Builder removeAttributes(
-        java.lang.String key) {
-      if (key == null) {
-        throw new java.lang.NullPointerException();
-      }
-      internalGetMutableAttributes().getMutableMap()
-                                    .remove(key);
-      return this;
-    }
-
-    /**
-     * Use alternate mutation accessors instead.
-     */
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, java.lang.String>
-    getMutableAttributes() {
-      return internalGetMutableAttributes().getMutableMap();
-    }
-
     /**
      * <pre>
      * Additional attributes.
@@ -1598,17 +752,12 @@ public final class Node extends
     public Builder putAttributes(
         java.lang.String key,
         java.lang.String value) {
-      if (key == null) {
-        throw new java.lang.NullPointerException();
-      }
-      if (value == null) {
-        throw new java.lang.NullPointerException();
-      }
-      internalGetMutableAttributes().getMutableMap()
-                                    .put(key, value);
+      key.getClass();
+      value.getClass();
+      copyOnWrite();
+      instance.getMutableAttributesMap().put(key, value);
       return this;
     }
-
     /**
      * <pre>
      * Additional attributes.
@@ -1616,29 +765,89 @@ public final class Node extends
      *
      * <code>map&lt;string, string&gt; attributes = 4;</code>
      */
-
     public Builder putAllAttributes(
         java.util.Map<java.lang.String, java.lang.String> values) {
-      internalGetMutableAttributes().getMutableMap()
-                                    .putAll(values);
+      copyOnWrite();
+      instance.getMutableAttributesMap().putAll(values);
       return this;
     }
 
-    @java.lang.Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
-    }
-
-    @java.lang.Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
-    }
-
-
     // @@protoc_insertion_point(builder_scope:opencensus.proto.agent.common.v1.Node)
   }
+  @java.lang.Override
+  @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+  protected final java.lang.Object dynamicMethod(
+      com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+      java.lang.Object arg0, java.lang.Object arg1) {
+    switch (method) {
+      case NEW_MUTABLE_INSTANCE: {
+        return new io.opencensus.proto.agent.common.v1.Node();
+      }
+      case NEW_BUILDER: {
+        return new Builder();
+      }
+      case BUILD_MESSAGE_INFO: {
+          java.lang.Object[] objects = new java.lang.Object[] {
+            "identifier_",
+            "libraryInfo_",
+            "serviceInfo_",
+            "attributes_",
+            AttributesDefaultEntryHolder.defaultEntry,
+          };
+          java.lang.String info =
+              "\u0000\u0004\u0000\u0000\u0001\u0004\u0004\u0001\u0000\u0000\u0001\t\u0002\t\u0003" +
+              "\t\u00042";
+          return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+      }
+      // fall through
+      case GET_DEFAULT_INSTANCE: {
+        return DEFAULT_INSTANCE;
+      }
+      case GET_PARSER: {
+        com.google.protobuf.Parser<io.opencensus.proto.agent.common.v1.Node> parser = PARSER;
+        if (parser == null) {
+          synchronized (io.opencensus.proto.agent.common.v1.Node.class) {
+            parser = PARSER;
+            if (parser == null) {
+              parser =
+                  new DefaultInstanceBasedParser<io.opencensus.proto.agent.common.v1.Node>(
+                      DEFAULT_INSTANCE);
+              PARSER = parser;
+            }
+          }
+        }
+        return parser;
+    }
+    case GET_MEMOIZED_IS_INITIALIZED: {
+      return (byte) 1;
+    }
+    case SET_MEMOIZED_IS_INITIALIZED: {
+      return null;
+    }
+    }
+    throw new UnsupportedOperationException();
+  }
 
+
+  // @@protoc_insertion_point(class_scope:opencensus.proto.agent.common.v1.Node)
+  private static final io.opencensus.proto.agent.common.v1.Node DEFAULT_INSTANCE;
+  static {
+    Node defaultInstance = new Node();
+    // New instances are implicitly immutable so no need to make
+    // immutable.
+    DEFAULT_INSTANCE = defaultInstance;
+    com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+      Node.class, defaultInstance);
+  }
+
+  public static io.opencensus.proto.agent.common.v1.Node getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  private static volatile com.google.protobuf.Parser<Node> PARSER;
+
+  public static com.google.protobuf.Parser<Node> parser() {
+    return DEFAULT_INSTANCE.getParserForType();
+  }
 }
 

@@ -9,262 +9,2042 @@ package io.opencensus.proto.metrics.v1;
  * optionally contains a histogram representing the distribution of those
  * values across a set of buckets.
  * </pre>
- * <p>
+ *
  * Protobuf type {@code opencensus.proto.metrics.v1.DistributionValue}
  */
-public final class DistributionValue extends
-    com.google.protobuf.GeneratedMessageV3 implements
+public  final class DistributionValue extends
+    com.google.protobuf.GeneratedMessageLite<
+        DistributionValue, DistributionValue.Builder> implements
     // @@protoc_insertion_point(message_implements:opencensus.proto.metrics.v1.DistributionValue)
     DistributionValueOrBuilder {
-  public static final int COUNT_FIELD_NUMBER = 1;
-  public static final int SUM_FIELD_NUMBER = 2;
-  public static final int SUM_OF_SQUARED_DEVIATION_FIELD_NUMBER = 3;
-  public static final int BUCKET_OPTIONS_FIELD_NUMBER = 4;
-  public static final int BUCKETS_FIELD_NUMBER = 5;
-  private static final long serialVersionUID = 0L;
-  // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.DistributionValue)
-  private static final io.opencensus.proto.metrics.v1.DistributionValue DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<DistributionValue>
-      PARSER = new com.google.protobuf.AbstractParser<DistributionValue>() {
-    @java.lang.Override
-    public DistributionValue parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new DistributionValue(input, extensionRegistry);
-    }
-  };
-
-  static {
-    DEFAULT_INSTANCE = new io.opencensus.proto.metrics.v1.DistributionValue();
-  }
-
-  private long count_;
-  private double sum_;
-  private double sumOfSquaredDeviation_;
-  private io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucketOptions_;
-  private java.util.List<io.opencensus.proto.metrics.v1.DistributionValue.Bucket> buckets_;
-  private byte memoizedIsInitialized = -1;
-
-  // Use DistributionValue.newBuilder() to construct.
-  private DistributionValue(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
   private DistributionValue() {
-    buckets_ = java.util.Collections.emptyList();
+    buckets_ = emptyProtobufList();
   }
+  public interface BucketOptionsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:opencensus.proto.metrics.v1.DistributionValue.BucketOptions)
+      com.google.protobuf.MessageLiteOrBuilder {
 
-  private DistributionValue(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
+    /**
+     * <pre>
+     * Bucket with explicit bounds.
+     * </pre>
+     *
+     * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;</code>
+     * @return Whether the explicit field is set.
+     */
+    boolean hasExplicit();
+    /**
+     * <pre>
+     * Bucket with explicit bounds.
+     * </pre>
+     *
+     * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;</code>
+     * @return The explicit.
+     */
+    io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit getExplicit();
+
+    public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.TypeCase getTypeCase();
+  }
+  /**
+   * <pre>
+   * A Distribution may optionally contain a histogram of the values in the
+   * population. The bucket boundaries for that histogram are described by
+   * BucketOptions.
+   * If bucket_options has no type, then there is no histogram associated with
+   * the Distribution.
+   * </pre>
+   *
+   * Protobuf type {@code opencensus.proto.metrics.v1.DistributionValue.BucketOptions}
+   */
+  public  static final class BucketOptions extends
+      com.google.protobuf.GeneratedMessageLite<
+          BucketOptions, BucketOptions.Builder> implements
+      // @@protoc_insertion_point(message_implements:opencensus.proto.metrics.v1.DistributionValue.BucketOptions)
+      BucketOptionsOrBuilder {
+    private BucketOptions() {
     }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 8: {
+    public interface ExplicitOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit)
+        com.google.protobuf.MessageLiteOrBuilder {
 
-            count_ = input.readInt64();
-            break;
-          }
-          case 17: {
+      /**
+       * <pre>
+       * The values must be strictly increasing and &gt; 0.
+       * </pre>
+       *
+       * <code>repeated double bounds = 1;</code>
+       * @return A list containing the bounds.
+       */
+      java.util.List<java.lang.Double> getBoundsList();
+      /**
+       * <pre>
+       * The values must be strictly increasing and &gt; 0.
+       * </pre>
+       *
+       * <code>repeated double bounds = 1;</code>
+       * @return The count of bounds.
+       */
+      int getBoundsCount();
+      /**
+       * <pre>
+       * The values must be strictly increasing and &gt; 0.
+       * </pre>
+       *
+       * <code>repeated double bounds = 1;</code>
+       * @param index The index of the element to return.
+       * @return The bounds at the given index.
+       */
+      double getBounds(int index);
+    }
+    /**
+     * <pre>
+     * Specifies a set of buckets with arbitrary upper-bounds.
+     * This defines size(bounds) + 1 (= N) buckets. The boundaries for bucket
+     * index i are:
+     * [0, bucket_bounds[i]) for i == 0
+     * [bucket_bounds[i-1], bucket_bounds[i]) for 0 &lt; i &lt; N-1
+     * [bucket_bounds[i], +infinity) for i == N-1
+     * </pre>
+     *
+     * Protobuf type {@code opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit}
+     */
+    public  static final class Explicit extends
+        com.google.protobuf.GeneratedMessageLite<
+            Explicit, Explicit.Builder> implements
+        // @@protoc_insertion_point(message_implements:opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit)
+        ExplicitOrBuilder {
+      private Explicit() {
+        bounds_ = emptyDoubleList();
+      }
+      public static final int BOUNDS_FIELD_NUMBER = 1;
+      private com.google.protobuf.Internal.DoubleList bounds_;
+      /**
+       * <pre>
+       * The values must be strictly increasing and &gt; 0.
+       * </pre>
+       *
+       * <code>repeated double bounds = 1;</code>
+       * @return A list containing the bounds.
+       */
+      @java.lang.Override
+      public java.util.List<java.lang.Double>
+          getBoundsList() {
+        return bounds_;
+      }
+      /**
+       * <pre>
+       * The values must be strictly increasing and &gt; 0.
+       * </pre>
+       *
+       * <code>repeated double bounds = 1;</code>
+       * @return The count of bounds.
+       */
+      @java.lang.Override
+      public int getBoundsCount() {
+        return bounds_.size();
+      }
+      /**
+       * <pre>
+       * The values must be strictly increasing and &gt; 0.
+       * </pre>
+       *
+       * <code>repeated double bounds = 1;</code>
+       * @param index The index of the element to return.
+       * @return The bounds at the given index.
+       */
+      @java.lang.Override
+      public double getBounds(int index) {
+        return bounds_.getDouble(index);
+      }
+      private int boundsMemoizedSerializedSize = -1;
+      private void ensureBoundsIsMutable() {
+        com.google.protobuf.Internal.DoubleList tmp = bounds_;
+        if (!tmp.isModifiable()) {
+          bounds_ =
+              com.google.protobuf.GeneratedMessageLite.mutableCopy(tmp);
+         }
+      }
+      /**
+       * <pre>
+       * The values must be strictly increasing and &gt; 0.
+       * </pre>
+       *
+       * <code>repeated double bounds = 1;</code>
+       * @param index The index to set the value at.
+       * @param value The bounds to set.
+       */
+      private void setBounds(
+          int index, double value) {
+        ensureBoundsIsMutable();
+        bounds_.setDouble(index, value);
+      }
+      /**
+       * <pre>
+       * The values must be strictly increasing and &gt; 0.
+       * </pre>
+       *
+       * <code>repeated double bounds = 1;</code>
+       * @param value The bounds to add.
+       */
+      private void addBounds(double value) {
+        ensureBoundsIsMutable();
+        bounds_.addDouble(value);
+      }
+      /**
+       * <pre>
+       * The values must be strictly increasing and &gt; 0.
+       * </pre>
+       *
+       * <code>repeated double bounds = 1;</code>
+       * @param values The bounds to add.
+       */
+      private void addAllBounds(
+          java.lang.Iterable<? extends java.lang.Double> values) {
+        ensureBoundsIsMutable();
+        com.google.protobuf.AbstractMessageLite.addAll(
+            values, bounds_);
+      }
+      /**
+       * <pre>
+       * The values must be strictly increasing and &gt; 0.
+       * </pre>
+       *
+       * <code>repeated double bounds = 1;</code>
+       */
+      private void clearBounds() {
+        bounds_ = emptyDoubleList();
+      }
 
-            sum_ = input.readDouble();
-            break;
-          }
-          case 25: {
+      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input);
+      }
+      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      }
+      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input);
+      }
+      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input, extensionRegistry);
+      }
 
-            sumOfSquaredDeviation_ = input.readDouble();
-            break;
-          }
-          case 34: {
-            io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Builder subBuilder =
-                null;
-            if (bucketOptions_ != null) {
-              subBuilder = bucketOptions_.toBuilder();
-            }
-            bucketOptions_ = input.readMessage(
-                io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.parser(),
-                extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(bucketOptions_);
-              bucketOptions_ = subBuilder.buildPartial();
-            }
+      public static Builder newBuilder() {
+        return (Builder) DEFAULT_INSTANCE.createBuilder();
+      }
+      public static Builder newBuilder(io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit prototype) {
+        return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      }
 
-            break;
+      /**
+       * <pre>
+       * Specifies a set of buckets with arbitrary upper-bounds.
+       * This defines size(bounds) + 1 (= N) buckets. The boundaries for bucket
+       * index i are:
+       * [0, bucket_bounds[i]) for i == 0
+       * [bucket_bounds[i-1], bucket_bounds[i]) for 0 &lt; i &lt; N-1
+       * [bucket_bounds[i], +infinity) for i == N-1
+       * </pre>
+       *
+       * Protobuf type {@code opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageLite.Builder<
+            io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit, Builder> implements
+          // @@protoc_insertion_point(builder_implements:opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit)
+          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.ExplicitOrBuilder {
+        // Construct using io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.newBuilder()
+        private Builder() {
+          super(DEFAULT_INSTANCE);
+        }
+
+
+        /**
+         * <pre>
+         * The values must be strictly increasing and &gt; 0.
+         * </pre>
+         *
+         * <code>repeated double bounds = 1;</code>
+         * @return A list containing the bounds.
+         */
+        @java.lang.Override
+        public java.util.List<java.lang.Double>
+            getBoundsList() {
+          return java.util.Collections.unmodifiableList(
+              instance.getBoundsList());
+        }
+        /**
+         * <pre>
+         * The values must be strictly increasing and &gt; 0.
+         * </pre>
+         *
+         * <code>repeated double bounds = 1;</code>
+         * @return The count of bounds.
+         */
+        @java.lang.Override
+        public int getBoundsCount() {
+          return instance.getBoundsCount();
+        }
+        /**
+         * <pre>
+         * The values must be strictly increasing and &gt; 0.
+         * </pre>
+         *
+         * <code>repeated double bounds = 1;</code>
+         * @param index The index of the element to return.
+         * @return The bounds at the given index.
+         */
+        @java.lang.Override
+        public double getBounds(int index) {
+          return instance.getBounds(index);
+        }
+        /**
+         * <pre>
+         * The values must be strictly increasing and &gt; 0.
+         * </pre>
+         *
+         * <code>repeated double bounds = 1;</code>
+         * @param value The bounds to set.
+         * @return This builder for chaining.
+         */
+        public Builder setBounds(
+            int index, double value) {
+          copyOnWrite();
+          instance.setBounds(index, value);
+          return this;
+        }
+        /**
+         * <pre>
+         * The values must be strictly increasing and &gt; 0.
+         * </pre>
+         *
+         * <code>repeated double bounds = 1;</code>
+         * @param value The bounds to add.
+         * @return This builder for chaining.
+         */
+        public Builder addBounds(double value) {
+          copyOnWrite();
+          instance.addBounds(value);
+          return this;
+        }
+        /**
+         * <pre>
+         * The values must be strictly increasing and &gt; 0.
+         * </pre>
+         *
+         * <code>repeated double bounds = 1;</code>
+         * @param values The bounds to add.
+         * @return This builder for chaining.
+         */
+        public Builder addAllBounds(
+            java.lang.Iterable<? extends java.lang.Double> values) {
+          copyOnWrite();
+          instance.addAllBounds(values);
+          return this;
+        }
+        /**
+         * <pre>
+         * The values must be strictly increasing and &gt; 0.
+         * </pre>
+         *
+         * <code>repeated double bounds = 1;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearBounds() {
+          copyOnWrite();
+          instance.clearBounds();
+          return this;
+        }
+
+        // @@protoc_insertion_point(builder_scope:opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit)
+      }
+      @java.lang.Override
+      @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+      protected final java.lang.Object dynamicMethod(
+          com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+          java.lang.Object arg0, java.lang.Object arg1) {
+        switch (method) {
+          case NEW_MUTABLE_INSTANCE: {
+            return new io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit();
           }
-          case 42: {
-            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-              buckets_ =
-                  new java.util.ArrayList<io.opencensus.proto.metrics.v1.DistributionValue.Bucket>();
-              mutable_bitField0_ |= 0x00000001;
+          case NEW_BUILDER: {
+            return new Builder();
+          }
+          case BUILD_MESSAGE_INFO: {
+              java.lang.Object[] objects = new java.lang.Object[] {
+                "bounds_",
+              };
+              java.lang.String info =
+                  "\u0000\u0001\u0000\u0000\u0001\u0001\u0001\u0000\u0001\u0000\u0001#";
+              return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+          }
+          // fall through
+          case GET_DEFAULT_INSTANCE: {
+            return DEFAULT_INSTANCE;
+          }
+          case GET_PARSER: {
+            com.google.protobuf.Parser<io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit> parser = PARSER;
+            if (parser == null) {
+              synchronized (io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.class) {
+                parser = PARSER;
+                if (parser == null) {
+                  parser =
+                      new DefaultInstanceBasedParser<io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit>(
+                          DEFAULT_INSTANCE);
+                  PARSER = parser;
+                }
+              }
             }
-            buckets_.add(
-                input.readMessage(io.opencensus.proto.metrics.v1.DistributionValue.Bucket.parser(),
-                    extensionRegistry));
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
+            return parser;
+        }
+        case GET_MEMOIZED_IS_INITIALIZED: {
+          return (byte) 1;
+        }
+        case SET_MEMOIZED_IS_INITIALIZED: {
+          return null;
+        }
+        }
+        throw new UnsupportedOperationException();
+      }
+
+
+      // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit)
+      private static final io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit DEFAULT_INSTANCE;
+      static {
+        Explicit defaultInstance = new Explicit();
+        // New instances are implicitly immutable so no need to make
+        // immutable.
+        DEFAULT_INSTANCE = defaultInstance;
+        com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+          Explicit.class, defaultInstance);
+      }
+
+      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static volatile com.google.protobuf.Parser<Explicit> PARSER;
+
+      public static com.google.protobuf.Parser<Explicit> parser() {
+        return DEFAULT_INSTANCE.getParserForType();
+      }
+    }
+
+    private int typeCase_ = 0;
+    private java.lang.Object type_;
+    public enum TypeCase {
+      EXPLICIT(1),
+      TYPE_NOT_SET(0);
+      private final int value;
+      private TypeCase(int value) {
+        this.value = value;
+      }
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static TypeCase valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static TypeCase forNumber(int value) {
+        switch (value) {
+          case 1: return EXPLICIT;
+          case 0: return TYPE_NOT_SET;
+          default: return null;
         }
       }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      if (((mutable_bitField0_ & 0x00000001) != 0)) {
-        buckets_ = java.util.Collections.unmodifiableList(buckets_);
+      public int getNumber() {
+        return this.value;
       }
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
+    };
+
+    @java.lang.Override
+    public TypeCase
+    getTypeCase() {
+      return TypeCase.forNumber(
+          typeCase_);
+    }
+
+    private void clearType() {
+      typeCase_ = 0;
+      type_ = null;
+    }
+
+    public static final int EXPLICIT_FIELD_NUMBER = 1;
+    /**
+     * <pre>
+     * Bucket with explicit bounds.
+     * </pre>
+     *
+     * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;</code>
+     */
+    @java.lang.Override
+    public boolean hasExplicit() {
+      return typeCase_ == 1;
+    }
+    /**
+     * <pre>
+     * Bucket with explicit bounds.
+     * </pre>
+     *
+     * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;</code>
+     */
+    @java.lang.Override
+    public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit getExplicit() {
+      if (typeCase_ == 1) {
+         return (io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit) type_;
+      }
+      return io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.getDefaultInstance();
+    }
+    /**
+     * <pre>
+     * Bucket with explicit bounds.
+     * </pre>
+     *
+     * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;</code>
+     */
+    private void setExplicit(io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit value) {
+      value.getClass();
+  type_ = value;
+      typeCase_ = 1;
+    }
+    /**
+     * <pre>
+     * Bucket with explicit bounds.
+     * </pre>
+     *
+     * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;</code>
+     */
+    private void mergeExplicit(io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit value) {
+      value.getClass();
+  if (typeCase_ == 1 &&
+          type_ != io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.getDefaultInstance()) {
+        type_ = io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.newBuilder((io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit) type_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        type_ = value;
+      }
+      typeCase_ = 1;
+    }
+    /**
+     * <pre>
+     * Bucket with explicit bounds.
+     * </pre>
+     *
+     * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;</code>
+     */
+    private void clearExplicit() {
+      if (typeCase_ == 1) {
+        typeCase_ = 0;
+        type_ = null;
+      }
+    }
+
+    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
+    }
+    public static Builder newBuilder(io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+    }
+
+    /**
+     * <pre>
+     * A Distribution may optionally contain a histogram of the values in the
+     * population. The bucket boundaries for that histogram are described by
+     * BucketOptions.
+     * If bucket_options has no type, then there is no histogram associated with
+     * the Distribution.
+     * </pre>
+     *
+     * Protobuf type {@code opencensus.proto.metrics.v1.DistributionValue.BucketOptions}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions, Builder> implements
+        // @@protoc_insertion_point(builder_implements:opencensus.proto.metrics.v1.DistributionValue.BucketOptions)
+        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptionsOrBuilder {
+      // Construct using io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+      @java.lang.Override
+      public TypeCase
+          getTypeCase() {
+        return instance.getTypeCase();
+      }
+
+      public Builder clearType() {
+        copyOnWrite();
+        instance.clearType();
+        return this;
+      }
+
+
+      /**
+       * <pre>
+       * Bucket with explicit bounds.
+       * </pre>
+       *
+       * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;</code>
+       */
+      @java.lang.Override
+      public boolean hasExplicit() {
+        return instance.hasExplicit();
+      }
+      /**
+       * <pre>
+       * Bucket with explicit bounds.
+       * </pre>
+       *
+       * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;</code>
+       */
+      @java.lang.Override
+      public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit getExplicit() {
+        return instance.getExplicit();
+      }
+      /**
+       * <pre>
+       * Bucket with explicit bounds.
+       * </pre>
+       *
+       * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;</code>
+       */
+      public Builder setExplicit(io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit value) {
+        copyOnWrite();
+        instance.setExplicit(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * Bucket with explicit bounds.
+       * </pre>
+       *
+       * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;</code>
+       */
+      public Builder setExplicit(
+          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.Builder builderForValue) {
+        copyOnWrite();
+        instance.setExplicit(builderForValue.build());
+        return this;
+      }
+      /**
+       * <pre>
+       * Bucket with explicit bounds.
+       * </pre>
+       *
+       * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;</code>
+       */
+      public Builder mergeExplicit(io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit value) {
+        copyOnWrite();
+        instance.mergeExplicit(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * Bucket with explicit bounds.
+       * </pre>
+       *
+       * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;</code>
+       */
+      public Builder clearExplicit() {
+        copyOnWrite();
+        instance.clearExplicit();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:opencensus.proto.metrics.v1.DistributionValue.BucketOptions)
+    }
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case BUILD_MESSAGE_INFO: {
+            java.lang.Object[] objects = new java.lang.Object[] {
+              "type_",
+              "typeCase_",
+              io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.class,
+            };
+            java.lang.String info =
+                "\u0000\u0001\u0001\u0000\u0001\u0001\u0001\u0000\u0000\u0000\u0001<\u0000";
+            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          com.google.protobuf.Parser<io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions> parser = PARSER;
+          if (parser == null) {
+            synchronized (io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser =
+                    new DefaultInstanceBasedParser<io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions>(
+                        DEFAULT_INSTANCE);
+                PARSER = parser;
+              }
+            }
+          }
+          return parser;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.DistributionValue.BucketOptions)
+    private static final io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions DEFAULT_INSTANCE;
+    static {
+      BucketOptions defaultInstance = new BucketOptions();
+      // New instances are implicitly immutable so no need to make
+      // immutable.
+      DEFAULT_INSTANCE = defaultInstance;
+      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+        BucketOptions.class, defaultInstance);
+    }
+
+    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<BucketOptions> PARSER;
+
+    public static com.google.protobuf.Parser<BucketOptions> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
     }
   }
 
-  public static final com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
-    return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_descriptor;
+  public interface BucketOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:opencensus.proto.metrics.v1.DistributionValue.Bucket)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <pre>
+     * The number of values in each bucket of the histogram, as described in
+     * bucket_bounds.
+     * </pre>
+     *
+     * <code>int64 count = 1;</code>
+     * @return The count.
+     */
+    long getCount();
+
+    /**
+     * <pre>
+     * If the distribution does not have a histogram, then omit this field.
+     * </pre>
+     *
+     * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
+     * @return Whether the exemplar field is set.
+     */
+    boolean hasExemplar();
+    /**
+     * <pre>
+     * If the distribution does not have a histogram, then omit this field.
+     * </pre>
+     *
+     * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
+     * @return The exemplar.
+     */
+    io.opencensus.proto.metrics.v1.DistributionValue.Exemplar getExemplar();
+  }
+  /**
+   * Protobuf type {@code opencensus.proto.metrics.v1.DistributionValue.Bucket}
+   */
+  public  static final class Bucket extends
+      com.google.protobuf.GeneratedMessageLite<
+          Bucket, Bucket.Builder> implements
+      // @@protoc_insertion_point(message_implements:opencensus.proto.metrics.v1.DistributionValue.Bucket)
+      BucketOrBuilder {
+    private Bucket() {
+    }
+    public static final int COUNT_FIELD_NUMBER = 1;
+    private long count_;
+    /**
+     * <pre>
+     * The number of values in each bucket of the histogram, as described in
+     * bucket_bounds.
+     * </pre>
+     *
+     * <code>int64 count = 1;</code>
+     * @return The count.
+     */
+    @java.lang.Override
+    public long getCount() {
+      return count_;
+    }
+    /**
+     * <pre>
+     * The number of values in each bucket of the histogram, as described in
+     * bucket_bounds.
+     * </pre>
+     *
+     * <code>int64 count = 1;</code>
+     * @param value The count to set.
+     */
+    private void setCount(long value) {
+      
+      count_ = value;
+    }
+    /**
+     * <pre>
+     * The number of values in each bucket of the histogram, as described in
+     * bucket_bounds.
+     * </pre>
+     *
+     * <code>int64 count = 1;</code>
+     */
+    private void clearCount() {
+      
+      count_ = 0L;
+    }
+
+    public static final int EXEMPLAR_FIELD_NUMBER = 2;
+    private io.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar_;
+    /**
+     * <pre>
+     * If the distribution does not have a histogram, then omit this field.
+     * </pre>
+     *
+     * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
+     */
+    @java.lang.Override
+    public boolean hasExemplar() {
+      return exemplar_ != null;
+    }
+    /**
+     * <pre>
+     * If the distribution does not have a histogram, then omit this field.
+     * </pre>
+     *
+     * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
+     */
+    @java.lang.Override
+    public io.opencensus.proto.metrics.v1.DistributionValue.Exemplar getExemplar() {
+      return exemplar_ == null ? io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.getDefaultInstance() : exemplar_;
+    }
+    /**
+     * <pre>
+     * If the distribution does not have a histogram, then omit this field.
+     * </pre>
+     *
+     * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
+     */
+    private void setExemplar(io.opencensus.proto.metrics.v1.DistributionValue.Exemplar value) {
+      value.getClass();
+  exemplar_ = value;
+      
+      }
+    /**
+     * <pre>
+     * If the distribution does not have a histogram, then omit this field.
+     * </pre>
+     *
+     * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
+     */
+    @java.lang.SuppressWarnings({"ReferenceEquality"})
+    private void mergeExemplar(io.opencensus.proto.metrics.v1.DistributionValue.Exemplar value) {
+      value.getClass();
+  if (exemplar_ != null &&
+          exemplar_ != io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.getDefaultInstance()) {
+        exemplar_ =
+          io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.newBuilder(exemplar_).mergeFrom(value).buildPartial();
+      } else {
+        exemplar_ = value;
+      }
+      
+    }
+    /**
+     * <pre>
+     * If the distribution does not have a histogram, then omit this field.
+     * </pre>
+     *
+     * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
+     */
+    private void clearExemplar() {  exemplar_ = null;
+      
+    }
+
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
+    }
+    public static Builder newBuilder(io.opencensus.proto.metrics.v1.DistributionValue.Bucket prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+    }
+
+    /**
+     * Protobuf type {@code opencensus.proto.metrics.v1.DistributionValue.Bucket}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          io.opencensus.proto.metrics.v1.DistributionValue.Bucket, Builder> implements
+        // @@protoc_insertion_point(builder_implements:opencensus.proto.metrics.v1.DistributionValue.Bucket)
+        io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder {
+      // Construct using io.opencensus.proto.metrics.v1.DistributionValue.Bucket.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <pre>
+       * The number of values in each bucket of the histogram, as described in
+       * bucket_bounds.
+       * </pre>
+       *
+       * <code>int64 count = 1;</code>
+       * @return The count.
+       */
+      @java.lang.Override
+      public long getCount() {
+        return instance.getCount();
+      }
+      /**
+       * <pre>
+       * The number of values in each bucket of the histogram, as described in
+       * bucket_bounds.
+       * </pre>
+       *
+       * <code>int64 count = 1;</code>
+       * @param value The count to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCount(long value) {
+        copyOnWrite();
+        instance.setCount(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * The number of values in each bucket of the histogram, as described in
+       * bucket_bounds.
+       * </pre>
+       *
+       * <code>int64 count = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCount() {
+        copyOnWrite();
+        instance.clearCount();
+        return this;
+      }
+
+      /**
+       * <pre>
+       * If the distribution does not have a histogram, then omit this field.
+       * </pre>
+       *
+       * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
+       */
+      @java.lang.Override
+      public boolean hasExemplar() {
+        return instance.hasExemplar();
+      }
+      /**
+       * <pre>
+       * If the distribution does not have a histogram, then omit this field.
+       * </pre>
+       *
+       * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
+       */
+      @java.lang.Override
+      public io.opencensus.proto.metrics.v1.DistributionValue.Exemplar getExemplar() {
+        return instance.getExemplar();
+      }
+      /**
+       * <pre>
+       * If the distribution does not have a histogram, then omit this field.
+       * </pre>
+       *
+       * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
+       */
+      public Builder setExemplar(io.opencensus.proto.metrics.v1.DistributionValue.Exemplar value) {
+        copyOnWrite();
+        instance.setExemplar(value);
+        return this;
+        }
+      /**
+       * <pre>
+       * If the distribution does not have a histogram, then omit this field.
+       * </pre>
+       *
+       * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
+       */
+      public Builder setExemplar(
+          io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.Builder builderForValue) {
+        copyOnWrite();
+        instance.setExemplar(builderForValue.build());
+        return this;
+      }
+      /**
+       * <pre>
+       * If the distribution does not have a histogram, then omit this field.
+       * </pre>
+       *
+       * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
+       */
+      public Builder mergeExemplar(io.opencensus.proto.metrics.v1.DistributionValue.Exemplar value) {
+        copyOnWrite();
+        instance.mergeExemplar(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * If the distribution does not have a histogram, then omit this field.
+       * </pre>
+       *
+       * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
+       */
+      public Builder clearExemplar() {  copyOnWrite();
+        instance.clearExemplar();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:opencensus.proto.metrics.v1.DistributionValue.Bucket)
+    }
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new io.opencensus.proto.metrics.v1.DistributionValue.Bucket();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case BUILD_MESSAGE_INFO: {
+            java.lang.Object[] objects = new java.lang.Object[] {
+              "count_",
+              "exemplar_",
+            };
+            java.lang.String info =
+                "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001\u0002\u0002\t" +
+                "";
+            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          com.google.protobuf.Parser<io.opencensus.proto.metrics.v1.DistributionValue.Bucket> parser = PARSER;
+          if (parser == null) {
+            synchronized (io.opencensus.proto.metrics.v1.DistributionValue.Bucket.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser =
+                    new DefaultInstanceBasedParser<io.opencensus.proto.metrics.v1.DistributionValue.Bucket>(
+                        DEFAULT_INSTANCE);
+                PARSER = parser;
+              }
+            }
+          }
+          return parser;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.DistributionValue.Bucket)
+    private static final io.opencensus.proto.metrics.v1.DistributionValue.Bucket DEFAULT_INSTANCE;
+    static {
+      Bucket defaultInstance = new Bucket();
+      // New instances are implicitly immutable so no need to make
+      // immutable.
+      DEFAULT_INSTANCE = defaultInstance;
+      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+        Bucket.class, defaultInstance);
+    }
+
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<Bucket> PARSER;
+
+    public static com.google.protobuf.Parser<Bucket> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
-  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
+  public interface ExemplarOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:opencensus.proto.metrics.v1.DistributionValue.Exemplar)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <pre>
+     * Value of the exemplar point. It determines which bucket the exemplar
+     * belongs to.
+     * </pre>
+     *
+     * <code>double value = 1;</code>
+     * @return The value.
+     */
+    double getValue();
+
+    /**
+     * <pre>
+     * The observation (sampling) time of the above value.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp timestamp = 2;</code>
+     * @return Whether the timestamp field is set.
+     */
+    boolean hasTimestamp();
+    /**
+     * <pre>
+     * The observation (sampling) time of the above value.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp timestamp = 2;</code>
+     * @return The timestamp.
+     */
+    com.google.protobuf.Timestamp getTimestamp();
+
+    /**
+     * <pre>
+     * Contextual information about the example value.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; attachments = 3;</code>
+     */
+    int getAttachmentsCount();
+    /**
+     * <pre>
+     * Contextual information about the example value.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; attachments = 3;</code>
+     */
+    boolean containsAttachments(
+        java.lang.String key);
+    /**
+     * Use {@link #getAttachmentsMap()} instead.
+     */
+    @java.lang.Deprecated
+    java.util.Map<java.lang.String, java.lang.String>
+    getAttachments();
+    /**
+     * <pre>
+     * Contextual information about the example value.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; attachments = 3;</code>
+     */
+    java.util.Map<java.lang.String, java.lang.String>
+    getAttachmentsMap();
+    /**
+     * <pre>
+     * Contextual information about the example value.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; attachments = 3;</code>
+     */
+
+    java.lang.String getAttachmentsOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue);
+    /**
+     * <pre>
+     * Contextual information about the example value.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; attachments = 3;</code>
+     */
+
+    java.lang.String getAttachmentsOrThrow(
+        java.lang.String key);
+  }
+  /**
+   * <pre>
+   * Exemplars are example points that may be used to annotate aggregated
+   * Distribution values. They are metadata that gives information about a
+   * particular value added to a Distribution bucket.
+   * </pre>
+   *
+   * Protobuf type {@code opencensus.proto.metrics.v1.DistributionValue.Exemplar}
+   */
+  public  static final class Exemplar extends
+      com.google.protobuf.GeneratedMessageLite<
+          Exemplar, Exemplar.Builder> implements
+      // @@protoc_insertion_point(message_implements:opencensus.proto.metrics.v1.DistributionValue.Exemplar)
+      ExemplarOrBuilder {
+    private Exemplar() {
+    }
+    public static final int VALUE_FIELD_NUMBER = 1;
+    private double value_;
+    /**
+     * <pre>
+     * Value of the exemplar point. It determines which bucket the exemplar
+     * belongs to.
+     * </pre>
+     *
+     * <code>double value = 1;</code>
+     * @return The value.
+     */
+    @java.lang.Override
+    public double getValue() {
+      return value_;
+    }
+    /**
+     * <pre>
+     * Value of the exemplar point. It determines which bucket the exemplar
+     * belongs to.
+     * </pre>
+     *
+     * <code>double value = 1;</code>
+     * @param value The value to set.
+     */
+    private void setValue(double value) {
+      
+      value_ = value;
+    }
+    /**
+     * <pre>
+     * Value of the exemplar point. It determines which bucket the exemplar
+     * belongs to.
+     * </pre>
+     *
+     * <code>double value = 1;</code>
+     */
+    private void clearValue() {
+      
+      value_ = 0D;
+    }
+
+    public static final int TIMESTAMP_FIELD_NUMBER = 2;
+    private com.google.protobuf.Timestamp timestamp_;
+    /**
+     * <pre>
+     * The observation (sampling) time of the above value.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp timestamp = 2;</code>
+     */
+    @java.lang.Override
+    public boolean hasTimestamp() {
+      return timestamp_ != null;
+    }
+    /**
+     * <pre>
+     * The observation (sampling) time of the above value.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp timestamp = 2;</code>
+     */
+    @java.lang.Override
+    public com.google.protobuf.Timestamp getTimestamp() {
+      return timestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
+    }
+    /**
+     * <pre>
+     * The observation (sampling) time of the above value.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp timestamp = 2;</code>
+     */
+    private void setTimestamp(com.google.protobuf.Timestamp value) {
+      value.getClass();
+  timestamp_ = value;
+      
+      }
+    /**
+     * <pre>
+     * The observation (sampling) time of the above value.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp timestamp = 2;</code>
+     */
+    @java.lang.SuppressWarnings({"ReferenceEquality"})
+    private void mergeTimestamp(com.google.protobuf.Timestamp value) {
+      value.getClass();
+  if (timestamp_ != null &&
+          timestamp_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
+        timestamp_ =
+          com.google.protobuf.Timestamp.newBuilder(timestamp_).mergeFrom(value).buildPartial();
+      } else {
+        timestamp_ = value;
+      }
+      
+    }
+    /**
+     * <pre>
+     * The observation (sampling) time of the above value.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp timestamp = 2;</code>
+     */
+    private void clearTimestamp() {  timestamp_ = null;
+      
+    }
+
+    public static final int ATTACHMENTS_FIELD_NUMBER = 3;
+    private static final class AttachmentsDefaultEntryHolder {
+      static final com.google.protobuf.MapEntryLite<
+          java.lang.String, java.lang.String> defaultEntry =
+              com.google.protobuf.MapEntryLite
+              .<java.lang.String, java.lang.String>newDefaultInstance(
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "",
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "");
+    }
+    private com.google.protobuf.MapFieldLite<
+        java.lang.String, java.lang.String> attachments_ =
+            com.google.protobuf.MapFieldLite.emptyMapField();
+    private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.String>
+    internalGetAttachments() {
+      return attachments_;
+    }
+    private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.String>
+    internalGetMutableAttachments() {
+      if (!attachments_.isMutable()) {
+        attachments_ = attachments_.mutableCopy();
+      }
+      return attachments_;
+    }
+    @java.lang.Override
+
+    public int getAttachmentsCount() {
+      return internalGetAttachments().size();
+    }
+    /**
+     * <pre>
+     * Contextual information about the example value.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; attachments = 3;</code>
+     */
+    @java.lang.Override
+
+    public boolean containsAttachments(
+        java.lang.String key) {
+      key.getClass();
+      return internalGetAttachments().containsKey(key);
+    }
+    /**
+     * Use {@link #getAttachmentsMap()} instead.
+     */
+    @java.lang.Override
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.String> getAttachments() {
+      return getAttachmentsMap();
+    }
+    /**
+     * <pre>
+     * Contextual information about the example value.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; attachments = 3;</code>
+     */
+    @java.lang.Override
+
+    public java.util.Map<java.lang.String, java.lang.String> getAttachmentsMap() {
+      return java.util.Collections.unmodifiableMap(
+          internalGetAttachments());
+    }
+    /**
+     * <pre>
+     * Contextual information about the example value.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; attachments = 3;</code>
+     */
+    @java.lang.Override
+
+    public java.lang.String getAttachmentsOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue) {
+      key.getClass();
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetAttachments();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <pre>
+     * Contextual information about the example value.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; attachments = 3;</code>
+     */
+    @java.lang.Override
+
+    public java.lang.String getAttachmentsOrThrow(
+        java.lang.String key) {
+      key.getClass();
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetAttachments();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      return map.get(key);
+    }
+    /**
+     * <pre>
+     * Contextual information about the example value.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; attachments = 3;</code>
+     */
+    private java.util.Map<java.lang.String, java.lang.String>
+    getMutableAttachmentsMap() {
+      return internalGetMutableAttachments();
+    }
+
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
+    }
+    public static Builder newBuilder(io.opencensus.proto.metrics.v1.DistributionValue.Exemplar prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+    }
+
+    /**
+     * <pre>
+     * Exemplars are example points that may be used to annotate aggregated
+     * Distribution values. They are metadata that gives information about a
+     * particular value added to a Distribution bucket.
+     * </pre>
+     *
+     * Protobuf type {@code opencensus.proto.metrics.v1.DistributionValue.Exemplar}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          io.opencensus.proto.metrics.v1.DistributionValue.Exemplar, Builder> implements
+        // @@protoc_insertion_point(builder_implements:opencensus.proto.metrics.v1.DistributionValue.Exemplar)
+        io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder {
+      // Construct using io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <pre>
+       * Value of the exemplar point. It determines which bucket the exemplar
+       * belongs to.
+       * </pre>
+       *
+       * <code>double value = 1;</code>
+       * @return The value.
+       */
+      @java.lang.Override
+      public double getValue() {
+        return instance.getValue();
+      }
+      /**
+       * <pre>
+       * Value of the exemplar point. It determines which bucket the exemplar
+       * belongs to.
+       * </pre>
+       *
+       * <code>double value = 1;</code>
+       * @param value The value to set.
+       * @return This builder for chaining.
+       */
+      public Builder setValue(double value) {
+        copyOnWrite();
+        instance.setValue(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * Value of the exemplar point. It determines which bucket the exemplar
+       * belongs to.
+       * </pre>
+       *
+       * <code>double value = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearValue() {
+        copyOnWrite();
+        instance.clearValue();
+        return this;
+      }
+
+      /**
+       * <pre>
+       * The observation (sampling) time of the above value.
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp timestamp = 2;</code>
+       */
+      @java.lang.Override
+      public boolean hasTimestamp() {
+        return instance.hasTimestamp();
+      }
+      /**
+       * <pre>
+       * The observation (sampling) time of the above value.
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp timestamp = 2;</code>
+       */
+      @java.lang.Override
+      public com.google.protobuf.Timestamp getTimestamp() {
+        return instance.getTimestamp();
+      }
+      /**
+       * <pre>
+       * The observation (sampling) time of the above value.
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp timestamp = 2;</code>
+       */
+      public Builder setTimestamp(com.google.protobuf.Timestamp value) {
+        copyOnWrite();
+        instance.setTimestamp(value);
+        return this;
+        }
+      /**
+       * <pre>
+       * The observation (sampling) time of the above value.
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp timestamp = 2;</code>
+       */
+      public Builder setTimestamp(
+          com.google.protobuf.Timestamp.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTimestamp(builderForValue.build());
+        return this;
+      }
+      /**
+       * <pre>
+       * The observation (sampling) time of the above value.
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp timestamp = 2;</code>
+       */
+      public Builder mergeTimestamp(com.google.protobuf.Timestamp value) {
+        copyOnWrite();
+        instance.mergeTimestamp(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * The observation (sampling) time of the above value.
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp timestamp = 2;</code>
+       */
+      public Builder clearTimestamp() {  copyOnWrite();
+        instance.clearTimestamp();
+        return this;
+      }
+
+      @java.lang.Override
+
+      public int getAttachmentsCount() {
+        return instance.getAttachmentsMap().size();
+      }
+      /**
+       * <pre>
+       * Contextual information about the example value.
+       * </pre>
+       *
+       * <code>map&lt;string, string&gt; attachments = 3;</code>
+       */
+      @java.lang.Override
+
+      public boolean containsAttachments(
+          java.lang.String key) {
+        key.getClass();
+        return instance.getAttachmentsMap().containsKey(key);
+      }
+
+      public Builder clearAttachments() {
+        copyOnWrite();
+        instance.getMutableAttachmentsMap().clear();
+        return this;
+      }
+      /**
+       * <pre>
+       * Contextual information about the example value.
+       * </pre>
+       *
+       * <code>map&lt;string, string&gt; attachments = 3;</code>
+       */
+
+      public Builder removeAttachments(
+          java.lang.String key) {
+        key.getClass();
+        copyOnWrite();
+        instance.getMutableAttachmentsMap().remove(key);
+        return this;
+      }
+      /**
+       * Use {@link #getAttachmentsMap()} instead.
+       */
+      @java.lang.Override
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, java.lang.String> getAttachments() {
+        return getAttachmentsMap();
+      }
+      /**
+       * <pre>
+       * Contextual information about the example value.
+       * </pre>
+       *
+       * <code>map&lt;string, string&gt; attachments = 3;</code>
+       */
+      @java.lang.Override
+      public java.util.Map<java.lang.String, java.lang.String> getAttachmentsMap() {
+        return java.util.Collections.unmodifiableMap(
+            instance.getAttachmentsMap());
+      }
+      /**
+       * <pre>
+       * Contextual information about the example value.
+       * </pre>
+       *
+       * <code>map&lt;string, string&gt; attachments = 3;</code>
+       */
+      @java.lang.Override
+
+      public java.lang.String getAttachmentsOrDefault(
+          java.lang.String key,
+          java.lang.String defaultValue) {
+        key.getClass();
+        java.util.Map<java.lang.String, java.lang.String> map =
+            instance.getAttachmentsMap();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
+      }
+      /**
+       * <pre>
+       * Contextual information about the example value.
+       * </pre>
+       *
+       * <code>map&lt;string, string&gt; attachments = 3;</code>
+       */
+      @java.lang.Override
+
+      public java.lang.String getAttachmentsOrThrow(
+          java.lang.String key) {
+        key.getClass();
+        java.util.Map<java.lang.String, java.lang.String> map =
+            instance.getAttachmentsMap();
+        if (!map.containsKey(key)) {
+          throw new java.lang.IllegalArgumentException();
+        }
+        return map.get(key);
+      }
+      /**
+       * <pre>
+       * Contextual information about the example value.
+       * </pre>
+       *
+       * <code>map&lt;string, string&gt; attachments = 3;</code>
+       */
+      public Builder putAttachments(
+          java.lang.String key,
+          java.lang.String value) {
+        key.getClass();
+        value.getClass();
+        copyOnWrite();
+        instance.getMutableAttachmentsMap().put(key, value);
+        return this;
+      }
+      /**
+       * <pre>
+       * Contextual information about the example value.
+       * </pre>
+       *
+       * <code>map&lt;string, string&gt; attachments = 3;</code>
+       */
+      public Builder putAllAttachments(
+          java.util.Map<java.lang.String, java.lang.String> values) {
+        copyOnWrite();
+        instance.getMutableAttachmentsMap().putAll(values);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:opencensus.proto.metrics.v1.DistributionValue.Exemplar)
+    }
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new io.opencensus.proto.metrics.v1.DistributionValue.Exemplar();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case BUILD_MESSAGE_INFO: {
+            java.lang.Object[] objects = new java.lang.Object[] {
+              "value_",
+              "timestamp_",
+              "attachments_",
+              AttachmentsDefaultEntryHolder.defaultEntry,
+            };
+            java.lang.String info =
+                "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0001\u0000\u0000\u0001\u0000\u0002\t" +
+                "\u00032";
+            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          com.google.protobuf.Parser<io.opencensus.proto.metrics.v1.DistributionValue.Exemplar> parser = PARSER;
+          if (parser == null) {
+            synchronized (io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser =
+                    new DefaultInstanceBasedParser<io.opencensus.proto.metrics.v1.DistributionValue.Exemplar>(
+                        DEFAULT_INSTANCE);
+                PARSER = parser;
+              }
+            }
+          }
+          return parser;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.DistributionValue.Exemplar)
+    private static final io.opencensus.proto.metrics.v1.DistributionValue.Exemplar DEFAULT_INSTANCE;
+    static {
+      Exemplar defaultInstance = new Exemplar();
+      // New instances are implicitly immutable so no need to make
+      // immutable.
+      DEFAULT_INSTANCE = defaultInstance;
+      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+        Exemplar.class, defaultInstance);
+    }
+
+    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<Exemplar> PARSER;
+
+    public static com.google.protobuf.Parser<Exemplar> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
-  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(
-      java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.DistributionValue parseDelimitedFrom(
-      java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.metrics.v1.DistributionValue parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(io.opencensus.proto.metrics.v1.DistributionValue prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
-  public static io.opencensus.proto.metrics.v1.DistributionValue getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public static com.google.protobuf.Parser<DistributionValue> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new DistributionValue();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
-    return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            io.opencensus.proto.metrics.v1.DistributionValue.class,
-            io.opencensus.proto.metrics.v1.DistributionValue.Builder.class);
-  }
-
+  public static final int COUNT_FIELD_NUMBER = 1;
+  private long count_;
   /**
    * <pre>
    * The number of values in the population. Must be non-negative. This value
@@ -273,14 +2053,42 @@ public final class DistributionValue extends
    * </pre>
    *
    * <code>int64 count = 1;</code>
-   *
    * @return The count.
    */
   @java.lang.Override
   public long getCount() {
     return count_;
   }
+  /**
+   * <pre>
+   * The number of values in the population. Must be non-negative. This value
+   * must equal the sum of the values in bucket_counts if a histogram is
+   * provided.
+   * </pre>
+   *
+   * <code>int64 count = 1;</code>
+   * @param value The count to set.
+   */
+  private void setCount(long value) {
+    
+    count_ = value;
+  }
+  /**
+   * <pre>
+   * The number of values in the population. Must be non-negative. This value
+   * must equal the sum of the values in bucket_counts if a histogram is
+   * provided.
+   * </pre>
+   *
+   * <code>int64 count = 1;</code>
+   */
+  private void clearCount() {
+    
+    count_ = 0L;
+  }
 
+  public static final int SUM_FIELD_NUMBER = 2;
+  private double sum_;
   /**
    * <pre>
    * The sum of the values in the population. If count is zero then this field
@@ -288,14 +2096,40 @@ public final class DistributionValue extends
    * </pre>
    *
    * <code>double sum = 2;</code>
-   *
    * @return The sum.
    */
   @java.lang.Override
   public double getSum() {
     return sum_;
   }
+  /**
+   * <pre>
+   * The sum of the values in the population. If count is zero then this field
+   * must be zero.
+   * </pre>
+   *
+   * <code>double sum = 2;</code>
+   * @param value The sum to set.
+   */
+  private void setSum(double value) {
+    
+    sum_ = value;
+  }
+  /**
+   * <pre>
+   * The sum of the values in the population. If count is zero then this field
+   * must be zero.
+   * </pre>
+   *
+   * <code>double sum = 2;</code>
+   */
+  private void clearSum() {
+    
+    sum_ = 0D;
+  }
 
+  public static final int SUM_OF_SQUARED_DEVIATION_FIELD_NUMBER = 3;
+  private double sumOfSquaredDeviation_;
   /**
    * <pre>
    * The sum of squared deviations from the mean of the values in the
@@ -307,14 +2141,48 @@ public final class DistributionValue extends
    * </pre>
    *
    * <code>double sum_of_squared_deviation = 3;</code>
-   *
    * @return The sumOfSquaredDeviation.
    */
   @java.lang.Override
   public double getSumOfSquaredDeviation() {
     return sumOfSquaredDeviation_;
   }
+  /**
+   * <pre>
+   * The sum of squared deviations from the mean of the values in the
+   * population. For values x_i this is:
+   *     Sum[i=1..n]((x_i - mean)^2)
+   * Knuth, "The Art of Computer Programming", Vol. 2, page 323, 3rd edition
+   * describes Welford's method for accumulating this sum in one pass.
+   * If count is zero then this field must be zero.
+   * </pre>
+   *
+   * <code>double sum_of_squared_deviation = 3;</code>
+   * @param value The sumOfSquaredDeviation to set.
+   */
+  private void setSumOfSquaredDeviation(double value) {
+    
+    sumOfSquaredDeviation_ = value;
+  }
+  /**
+   * <pre>
+   * The sum of squared deviations from the mean of the values in the
+   * population. For values x_i this is:
+   *     Sum[i=1..n]((x_i - mean)^2)
+   * Knuth, "The Art of Computer Programming", Vol. 2, page 323, 3rd edition
+   * describes Welford's method for accumulating this sum in one pass.
+   * If count is zero then this field must be zero.
+   * </pre>
+   *
+   * <code>double sum_of_squared_deviation = 3;</code>
+   */
+  private void clearSumOfSquaredDeviation() {
+    
+    sumOfSquaredDeviation_ = 0D;
+  }
 
+  public static final int BUCKET_OPTIONS_FIELD_NUMBER = 4;
+  private io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucketOptions_;
   /**
    * <pre>
    * Don't change bucket boundaries within a TimeSeries if your backend doesn't
@@ -324,14 +2192,11 @@ public final class DistributionValue extends
    * </pre>
    *
    * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucket_options = 4;</code>
-   *
-   * @return Whether the bucketOptions field is set.
    */
   @java.lang.Override
   public boolean hasBucketOptions() {
     return bucketOptions_ != null;
   }
-
   /**
    * <pre>
    * Don't change bucket boundaries within a TimeSeries if your backend doesn't
@@ -341,16 +2206,11 @@ public final class DistributionValue extends
    * </pre>
    *
    * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucket_options = 4;</code>
-   *
-   * @return The bucketOptions.
    */
   @java.lang.Override
   public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions getBucketOptions() {
-    return bucketOptions_ == null ?
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.getDefaultInstance() :
-        bucketOptions_;
+    return bucketOptions_ == null ? io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.getDefaultInstance() : bucketOptions_;
   }
-
   /**
    * <pre>
    * Don't change bucket boundaries within a TimeSeries if your backend doesn't
@@ -361,11 +2221,49 @@ public final class DistributionValue extends
    *
    * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucket_options = 4;</code>
    */
-  @java.lang.Override
-  public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptionsOrBuilder getBucketOptionsOrBuilder() {
-    return getBucketOptions();
+  private void setBucketOptions(io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions value) {
+    value.getClass();
+  bucketOptions_ = value;
+    
+    }
+  /**
+   * <pre>
+   * Don't change bucket boundaries within a TimeSeries if your backend doesn't
+   * support this.
+   * TODO(issue #152): consider not required to send bucket options for
+   * optimization.
+   * </pre>
+   *
+   * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucket_options = 4;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeBucketOptions(io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions value) {
+    value.getClass();
+  if (bucketOptions_ != null &&
+        bucketOptions_ != io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.getDefaultInstance()) {
+      bucketOptions_ =
+        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.newBuilder(bucketOptions_).mergeFrom(value).buildPartial();
+    } else {
+      bucketOptions_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * Don't change bucket boundaries within a TimeSeries if your backend doesn't
+   * support this.
+   * TODO(issue #152): consider not required to send bucket options for
+   * optimization.
+   * </pre>
+   *
+   * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucket_options = 4;</code>
+   */
+  private void clearBucketOptions() {  bucketOptions_ = null;
+    
   }
 
+  public static final int BUCKETS_FIELD_NUMBER = 5;
+  private com.google.protobuf.Internal.ProtobufList<io.opencensus.proto.metrics.v1.DistributionValue.Bucket> buckets_;
   /**
    * <pre>
    * If the distribution does not have a histogram, then omit this field.
@@ -379,7 +2277,6 @@ public final class DistributionValue extends
   public java.util.List<io.opencensus.proto.metrics.v1.DistributionValue.Bucket> getBucketsList() {
     return buckets_;
   }
-
   /**
    * <pre>
    * If the distribution does not have a histogram, then omit this field.
@@ -389,12 +2286,10 @@ public final class DistributionValue extends
    *
    * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
    */
-  @java.lang.Override
-  public java.util.List<? extends io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder>
-  getBucketsOrBuilderList() {
+  public java.util.List<? extends io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder> 
+      getBucketsOrBuilderList() {
     return buckets_;
   }
-
   /**
    * <pre>
    * If the distribution does not have a histogram, then omit this field.
@@ -408,7 +2303,6 @@ public final class DistributionValue extends
   public int getBucketsCount() {
     return buckets_.size();
   }
-
   /**
    * <pre>
    * If the distribution does not have a histogram, then omit this field.
@@ -422,6 +2316,26 @@ public final class DistributionValue extends
   public io.opencensus.proto.metrics.v1.DistributionValue.Bucket getBuckets(int index) {
     return buckets_.get(index);
   }
+  /**
+   * <pre>
+   * If the distribution does not have a histogram, then omit this field.
+   * If there is a histogram, then the sum of the values in the Bucket counts
+   * must equal the value in the count field of the distribution.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
+   */
+  public io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder getBucketsOrBuilder(
+      int index) {
+    return buckets_.get(index);
+  }
+  private void ensureBucketsIsMutable() {
+    com.google.protobuf.Internal.ProtobufList<io.opencensus.proto.metrics.v1.DistributionValue.Bucket> tmp = buckets_;
+    if (!tmp.isModifiable()) {
+      buckets_ =
+          com.google.protobuf.GeneratedMessageLite.mutableCopy(tmp);
+     }
+  }
 
   /**
    * <pre>
@@ -432,4050 +2346,161 @@ public final class DistributionValue extends
    *
    * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
    */
-  @java.lang.Override
-  public io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder getBucketsOrBuilder(
-      int index) {
-    return buckets_.get(index);
+  private void setBuckets(
+      int index, io.opencensus.proto.metrics.v1.DistributionValue.Bucket value) {
+    value.getClass();
+  ensureBucketsIsMutable();
+    buckets_.set(index, value);
+  }
+  /**
+   * <pre>
+   * If the distribution does not have a histogram, then omit this field.
+   * If there is a histogram, then the sum of the values in the Bucket counts
+   * must equal the value in the count field of the distribution.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
+   */
+  private void addBuckets(io.opencensus.proto.metrics.v1.DistributionValue.Bucket value) {
+    value.getClass();
+  ensureBucketsIsMutable();
+    buckets_.add(value);
+  }
+  /**
+   * <pre>
+   * If the distribution does not have a histogram, then omit this field.
+   * If there is a histogram, then the sum of the values in the Bucket counts
+   * must equal the value in the count field of the distribution.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
+   */
+  private void addBuckets(
+      int index, io.opencensus.proto.metrics.v1.DistributionValue.Bucket value) {
+    value.getClass();
+  ensureBucketsIsMutable();
+    buckets_.add(index, value);
+  }
+  /**
+   * <pre>
+   * If the distribution does not have a histogram, then omit this field.
+   * If there is a histogram, then the sum of the values in the Bucket counts
+   * must equal the value in the count field of the distribution.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
+   */
+  private void addAllBuckets(
+      java.lang.Iterable<? extends io.opencensus.proto.metrics.v1.DistributionValue.Bucket> values) {
+    ensureBucketsIsMutable();
+    com.google.protobuf.AbstractMessageLite.addAll(
+        values, buckets_);
+  }
+  /**
+   * <pre>
+   * If the distribution does not have a histogram, then omit this field.
+   * If there is a histogram, then the sum of the values in the Bucket counts
+   * must equal the value in the count field of the distribution.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
+   */
+  private void clearBuckets() {
+    buckets_ = emptyProtobufList();
+  }
+  /**
+   * <pre>
+   * If the distribution does not have a histogram, then omit this field.
+   * If there is a histogram, then the sum of the values in the Bucket counts
+   * must equal the value in the count field of the distribution.
+   * </pre>
+   *
+   * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
+   */
+  private void removeBuckets(int index) {
+    ensureBucketsIsMutable();
+    buckets_.remove(index);
   }
 
-  @java.lang.Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) {
-      return true;
-    }
-    if (isInitialized == 0) {
-      return false;
-    }
-
-    memoizedIsInitialized = 1;
-    return true;
+  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
   }
-
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
+  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data);
+  }
+  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, data, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(java.io.InputStream input)
       throws java.io.IOException {
-    if (count_ != 0L) {
-      output.writeInt64(1, count_);
-    }
-    if (sum_ != 0D) {
-      output.writeDouble(2, sum_);
-    }
-    if (sumOfSquaredDeviation_ != 0D) {
-      output.writeDouble(3, sumOfSquaredDeviation_);
-    }
-    if (bucketOptions_ != null) {
-      output.writeMessage(4, getBucketOptions());
-    }
-    for (int i = 0; i < buckets_.size(); i++) {
-      output.writeMessage(5, buckets_.get(i));
-    }
-    unknownFields.writeTo(output);
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.DistributionValue parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.metrics.v1.DistributionValue parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+  }
+  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input);
+  }
+  public static io.opencensus.proto.metrics.v1.DistributionValue parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageLite.parseFrom(
+        DEFAULT_INSTANCE, input, extensionRegistry);
   }
 
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) {
-      return size;
-    }
-
-    size = 0;
-    if (count_ != 0L) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, count_);
-    }
-    if (sum_ != 0D) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(2, sum_);
-    }
-    if (sumOfSquaredDeviation_ != 0D) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(3, sumOfSquaredDeviation_);
-    }
-    if (bucketOptions_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, getBucketOptions());
-    }
-    for (int i = 0; i < buckets_.size(); i++) {
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, buckets_.get(i));
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
+  public static Builder newBuilder() {
+    return (Builder) DEFAULT_INSTANCE.createBuilder();
   }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-      return true;
-    }
-    if (!(obj instanceof io.opencensus.proto.metrics.v1.DistributionValue)) {
-      return super.equals(obj);
-    }
-    io.opencensus.proto.metrics.v1.DistributionValue other =
-        (io.opencensus.proto.metrics.v1.DistributionValue) obj;
-
-    if (getCount()
-        != other.getCount()) {
-      return false;
-    }
-    if (java.lang.Double.doubleToLongBits(getSum())
-        != java.lang.Double.doubleToLongBits(
-        other.getSum())) {
-      return false;
-    }
-    if (java.lang.Double.doubleToLongBits(getSumOfSquaredDeviation())
-        != java.lang.Double.doubleToLongBits(
-        other.getSumOfSquaredDeviation())) {
-      return false;
-    }
-    if (hasBucketOptions() != other.hasBucketOptions()) {
-      return false;
-    }
-    if (hasBucketOptions()) {
-      if (!getBucketOptions()
-          .equals(other.getBucketOptions())) {
-        return false;
-      }
-    }
-    if (!getBucketsList()
-        .equals(other.getBucketsList())) {
-      return false;
-    }
-    return unknownFields.equals(other.unknownFields);
-  }
-
-  @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + COUNT_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        getCount());
-    hash = (37 * hash) + SUM_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getSum()));
-    hash = (37 * hash) + SUM_OF_SQUARED_DEVIATION_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getSumOfSquaredDeviation()));
-    if (hasBucketOptions()) {
-      hash = (37 * hash) + BUCKET_OPTIONS_FIELD_NUMBER;
-      hash = (53 * hash) + getBucketOptions().hashCode();
-    }
-    if (getBucketsCount() > 0) {
-      hash = (37 * hash) + BUCKETS_FIELD_NUMBER;
-      hash = (53 * hash) + getBucketsList().hashCode();
-    }
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
-
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<DistributionValue> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public io.opencensus.proto.metrics.v1.DistributionValue getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public interface BucketOptionsOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:opencensus.proto.metrics.v1.DistributionValue
-      // .BucketOptions)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     * Bucket with explicit bounds.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;
-     * </code>
-     *
-     * @return Whether the explicit field is set.
-     */
-    boolean hasExplicit();
-
-    /**
-     * <pre>
-     * Bucket with explicit bounds.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;
-     * </code>
-     *
-     * @return The explicit.
-     */
-    io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit getExplicit();
-
-    /**
-     * <pre>
-     * Bucket with explicit bounds.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;
-     * </code>
-     */
-    io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.ExplicitOrBuilder getExplicitOrBuilder();
-
-    io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.TypeCase getTypeCase();
-  }
-
-  public interface BucketOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:opencensus.proto.metrics.v1.DistributionValue
-      // .Bucket)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     * The number of values in each bucket of the histogram, as described in
-     * bucket_bounds.
-     * </pre>
-     *
-     * <code>int64 count = 1;</code>
-     *
-     * @return The count.
-     */
-    long getCount();
-
-    /**
-     * <pre>
-     * If the distribution does not have a histogram, then omit this field.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
-     *
-     * @return Whether the exemplar field is set.
-     */
-    boolean hasExemplar();
-
-    /**
-     * <pre>
-     * If the distribution does not have a histogram, then omit this field.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
-     *
-     * @return The exemplar.
-     */
-    io.opencensus.proto.metrics.v1.DistributionValue.Exemplar getExemplar();
-
-    /**
-     * <pre>
-     * If the distribution does not have a histogram, then omit this field.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
-     */
-    io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder getExemplarOrBuilder();
-  }
-
-  public interface ExemplarOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:opencensus.proto.metrics.v1.DistributionValue
-      // .Exemplar)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     * Value of the exemplar point. It determines which bucket the exemplar
-     * belongs to.
-     * </pre>
-     *
-     * <code>double value = 1;</code>
-     *
-     * @return The value.
-     */
-    double getValue();
-
-    /**
-     * <pre>
-     * The observation (sampling) time of the above value.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp timestamp = 2;</code>
-     *
-     * @return Whether the timestamp field is set.
-     */
-    boolean hasTimestamp();
-
-    /**
-     * <pre>
-     * The observation (sampling) time of the above value.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp timestamp = 2;</code>
-     *
-     * @return The timestamp.
-     */
-    com.google.protobuf.Timestamp getTimestamp();
-
-    /**
-     * <pre>
-     * The observation (sampling) time of the above value.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp timestamp = 2;</code>
-     */
-    com.google.protobuf.TimestampOrBuilder getTimestampOrBuilder();
-
-    /**
-     * <pre>
-     * Contextual information about the example value.
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; attachments = 3;</code>
-     */
-    int getAttachmentsCount();
-
-    /**
-     * <pre>
-     * Contextual information about the example value.
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; attachments = 3;</code>
-     */
-    boolean containsAttachments(
-        java.lang.String key);
-
-    /**
-     * Use {@link #getAttachmentsMap()} instead.
-     */
-    @java.lang.Deprecated
-    java.util.Map<java.lang.String, java.lang.String>
-    getAttachments();
-
-    /**
-     * <pre>
-     * Contextual information about the example value.
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; attachments = 3;</code>
-     */
-    java.util.Map<java.lang.String, java.lang.String>
-    getAttachmentsMap();
-
-    /**
-     * <pre>
-     * Contextual information about the example value.
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; attachments = 3;</code>
-     */
-
-    java.lang.String getAttachmentsOrDefault(
-        java.lang.String key,
-        java.lang.String defaultValue);
-
-    /**
-     * <pre>
-     * Contextual information about the example value.
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; attachments = 3;</code>
-     */
-
-    java.lang.String getAttachmentsOrThrow(
-        java.lang.String key);
-  }
-
-  /**
-   * <pre>
-   * A Distribution may optionally contain a histogram of the values in the
-   * population. The bucket boundaries for that histogram are described by
-   * BucketOptions.
-   * If bucket_options has no type, then there is no histogram associated with
-   * the Distribution.
-   * </pre>
-   * <p>
-   * Protobuf type {@code opencensus.proto.metrics.v1.DistributionValue.BucketOptions}
-   */
-  public static final class BucketOptions extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:opencensus.proto.metrics.v1
-      // .DistributionValue.BucketOptions)
-      BucketOptionsOrBuilder {
-    public static final int EXPLICIT_FIELD_NUMBER = 1;
-    private static final long serialVersionUID = 0L;
-    // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.DistributionValue
-    // .BucketOptions)
-    private static final io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions
-        DEFAULT_INSTANCE;
-    private static final com.google.protobuf.Parser<BucketOptions>
-        PARSER = new com.google.protobuf.AbstractParser<BucketOptions>() {
-      @java.lang.Override
-      public BucketOptions parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new BucketOptions(input, extensionRegistry);
-      }
-    };
-
-    static {
-      DEFAULT_INSTANCE = new io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions();
-    }
-
-    private int typeCase_ = 0;
-    private java.lang.Object type_;
-    private byte memoizedIsInitialized = -1;
-
-    // Use BucketOptions.newBuilder() to construct.
-    private BucketOptions(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-
-    private BucketOptions() {
-    }
-
-    private BucketOptions(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.Builder
-                  subBuilder = null;
-              if (typeCase_ == 1) {
-                subBuilder =
-                    ((io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit) type_)
-                        .toBuilder();
-              }
-              type_ =
-                  input.readMessage(
-                      io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit
-                          .parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(
-                    (io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit) type_);
-                type_ = subBuilder.buildPartial();
-              }
-              typeCase_ = 1;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_BucketOptions_descriptor;
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(
-        byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(
-        java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseDelimitedFrom(
-        java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    public static com.google.protobuf.Parser<BucketOptions> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new BucketOptions();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_BucketOptions_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.class,
-              io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Builder.class);
-    }
-
-    public TypeCase
-    getTypeCase() {
-      return TypeCase.forNumber(
-          typeCase_);
-    }
-
-    /**
-     * <pre>
-     * Bucket with explicit bounds.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;
-     * </code>
-     *
-     * @return Whether the explicit field is set.
-     */
-    @java.lang.Override
-    public boolean hasExplicit() {
-      return typeCase_ == 1;
-    }
-
-    /**
-     * <pre>
-     * Bucket with explicit bounds.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;
-     * </code>
-     *
-     * @return The explicit.
-     */
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit getExplicit() {
-      if (typeCase_ == 1) {
-        return (io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit) type_;
-      }
-      return io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit
-          .getDefaultInstance();
-    }
-
-    /**
-     * <pre>
-     * Bucket with explicit bounds.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit = 1;
-     * </code>
-     */
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.ExplicitOrBuilder getExplicitOrBuilder() {
-      if (typeCase_ == 1) {
-        return (io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit) type_;
-      }
-      return io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit
-          .getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) {
-        return true;
-      }
-      if (isInitialized == 0) {
-        return false;
-      }
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-        throws java.io.IOException {
-      if (typeCase_ == 1) {
-        output.writeMessage(1,
-            (io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit) type_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) {
-        return size;
-      }
-
-      size = 0;
-      if (typeCase_ == 1) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(1,
-                (io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit) type_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-        return true;
-      }
-      if (!(obj instanceof io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions)) {
-        return super.equals(obj);
-      }
-      io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions other =
-          (io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions) obj;
-
-      if (!getTypeCase().equals(other.getTypeCase())) {
-        return false;
-      }
-      switch (typeCase_) {
-        case 1:
-          if (!getExplicit()
-              .equals(other.getExplicit())) {
-            return false;
-          }
-          break;
-        case 0:
-        default:
-      }
-      return unknownFields.equals(other.unknownFields);
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      switch (typeCase_) {
-        case 1:
-          hash = (37 * hash) + EXPLICIT_FIELD_NUMBER;
-          hash = (53 * hash) + getExplicit().hashCode();
-          break;
-        case 0:
-        default:
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() {
-      return newBuilder();
-    }
-
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<BucketOptions> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-    public enum TypeCase
-        implements com.google.protobuf.Internal.EnumLite,
-        com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-      EXPLICIT(1),
-      TYPE_NOT_SET(0);
-      private final int value;
-
-      TypeCase(int value) {
-        this.value = value;
-      }
-
-      /**
-       * @param value The number of the enum to look for.
-       * @return The enum associated with the given number.
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static TypeCase valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static TypeCase forNumber(int value) {
-        switch (value) {
-          case 1:
-            return EXPLICIT;
-          case 0:
-            return TYPE_NOT_SET;
-          default:
-            return null;
-        }
-      }
-
-      public int getNumber() {
-        return this.value;
-      }
-    }
-
-    public interface ExplicitOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:opencensus.proto.metrics.v1
-        // .DistributionValue.BucketOptions.Explicit)
-        com.google.protobuf.MessageOrBuilder {
-
-      /**
-       * <pre>
-       * The values must be strictly increasing and &gt; 0.
-       * </pre>
-       *
-       * <code>repeated double bounds = 1;</code>
-       *
-       * @return A list containing the bounds.
-       */
-      java.util.List<java.lang.Double> getBoundsList();
-
-      /**
-       * <pre>
-       * The values must be strictly increasing and &gt; 0.
-       * </pre>
-       *
-       * <code>repeated double bounds = 1;</code>
-       *
-       * @return The count of bounds.
-       */
-      int getBoundsCount();
-
-      /**
-       * <pre>
-       * The values must be strictly increasing and &gt; 0.
-       * </pre>
-       *
-       * <code>repeated double bounds = 1;</code>
-       *
-       * @param index The index of the element to return.
-       * @return The bounds at the given index.
-       */
-      double getBounds(int index);
-    }
-
-    /**
-     * <pre>
-     * Specifies a set of buckets with arbitrary upper-bounds.
-     * This defines size(bounds) + 1 (= N) buckets. The boundaries for bucket
-     * index i are:
-     * [0, bucket_bounds[i]) for i == 0
-     * [bucket_bounds[i-1], bucket_bounds[i]) for 0 &lt; i &lt; N-1
-     * [bucket_bounds[i], +infinity) for i == N-1
-     * </pre>
-     * <p>
-     * Protobuf type {@code opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit}
-     */
-    public static final class Explicit extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:opencensus.proto.metrics.v1
-        // .DistributionValue.BucketOptions.Explicit)
-        ExplicitOrBuilder {
-      public static final int BOUNDS_FIELD_NUMBER = 1;
-      private static final long serialVersionUID = 0L;
-      // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.DistributionValue
-      // .BucketOptions.Explicit)
-      private static final io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit
-          DEFAULT_INSTANCE;
-      private static final com.google.protobuf.Parser<Explicit>
-          PARSER = new com.google.protobuf.AbstractParser<Explicit>() {
-        @java.lang.Override
-        public Explicit parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Explicit(input, extensionRegistry);
-        }
-      };
-
-      static {
-        DEFAULT_INSTANCE =
-            new io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit();
-      }
-
-      private com.google.protobuf.Internal.DoubleList bounds_;
-      private int boundsMemoizedSerializedSize = -1;
-      private byte memoizedIsInitialized = -1;
-
-      // Use Explicit.newBuilder() to construct.
-      private Explicit(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
-      }
-
-      private Explicit() {
-        bounds_ = emptyDoubleList();
-      }
-
-      private Explicit(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        int mutable_bitField0_ = 0;
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-            com.google.protobuf.UnknownFieldSet.newBuilder();
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 9: {
-                if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                  bounds_ = newDoubleList();
-                  mutable_bitField0_ |= 0x00000001;
-                }
-                bounds_.addDouble(input.readDouble());
-                break;
-              }
-              case 10: {
-                int length = input.readRawVarint32();
-                int limit = input.pushLimit(length);
-                if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
-                  bounds_ = newDoubleList();
-                  mutable_bitField0_ |= 0x00000001;
-                }
-                while (input.getBytesUntilLimit() > 0) {
-                  bounds_.addDouble(input.readDouble());
-                }
-                input.popLimit(limit);
-                break;
-              }
-              default: {
-                if (!parseUnknownField(
-                    input, unknownFields, extensionRegistry, tag)) {
-                  done = true;
-                }
-                break;
-              }
-            }
-          }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
-        } finally {
-          if (((mutable_bitField0_ & 0x00000001) != 0)) {
-            bounds_.makeImmutable(); // C
-          }
-          this.unknownFields = unknownFields.build();
-          makeExtensionsImmutable();
-        }
-      }
-
-      public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-        return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_BucketOptions_Explicit_descriptor;
-      }
-
-      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(
-          java.nio.ByteBuffer data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-
-      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(
-          java.nio.ByteBuffer data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-
-      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(
-          byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-
-      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(
-          java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-
-      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseDelimitedFrom(
-          java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-      }
-
-      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-
-      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-      }
-
-      public static Builder newBuilder(
-          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-      }
-
-      public static io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-      }
-
-      public static com.google.protobuf.Parser<Explicit> parser() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      @SuppressWarnings({"unused"})
-      protected java.lang.Object newInstance(
-          UnusedPrivateParameter unused) {
-        return new Explicit();
-      }
-
-      @java.lang.Override
-      public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
-        return this.unknownFields;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-        return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_BucketOptions_Explicit_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.class,
-                io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.Builder.class);
-      }
-
-      /**
-       * <pre>
-       * The values must be strictly increasing and &gt; 0.
-       * </pre>
-       *
-       * <code>repeated double bounds = 1;</code>
-       *
-       * @return A list containing the bounds.
-       */
-      @java.lang.Override
-      public java.util.List<java.lang.Double>
-      getBoundsList() {
-        return bounds_;
-      }
-
-      /**
-       * <pre>
-       * The values must be strictly increasing and &gt; 0.
-       * </pre>
-       *
-       * <code>repeated double bounds = 1;</code>
-       *
-       * @return The count of bounds.
-       */
-      public int getBoundsCount() {
-        return bounds_.size();
-      }
-
-      /**
-       * <pre>
-       * The values must be strictly increasing and &gt; 0.
-       * </pre>
-       *
-       * <code>repeated double bounds = 1;</code>
-       *
-       * @param index The index of the element to return.
-       * @return The bounds at the given index.
-       */
-      public double getBounds(int index) {
-        return bounds_.getDouble(index);
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) {
-          return true;
-        }
-        if (isInitialized == 0) {
-          return false;
-        }
-
-        memoizedIsInitialized = 1;
-        return true;
-      }
-
-      @java.lang.Override
-      public void writeTo(com.google.protobuf.CodedOutputStream output)
-          throws java.io.IOException {
-        getSerializedSize();
-        if (getBoundsList().size() > 0) {
-          output.writeUInt32NoTag(10);
-          output.writeUInt32NoTag(boundsMemoizedSerializedSize);
-        }
-        for (int i = 0; i < bounds_.size(); i++) {
-          output.writeDoubleNoTag(bounds_.getDouble(i));
-        }
-        unknownFields.writeTo(output);
-      }
-
-      @java.lang.Override
-      public int getSerializedSize() {
-        int size = memoizedSize;
-        if (size != -1) {
-          return size;
-        }
-
-        size = 0;
-        {
-          int dataSize = 0;
-          dataSize = 8 * getBoundsList().size();
-          size += dataSize;
-          if (!getBoundsList().isEmpty()) {
-            size += 1;
-            size += com.google.protobuf.CodedOutputStream
-                .computeInt32SizeNoTag(dataSize);
-          }
-          boundsMemoizedSerializedSize = dataSize;
-        }
-        size += unknownFields.getSerializedSize();
-        memoizedSize = size;
-        return size;
-      }
-
-      @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-          return true;
-        }
-        if (!(obj instanceof io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit)) {
-          return super.equals(obj);
-        }
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit other =
-            (io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit) obj;
-
-        if (!getBoundsList()
-            .equals(other.getBoundsList())) {
-          return false;
-        }
-        return unknownFields.equals(other.unknownFields);
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptor().hashCode();
-        if (getBoundsCount() > 0) {
-          hash = (37 * hash) + BOUNDS_FIELD_NUMBER;
-          hash = (53 * hash) + getBoundsList().hashCode();
-        }
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
-      }
-
-      @java.lang.Override
-      public Builder newBuilderForType() {
-        return newBuilder();
-      }
-
-      @java.lang.Override
-      public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
-      }
-
-      @java.lang.Override
-      protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Parser<Explicit> getParserForType() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-      }
-
-      /**
-       * <pre>
-       * Specifies a set of buckets with arbitrary upper-bounds.
-       * This defines size(bounds) + 1 (= N) buckets. The boundaries for bucket
-       * index i are:
-       * [0, bucket_bounds[i]) for i == 0
-       * [bucket_bounds[i-1], bucket_bounds[i]) for 0 &lt; i &lt; N-1
-       * [bucket_bounds[i], +infinity) for i == N-1
-       * </pre>
-       * <p>
-       * Protobuf type {@code opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit}
-       */
-      public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:opencensus.proto.metrics.v1
-          // .DistributionValue.BucketOptions.Explicit)
-          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.ExplicitOrBuilder {
-        private int bitField0_;
-        private com.google.protobuf.Internal.DoubleList bounds_ = emptyDoubleList();
-
-        // Construct using io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions
-        // .Explicit.newBuilder()
-        private Builder() {
-          maybeForceBuilderInitialization();
-        }
-
-        private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-          super(parent);
-          maybeForceBuilderInitialization();
-        }
-
-        public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-          return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_BucketOptions_Explicit_descriptor;
-        }
-
-        @java.lang.Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-          return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_BucketOptions_Explicit_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                  io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.class,
-                  io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.Builder.class);
-        }
-
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-          }
-        }
-
-        @java.lang.Override
-        public Builder clear() {
-          super.clear();
-          bounds_ = emptyDoubleList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          return this;
-        }
-
-        @java.lang.Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-          return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_BucketOptions_Explicit_descriptor;
-        }
-
-        @java.lang.Override
-        public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit getDefaultInstanceForType() {
-          return io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit
-              .getDefaultInstance();
-        }
-
-        @java.lang.Override
-        public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit build() {
-          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit result =
-              buildPartial();
-          if (!result.isInitialized()) {
-            throw newUninitializedMessageException(result);
-          }
-          return result;
-        }
-
-        @java.lang.Override
-        public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit buildPartial() {
-          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit result =
-              new io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit(this);
-          int from_bitField0_ = bitField0_;
-          if (((bitField0_ & 0x00000001) != 0)) {
-            bounds_.makeImmutable();
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.bounds_ = bounds_;
-          onBuilt();
-          return result;
-        }
-
-        @java.lang.Override
-        public Builder clone() {
-          return super.clone();
-        }
-
-        @java.lang.Override
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-          return super.setField(field, value);
-        }
-
-        @java.lang.Override
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return super.clearField(field);
-        }
-
-        @java.lang.Override
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return super.clearOneof(oneof);
-        }
-
-        @java.lang.Override
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
-          return super.setRepeatedField(field, index, value);
-        }
-
-        @java.lang.Override
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-          return super.addRepeatedField(field, value);
-        }
-
-        @java.lang.Override
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit) {
-            return mergeFrom(
-                (io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit) other);
-          } else {
-            super.mergeFrom(other);
-            return this;
-          }
-        }
-
-        public Builder mergeFrom(
-            io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit other) {
-          if (other == io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit
-              .getDefaultInstance()) {
-            return this;
-          }
-          if (!other.bounds_.isEmpty()) {
-            if (bounds_.isEmpty()) {
-              bounds_ = other.bounds_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureBoundsIsMutable();
-              bounds_.addAll(other.bounds_);
-            }
-            onChanged();
-          }
-          this.mergeUnknownFields(other.unknownFields);
-          onChanged();
-          return this;
-        }
-
-        @java.lang.Override
-        public final boolean isInitialized() {
-          return true;
-        }
-
-        @java.lang.Override
-        public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit parsedMessage =
-              null;
-          try {
-            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage =
-                (io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit) e
-                    .getUnfinishedMessage();
-            throw e.unwrapIOException();
-          } finally {
-            if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-            }
-          }
-          return this;
-        }
-
-        private void ensureBoundsIsMutable() {
-          if (!((bitField0_ & 0x00000001) != 0)) {
-            bounds_ = mutableCopy(bounds_);
-            bitField0_ |= 0x00000001;
-          }
-        }
-
-        /**
-         * <pre>
-         * The values must be strictly increasing and &gt; 0.
-         * </pre>
-         *
-         * <code>repeated double bounds = 1;</code>
-         *
-         * @return A list containing the bounds.
-         */
-        public java.util.List<java.lang.Double>
-        getBoundsList() {
-          return ((bitField0_ & 0x00000001) != 0) ?
-              java.util.Collections.unmodifiableList(bounds_) : bounds_;
-        }
-
-        /**
-         * <pre>
-         * The values must be strictly increasing and &gt; 0.
-         * </pre>
-         *
-         * <code>repeated double bounds = 1;</code>
-         *
-         * @return The count of bounds.
-         */
-        public int getBoundsCount() {
-          return bounds_.size();
-        }
-
-        /**
-         * <pre>
-         * The values must be strictly increasing and &gt; 0.
-         * </pre>
-         *
-         * <code>repeated double bounds = 1;</code>
-         *
-         * @param index The index of the element to return.
-         * @return The bounds at the given index.
-         */
-        public double getBounds(int index) {
-          return bounds_.getDouble(index);
-        }
-
-        /**
-         * <pre>
-         * The values must be strictly increasing and &gt; 0.
-         * </pre>
-         *
-         * <code>repeated double bounds = 1;</code>
-         *
-         * @param index The index to set the value at.
-         * @param value The bounds to set.
-         * @return This builder for chaining.
-         */
-        public Builder setBounds(
-            int index, double value) {
-          ensureBoundsIsMutable();
-          bounds_.setDouble(index, value);
-          onChanged();
-          return this;
-        }
-
-        /**
-         * <pre>
-         * The values must be strictly increasing and &gt; 0.
-         * </pre>
-         *
-         * <code>repeated double bounds = 1;</code>
-         *
-         * @param value The bounds to add.
-         * @return This builder for chaining.
-         */
-        public Builder addBounds(double value) {
-          ensureBoundsIsMutable();
-          bounds_.addDouble(value);
-          onChanged();
-          return this;
-        }
-
-        /**
-         * <pre>
-         * The values must be strictly increasing and &gt; 0.
-         * </pre>
-         *
-         * <code>repeated double bounds = 1;</code>
-         *
-         * @param values The bounds to add.
-         * @return This builder for chaining.
-         */
-        public Builder addAllBounds(
-            java.lang.Iterable<? extends java.lang.Double> values) {
-          ensureBoundsIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, bounds_);
-          onChanged();
-          return this;
-        }
-
-        /**
-         * <pre>
-         * The values must be strictly increasing and &gt; 0.
-         * </pre>
-         *
-         * <code>repeated double bounds = 1;</code>
-         *
-         * @return This builder for chaining.
-         */
-        public Builder clearBounds() {
-          bounds_ = emptyDoubleList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-          return this;
-        }
-
-        @java.lang.Override
-        public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.setUnknownFields(unknownFields);
-        }
-
-        @java.lang.Override
-        public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.mergeUnknownFields(unknownFields);
-        }
-
-
-        // @@protoc_insertion_point(builder_scope:opencensus.proto.metrics.v1.DistributionValue
-        // .BucketOptions.Explicit)
-      }
-
-    }
-
-    /**
-     * <pre>
-     * A Distribution may optionally contain a histogram of the values in the
-     * population. The bucket boundaries for that histogram are described by
-     * BucketOptions.
-     * If bucket_options has no type, then there is no histogram associated with
-     * the Distribution.
-     * </pre>
-     * <p>
-     * Protobuf type {@code opencensus.proto.metrics.v1.DistributionValue.BucketOptions}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:opencensus.proto.metrics.v1
-        // .DistributionValue.BucketOptions)
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptionsOrBuilder {
-      private int typeCase_ = 0;
-      private java.lang.Object type_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit,
-          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.Builder,
-          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.ExplicitOrBuilder>
-          explicitBuilder_;
-
-      // Construct using io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-
-      public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-        return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_BucketOptions_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-        return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_BucketOptions_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.class,
-                io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Builder.class);
-      }
-
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-            .alwaysUseFieldBuilders) {
-        }
-      }
-
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        typeCase_ = 0;
-        type_ = null;
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-      getDescriptorForType() {
-        return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_BucketOptions_descriptor;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions getDefaultInstanceForType() {
-        return io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions build() {
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions buildPartial() {
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions result =
-            new io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions(this);
-        if (typeCase_ == 1) {
-          if (explicitBuilder_ == null) {
-            result.type_ = type_;
-          } else {
-            result.type_ = explicitBuilder_.build();
-          }
-        }
-        result.typeCase_ = typeCase_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions) {
-          return mergeFrom((io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions) other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(
-          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions other) {
-        if (other ==
-            io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.getDefaultInstance()) {
-          return this;
-        }
-        switch (other.getTypeCase()) {
-          case EXPLICIT: {
-            mergeExplicit(other.getExplicit());
-            break;
-          }
-          case TYPE_NOT_SET: {
-            break;
-          }
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions) e
-              .getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      public TypeCase
-      getTypeCase() {
-        return TypeCase.forNumber(
-            typeCase_);
-      }
-
-      public Builder clearType() {
-        typeCase_ = 0;
-        type_ = null;
-        onChanged();
-        return this;
-      }
-
-      /**
-       * <pre>
-       * Bucket with explicit bounds.
-       * </pre>
-       *
-       * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit =
-       * 1;</code>
-       *
-       * @return Whether the explicit field is set.
-       */
-      @java.lang.Override
-      public boolean hasExplicit() {
-        return typeCase_ == 1;
-      }
-
-      /**
-       * <pre>
-       * Bucket with explicit bounds.
-       * </pre>
-       *
-       * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit =
-       * 1;</code>
-       *
-       * @return The explicit.
-       */
-      @java.lang.Override
-      public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit getExplicit() {
-        if (explicitBuilder_ == null) {
-          if (typeCase_ == 1) {
-            return (io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit) type_;
-          }
-          return io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit
-              .getDefaultInstance();
-        } else {
-          if (typeCase_ == 1) {
-            return explicitBuilder_.getMessage();
-          }
-          return io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit
-              .getDefaultInstance();
-        }
-      }
-
-      /**
-       * <pre>
-       * Bucket with explicit bounds.
-       * </pre>
-       *
-       * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit =
-       * 1;</code>
-       */
-      public Builder setExplicit(
-          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit value) {
-        if (explicitBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          type_ = value;
-          onChanged();
-        } else {
-          explicitBuilder_.setMessage(value);
-        }
-        typeCase_ = 1;
-        return this;
-      }
-
-      /**
-       * <pre>
-       * Bucket with explicit bounds.
-       * </pre>
-       *
-       * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit =
-       * 1;</code>
-       */
-      public Builder setExplicit(
-          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.Builder builderForValue) {
-        if (explicitBuilder_ == null) {
-          type_ = builderForValue.build();
-          onChanged();
-        } else {
-          explicitBuilder_.setMessage(builderForValue.build());
-        }
-        typeCase_ = 1;
-        return this;
-      }
-
-      /**
-       * <pre>
-       * Bucket with explicit bounds.
-       * </pre>
-       *
-       * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit =
-       * 1;</code>
-       */
-      public Builder mergeExplicit(
-          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit value) {
-        if (explicitBuilder_ == null) {
-          if (typeCase_ == 1 &&
-              type_ != io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit
-                  .getDefaultInstance()) {
-            type_ = io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit
-                .newBuilder(
-                    (io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit) type_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            type_ = value;
-          }
-          onChanged();
-        } else {
-          if (typeCase_ == 1) {
-            explicitBuilder_.mergeFrom(value);
-          }
-          explicitBuilder_.setMessage(value);
-        }
-        typeCase_ = 1;
-        return this;
-      }
-
-      /**
-       * <pre>
-       * Bucket with explicit bounds.
-       * </pre>
-       *
-       * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit =
-       * 1;</code>
-       */
-      public Builder clearExplicit() {
-        if (explicitBuilder_ == null) {
-          if (typeCase_ == 1) {
-            typeCase_ = 0;
-            type_ = null;
-            onChanged();
-          }
-        } else {
-          if (typeCase_ == 1) {
-            typeCase_ = 0;
-            type_ = null;
-          }
-          explicitBuilder_.clear();
-        }
-        return this;
-      }
-
-      /**
-       * <pre>
-       * Bucket with explicit bounds.
-       * </pre>
-       *
-       * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit =
-       * 1;</code>
-       */
-      public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.Builder getExplicitBuilder() {
-        return getExplicitFieldBuilder().getBuilder();
-      }
-
-      /**
-       * <pre>
-       * Bucket with explicit bounds.
-       * </pre>
-       *
-       * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit =
-       * 1;</code>
-       */
-      @java.lang.Override
-      public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.ExplicitOrBuilder getExplicitOrBuilder() {
-        if ((typeCase_ == 1) && (explicitBuilder_ != null)) {
-          return explicitBuilder_.getMessageOrBuilder();
-        } else {
-          if (typeCase_ == 1) {
-            return (io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit) type_;
-          }
-          return io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit
-              .getDefaultInstance();
-        }
-      }
-
-      /**
-       * <pre>
-       * Bucket with explicit bounds.
-       * </pre>
-       *
-       * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit explicit =
-       * 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit,
-          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.Builder,
-          io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.ExplicitOrBuilder>
-      getExplicitFieldBuilder() {
-        if (explicitBuilder_ == null) {
-          if (!(typeCase_ == 1)) {
-            type_ = io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit
-                .getDefaultInstance();
-          }
-          explicitBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit,
-              io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit.Builder,
-              io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.ExplicitOrBuilder>(
-              (io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Explicit) type_,
-              getParentForChildren(),
-              isClean());
-          type_ = null;
-        }
-        typeCase_ = 1;
-        onChanged();
-        return explicitBuilder_;
-      }
-
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:opencensus.proto.metrics.v1.DistributionValue
-      // .BucketOptions)
-    }
-
-  }
-
-  /**
-   * Protobuf type {@code opencensus.proto.metrics.v1.DistributionValue.Bucket}
-   */
-  public static final class Bucket extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:opencensus.proto.metrics.v1
-      // .DistributionValue.Bucket)
-      BucketOrBuilder {
-    public static final int COUNT_FIELD_NUMBER = 1;
-    public static final int EXEMPLAR_FIELD_NUMBER = 2;
-    private static final long serialVersionUID = 0L;
-    // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.DistributionValue.Bucket)
-    private static final io.opencensus.proto.metrics.v1.DistributionValue.Bucket DEFAULT_INSTANCE;
-    private static final com.google.protobuf.Parser<Bucket>
-        PARSER = new com.google.protobuf.AbstractParser<Bucket>() {
-      @java.lang.Override
-      public Bucket parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Bucket(input, extensionRegistry);
-      }
-    };
-
-    static {
-      DEFAULT_INSTANCE = new io.opencensus.proto.metrics.v1.DistributionValue.Bucket();
-    }
-
-    private long count_;
-    private io.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar_;
-    private byte memoizedIsInitialized = -1;
-
-    // Use Bucket.newBuilder() to construct.
-    private Bucket(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-
-    private Bucket() {
-    }
-
-    private Bucket(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              count_ = input.readInt64();
-              break;
-            }
-            case 18: {
-              io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.Builder subBuilder = null;
-              if (exemplar_ != null) {
-                subBuilder = exemplar_.toBuilder();
-              }
-              exemplar_ = input
-                  .readMessage(io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.parser(),
-                      extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(exemplar_);
-                exemplar_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_Bucket_descriptor;
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(
-        java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseDelimitedFrom(
-        java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(
-        io.opencensus.proto.metrics.v1.DistributionValue.Bucket prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Bucket getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    public static com.google.protobuf.Parser<Bucket> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new Bucket();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_Bucket_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.metrics.v1.DistributionValue.Bucket.class,
-              io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder.class);
-    }
-
-    /**
-     * <pre>
-     * The number of values in each bucket of the histogram, as described in
-     * bucket_bounds.
-     * </pre>
-     *
-     * <code>int64 count = 1;</code>
-     *
-     * @return The count.
-     */
-    @java.lang.Override
-    public long getCount() {
-      return count_;
-    }
-
-    /**
-     * <pre>
-     * If the distribution does not have a histogram, then omit this field.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
-     *
-     * @return Whether the exemplar field is set.
-     */
-    @java.lang.Override
-    public boolean hasExemplar() {
-      return exemplar_ != null;
-    }
-
-    /**
-     * <pre>
-     * If the distribution does not have a histogram, then omit this field.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
-     *
-     * @return The exemplar.
-     */
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.DistributionValue.Exemplar getExemplar() {
-      return exemplar_ == null ?
-          io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.getDefaultInstance() :
-          exemplar_;
-    }
-
-    /**
-     * <pre>
-     * If the distribution does not have a histogram, then omit this field.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
-     */
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder getExemplarOrBuilder() {
-      return getExemplar();
-    }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) {
-        return true;
-      }
-      if (isInitialized == 0) {
-        return false;
-      }
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-        throws java.io.IOException {
-      if (count_ != 0L) {
-        output.writeInt64(1, count_);
-      }
-      if (exemplar_ != null) {
-        output.writeMessage(2, getExemplar());
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) {
-        return size;
-      }
-
-      size = 0;
-      if (count_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeInt64Size(1, count_);
-      }
-      if (exemplar_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(2, getExemplar());
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-        return true;
-      }
-      if (!(obj instanceof io.opencensus.proto.metrics.v1.DistributionValue.Bucket)) {
-        return super.equals(obj);
-      }
-      io.opencensus.proto.metrics.v1.DistributionValue.Bucket other =
-          (io.opencensus.proto.metrics.v1.DistributionValue.Bucket) obj;
-
-      if (getCount()
-          != other.getCount()) {
-        return false;
-      }
-      if (hasExemplar() != other.hasExemplar()) {
-        return false;
-      }
-      if (hasExemplar()) {
-        if (!getExemplar()
-            .equals(other.getExemplar())) {
-          return false;
-        }
-      }
-      return unknownFields.equals(other.unknownFields);
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + COUNT_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getCount());
-      if (hasExemplar()) {
-        hash = (37 * hash) + EXEMPLAR_FIELD_NUMBER;
-        hash = (53 * hash) + getExemplar().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() {
-      return newBuilder();
-    }
-
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Bucket> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.DistributionValue.Bucket getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-    /**
-     * Protobuf type {@code opencensus.proto.metrics.v1.DistributionValue.Bucket}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:opencensus.proto.metrics.v1
-        // .DistributionValue.Bucket)
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder {
-      private long count_;
-      private io.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          io.opencensus.proto.metrics.v1.DistributionValue.Exemplar,
-          io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.Builder,
-          io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder>
-          exemplarBuilder_;
-
-      // Construct using io.opencensus.proto.metrics.v1.DistributionValue.Bucket.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-
-      public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-        return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_Bucket_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-        return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_Bucket_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                io.opencensus.proto.metrics.v1.DistributionValue.Bucket.class,
-                io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder.class);
-      }
-
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-            .alwaysUseFieldBuilders) {
-        }
-      }
-
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        count_ = 0L;
-
-        if (exemplarBuilder_ == null) {
-          exemplar_ = null;
-        } else {
-          exemplar_ = null;
-          exemplarBuilder_ = null;
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-      getDescriptorForType() {
-        return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_Bucket_descriptor;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.metrics.v1.DistributionValue.Bucket getDefaultInstanceForType() {
-        return io.opencensus.proto.metrics.v1.DistributionValue.Bucket.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.metrics.v1.DistributionValue.Bucket build() {
-        io.opencensus.proto.metrics.v1.DistributionValue.Bucket result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.metrics.v1.DistributionValue.Bucket buildPartial() {
-        io.opencensus.proto.metrics.v1.DistributionValue.Bucket result =
-            new io.opencensus.proto.metrics.v1.DistributionValue.Bucket(this);
-        result.count_ = count_;
-        if (exemplarBuilder_ == null) {
-          result.exemplar_ = exemplar_;
-        } else {
-          result.exemplar_ = exemplarBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof io.opencensus.proto.metrics.v1.DistributionValue.Bucket) {
-          return mergeFrom((io.opencensus.proto.metrics.v1.DistributionValue.Bucket) other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(io.opencensus.proto.metrics.v1.DistributionValue.Bucket other) {
-        if (other == io.opencensus.proto.metrics.v1.DistributionValue.Bucket.getDefaultInstance()) {
-          return this;
-        }
-        if (other.getCount() != 0L) {
-          setCount(other.getCount());
-        }
-        if (other.hasExemplar()) {
-          mergeExemplar(other.getExemplar());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        io.opencensus.proto.metrics.v1.DistributionValue.Bucket parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage =
-              (io.opencensus.proto.metrics.v1.DistributionValue.Bucket) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      /**
-       * <pre>
-       * The number of values in each bucket of the histogram, as described in
-       * bucket_bounds.
-       * </pre>
-       *
-       * <code>int64 count = 1;</code>
-       *
-       * @return The count.
-       */
-      @java.lang.Override
-      public long getCount() {
-        return count_;
-      }
-
-      /**
-       * <pre>
-       * The number of values in each bucket of the histogram, as described in
-       * bucket_bounds.
-       * </pre>
-       *
-       * <code>int64 count = 1;</code>
-       *
-       * @param value The count to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCount(long value) {
-
-        count_ = value;
-        onChanged();
-        return this;
-      }
-
-      /**
-       * <pre>
-       * The number of values in each bucket of the histogram, as described in
-       * bucket_bounds.
-       * </pre>
-       *
-       * <code>int64 count = 1;</code>
-       *
-       * @return This builder for chaining.
-       */
-      public Builder clearCount() {
-
-        count_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      /**
-       * <pre>
-       * If the distribution does not have a histogram, then omit this field.
-       * </pre>
-       *
-       * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
-       *
-       * @return Whether the exemplar field is set.
-       */
-      public boolean hasExemplar() {
-        return exemplarBuilder_ != null || exemplar_ != null;
-      }
-
-      /**
-       * <pre>
-       * If the distribution does not have a histogram, then omit this field.
-       * </pre>
-       *
-       * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
-       *
-       * @return The exemplar.
-       */
-      public io.opencensus.proto.metrics.v1.DistributionValue.Exemplar getExemplar() {
-        if (exemplarBuilder_ == null) {
-          return exemplar_ == null ?
-              io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.getDefaultInstance() :
-              exemplar_;
-        } else {
-          return exemplarBuilder_.getMessage();
-        }
-      }
-
-      /**
-       * <pre>
-       * If the distribution does not have a histogram, then omit this field.
-       * </pre>
-       *
-       * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
-       */
-      public Builder setExemplar(io.opencensus.proto.metrics.v1.DistributionValue.Exemplar value) {
-        if (exemplarBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          exemplar_ = value;
-          onChanged();
-        } else {
-          exemplarBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-
-      /**
-       * <pre>
-       * If the distribution does not have a histogram, then omit this field.
-       * </pre>
-       *
-       * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
-       */
-      public Builder setExemplar(
-          io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.Builder builderForValue) {
-        if (exemplarBuilder_ == null) {
-          exemplar_ = builderForValue.build();
-          onChanged();
-        } else {
-          exemplarBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-
-      /**
-       * <pre>
-       * If the distribution does not have a histogram, then omit this field.
-       * </pre>
-       *
-       * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
-       */
-      public Builder mergeExemplar(
-          io.opencensus.proto.metrics.v1.DistributionValue.Exemplar value) {
-        if (exemplarBuilder_ == null) {
-          if (exemplar_ != null) {
-            exemplar_ =
-                io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.newBuilder(exemplar_)
-                                                                         .mergeFrom(value)
-                                                                         .buildPartial();
-          } else {
-            exemplar_ = value;
-          }
-          onChanged();
-        } else {
-          exemplarBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-
-      /**
-       * <pre>
-       * If the distribution does not have a histogram, then omit this field.
-       * </pre>
-       *
-       * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
-       */
-      public Builder clearExemplar() {
-        if (exemplarBuilder_ == null) {
-          exemplar_ = null;
-          onChanged();
-        } else {
-          exemplar_ = null;
-          exemplarBuilder_ = null;
-        }
-
-        return this;
-      }
-
-      /**
-       * <pre>
-       * If the distribution does not have a histogram, then omit this field.
-       * </pre>
-       *
-       * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
-       */
-      public io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.Builder getExemplarBuilder() {
-
-        onChanged();
-        return getExemplarFieldBuilder().getBuilder();
-      }
-
-      /**
-       * <pre>
-       * If the distribution does not have a histogram, then omit this field.
-       * </pre>
-       *
-       * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
-       */
-      public io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder getExemplarOrBuilder() {
-        if (exemplarBuilder_ != null) {
-          return exemplarBuilder_.getMessageOrBuilder();
-        } else {
-          return exemplar_ == null ?
-              io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.getDefaultInstance() :
-              exemplar_;
-        }
-      }
-
-      /**
-       * <pre>
-       * If the distribution does not have a histogram, then omit this field.
-       * </pre>
-       *
-       * <code>.opencensus.proto.metrics.v1.DistributionValue.Exemplar exemplar = 2;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          io.opencensus.proto.metrics.v1.DistributionValue.Exemplar,
-          io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.Builder,
-          io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder>
-      getExemplarFieldBuilder() {
-        if (exemplarBuilder_ == null) {
-          exemplarBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              io.opencensus.proto.metrics.v1.DistributionValue.Exemplar,
-              io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.Builder,
-              io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder>(
-              getExemplar(),
-              getParentForChildren(),
-              isClean());
-          exemplar_ = null;
-        }
-        return exemplarBuilder_;
-      }
-
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:opencensus.proto.metrics.v1.DistributionValue
-      // .Bucket)
-    }
-
-  }
-
-  /**
-   * <pre>
-   * Exemplars are example points that may be used to annotate aggregated
-   * Distribution values. They are metadata that gives information about a
-   * particular value added to a Distribution bucket.
-   * </pre>
-   * <p>
-   * Protobuf type {@code opencensus.proto.metrics.v1.DistributionValue.Exemplar}
-   */
-  public static final class Exemplar extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:opencensus.proto.metrics.v1
-      // .DistributionValue.Exemplar)
-      ExemplarOrBuilder {
-    public static final int VALUE_FIELD_NUMBER = 1;
-    public static final int TIMESTAMP_FIELD_NUMBER = 2;
-    public static final int ATTACHMENTS_FIELD_NUMBER = 3;
-    private static final long serialVersionUID = 0L;
-    // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.DistributionValue.Exemplar)
-    private static final io.opencensus.proto.metrics.v1.DistributionValue.Exemplar DEFAULT_INSTANCE;
-    private static final com.google.protobuf.Parser<Exemplar>
-        PARSER = new com.google.protobuf.AbstractParser<Exemplar>() {
-      @java.lang.Override
-      public Exemplar parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Exemplar(input, extensionRegistry);
-      }
-    };
-
-    static {
-      DEFAULT_INSTANCE = new io.opencensus.proto.metrics.v1.DistributionValue.Exemplar();
-    }
-
-    private double value_;
-    private com.google.protobuf.Timestamp timestamp_;
-    private com.google.protobuf.MapField<
-        java.lang.String, java.lang.String> attachments_;
-    private byte memoizedIsInitialized = -1;
-
-    // Use Exemplar.newBuilder() to construct.
-    private Exemplar(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-
-    private Exemplar() {
-    }
-
-    private Exemplar(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 9: {
-
-              value_ = input.readDouble();
-              break;
-            }
-            case 18: {
-              com.google.protobuf.Timestamp.Builder subBuilder = null;
-              if (timestamp_ != null) {
-                subBuilder = timestamp_.toBuilder();
-              }
-              timestamp_ =
-                  input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(timestamp_);
-                timestamp_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 26: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                attachments_ = com.google.protobuf.MapField.newMapField(
-                    AttachmentsDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000001;
-              }
-              com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-                  attachments__ = input.readMessage(
-                  AttachmentsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              attachments_.getMutableMap().put(
-                  attachments__.getKey(), attachments__.getValue());
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_Exemplar_descriptor;
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(
-        java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseDelimitedFrom(
-        java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(
-        io.opencensus.proto.metrics.v1.DistributionValue.Exemplar prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
-    public static io.opencensus.proto.metrics.v1.DistributionValue.Exemplar getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    public static com.google.protobuf.Parser<Exemplar> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new Exemplar();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-
-    @SuppressWarnings({"rawtypes"})
-    @java.lang.Override
-    protected com.google.protobuf.MapField internalGetMapField(
-        int number) {
-      switch (number) {
-        case 3:
-          return internalGetAttachments();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_Exemplar_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.class,
-              io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.Builder.class);
-    }
-
-    /**
-     * <pre>
-     * Value of the exemplar point. It determines which bucket the exemplar
-     * belongs to.
-     * </pre>
-     *
-     * <code>double value = 1;</code>
-     *
-     * @return The value.
-     */
-    @java.lang.Override
-    public double getValue() {
-      return value_;
-    }
-
-    /**
-     * <pre>
-     * The observation (sampling) time of the above value.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp timestamp = 2;</code>
-     *
-     * @return Whether the timestamp field is set.
-     */
-    @java.lang.Override
-    public boolean hasTimestamp() {
-      return timestamp_ != null;
-    }
-
-    /**
-     * <pre>
-     * The observation (sampling) time of the above value.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp timestamp = 2;</code>
-     *
-     * @return The timestamp.
-     */
-    @java.lang.Override
-    public com.google.protobuf.Timestamp getTimestamp() {
-      return timestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
-    }
-
-    /**
-     * <pre>
-     * The observation (sampling) time of the above value.
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp timestamp = 2;</code>
-     */
-    @java.lang.Override
-    public com.google.protobuf.TimestampOrBuilder getTimestampOrBuilder() {
-      return getTimestamp();
-    }
-
-    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-    internalGetAttachments() {
-      if (attachments_ == null) {
-        return com.google.protobuf.MapField.emptyMapField(
-            AttachmentsDefaultEntryHolder.defaultEntry);
-      }
-      return attachments_;
-    }
-
-    public int getAttachmentsCount() {
-      return internalGetAttachments().getMap().size();
-    }
-
-    /**
-     * <pre>
-     * Contextual information about the example value.
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; attachments = 3;</code>
-     */
-
-    @java.lang.Override
-    public boolean containsAttachments(
-        java.lang.String key) {
-      if (key == null) {
-        throw new java.lang.NullPointerException();
-      }
-      return internalGetAttachments().getMap().containsKey(key);
-    }
-
-    /**
-     * Use {@link #getAttachmentsMap()} instead.
-     */
-    @java.lang.Override
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, java.lang.String> getAttachments() {
-      return getAttachmentsMap();
-    }
-
-    /**
-     * <pre>
-     * Contextual information about the example value.
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; attachments = 3;</code>
-     */
-    @java.lang.Override
-
-    public java.util.Map<java.lang.String, java.lang.String> getAttachmentsMap() {
-      return internalGetAttachments().getMap();
-    }
-
-    /**
-     * <pre>
-     * Contextual information about the example value.
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; attachments = 3;</code>
-     */
-    @java.lang.Override
-
-    public java.lang.String getAttachmentsOrDefault(
-        java.lang.String key,
-        java.lang.String defaultValue) {
-      if (key == null) {
-        throw new java.lang.NullPointerException();
-      }
-      java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetAttachments().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-
-    /**
-     * <pre>
-     * Contextual information about the example value.
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; attachments = 3;</code>
-     */
-    @java.lang.Override
-
-    public java.lang.String getAttachmentsOrThrow(
-        java.lang.String key) {
-      if (key == null) {
-        throw new java.lang.NullPointerException();
-      }
-      java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetAttachments().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
-      }
-      return map.get(key);
-    }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) {
-        return true;
-      }
-      if (isInitialized == 0) {
-        return false;
-      }
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-        throws java.io.IOException {
-      if (value_ != 0D) {
-        output.writeDouble(1, value_);
-      }
-      if (timestamp_ != null) {
-        output.writeMessage(2, getTimestamp());
-      }
-      com.google.protobuf.GeneratedMessageV3
-          .serializeStringMapTo(
-              output,
-              internalGetAttachments(),
-              AttachmentsDefaultEntryHolder.defaultEntry,
-              3);
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) {
-        return size;
-      }
-
-      size = 0;
-      if (value_ != 0D) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeDoubleSize(1, value_);
-      }
-      if (timestamp_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(2, getTimestamp());
-      }
-      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
-          : internalGetAttachments().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-            attachments__ = AttachmentsDefaultEntryHolder.defaultEntry.newBuilderForType()
-                                                                      .setKey(entry.getKey())
-                                                                      .setValue(entry.getValue())
-                                                                      .build();
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(3, attachments__);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-        return true;
-      }
-      if (!(obj instanceof io.opencensus.proto.metrics.v1.DistributionValue.Exemplar)) {
-        return super.equals(obj);
-      }
-      io.opencensus.proto.metrics.v1.DistributionValue.Exemplar other =
-          (io.opencensus.proto.metrics.v1.DistributionValue.Exemplar) obj;
-
-      if (java.lang.Double.doubleToLongBits(getValue())
-          != java.lang.Double.doubleToLongBits(
-          other.getValue())) {
-        return false;
-      }
-      if (hasTimestamp() != other.hasTimestamp()) {
-        return false;
-      }
-      if (hasTimestamp()) {
-        if (!getTimestamp()
-            .equals(other.getTimestamp())) {
-          return false;
-        }
-      }
-      if (!internalGetAttachments().equals(
-          other.internalGetAttachments())) {
-        return false;
-      }
-      return unknownFields.equals(other.unknownFields);
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + VALUE_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          java.lang.Double.doubleToLongBits(getValue()));
-      if (hasTimestamp()) {
-        hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
-        hash = (53 * hash) + getTimestamp().hashCode();
-      }
-      if (!internalGetAttachments().getMap().isEmpty()) {
-        hash = (37 * hash) + ATTACHMENTS_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetAttachments().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() {
-      return newBuilder();
-    }
-
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Exemplar> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.DistributionValue.Exemplar getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final class AttachmentsDefaultEntryHolder {
-      static final com.google.protobuf.MapEntry<
-          java.lang.String, java.lang.String> defaultEntry =
-          com.google.protobuf.MapEntry
-              .newDefaultInstance(
-                  io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_Exemplar_AttachmentsEntry_descriptor,
-                  com.google.protobuf.WireFormat.FieldType.STRING,
-                  "",
-                  com.google.protobuf.WireFormat.FieldType.STRING,
-                  "");
-    }
-
-    /**
-     * <pre>
-     * Exemplars are example points that may be used to annotate aggregated
-     * Distribution values. They are metadata that gives information about a
-     * particular value added to a Distribution bucket.
-     * </pre>
-     * <p>
-     * Protobuf type {@code opencensus.proto.metrics.v1.DistributionValue.Exemplar}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:opencensus.proto.metrics.v1
-        // .DistributionValue.Exemplar)
-        io.opencensus.proto.metrics.v1.DistributionValue.ExemplarOrBuilder {
-      private int bitField0_;
-      private double value_;
-      private com.google.protobuf.Timestamp timestamp_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-          com.google.protobuf.TimestampOrBuilder>
-          timestampBuilder_;
-      private com.google.protobuf.MapField<
-          java.lang.String, java.lang.String> attachments_;
-
-      // Construct using io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-
-      public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-        return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_Exemplar_descriptor;
-      }
-
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMapField(
-          int number) {
-        switch (number) {
-          case 3:
-            return internalGetAttachments();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
-      }
-
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMutableMapField(
-          int number) {
-        switch (number) {
-          case 3:
-            return internalGetMutableAttachments();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-        return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_Exemplar_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.class,
-                io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.Builder.class);
-      }
-
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-            .alwaysUseFieldBuilders) {
-        }
-      }
-
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        value_ = 0D;
-
-        if (timestampBuilder_ == null) {
-          timestamp_ = null;
-        } else {
-          timestamp_ = null;
-          timestampBuilder_ = null;
-        }
-        internalGetMutableAttachments().clear();
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-      getDescriptorForType() {
-        return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_Exemplar_descriptor;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.metrics.v1.DistributionValue.Exemplar getDefaultInstanceForType() {
-        return io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.metrics.v1.DistributionValue.Exemplar build() {
-        io.opencensus.proto.metrics.v1.DistributionValue.Exemplar result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public io.opencensus.proto.metrics.v1.DistributionValue.Exemplar buildPartial() {
-        io.opencensus.proto.metrics.v1.DistributionValue.Exemplar result =
-            new io.opencensus.proto.metrics.v1.DistributionValue.Exemplar(this);
-        int from_bitField0_ = bitField0_;
-        result.value_ = value_;
-        if (timestampBuilder_ == null) {
-          result.timestamp_ = timestamp_;
-        } else {
-          result.timestamp_ = timestampBuilder_.build();
-        }
-        result.attachments_ = internalGetAttachments();
-        result.attachments_.makeImmutable();
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof io.opencensus.proto.metrics.v1.DistributionValue.Exemplar) {
-          return mergeFrom((io.opencensus.proto.metrics.v1.DistributionValue.Exemplar) other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(io.opencensus.proto.metrics.v1.DistributionValue.Exemplar other) {
-        if (other ==
-            io.opencensus.proto.metrics.v1.DistributionValue.Exemplar.getDefaultInstance()) {
-          return this;
-        }
-        if (other.getValue() != 0D) {
-          setValue(other.getValue());
-        }
-        if (other.hasTimestamp()) {
-          mergeTimestamp(other.getTimestamp());
-        }
-        internalGetMutableAttachments().mergeFrom(
-            other.internalGetAttachments());
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        io.opencensus.proto.metrics.v1.DistributionValue.Exemplar parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage =
-              (io.opencensus.proto.metrics.v1.DistributionValue.Exemplar) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      /**
-       * <pre>
-       * Value of the exemplar point. It determines which bucket the exemplar
-       * belongs to.
-       * </pre>
-       *
-       * <code>double value = 1;</code>
-       *
-       * @return The value.
-       */
-      @java.lang.Override
-      public double getValue() {
-        return value_;
-      }
-
-      /**
-       * <pre>
-       * Value of the exemplar point. It determines which bucket the exemplar
-       * belongs to.
-       * </pre>
-       *
-       * <code>double value = 1;</code>
-       *
-       * @param value The value to set.
-       * @return This builder for chaining.
-       */
-      public Builder setValue(double value) {
-
-        value_ = value;
-        onChanged();
-        return this;
-      }
-
-      /**
-       * <pre>
-       * Value of the exemplar point. It determines which bucket the exemplar
-       * belongs to.
-       * </pre>
-       *
-       * <code>double value = 1;</code>
-       *
-       * @return This builder for chaining.
-       */
-      public Builder clearValue() {
-
-        value_ = 0D;
-        onChanged();
-        return this;
-      }
-
-      /**
-       * <pre>
-       * The observation (sampling) time of the above value.
-       * </pre>
-       *
-       * <code>.google.protobuf.Timestamp timestamp = 2;</code>
-       *
-       * @return Whether the timestamp field is set.
-       */
-      public boolean hasTimestamp() {
-        return timestampBuilder_ != null || timestamp_ != null;
-      }
-
-      /**
-       * <pre>
-       * The observation (sampling) time of the above value.
-       * </pre>
-       *
-       * <code>.google.protobuf.Timestamp timestamp = 2;</code>
-       *
-       * @return The timestamp.
-       */
-      public com.google.protobuf.Timestamp getTimestamp() {
-        if (timestampBuilder_ == null) {
-          return timestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() :
-              timestamp_;
-        } else {
-          return timestampBuilder_.getMessage();
-        }
-      }
-
-      /**
-       * <pre>
-       * The observation (sampling) time of the above value.
-       * </pre>
-       *
-       * <code>.google.protobuf.Timestamp timestamp = 2;</code>
-       */
-      public Builder setTimestamp(com.google.protobuf.Timestamp value) {
-        if (timestampBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          timestamp_ = value;
-          onChanged();
-        } else {
-          timestampBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-
-      /**
-       * <pre>
-       * The observation (sampling) time of the above value.
-       * </pre>
-       *
-       * <code>.google.protobuf.Timestamp timestamp = 2;</code>
-       */
-      public Builder setTimestamp(
-          com.google.protobuf.Timestamp.Builder builderForValue) {
-        if (timestampBuilder_ == null) {
-          timestamp_ = builderForValue.build();
-          onChanged();
-        } else {
-          timestampBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-
-      /**
-       * <pre>
-       * The observation (sampling) time of the above value.
-       * </pre>
-       *
-       * <code>.google.protobuf.Timestamp timestamp = 2;</code>
-       */
-      public Builder mergeTimestamp(com.google.protobuf.Timestamp value) {
-        if (timestampBuilder_ == null) {
-          if (timestamp_ != null) {
-            timestamp_ =
-                com.google.protobuf.Timestamp.newBuilder(timestamp_).mergeFrom(value)
-                                             .buildPartial();
-          } else {
-            timestamp_ = value;
-          }
-          onChanged();
-        } else {
-          timestampBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-
-      /**
-       * <pre>
-       * The observation (sampling) time of the above value.
-       * </pre>
-       *
-       * <code>.google.protobuf.Timestamp timestamp = 2;</code>
-       */
-      public Builder clearTimestamp() {
-        if (timestampBuilder_ == null) {
-          timestamp_ = null;
-          onChanged();
-        } else {
-          timestamp_ = null;
-          timestampBuilder_ = null;
-        }
-
-        return this;
-      }
-
-      /**
-       * <pre>
-       * The observation (sampling) time of the above value.
-       * </pre>
-       *
-       * <code>.google.protobuf.Timestamp timestamp = 2;</code>
-       */
-      public com.google.protobuf.Timestamp.Builder getTimestampBuilder() {
-
-        onChanged();
-        return getTimestampFieldBuilder().getBuilder();
-      }
-
-      /**
-       * <pre>
-       * The observation (sampling) time of the above value.
-       * </pre>
-       *
-       * <code>.google.protobuf.Timestamp timestamp = 2;</code>
-       */
-      public com.google.protobuf.TimestampOrBuilder getTimestampOrBuilder() {
-        if (timestampBuilder_ != null) {
-          return timestampBuilder_.getMessageOrBuilder();
-        } else {
-          return timestamp_ == null ?
-              com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
-        }
-      }
-
-      /**
-       * <pre>
-       * The observation (sampling) time of the above value.
-       * </pre>
-       *
-       * <code>.google.protobuf.Timestamp timestamp = 2;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-          com.google.protobuf.TimestampOrBuilder>
-      getTimestampFieldBuilder() {
-        if (timestampBuilder_ == null) {
-          timestampBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder,
-              com.google.protobuf.TimestampOrBuilder>(
-              getTimestamp(),
-              getParentForChildren(),
-              isClean());
-          timestamp_ = null;
-        }
-        return timestampBuilder_;
-      }
-
-      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetAttachments() {
-        if (attachments_ == null) {
-          return com.google.protobuf.MapField.emptyMapField(
-              AttachmentsDefaultEntryHolder.defaultEntry);
-        }
-        return attachments_;
-      }
-
-      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetMutableAttachments() {
-        onChanged();
-        if (attachments_ == null) {
-          attachments_ = com.google.protobuf.MapField.newMapField(
-              AttachmentsDefaultEntryHolder.defaultEntry);
-        }
-        if (!attachments_.isMutable()) {
-          attachments_ = attachments_.copy();
-        }
-        return attachments_;
-      }
-
-      public int getAttachmentsCount() {
-        return internalGetAttachments().getMap().size();
-      }
-
-      /**
-       * <pre>
-       * Contextual information about the example value.
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; attachments = 3;</code>
-       */
-
-      @java.lang.Override
-      public boolean containsAttachments(
-          java.lang.String key) {
-        if (key == null) {
-          throw new java.lang.NullPointerException();
-        }
-        return internalGetAttachments().getMap().containsKey(key);
-      }
-
-      /**
-       * Use {@link #getAttachmentsMap()} instead.
-       */
-      @java.lang.Override
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, java.lang.String> getAttachments() {
-        return getAttachmentsMap();
-      }
-
-      /**
-       * <pre>
-       * Contextual information about the example value.
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; attachments = 3;</code>
-       */
-      @java.lang.Override
-
-      public java.util.Map<java.lang.String, java.lang.String> getAttachmentsMap() {
-        return internalGetAttachments().getMap();
-      }
-
-      /**
-       * <pre>
-       * Contextual information about the example value.
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; attachments = 3;</code>
-       */
-      @java.lang.Override
-
-      public java.lang.String getAttachmentsOrDefault(
-          java.lang.String key,
-          java.lang.String defaultValue) {
-        if (key == null) {
-          throw new java.lang.NullPointerException();
-        }
-        java.util.Map<java.lang.String, java.lang.String> map =
-            internalGetAttachments().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-
-      /**
-       * <pre>
-       * Contextual information about the example value.
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; attachments = 3;</code>
-       */
-      @java.lang.Override
-
-      public java.lang.String getAttachmentsOrThrow(
-          java.lang.String key) {
-        if (key == null) {
-          throw new java.lang.NullPointerException();
-        }
-        java.util.Map<java.lang.String, java.lang.String> map =
-            internalGetAttachments().getMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
-        }
-        return map.get(key);
-      }
-
-      public Builder clearAttachments() {
-        internalGetMutableAttachments().getMutableMap()
-                                       .clear();
-        return this;
-      }
-
-      /**
-       * <pre>
-       * Contextual information about the example value.
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; attachments = 3;</code>
-       */
-
-      public Builder removeAttachments(
-          java.lang.String key) {
-        if (key == null) {
-          throw new java.lang.NullPointerException();
-        }
-        internalGetMutableAttachments().getMutableMap()
-                                       .remove(key);
-        return this;
-      }
-
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, java.lang.String>
-      getMutableAttachments() {
-        return internalGetMutableAttachments().getMutableMap();
-      }
-
-      /**
-       * <pre>
-       * Contextual information about the example value.
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; attachments = 3;</code>
-       */
-      public Builder putAttachments(
-          java.lang.String key,
-          java.lang.String value) {
-        if (key == null) {
-          throw new java.lang.NullPointerException();
-        }
-        if (value == null) {
-          throw new java.lang.NullPointerException();
-        }
-        internalGetMutableAttachments().getMutableMap()
-                                       .put(key, value);
-        return this;
-      }
-
-      /**
-       * <pre>
-       * Contextual information about the example value.
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; attachments = 3;</code>
-       */
-
-      public Builder putAllAttachments(
-          java.util.Map<java.lang.String, java.lang.String> values) {
-        internalGetMutableAttachments().getMutableMap()
-                                       .putAll(values);
-        return this;
-      }
-
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:opencensus.proto.metrics.v1.DistributionValue
-      // .Exemplar)
-    }
-
+  public static Builder newBuilder(io.opencensus.proto.metrics.v1.DistributionValue prototype) {
+    return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
   }
 
   /**
@@ -4484,251 +2509,19 @@ public final class DistributionValue extends
    * optionally contains a histogram representing the distribution of those
    * values across a set of buckets.
    * </pre>
-   * <p>
+   *
    * Protobuf type {@code opencensus.proto.metrics.v1.DistributionValue}
    */
   public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+      com.google.protobuf.GeneratedMessageLite.Builder<
+        io.opencensus.proto.metrics.v1.DistributionValue, Builder> implements
       // @@protoc_insertion_point(builder_implements:opencensus.proto.metrics.v1.DistributionValue)
       io.opencensus.proto.metrics.v1.DistributionValueOrBuilder {
-    private int bitField0_;
-    private long count_;
-    private double sum_;
-    private double sumOfSquaredDeviation_;
-    private io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucketOptions_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions,
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Builder,
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptionsOrBuilder>
-        bucketOptionsBuilder_;
-    private java.util.List<io.opencensus.proto.metrics.v1.DistributionValue.Bucket> buckets_ =
-        java.util.Collections.emptyList();
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.DistributionValue.Bucket,
-        io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder,
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder>
-        bucketsBuilder_;
-
     // Construct using io.opencensus.proto.metrics.v1.DistributionValue.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+      super(DEFAULT_INSTANCE);
     }
 
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              io.opencensus.proto.metrics.v1.DistributionValue.class,
-              io.opencensus.proto.metrics.v1.DistributionValue.Builder.class);
-    }
-
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-          .alwaysUseFieldBuilders) {
-        getBucketsFieldBuilder();
-      }
-    }
-
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      count_ = 0L;
-
-      sum_ = 0D;
-
-      sumOfSquaredDeviation_ = 0D;
-
-      if (bucketOptionsBuilder_ == null) {
-        bucketOptions_ = null;
-      } else {
-        bucketOptions_ = null;
-        bucketOptionsBuilder_ = null;
-      }
-      if (bucketsBuilder_ == null) {
-        buckets_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-      } else {
-        bucketsBuilder_.clear();
-      }
-      return this;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return io.opencensus.proto.metrics.v1.MetricsProto.internal_static_opencensus_proto_metrics_v1_DistributionValue_descriptor;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.DistributionValue getDefaultInstanceForType() {
-      return io.opencensus.proto.metrics.v1.DistributionValue.getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.DistributionValue build() {
-      io.opencensus.proto.metrics.v1.DistributionValue result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public io.opencensus.proto.metrics.v1.DistributionValue buildPartial() {
-      io.opencensus.proto.metrics.v1.DistributionValue result =
-          new io.opencensus.proto.metrics.v1.DistributionValue(this);
-      int from_bitField0_ = bitField0_;
-      result.count_ = count_;
-      result.sum_ = sum_;
-      result.sumOfSquaredDeviation_ = sumOfSquaredDeviation_;
-      if (bucketOptionsBuilder_ == null) {
-        result.bucketOptions_ = bucketOptions_;
-      } else {
-        result.bucketOptions_ = bucketOptionsBuilder_.build();
-      }
-      if (bucketsBuilder_ == null) {
-        if (((bitField0_ & 0x00000001) != 0)) {
-          buckets_ = java.util.Collections.unmodifiableList(buckets_);
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.buckets_ = buckets_;
-      } else {
-        result.buckets_ = bucketsBuilder_.build();
-      }
-      onBuilt();
-      return result;
-    }
-
-    @java.lang.Override
-    public Builder clone() {
-      return super.clone();
-    }
-
-    @java.lang.Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.setField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-
-    @java.lang.Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-
-    @java.lang.Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-
-    @java.lang.Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof io.opencensus.proto.metrics.v1.DistributionValue) {
-        return mergeFrom((io.opencensus.proto.metrics.v1.DistributionValue) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(io.opencensus.proto.metrics.v1.DistributionValue other) {
-      if (other == io.opencensus.proto.metrics.v1.DistributionValue.getDefaultInstance()) {
-        return this;
-      }
-      if (other.getCount() != 0L) {
-        setCount(other.getCount());
-      }
-      if (other.getSum() != 0D) {
-        setSum(other.getSum());
-      }
-      if (other.getSumOfSquaredDeviation() != 0D) {
-        setSumOfSquaredDeviation(other.getSumOfSquaredDeviation());
-      }
-      if (other.hasBucketOptions()) {
-        mergeBucketOptions(other.getBucketOptions());
-      }
-      if (bucketsBuilder_ == null) {
-        if (!other.buckets_.isEmpty()) {
-          if (buckets_.isEmpty()) {
-            buckets_ = other.buckets_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-          } else {
-            ensureBucketsIsMutable();
-            buckets_.addAll(other.buckets_);
-          }
-          onChanged();
-        }
-      } else {
-        if (!other.buckets_.isEmpty()) {
-          if (bucketsBuilder_.isEmpty()) {
-            bucketsBuilder_.dispose();
-            bucketsBuilder_ = null;
-            buckets_ = other.buckets_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-            bucketsBuilder_ =
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                    getBucketsFieldBuilder() : null;
-          } else {
-            bucketsBuilder_.addAllMessages(other.buckets_);
-          }
-        }
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      io.opencensus.proto.metrics.v1.DistributionValue parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.opencensus.proto.metrics.v1.DistributionValue) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
-      return this;
-    }
 
     /**
      * <pre>
@@ -4738,14 +2531,12 @@ public final class DistributionValue extends
      * </pre>
      *
      * <code>int64 count = 1;</code>
-     *
      * @return The count.
      */
     @java.lang.Override
     public long getCount() {
-      return count_;
+      return instance.getCount();
     }
-
     /**
      * <pre>
      * The number of values in the population. Must be non-negative. This value
@@ -4754,17 +2545,14 @@ public final class DistributionValue extends
      * </pre>
      *
      * <code>int64 count = 1;</code>
-     *
      * @param value The count to set.
      * @return This builder for chaining.
      */
     public Builder setCount(long value) {
-
-      count_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setCount(value);
       return this;
     }
-
     /**
      * <pre>
      * The number of values in the population. Must be non-negative. This value
@@ -4773,13 +2561,11 @@ public final class DistributionValue extends
      * </pre>
      *
      * <code>int64 count = 1;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearCount() {
-
-      count_ = 0L;
-      onChanged();
+      copyOnWrite();
+      instance.clearCount();
       return this;
     }
 
@@ -4790,14 +2576,12 @@ public final class DistributionValue extends
      * </pre>
      *
      * <code>double sum = 2;</code>
-     *
      * @return The sum.
      */
     @java.lang.Override
     public double getSum() {
-      return sum_;
+      return instance.getSum();
     }
-
     /**
      * <pre>
      * The sum of the values in the population. If count is zero then this field
@@ -4805,17 +2589,14 @@ public final class DistributionValue extends
      * </pre>
      *
      * <code>double sum = 2;</code>
-     *
      * @param value The sum to set.
      * @return This builder for chaining.
      */
     public Builder setSum(double value) {
-
-      sum_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setSum(value);
       return this;
     }
-
     /**
      * <pre>
      * The sum of the values in the population. If count is zero then this field
@@ -4823,13 +2604,11 @@ public final class DistributionValue extends
      * </pre>
      *
      * <code>double sum = 2;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearSum() {
-
-      sum_ = 0D;
-      onChanged();
+      copyOnWrite();
+      instance.clearSum();
       return this;
     }
 
@@ -4844,14 +2623,12 @@ public final class DistributionValue extends
      * </pre>
      *
      * <code>double sum_of_squared_deviation = 3;</code>
-     *
      * @return The sumOfSquaredDeviation.
      */
     @java.lang.Override
     public double getSumOfSquaredDeviation() {
-      return sumOfSquaredDeviation_;
+      return instance.getSumOfSquaredDeviation();
     }
-
     /**
      * <pre>
      * The sum of squared deviations from the mean of the values in the
@@ -4863,17 +2640,14 @@ public final class DistributionValue extends
      * </pre>
      *
      * <code>double sum_of_squared_deviation = 3;</code>
-     *
      * @param value The sumOfSquaredDeviation to set.
      * @return This builder for chaining.
      */
     public Builder setSumOfSquaredDeviation(double value) {
-
-      sumOfSquaredDeviation_ = value;
-      onChanged();
+      copyOnWrite();
+      instance.setSumOfSquaredDeviation(value);
       return this;
     }
-
     /**
      * <pre>
      * The sum of squared deviations from the mean of the values in the
@@ -4885,13 +2659,11 @@ public final class DistributionValue extends
      * </pre>
      *
      * <code>double sum_of_squared_deviation = 3;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearSumOfSquaredDeviation() {
-
-      sumOfSquaredDeviation_ = 0D;
-      onChanged();
+      copyOnWrite();
+      instance.clearSumOfSquaredDeviation();
       return this;
     }
 
@@ -4904,13 +2676,11 @@ public final class DistributionValue extends
      * </pre>
      *
      * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucket_options = 4;</code>
-     *
-     * @return Whether the bucketOptions field is set.
      */
+    @java.lang.Override
     public boolean hasBucketOptions() {
-      return bucketOptionsBuilder_ != null || bucketOptions_ != null;
+      return instance.hasBucketOptions();
     }
-
     /**
      * <pre>
      * Don't change bucket boundaries within a TimeSeries if your backend doesn't
@@ -4920,19 +2690,11 @@ public final class DistributionValue extends
      * </pre>
      *
      * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucket_options = 4;</code>
-     *
-     * @return The bucketOptions.
      */
+    @java.lang.Override
     public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions getBucketOptions() {
-      if (bucketOptionsBuilder_ == null) {
-        return bucketOptions_ == null ?
-            io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.getDefaultInstance() :
-            bucketOptions_;
-      } else {
-        return bucketOptionsBuilder_.getMessage();
-      }
+      return instance.getBucketOptions();
     }
-
     /**
      * <pre>
      * Don't change bucket boundaries within a TimeSeries if your backend doesn't
@@ -4943,21 +2705,11 @@ public final class DistributionValue extends
      *
      * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucket_options = 4;</code>
      */
-    public Builder setBucketOptions(
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions value) {
-      if (bucketOptionsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bucketOptions_ = value;
-        onChanged();
-      } else {
-        bucketOptionsBuilder_.setMessage(value);
-      }
-
+    public Builder setBucketOptions(io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions value) {
+      copyOnWrite();
+      instance.setBucketOptions(value);
       return this;
-    }
-
+      }
     /**
      * <pre>
      * Don't change bucket boundaries within a TimeSeries if your backend doesn't
@@ -4970,16 +2722,10 @@ public final class DistributionValue extends
      */
     public Builder setBucketOptions(
         io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Builder builderForValue) {
-      if (bucketOptionsBuilder_ == null) {
-        bucketOptions_ = builderForValue.build();
-        onChanged();
-      } else {
-        bucketOptionsBuilder_.setMessage(builderForValue.build());
-      }
-
+      copyOnWrite();
+      instance.setBucketOptions(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * Don't change bucket boundaries within a TimeSeries if your backend doesn't
@@ -4990,24 +2736,11 @@ public final class DistributionValue extends
      *
      * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucket_options = 4;</code>
      */
-    public Builder mergeBucketOptions(
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions value) {
-      if (bucketOptionsBuilder_ == null) {
-        if (bucketOptions_ != null) {
-          bucketOptions_ =
-              io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions
-                  .newBuilder(bucketOptions_).mergeFrom(value).buildPartial();
-        } else {
-          bucketOptions_ = value;
-        }
-        onChanged();
-      } else {
-        bucketOptionsBuilder_.mergeFrom(value);
-      }
-
+    public Builder mergeBucketOptions(io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions value) {
+      copyOnWrite();
+      instance.mergeBucketOptions(value);
       return this;
     }
-
     /**
      * <pre>
      * Don't change bucket boundaries within a TimeSeries if your backend doesn't
@@ -5018,88 +2751,9 @@ public final class DistributionValue extends
      *
      * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucket_options = 4;</code>
      */
-    public Builder clearBucketOptions() {
-      if (bucketOptionsBuilder_ == null) {
-        bucketOptions_ = null;
-        onChanged();
-      } else {
-        bucketOptions_ = null;
-        bucketOptionsBuilder_ = null;
-      }
-
+    public Builder clearBucketOptions() {  copyOnWrite();
+      instance.clearBucketOptions();
       return this;
-    }
-
-    /**
-     * <pre>
-     * Don't change bucket boundaries within a TimeSeries if your backend doesn't
-     * support this.
-     * TODO(issue #152): consider not required to send bucket options for
-     * optimization.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucket_options = 4;</code>
-     */
-    public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Builder getBucketOptionsBuilder() {
-
-      onChanged();
-      return getBucketOptionsFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * Don't change bucket boundaries within a TimeSeries if your backend doesn't
-     * support this.
-     * TODO(issue #152): consider not required to send bucket options for
-     * optimization.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucket_options = 4;</code>
-     */
-    public io.opencensus.proto.metrics.v1.DistributionValue.BucketOptionsOrBuilder getBucketOptionsOrBuilder() {
-      if (bucketOptionsBuilder_ != null) {
-        return bucketOptionsBuilder_.getMessageOrBuilder();
-      } else {
-        return bucketOptions_ == null ?
-            io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.getDefaultInstance() :
-            bucketOptions_;
-      }
-    }
-
-    /**
-     * <pre>
-     * Don't change bucket boundaries within a TimeSeries if your backend doesn't
-     * support this.
-     * TODO(issue #152): consider not required to send bucket options for
-     * optimization.
-     * </pre>
-     *
-     * <code>.opencensus.proto.metrics.v1.DistributionValue.BucketOptions bucket_options = 4;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions,
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Builder,
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOptionsOrBuilder>
-    getBucketOptionsFieldBuilder() {
-      if (bucketOptionsBuilder_ == null) {
-        bucketOptionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions,
-            io.opencensus.proto.metrics.v1.DistributionValue.BucketOptions.Builder,
-            io.opencensus.proto.metrics.v1.DistributionValue.BucketOptionsOrBuilder>(
-            getBucketOptions(),
-            getParentForChildren(),
-            isClean());
-        bucketOptions_ = null;
-      }
-      return bucketOptionsBuilder_;
-    }
-
-    private void ensureBucketsIsMutable() {
-      if (!((bitField0_ & 0x00000001) != 0)) {
-        buckets_ = new java.util.ArrayList<io.opencensus.proto.metrics.v1.DistributionValue.Bucket>(
-            buckets_);
-        bitField0_ |= 0x00000001;
-      }
     }
 
     /**
@@ -5111,14 +2765,11 @@ public final class DistributionValue extends
      *
      * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
      */
+    @java.lang.Override
     public java.util.List<io.opencensus.proto.metrics.v1.DistributionValue.Bucket> getBucketsList() {
-      if (bucketsBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(buckets_);
-      } else {
-        return bucketsBuilder_.getMessageList();
-      }
+      return java.util.Collections.unmodifiableList(
+          instance.getBucketsList());
     }
-
     /**
      * <pre>
      * If the distribution does not have a histogram, then omit this field.
@@ -5128,15 +2779,10 @@ public final class DistributionValue extends
      *
      * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
      */
+    @java.lang.Override
     public int getBucketsCount() {
-      if (bucketsBuilder_ == null) {
-        return buckets_.size();
-      } else {
-        return bucketsBuilder_.getCount();
-      }
-    }
-
-    /**
+      return instance.getBucketsCount();
+    }/**
      * <pre>
      * If the distribution does not have a histogram, then omit this field.
      * If there is a histogram, then the sum of the values in the Bucket counts
@@ -5145,14 +2791,10 @@ public final class DistributionValue extends
      *
      * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
      */
+    @java.lang.Override
     public io.opencensus.proto.metrics.v1.DistributionValue.Bucket getBuckets(int index) {
-      if (bucketsBuilder_ == null) {
-        return buckets_.get(index);
-      } else {
-        return bucketsBuilder_.getMessage(index);
-      }
+      return instance.getBuckets(index);
     }
-
     /**
      * <pre>
      * If the distribution does not have a histogram, then omit this field.
@@ -5164,19 +2806,10 @@ public final class DistributionValue extends
      */
     public Builder setBuckets(
         int index, io.opencensus.proto.metrics.v1.DistributionValue.Bucket value) {
-      if (bucketsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureBucketsIsMutable();
-        buckets_.set(index, value);
-        onChanged();
-      } else {
-        bucketsBuilder_.setMessage(index, value);
-      }
+      copyOnWrite();
+      instance.setBuckets(index, value);
       return this;
     }
-
     /**
      * <pre>
      * If the distribution does not have a histogram, then omit this field.
@@ -5187,18 +2820,12 @@ public final class DistributionValue extends
      * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
      */
     public Builder setBuckets(
-        int index,
-        io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder builderForValue) {
-      if (bucketsBuilder_ == null) {
-        ensureBucketsIsMutable();
-        buckets_.set(index, builderForValue.build());
-        onChanged();
-      } else {
-        bucketsBuilder_.setMessage(index, builderForValue.build());
-      }
+        int index, io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder builderForValue) {
+      copyOnWrite();
+      instance.setBuckets(index,
+          builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * If the distribution does not have a histogram, then omit this field.
@@ -5209,19 +2836,10 @@ public final class DistributionValue extends
      * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
      */
     public Builder addBuckets(io.opencensus.proto.metrics.v1.DistributionValue.Bucket value) {
-      if (bucketsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureBucketsIsMutable();
-        buckets_.add(value);
-        onChanged();
-      } else {
-        bucketsBuilder_.addMessage(value);
-      }
+      copyOnWrite();
+      instance.addBuckets(value);
       return this;
     }
-
     /**
      * <pre>
      * If the distribution does not have a histogram, then omit this field.
@@ -5233,19 +2851,10 @@ public final class DistributionValue extends
      */
     public Builder addBuckets(
         int index, io.opencensus.proto.metrics.v1.DistributionValue.Bucket value) {
-      if (bucketsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureBucketsIsMutable();
-        buckets_.add(index, value);
-        onChanged();
-      } else {
-        bucketsBuilder_.addMessage(index, value);
-      }
+      copyOnWrite();
+      instance.addBuckets(index, value);
       return this;
     }
-
     /**
      * <pre>
      * If the distribution does not have a histogram, then omit this field.
@@ -5257,16 +2866,10 @@ public final class DistributionValue extends
      */
     public Builder addBuckets(
         io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder builderForValue) {
-      if (bucketsBuilder_ == null) {
-        ensureBucketsIsMutable();
-        buckets_.add(builderForValue.build());
-        onChanged();
-      } else {
-        bucketsBuilder_.addMessage(builderForValue.build());
-      }
+      copyOnWrite();
+      instance.addBuckets(builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * If the distribution does not have a histogram, then omit this field.
@@ -5277,18 +2880,12 @@ public final class DistributionValue extends
      * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
      */
     public Builder addBuckets(
-        int index,
-        io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder builderForValue) {
-      if (bucketsBuilder_ == null) {
-        ensureBucketsIsMutable();
-        buckets_.add(index, builderForValue.build());
-        onChanged();
-      } else {
-        bucketsBuilder_.addMessage(index, builderForValue.build());
-      }
+        int index, io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder builderForValue) {
+      copyOnWrite();
+      instance.addBuckets(index,
+          builderForValue.build());
       return this;
     }
-
     /**
      * <pre>
      * If the distribution does not have a histogram, then omit this field.
@@ -5300,17 +2897,10 @@ public final class DistributionValue extends
      */
     public Builder addAllBuckets(
         java.lang.Iterable<? extends io.opencensus.proto.metrics.v1.DistributionValue.Bucket> values) {
-      if (bucketsBuilder_ == null) {
-        ensureBucketsIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, buckets_);
-        onChanged();
-      } else {
-        bucketsBuilder_.addAllMessages(values);
-      }
+      copyOnWrite();
+      instance.addAllBuckets(values);
       return this;
     }
-
     /**
      * <pre>
      * If the distribution does not have a histogram, then omit this field.
@@ -5321,16 +2911,10 @@ public final class DistributionValue extends
      * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
      */
     public Builder clearBuckets() {
-      if (bucketsBuilder_ == null) {
-        buckets_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        onChanged();
-      } else {
-        bucketsBuilder_.clear();
-      }
+      copyOnWrite();
+      instance.clearBuckets();
       return this;
     }
-
     /**
      * <pre>
      * If the distribution does not have a histogram, then omit this field.
@@ -5341,144 +2925,88 @@ public final class DistributionValue extends
      * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
      */
     public Builder removeBuckets(int index) {
-      if (bucketsBuilder_ == null) {
-        ensureBucketsIsMutable();
-        buckets_.remove(index);
-        onChanged();
-      } else {
-        bucketsBuilder_.remove(index);
-      }
+      copyOnWrite();
+      instance.removeBuckets(index);
       return this;
     }
 
-    /**
-     * <pre>
-     * If the distribution does not have a histogram, then omit this field.
-     * If there is a histogram, then the sum of the values in the Bucket counts
-     * must equal the value in the count field of the distribution.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
-     */
-    public io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder getBucketsBuilder(
-        int index) {
-      return getBucketsFieldBuilder().getBuilder(index);
-    }
-
-    /**
-     * <pre>
-     * If the distribution does not have a histogram, then omit this field.
-     * If there is a histogram, then the sum of the values in the Bucket counts
-     * must equal the value in the count field of the distribution.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
-     */
-    public io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder getBucketsOrBuilder(
-        int index) {
-      if (bucketsBuilder_ == null) {
-        return buckets_.get(index);
-      } else {
-        return bucketsBuilder_.getMessageOrBuilder(index);
-      }
-    }
-
-    /**
-     * <pre>
-     * If the distribution does not have a histogram, then omit this field.
-     * If there is a histogram, then the sum of the values in the Bucket counts
-     * must equal the value in the count field of the distribution.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
-     */
-    public java.util.List<?
-        extends io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder>
-    getBucketsOrBuilderList() {
-      if (bucketsBuilder_ != null) {
-        return bucketsBuilder_.getMessageOrBuilderList();
-      } else {
-        return java.util.Collections.unmodifiableList(buckets_);
-      }
-    }
-
-    /**
-     * <pre>
-     * If the distribution does not have a histogram, then omit this field.
-     * If there is a histogram, then the sum of the values in the Bucket counts
-     * must equal the value in the count field of the distribution.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
-     */
-    public io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder addBucketsBuilder() {
-      return getBucketsFieldBuilder().addBuilder(
-          io.opencensus.proto.metrics.v1.DistributionValue.Bucket.getDefaultInstance());
-    }
-
-    /**
-     * <pre>
-     * If the distribution does not have a histogram, then omit this field.
-     * If there is a histogram, then the sum of the values in the Bucket counts
-     * must equal the value in the count field of the distribution.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
-     */
-    public io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder addBucketsBuilder(
-        int index) {
-      return getBucketsFieldBuilder().addBuilder(
-          index, io.opencensus.proto.metrics.v1.DistributionValue.Bucket.getDefaultInstance());
-    }
-
-    /**
-     * <pre>
-     * If the distribution does not have a histogram, then omit this field.
-     * If there is a histogram, then the sum of the values in the Bucket counts
-     * must equal the value in the count field of the distribution.
-     * </pre>
-     *
-     * <code>repeated .opencensus.proto.metrics.v1.DistributionValue.Bucket buckets = 5;</code>
-     */
-    public java.util.List<io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder>
-    getBucketsBuilderList() {
-      return getBucketsFieldBuilder().getBuilderList();
-    }
-
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opencensus.proto.metrics.v1.DistributionValue.Bucket,
-        io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder,
-        io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder>
-    getBucketsFieldBuilder() {
-      if (bucketsBuilder_ == null) {
-        bucketsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            io.opencensus.proto.metrics.v1.DistributionValue.Bucket,
-            io.opencensus.proto.metrics.v1.DistributionValue.Bucket.Builder,
-            io.opencensus.proto.metrics.v1.DistributionValue.BucketOrBuilder>(
-            buckets_,
-            ((bitField0_ & 0x00000001) != 0),
-            getParentForChildren(),
-            isClean());
-        buckets_ = null;
-      }
-      return bucketsBuilder_;
-    }
-
-    @java.lang.Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
-    }
-
-    @java.lang.Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
-    }
-
-
     // @@protoc_insertion_point(builder_scope:opencensus.proto.metrics.v1.DistributionValue)
   }
+  @java.lang.Override
+  @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+  protected final java.lang.Object dynamicMethod(
+      com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+      java.lang.Object arg0, java.lang.Object arg1) {
+    switch (method) {
+      case NEW_MUTABLE_INSTANCE: {
+        return new io.opencensus.proto.metrics.v1.DistributionValue();
+      }
+      case NEW_BUILDER: {
+        return new Builder();
+      }
+      case BUILD_MESSAGE_INFO: {
+          java.lang.Object[] objects = new java.lang.Object[] {
+            "count_",
+            "sum_",
+            "sumOfSquaredDeviation_",
+            "bucketOptions_",
+            "buckets_",
+            io.opencensus.proto.metrics.v1.DistributionValue.Bucket.class,
+          };
+          java.lang.String info =
+              "\u0000\u0005\u0000\u0000\u0001\u0005\u0005\u0000\u0001\u0000\u0001\u0002\u0002\u0000" +
+              "\u0003\u0000\u0004\t\u0005\u001b";
+          return newMessageInfo(DEFAULT_INSTANCE, info, objects);
+      }
+      // fall through
+      case GET_DEFAULT_INSTANCE: {
+        return DEFAULT_INSTANCE;
+      }
+      case GET_PARSER: {
+        com.google.protobuf.Parser<io.opencensus.proto.metrics.v1.DistributionValue> parser = PARSER;
+        if (parser == null) {
+          synchronized (io.opencensus.proto.metrics.v1.DistributionValue.class) {
+            parser = PARSER;
+            if (parser == null) {
+              parser =
+                  new DefaultInstanceBasedParser<io.opencensus.proto.metrics.v1.DistributionValue>(
+                      DEFAULT_INSTANCE);
+              PARSER = parser;
+            }
+          }
+        }
+        return parser;
+    }
+    case GET_MEMOIZED_IS_INITIALIZED: {
+      return (byte) 1;
+    }
+    case SET_MEMOIZED_IS_INITIALIZED: {
+      return null;
+    }
+    }
+    throw new UnsupportedOperationException();
+  }
 
+
+  // @@protoc_insertion_point(class_scope:opencensus.proto.metrics.v1.DistributionValue)
+  private static final io.opencensus.proto.metrics.v1.DistributionValue DEFAULT_INSTANCE;
+  static {
+    DistributionValue defaultInstance = new DistributionValue();
+    // New instances are implicitly immutable so no need to make
+    // immutable.
+    DEFAULT_INSTANCE = defaultInstance;
+    com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
+      DistributionValue.class, defaultInstance);
+  }
+
+  public static io.opencensus.proto.metrics.v1.DistributionValue getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  private static volatile com.google.protobuf.Parser<DistributionValue> PARSER;
+
+  public static com.google.protobuf.Parser<DistributionValue> parser() {
+    return DEFAULT_INSTANCE.getParserForType();
+  }
 }
 

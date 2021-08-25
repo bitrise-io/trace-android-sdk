@@ -12,6 +12,7 @@ import io.bitrise.trace.data.collector.application.ApplicationVersionCodeDataCol
 import io.bitrise.trace.data.collector.application.ApplicationVersionNameDataCollector;
 import io.bitrise.trace.data.collector.cpu.ApplicationCpuUsageDataCollector;
 import io.bitrise.trace.data.collector.cpu.SystemCpuUsageDataCollector;
+import io.bitrise.trace.data.collector.crash.TraceCrashDataListener;
 import io.bitrise.trace.data.collector.device.DeviceCarrierDataCollector;
 import io.bitrise.trace.data.collector.device.DeviceIdDataCollector;
 import io.bitrise.trace.data.collector.device.DeviceLocaleDataCollector;
@@ -27,6 +28,8 @@ import io.bitrise.trace.data.collector.view.ApplicationForegroundStateDataListen
 import io.bitrise.trace.data.collector.view.ApplicationStartUpDataListener;
 import io.bitrise.trace.data.collector.view.FragmentStateDataListener;
 import io.bitrise.trace.data.resource.ResourceLabel;
+import io.bitrise.trace.utils.log.LogMessageConstants;
+import io.bitrise.trace.utils.log.TraceLog;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -112,8 +115,14 @@ public class ConfigurationManager {
     getInstance();
     initialised = true;
     configurationMap = new HashMap<>();
-    importConfigurationFromBuildConfig(context);
-    importConfigurationFromResValues(context);
+
+    try {
+      importConfigurationFromBuildConfig(context);
+      importConfigurationFromResValues(context);
+    } catch (Resources.NotFoundException exception) {
+      TraceLog.e(LogMessageConstants.CONFIGURATION_MANAGER_COULD_NOT_FIND_RESOURCES);
+    }
+
   }
 
   /**
@@ -249,17 +258,31 @@ public class ConfigurationManager {
    * @return the DataCollectors.
    */
   @NonNull
-  public Set<DataCollector> getDataCollectors(@NonNull final Context context) {
+  public Set<DataCollector> getRecurringDataCollectors(@NonNull final Context context) {
     final Set<DataCollector> dataCollectors = new HashSet<>();
     dataCollectors.add(new ApplicationUsedMemoryDataCollector(context));
     dataCollectors.add(new SystemMemoryDataCollector(context));
-
     dataCollectors.add(new SystemCpuUsageDataCollector());
     dataCollectors.add(new ApplicationCpuUsageDataCollector());
+    return dataCollectors;
+  }
 
-    dataCollectors.add(new ApplicationVersionNameDataCollector(context));
-    dataCollectors.add(new ApplicationVersionCodeDataCollector(context));
-
+  /**
+   * Creates a new set of {@link DataCollector}s that only need to collect their data once during
+   * the lifecycle of the application e.g. Application version codes.
+   *
+   * @param context the Android Context.
+   * @return the DataCollectors.
+   */
+  @NonNull
+  public Set<DataCollector> getSingleDataCollectors(@NonNull final Context context) {
+    final Set<DataCollector> dataCollectors = new HashSet<>();
+    dataCollectors.add(new ApplicationVersionNameDataCollector(
+        context.getPackageManager(),
+        context.getPackageName()));
+    dataCollectors.add(new ApplicationVersionCodeDataCollector(
+        context.getPackageManager(),
+        context.getPackageName()));
     dataCollectors.add(new DeviceModelDataCollector());
     dataCollectors.add(new DeviceOsVersionDataCollector());
     dataCollectors.add(new DeviceNetworkTypeDataCollector(context));
@@ -291,6 +314,7 @@ public class ConfigurationManager {
     dataListeners.add(applicationForegroundStateDataListener);
     dataListeners.add(new FragmentStateDataListener(context, activityStateDataListener));
     dataListeners.add(new OkHttpDataListener(context));
+    dataListeners.add(new TraceCrashDataListener(context));
     return dataListeners;
   }
 

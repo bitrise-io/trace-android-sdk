@@ -1,36 +1,29 @@
 package io.bitrise.trace.data.management;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
+import static java.lang.Thread.sleep;
 import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import android.content.Context;
-import android.os.AsyncTask;
-import androidx.test.annotation.UiThreadTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import io.bitrise.trace.configuration.ConfigurationManager;
-import io.bitrise.trace.data.collector.DataCollector;
-import io.bitrise.trace.data.collector.DataListener;
 import io.bitrise.trace.data.collector.DataSourceType;
 import io.bitrise.trace.data.collector.DummyDataCollector;
 import io.bitrise.trace.data.collector.DummyDataListener;
 import io.bitrise.trace.data.dto.Data;
+import io.bitrise.trace.data.metric.MetricEntity;
+import io.bitrise.trace.data.resource.ResourceEntity;
 import io.bitrise.trace.data.storage.DataStorage;
-import io.bitrise.trace.data.storage.TestDataStorage;
 import io.bitrise.trace.scheduler.ServiceScheduler;
 import io.bitrise.trace.session.ApplicationSessionManager;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 /**
@@ -54,17 +47,6 @@ public class DataManagerInstrumentedTest {
                                      .getTargetContext()
                                      .getApplicationContext();
     mockConfigurationManager = mock(ConfigurationManager.class);
-    final Set<DataCollector> dummyDataCollectors =
-        new HashSet<>(Arrays.asList(
-            new DummyDataCollector("dummyCollector1"),
-            new DummyDataCollector("dummyCollector2")));
-    when(mockConfigurationManager.getDataCollectors(context)).thenReturn(dummyDataCollectors);
-    final LinkedHashSet<DataListener> dummyDataListeners = new LinkedHashSet<>(
-        Arrays.asList(
-            new DummyDataListener("dummyListener1"),
-            new DummyDataListener("dummyListener2"),
-            new DummyDataListener("dummyListener3")));
-    when(mockConfigurationManager.getDataListeners(context)).thenReturn(dummyDataListeners);
   }
 
   /**
@@ -83,80 +65,24 @@ public class DataManagerInstrumentedTest {
   }
 
   /**
-   * When the sending is stopped with {@link DataManager#stopSending(android.content.Context)} the
+   * When the sending is stopped with {@link DataManager#stopSending()} the
    * {@link ServiceScheduler#cancelAll()} should be called.
    */
   @Test
   public void stopSending_shouldCallCancelAll() {
-    dataManager.stopSending(context);
+    dataManager.stopSending();
 
     verify(dataManager.metricServiceScheduler, times(1)).cancelAll();
     verify(dataManager.traceServiceScheduler, times(1)).cancelAll();
   }
 
   /**
-   * Test when the Data collection in started in the DataManager, the number of active
-   * DataCollectors should be 2 based on {@link #setUp()}.
-   */
-  @Test
-  public void startCollection_shouldActiveCollectorsBeNotEmptyAfterStart() {
-    dataManager.startCollection(context);
-
-    final int expectedValue = 2;
-    final int actualValue = dataManager.getActiveDataCollectors().size();
-
-    assertThat(actualValue, is(expectedValue));
-  }
-
-  /**
-   * Test when the Data collection in stopped in the DataManager, the number of active
-   * DataCollectors should be zero.
-   */
-  @Test
-  public void stopCollection_shouldHaveZeroActiveCollectors_AfterStop() {
-    dataManager.stopCollection();
-
-    final int expectedValue = 0;
-    final int actualValue = dataManager.getActiveDataCollectors().size();
-
-    assertThat(actualValue, is(expectedValue));
-  }
-
-  /**
-   * Test when the Data collection in started in the DataManager, the number of active
-   * DataListeners should be 3 based on {@link #setUp()}.
-   */
-  @Test
-  public void startCollection_shouldActiveListenersBeNotEmptyAfterStart() {
-    dataManager.startCollection(context);
-
-    final int expectedValue = 3;
-    final int actualValue = dataManager.getActiveDataListeners().size();
-
-    assertThat(actualValue, is(expectedValue));
-  }
-
-  /**
-   * Test when the Data collection in stopped in the DataManager, the number of active
-   * DataListeners should be zero.
-   */
-  @Test
-  public void stopCollection_shouldHaveZeroActiveListeners_AfterStop() {
-    dataManager.stopCollection();
-
-    final int expectedValue = 0;
-    final int actualValue = dataManager.getActiveDataListeners().size();
-
-    assertThat(actualValue, is(expectedValue));
-  }
-
-  /**
-   * When the sending is started the {@link DataManager#stopSending(Context)} should be called.
+   * When the sending is started the {@link DataManager#stopSending()} should be called.
    */
   @Test
   public void startSending_shouldCallStop() {
     mockDataManager.startSending(context);
-    verify(mockDataManager, times(1)).stopSending(context);
+    verify(mockDataManager, times(1)).stopSending();
   }
 
   /**
@@ -181,52 +107,55 @@ public class DataManagerInstrumentedTest {
   }
 
   /**
-   * Checks that a call to {@link DataManager#isInitialised()} should return {@code true} after
-   * a call made to {@link DataManager#getInstance(Context)}.
+   * When the {@link DataManager#handleReceivedData(Data)} is called with a valid {@link Data}
+   * that will be converted to a {@link io.opencensus.proto.metrics.v1.Metric} it should not
+   * throw an exception and call the relevant database save method.
    */
   @Test
-  public void getInstance_shouldInitialise() {
+  public void handleReceivedData_shouldHandleMetricWithoutException() throws InterruptedException {
     DataManager.getInstance(context);
-    final boolean actualValue = DataManager.isInitialised();
-    assertThat(actualValue, is(true));
-  }
+    ApplicationSessionManager.getInstance().startSession();
+    final DataStorage mockDataStorage = Mockito.mock(DataStorage.class);
+    dataManager.setDataStorage(mockDataStorage);
 
-  /**
-   * Checks that a call to {@link DataManager#isInitialised()} should return {@code false} after
-   * a call made to {@link DataManager#reset()}.
-   */
-  @Test
-  public void reset_shouldNotBeInitialised() {
-    DataManager.getInstance(context);
-    DataManager.reset();
-    final boolean actualValue = DataManager.isInitialised();
-    assertThat(actualValue, is(false));
+    final Data data = new Data(DataSourceType.SYSTEM_USED_MEMORY);
+    final long dummyValue = 500L;
+    data.setContent(dummyValue);
+    dataManager.handleReceivedData(data);
+
+    sleep(100);
+    // this happens asynchronously, and can take a few milliseconds to actually get called.
+
+    final ArgumentCaptor<MetricEntity> metricEntityArgumentCaptor =
+        ArgumentCaptor.forClass(MetricEntity.class);
+    verify(mockDataStorage, times(1))
+        .saveMetric(metricEntityArgumentCaptor.capture());
+    assertNotNull(metricEntityArgumentCaptor.getValue());
   }
 
   /**
    * When the {@link DataManager#handleReceivedData(Data)} is called with a valid {@link Data}
-   * that will be converted to a {@link io.opencensus.proto.metrics.v1.Metric} it should not
-   * throw an exception and be saved to the database correctly.
-   *
-   * <p>Note: We use the @UiThreadTest annotation to ensure this test runs synchronously on it's
-   * own. However, as we also use Room for our db, we must do that off the main thread, hence the
-   * AsyncTask.
+   * that will be converted to a {@link io.opencensus.proto.resource.v1.Resource} it should not
+   * throw an exception and call the relevant database save method.
    */
   @Test
-  @UiThreadTest
-  public void handleReceivedData_shouldHandleMetricWithoutException() {
-    AsyncTask.execute(() -> {
-      DataManager.getInstance(context);
-      ApplicationSessionManager.getInstance().startSession();
-      final DataStorage traceDataStorage = TestDataStorage.getInstance(context);
-      dataManager.setDataStorage(traceDataStorage);
+  public void handleReceivedData_shouldHandleResource() throws InterruptedException {
+    DataManager.getInstance(context);
+    ApplicationSessionManager.getInstance().startSession();
+    final DataStorage mockDataStorage = Mockito.mock(DataStorage.class);
+    dataManager.setDataStorage(mockDataStorage);
 
-      final Data data = new Data(DataSourceType.SYSTEM_USED_MEMORY);
-      final long dummyValue = 500L;
-      data.setContent(dummyValue);
-      dataManager.handleReceivedData(data);
+    final Data data = new Data(DataSourceType.APP_VERSION_CODE);
+    data.setContent("123");
+    dataManager.handleReceivedData(data);
 
-      assertThat(traceDataStorage.getAllMetrics().size(), is(equalTo(1)));
-    });
+    sleep(100);
+    // this happens asynchronously, and can take a few milliseconds to actually get called.
+
+    final ArgumentCaptor<ResourceEntity>  resourceEntityArgumentCaptor =
+        ArgumentCaptor.forClass(ResourceEntity.class);
+    verify(mockDataStorage, times(1))
+        .saveResourceEntity(resourceEntityArgumentCaptor.capture());
+    assertNotNull(resourceEntityArgumentCaptor.getValue());
   }
 }

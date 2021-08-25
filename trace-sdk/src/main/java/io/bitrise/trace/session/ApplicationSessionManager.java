@@ -87,4 +87,14 @@ public class ApplicationSessionManager implements SessionManager {
   public Session getActiveSession() {
     return session;
   }
+
+  @VisibleForTesting
+  static synchronized boolean isSessionManagerActive() {
+    return sessionManager != null;
+  }
+
+  @VisibleForTesting
+  static synchronized boolean isSessionActive() {
+    return session != null;
+  }
 }

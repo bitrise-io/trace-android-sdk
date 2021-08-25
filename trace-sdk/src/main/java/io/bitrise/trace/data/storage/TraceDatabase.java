@@ -5,6 +5,7 @@ import androidx.room.Database;
 import androidx.room.RoomDatabase;
 import io.bitrise.trace.data.metric.MetricEntity;
 import io.bitrise.trace.data.resource.ResourceEntity;
+import io.bitrise.trace.data.storage.entities.CrashEntity;
 import io.bitrise.trace.data.trace.TraceEntity;
 
 /**
@@ -12,7 +13,12 @@ import io.bitrise.trace.data.trace.TraceEntity;
  * {@link ResourceEntity}s. Each entity will have it's own table in the database. Each member in
  * the given entities will be the columns in the tables.
  */
-@Database(entities = {TraceEntity.class, MetricEntity.class, ResourceEntity.class}, version = 1)
+@Database(entities = {
+    TraceEntity.class,
+    MetricEntity.class,
+    ResourceEntity.class,
+    CrashEntity.class
+}, version = 2)
 public abstract class TraceDatabase extends RoomDatabase {
 
   /**
@@ -39,4 +45,13 @@ public abstract class TraceDatabase extends RoomDatabase {
    */
   @NonNull
   public abstract ResourceDao getResourceDao();
+
+  /**
+   * Gets the {@link CrashDao} to interact with
+   * {@link io.bitrise.trace.data.storage.entities.CrashEntity}s.
+   *
+   * @return the CrashDao.
+   */
+  @NonNull
+  public abstract CrashDao getCrashDao();
 }
