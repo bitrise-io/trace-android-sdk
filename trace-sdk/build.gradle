@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 30
-        versionName "$project.version"
-        buildConfigField('String', 'VERSION_NAME', "\"${project.version}\"")
+        versionName "${traceVersions.traceSdk}"
+        buildConfigField('String', 'VERSION_NAME', "\"${traceVersions.traceSdk}\"")
         buildConfigField('String', 'TRACE_TOKEN', getTraceToken())
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
