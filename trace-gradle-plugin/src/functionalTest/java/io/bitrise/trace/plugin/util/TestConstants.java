@@ -42,6 +42,11 @@ public class TestConstants {
    */
   public static final String MAIN_SOURCE_DIRECTORY_NAME = "src/main";
 
+  /**
+   * The name for the versions.gradle file.
+   */
+  public static final String VERSIONS_GRADLE = "versions.gradle";
+
   private TestConstants() {
     throw new IllegalStateException(
         "Should not be instantiated, used only for storing static members!");

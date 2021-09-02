@@ -44,6 +44,8 @@ project.afterEvaluate {
 
                 from components.release
 
+                version traceVersions.traceSdk
+
                 pom {
                     name = 'Trace Android SDK'
                     packaging 'aar'

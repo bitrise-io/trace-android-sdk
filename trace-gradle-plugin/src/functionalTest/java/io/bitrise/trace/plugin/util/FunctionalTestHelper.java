@@ -201,10 +201,8 @@ public class FunctionalTestHelper {
     final String testDirPath = getTestDirName(testName);
 
     try {
-      FunctionalTestUtils.copyFile(TestConstants.GRADLE_PROPERTIES_FILE_NAME,
-          testDirPath + "traceGradlePlugin.properties");
-      FunctionalTestUtils.copyFile("../trace-sdk/" + TestConstants.GRADLE_PROPERTIES_FILE_NAME,
-          testDirPath + "traceSdk.properties");
+      FunctionalTestUtils.copyFile("../" + TestConstants.VERSIONS_GRADLE,
+          testDirPath + TestConstants.VERSIONS_GRADLE);
     } catch (final IOException ioe) {
       ioe.printStackTrace();
     }

@@ -9,9 +9,8 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode = "$project.versionCode" as int
-        versionName "$project.version"
-        buildConfigField('String', 'VERSION_NAME', "\"${project.version}\"")
+        versionName "${traceVersions.traceSdk}"
+        buildConfigField('String', 'VERSION_NAME', "\"${traceVersions.traceSdk}\"")
         buildConfigField('String', 'TRACE_TOKEN', getTraceToken())
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
@@ -51,7 +50,7 @@ dependencies {
         version { require versions.okhttp }
         because constraintReasons.okhttp
     }
-    implementation "io.bitrise.trace.internal:opencensus:${versions.opencensus}"
+    implementation "io.bitrise.trace.internal:opencensus:${traceVersions.opencensus}"
     implementation "io.azam.ulidj:ulidj:${versions.ulidj}"
     implementation("com.scottyab:rootbeer-lib:${versions.rootbeer}"){
         because constraintReasons.rootBeer
